@@ -18,3 +18,159 @@
   display: grid;
   gap: 8px;
 }
+
+#calc-present-value .fi-scenario-section {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 38%),
+    linear-gradient(180deg, rgba(247, 250, 252, 0.96), rgba(240, 246, 250, 0.92));
+  display: grid;
+  gap: 16px;
+}
+
+#calc-present-value .fi-scenario-header {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-present-value .fi-scenario-eyebrow {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #557089;
+  font-weight: 700;
+}
+
+#calc-present-value .fi-scenario-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #13293d;
+}
+
+#calc-present-value .fi-scenario-copy {
+  margin: 0;
+  color: #456176;
+}
+
+#calc-present-value .fi-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-present-value .fi-scenario-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+}
+
+#calc-present-value .fi-scenario-card[data-tone='optimized'] {
+  border-color: rgba(21, 128, 61, 0.18);
+  background: linear-gradient(180deg, rgba(241, 253, 244, 0.92), rgba(255, 255, 255, 0.86));
+}
+
+#calc-present-value .fi-scenario-card[data-tone='stress'] {
+  border-color: rgba(180, 83, 9, 0.2);
+  background: linear-gradient(180deg, rgba(255, 248, 235, 0.96), rgba(255, 255, 255, 0.9));
+}
+
+#calc-present-value .fi-scenario-card[data-tone='optional'] {
+  border-color: rgba(30, 64, 175, 0.16);
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.95), rgba(255, 255, 255, 0.88));
+}
+
+#calc-present-value .fi-scenario-label {
+  margin: 0;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(19, 41, 61, 0.08);
+  color: #29445a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#calc-present-value .fi-scenario-card h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  color: #13293d;
+}
+
+#calc-present-value .fi-scenario-impact,
+#calc-present-value .fi-scenario-insight,
+#calc-present-value .fi-scenario-action {
+  margin: 0;
+}
+
+#calc-present-value .fi-scenario-impact {
+  color: #163e59;
+  font-weight: 700;
+}
+
+#calc-present-value .fi-scenario-insight,
+#calc-present-value .fi-scenario-action {
+  color: #456176;
+}
+
+#calc-present-value .fi-scenario-drivers {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#calc-present-value .fi-scenario-drivers li {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(19, 41, 61, 0.06);
+  color: #29445a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-present-value .fi-scenario-questions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-present-value .fi-scenario-qa {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+#calc-present-value .fi-scenario-qa h3,
+#calc-present-value .fi-scenario-qa p {
+  margin: 0;
+}
+
+#calc-present-value .fi-scenario-qa h3 {
+  font-size: 0.98rem;
+  color: #13293d;
+}
+
+#calc-present-value .fi-scenario-qa p {
+  margin-top: 8px;
+  color: #456176;
+}
+
+@media (max-width: 720px) {
+  #calc-present-value .fi-scenario-grid,
+  #calc-present-value .fi-scenario-questions {
+    grid-template-columns: 1fr;
+  }
+}

@@ -431,3 +431,279 @@ calculateButton?.addEventListener('click', () => {
 
 updateSliderDisplays();
 calculate();
+
+const pvScenarioRoot = document.querySelector('[data-pv-scenario="section"]');
+const pvScenarioButton = document.querySelector('#pv-calc');
+
+function pvScenarioText(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function pvScenarioNumber(value, digits = 1) {
+  if (!Number.isFinite(value)) {
+    return '0';
+  }
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: digits,
+  });
+}
+
+function pvScenarioNumeric(selector) {
+  return Number(document.querySelector(selector)?.value ?? NaN);
+}
+
+function pvScenarioActive(groupName, fallback) {
+  const active = document.querySelector(`[data-button-group="${groupName}"] .is-active`) ??
+    document.querySelector(`[data-button-group="${groupName}"] [aria-pressed="true"]`);
+  return active?.dataset.value ?? fallback;
+}
+
+function pvScenarioBound(selector, bound, fallback) {
+  const raw = Number(document.querySelector(selector)?.[bound]);
+  return Number.isFinite(raw) ? raw : fallback;
+}
+
+function pvScenarioClamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function pvScenarioShiftRate(value, direction, selector) {
+  const step = Math.abs(pvScenarioBound(selector, 'step', 0.1)) || 0.1;
+  const min = pvScenarioBound(selector, 'min', 0);
+  const max = pvScenarioBound(selector, 'max', 100);
+  const delta = Math.max(Math.abs(value) * 0.15, step, 0.5);
+  return pvScenarioClamp(value + direction * delta, min, max);
+}
+
+function pvScenarioShiftTime(value, direction, selector) {
+  const step = Math.abs(pvScenarioBound(selector, 'step', 1)) || 1;
+  const min = pvScenarioBound(selector, 'min', 1);
+  const max = pvScenarioBound(selector, 'max', Number.MAX_SAFE_INTEGER);
+  const delta = Math.max(Math.abs(value) * 0.2, step, 1);
+  return pvScenarioClamp(value + direction * delta, min, max);
+}
+
+function pvScenarioStepCompounding(value, direction) {
+  const ladder = ['annual', 'semiannual', 'quarterly', 'monthly', 'daily'];
+  const index = ladder.indexOf(value);
+  if (index === -1) {
+    return value;
+  }
+  return ladder[pvScenarioClamp(index + direction, 0, ladder.length - 1)];
+}
+
+function pvScenarioRelativeImpact(baseValue, nextValue, label) {
+  if (!Number.isFinite(baseValue) || !Number.isFinite(nextValue)) {
+    return `${label} needs a fresh calculation to compare properly.`;
+  }
+  if (Math.abs(baseValue) < 1e-9) {
+    if (Math.abs(nextValue) < 1e-9) {
+      return `${label} stays close to the current baseline.`;
+    }
+    return `${label} moves off the current baseline once these drivers change together.`;
+  }
+  const deltaRatio = (nextValue - baseValue) / Math.abs(baseValue);
+  const pct = Math.abs(deltaRatio) * 100;
+  if (pct < 0.35) {
+    return `${label} stays close to the current baseline.`;
+  }
+  const approx = pvScenarioNumber(pct, pct >= 10 ? 0 : 1);
+  return deltaRatio >= 0
+    ? `${label} improves by about ${approx}% versus the current baseline.`
+    : `${label} softens by about ${approx}% versus the current baseline.`;
+}
+
+function pvScenarioMaterial(baseValue, nextValue) {
+  if (!Number.isFinite(baseValue) || !Number.isFinite(nextValue)) {
+    return false;
+  }
+  if (Math.abs(baseValue) < 1e-9) {
+    return Math.abs(nextValue) > 0;
+  }
+  return Math.abs((nextValue - baseValue) / Math.abs(baseValue)) >= 0.03;
+}
+
+function pvScenarioDrivers(listNode, drivers) {
+  if (!listNode) {
+    return;
+  }
+  listNode.innerHTML = (drivers ?? []).map((driver) => `<li>${driver}</li>`).join('');
+}
+
+function pvScenarioRenderCard(key, payload) {
+  const card = pvScenarioRoot?.querySelector(`[data-pv-scenario-card="${key}"]`);
+  if (!card || !payload) {
+    return;
+  }
+  card.hidden = Boolean(payload.hidden);
+  card.dataset.tone = payload.tone ?? key;
+  pvScenarioText(card.querySelector('[data-pv-scenario-question]'), payload.question);
+  pvScenarioText(card.querySelector('[data-pv-scenario-impact]'), payload.impact);
+  pvScenarioText(card.querySelector('[data-pv-scenario-insight]'), payload.insight);
+  pvScenarioText(card.querySelector('[data-pv-scenario-action]'), payload.action);
+  pvScenarioDrivers(card.querySelector('[data-pv-scenario-drivers]'), payload.drivers ?? []);
+}
+
+function pvScenarioRenderQa(index, payload) {
+  const qa = pvScenarioRoot?.querySelector(`[data-pv-scenario-qa="${index}"]`);
+  if (!qa || !payload) {
+    return;
+  }
+  pvScenarioText(qa.querySelector('[data-pv-scenario-qa-question]'), payload.question);
+  pvScenarioText(qa.querySelector('[data-pv-scenario-qa-answer]'), payload.answer);
+}
+
+function pvScenarioUnavailable(message) {
+  pvScenarioRenderCard('baseline', {
+    tone: 'baseline',
+    question: 'What does the current discount setup imply?',
+    impact: message,
+    insight: 'Adjust the current inputs and recalculate to compare scenarios.',
+    action: 'Use the refreshed baseline as the benchmark for every other path.',
+    drivers: ['Current inputs'],
+  });
+  pvScenarioRenderCard('optimized', {
+    tone: 'optimized',
+    question: 'What if discount drag eases and the wait is shorter?',
+    impact: 'Improvement scenarios appear after a valid calculation.',
+    insight: 'The upside path needs a valid baseline first.',
+    action: 'Run the main calculator again after fixing the inputs.',
+    drivers: ['Improved assumptions'],
+  });
+  pvScenarioRenderCard('stress', {
+    tone: 'stress',
+    question: 'What if rate pressure and delay both rise?',
+    impact: 'Stress testing appears after a valid calculation.',
+    insight: 'The downside path needs a valid baseline first.',
+    action: 'Recalculate to unlock the stress comparison.',
+    drivers: ['Tougher assumptions'],
+  });
+  const optionalCard = pvScenarioRoot?.querySelector('[data-pv-scenario-card="optional"]');
+  if (optionalCard) {
+    optionalCard.hidden = true;
+  }
+  pvScenarioRenderQa(0, {
+    question: 'Which lever moves present value fastest here?',
+    answer: 'The biggest drivers become visible after a valid calculation.',
+  });
+  pvScenarioRenderQa(1, {
+    question: 'What is the main downside risk to watch?',
+    answer: 'The stress path becomes visible after a valid calculation.',
+  });
+}
+
+function renderPvScenarioAnalysis() {
+  if (!pvScenarioRoot) {
+    return;
+  }
+
+  const input = {
+    futureValue: pvScenarioNumeric('#pv-future-value'),
+    discountRate: pvScenarioNumeric('#pv-discount-rate'),
+    timePeriod: pvScenarioNumeric('#pv-time-period'),
+    periodType: pvScenarioActive('pv-period-type', 'years'),
+    compounding: pvScenarioActive('pv-compounding', 'annual'),
+  };
+
+  const baselineResult = calculatePresentValue(input);
+  if (!baselineResult) {
+    pvScenarioUnavailable('Enter a valid future amount, discount rate, and time period to compare scenarios.');
+    return;
+  }
+
+  const baselineMetric = baselineResult.presentValue;
+  const optimizedInput = {
+    ...input,
+    discountRate: pvScenarioShiftRate(input.discountRate, -1, '#pv-discount-rate'),
+    timePeriod: pvScenarioShiftTime(input.timePeriod, -1, '#pv-time-period'),
+  };
+  const stressInput = {
+    ...input,
+    discountRate: pvScenarioShiftRate(input.discountRate, 1, '#pv-discount-rate'),
+    timePeriod: pvScenarioShiftTime(input.timePeriod, 1, '#pv-time-period'),
+  };
+  const optionalInput = {
+    ...input,
+    compounding: pvScenarioStepCompounding(input.compounding, 1),
+    timePeriod: pvScenarioShiftTime(input.timePeriod, -1, '#pv-time-period'),
+  };
+  const optimizedResult = calculatePresentValue(optimizedInput);
+  const stressResult = calculatePresentValue(stressInput);
+  const optionalResult = calculatePresentValue(optionalInput);
+
+  const optimized = {
+    tone: 'optimized',
+    question: 'What if discount drag eases and the wait is shorter?',
+    impact: pvScenarioRelativeImpact(baselineMetric, optimizedResult?.presentValue, 'Present value'),
+    insight:
+      'A lower discount rate and a shorter holding period preserve more of the future amount in today’s money at the same time.',
+    action:
+      'If this is the target zone, focus on shortening the wait or easing the required return assumption.',
+    drivers: ['Lower discount rate', 'Shorter wait', 'Same future amount'],
+  };
+
+  const stress = {
+    tone: 'stress',
+    question: 'What if rate pressure and delay both rise?',
+    impact: pvScenarioRelativeImpact(baselineMetric, stressResult?.presentValue, 'Present value'),
+    insight:
+      'A tougher discount rate combined with a longer wait compounds the valuation haircut across more periods.',
+    action: 'Use this case to set a downside floor before relying on the current estimate.',
+    drivers: ['Higher discount rate', 'Longer wait', 'Same future amount'],
+  };
+
+  const optional = {
+    tone: 'optional',
+    show: pvScenarioMaterial(baselineMetric, optionalResult?.presentValue),
+    question: 'What if valuation cadence changes too?',
+    impact: pvScenarioRelativeImpact(baselineMetric, optionalResult?.presentValue, 'Present value'),
+    insight:
+      'Denser compounding changes how often discounting bites, so timing conventions can matter even when the cash amount does not.',
+    action: 'Use this comparison when the payment or reporting cadence is not fixed.',
+    drivers: ['Different compounding cadence', 'Adjusted wait', 'Same future amount'],
+  };
+
+  pvScenarioRenderCard('baseline', {
+    tone: 'baseline',
+    question: 'What does the current discount setup imply?',
+    impact: 'This baseline keeps the current future amount, discount rate, and wait time as the reference case.',
+    insight:
+      input.timePeriod > 0
+        ? 'The current answer is mostly being shaped by how long the cash stays discounted and how demanding the rate assumption is.'
+        : 'With almost no waiting period, discounting has less room to erode today’s value.',
+    action: 'Treat this as the benchmark before testing alternative valuation assumptions.',
+    drivers: [
+      'Current discount rate',
+      input.periodType === 'months' ? 'Current month horizon' : 'Current year horizon',
+      'Current compounding',
+    ],
+  });
+  pvScenarioRenderCard('optimized', optimized);
+  pvScenarioRenderCard('stress', stress);
+  if (optional.show) {
+    pvScenarioRenderCard('optional', { ...optional, hidden: false });
+  } else {
+    const optionalCard = pvScenarioRoot?.querySelector('[data-pv-scenario-card="optional"]');
+    if (optionalCard) {
+      optionalCard.hidden = true;
+    }
+  }
+
+  pvScenarioRenderQa(0, {
+    question: 'Which lever moves present value fastest here?',
+    answer: `${optimized.impact} Shortening the wait and easing discount pressure usually move this answer faster than cosmetic frequency changes alone.`,
+  });
+  pvScenarioRenderQa(1, {
+    question: 'What is the main downside risk to watch?',
+    answer: `${stress.impact} A tougher rate assumption plus extra delay is the combination most likely to undermine the valuation.`,
+  });
+}
+
+pvScenarioButton?.addEventListener('click', () => {
+  renderPvScenarioAnalysis();
+});
+
+renderPvScenarioAnalysis();

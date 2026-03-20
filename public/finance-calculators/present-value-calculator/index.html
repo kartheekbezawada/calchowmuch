@@ -1701,6 +1701,162 @@
         display: grid;
         gap: 8px;
       }
+
+      #calc-present-value .fi-scenario-section {
+        margin-top: 22px;
+        padding: 20px;
+        border-radius: 24px;
+        border: 1px solid rgba(31, 95, 135, 0.14);
+        background:
+          radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 38%),
+          linear-gradient(180deg, rgba(247, 250, 252, 0.96), rgba(240, 246, 250, 0.92));
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-present-value .fi-scenario-header {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-present-value .fi-scenario-eyebrow {
+        margin: 0;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #557089;
+        font-weight: 700;
+      }
+
+      #calc-present-value .fi-scenario-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        color: #13293d;
+      }
+
+      #calc-present-value .fi-scenario-copy {
+        margin: 0;
+        color: #456176;
+      }
+
+      #calc-present-value .fi-scenario-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-present-value .fi-scenario-card {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+      }
+
+      #calc-present-value .fi-scenario-card[data-tone='optimized'] {
+        border-color: rgba(21, 128, 61, 0.18);
+        background: linear-gradient(180deg, rgba(241, 253, 244, 0.92), rgba(255, 255, 255, 0.86));
+      }
+
+      #calc-present-value .fi-scenario-card[data-tone='stress'] {
+        border-color: rgba(180, 83, 9, 0.2);
+        background: linear-gradient(180deg, rgba(255, 248, 235, 0.96), rgba(255, 255, 255, 0.9));
+      }
+
+      #calc-present-value .fi-scenario-card[data-tone='optional'] {
+        border-color: rgba(30, 64, 175, 0.16);
+        background: linear-gradient(180deg, rgba(239, 246, 255, 0.95), rgba(255, 255, 255, 0.88));
+      }
+
+      #calc-present-value .fi-scenario-label {
+        margin: 0;
+        width: fit-content;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(19, 41, 61, 0.08);
+        color: #29445a;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      #calc-present-value .fi-scenario-card h3 {
+        margin: 0;
+        font-size: 1.02rem;
+        color: #13293d;
+      }
+
+      #calc-present-value .fi-scenario-impact,
+      #calc-present-value .fi-scenario-insight,
+      #calc-present-value .fi-scenario-action {
+        margin: 0;
+      }
+
+      #calc-present-value .fi-scenario-impact {
+        color: #163e59;
+        font-weight: 700;
+      }
+
+      #calc-present-value .fi-scenario-insight,
+      #calc-present-value .fi-scenario-action {
+        color: #456176;
+      }
+
+      #calc-present-value .fi-scenario-drivers {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      #calc-present-value .fi-scenario-drivers li {
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(19, 41, 61, 0.06);
+        color: #29445a;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      #calc-present-value .fi-scenario-questions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-present-value .fi-scenario-qa {
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      #calc-present-value .fi-scenario-qa h3,
+      #calc-present-value .fi-scenario-qa p {
+        margin: 0;
+      }
+
+      #calc-present-value .fi-scenario-qa h3 {
+        font-size: 0.98rem;
+        color: #13293d;
+      }
+
+      #calc-present-value .fi-scenario-qa p {
+        margin-top: 8px;
+        color: #456176;
+      }
+
+      @media (max-width: 720px) {
+        #calc-present-value .fi-scenario-grid,
+        #calc-present-value .fi-scenario-questions {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
  
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/present-value-calculator/#webpage","name":"Present Value Calculator | Discount Future Money","url":"https://calchowmuch.com/finance-calculators/present-value-calculator/","description":"Estimate the present value of future money using discount rate, time period, and compounding frequency.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/present-value-calculator/#softwareapplication","name":"Present Value (PV) Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/present-value-calculator/","description":"Calculate the present value of future cash using discount rate and time.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Present value estimate","Discount lost breakdown","Compounding options"],"keywords":"present value calculator, pv calculator, discount rate calculator, time value of money","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/present-value-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is present value?","acceptedAnswer":{"@type":"Answer","text":"Present value is the amount a future cash sum is worth in today&apos;s money."}},{"@type":"Question","name":"Why is present value lower than future value?","acceptedAnswer":{"@type":"Answer","text":"Because money available today can be invested, saved, or otherwise put to work immediately."}},{"@type":"Question","name":"What discount rate should I use?","acceptedAnswer":{"@type":"Answer","text":"Use a rate that reflects your real opportunity cost, required return, or planning assumption."}},{"@type":"Question","name":"Does a longer time period always reduce present value?","acceptedAnswer":{"@type":"Answer","text":"Yes, assuming the discount rate is positive and the future amount stays constant."}},{"@type":"Question","name":"What does compounding change here?","acceptedAnswer":{"@type":"Answer","text":"It changes the per-period rate and the number of periods used in the discounting process."}},{"@type":"Question","name":"Can I use months instead of years?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use months when the timing is short and you want the answer to reflect that precision."}},{"@type":"Question","name":"What happens if the discount rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"The present value equals the future value because no discounting is applied."}},{"@type":"Question","name":"Is this calculator for recurring payments?","acceptedAnswer":{"@type":"Answer","text":"No. Use an annuity calculator when you need to value a series of recurring cash flows."}},{"@type":"Question","name":"Why can spreadsheet results differ slightly?","acceptedAnswer":{"@type":"Answer","text":"Display rounding can differ even when the underlying formula logic matches."}},{"@type":"Question","name":"When is present value most useful?","acceptedAnswer":{"@type":"Answer","text":"It is useful when comparing future payouts, settlements, bonuses, or deferred cash offers."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/present-value-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Present Value (PV)","item":"https://calchowmuch.com/finance-calculators/present-value-calculator/"}]}]}</script>
@@ -1972,6 +2128,128 @@
           Inputs changed. Recalculate to refresh the answer.
         </p>
       </aside>
+    </section>
+
+    <section
+      class="fi-scenario-section"
+      data-pv-scenario="section"
+      aria-labelledby="pv-scenario-heading"
+    >
+      <div class="fi-scenario-header">
+        <div>
+          <p class="fi-scenario-eyebrow">Scenario Analysis</p>
+          <h2 id="pv-scenario-heading">How could this present value shift?</h2>
+        </div>
+        <p class="fi-scenario-copy">
+          Compare the current discount setup against faster, softer, and heavier discount paths to
+          see how rate pressure and time change what the future lump sum is worth today.
+        </p>
+      </div>
+
+      <div class="fi-scenario-grid" data-pv-scenario="cards">
+        <article class="fi-scenario-card" data-pv-scenario-card="baseline" data-tone="baseline">
+          <p class="fi-scenario-label">Baseline</p>
+          <h3 data-pv-scenario-question>What does the current discount setup imply?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            The baseline keeps your current future amount, discount rate, and timing assumptions
+            together as the comparison point.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this as the valuation anchor before testing trade-offs.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Current discount rate</li>
+            <li>Current wait time</li>
+            <li>Current compounding</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-pv-scenario-card="optimized" data-tone="optimized">
+          <p class="fi-scenario-label">Optimized</p>
+          <h3 data-pv-scenario-question>What if discount drag eases and the wait is shorter?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            Lower discount pressure and a shorter wait preserve more of the future amount in
+            today&apos;s dollars.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this as the stretch case when timing or required return improves.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Lower discount rate</li>
+            <li>Shorter wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-pv-scenario-card="stress" data-tone="stress">
+          <p class="fi-scenario-label">Stress</p>
+          <h3 data-pv-scenario-question>What if rate pressure and delay both rise?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            A higher discount rate and a longer wait reduce how much of the future amount survives
+            in present-day terms.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this path to sanity-check downside valuation risk.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Higher discount rate</li>
+            <li>Longer wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+
+        <article
+          class="fi-scenario-card"
+          data-pv-scenario-card="optional"
+          data-tone="optional"
+          hidden
+        >
+          <p class="fi-scenario-label">Alternative</p>
+          <h3 data-pv-scenario-question>What if valuation cadence changes too?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            Changing valuation cadence can shift the answer even when the future amount itself
+            stays the same.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this comparison when payment timing or compounding assumptions are negotiable.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Different compounding cadence</li>
+            <li>Adjusted wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="fi-scenario-questions" data-pv-scenario="paa">
+        <div class="fi-scenario-qa" data-pv-scenario-qa="0">
+          <h3 data-pv-scenario-qa-question>Which lever moves present value fastest here?</h3>
+          <p data-pv-scenario-qa-answer>
+            The strongest levers are the discount rate and the wait time because they directly
+            control how much discounting compounds before the cash arrives.
+          </p>
+        </div>
+
+        <div class="fi-scenario-qa" data-pv-scenario-qa="1">
+          <h3 data-pv-scenario-qa-question>What is the main downside risk to watch?</h3>
+          <p data-pv-scenario-qa-answer>
+            Higher required returns combined with a longer delay can erode today&apos;s value faster
+            than most users expect.
+          </p>
+        </div>
+      </div>
     </section>
   </div>
 </div>

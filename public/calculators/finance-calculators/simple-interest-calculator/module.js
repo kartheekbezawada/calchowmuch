@@ -1,6 +1,9 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
-import { calculateSimpleInterest } from '/assets/js/core/time-value-utils.js';
+import {
+  calculateCompoundInterest,
+  calculateSimpleInterest,
+} from '/assets/js/core/time-value-utils.js';
 import {
   createStaleResultController,
   revealResultPanel,
@@ -423,3 +426,302 @@ calculateButton?.addEventListener('click', () => {
 
 updateSliderDisplays();
 calculate();
+
+const siScenarioRoot = document.querySelector('[data-si-scenario="section"]');
+const siScenarioButton = document.querySelector('#si-calc');
+
+function siScenarioText(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
+function siScenarioNumber(value, digits = 1) {
+  if (!Number.isFinite(value)) {
+    return '0';
+  }
+  return formatNumber(value, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: digits,
+  });
+}
+
+function siScenarioNumeric(selector) {
+  return Number(document.querySelector(selector)?.value ?? NaN);
+}
+
+function siScenarioActive(groupName, fallback) {
+  const active = document.querySelector(`[data-button-group="${groupName}"] .is-active`) ??
+    document.querySelector(`[data-button-group="${groupName}"] [aria-pressed="true"]`);
+  return active?.dataset.value ?? fallback;
+}
+
+function siScenarioBound(selector, bound, fallback) {
+  const raw = Number(document.querySelector(selector)?.[bound]);
+  return Number.isFinite(raw) ? raw : fallback;
+}
+
+function siScenarioClamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function siScenarioShiftAmount(value, direction, selector, fallbackBase = value) {
+  const step = Math.abs(siScenarioBound(selector, 'step', 1)) || 1;
+  const min = siScenarioBound(selector, 'min', 0);
+  const max = siScenarioBound(selector, 'max', Number.MAX_SAFE_INTEGER);
+  const base = Math.abs(value) > 0 ? Math.abs(value) : Math.abs(fallbackBase);
+  const delta = Math.max(base * 0.1, step);
+  return siScenarioClamp(value + direction * delta, min, max);
+}
+
+function siScenarioShiftRate(value, direction, selector) {
+  const step = Math.abs(siScenarioBound(selector, 'step', 0.1)) || 0.1;
+  const min = siScenarioBound(selector, 'min', 0);
+  const max = siScenarioBound(selector, 'max', 100);
+  const delta = Math.max(Math.abs(value) * 0.15, step, 0.5);
+  return siScenarioClamp(value + direction * delta, min, max);
+}
+
+function siScenarioShiftTime(value, direction, selector) {
+  const step = Math.abs(siScenarioBound(selector, 'step', 1)) || 1;
+  const min = siScenarioBound(selector, 'min', 1);
+  const max = siScenarioBound(selector, 'max', Number.MAX_SAFE_INTEGER);
+  const delta = Math.max(Math.abs(value) * 0.2, step, 1);
+  return siScenarioClamp(value + direction * delta, min, max);
+}
+
+function siScenarioRelativeImpact(baseValue, nextValue, label, higherIsBetter = true) {
+  if (!Number.isFinite(baseValue) || !Number.isFinite(nextValue)) {
+    return `${label} needs a fresh calculation to compare properly.`;
+  }
+  if (Math.abs(baseValue) < 1e-9) {
+    if (Math.abs(nextValue) < 1e-9) {
+      return `${label} stays close to the current baseline.`;
+    }
+    return `${label} moves off the current baseline once these drivers change together.`;
+  }
+  const deltaRatio = (nextValue - baseValue) / Math.abs(baseValue);
+  const pct = Math.abs(deltaRatio) * 100;
+  if (pct < 0.35) {
+    return `${label} stays close to the current baseline.`;
+  }
+  const approx = siScenarioNumber(pct, pct >= 10 ? 0 : 1);
+  const directionText = deltaRatio >= 0
+    ? (higherIsBetter ? 'improves' : 'moves higher')
+    : (higherIsBetter ? 'softens' : 'comes down');
+  return `${label} ${directionText} by about ${approx}% versus the current baseline.`;
+}
+
+function siScenarioMaterial(baseValue, nextValue) {
+  if (!Number.isFinite(baseValue) || !Number.isFinite(nextValue)) {
+    return false;
+  }
+  if (Math.abs(baseValue) < 1e-9) {
+    return Math.abs(nextValue) > 0;
+  }
+  return Math.abs((nextValue - baseValue) / Math.abs(baseValue)) >= 0.03;
+}
+
+function siScenarioDrivers(listNode, drivers) {
+  if (!listNode) {
+    return;
+  }
+  listNode.innerHTML = (drivers ?? []).map((driver) => `<li>${driver}</li>`).join('');
+}
+
+function siScenarioRenderCard(key, payload) {
+  const card = siScenarioRoot?.querySelector(`[data-si-scenario-card="${key}"]`);
+  if (!card || !payload) {
+    return;
+  }
+  card.hidden = Boolean(payload.hidden);
+  card.dataset.tone = payload.tone ?? key;
+  siScenarioText(card.querySelector('[data-si-scenario-question]'), payload.question);
+  siScenarioText(card.querySelector('[data-si-scenario-impact]'), payload.impact);
+  siScenarioText(card.querySelector('[data-si-scenario-insight]'), payload.insight);
+  siScenarioText(card.querySelector('[data-si-scenario-action]'), payload.action);
+  siScenarioDrivers(card.querySelector('[data-si-scenario-drivers]'), payload.drivers ?? []);
+}
+
+function siScenarioRenderQa(index, payload) {
+  const qa = siScenarioRoot?.querySelector(`[data-si-scenario-qa="${index}"]`);
+  if (!qa || !payload) {
+    return;
+  }
+  siScenarioText(qa.querySelector('[data-si-scenario-qa-question]'), payload.question);
+  siScenarioText(qa.querySelector('[data-si-scenario-qa-answer]'), payload.answer);
+}
+
+function siScenarioUnavailable(message) {
+  siScenarioRenderCard('baseline', {
+    tone: 'baseline',
+    question: 'What does the current simple-interest path suggest?',
+    impact: message,
+    insight: 'Adjust the current inputs and recalculate to compare scenarios.',
+    action: 'Use the refreshed baseline as the benchmark for every other path.',
+    drivers: ['Current inputs'],
+  });
+  siScenarioRenderCard('optimized', {
+    tone: 'optimized',
+    question: 'What if rate pressure and time both ease?',
+    impact: 'Improvement scenarios appear after a valid calculation.',
+    insight: 'The upside path needs a valid baseline first.',
+    action: 'Run the main calculator again after fixing the inputs.',
+    drivers: ['Improved assumptions'],
+  });
+  siScenarioRenderCard('stress', {
+    tone: 'stress',
+    question: 'What if the rate and schedule both work against you?',
+    impact: 'Stress testing appears after a valid calculation.',
+    insight: 'The downside path needs a valid baseline first.',
+    action: 'Recalculate to unlock the stress comparison.',
+    drivers: ['Tougher assumptions'],
+  });
+  const optionalCard = siScenarioRoot?.querySelector('[data-si-scenario-card="optional"]');
+  if (optionalCard) {
+    optionalCard.hidden = true;
+  }
+  siScenarioRenderQa(0, {
+    question: 'What changes simple-interest cost the most here?',
+    answer: 'The biggest drivers become visible after a valid calculation.',
+  });
+  siScenarioRenderQa(1, {
+    question: 'What is the main downside risk?',
+    answer: 'The stress path becomes visible after a valid calculation.',
+  });
+}
+
+function renderSiScenarioAnalysis() {
+  if (!siScenarioRoot) {
+    return;
+  }
+
+  const input = {
+    principal: siScenarioNumeric('#si-principal'),
+    rate: siScenarioNumeric('#si-rate'),
+    timePeriod: siScenarioNumeric('#si-time'),
+    timeUnit: siScenarioActive('si-time-unit', 'years'),
+    interestBasis: siScenarioActive('si-basis', 'per-year'),
+  };
+
+  const baselineResult = calculateSimpleInterest(input);
+  if (!baselineResult) {
+    siScenarioUnavailable('Enter a valid principal, rate, and time period to compare scenarios.');
+    return;
+  }
+
+  const baselineMetric = baselineResult.totalInterest;
+  const optimizedInput = {
+    ...input,
+    rate: siScenarioShiftRate(input.rate, -1, '#si-rate'),
+    timePeriod: siScenarioShiftTime(input.timePeriod, -1, '#si-time'),
+    interestBasis: 'per-year',
+  };
+  const stressInput = {
+    ...input,
+    rate: siScenarioShiftRate(input.rate, 1, '#si-rate'),
+    timePeriod: siScenarioShiftTime(input.timePeriod, 1, '#si-time'),
+    interestBasis: 'per-month',
+  };
+
+  const compoundAnnualRate = input.interestBasis === 'per-month' ? input.rate * 12 : input.rate;
+  const compoundCompounding = input.interestBasis === 'per-month' ? 'monthly' : 'annual';
+  const optimizedResult = calculateSimpleInterest(optimizedInput);
+  const stressResult = calculateSimpleInterest(stressInput);
+  const optionalResult = calculateCompoundInterest({
+    principal: input.principal,
+    annualRate: compoundAnnualRate,
+    timePeriod: input.timePeriod,
+    periodType: input.timeUnit,
+    compounding: compoundCompounding,
+    contribution: 0,
+  });
+  const optionalMetric = optionalResult ? optionalResult.endingBalance - input.principal : NaN;
+
+  const optimized = {
+    tone: 'optimized',
+    question: 'What if rate pressure and time both ease?',
+    impact: siScenarioRelativeImpact(
+      baselineMetric,
+      optimizedResult?.totalInterest,
+      'Total interest cost',
+      false
+    ),
+    insight:
+      'Simple-interest cost falls quickly when the rate and the schedule both ease because the charge stays tied to the original principal.',
+    action:
+      'Use this when testing how much relief comes from cheaper terms and a shorter payoff window.',
+    drivers: ['Lower rate', 'Shorter schedule', 'Per-year basis'],
+  };
+
+  const stress = {
+    tone: 'stress',
+    question: 'What if the rate and schedule both work against you?',
+    impact: siScenarioRelativeImpact(
+      baselineMetric,
+      stressResult?.totalInterest,
+      'Total interest cost',
+      false
+    ),
+    insight:
+      'A higher rate plus a longer schedule increases cost in a straight line, but the effect still adds up fast over time.',
+    action: 'Use this to estimate how exposed the plan is to tougher loan terms.',
+    drivers: ['Higher rate', 'Longer schedule', 'Per-month basis'],
+  };
+
+  const optional = {
+    tone: 'optional',
+    show: siScenarioMaterial(baselineMetric, optionalMetric),
+    question: 'What if the balance were allowed to compound instead?',
+    impact: siScenarioRelativeImpact(
+      baselineMetric,
+      optionalMetric,
+      'Total interest cost',
+      false
+    ),
+    insight:
+      'Once interest starts earning interest, the cost path stops being linear and can separate materially from the simple-interest assumption.',
+    action:
+      'Use this comparison when you need to confirm whether the product is really simple-interest based.',
+    drivers: ['Compounding logic', 'Same principal', 'Same stated rate'],
+  };
+
+  siScenarioRenderCard('baseline', {
+    tone: 'baseline',
+    question: 'What does the current simple-interest path suggest?',
+    impact: 'This baseline keeps the current principal, rate, schedule, and basis assumptions together.',
+    insight:
+      'Because the cost is calculated on the original principal only, the main levers are the rate, the time, and the basis used to apply it.',
+    action: 'Use this as the benchmark before testing cheaper or riskier terms.',
+    drivers: [
+      'Current principal',
+      'Current rate',
+      input.interestBasis === 'per-month' ? 'Per-month basis' : 'Per-year basis',
+    ],
+  });
+  siScenarioRenderCard('optimized', optimized);
+  siScenarioRenderCard('stress', stress);
+  if (optional.show) {
+    siScenarioRenderCard('optional', { ...optional, hidden: false });
+  } else {
+    const optionalCard = siScenarioRoot?.querySelector('[data-si-scenario-card="optional"]');
+    if (optionalCard) {
+      optionalCard.hidden = true;
+    }
+  }
+
+  siScenarioRenderQa(0, {
+    question: 'What changes simple-interest cost the most here?',
+    answer: `${optimized.impact} In a simple-interest model, rate and time are the biggest cost levers because the formula scales directly with both.`,
+  });
+  siScenarioRenderQa(1, {
+    question: 'What is the main downside risk?',
+    answer: `${stress.impact} Even without compounding, a longer schedule can add more cost than many users expect when paired with a heavier rate basis.`,
+  });
+}
+
+siScenarioButton?.addEventListener('click', () => {
+  renderSiScenarioAnalysis();
+});
+
+renderSiScenarioAnalysis();

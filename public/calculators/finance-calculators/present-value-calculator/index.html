@@ -237,5 +237,127 @@
         </p>
       </aside>
     </section>
+
+    <section
+      class="fi-scenario-section"
+      data-pv-scenario="section"
+      aria-labelledby="pv-scenario-heading"
+    >
+      <div class="fi-scenario-header">
+        <div>
+          <p class="fi-scenario-eyebrow">Scenario Analysis</p>
+          <h2 id="pv-scenario-heading">How could this present value shift?</h2>
+        </div>
+        <p class="fi-scenario-copy">
+          Compare the current discount setup against faster, softer, and heavier discount paths to
+          see how rate pressure and time change what the future lump sum is worth today.
+        </p>
+      </div>
+
+      <div class="fi-scenario-grid" data-pv-scenario="cards">
+        <article class="fi-scenario-card" data-pv-scenario-card="baseline" data-tone="baseline">
+          <p class="fi-scenario-label">Baseline</p>
+          <h3 data-pv-scenario-question>What does the current discount setup imply?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            The baseline keeps your current future amount, discount rate, and timing assumptions
+            together as the comparison point.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this as the valuation anchor before testing trade-offs.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Current discount rate</li>
+            <li>Current wait time</li>
+            <li>Current compounding</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-pv-scenario-card="optimized" data-tone="optimized">
+          <p class="fi-scenario-label">Optimized</p>
+          <h3 data-pv-scenario-question>What if discount drag eases and the wait is shorter?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            Lower discount pressure and a shorter wait preserve more of the future amount in
+            today&apos;s dollars.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this as the stretch case when timing or required return improves.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Lower discount rate</li>
+            <li>Shorter wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-pv-scenario-card="stress" data-tone="stress">
+          <p class="fi-scenario-label">Stress</p>
+          <h3 data-pv-scenario-question>What if rate pressure and delay both rise?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            A higher discount rate and a longer wait reduce how much of the future amount survives
+            in present-day terms.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this path to sanity-check downside valuation risk.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Higher discount rate</li>
+            <li>Longer wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+
+        <article
+          class="fi-scenario-card"
+          data-pv-scenario-card="optional"
+          data-tone="optional"
+          hidden
+        >
+          <p class="fi-scenario-label">Alternative</p>
+          <h3 data-pv-scenario-question>What if valuation cadence changes too?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            Changing valuation cadence can shift the answer even when the future amount itself
+            stays the same.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this comparison when payment timing or compounding assumptions are negotiable.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Different compounding cadence</li>
+            <li>Adjusted wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="fi-scenario-questions" data-pv-scenario="paa">
+        <div class="fi-scenario-qa" data-pv-scenario-qa="0">
+          <h3 data-pv-scenario-qa-question>Which lever moves present value fastest here?</h3>
+          <p data-pv-scenario-qa-answer>
+            The strongest levers are the discount rate and the wait time because they directly
+            control how much discounting compounds before the cash arrives.
+          </p>
+        </div>
+
+        <div class="fi-scenario-qa" data-pv-scenario-qa="1">
+          <h3 data-pv-scenario-qa-question>What is the main downside risk to watch?</h3>
+          <p data-pv-scenario-qa-answer>
+            Higher required returns combined with a longer delay can erode today&apos;s value faster
+            than most users expect.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
