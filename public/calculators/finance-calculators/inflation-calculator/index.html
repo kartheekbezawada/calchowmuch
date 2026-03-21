@@ -1,0 +1,139 @@
+<div id="calc-inflation">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Inflation calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Calculate how the buying power of the same amount changes between two U.S. CPI months
+          using the official BLS CPI-U series.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="inflation-section-amount">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="inflation-section-amount">Amount to compare</h2>
+              <p class="fi-form-section-copy">
+                Start with the dollar value you want to translate from one CPI month into another.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="inf-amount">Amount</label>
+              <span class="slider-value" id="inf-amount-display">1,000</span>
+            </div>
+            <input id="inf-amount" type="range" value="1000" min="0" max="1000000" step="100" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="inf-amount-field">Enter amount</label>
+              <input
+                class="slider-precision-input"
+                id="inf-amount-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="1000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="inflation-section-period">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="inflation-section-period">Comparison period</h2>
+              <p class="fi-form-section-copy">
+                Choose the earlier CPI month and the later CPI month you want to compare.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col inf-month-grid">
+            <label class="input-row inf-month-field" for="inf-from-month">
+              <span>Start Month</span>
+              <input id="inf-from-month" type="month" value="2000-01" />
+            </label>
+
+            <label class="input-row inf-month-field" for="inf-to-month">
+              <span>End Month</span>
+              <input id="inf-to-month" type="month" value="2025-12" />
+            </label>
+          </div>
+
+          <p class="fi-action-note inf-source-note">
+            Months follow the local BLS CPI-U data bundled with this route. If a published CPI month
+            is unavailable, the calculator will tell you directly.
+          </p>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="inf-calc">
+            Calculate Inflation Adjustment
+          </button>
+          <p class="fi-action-note">
+            Results refresh only after you click Calculate so you can compare scenarios deliberately.
+          </p>
+        </div>
+      </div>
+
+      <aside
+        class="mtg-preview-panel"
+        id="inf-preview"
+        aria-label="Inflation calculator result snapshot"
+      >
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Equivalent Value in Target Month</p>
+          <div class="result mtg-result-card" id="inf-result" aria-live="polite">
+            <span class="mtg-result-value">1,919.75</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="inf-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Purchasing Power Change</span>
+            <strong class="fi-metric-value" data-inf="metric-change">+919.75</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Cumulative Inflation</span>
+            <strong class="fi-metric-value" data-inf="metric-cumulative">+91.98%</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Annualized Inflation</span>
+            <strong class="fi-metric-value" data-inf="metric-annualized">+2.55%</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">CPI Factor</span>
+            <strong class="fi-metric-value" data-inf="metric-factor">1.9198x</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Amount</span><strong data-inf="snap-amount"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Start Month</span><strong data-inf="snap-from"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>End Month</span><strong data-inf="snap-to"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Start CPI</span><strong data-inf="snap-start-cpi"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>End CPI</span><strong data-inf="snap-end-cpi"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Months Spanned</span><strong data-inf="snap-months"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Equivalent Value</span><strong data-inf="snap-equivalent"></strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="inf-stale-note" hidden aria-hidden="true">
+          Inputs changed. Click Calculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+  </div>
+</div>

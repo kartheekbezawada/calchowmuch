@@ -23,6 +23,12 @@ async function setSliderValue(page, selector, value) {
   }, value);
 }
 
+async function setTextFieldValue(page, selector, value) {
+  const field = page.locator(selector);
+  await field.fill(String(value));
+  await field.blur();
+}
+
 async function fillStandardInputs(page, data = TEST_DATA.standard) {
   await setSliderValue(page, '#bor-gross-income', data.grossIncome);
   await setSliderValue(page, '#bor-net-income', data.netIncome);
@@ -60,18 +66,21 @@ function parseNumber(text) {
 test.describe('How Much Can I Borrow Calculator Requirements', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
-    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('#calc-how-much-can-borrow')).toBeVisible();
   });
 
   test('BOR-TEST-E2E-1: single-pane layout with no horizontal overflow', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 768 });
     await page.waitForTimeout(250);
 
-    const centerPanels = page.locator('.center-column > .panel');
-    await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    const clusterPanel = page.locator('.hl-cluster-panel');
+    await expect(clusterPanel).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
-    const calcPanel = centerPanels.first();
+    const calcPanel = clusterPanel.first();
     const panelBox = await calcPanel.boundingBox();
     const grossBox = await page.locator('#bor-gross-income').boundingBox();
     const rateBox = await page.locator('#bor-rate').boundingBox();
@@ -140,6 +149,25 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
     expect(parseNumber(propertyZeroDeposit)).toBeGreaterThan(0);
   });
 
+  test('BOR-TEST-E2E-3A: precise text inputs sync without pre-click recalculation', async ({
+    page,
+  }) => {
+    await waitForCalculation(page);
+    const beforeText = await page.locator('#bor-metric-borrow').innerText();
+
+    await setTextFieldValue(page, '#bor-gross-income-field', 110000);
+    await expect(page.locator('#bor-gross-income')).toHaveValue('110000');
+
+    const afterEditText = await page.locator('#bor-metric-borrow').innerText();
+    expect(afterEditText.trim()).toBe(beforeText.trim());
+
+    await page.click('#bor-calculate');
+    await waitForCalculation(page);
+
+    const afterCalcText = await page.locator('#bor-metric-borrow').innerText();
+    expect(afterCalcText.trim()).not.toBe(beforeText.trim());
+  });
+
   test('BOR-TEST-E2E-4: complete user workflow with income multiple', async ({ page }) => {
     await fillStandardInputs(page);
     await page.click('#bor-calculate');
@@ -199,6 +227,22 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
     await selectMethod(page, 'payment');
     const afterToggleBox = await page.locator('#calc-how-much-can-borrow').boundingBox();
     expect(afterToggleBox?.width).toBe(initialBox?.width);
+  });
+
+  test('BOR-TEST-E2E-7A: mobile calculate reveals the result dashboard', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await fillStandardInputs(page);
+    await page.evaluate(() => window.scrollTo(0, 0));
+
+    await page.click('#bor-calculate');
+    await waitForCalculation(page);
+    await page.waitForTimeout(350);
+
+    const resultBox = await page.locator('#bor-results').boundingBox();
+    expect(resultBox).toBeTruthy();
+    expect(resultBox.y).toBeLessThan(200);
+
+    await expect(page.locator('#bor-metric-borrow')).toBeFocused();
   });
 
   test('BOR-TEST-E2E-8: capacity bar renders segments after calculation', async ({ page }) => {

@@ -1,0 +1,346 @@
+<div id="pva-explanation" class="explanation-pane">
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>What Is This Payment Stream Worth Today?</h2>
+          <p>
+            This calculator converts a series of equal future payments into one present-day value so
+            you can compare recurring cash flow with a lump sum available now.
+          </p>
+          <p>
+            With payments of <span data-pva="payment-amount"></span>, a discount rate of
+            <span data-pva="discount-rate"></span>, <span data-pva="period-count"></span>, and
+            <span data-pva="annuity-type"></span> timing, the stream is currently worth
+            <strong><span data-pva="present-value"></span></strong> today. That turns a schedule of
+            future payments into a single decision-ready number.
+          </p>
+        </div>
+
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Present value of the payment stream</p>
+          <p class="fi-exp-kpi-value"><strong><span data-pva="present-value"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Based on payments of <span data-pva="payment-amount"></span> discounted at
+            <span data-pva="discount-rate"></span>.
+          </p>
+        </aside>
+      </header>
+
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Means</h3>
+            <p>
+              Present value of an annuity is useful when the cash flow repeats at a stable amount.
+              Instead of evaluating every payment separately, the model combines the full schedule
+              into one present-day equivalent. That is what makes recurring income streams comparable
+              with a current lump-sum alternative.
+            </p>
+            <p>
+              The result is especially valuable in pensions, lease analysis, structured settlements,
+              and fixed-income planning. The present value tells you what the entire stream is worth
+              before any of those payments actually arrive.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li><strong>Payment size</strong> determines the scale of the full stream.</li>
+              <li><strong>Timing</strong> changes how long each payment is discounted.</li>
+              <li><strong>Discount rate</strong> controls how much future cash shrinks today.</li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Read payment amount and period count first, then review timing, rate per period, and
+              discount saved. That sequence shows whether the result is being shaped mostly by the
+              size of the stream, the delay before payments arrive, or the discount rate itself.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="pva-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Payment Amount</td>
+                    <td><span data-pva="payment-amount"></span></td>
+                    <td>The recurring cash amount being discounted back to the present.</td>
+                  </tr>
+                  <tr>
+                    <td>Discount Rate</td>
+                    <td><span data-pva="discount-rate"></span></td>
+                    <td>The annual rate used to translate later payments into today&apos;s money.</td>
+                  </tr>
+                  <tr>
+                    <td>Periods</td>
+                    <td><span data-pva="period-count"></span></td>
+                    <td>The total timeline over which the payment stream runs.</td>
+                  </tr>
+                  <tr>
+                    <td>Annuity Type</td>
+                    <td><span data-pva="annuity-type"></span></td>
+                    <td>Payment timing changes how many discount periods each cash flow faces.</td>
+                  </tr>
+                  <tr>
+                    <td>Compounding</td>
+                    <td><span data-pva="compounding-frequency"></span></td>
+                    <td>The annual rate is split into this many effective discounting periods.</td>
+                  </tr>
+                  <tr>
+                    <td>Effective Periods</td>
+                    <td><span data-pva="effective-periods"></span></td>
+                    <td>The total number of discounting periods implied by your timing choices.</td>
+                  </tr>
+                  <tr>
+                    <td>Rate Per Period</td>
+                    <td><span data-pva="applied-rate"></span>%</td>
+                    <td>The rate applied to each effective period inside the formula.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Payments</td>
+                    <td><span data-pva="total-payments"></span></td>
+                    <td>The undiscounted total of every payment in the stream.</td>
+                  </tr>
+                  <tr>
+                    <td>Discount Saved</td>
+                    <td><span data-pva="formula-discount-saved"></span></td>
+                    <td>The difference between total payments and present value.</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Present Value</td>
+                    <td><span data-pva="present-value"></span></td>
+                    <td>The amount the full payment stream is worth today.</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>What Usually Changes The Answer Most</h3>
+            <p>
+              Payment size and period count set the scale, but timing and discount rate often shape
+              the interpretation. A higher discount rate reduces present value because each payment is
+              worth less in today’s money. Beginning-of-period timing raises present value because each
+              payment is received one step earlier.
+            </p>
+            <p>
+              That is why annuity type is not a minor input. Ordinary and due timing can produce
+              meaningfully different answers even when every payment is the same size.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Behind Present Value Of An Annuity</h3>
+            <p>
+              The ordinary-annuity formula discounts a series of equal payments back to today. If the
+              schedule is annuity due, the result is adjusted because every payment arrives one period
+              earlier.
+            </p>
+            <p class="fi-exp-formula-block">PVA = PMT × [(1 - (1 + r)<sup>-n</sup>) / r]</p>
+            <ol class="fi-exp-formula-steps">
+              <li>
+                Convert the annual discount rate of <span data-pva="discount-rate"></span> using
+                <span data-pva="periods-per-year"></span> periods per year to reach
+                <span data-pva="applied-rate"></span>% per period.
+              </li>
+              <li>
+                Convert the full schedule into <span data-pva="effective-periods"></span> total
+                effective periods.
+              </li>
+              <li>
+                Build the annuity factor of <span data-pva="formula-annuity-factor"></span>.
+              </li>
+              <li>
+                Multiply that factor by the payment amount to reach
+                <span data-pva="present-value"></span>.
+              </li>
+              <li>
+                For annuity due, multiply the ordinary result by
+                <span data-pva="applied-rate-decimal"></span> + 1 because each payment arrives one
+                period earlier.
+              </li>
+            </ol>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Result Well</h3>
+            <p>
+              The most useful question is rarely “what is the payment stream worth?” in isolation.
+              The better question is “is this stream worth more or less than the lump sum alternative
+              available to me today?” Present value gives you the cleaner basis for that decision.
+            </p>
+            <p>
+              The discipline is to keep the stream level and the rate realistic. If payment size or
+              timing changes materially from one period to the next, the output becomes a simplifying
+              benchmark rather than a full cash-flow model.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When This Calculator Is The Right Tool</h3>
+            <p>
+              Use this route when the cash flow repeats predictably. If the problem is a single future
+              amount, the <a href="/finance-calculators/present-value-calculator/">present value
+              calculator</a> is simpler. If the question is what recurring contributions may grow into,
+              the <a href="/finance-calculators/future-value-of-annuity-calculator/">future value of
+              annuity calculator</a> is the better companion tool.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              Present value of an annuity turns many future payments into one usable number today.
+              That helps you compare recurring income streams with current alternatives in a much
+              clearer way.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Present value: <strong><span data-pva="present-value"></span></strong></li>
+              <li>Payment amount: <span data-pva="payment-amount"></span></li>
+              <li>Discount rate: <span data-pva="discount-rate"></span></li>
+              <li>Total payments: <span data-pva="total-payments"></span></li>
+              <li>Annuity type: <span data-pva="annuity-type"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for pensions, lease analysis, structured settlements, and any fixed recurring
+              payment stream you want to value today.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/present-value-calculator/">Present Value</a>
+              <a href="/finance-calculators/future-value-of-annuity-calculator/">Future Value of Annuity</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq" id="pva-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is the present value of an annuity?</h4>
+        <p>
+          It is today&apos;s value of a series of equal future payments, discounted using a specific
+          interest or discount rate.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>What is the difference between ordinary annuity and annuity due?</h4>
+        <p>
+          Ordinary annuities pay at the end of each period. Annuity due pays at the beginning,
+          resulting in a higher present value.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>What discount rate should I use?</h4>
+        <p>
+          Use a rate reflecting interest rates, investment returns, inflation, or borrowing costs
+          relevant to the cash flow.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Is PV of annuity useful for loans and mortgages?</h4>
+        <p>
+          Yes, PV of annuity calculations are commonly used to value loan repayments, mortgages, and
+          lease payments.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>What happens if the discount rate is zero?</h4>
+        <p>
+          If the rate is zero, the present value equals the total of all payments because no
+          discounting is applied.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>Is this useful for retirement planning?</h4>
+        <p>
+          Yes, it helps estimate the value of pensions, retirement income streams, and long-term
+          annuity payments.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Can I switch between years and months?</h4>
+        <p>Yes, use the period toggle to model either annual or monthly cash-flow timelines.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>How does compounding frequency affect PVA?</h4>
+        <p>
+          More frequent compounding changes per-period rates and periods, which changes the annuity
+          factor and present value.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Does annuity due always have a higher PV?</h4>
+        <p>
+          Usually yes, because each payment is discounted for one less period compared with ordinary
+          annuity.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Is this calculator suitable for lease and pension valuation?</h4>
+        <p>
+          Yes, it is suitable for valuing fixed periodic payment streams under a chosen discount
+          rate.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li>
+        <strong>Accuracy:</strong> Results are deterministic estimates based on the payment stream,
+        discount rate, and timing assumptions entered on the page.
+      </li>
+      <li>
+        <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
+        financial, legal, tax, or investment advice.
+      </li>
+      <li>
+        <strong>Assumptions:</strong> The calculation assumes level payments, a fixed discount rate,
+        consistent timing, and the selected compounding pattern for the full schedule, with no
+        skipped payments or changing discount rates built in.
+      </li>
+      <li>
+        <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not
+        stored by us. We do not save the values you enter into calculator fields.
+      </li>
+    </ul>
+  </section>
+</div>

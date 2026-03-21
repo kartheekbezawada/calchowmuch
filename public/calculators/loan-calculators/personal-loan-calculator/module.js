@@ -7,6 +7,11 @@ import {
   previewYearlyRows,
 } from '/calculators/loan-calculators/personal-loan-calculator/engine.js';
 import { createPersonalLoanChart } from '/calculators/loan-calculators/personal-loan-calculator/personal-loan-chart.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const metadata = {
   title: 'Personal Loan Calculator - Monthly Payment, Interest & Total Cost | CalcHowMuch',
@@ -26,6 +31,9 @@ const termYearsInput = document.querySelector('#pl-term-years');
 const termExtraMonthsInput = document.querySelector('#pl-term-extra-months');
 const setupFeeInput = document.querySelector('#pl-setup-fee');
 const extraMonthlyInput = document.querySelector('#pl-extra-monthly');
+const principalField = document.querySelector('#pl-principal-field');
+const rateField = document.querySelector('#pl-rate-field');
+const termYearsField = document.querySelector('#pl-term-years-field');
 
 const principalDisplay = document.querySelector('#pl-principal-display');
 const rateDisplay = document.querySelector('#pl-rate-display');
@@ -34,6 +42,8 @@ const termDisplay = document.querySelector('#pl-term-display');
 const calculateButton = document.querySelector('#pl-calculate');
 const resetButton = document.querySelector('#pl-reset');
 const errorBox = document.querySelector('#pl-error');
+const previewPanel = document.querySelector('#pl-results');
+const resultCard = document.querySelector('#pl-result');
 
 const primaryMonthly = document.querySelector('[data-pl="result-base"]');
 const monthlyWithExtra = document.querySelector('[data-pl="result-with-extra"]');
@@ -78,6 +88,7 @@ const DEFAULTS = {
 const tableState = {
   view: 'yearly',
 };
+let lastCalculation = null;
 
 function getCurrency() {
   const value = String(currencyInput?.value || DEFAULTS.currency).toUpperCase();
@@ -117,21 +128,18 @@ function formatTerm(months) {
   return `${remMonths}m`;
 }
 
-function updateSliderFill(input) {
-  if (!input || input.type !== 'range') {
-    return;
-  }
-  const min = Number(input.min) || 0;
-  const max = Number(input.max) || 100;
-  const value = Number(input.value) || 0;
-  const percent = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${percent}%`);
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
 }
 
 function updateSliderDisplays() {
   if (principalDisplay && principalInput) {
     principalDisplay.textContent = formatMoney(Number(principalInput.value), getCurrency());
-    updateSliderFill(principalInput);
+    updateRangeFill(principalInput);
+    if (principalField) {
+      principalField.value = String(Math.round(Number(principalInput.value) || 0));
+    }
   }
 
   if (rateDisplay && rateInput) {
@@ -139,13 +147,22 @@ function updateSliderDisplays() {
       minimumFractionDigits: 1,
       maximumFractionDigits: 2,
     });
-    updateSliderFill(rateInput);
+    updateRangeFill(rateInput);
+    if (rateField) {
+      rateField.value = formatNumber(Number(rateInput.value) || 0, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 2,
+      });
+    }
   }
 
   if (termDisplay && termYearsInput && termExtraMonthsInput) {
     const months = Number(termYearsInput.value) * 12 + Number(termExtraMonthsInput.value || 0);
     termDisplay.textContent = formatTerm(months);
-    updateSliderFill(termYearsInput);
+    updateRangeFill(termYearsInput);
+    if (termYearsField) {
+      termYearsField.value = String(Math.round(Number(termYearsInput.value) || 0));
+    }
   }
 }
 
@@ -173,12 +190,18 @@ function setError(message) {
     errorBox.textContent = '';
     errorBox.classList.remove('is-visible');
     errorBox.hidden = true;
+    if (summary) {
+      summary.textContent = 'Run a calculation to view monthly payment and payoff insights.';
+    }
     return;
   }
 
   errorBox.hidden = false;
   errorBox.classList.add('is-visible');
   errorBox.textContent = message;
+  if (summary) {
+    summary.textContent = 'Update the highlighted values, then calculate again to refresh the payment summary.';
+  }
 }
 
 function validateInputs(input) {
@@ -295,10 +318,16 @@ function applyResult(result, input) {
     minimumFractionDigits: 0,
   });
 
-  summary.textContent =
-    `With ${formatMoney(input.extraMonthly, currency)} extra each month, payoff shortens by ` +
-    `${result.insight.monthsSaved} months and estimated interest savings are ` +
-    `${formatMoney(result.insight.interestSaved, currency)}.`;
+  if (input.extraMonthly > 0) {
+    summary.textContent =
+      `With ${formatMoney(input.extraMonthly, currency)} extra each month, payoff shortens by ` +
+      `${result.insight.monthsSaved} months and estimated interest savings are ` +
+      `${formatMoney(result.insight.interestSaved, currency)}.`;
+  } else {
+    summary.textContent =
+      `At the current settings, estimated payoff is ${formatTerm(result.baseline.months)} ` +
+      `with total interest of ${formatMoney(result.baseline.totalInterest, currency)}.`;
+  }
 
   renderTable(result.accelerated.schedule, currency);
   chart.setData(result.chartPoints);
@@ -306,7 +335,8 @@ function applyResult(result, input) {
   updateFormulaExample(input, result, currency);
 }
 
-function calculateAndRender() {
+function calculateAndRender(options = {}) {
+  const { reveal = false } = options;
   const input = readInputs();
   const validationMessage = validateInputs(input);
 
@@ -317,7 +347,18 @@ function calculateAndRender() {
 
   setError('');
   const result = calculatePersonalLoan(input);
+  lastCalculation = {
+    input,
+    result,
+  };
   applyResult(result, input);
+
+  if (reveal) {
+    revealResultPanel({
+      resultPanel: previewPanel,
+      focusTarget: resultCard,
+    });
+  }
 }
 
 function resetForm() {
@@ -344,23 +385,15 @@ function resetForm() {
   }
 
   updateSliderDisplays();
-  calculateAndRender();
+  calculateAndRender({ reveal: false });
 }
 
 function setupEvents() {
-  calculateButton?.addEventListener('click', calculateAndRender);
+  calculateButton?.addEventListener('click', () => calculateAndRender({ reveal: true }));
   resetButton?.addEventListener('click', resetForm);
 
-  [currencyInput, principalInput, rateInput, termYearsInput, termExtraMonthsInput].forEach((input) => {
-    input?.addEventListener('input', () => {
-      updateSliderDisplays();
-      calculateAndRender();
-    });
-  });
-
-  [setupFeeInput, extraMonthlyInput].forEach((input) => {
-    input?.addEventListener('input', calculateAndRender);
-  });
+  currencyInput?.addEventListener('change', updateSliderDisplays);
+  termExtraMonthsInput?.addEventListener('input', updateSliderDisplays);
 
   tableViewButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -369,15 +402,47 @@ function setupEvents() {
         return;
       }
       tableState.view = nextView;
-      calculateAndRender();
+      if (lastCalculation) {
+        renderTable(lastCalculation.result.accelerated.schedule, lastCalculation.input.currency);
+        return;
+      }
+      calculateAndRender({ reveal: false });
     });
   });
 }
 
+wireRangeWithField({
+  rangeInput: principalInput,
+  textInput: principalField,
+  formatFieldValue: (value) => String(Math.round(value)),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: rateInput,
+  textInput: rateField,
+  formatFieldValue: (value) =>
+    formatNumber(value, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 2,
+    }),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: termYearsInput,
+  textInput: termYearsField,
+  formatFieldValue: (value) => String(Math.round(value)),
+  parseFieldValue: parseLooseNumber,
+  onVisualUpdate: updateSliderDisplays,
+});
+
 setupEvents();
 updateSliderDisplays();
 syncTableViewUI();
-calculateAndRender();
+calculateAndRender({ reveal: false });
 
 window.addEventListener('beforeunload', () => {
   chart.destroy();

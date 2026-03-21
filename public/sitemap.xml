@@ -10,7 +10,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
   <url>
     <loc>https://calchowmuch.com/sitemap.xml</loc>
     <changefreq>monthly</changefreq>
@@ -45,7 +44,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.40</priority>
   </url>
-
   <url>
     <loc>https://calchowmuch.com/math/basic/</loc>
     <changefreq>monthly</changefreq>
@@ -348,6 +346,11 @@
   </url>
   <url>
     <loc>https://calchowmuch.com/finance-calculators/effective-annual-rate-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/finance-calculators/inflation-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

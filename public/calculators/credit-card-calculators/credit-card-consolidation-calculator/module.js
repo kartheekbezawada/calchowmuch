@@ -201,6 +201,7 @@ let currentData = null;
 let lastValidData = null;
 let scheduleView = 'yearly';
 let lastValidMonthlyPayment = null;
+let hasCalculated = false;
 
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
@@ -345,6 +346,18 @@ function renderMonthlyPaymentValue(value, options = {}) {
 
 function refreshLiveMonthlyPayment(value, options = {}) {
   renderMonthlyPaymentValue(value ?? lastValidMonthlyPayment, options);
+}
+
+function showInitialState() {
+  if (resultDiv) {
+    resultDiv.innerHTML =
+      '<p class="placeholder">Adjust your balance, rates, term, and optional fees, then click Calculate Consolidation Plan.</p>';
+  }
+
+  if (summaryDiv) {
+    summaryDiv.innerHTML =
+      '<p class="placeholder">Current payoff, consolidation payoff, and monthly difference will appear here after calculation.</p>';
+  }
 }
 
 function setInputSpans(values) {
@@ -616,6 +629,9 @@ function calculate(options = {}) {
 }
 
 function handleLiveInputChange() {
+  if (!hasCalculated) {
+    return;
+  }
   const values = readInputs();
   setInputSpans(values);
   const { data, error } = resolveScenario(values);
@@ -664,6 +680,7 @@ function updateSliderDisplays() {
 }
 
 calculateButton?.addEventListener('click', () => {
+  hasCalculated = true;
   calculate({ animatePayment: true });
 });
 
@@ -692,17 +709,7 @@ allInputs.forEach((input) => {
 });
 
 updateSliderDisplays();
-const initialValues = readInputs();
-setInputSpans(initialValues);
-const initialScenario = resolveScenario(initialValues);
-if (initialScenario.data) {
-  renderLiveScenario(initialScenario.data, { animatePayment: false });
-} else {
-  setOutputPlaceholders();
-  clearTableOutputs();
-  refreshLiveMonthlyPayment(0);
-  applyView(scheduleView);
-  if (initialScenario.error) {
-    setError(initialScenario.error);
-  }
-}
+setOutputPlaceholders();
+clearTableOutputs();
+showInitialState();
+applyView(scheduleView);

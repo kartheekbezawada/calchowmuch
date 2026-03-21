@@ -1,0 +1,144 @@
+<div id="calc-effective-annual-rate">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Effective annual rate calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Convert a quoted nominal rate into the true annual rate after compounding so loan, savings,
+          and investment offers can be compared on equal footing.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="ear-section-rate">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="ear-section-rate">Rate assumptions</h2>
+              <p class="fi-form-section-copy">
+                Start with the stated annual rate, then choose how often compounding happens during
+                the year.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="ear-nominal-rate">Nominal Interest Rate (%)</label>
+              <span class="slider-value" id="ear-rate-display">12%</span>
+            </div>
+            <input id="ear-nominal-rate" type="range" value="12" min="0" max="50" step="0.1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="ear-nominal-rate-field">
+                Enter nominal rate
+              </label>
+              <input
+                class="slider-precision-input"
+                id="ear-nominal-rate-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="12"
+              />
+            </div>
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding frequency</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="ear-frequency"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semiannual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="ear-calc">
+            Calculate Effective Annual Rate
+          </button>
+          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="ear-preview" aria-label="Effective annual rate answer">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Effective Annual Rate</p>
+          <div class="result mtg-result-card" id="ear-result" aria-live="polite">
+            <span class="mtg-result-value">12%</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="ear-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">EAR Difference</span>
+            <strong class="fi-metric-value" data-ear="metric-difference">0%</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Compounding</span>
+            <strong class="fi-metric-value" data-ear="metric-compounding">Annual</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Periods / Year</span>
+            <strong class="fi-metric-value" data-ear="metric-periods">1</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Rate / Period</span>
+            <strong class="fi-metric-value" data-ear="metric-periodic-rate">12%</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Nominal rate</span>
+            <strong data-ear="snap-nominal">12%</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span>
+            <strong data-ear="snap-compounding">Annual</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Periods per year</span>
+            <strong data-ear="snap-periods">1</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Rate per period</span>
+            <strong data-ear="snap-periodic-rate">12%</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Growth factor</span>
+            <strong data-ear="snap-growth-factor">1.12</strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="ear-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+  </div>
+</div>

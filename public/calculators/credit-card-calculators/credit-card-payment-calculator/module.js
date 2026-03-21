@@ -628,8 +628,3 @@ const inputs = document.querySelectorAll('#calc-cc-payoff input');
 inputs.forEach((input) => {
   input.addEventListener('input', () => resetIfCalculated());
 });
-
-// Pre-fill explanation and projection values on page load
-(function prefillExplanation() {
-  calculate();
-})();

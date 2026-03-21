@@ -1,0 +1,240 @@
+<div id="calc-time-to-savings-goal">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Time to savings goal calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Estimate how long it could take to reach a savings target using current balance, recurring
+          contributions, and optional interest.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="tsg-section-goal">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="tsg-section-goal">Goal and current balance</h2>
+              <p class="fi-form-section-copy">
+                Start with the target you want to reach and the balance already saved today.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-goal">Savings Goal Amount</label>
+              <span class="slider-value" id="tsg-goal-display">25,000</span>
+            </div>
+            <input id="tsg-goal" type="range" value="25000" min="1000" max="1000000" step="500" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="tsg-goal-field">Enter savings goal</label>
+              <input
+                class="slider-precision-input"
+                id="tsg-goal-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="25000"
+              />
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-current">Current Savings</label>
+              <span class="slider-value" id="tsg-current-display">5,000</span>
+            </div>
+            <input id="tsg-current" type="range" value="5000" min="0" max="1000000" step="500" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="tsg-current-field"
+                >Enter current savings</label
+              >
+              <input
+                class="slider-precision-input"
+                id="tsg-current-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="5000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="tsg-section-plan">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="tsg-section-plan">Saving plan</h2>
+              <p class="fi-form-section-copy">
+                Add the monthly contribution, annual rate, and timing assumptions used in your plan.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-contribution">Monthly Contribution</label>
+              <span class="slider-value" id="tsg-contribution-display">500</span>
+            </div>
+            <input id="tsg-contribution" type="range" value="500" min="10" max="20000" step="10" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="tsg-contribution-field"
+                >Enter monthly contribution</label
+              >
+              <input
+                class="slider-precision-input"
+                id="tsg-contribution-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="500"
+              />
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="tsg-rate">Annual Interest Rate (%)</label>
+              <span class="slider-value" id="tsg-rate-display">3%</span>
+            </div>
+            <input id="tsg-rate" type="range" value="3" min="0" max="20" step="0.1" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="tsg-rate-field">Enter annual rate</label>
+              <input
+                class="slider-precision-input"
+                id="tsg-rate-field"
+                type="text"
+                inputmode="decimal"
+                maxlength="12"
+                value="3"
+              />
+            </div>
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding Frequency</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="tsg-compounding"
+              >
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="false"
+                >
+                  Monthly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annually
+                </button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Contribution Timing</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Contribution timing"
+                data-button-group="tsg-timing"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="end"
+                  aria-pressed="true"
+                >
+                  End of Month
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="beginning"
+                  aria-pressed="false"
+                >
+                  Beginning
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="tsg-calc">
+            Calculate Time to Goal
+          </button>
+          <p class="fi-action-note">Use the timeline as a planning estimate, not a guarantee.</p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="tsg-preview" aria-label="Time to goal result snapshot">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Time to Reach Goal</p>
+          <div class="result mtg-result-card" id="tsg-result" aria-live="polite">
+            <span class="mtg-result-value">4 Years and 0 Months</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="tsg-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Contributions</span>
+            <strong class="fi-metric-value" data-tsg="metric-contributions">24,000</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Interest Earned</span>
+            <strong class="fi-metric-value" data-tsg="metric-interest">1,729.31</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Final Balance</span>
+            <strong class="fi-metric-value" data-tsg="metric-balance">30,729.31</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Savings Goal</span><strong data-tsg="snap-goal"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Current Savings</span><strong data-tsg="snap-current"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Monthly Contribution</span><strong data-tsg="snap-contribution"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Interest Rate</span><strong data-tsg="snap-rate"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span><strong data-tsg="snap-compounding"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Timing</span><strong data-tsg="snap-timing"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total Contributions</span><strong data-tsg="snap-contributions"></strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total Interest Earned</span><strong data-tsg="snap-interest"></strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="tsg-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+  </div>
+</div>

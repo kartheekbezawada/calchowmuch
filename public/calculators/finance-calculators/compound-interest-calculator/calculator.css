@@ -1,0 +1,446 @@
+#calc-compound-interest .fi-form-section:first-of-type {
+  background:
+    radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 38%),
+    rgba(246, 249, 247, 0.96);
+}
+
+#calc-compound-interest .fi-action-rail {
+  gap: 10px;
+}
+
+#calc-compound-interest #ci-result-detail {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#calc-compound-interest #ci-result-detail .fi-metric-value,
+#calc-compound-interest .fi-snapshot-row strong,
+#ci-explanation .ci-results-table td:nth-child(2),
+#ci-explanation .ci-projection-table td:nth-child(n + 2),
+#ci-explanation .ci-growth-tooltip strong {
+  font-variant-numeric: tabular-nums;
+}
+
+#calc-compound-interest .fi-snapshot-list {
+  background: rgba(248, 250, 248, 0.98);
+}
+
+#calc-compound-interest .fi-snapshot-row strong {
+  color: #163e59;
+}
+
+#ci-explanation .ci-results-table td:nth-child(2),
+#ci-explanation .ci-projection-table th:nth-child(n + 2),
+#ci-explanation .ci-projection-table td:nth-child(n + 2) {
+  text-align: right;
+}
+
+#ci-explanation .ci-results-table td:last-child,
+#ci-explanation .ci-results-table .ci-how-col {
+  color: #5f6c78;
+}
+
+#ci-explanation .ci-projection-header,
+#ci-explanation .ci-growth-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#ci-explanation .ci-projection-header h3,
+#ci-explanation .ci-growth-header h3 {
+  margin: 0;
+}
+
+#ci-explanation .ci-table-frequency-toggle,
+#ci-explanation .ci-chart-scale-toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#ci-explanation #ci-projection-wrap {
+  max-height: 430px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 247, 245, 0.96));
+}
+
+#ci-explanation .ci-projection-table {
+  table-layout: fixed;
+}
+
+#ci-explanation .ci-projection-placeholder-row td {
+  text-align: center;
+  color: #5f6c78;
+  font-style: italic;
+}
+
+#ci-explanation .ci-growth-section {
+  gap: 16px;
+}
+
+#ci-explanation .ci-growth-shell {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid rgba(143, 158, 167, 0.24);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(242, 246, 243, 0.98));
+}
+
+#ci-explanation .ci-growth-shell .fi-metric-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#ci-explanation #ci-growth-status {
+  color: #5f6c78;
+}
+
+#ci-explanation .ci-growth-chart-wrap {
+  position: relative;
+  min-height: 320px;
+  border: 1px solid rgba(143, 158, 167, 0.24);
+  border-radius: 20px;
+  background: rgba(250, 252, 250, 0.95);
+  overflow: hidden;
+}
+
+#ci-explanation #ci-growth-canvas {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 320px;
+}
+
+#ci-explanation .ci-growth-tooltip {
+  position: absolute;
+  z-index: 3;
+  max-width: 240px;
+  padding: 10px 12px;
+  border: 1px solid rgba(31, 95, 135, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 16px 32px rgba(21, 32, 43, 0.14);
+  color: #15202b;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+#ci-explanation .ci-growth-tooltip p {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  line-height: 1.5;
+}
+
+#ci-explanation .ci-growth-tooltip .ci-growth-tooltip-period {
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(143, 158, 167, 0.18);
+  color: #163e59;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#ci-explanation .ci-growth-tooltip span {
+  color: #5f6c78;
+}
+
+@media (max-width: 980px) {
+  #calc-compound-interest #ci-result-detail,
+  #ci-explanation .ci-growth-shell .fi-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #ci-explanation .ci-projection-header,
+  #ci-explanation .ci-growth-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #ci-explanation .ci-table-frequency-toggle,
+  #ci-explanation .ci-chart-scale-toggle {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  #calc-compound-interest #ci-result-detail,
+  #ci-explanation .ci-growth-shell .fi-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #ci-explanation .ci-growth-chart-wrap,
+  #ci-explanation #ci-growth-canvas {
+    min-height: 260px;
+  }
+
+  #ci-explanation .ci-growth-tooltip {
+    max-width: calc(100% - 16px);
+  }
+}
+
+#calc-compound-interest .fi-exp-hero,
+#calc-compound-interest .fi-exp-guide {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-compound-interest .fi-exp-intro,
+#calc-compound-interest .fi-exp-support,
+#calc-compound-interest .fi-exp-section-head,
+#calc-compound-interest .fi-exp-guide-step-body {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-compound-interest .fi-exp-intro h2,
+#calc-compound-interest .fi-exp-section-head h3,
+#calc-compound-interest .fi-exp-card h3,
+#calc-compound-interest .fi-exp-guide-step h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-compound-interest .fi-exp-intro p,
+#calc-compound-interest .fi-exp-support p,
+#calc-compound-interest .fi-exp-card p,
+#calc-compound-interest .fi-exp-section-head p,
+#calc-compound-interest .fi-exp-guide-step p,
+#calc-compound-interest .fi-exp-guide-summary {
+  margin: 0;
+  max-width: 72ch;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-compound-interest .fi-exp-kpi,
+#calc-compound-interest .fi-exp-card,
+#calc-compound-interest .fi-exp-guide-step {
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-compound-interest .fi-exp-kpi {
+  gap: 6px;
+  background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+}
+
+#calc-compound-interest .fi-exp-kpi-label,
+#calc-compound-interest .fi-exp-step-no {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #557089;
+}
+
+#calc-compound-interest .fi-exp-kpi-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.15rem);
+  line-height: 1.1;
+  color: #13293d;
+}
+
+#calc-compound-interest .fi-exp-context-grid,
+#calc-compound-interest .fi-exp-guide-list {
+  display: grid;
+  gap: 14px;
+}
+
+#calc-compound-interest .fi-exp-context-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-compound-interest .fi-exp-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-compound-interest .fi-exp-link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.08);
+  color: #163e59;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#calc-compound-interest .fi-exp-guide-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-compound-interest .fi-exp-step-no {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(31, 95, 135, 0.1);
+}
+
+#calc-compound-interest .fi-exp-guide-step ol,
+#calc-compound-interest .fi-exp-guide-step ul,
+#calc-compound-interest .mtg-exp-section--notes ul {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-compound-interest .fi-exp-guide-summary {
+  padding-top: 10px;
+  border-top: 1px solid rgba(31, 95, 135, 0.12);
+}
+
+@media (max-width: 720px) {
+  #calc-compound-interest .fi-exp-context-grid,
+  #calc-compound-interest .fi-exp-guide-step {
+    grid-template-columns: 1fr;
+  }
+}
+
+#calc-compound-interest .fi-exp-article,
+#calc-compound-interest .fi-exp-article-shell,
+#calc-compound-interest .fi-exp-article-main,
+#calc-compound-interest .fi-exp-story-block,
+#calc-compound-interest .fi-exp-article-intro,
+#calc-compound-interest .fi-exp-article-rail,
+#calc-compound-interest .fi-exp-rail-card {
+  display: grid;
+}
+
+#calc-compound-interest .fi-exp-article {
+  gap: 22px;
+}
+
+#calc-compound-interest .fi-exp-article-shell {
+  gap: 20px;
+}
+
+#calc-compound-interest .fi-exp-article-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(260px, 0.82fr);
+  gap: 20px;
+  align-items: start;
+}
+
+#calc-compound-interest .fi-exp-article-intro {
+  gap: 12px;
+}
+
+#calc-compound-interest .fi-exp-article-intro h2,
+#calc-compound-interest .fi-exp-story-block h3,
+#calc-compound-interest .fi-exp-rail-card h3 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-compound-interest .fi-exp-article-intro p,
+#calc-compound-interest .fi-exp-story-block p,
+#calc-compound-interest .fi-exp-story-block li,
+#calc-compound-interest .fi-exp-rail-card p,
+#calc-compound-interest .fi-exp-rail-card li {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.68;
+}
+
+#calc-compound-interest .fi-exp-article-intro p,
+#calc-compound-interest .fi-exp-story-block p {
+  max-width: 76ch;
+}
+
+#calc-compound-interest .fi-exp-article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+  gap: 18px;
+  align-items: start;
+}
+
+#calc-compound-interest .fi-exp-article-main {
+  gap: 20px;
+  min-width: 0;
+}
+
+#calc-compound-interest .fi-exp-story-block {
+  gap: 12px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-compound-interest .fi-exp-story-block--table {
+  margin-bottom: 8px;
+}
+
+#calc-compound-interest .fi-exp-story-block--table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+#calc-compound-interest .fi-exp-bullet-list,
+#calc-compound-interest .fi-exp-rail-list,
+#calc-compound-interest .fi-exp-formula-steps {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+#calc-compound-interest .fi-exp-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+#calc-compound-interest .fi-exp-article-rail {
+  gap: 14px;
+  min-width: 0;
+}
+
+#calc-compound-interest .fi-exp-rail-card {
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-compound-interest .fi-exp-rail-list strong {
+  color: #13293d;
+}
+
+@media (max-width: 720px) {
+  #calc-compound-interest .fi-exp-article-head,
+  #calc-compound-interest .fi-exp-article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-compound-interest .fi-exp-story-block,
+  #calc-compound-interest .fi-exp-rail-card {
+    padding: 18px;
+  }
+}

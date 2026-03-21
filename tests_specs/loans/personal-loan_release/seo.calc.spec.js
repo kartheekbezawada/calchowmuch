@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('Personal Loan calculator SEO', () => {
   test('PL-SEO-1: metadata, schema parity, order, sitemap', async ({ page }) => {
     await page.goto('/loan-calculators/personal-loan-calculator/');
+    await expect(page.locator('.hl-cluster-panel')).toBeVisible();
 
     await expect(page).toHaveTitle(
       'Personal Loan Calculator - Monthly Payment, Interest & Total Cost | CalcHowMuch'
@@ -18,6 +19,7 @@ test.describe('Personal Loan calculator SEO', () => {
     expect(await canonical.getAttribute('href')).toBe(
       'https://calchowmuch.com/loan-calculators/personal-loan-calculator/'
     );
+    await expect(page.locator('link[href*="theme-premium-dark.css"]')).toHaveCount(0);
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
@@ -33,15 +35,28 @@ test.describe('Personal Loan calculator SEO', () => {
         return node ? node.getBoundingClientRect().top + window.scrollY : -1;
       };
 
+      const chart = pos('pl-section-chart');
+      const table = pos('pl-section-table');
       const howTo = pos('pl-section-how-to-guide');
       const faq = pos('pl-section-faq');
       const notes = pos('pl-section-important-notes');
 
       return {
+        chart,
+        table,
         howTo,
         faq,
         notes,
-        valid: howTo >= 0 && faq >= 0 && notes >= 0 && howTo < faq && faq < notes,
+        valid:
+          chart >= 0 &&
+          table >= 0 &&
+          howTo >= 0 &&
+          faq >= 0 &&
+          notes >= 0 &&
+          chart < table &&
+          table < howTo &&
+          howTo < faq &&
+          faq < notes,
       };
     });
 

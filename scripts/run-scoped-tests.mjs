@@ -112,7 +112,49 @@ function ensurePlaywrightPortLease(scopeLabel) {
   return { leaseId: activePlaywrightLeaseId, port: activePlaywrightPort };
 }
 
+function resolveExplicitPlaywrightEndpoint(extraEnv = {}) {
+  const explicitBaseUrl = extraEnv.PW_BASE_URL || process.env.PW_BASE_URL || null;
+  const explicitPort =
+    parsePositiveInt(extraEnv.PW_WEB_SERVER_PORT) || parsePositiveInt(process.env.PW_WEB_SERVER_PORT);
+
+  if (explicitBaseUrl) {
+    try {
+      const parsed = new URL(explicitBaseUrl);
+      const derivedPort =
+        explicitPort || parsePositiveInt(parsed.port) || (parsed.protocol === 'https:' ? 443 : 80);
+      return {
+        baseUrl: explicitBaseUrl,
+        port: derivedPort,
+      };
+    } catch {
+      // fall through to lease-based resolution when the explicit URL is malformed
+    }
+  }
+
+  if (explicitPort) {
+    return {
+      baseUrl: `http://localhost:${explicitPort}`,
+      port: explicitPort,
+    };
+  }
+
+  return null;
+}
+
 function withPlaywrightPortEnv(scopeLabel, extraEnv = {}) {
+  const explicitEndpoint = resolveExplicitPlaywrightEndpoint(extraEnv);
+  if (explicitEndpoint) {
+    return {
+      ...extraEnv,
+      PW_WEB_SERVER_PORT: String(explicitEndpoint.port),
+      PW_BASE_URL: explicitEndpoint.baseUrl,
+      SCOPED_CWV_BASE_URL:
+        extraEnv.SCOPED_CWV_BASE_URL ||
+        process.env.SCOPED_CWV_BASE_URL ||
+        explicitEndpoint.baseUrl,
+    };
+  }
+
   const lease = ensurePlaywrightPortLease(scopeLabel);
   const baseUrl = `http://localhost:${lease.port}`;
   return {

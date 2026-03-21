@@ -1,128 +1,3 @@
-<style>
-  .calculator-page-single {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  #calc-offset-calculator .is-hidden {
-    display: none;
-  }
-
-  #calc-offset-calculator .home-loan-ui {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  #calc-offset-calculator .mtg-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-    gap: 1.5rem;
-    align-items: start;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: none;
-  }
-
-  #calc-offset-calculator .mtg-form-panel {
-    display: grid;
-    gap: 1.65rem;
-    align-content: start;
-  }
-
-  #calc-offset-calculator .input-row {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.34rem;
-    min-width: 0;
-  }
-
-  #calc-offset-calculator .slider-row {
-    gap: 0.52rem;
-  }
-
-  #calc-offset-calculator .slider-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  #calc-offset-calculator .mtg-action-row .calculator-button {
-    min-height: 50px;
-  }
-
-  #calc-offset-calculator .mtg-preview-panel {
-    display: grid;
-    gap: 1rem;
-    align-content: start;
-    padding: 1.15rem;
-    border-radius: 1.15rem;
-  }
-
-  #calc-offset-calculator .mtg-preview-main {
-    display: grid;
-    gap: 0.65rem;
-    padding: 1rem;
-    border-radius: 0.95rem;
-  }
-
-  #calc-offset-calculator .mtg-result-card,
-  #calc-offset-calculator .mtg-summary-card {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-
-  #calc-offset-calculator .mtg-summary-card {
-    min-height: 110px;
-  }
-
-  #calc-offset-calculator .mtg-snapshot-list {
-    margin: 0;
-    padding: 0.35rem 0;
-    display: grid;
-    gap: 0.1rem;
-  }
-
-  #calc-offset-calculator .mtg-snapshot-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.72rem;
-    padding: 0.55rem 0;
-  }
-
-  #calc-offset-calculator .down-combined-left .button-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.2rem;
-    padding: 3px;
-    border-radius: 9999px;
-  }
-
-  #calc-offset-calculator .down-combined-left .calculator-button {
-    min-height: 32px;
-    padding: 0.36rem 0.72rem;
-    border-radius: 9999px;
-  }
-
-  @media (max-width: 1220px) {
-    #calc-offset-calculator .mtg-hero {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 900px) {
-    #calc-offset-calculator .advanced-pair {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
 <div id="calc-offset-calculator">
   <div class="calculator-ui home-loan-ui">
     <section class="mtg-hero" aria-label="Offset calculator">
@@ -144,6 +19,17 @@
             max="2000000"
             step="5000"
           />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="off-balance-field">Exact mortgage balance</label>
+            <input
+              class="slider-precision-input"
+              id="off-balance-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="250000"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -152,6 +38,17 @@
             <span class="slider-value" id="off-rate-display">5.0%</span>
           </div>
           <input id="off-rate" type="range" value="5" min="0" max="20" step="0.1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="off-rate-field">Exact interest rate</label>
+            <input
+              class="slider-precision-input"
+              id="off-rate-field"
+              type="text"
+              inputmode="decimal"
+              maxlength="12"
+              value="5.0"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -160,6 +57,17 @@
             <span class="slider-value" id="off-term-display">25 yrs</span>
           </div>
           <input id="off-term" type="range" value="25" min="1" max="40" step="1" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="off-term-field">Exact remaining term in years</label>
+            <input
+              class="slider-precision-input"
+              id="off-term-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="25"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -168,6 +76,17 @@
             <span class="slider-value" id="off-savings-display">20,000</span>
           </div>
           <input id="off-savings" type="range" value="20000" min="0" max="1000000" step="1000" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="off-savings-field">Exact offset savings balance</label>
+            <input
+              class="slider-precision-input"
+              id="off-savings-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="20000"
+            />
+          </div>
         </div>
 
         <div class="input-row slider-row">
@@ -176,6 +95,19 @@
             <span class="slider-value" id="off-contribution-display">200</span>
           </div>
           <input id="off-contribution" type="range" value="200" min="0" max="5000" step="50" />
+          <div class="slider-precision-row">
+            <label class="slider-precision-label" for="off-contribution-field"
+              >Exact monthly offset contribution</label
+            >
+            <input
+              class="slider-precision-input"
+              id="off-contribution-field"
+              type="text"
+              inputmode="numeric"
+              maxlength="12"
+              value="200"
+            />
+          </div>
         </div>
 
         <div class="input-row down-combined-left">
@@ -212,7 +144,7 @@
         </div>
       </div>
 
-      <aside class="mtg-preview-panel" aria-label="Offset scenario snapshot">
+      <aside class="mtg-preview-panel" id="off-results" aria-label="Offset scenario snapshot">
         <div class="mtg-preview-main">
           <p class="mtg-preview-label">Offset Monthly Payment</p>
           <div class="result mtg-result-card" id="off-result" aria-live="polite">
@@ -224,6 +156,9 @@
             <p><strong>Time saved:</strong> 4 years 3 months</p>
             <p><strong>Effective balance:</strong> 230,000</p>
           </div>
+          <p class="mtg-result-note" id="off-result-note" aria-live="polite">
+            Full offset keeps the baseline payment steady while reducing lifetime interest and payoff time.
+          </p>
         </div>
 
         <div class="mtg-snapshot-list">

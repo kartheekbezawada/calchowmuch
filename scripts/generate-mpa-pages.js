@@ -73,6 +73,7 @@ const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'investment-growth',
   'investment-return',
   'effective-annual-rate',
+  'inflation',
   'compound-interest',
   'simple-interest',
   'present-value',
@@ -88,6 +89,7 @@ const FINANCE_CALCULATOR_IDS = new Set([
   'simple-interest',
   'compound-interest',
   'effective-annual-rate',
+  'inflation',
   'investment-growth',
   'investment-return',
   'time-to-savings-goal',
@@ -428,6 +430,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  inflation: {
+    title: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
+    description:
+      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+    h1: 'Inflation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'time-to-savings-goal': {
     title: 'Time to Savings Goal Calculator | Reach Your Target',
     description:
@@ -694,6 +704,9 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'early payoff calculator',
     ],
   },
+};
+
+const FINANCE_SCHEMA_CONFIG = {
   'monthly-savings-needed': {
     breadcrumbLabel: 'Monthly Savings Needed',
     softwareName: 'Monthly Savings Needed Calculator',
@@ -758,6 +771,31 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'ear calculator',
       'nominal vs effective',
       'interest rate converter',
+    ],
+  },
+  inflation: {
+    breadcrumbLabel: 'Inflation Calculator',
+    breadcrumbSectionLabel: 'Finance Calculators',
+    softwareName: 'Inflation Calculator',
+    webPageName: 'Inflation Calculator',
+    webPageDescription:
+      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+    linkWebPageToSoftwareApplication: true,
+    softwareDescription:
+      'Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.',
+    featureList: [
+      'Inflation-adjusted value comparison',
+      'Equivalent value in target month',
+      'Cumulative inflation rate',
+      'Annualized inflation rate',
+      'Purchasing power comparison',
+    ],
+    keywords: [
+      'inflation calculator',
+      'CPI calculator',
+      'purchasing power calculator',
+      'inflation-adjusted value',
+      'value of money over time',
     ],
   },
   'future-value': {
@@ -1302,10 +1340,14 @@ function extractTagText(html, tagName) {
 }
 
 function extractCalculatorFaqEntries(explanationHtml, calculatorId) {
+  const faqSectionMatch = explanationHtml.match(
+    /<section[^>]*id="[^"]*faq[^"]*"[^>]*>([\s\S]*?)<\/section>/i
+  );
+  const faqHtml = faqSectionMatch ? faqSectionMatch[1] : explanationHtml;
   const cardRegex = /<(div|article)[^>]*class="[^"]*\bfaq-card\b[^"]*"[^>]*>([\s\S]*?)<\/\1>/gi;
   const entries = [];
 
-  for (const [, , cardHtml] of explanationHtml.matchAll(cardRegex)) {
+  for (const [, , cardHtml] of faqHtml.matchAll(cardRegex)) {
     const question = extractTagText(cardHtml, 'h4');
     const answer = extractTagText(cardHtml, 'p');
     if (!question || !answer) {
@@ -1457,7 +1499,277 @@ function buildHomeLoanStructuredData({
   };
 }
 
+function buildFinanceStructuredData({
+  title,
+  description,
+  canonical,
+  faqEntries,
+  breadcrumbLabel,
+  breadcrumbSectionLabel = 'Finance',
+  softwareName,
+  webPageName,
+  webPageDescription,
+  linkWebPageToSoftwareApplication = false,
+  softwareDescription,
+  featureList = [],
+  keywords = [],
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: webPageName || title,
+        url: canonical,
+        description: webPageDescription || description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+        ...(linkWebPageToSoftwareApplication
+          ? {
+              about: { '@id': `${canonical}#softwareapplication` },
+              mainEntity: { '@id': `${canonical}#softwareapplication` },
+              breadcrumb: { '@id': `${canonical}#breadcrumbs` },
+            }
+          : {}),
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description: softwareDescription || description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        ...(featureList.length ? { featureList } : {}),
+        ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: breadcrumbSectionLabel,
+            item: `${SITE_URL}/finance-calculators/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
+      },
+    ],
+  };
+}
+
 function buildHomepageStructuredData({ title, description, canonical }) {
+  const faqEntries = [
+    {
+      '@type': 'Question',
+      name: 'Are the calculators free to use?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. All calculators on CalcHowMuch are free to use. You can use them as often as you like without creating an account.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need to sign up to use the calculators?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. You do not need to register or sign in. Our calculators are available instantly in your browser.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you store my inputs or calculation results?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are the calculator results accurate?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The calculators are designed to provide accurate estimates based on the inputs and assumptions shown on each page. However, actual results may vary depending on rounding, timing, institution-specific rules, or real-world conditions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use these calculator results for financial, legal, or tax decisions?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Calculator results are for informational and planning purposes only. They should not be treated as financial, legal, tax, or professional advice. For important decisions, consult a qualified professional or official source.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why do results sometimes differ from banks, lenders, or other websites?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Results can differ because different tools may use different assumptions, rounding methods, compounding frequency, date handling, or fee/tax rules. We recommend checking the explanation and assumptions section on each calculator page.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What assumptions do your calculators use?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Each calculator includes its own assumptions and methodology. Common assumptions may include fixed interest rates, regular payment intervals, standard compounding periods, and simplified timing rules. Always review the page-specific explanation for details.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do the calculators work on mobile devices?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. CalcHowMuch calculators are designed to work on mobile, tablet, and desktop devices.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use CalcHowMuch calculators for business or professional planning?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. You can use them for planning and estimation. However, because calculators simplify some real-world variables, final decisions should be verified with official documents, providers, or professionals.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do your calculators include fees, taxes, or penalties?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends on the calculator. Some calculators include optional fields for fees, taxes, or extra costs, while others focus on the core calculation only. Check the inputs and explanation section for what is included.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How often are the calculators updated?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We review and improve calculators regularly to keep formulas, explanations, and usability clear and reliable. The “Last updated” date on each page shows when that calculator was most recently reviewed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I trust the formulas used on the site?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We aim to use standard formulas and clearly explain how each calculator works. Where relevant, we also provide formula sections, assumptions, and examples so you can verify the logic.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does the same input sometimes produce different results after changing options?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Some options (such as compounding frequency, payment timing, rounding, or contribution intervals) can significantly affect the output. Even small changes in settings can change the final result.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are your calculators suitable for students and learning?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Many users use CalcHowMuch calculators for learning, homework support, and understanding formulas. The explanation and FAQ sections are designed to make the calculations easier to understand.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you provide professional advice or recommendations?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. CalcHowMuch provides tools and explanations, not personalized advice. We do not recommend specific financial products, legal actions, or tax strategies.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What should I do if I think a calculator result is wrong?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'First, recheck your inputs (especially dates, rates, and frequencies). Then review the assumptions and explanation section on the calculator page. If something still looks incorrect, contact us and include the inputs you used so we can review it.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I share calculator results with someone else?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. You can share the calculator page and inputs, but remember that results are estimates and should be independently verified before making important decisions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are the calculators available worldwide?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Most calculators can be used from anywhere. However, some results may vary by country because local laws, taxes, lending rules, and financial products differ.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you use cookies or analytics?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We may use basic analytics and site tools to improve performance and usability. Calculator inputs themselves are not stored as personal calculation records. For full details, see our Privacy Policy.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where can I learn more about how a calculator works?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Each calculator page includes an explanation section, formula details, and FAQs. You can also visit our About page and site policies for more information about how CalcHowMuch works.',
+      },
+    },
+  ];
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -1500,6 +1812,11 @@ function buildHomepageStructuredData({ title, description, canonical }) {
           '@type': 'ImageObject',
           url: OG_IMAGE,
         },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
       },
     ],
   };
@@ -1790,6 +2107,10 @@ function resolveCalculatorFragmentDir(relPath) {
   if (!isFinanceCalculatorRelPath(relPath)) {
     return path.join(CALC_DIR, relPath);
   }
+  const clusterDir = path.join(CALC_DIR, relPath);
+  if (pathExistsAsDirectory(clusterDir)) {
+    return clusterDir;
+  }
   const contentDir = path.join(CONTENT_CALC_DIR, relPath);
   if (pathExistsAsDirectory(contentDir)) {
     return contentDir;
@@ -1802,6 +2123,10 @@ function resolveCalculatorModuleScriptHref(calculatorRelPath) {
     return null;
   }
   if (isFinanceCalculatorRelPath(calculatorRelPath)) {
+    const clusterModuleAbsPath = path.join(CALC_DIR, calculatorRelPath, 'module.js');
+    if (fs.existsSync(clusterModuleAbsPath)) {
+      return appendVersionParam(`/calculators/${calculatorRelPath}/module.js`);
+    }
     const financeAssetRelPath = path
       .join('assets', 'js', 'calculators', calculatorRelPath, 'module.js')
       .replace(/\\/g, '/');
@@ -1812,6 +2137,423 @@ function resolveCalculatorModuleScriptHref(calculatorRelPath) {
     return appendVersionParam(`/${financeAssetRelPath}`);
   }
   return appendVersionParam(`/calculators/${calculatorRelPath}/module.js`);
+}
+
+function resolveCalculatorCssHref(calculatorRelPath) {
+  if (!calculatorRelPath) {
+    return null;
+  }
+  return appendVersionParam(`/calculators/${calculatorRelPath}/calculator.css`);
+}
+
+const HOME_LOAN_CLUSTER_REDESIGN_ORDER = [
+  'how-much-can-i-borrow',
+  'home-loan',
+  'remortgage-switching',
+  'offset-calculator',
+  'interest-rate-change-calculator',
+  'loan-to-value',
+  'buy-to-let',
+  'personal-loan',
+];
+
+// Opt-in list so the rollout can complete one calculator at a time without flipping unfinished routes.
+const HOME_LOAN_CLUSTER_REDESIGN_IDS = new Set([
+  'how-much-can-i-borrow',
+  'home-loan',
+  'remortgage-switching',
+  'offset-calculator',
+  'interest-rate-change-calculator',
+  'loan-to-value',
+  'buy-to-let',
+  'personal-loan',
+]);
+
+HOME_LOAN_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!HOME_LOAN_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Home Loan redesign calculator id: ${calculatorId}`);
+  }
+});
+
+const AUTO_LOAN_CLUSTER_REDESIGN_ORDER = [
+  'car-loan',
+  'multiple-car-loan',
+  'hire-purchase',
+  'pcp-calculator',
+  'leasing-calculator',
+];
+
+const AUTO_LOAN_CLUSTER_REDESIGN_IDS = new Set([
+  'car-loan',
+  'multiple-car-loan',
+  'hire-purchase',
+  'pcp-calculator',
+  'leasing-calculator',
+]);
+
+AUTO_LOAN_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!AUTO_LOAN_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Auto Loan redesign calculator id: ${calculatorId}`);
+  }
+});
+
+const FINANCE_CLUSTER_REDESIGN_ORDER = [
+  'present-value',
+  'future-value',
+  'present-value-of-annuity',
+  'future-value-of-annuity',
+  'effective-annual-rate',
+  'inflation',
+  'simple-interest',
+  'compound-interest',
+  'investment-growth',
+  'time-to-savings-goal',
+  'monthly-savings-needed',
+  'investment-return',
+];
+
+// Opt-in list so finance can migrate one calculator at a time without flipping untouched routes.
+const FINANCE_CLUSTER_REDESIGN_IDS = new Set([
+  'present-value',
+  'future-value',
+  'present-value-of-annuity',
+  'future-value-of-annuity',
+  'effective-annual-rate',
+  'inflation',
+  'simple-interest',
+  'compound-interest',
+  'investment-growth',
+  'time-to-savings-goal',
+  'monthly-savings-needed',
+  'investment-return',
+]);
+
+FINANCE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!FINANCE_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Finance redesign calculator id: ${calculatorId}`);
+  }
+});
+
+function buildCreditCardClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'credit-card-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildHomeLoanInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'loan-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildAutoLoanInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'car-loan-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildFinanceClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'finance-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildCreditCardClusterHeaderHtml() {
+  return `<header class="cc-cluster-site-header">
+  <div class="cc-cluster-wrap cc-cluster-site-header-inner">
+    <a class="cc-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="cc-cluster-brand-mark" aria-hidden="true">#</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="cc-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/calculators/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildCreditCardClusterFooterHtml() {
+  return `<footer class="cc-cluster-site-footer">
+  <div class="cc-cluster-wrap cc-cluster-site-footer-inner">
+    <nav class="cc-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="cc-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildHomeLoanClusterHeaderHtml() {
+  return `<header class="hl-cluster-site-header">
+  <div class="hl-cluster-wrap hl-cluster-site-header-inner">
+    <a class="hl-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="hl-cluster-brand-mark" aria-hidden="true">CH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="hl-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/calculators/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildHomeLoanClusterFooterHtml() {
+  return `<footer class="hl-cluster-site-footer">
+  <div class="hl-cluster-wrap hl-cluster-site-footer-inner">
+    <nav class="hl-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="hl-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildAutoLoanClusterHeaderHtml() {
+  return `<header class="al-cluster-site-header">
+  <div class="al-cluster-wrap al-cluster-site-header-inner">
+    <a class="al-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="al-cluster-brand-mark" aria-hidden="true">AL</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="al-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/calculators/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildAutoLoanClusterFooterHtml() {
+  return `<footer class="al-cluster-site-footer">
+  <div class="al-cluster-wrap al-cluster-site-footer-inner">
+    <nav class="al-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="al-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildFinanceClusterHeaderHtml() {
+  return `<header class="fi-cluster-site-header">
+  <div class="fi-cluster-wrap fi-cluster-site-header-inner">
+    <a class="fi-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="fi-cluster-brand-mark" aria-hidden="true">FI</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="fi-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/calculators/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildFinanceClusterFooterHtml() {
+  return `<footer class="fi-cluster-site-footer">
+  <div class="fi-cluster-wrap fi-cluster-site-footer-inner">
+    <nav class="fi-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="fi-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+const AUTO_LOAN_RELATED_CARD_COPY = {
+  'car-loan-calculator': 'See the financed amount, monthly payment, and full borrowing cost.',
+  'auto-loan-calculator': 'Compare two offers side by side before you choose the cheaper path.',
+  'hire-purchase-calculator': 'Balance monthly affordability against the balloon due later.',
+  'pcp-calculator': 'Weigh the lower monthly cost against the final payment obligation.',
+  'car-lease-calculator': 'Review due-at-signing, residual value, and full lease spend together.',
+};
+
+const FINANCE_RELATED_CARD_COPY = {
+  'present-value': "Discount a future amount into today's value before you compare options.",
+  'future-value': 'Project how a starting balance compounds with time and recurring additions.',
+  'present-value-of-annuity': "Value a stream of future payments in today's terms.",
+  'future-value-of-annuity': 'Estimate what recurring contributions could become over time.',
+  'effective-annual-rate': 'Translate a nominal rate into the real annual rate after compounding.',
+  'simple-interest': 'Check straight-line interest cost without compounding.',
+  'compound-interest': 'Model compounding growth with clear interest and balance context.',
+  'investment-growth': 'Forecast balances, contributions, and growth across longer horizons.',
+  'time-to-savings-goal': 'Estimate how long steady saving may take to reach a target.',
+  'monthly-savings-needed': 'Work backward from the goal to the monthly saving requirement.',
+  'investment-return': 'Stress test a portfolio path with contributions, events, and downturns.',
+  inflation: 'Translate an older dollar amount into later CPI-based purchasing power.',
+};
+
+function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
+  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+
+  if (!calculators.length) {
+    return '';
+  }
+
+  const linksHtml = calculators
+    .map((calculator) => {
+      const isActive = calculator.id === activeCalculatorId;
+      return `<a class="cc-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        isActive ? ' aria-current="page"' : ''
+      }>${calculator.name}</a>`;
+    })
+    .join('');
+
+  return `<section class="cc-cluster-related" aria-labelledby="cc-cluster-related-title">
+  <h2 id="cc-cluster-related-title">Related Credit Card Calculators</h2>
+  <div class="cc-cluster-related-links">
+    ${linksHtml}
+  </div>
+</section>`;
+}
+
+function buildAutoLoanRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
+  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+
+  if (!calculators.length) {
+    return '';
+  }
+
+  const linksHtml = calculators
+    .map((calculator) => {
+      const isActive = calculator.id === activeCalculatorId;
+      const description =
+        AUTO_LOAN_RELATED_CARD_COPY[calculator.id] ||
+        'Explore this Auto Loan calculator with the shared redesign system.';
+
+      return `<a class="al-cluster-related-link al-cluster-related-card${
+        isActive ? ' is-active' : ''
+      }" href="${calculator.url}"${isActive ? ' aria-current="page"' : ''}>
+        <span class="al-cluster-related-card-title">${calculator.name}</span>
+        <span class="al-cluster-related-card-copy">${description}</span>
+      </a>`;
+    })
+    .join('');
+
+  return `<section class="al-cluster-related" aria-labelledby="al-cluster-related-title">
+  <h2 id="al-cluster-related-title">Related Auto Loan Calculators</h2>
+  <div class="al-cluster-related-links">
+    ${linksHtml}
+  </div>
+</section>`;
+}
+
+function buildFinanceRelatedCalculatorsHtml(category, activeCalculatorId) {
+  const subcategories = Array.isArray(category?.subcategories) ? category.subcategories : [];
+  const calculators = subcategories.flatMap((subcategory) =>
+    Array.isArray(subcategory?.calculators)
+      ? subcategory.calculators.map((calculator) => ({
+          ...calculator,
+          sectionLabel: subcategory.name,
+        }))
+      : []
+  );
+
+  if (!calculators.length) {
+    return '';
+  }
+
+  const linksHtml = calculators
+    .map((calculator) => {
+      const isActive = calculator.id === activeCalculatorId;
+      const description =
+        FINANCE_RELATED_CARD_COPY[calculator.id] ||
+        'Explore this Finance calculator in the shared redesign system.';
+
+      return `<a class="fi-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        isActive ? ' aria-current="page"' : ''
+      }>
+        <span class="fi-cluster-related-card-title">${calculator.name}</span>
+        <span class="fi-cluster-related-card-copy">${description}</span>
+        <span class="fi-cluster-related-card-meta">${calculator.sectionLabel}</span>
+      </a>`;
+    })
+    .join('');
+
+  return `<section class="fi-cluster-related" aria-labelledby="fi-cluster-related-title">
+  <h2 id="fi-cluster-related-title">Related Finance Calculators</h2>
+  <div class="fi-cluster-related-links">
+    ${linksHtml}
+  </div>
+</section>`;
 }
 
 const mathIcons = {
@@ -1939,6 +2681,7 @@ const FINANCE_CALCULATOR_ICONS = {
   'simple-interest': '➕',
   'compound-interest': '♻️',
   'effective-annual-rate': '🔄',
+  inflation: '🧾',
   'investment-growth': '📊',
   'investment-return': '📈',
   'time-to-savings-goal': '🎯',
@@ -2235,16 +2978,35 @@ function buildPageHtml({
   layoutMainClass = '',
   includeHomeContent,
   pageType,
+  calculatorId = null,
   calculatorRelPath,
   assetConfig = null,
   cssBundleConfig = null,
   topNavStatic = false,
   staticStructuredData = null,
   injectStaticStructuredData = false,
+  relatedCalculatorsHtml = '',
 }) {
+  const isCreditCardClusterRoute =
+    designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
+  const isMigratedFinanceClusterRoute =
+    canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
+  const isMigratedAutoLoanClusterRoute =
+    designFamily === 'auto-loans' &&
+    canonical.includes('/car-loan-calculators/') &&
+    AUTO_LOAN_CLUSTER_REDESIGN_IDS.has(calculatorId);
+  const isMigratedHomeLoanClusterRoute =
+    designFamily === 'home-loan' &&
+    canonical.includes('/loan-calculators/') &&
+    HOME_LOAN_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const versionedCalculatorHtml = applyCalculatorFragmentVersioning(calculatorHtml);
   const sanitizedCalculatorHtml =
-    assetConfig && typeof versionedCalculatorHtml === 'string'
+    (assetConfig ||
+      isCreditCardClusterRoute ||
+      isMigratedFinanceClusterRoute ||
+      isMigratedAutoLoanClusterRoute ||
+      isMigratedHomeLoanClusterRoute) &&
+    typeof versionedCalculatorHtml === 'string'
       ? versionedCalculatorHtml.replace(
           /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css(?:\?[^'"]*)?['"]\);\s*<\/style>/gi,
           ''
@@ -2296,7 +3058,56 @@ function buildPageHtml({
 </div>`;
   } else if (routeArchetype === 'calc_exp') {
     calcContent =
-      paneLayout === 'single'
+      isCreditCardClusterRoute
+        ? `<div class="panel panel-scroll panel-span-all cc-cluster-panel${calculatorPanelClassSuffix}">
+  <div class="cc-cluster-page-header">
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+  </div>
+  <div class="calculator-page-single cc-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+    ${relatedCalculatorsHtml}
+  </div>
+        </div>`
+        : isMigratedFinanceClusterRoute
+        ? `<div class="fi-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+  <div class="fi-cluster-page-header">
+    <span class="fi-cluster-page-kicker">Finance Calculators</span>
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="fi-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single fi-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+    ${relatedCalculatorsHtml}
+  </div>
+</div>`
+        : isMigratedAutoLoanClusterRoute
+        ? `<div class="al-cluster-panel${calculatorPanelClassSuffix}">
+  <div class="al-cluster-page-header">
+    <span class="al-cluster-page-kicker">Auto Loan Calculators</span>
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="al-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single al-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+    ${relatedCalculatorsHtml}
+  </div>
+</div>`
+        : isMigratedHomeLoanClusterRoute
+        ? `<div class="hl-cluster-panel${calculatorPanelClassSuffix}">
+  <div class="hl-cluster-page-header">
+    <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="hl-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single hl-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+  </div>
+</div>`
+        : paneLayout === 'single'
         ? `<div class="panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
@@ -2312,19 +3123,45 @@ ${explanationTitleHtml}    ${explanationHtml}
 ${explanationTitleHtml}  ${explanationHtml}
 </div>`;
   } else if (routeArchetype === 'calc_only') {
-    calcContent = `<div class="panel panel-scroll panel-span-all">
+    calcContent = `<div class="${
+      isMigratedFinanceClusterRoute
+        ? 'fi-cluster-panel'
+        : isMigratedAutoLoanClusterRoute
+        ? 'al-cluster-panel'
+        : isMigratedHomeLoanClusterRoute
+        ? 'hl-cluster-panel'
+        : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
+    }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single">
     ${sanitizedCalculatorHtml}
+    ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? relatedCalculatorsHtml : ''}
   </div>
 </div>`;
   } else if (routeArchetype === 'exp_only') {
-    calcContent = `<div class="panel panel-scroll panel-span-all">
+    calcContent = `<div class="${
+      isMigratedFinanceClusterRoute
+        ? 'fi-cluster-panel'
+        : isMigratedAutoLoanClusterRoute
+        ? 'al-cluster-panel'
+        : isMigratedHomeLoanClusterRoute
+        ? 'hl-cluster-panel'
+        : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
+    }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-${explanationTitleHtml}  ${explanationHtml}
+${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${explanationHtml}
+${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
 </div>`;
   } else if (routeArchetype === 'content_shell') {
-    calcContent = `<div class="panel panel-scroll panel-span-all">
+    calcContent = `<div class="${
+      isMigratedFinanceClusterRoute
+        ? 'fi-cluster-panel'
+        : isMigratedAutoLoanClusterRoute
+        ? 'al-cluster-panel'
+        : isMigratedHomeLoanClusterRoute
+        ? 'hl-cluster-panel'
+        : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
+    }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   ${contentHtml}
 </div>`;
@@ -2335,11 +3172,28 @@ ${explanationTitleHtml}  ${explanationHtml}
   const bodyAttribute = pageType ? ` data-page="${pageType}"` : '';
   const routeArchetypeAttribute = routeArchetype ? ` data-route-archetype="${routeArchetype}"` : '';
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
-  const topNavStaticAttribute = topNavStatic ? ' data-top-nav-static="true"' : '';
+  const topNavStaticAttribute =
+    topNavStatic &&
+    !isMigratedFinanceClusterRoute &&
+    !isMigratedAutoLoanClusterRoute &&
+    !isMigratedHomeLoanClusterRoute
+      ? ' data-top-nav-static="true"'
+      : '';
   const routeModuleScriptHref = resolveCalculatorModuleScriptHref(calculatorRelPath);
 
   let scriptTagsHtml = '';
-  if (assetConfig) {
+  if (
+    isCreditCardClusterRoute ||
+    isMigratedFinanceClusterRoute ||
+    isMigratedAutoLoanClusterRoute ||
+    isMigratedHomeLoanClusterRoute
+  ) {
+    const defaultScripts = [];
+    if (routeModuleScriptHref) {
+      defaultScripts.push(routeModuleScriptHref);
+    }
+    scriptTagsHtml = defaultScripts.map((src) => `    <script type="module" src="${src}"></script>`).join('\n');
+  } else if (assetConfig) {
     const coreScripts = Array.isArray(assetConfig?.js?.core) ? assetConfig.js.core : [];
     const routeScripts = Array.isArray(assetConfig?.js?.route) ? assetConfig.js.route : [];
     const allScripts = [...coreScripts, ...routeScripts];
@@ -2372,7 +3226,27 @@ ${explanationTitleHtml}  ${explanationHtml}
     isCalculatorPage: shouldEmitCalculatorHeadJsonLd,
   });
   let cssLinksHtml = '';
-  if (assetConfig) {
+  if (isCreditCardClusterRoute) {
+    cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(
+      buildCreditCardClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedFinanceClusterRoute) {
+    cssLinksHtml = `    <style data-finance-cluster="true">\n${indentBlock(
+      buildFinanceClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedAutoLoanClusterRoute) {
+    cssLinksHtml = `    <style data-auto-loan-cluster="true">\n${indentBlock(
+      buildAutoLoanInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedHomeLoanClusterRoute) {
+    cssLinksHtml = `    <style data-home-loan-cluster="true">\n${indentBlock(
+      buildHomeLoanInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (assetConfig) {
     const deferCoreCss = assetConfig?.options?.deferCoreCss === true;
     const coreCss = Array.isArray(assetConfig?.css?.core) ? assetConfig.css.core : [];
     const routeCss = Array.isArray(assetConfig?.css?.route) ? assetConfig.css.route : [];
@@ -2403,23 +3277,59 @@ ${explanationTitleHtml}  ${explanationHtml}
   }
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const adPanelHtml = renderManagedAdPanel('          ');
-  const adsColumnHtml = suppressAdsColumn
-    ? ''
-    : `        <section class="ads-column" aria-label="Ad placeholders">
+  const adsColumnHtml =
+    suppressAdsColumn ||
+    isCreditCardClusterRoute ||
+    isMigratedFinanceClusterRoute ||
+    isMigratedAutoLoanClusterRoute ||
+    isMigratedHomeLoanClusterRoute
+      ? ''
+      : `        <section class="ads-column" aria-label="Ad placeholders">
 ${adPanelHtml}
         </section>
 `;
 
-  return `<!doctype html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-${headMetaHtml}
-${cssLinksHtml} 
-${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-  </head>
-  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}${topNavStaticAttribute}>
-    <div class="page">
+  const pageShellHtml = isCreditCardClusterRoute
+    ? `    <div class="page cc-cluster-page-shell">
+      ${buildCreditCardClusterHeaderHtml()}
+      <main class="layout-main cc-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="center-column cc-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildCreditCardClusterFooterHtml()}
+    </div>`
+    : isMigratedFinanceClusterRoute
+    ? `    <div class="page fi-cluster-page-shell">
+      ${buildFinanceClusterHeaderHtml()}
+      <main class="fi-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="fi-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildFinanceClusterFooterHtml()}
+    </div>`
+    : isMigratedAutoLoanClusterRoute
+    ? `    <div class="page al-cluster-page-shell">
+      ${buildAutoLoanClusterHeaderHtml()}
+      <main class="al-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="al-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildAutoLoanClusterFooterHtml()}
+    </div>`
+    : isMigratedHomeLoanClusterRoute
+    ? `    <div class="page hl-cluster-page-shell">
+      ${buildHomeLoanClusterHeaderHtml()}
+      <main class="hl-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="hl-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildHomeLoanClusterFooterHtml()}
+    </div>`
+    : `    <div class="page">
       ${headerHtml}
       <nav class="top-nav" aria-label="Category navigation">${topNavHtml}</nav>
       <main class="layout-main${layoutMainClassSuffix}">
@@ -2431,7 +3341,18 @@ ${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (ma
         </section>
 ${adsColumnHtml}      </main>
       ${footerHtml}
-    </div>
+    </div>`;
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+${headMetaHtml}
+${cssLinksHtml} 
+${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
+  <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}${topNavStaticAttribute}>
+${pageShellHtml}
 ${scriptTagsHtml}
   </body>
 </html>
@@ -2593,7 +3514,7 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
     seoTitle: title,
     seoDescription: description,
     ogImageUrl: OG_IMAGE,
-    h1: 'Calculate How Much',
+    h1: 'All Calculators — Finance, Loan, Mortgage & Math Tools',
     isCalculatorPage: isCalculatorPathFromCanonical(canonical),
   });
   return `<!doctype html>
@@ -2601,21 +3522,6 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 ${headMetaHtml}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
-      />
-    </noscript>
     <link rel="stylesheet" href="/assets/css/homepage-preview.css" />
     <script type="application/ld+json" data-homepage-ld="true" data-calculator-ld="true">${stringifyStructuredData(
       homepageStructuredData
@@ -2623,63 +3529,171 @@ ${headMetaHtml}
 ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="home" data-route-archetype="content_shell" data-design-family="neutral">
-    <canvas id="particleCanvas" aria-hidden="true"></canvas>
-    <div class="homepage-preview-shell">
-      <header class="preview-header">
-        <div class="preview-header-inner">
-          <a class="brand-link" href="/" aria-label="CalcHowMuch home">
-            <span class="brand-logo" aria-hidden="true">#</span>
-            <span class="brand-copy">
-              <strong>CalcHowMuch</strong>
-              <small>Premium Calculator Suite</small>
-            </span>
-          </a>
-          <label class="search-wrap" for="homepage-search">
-            <span class="sr-only">Search calculators</span>
+    <header class="header preview-header">
+      <div class="wrap header-inner preview-header-inner">
+        <a class="brand" href="/" aria-label="CalcHowMuch home">
+          <span class="brand-mark" aria-hidden="true">#</span>
+          <span>CalcHowMuch</span>
+        </a>
+        <nav class="header-nav preview-nav" aria-label="Homepage sections">
+          <a href="#homepage-popular">Popular</a>
+          <a href="#homepage-categories">Clusters</a>
+          <a href="#homepage-guides">Categories</a>
+          <a href="#homepage-faq">FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap preview-main">
+      <section class="hero" aria-labelledby="homepage-hero-title">
+        <div class="hero-inner">
+          <h1 id="homepage-hero-title">All Calculators — Finance, Loan, Mortgage &amp; Math Tools</h1>
+          <p>
+            Explore mortgage, loan, credit card, finance, percentage, and time
+            calculators. Get instant results with simple and accurate tools.
+          </p>
+          <div class="search" role="search">
+            <label class="sr-only" for="homepage-search">Search calculators</label>
             <input
               id="homepage-search"
               type="search"
-              placeholder="Search calculators..."
+              value=""
+              placeholder="Search calculators…"
               autocomplete="off"
               spellcheck="false"
             />
-          </label>
-        </div>
-      </header>
-      <main class="preview-main">
-        <section class="hero" aria-labelledby="homepage-hero-title">
-          <h1 id="homepage-hero-title">Calculate How Much</h1>
-          <p>Quick calculations for everyday numbers.</p>
-        </section>
-        <section
-          id="homepage-categories"
-          class="categories"
-          aria-labelledby="homepage-clusters-title"
-          data-loading="true"
-          style="--loading-card-count: 7"
-        >
-          <h2 id="homepage-clusters-title" class="categories-title">Browse Calculator Clusters</h2>
-          <div id="homepage-empty" class="empty-state" hidden>
-            No calculator matches your search.
+            <button type="button">Search</button>
           </div>
-          <div id="homepage-grid" class="category-grid" aria-live="polite"></div>
-        </section>
-      </main>
-      <footer class="site-footer">
-        <nav aria-label="Footer links">
-          <a href="/privacy/">Privacy</a>
-          <span class="footer-divider">|</span>
-          <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-          <span class="footer-divider">|</span>
-          <a href="/contact-us/">Contact</a>
-          <span class="footer-divider">|</span>
-          <a href="/faq/">FAQs</a>
-          <span class="footer-divider">|</span>
-          <a href="/sitemap.xml">Sitemap</a>
-        </nav>
-        <p class="footer-branding">&copy; 2026 @CalcHowMuch</p>
-      </footer>
-    </div>
+        </div>
+      </section>
+
+      <section id="homepage-popular" class="section" aria-labelledby="homepage-popular-title">
+        <div class="section-head">
+          <div>
+            <h2 id="homepage-popular-title">Popular Calculators</h2>
+          </div>
+        </div>
+        <div class="chip-row" aria-label="Popular calculators">
+          <a class="chip" href="/loan-calculators/mortgage-calculator/">Mortgage Calculator</a>
+          <a class="chip" href="/loan-calculators/personal-loan-calculator/">Loan Calculator</a>
+          <a class="chip" href="/credit-card-calculators/credit-card-payment-calculator/">Credit Card Calculator</a>
+          <a class="chip" href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a>
+          <a class="chip" href="/finance-calculators/inflation-calculator/">Inflation Calculator</a>
+          <a class="chip" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a>
+          <a class="chip" href="/time-and-date/age-calculator/">Age Calculator</a>
+        </div>
+      </section>
+
+      <section
+        id="homepage-categories"
+        class="section categories"
+        aria-labelledby="homepage-clusters-title"
+        data-loading="true"
+        style="--loading-card-count: 7"
+      >
+        <div class="section-head">
+          <div>
+            <h2 id="homepage-clusters-title">Browse Calculator Clusters</h2>
+          </div>
+        </div>
+        <div id="homepage-empty" class="empty-state" hidden>No calculator matches your search.</div>
+        <div id="homepage-grid" class="card-grid category-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="homepage-guides" class="section" aria-label="Category guides">
+        <div class="section-head">
+          <div>
+            <h2>Category Guides</h2>
+          </div>
+        </div>
+        <div class="seo-grid">
+          <section class="seo-block">
+            <h3>Mortgage &amp; Loan Calculators</h3>
+            <p>
+              Estimate monthly payments and total interest using our
+              <a href="/loan-calculators/mortgage-calculator/">mortgage calculator</a>, compare borrowing costs with the
+              <a href="/loan-calculators/personal-loan-calculator/">loan calculator</a>, or analyse rate changes using the
+              <a href="/loan-calculators/interest-rate-change-calculator/">interest rate change calculator</a>.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Credit Card Calculators</h3>
+            <p>
+              Compare payoff plans with the <a href="/credit-card-calculators/credit-card-payment-calculator/">credit card repayment tool</a>,
+              review minimum payment costs, and explore
+              <a href="/credit-card-calculators/balance-transfer-savings-calculator/">balance transfer calculators</a>.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Finance &amp; Savings Calculators</h3>
+            <p>
+              Forecast growth with the <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>,
+              compare purchasing power with the <a href="/finance-calculators/inflation-calculator/">inflation calculator</a>,
+              plan targets using the <a href="/finance-calculators/time-to-savings-goal-calculator/">time to savings goal calculator</a>,
+              and compare scenarios with future value tools.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Percentage &amp; Time Calculators</h3>
+            <p>
+              Solve everyday problems with the <a href="/percentage-calculators/percent-change-calculator/">percentage calculator</a>,
+              compare dates with the <a href="/time-and-date/time-between-two-dates-calculator/">time between dates calculator</a>,
+              and use practical planning tools for daily use.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="trust" aria-labelledby="homepage-why-title">
+          <h2 id="homepage-why-title">Why Use CalcHowMuch</h2>
+          <p>
+            CalcHowMuch helps you make better financial and everyday decisions by providing
+            simple, fast, and accurate calculators. Each tool is designed to give clear
+            results, including breakdowns, formulas, and insights so you can compare scenarios
+            and understand outcomes.
+          </p>
+        </div>
+      </section>
+
+      <section id="homepage-faq" class="section" aria-labelledby="homepage-faq-title">
+        <div class="faq">
+          <div class="section-head">
+            <div>
+              <h2 id="homepage-faq-title">Frequently Asked Questions</h2>
+            </div>
+          </div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <h3>What calculators are available?</h3>
+              <p>We offer mortgage, loan, credit card, finance, percentage, and time calculators.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Are these calculators free?</h3>
+              <p>Yes, all calculators on CalcHowMuch are free and easy to use.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Are the results accurate?</h3>
+              <p>Calculations are based on standard formulas and provide reliable estimates.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer site-footer wrap">
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+        <a href="/contact-us/">Contact</a>
+        <a href="/faq/">FAQs</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
+      <span class="muted">&copy; 2026 @CalcHowMuch</span>
+    </footer>
     <script type="module" src="/assets/js/homepage-preview.js"></script>
   </body>
 </html>`;
@@ -2867,7 +3881,10 @@ function main() {
           const contentCandidateDir = path.join(CONTENT_CALC_DIR, routeDerived);
           if (routeDerived) {
             if (FINANCE_CALCULATOR_IDS.has(calculator.id)) {
-              if (pathExistsAsDirectory(contentCandidateDir)) {
+              if (
+                pathExistsAsDirectory(candidateDir) ||
+                pathExistsAsDirectory(contentCandidateDir)
+              ) {
                 relPath = routeDerived;
               }
             } else if (pathExistsAsDirectory(candidateDir)) {
@@ -2925,8 +3942,26 @@ function main() {
 
   selectedEntries.forEach((entry) => {
     const { category, subcategory, calculator, governance, relPath, outputRelPath } = entry;
+    const isCreditCardClusterRoute =
+      subcategory.id === 'credit-cards' && calculator.url.startsWith('/credit-card-calculators/');
+    const isMigratedFinanceClusterRoute =
+      calculator.url.startsWith('/finance-calculators/') &&
+      FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
+    const isMigratedAutoLoanClusterRoute =
+      calculator.designFamily === 'auto-loans' &&
+      calculator.url.startsWith('/car-loan-calculators/') &&
+      AUTO_LOAN_CLUSTER_REDESIGN_IDS.has(calculator.id);
+    const isMigratedHomeLoanClusterRoute =
+      calculator.designFamily === 'home-loan' &&
+      calculator.url.startsWith('/loan-calculators/') &&
+      HOME_LOAN_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
-    if (assetConfig?.options?.generationMode === 'manual') {
+    if (
+      assetConfig?.options?.generationMode === 'manual' &&
+      !isMigratedFinanceClusterRoute &&
+      !isMigratedAutoLoanClusterRoute &&
+      !isMigratedHomeLoanClusterRoute
+    ) {
       console.log(`  SKIP (manual): ${relPath}`);
       return;
     }
@@ -2955,14 +3990,25 @@ function main() {
     const pageTitle = override?.title ?? buildTitle(calculator.name);
     const pageDescription = override?.description ?? buildDescription(calculator.name);
     const pageCanonical = buildCanonical(calculator.url);
-    const routeBundleEntry = !assetConfig && ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
-      ? resolveRouteBundleEntry(routeBundleManifest, calculator.url)
-      : null;
+    const routeBundleEntry =
+      !assetConfig &&
+      !isCreditCardClusterRoute &&
+      !isMigratedFinanceClusterRoute &&
+      !isMigratedAutoLoanClusterRoute &&
+      ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
+        ? resolveRouteBundleEntry(routeBundleManifest, calculator.url)
+        : null;
     let cssBundleConfig = null;
     const topNavStatic =
-      Boolean(assetConfig?.options?.topNavStatic) || ROUTE_BUNDLE_PILOT_IDS.has(calculator.id);
+      Boolean(assetConfig?.options?.topNavStatic) ||
+      (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !isMigratedFinanceClusterRoute);
 
-    if (!assetConfig && ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !routeBundleEntry) {
+    if (
+      !assetConfig &&
+      ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+      !isMigratedFinanceClusterRoute &&
+      !routeBundleEntry
+    ) {
       throw new Error(`Missing route CSS bundle entry for ${calculator.id} (${calculator.url})`);
     }
 
@@ -3008,6 +4054,18 @@ function main() {
       });
       injectStaticStructuredData = true;
     }
+    const financeSchemaConfig = FINANCE_SCHEMA_CONFIG[calculator.id];
+    if (financeSchemaConfig) {
+      const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildFinanceStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        ...financeSchemaConfig,
+      });
+      injectStaticStructuredData = true;
+    }
 
     const pageHtml = buildPageHtml({
       title: pageTitle,
@@ -3029,6 +4087,7 @@ function main() {
       designFamily: governance.designFamily,
       includeHomeContent: false,
       pageType: 'calculator',
+      calculatorId: calculator.id,
       calculatorRelPath: governance.routeArchetype === 'content_shell' ? null : relPath,
       assetConfig,
       cssBundleConfig,
@@ -3039,13 +4098,20 @@ function main() {
       calculatorPanelClass:
         typeof override?.calculatorPanelClass === 'string' ? override.calculatorPanelClass : '',
       layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
+      relatedCalculatorsHtml: isCreditCardClusterRoute
+        ? buildCreditCardRelatedCalculatorsHtml(subcategory, calculator.id)
+        : isMigratedFinanceClusterRoute
+        ? buildFinanceRelatedCalculatorsHtml(category, calculator.id)
+        : isMigratedAutoLoanClusterRoute
+        ? buildAutoLoanRelatedCalculatorsHtml(subcategory, calculator.id)
+        : '',
     });
 
     const outputDir = path.join(PUBLIC_DIR, outputRelPath);
     writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
 
-  const homeTitle = 'Calculate How Much | Free Online Calculators & Tools';
+  const homeTitle = 'All Calculators — Mortgage, Loan, Finance & Math Tools (Free & Easy)';
   const homeDescription =
     'Quick calculations for everyday numbers. Explore calculator clusters and launch focused tools for math, finance, loans, time, and percentage planning.';
 

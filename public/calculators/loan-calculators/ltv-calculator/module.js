@@ -1,6 +1,11 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateLtv } from '/assets/js/core/loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const metadata = {
   title: 'Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch',
@@ -28,6 +33,11 @@ const loanInput = document.querySelector('#ltv-loan');
 const depositAmountInput = document.querySelector('#ltv-deposit-amount');
 const depositPercentInput = document.querySelector('#ltv-deposit-percent');
 
+const propertyField = document.querySelector('#ltv-property-field');
+const loanField = document.querySelector('#ltv-loan-field');
+const depositAmountField = document.querySelector('#ltv-deposit-amount-field');
+const depositPercentField = document.querySelector('#ltv-deposit-percent-field');
+
 const propertyDisplay = document.querySelector('#ltv-property-display');
 const loanDisplay = document.querySelector('#ltv-loan-display');
 const depositAmountDisplay = document.querySelector('#ltv-deposit-amount-display');
@@ -41,6 +51,8 @@ const depositPercentRow = document.querySelector('#ltv-deposit-percent-row');
 const calculateButton = document.querySelector('#ltv-calculate');
 const resultDiv = document.querySelector('#ltv-result');
 const summaryDiv = document.querySelector('#ltv-summary');
+const resultNote = document.querySelector('#ltv-result-note');
+const resultDashboard = document.querySelector('#ltv-results');
 
 const modeGroup = document.querySelector('[data-button-group="ltv-mode"]');
 const depositTypeGroup = document.querySelector('[data-button-group="ltv-deposit-type"]');
@@ -60,7 +72,7 @@ const modeButtons = setupButtonGroup(modeGroup, {
   defaultValue: 'loan',
   onChange: (value) => {
     setModeVisibility(value);
-    calculate();
+    updateSliderDisplays();
   },
 });
 
@@ -68,7 +80,7 @@ const depositTypeButtons = setupButtonGroup(depositTypeGroup, {
   defaultValue: 'amount',
   onChange: (value) => {
     setDepositTypeVisibility(value);
-    calculate();
+    updateSliderDisplays();
   },
 });
 
@@ -115,15 +127,9 @@ function clampValue(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
-function updateSliderFill(input) {
-  if (!input || input.type !== 'range') {
-    return;
-  }
-  const min = parseFloat(input.min) || 0;
-  const max = parseFloat(input.max) || 100;
-  const value = parseFloat(input.value) || 0;
-  const percent = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${percent}%`);
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
 }
 
 function syncBounds() {
@@ -146,24 +152,37 @@ function syncBounds() {
 }
 
 function updateSliderDisplays() {
+  syncBounds();
+
   if (propertyInput && propertyDisplay) {
     propertyDisplay.textContent = fmtAmount(Number(propertyInput.value));
-    updateSliderFill(propertyInput);
+    updateRangeFill(propertyInput);
+    if (propertyField) propertyField.value = String(Math.round(Number(propertyInput.value) || 0));
   }
 
   if (loanInput && loanDisplay) {
     loanDisplay.textContent = fmtAmount(Number(loanInput.value));
-    updateSliderFill(loanInput);
+    updateRangeFill(loanInput);
+    if (loanField) loanField.value = String(Math.round(Number(loanInput.value) || 0));
   }
 
   if (depositAmountInput && depositAmountDisplay) {
     depositAmountDisplay.textContent = fmtAmount(Number(depositAmountInput.value));
-    updateSliderFill(depositAmountInput);
+    updateRangeFill(depositAmountInput);
+    if (depositAmountField) {
+      depositAmountField.value = String(Math.round(Number(depositAmountInput.value) || 0));
+    }
   }
 
   if (depositPercentInput && depositPercentDisplay) {
     depositPercentDisplay.textContent = fmtPercentInput(Number(depositPercentInput.value));
-    updateSliderFill(depositPercentInput);
+    updateRangeFill(depositPercentInput);
+    if (depositPercentField) {
+      depositPercentField.value = formatNumber(Number(depositPercentInput.value) || 0, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+    }
   }
 }
 
@@ -312,6 +331,11 @@ function setError(message) {
     summaryDiv.textContent = '';
   }
 
+  if (resultNote) {
+    resultNote.textContent =
+      'Adjust the property value, loan, or deposit inputs, then calculate again to refresh the LTV band.';
+  }
+
   highlightBandRow('');
   if (targetBody) {
     targetBody.innerHTML = '';
@@ -362,7 +386,9 @@ function updateExplanation(data, riskProfile) {
   renderTargetRows(data);
 }
 
-function calculate() {
+function calculate(options = {}) {
+  const shouldReveal = options.reveal === true;
+
   if (!resultDiv || !summaryDiv) {
     return;
   }
@@ -373,6 +399,9 @@ function calculate() {
   const propertyValue = Number(propertyInput?.value);
   if (!Number.isFinite(propertyValue) || propertyValue <= 0) {
     setError('Property value must be greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -386,15 +415,24 @@ function calculate() {
   if (mode === 'loan') {
     if (!Number.isFinite(loanAmount) || loanAmount <= 0 || loanAmount >= propertyValue) {
       setError('Loan amount must be greater than 0 and less than the property value.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+      }
       return;
     }
   } else if (depositType === 'amount') {
     if (!Number.isFinite(depositAmount) || depositAmount < 0 || depositAmount >= propertyValue) {
       setError('Deposit amount must be between 0 and the property value.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+      }
       return;
     }
   } else if (!Number.isFinite(depositPercent) || depositPercent < 0 || depositPercent >= 100) {
     setError('Deposit percent must be between 0 and 100.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -409,6 +447,9 @@ function calculate() {
 
   if (data.loanAmount <= 0) {
     setError('Loan amount must be greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -443,40 +484,58 @@ function calculate() {
     `<p><strong>Risk Level:</strong> ${riskProfile.level}</p>` +
     `<p>${data.highRisk ? 'Above 95% LTV is typically considered high risk and can limit options.' : 'You are within a commonly available LTV range.'}</p>`;
 
+  if (resultNote) {
+    resultNote.textContent =
+      `${formatPercent(data.ltv)} LTV means ${formatPercent(data.depositPercent)} of the property value is covered by ` +
+      `deposit or equity, placing you in the ${data.bucket} band.`;
+  }
+
   updateExplanation(data, riskProfile);
   applyTableView(tableView);
+
+  if (shouldReveal) {
+    revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+  }
 }
 
-let autoCalcTimer = null;
-function debouncedCalculate() {
-  clearTimeout(autoCalcTimer);
-  autoCalcTimer = setTimeout(calculate, 80);
-}
-
-propertyInput?.addEventListener('input', () => {
-  syncBounds();
-  updateSliderDisplays();
-  debouncedCalculate();
+[
+  {
+    rangeInput: propertyInput,
+    textInput: propertyField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: loanInput,
+    textInput: loanField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: depositAmountInput,
+    textInput: depositAmountField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: depositPercentInput,
+    textInput: depositPercentField,
+    formatFieldValue: (value) =>
+      formatNumber(value, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+  },
+].forEach((config) => {
+  wireRangeWithField({
+    ...config,
+    parseFieldValue: parseLooseNumber,
+    onVisualUpdate: updateSliderDisplays,
+  });
 });
 
-loanInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-depositAmountInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-depositPercentInput?.addEventListener('input', () => {
-  updateSliderDisplays();
-  debouncedCalculate();
-});
-
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 setModeVisibility(modeButtons?.getValue() ?? 'loan');
 setDepositTypeVisibility(depositTypeButtons?.getValue() ?? 'amount');
 syncBounds();
 updateSliderDisplays();
 applyTableView(tableView);
-calculate();
+calculate({ reveal: false });

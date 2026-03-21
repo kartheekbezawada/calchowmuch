@@ -1,4 +1,4 @@
-<div id="loan-mtg-explanation">
+<div id="multi-auto-loan-explanation" class="auto-loan-explanation">
   <h2>Which Auto Loan Is Better for You?</h2>
   <p>
     Use this comparison calculator to evaluate two auto loans side by side using payment, interest,
@@ -16,6 +16,18 @@
     <li>Combined monthly payment: <span data-multi="combined-payment">—</span></li>
     <li>Combined total paid: <span data-multi="combined-total">—</span></li>
   </ul>
+
+  <div class="al-decision-summary">
+    <h3>Decision summary</h3>
+    <p>
+      Compare the two monthly payments separately first, then decide whether the combined payment
+      and longer payoff horizon still feel manageable together.
+    </p>
+    <ul>
+      <li>Lower APR does not always win if the other loan runs significantly longer.</li>
+      <li>Use the combined interest figure to judge the full cost of carrying both loans at once.</li>
+    </ul>
+  </div>
 
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
@@ -62,8 +74,8 @@
 
   <section class="mtg-exp-section mtg-exp-section--comparison">
     <h3>Loan Comparison</h3>
-    <div class="table-scroll" id="multi-loan-table-wrap" tabindex="0">
-      <table class="calculator-table" id="multi-loan-table">
+    <div class="table-scroll" id="multi-loan-table-wrap" tabindex="0" role="region" aria-label="Loan comparison table">
+      <table class="calculator-table al-table-stack-mobile" id="multi-loan-table">
         <thead>
           <tr>
             <th scope="col">Loan</th>
@@ -75,10 +87,10 @@
         <tbody id="multi-loan-table-body"></tbody>
         <tfoot>
           <tr class="multi-loan-table-total-row">
-            <th scope="row">Combined</th>
-            <td id="multi-loan-combined-payment">—</td>
-            <td id="multi-loan-combined-interest">—</td>
-            <td id="multi-loan-combined-total">—</td>
+            <th scope="row" data-label="Loan">Combined</th>
+            <td id="multi-loan-combined-payment" data-label="Monthly Payment">—</td>
+            <td id="multi-loan-combined-interest" data-label="Total Interest">—</td>
+            <td id="multi-loan-combined-total" data-label="Total Paid">—</td>
           </tr>
         </tfoot>
       </table>
@@ -110,7 +122,7 @@
       </div>
     </div>
 
-    <div class="table-scroll is-hidden" id="multi-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="multi-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly amortisation table">
       <table class="calculator-table" id="multi-table-monthly">
         <thead>
           <tr>
@@ -125,7 +137,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="multi-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll" id="multi-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly amortisation table">
       <table class="calculator-table" id="multi-table-yearly">
         <thead>
           <tr>
@@ -190,7 +202,7 @@
         and payoff horizon. Those outputs answer slightly different questions, so choose the one
         that matches your actual goal.
       </p>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison focus guide">
         <table class="calculator-table">
           <thead>
             <tr>

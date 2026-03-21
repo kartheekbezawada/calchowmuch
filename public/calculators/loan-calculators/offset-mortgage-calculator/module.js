@@ -1,6 +1,11 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateOffset } from '/assets/js/core/loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const balanceInput = document.querySelector('#off-balance');
 const rateInput = document.querySelector('#off-rate');
@@ -8,6 +13,12 @@ const termInput = document.querySelector('#off-term');
 const savingsInput = document.querySelector('#off-savings');
 const contributionInput = document.querySelector('#off-contribution');
 const calculateButton = document.querySelector('#off-calculate');
+
+const balanceField = document.querySelector('#off-balance-field');
+const rateField = document.querySelector('#off-rate-field');
+const termField = document.querySelector('#off-term-field');
+const savingsField = document.querySelector('#off-savings-field');
+const contributionField = document.querySelector('#off-contribution-field');
 
 const balanceDisplay = document.querySelector('#off-balance-display');
 const rateDisplay = document.querySelector('#off-rate-display');
@@ -17,6 +28,8 @@ const contributionDisplay = document.querySelector('#off-contribution-display');
 
 const resultDiv = document.querySelector('#off-result');
 const summaryDiv = document.querySelector('#off-summary');
+const resultNote = document.querySelector('#off-result-note');
+const resultDashboard = document.querySelector('#off-results');
 
 const modeGroup = document.querySelector('[data-button-group="off-mode"]');
 const tableViewGroup = document.querySelector('[data-button-group="off-amortization-view"]');
@@ -49,7 +62,6 @@ const snapshotPayment = document.querySelector('[data-off="payment"]');
 
 const modeButtons = setupButtonGroup(modeGroup, {
   defaultValue: 'full',
-  onChange: () => calculate(),
 });
 
 setupButtonGroup(tableViewGroup, {
@@ -78,40 +90,36 @@ function formatTerm(months) {
   return `${years} years ${remaining} months`;
 }
 
-function updateSliderFill(input) {
-  if (!input || input.type !== 'range') return;
-  const min = parseFloat(input.min) || 0;
-  const max = parseFloat(input.max) || 100;
-  const val = parseFloat(input.value) || 0;
-  const pct = ((val - min) / (max - min)) * 100;
-  input.style.setProperty('--fill', `${pct}%`);
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
 }
 
 function updateSliderDisplays() {
   if (balanceInput && balanceDisplay) {
     balanceDisplay.textContent = fmt(Number(balanceInput.value), { maximumFractionDigits: 0 });
-    updateSliderFill(balanceInput);
+    updateRangeFill(balanceInput);
   }
   if (rateInput && rateDisplay) {
     rateDisplay.textContent = `${fmt(Number(rateInput.value), {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     })}%`;
-    updateSliderFill(rateInput);
+    updateRangeFill(rateInput);
   }
   if (termInput && termDisplay) {
     termDisplay.textContent = `${fmt(Number(termInput.value), { maximumFractionDigits: 0 })} yrs`;
-    updateSliderFill(termInput);
+    updateRangeFill(termInput);
   }
   if (savingsInput && savingsDisplay) {
     savingsDisplay.textContent = fmt(Number(savingsInput.value), { maximumFractionDigits: 0 });
-    updateSliderFill(savingsInput);
+    updateRangeFill(savingsInput);
   }
   if (contributionInput && contributionDisplay) {
     contributionDisplay.textContent = fmt(Number(contributionInput.value), {
       maximumFractionDigits: 0,
     });
-    updateSliderFill(contributionInput);
+    updateRangeFill(contributionInput);
   }
 }
 
@@ -139,6 +147,10 @@ function setError(message) {
   }
   if (summaryDiv) {
     summaryDiv.textContent = '';
+  }
+  if (resultNote) {
+    resultNote.textContent =
+      'Adjust the mortgage balance, rate, term, or offset savings, then calculate again to refresh the impact.';
   }
   clearTables();
 }
@@ -250,7 +262,9 @@ function renderYearlyTable(data) {
     .join('');
 }
 
-function calculate() {
+function calculate(options = {}) {
+  const shouldReveal = options.reveal === true;
+
   if (!resultDiv || !summaryDiv) {
     return;
   }
@@ -270,26 +284,41 @@ function calculate() {
 
   if (!Number.isFinite(inputs.balance) || inputs.balance <= 0) {
     setError('Mortgage balance must be greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
   if (!Number.isFinite(inputs.annualRate) || inputs.annualRate < 0) {
     setError('Interest rate must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
   if (!Number.isFinite(inputs.termYears) || inputs.termYears < 1) {
     setError('Remaining term must be at least 1 year.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
   if (!Number.isFinite(inputs.offsetBalance) || inputs.offsetBalance < 0) {
     setError('Offset savings must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
   if (!Number.isFinite(inputs.offsetContribution) || inputs.offsetContribution < 0) {
     setError('Offset contribution must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -311,18 +340,62 @@ function calculate() {
     `<p><strong>Time saved:</strong> ${formatTerm(data.timeSaved)}</p>` +
     `<p><strong>Effective balance:</strong> ${fmt(data.effectiveBalance)}</p>`;
 
+  if (resultNote) {
+    const modeLabel = inputs.offsetMode === 'partial' ? 'Average offset' : 'Full offset';
+    resultNote.textContent =
+      data.interestSaved > 0
+        ? `${modeLabel} keeps the standard payment at ${fmt(data.payment)} while cutting interest by ${fmt(
+            data.interestSaved
+          )} and shortening payoff by ${formatTerm(data.timeSaved)}.`
+        : `${modeLabel} currently matches the baseline mortgage because no effective offset balance is applied.`;
+  }
+
   updateSnapshot(data, inputs);
   updateLifetime(data);
   renderMonthlyTable(data, inputs);
   renderYearlyTable(data);
   applyView('yearly');
+
+  if (shouldReveal) {
+    revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+  }
 }
 
-[balanceInput, rateInput, termInput, savingsInput, contributionInput].forEach((input) => {
-  input?.addEventListener('input', updateSliderDisplays);
+[
+  {
+    rangeInput: balanceInput,
+    textInput: balanceField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: rateInput,
+    textInput: rateField,
+    formatFieldValue: (value) => fmt(value, { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
+  },
+  {
+    rangeInput: termInput,
+    textInput: termField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: savingsInput,
+    textInput: savingsField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: contributionInput,
+    textInput: contributionField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+].forEach((config) => {
+  wireRangeWithField({
+    ...config,
+    parseFieldValue: parseLooseNumber,
+    onVisualUpdate: updateSliderDisplays,
+  });
 });
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 updateSliderDisplays();
-calculate();
+calculate({ reveal: false });

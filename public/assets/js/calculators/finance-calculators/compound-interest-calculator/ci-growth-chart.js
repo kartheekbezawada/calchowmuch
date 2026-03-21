@@ -1,6 +1,6 @@
-const CURRENCY_FORMATTER = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
+const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
   maximumFractionDigits: 0,
 });
 
@@ -9,7 +9,9 @@ function clamp(value, min, max) {
 }
 
 function formatAxisCurrency(value) {
-  if (!Number.isFinite(value)) {return "—";}
+  if (!Number.isFinite(value)) {
+    return '—';
+  }
   const abs = Math.abs(value);
 
   if (abs >= 1_000_000_000) {
@@ -26,7 +28,9 @@ function formatAxisCurrency(value) {
 }
 
 function formatCurrency(value) {
-  if (!Number.isFinite(value)) {return "—";}
+  if (!Number.isFinite(value)) {
+    return '—';
+  }
   return CURRENCY_FORMATTER.format(value);
 }
 
@@ -71,7 +75,7 @@ function traceSmoothPath(ctx, points) {
 }
 
 function buildTicks(scale, maxBalance) {
-  if (scale === "log") {
+  if (scale === 'log') {
     const upper = Math.max(maxBalance, 1);
     const logMax = Math.log10(upper);
     const stepCount = 4;
@@ -98,7 +102,7 @@ function buildTicks(scale, maxBalance) {
 }
 
 function getScaleTransform(scale, maxBalance) {
-  if (scale === "log") {
+  if (scale === 'log') {
     const maxValue = Math.max(maxBalance, 1);
     const maxTransformed = Math.log10(maxValue);
     const transformedSafe = maxTransformed > 0 ? maxTransformed : 1;
@@ -123,9 +127,13 @@ function getScaleTransform(scale, maxBalance) {
 }
 
 function resolvePeriodPrefix(frequencyLabel) {
-  if (frequencyLabel === "Quarter") {return "Q";}
-  if (frequencyLabel === "Half-Year") {return "H";}
-  return "Y";
+  if (frequencyLabel === 'Quarter') {
+    return 'Q';
+  }
+  if (frequencyLabel === 'Half-Year') {
+    return 'H';
+  }
+  return 'Y';
 }
 
 function buildPlotGeometry({
@@ -155,8 +163,7 @@ function buildPlotGeometry({
 
   function yForValue(value) {
     const mapped = transform.map(Math.max(value, 0));
-    const ratio =
-      (mapped - transform.min) / Math.max(transform.max - transform.min, 1e-9);
+    const ratio = (mapped - transform.min) / Math.max(transform.max - transform.min, 1e-9);
     return plotBottom - ratio * plotHeight;
   }
 
@@ -180,9 +187,7 @@ function buildPlotGeometry({
   const tickIndexes = new Set([0, points.length - 1]);
   const xTickCount = Math.min(6, points.length);
   for (let index = 0; index < xTickCount; index += 1) {
-    tickIndexes.add(
-      Math.round((points.length - 1) * (index / Math.max(xTickCount - 1, 1))),
-    );
+    tickIndexes.add(Math.round((points.length - 1) * (index / Math.max(xTickCount - 1, 1))));
   }
 
   const periodPrefix = resolvePeriodPrefix(frequencyLabel);
@@ -231,7 +236,7 @@ function drawAxesAndGrid(ctx, geometry) {
 
   ctx.save();
 
-  ctx.strokeStyle = "rgba(148, 163, 184, 0.26)";
+  ctx.strokeStyle = 'rgba(143, 158, 167, 0.22)';
   ctx.lineWidth = 1;
 
   yTicks.forEach((tick) => {
@@ -240,10 +245,10 @@ function drawAxesAndGrid(ctx, geometry) {
     ctx.lineTo(plotRight, tick.y);
     ctx.stroke();
 
-    ctx.fillStyle = "rgba(226, 232, 240, 0.88)";
-    ctx.font = "12px system-ui, sans-serif";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "middle";
+    ctx.fillStyle = 'rgba(95, 108, 120, 0.96)';
+    ctx.font = '12px system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
     ctx.fillText(formatAxisCurrency(tick.value), plotLeft - 10, tick.y);
   });
 
@@ -251,17 +256,17 @@ function drawAxesAndGrid(ctx, geometry) {
     ctx.beginPath();
     ctx.moveTo(tick.x, plotTop);
     ctx.lineTo(tick.x, plotBottom);
-    ctx.strokeStyle = "rgba(148, 163, 184, 0.12)";
+    ctx.strokeStyle = 'rgba(143, 158, 167, 0.12)';
     ctx.stroke();
 
-    ctx.fillStyle = "rgba(191, 219, 254, 0.92)";
-    ctx.font = "11px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
+    ctx.fillStyle = 'rgba(22, 62, 89, 0.92)';
+    ctx.font = '11px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
     ctx.fillText(tick.label, tick.x, plotBottom + 10);
   });
 
-  ctx.strokeStyle = "rgba(148, 163, 184, 0.42)";
+  ctx.strokeStyle = 'rgba(113, 132, 145, 0.34)';
   ctx.beginPath();
   ctx.moveTo(plotLeft, plotBottom);
   ctx.lineTo(plotRight, plotBottom);
@@ -269,17 +274,17 @@ function drawAxesAndGrid(ctx, geometry) {
   ctx.lineTo(plotLeft, plotTop);
   ctx.stroke();
 
-  ctx.fillStyle = "rgba(224, 242, 254, 0.96)";
-  ctx.font = "600 12px system-ui, sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = 'rgba(21, 32, 43, 0.96)';
+  ctx.font = '600 12px system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
   ctx.fillText(xAxisLabel, (plotLeft + plotRight) * 0.5, height - 12);
 
   ctx.save();
   ctx.translate(18, (plotTop + plotBottom) * 0.5);
   ctx.rotate(-Math.PI / 2);
-  ctx.textAlign = "center";
-  ctx.textBaseline = "top";
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
   ctx.fillText(yAxisLabel, 0, 0);
   ctx.restore();
 
@@ -288,11 +293,13 @@ function drawAxesAndGrid(ctx, geometry) {
 
 function drawAreasAndLine(ctx, geometry) {
   const { plotBottom, balanceCoords, principalCoords } = geometry;
-  if (balanceCoords.length === 0) {return;}
+  if (balanceCoords.length === 0) {
+    return;
+  }
 
   const principalGradient = ctx.createLinearGradient(0, 0, 0, plotBottom);
-  principalGradient.addColorStop(0, "rgba(124, 58, 237, 0.48)");
-  principalGradient.addColorStop(1, "rgba(124, 58, 237, 0.08)");
+  principalGradient.addColorStop(0, 'rgba(31, 95, 135, 0.18)');
+  principalGradient.addColorStop(1, 'rgba(31, 95, 135, 0.02)');
 
   ctx.beginPath();
   traceSmoothPath(ctx, principalCoords);
@@ -303,8 +310,8 @@ function drawAreasAndLine(ctx, geometry) {
   ctx.fill();
 
   const interestGradient = ctx.createLinearGradient(0, 0, 0, plotBottom);
-  interestGradient.addColorStop(0, "rgba(245, 158, 11, 0.52)");
-  interestGradient.addColorStop(1, "rgba(245, 158, 11, 0.1)");
+  interestGradient.addColorStop(0, 'rgba(47, 124, 99, 0.18)');
+  interestGradient.addColorStop(1, 'rgba(47, 124, 99, 0.03)');
 
   ctx.beginPath();
   traceSmoothPath(ctx, balanceCoords);
@@ -316,16 +323,16 @@ function drawAreasAndLine(ctx, geometry) {
   ctx.fill();
 
   const lineGradient = ctx.createLinearGradient(0, 0, geometry.width, 0);
-  lineGradient.addColorStop(0, "rgba(125, 211, 252, 0.96)");
-  lineGradient.addColorStop(1, "rgba(34, 211, 238, 0.96)");
+  lineGradient.addColorStop(0, 'rgba(22, 62, 89, 0.96)');
+  lineGradient.addColorStop(1, 'rgba(61, 125, 163, 0.92)');
 
   ctx.save();
   ctx.lineWidth = 3;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
   ctx.strokeStyle = lineGradient;
-  ctx.shadowColor = "rgba(56, 189, 248, 0.45)";
-  ctx.shadowBlur = 12;
+  ctx.shadowColor = 'rgba(31, 95, 135, 0.14)';
+  ctx.shadowBlur = 8;
   ctx.beginPath();
   traceSmoothPath(ctx, balanceCoords);
   ctx.stroke();
@@ -333,22 +340,26 @@ function drawAreasAndLine(ctx, geometry) {
 }
 
 function drawHoverState(ctx, geometry, hoverIndex) {
-  if (!Number.isInteger(hoverIndex) || hoverIndex < 0) {return;}
+  if (!Number.isInteger(hoverIndex) || hoverIndex < 0) {
+    return;
+  }
 
   const balancePoint = geometry.balanceCoords[hoverIndex];
   const principalPoint = geometry.principalCoords[hoverIndex];
-  if (!balancePoint || !principalPoint) {return;}
+  if (!balancePoint || !principalPoint) {
+    return;
+  }
 
   ctx.save();
-  ctx.strokeStyle = "rgba(125, 211, 252, 0.7)";
+  ctx.strokeStyle = 'rgba(31, 95, 135, 0.26)';
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(balancePoint.x, geometry.plotTop);
   ctx.lineTo(balancePoint.x, geometry.plotBottom);
   ctx.stroke();
 
-  ctx.fillStyle = "rgba(224, 242, 254, 0.95)";
-  ctx.strokeStyle = "rgba(8, 145, 178, 0.95)";
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
+  ctx.strokeStyle = 'rgba(31, 95, 135, 0.96)';
   ctx.lineWidth = 2;
 
   ctx.beginPath();
@@ -358,9 +369,9 @@ function drawHoverState(ctx, geometry, hoverIndex) {
 
   ctx.beginPath();
   ctx.arc(principalPoint.x, principalPoint.y, 4, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(30, 64, 175, 0.95)";
+  ctx.fillStyle = 'rgba(47, 124, 99, 0.92)';
   ctx.fill();
-  ctx.strokeStyle = "rgba(191, 219, 254, 0.95)";
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.98)';
   ctx.stroke();
 
   ctx.restore();
@@ -370,14 +381,14 @@ function drawBackground(ctx, width, height) {
   ctx.clearRect(0, 0, width, height);
 
   const backgroundGradient = ctx.createLinearGradient(0, 0, width, height);
-  backgroundGradient.addColorStop(0, "rgba(2, 6, 23, 0.96)");
-  backgroundGradient.addColorStop(1, "rgba(15, 23, 42, 0.96)");
+  backgroundGradient.addColorStop(0, 'rgba(253, 254, 252, 0.98)');
+  backgroundGradient.addColorStop(1, 'rgba(243, 247, 244, 0.98)');
 
   drawRoundedRect(ctx, 1, 1, width - 2, height - 2, 16);
   ctx.fillStyle = backgroundGradient;
   ctx.fill();
 
-  ctx.strokeStyle = "rgba(125, 211, 252, 0.2)";
+  ctx.strokeStyle = 'rgba(143, 158, 167, 0.18)';
   ctx.lineWidth = 1;
   drawRoundedRect(ctx, 1, 1, width - 2, height - 2, 16);
   ctx.stroke();
@@ -397,18 +408,15 @@ function resizeCanvas(canvas, ctx) {
 }
 
 function hideTooltip(tooltip) {
-  if (!tooltip) {return;}
+  if (!tooltip) {
+    return;
+  }
   tooltip.hidden = true;
-  tooltip.innerHTML = "";
+  tooltip.innerHTML = '';
 }
 
 function showTooltip({ tooltip, geometry, hoverIndex, hostRect }) {
-  if (
-    !tooltip ||
-    !geometry ||
-    !Number.isInteger(hoverIndex) ||
-    hoverIndex < 0
-  ) {
+  if (!tooltip || !geometry || !Number.isInteger(hoverIndex) || hoverIndex < 0) {
     hideTooltip(tooltip);
     return;
   }
@@ -421,9 +429,7 @@ function showTooltip({ tooltip, geometry, hoverIndex, hostRect }) {
 
   const point = hovered.point;
   const interestShare =
-    point.endingBalance > 0
-      ? (point.interestTotal / point.endingBalance) * 100
-      : 0;
+    point.endingBalance > 0 ? (point.interestTotal / point.endingBalance) * 100 : 0;
 
   tooltip.innerHTML = `
     <p class="ci-growth-tooltip-period">${point.periodLabel}</p>
@@ -459,15 +465,11 @@ function drawChart(ctx, canvas, tooltip, state) {
   if (!series || !Array.isArray(series.points) || series.points.length === 0) {
     hideTooltip(tooltip);
 
-    ctx.fillStyle = "rgba(191, 219, 254, 0.86)";
-    ctx.font = "600 13px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(
-      "Run a valid calculation to render chart data.",
-      width * 0.5,
-      height * 0.5,
-    );
+    ctx.fillStyle = 'rgba(95, 108, 120, 0.96)';
+    ctx.font = '600 13px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Run a valid calculation to render chart data.', width * 0.5, height * 0.5);
     return;
   }
 
@@ -506,7 +508,7 @@ export function createCompoundInterestGrowthChart({ canvas, tooltip }) {
     };
   }
 
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
   if (!ctx) {
     return {
       update() {},
@@ -516,7 +518,7 @@ export function createCompoundInterestGrowthChart({ canvas, tooltip }) {
 
   const state = {
     series: null,
-    scale: "linear",
+    scale: 'linear',
     hoverIndex: -1,
     geometry: null,
   };
@@ -546,9 +548,7 @@ export function createCompoundInterestGrowthChart({ canvas, tooltip }) {
       return;
     }
 
-    const estimatedIndex = Math.round(
-      (pointerX - geometry.plotLeft) / Math.max(geometry.xStep, 1),
-    );
+    const estimatedIndex = Math.round((pointerX - geometry.plotLeft) / Math.max(geometry.xStep, 1));
     state.hoverIndex = clamp(estimatedIndex, 0, state.series.points.length - 1);
     redraw();
   }
@@ -560,7 +560,7 @@ export function createCompoundInterestGrowthChart({ canvas, tooltip }) {
   }
 
   const resizeObserver =
-    typeof window !== "undefined" && "ResizeObserver" in window
+    typeof window !== 'undefined' && 'ResizeObserver' in window
       ? new ResizeObserver(() => {
           redraw();
         })
@@ -570,31 +570,27 @@ export function createCompoundInterestGrowthChart({ canvas, tooltip }) {
     resizeObserver.observe(canvas.parentElement);
   }
 
-  canvas.addEventListener("pointermove", onPointerMove);
-  canvas.addEventListener("pointerdown", onPointerMove);
-  canvas.addEventListener("pointerleave", clearHover);
-  canvas.addEventListener("pointercancel", clearHover);
+  canvas.addEventListener('pointermove', onPointerMove);
+  canvas.addEventListener('pointerdown', onPointerMove);
+  canvas.addEventListener('pointerleave', clearHover);
+  canvas.addEventListener('pointercancel', clearHover);
 
   return {
     update(series, options = {}) {
       state.series = series && Array.isArray(series.points) ? series : null;
-      state.scale = options.scale === "log" ? "log" : "linear";
+      state.scale = options.scale === 'log' ? 'log' : 'linear';
       if (!state.series) {
         state.hoverIndex = -1;
       } else {
-        state.hoverIndex = clamp(
-          state.hoverIndex,
-          -1,
-          state.series.points.length - 1,
-        );
+        state.hoverIndex = clamp(state.hoverIndex, -1, state.series.points.length - 1);
       }
       redraw();
     },
     destroy() {
-      canvas.removeEventListener("pointermove", onPointerMove);
-      canvas.removeEventListener("pointerdown", onPointerMove);
-      canvas.removeEventListener("pointerleave", clearHover);
-      canvas.removeEventListener("pointercancel", clearHover);
+      canvas.removeEventListener('pointermove', onPointerMove);
+      canvas.removeEventListener('pointerdown', onPointerMove);
+      canvas.removeEventListener('pointerleave', clearHover);
+      canvas.removeEventListener('pointercancel', clearHover);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }

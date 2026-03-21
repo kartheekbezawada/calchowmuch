@@ -1,4 +1,4 @@
-<div id="loan-mtg-explanation">
+<div id="pcp-auto-loan-explanation" class="auto-loan-explanation">
   <h2>Is PCP the Right Way to Finance Your Car?</h2>
   <p>
     Use this PCP calculator to estimate monthly payments, GFV, final payment, option fee, and
@@ -18,6 +18,18 @@
     <li>Option fee: <span data-pcp="option-fee">-</span></li>
     <li>Final payment: <span data-pcp="final-payment">-</span></li>
   </ul>
+
+  <div class="al-decision-summary">
+    <h3>Decision summary</h3>
+    <p>
+      PCP looks easiest when you only read the monthly figure. It becomes clearer when you read the
+      later final payment at the same time.
+    </p>
+    <ul>
+      <li>Use GFV and option fee together because that is the real end-of-term purchase obligation.</li>
+      <li>Use total payable to compare PCP against a normal loan with the same vehicle price.</li>
+    </ul>
+  </div>
 
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
@@ -108,6 +120,8 @@
       id="pcp-table-monthly-wrap"
       data-glow="monthly"
       tabindex="0"
+      role="region"
+      aria-label="Monthly amortisation table"
     >
       <table class="calculator-table" id="pcp-table-monthly">
         <thead>
@@ -123,7 +137,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="pcp-table-yearly-wrap" data-glow="yearly" tabindex="0">
+    <div class="table-scroll" id="pcp-table-yearly-wrap" data-glow="yearly" tabindex="0" role="region" aria-label="Yearly amortisation table">
       <table class="calculator-table" id="pcp-table-yearly">
         <thead>
           <tr>
@@ -138,8 +152,8 @@
       </table>
     </div>
 
-    <div class="table-scroll is-hidden" id="pcp-table-cost-wrap" data-glow="cost" tabindex="0">
-      <table class="calculator-table pcp-cost-table" id="pcp-table-cost">
+    <div class="table-scroll is-hidden" id="pcp-table-cost-wrap" data-glow="cost" tabindex="0" role="region" aria-label="PCP cost breakdown">
+      <table class="calculator-table pcp-cost-table al-table-stack-mobile" id="pcp-table-cost">
         <thead>
           <tr>
             <th scope="col">Metric</th>
@@ -150,8 +164,8 @@
         <tbody id="pcp-table-cost-body"></tbody>
         <tfoot>
           <tr>
-            <th scope="row" colspan="2">Total Payable</th>
-            <td id="pcp-cost-total-payable">-</td>
+            <th scope="row" colspan="2" data-label="Total">Total Payable</th>
+            <td id="pcp-cost-total-payable" data-label="Value">-</td>
           </tr>
         </tfoot>
       </table>
@@ -230,7 +244,7 @@
 
     <div>
       <h4>How Input Changes Affect the Result</h4>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Input changes effect reference">
         <table class="calculator-table">
           <thead>
             <tr>

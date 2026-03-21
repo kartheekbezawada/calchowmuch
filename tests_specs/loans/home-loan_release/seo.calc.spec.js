@@ -2,7 +2,8 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Home Loan calculator SEO', () => {
   test('HOME-LOAN-TEST-SEO-1: metadata, schema parity, sitemap, and intent block order', async ({ page }) => {
-    await page.goto('/loan-calculators/mortgage-calculator/');
+    await page.goto('/loan-calculators/mortgage-calculator/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#calculator-title')).toHaveText('Home Loan Calculator');
 
     await expect(page).toHaveTitle('Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch');
 

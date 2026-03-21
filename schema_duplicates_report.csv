@@ -1,6 +1,2 @@
 path,route,url,jsonld_blocks,parse_errors,faq_pre,breadcrumb_pre,software_pre,faq_post,breadcrumb_post,software_post,faq_blocks,breadcrumb_blocks,software_blocks,faq_snippet,breadcrumb_snippet,software_snippet,status,action
-<<<<<<< HEAD
-public/math/sample-size/index.html,/math/sample-size/,https://calchowmuch.com/math/sample-size/,1,0,1,1,1,1,1,1,[0],[0],[0],When should I use the proportion mode? | When should I use the mean mode?,Home > Math > Sample Size Calculator,Sample Size Calculator (EducationalApplication),OK,UNCHANGED
-=======
-public/time-and-date/countdown-timer/index.html,/time-and-date/countdown-timer/,https://calchowmuch.com/time-and-date/countdown-timer/,0,0,0,0,0,0,0,0,[],[],[],,,,OK,UNCHANGED
->>>>>>> parent of c0d553b (refactor(countdown-timer): implement module initialization guard and streamline HTML references for improved performance)
+public/finance-calculators/inflation-calculator/index.html,/finance-calculators/inflation-calculator/,https://calchowmuch.com/finance-calculators/inflation-calculator/,1,0,1,1,1,1,1,1,[0],[0],[0],What does this inflation calculator do? | What CPI series does it use?,Home > Finance > Inflation Calculator,Inflation Calculator (FinanceApplication),OK,UNCHANGED

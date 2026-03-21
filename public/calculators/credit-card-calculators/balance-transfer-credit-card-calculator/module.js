@@ -169,6 +169,8 @@ const metadata = {
 
 setPageMetadata(metadata);
 
+let hasCalculated = false;
+
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
   nodes.forEach((node) => {
@@ -293,6 +295,15 @@ function clearError() {
   }
 }
 
+function showPlaceholder() {
+  clearError();
+  placeholder?.classList.remove('is-hidden');
+  resultsList?.classList.add('is-hidden');
+  if (resultsList) {
+    resultsList.innerHTML = '';
+  }
+}
+
 function showError(message) {
   if (!errorMessage) {
     return;
@@ -408,13 +419,24 @@ function calculate() {
 }
 
 calculateButton?.addEventListener('click', () => {
+  hasCalculated = true;
   calculate();
 });
 
 document.querySelectorAll('#calc-cc-bt input').forEach((input) => {
-  input.addEventListener('input', calculate);
+  input.addEventListener('input', () => {
+    syncSliderUI();
+    clearError();
+    if (!hasCalculated) {
+      return;
+    }
+    calculate();
+  });
 });
 
 (function initializeDefaultOutcome() {
-  calculate();
+  syncSliderUI();
+  setOutputPlaceholders();
+  updateTable([]);
+  showPlaceholder();
 })();

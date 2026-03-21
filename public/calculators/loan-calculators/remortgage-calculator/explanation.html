@@ -1,99 +1,9 @@
 <div id="loan-remortgage-explanation">
-  <style>
-    #loan-remortgage-explanation {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.95rem;
-      min-width: 0;
-    }
-    #loan-remortgage-explanation .remo-exp-section {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      min-width: 0;
-    }
-    #loan-remortgage-explanation .table-scroll {
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-    }
-    #loan-remortgage-explanation .remo-related-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.65rem;
-    }
-    #loan-remortgage-explanation .remo-related-card {
-      padding: 0.85rem;
-      border-radius: 0.78rem;
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      border-top: 2px solid rgba(56, 189, 248, 0.55);
-      background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
-      display: grid;
-      gap: 0.4rem;
-    }
-    #loan-remortgage-explanation .remo-related-card h4,
-    #loan-remortgage-explanation .remo-related-card p,
-    #loan-remortgage-explanation .remo-guide p,
-    #loan-remortgage-explanation .remo-guide li,
-    #loan-remortgage-explanation .remo-important-list li {
-      margin: 0;
-      font-size: 0.8rem;
-      line-height: 1.5;
-    }
-    #loan-remortgage-explanation .remo-related-card h4 a {
-      color: rgba(226, 232, 240, 0.98);
-      text-decoration: none;
-    }
-    #loan-remortgage-explanation .remo-guide {
-      display: grid;
-      gap: 0.72rem;
-    }
-    #loan-remortgage-explanation .remo-guide h4 {
-      margin: 0.15rem 0 0;
-      font-size: 0.86rem;
-      line-height: 1.35;
-      color: rgba(226, 232, 240, 0.98);
-    }
-    #loan-remortgage-explanation .remo-guide ul,
-    #loan-remortgage-explanation .remo-guide ol,
-    #loan-remortgage-explanation .remo-important-list {
-      margin: 0;
-      padding-left: 1.1rem;
-      display: grid;
-      gap: 0.3rem;
-    }
-    #loan-remortgage-explanation .remo-important-list li strong {
-      color: rgba(186, 230, 253, 0.98);
-      font-weight: 700;
-    }
-    #loan-remortgage-explanation .remo-formula {
-      border-radius: 0.68rem;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      background: rgba(15, 23, 42, 0.64);
-      padding: 0.6rem 0.7rem;
-    }
-    #loan-remortgage-explanation .remo-formula code {
-      font-size: 0.77rem;
-      line-height: 1.5;
-      color: #93c5fd;
-      white-space: normal;
-    }
-    #loan-remortgage-explanation .remo-guide-table {
-      min-width: 560px;
-    }
-    @media (max-width: 720px) {
-      #loan-remortgage-explanation .remo-related-grid {
-        grid-template-columns: 1fr;
-      }
-      #loan-remortgage-explanation .remo-guide-table {
-        min-width: 420px;
-      }
-    }
-  </style>
   <p class="remo-exp-summary" id="remo-exp-summary" aria-live="polite">
     Set your inputs and click calculate to compare cumulative costs over your selected horizon.
   </p>
 
-  <section class="remo-exp-section remo-exp-section--table">
+  <section class="remo-exp-section remo-exp-section--table" id="remo-section-table">
     <div class="remo-table-header">
       <h3>Cost Comparison Table</h3>
       <div
@@ -121,7 +31,7 @@
       </div>
     </div>
 
-    <div class="table-scroll is-hidden" id="remo-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="remo-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly cost comparison table">
       <table class="calculator-table" id="remo-table-monthly">
         <thead>
           <tr>
@@ -135,7 +45,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="remo-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll" id="remo-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly cost comparison table">
       <table class="calculator-table" id="remo-table-yearly">
         <thead>
           <tr>
@@ -150,7 +60,7 @@
     </div>
   </section>
 
-  <section class="remo-exp-section remo-exp-section--guide">
+  <section class="remo-exp-section remo-exp-section--guide" id="remo-section-guide">
     <h3>Remortgage Guide</h3>
     <div class="remo-guide">
       <h4>How much could I save by remortgaging?</h4>
@@ -230,7 +140,7 @@
       </div>
 
       <h4>Example: can I save money by remortgaging?</h4>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Remortgage example inputs">
         <table class="calculator-table remo-guide-table">
           <thead>
             <tr>
@@ -288,7 +198,7 @@
       </ul>
 
       <h4>Quick comparison table</h4>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Current vs remortgage comparison">
         <table class="calculator-table remo-guide-table">
           <thead>
             <tr>
@@ -343,7 +253,7 @@
     </div>
   </section>
 
-  <section class="remo-exp-section remo-exp-section--related">
+  <section class="remo-exp-section remo-exp-section--related" id="remo-section-related">
     <h3>Related Calculators</h3>
     <div class="remo-related-grid">
       <div class="remo-related-card">
@@ -361,7 +271,7 @@
     </div>
   </section>
 
-  <section class="remo-exp-section remo-exp-section--faq">
+  <section class="remo-exp-section remo-exp-section--faq" id="remo-section-faq">
     <h3>Frequently Asked Questions</h3>
     <div class="remo-faq-grid">
       <div class="remo-faq-card">
@@ -452,7 +362,10 @@
     </div>
   </section>
 
-  <section class="remo-exp-section remo-exp-section--important-notes">
+  <section
+    class="remo-exp-section remo-exp-section--important-notes"
+    id="remo-section-important-notes"
+  >
     <h3>Important Notes</h3>
     <ul class="remo-important-list">
       <li><strong>Last updated:</strong> March 2026.</li>

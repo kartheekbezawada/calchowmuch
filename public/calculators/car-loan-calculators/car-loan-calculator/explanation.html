@@ -1,4 +1,4 @@
-<div id="loan-mtg-explanation">
+<div id="car-auto-loan-explanation" class="auto-loan-explanation">
   <h2>How Much Will Your Car Loan Cost?</h2>
   <p>
     Use this car loan calculator to estimate monthly payment, total interest, and total amount
@@ -17,6 +17,18 @@
     <li>Dealer fees and tax: <span data-car="fees">-</span> plus <span data-car="tax">-</span></li>
     <li>Amount financed: <span data-car="amount-financed">-</span></li>
   </ul>
+
+  <div class="al-decision-summary">
+    <h3>Decision summary</h3>
+    <p>
+      Read this answer in order: financed amount first, monthly payment second, and total interest
+      third.
+    </p>
+    <ul>
+      <li>Use the financed amount to judge how much of the car you are really borrowing for.</li>
+      <li>Use total interest to decide whether the lower monthly payment is still efficient.</li>
+    </ul>
+  </div>
 
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
@@ -82,7 +94,7 @@
       </div>
     </div>
 
-    <div class="table-scroll is-hidden" id="car-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="car-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly amortisation table">
       <table class="calculator-table" id="car-table-monthly">
         <thead>
           <tr>
@@ -97,7 +109,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="car-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll" id="car-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly amortisation table">
       <table class="calculator-table" id="car-table-yearly">
         <thead>
           <tr>
@@ -191,7 +203,7 @@
 
     <div>
       <h4>How Changes Affect the Result</h4>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Input changes effect reference">
         <table class="calculator-table">
           <thead>
             <tr>

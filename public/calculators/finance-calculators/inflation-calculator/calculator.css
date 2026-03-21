@@ -1,0 +1,603 @@
+#calc-inflation,
+#inflation-explanation {
+  --inf-space-1: 10px;
+  --inf-space-2: 14px;
+  --inf-space-3: 18px;
+  --inf-space-4: 24px;
+  --inf-space-5: 32px;
+  --inf-space-6: 44px;
+  --inf-space-7: 60px;
+  --inf-surface-line: rgba(31, 95, 135, 0.12);
+  --inf-surface-line-strong: rgba(31, 95, 135, 0.16);
+  --inf-surface-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(245, 249, 247, 0.98));
+  --inf-surface-soft: linear-gradient(180deg, rgba(248, 251, 249, 0.96), rgba(241, 246, 243, 0.94));
+  --inf-surface-muted: rgba(255, 255, 255, 0.9);
+  --inf-shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.05);
+  --inf-shadow-card: 0 14px 30px rgba(15, 23, 42, 0.045);
+  --inf-shadow-hero: 0 24px 52px rgba(12, 38, 58, 0.18);
+}
+
+#calc-inflation .calculator-ui.finance-ui {
+  display: grid;
+  gap: var(--inf-space-6);
+}
+
+#calc-inflation .mtg-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(336px, 0.96fr);
+  gap: clamp(28px, 4vw, 48px);
+  align-items: start;
+}
+
+#calc-inflation .mtg-form-panel,
+#calc-inflation .mtg-preview-panel {
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 30px;
+  background: var(--inf-surface-bg);
+  box-shadow: var(--inf-shadow-soft);
+  padding: clamp(26px, 3vw, 36px);
+}
+
+#calc-inflation .mtg-form-panel {
+  display: grid;
+  gap: clamp(22px, 3vw, 30px);
+}
+
+#calc-inflation .helper,
+#calc-inflation .fi-form-section-copy,
+#calc-inflation .fi-action-note,
+#inflation-explanation p,
+#inflation-explanation li {
+  line-height: 1.75;
+}
+
+#calc-inflation .helper {
+  margin: 0;
+  max-width: 62ch;
+  color: #4f6a7e;
+}
+
+#calc-inflation .fi-form-section {
+  display: grid;
+  gap: var(--inf-space-3);
+  padding: 24px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 26px;
+  background: var(--inf-surface-soft);
+}
+
+#calc-inflation .fi-form-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--inf-space-2);
+}
+
+#calc-inflation .fi-form-section-title {
+  margin: 0;
+  font-size: 1.12rem;
+  letter-spacing: -0.01em;
+  color: #13293d;
+}
+
+#calc-inflation .fi-form-section-copy,
+#calc-inflation .fi-action-note {
+  margin: 0;
+  max-width: 60ch;
+  color: #597286;
+}
+
+#calc-inflation .input-row {
+  display: grid;
+  gap: var(--inf-space-2);
+}
+
+#calc-inflation .slider-row {
+  gap: var(--inf-space-2);
+}
+
+#calc-inflation .slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#calc-inflation .slider-precision-row {
+  display: grid;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+#calc-inflation .slider-precision-input,
+#calc-inflation .inf-month-field input[type='month'] {
+  min-height: 52px;
+  border-radius: 16px;
+}
+
+#calc-inflation .inf-month-grid {
+  align-items: start;
+  gap: 18px;
+}
+
+#calc-inflation .inf-month-field {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-inflation .inf-month-field > span {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #163e59;
+}
+
+#calc-inflation .inf-month-field input[type='month'] {
+  padding: 12px 14px;
+  border: 1px solid var(--inf-surface-line-strong);
+  background: rgba(255, 255, 255, 0.94);
+  color: #13293d;
+  font: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+#calc-inflation .inf-month-field input[type='month']:focus-visible {
+  outline: 2px solid rgba(31, 95, 135, 0.35);
+  outline-offset: 2px;
+}
+
+#calc-inflation .inf-source-note {
+  margin-top: 4px;
+  padding-top: 4px;
+}
+
+#calc-inflation .fi-action-rail {
+  gap: var(--inf-space-2);
+  margin-top: 2px;
+}
+
+#calc-inflation .calculator-button.full-width {
+  min-height: 52px;
+}
+
+#calc-inflation .mtg-preview-panel {
+  display: grid;
+  gap: var(--inf-space-3);
+  align-content: start;
+}
+
+#calc-inflation .mtg-preview-main {
+  display: grid;
+  gap: var(--inf-space-3);
+  padding: 30px 28px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #123147, #2f6e93);
+  color: #fff;
+  box-shadow: var(--inf-shadow-hero);
+}
+
+#calc-inflation .mtg-preview-label {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(233, 242, 248, 0.9);
+}
+
+#calc-inflation .mtg-result-card {
+  border-radius: 24px;
+}
+
+#calc-inflation .mtg-result-value {
+  display: block;
+  font-size: clamp(2.85rem, 4.5vw, 4.35rem);
+  line-height: 0.98;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+#calc-inflation .fi-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+}
+
+#calc-inflation .fi-metric-card {
+  display: grid;
+  gap: 10px;
+  padding: 20px 18px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 22px;
+  background: var(--inf-surface-muted);
+  box-shadow: var(--inf-shadow-card);
+}
+
+#calc-inflation .fi-metric-label {
+  color: #698293;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+#calc-inflation .fi-metric-value {
+  font-size: 1.44rem;
+  line-height: 1.15;
+  color: #13293d;
+}
+
+#calc-inflation .fi-snapshot-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 22px 20px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--inf-shadow-card);
+}
+
+#calc-inflation .fi-snapshot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 2px 0;
+  color: #617b8c;
+  font-size: 14px;
+}
+
+#calc-inflation .fi-snapshot-row strong {
+  color: #13293d;
+}
+
+#calc-inflation .fi-preview-stale {
+  margin: 4px 0 0;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 95, 135, 0.18);
+  background: rgba(232, 241, 247, 0.88);
+  color: #1f5f87;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#calc-inflation .inf-error {
+  display: inline-block;
+  max-width: 26ch;
+  color: #8a2d1f;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+#inflation-explanation {
+  display: grid;
+  gap: var(--inf-space-6);
+  margin-top: clamp(44px, 6vw, 72px);
+}
+
+#inflation-explanation .fi-exp-article {
+  padding: clamp(30px, 4vw, 42px);
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 249, 247, 0.98));
+  box-shadow: var(--inf-shadow-soft);
+}
+
+#inflation-explanation .fi-exp-article-shell {
+  display: grid;
+  gap: clamp(30px, 4vw, 46px);
+}
+
+#inflation-explanation .fi-exp-article-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(264px, 0.54fr);
+  gap: clamp(22px, 3vw, 30px);
+  align-items: start;
+}
+
+#inflation-explanation .fi-exp-article-intro,
+#inflation-explanation .fi-exp-story-block,
+#inflation-explanation .fi-exp-kpi,
+#inflation-explanation .mtg-exp-section--faq,
+#inflation-explanation .inf-notes-card {
+  display: grid;
+}
+
+#inflation-explanation .fi-exp-article-intro {
+  gap: 18px;
+}
+
+#inflation-explanation .fi-exp-article-main {
+  display: grid;
+  gap: clamp(34px, 4vw, 54px);
+}
+
+#inflation-explanation h2,
+#inflation-explanation h3,
+#inflation-explanation h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#inflation-explanation h2 {
+  font-size: clamp(1.8rem, 2.8vw, 2.35rem);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+#inflation-explanation h3 {
+  font-size: 1.18rem;
+  letter-spacing: -0.015em;
+}
+
+#inflation-explanation h4 {
+  font-size: 1rem;
+}
+
+#inflation-explanation p,
+#inflation-explanation li {
+  margin: 0;
+  color: #516b7d;
+}
+
+#inflation-explanation .fi-exp-kpi {
+  gap: 10px;
+  padding: 24px 22px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(232, 241, 247, 0.86), rgba(255, 255, 255, 0.94));
+  box-shadow: var(--inf-shadow-card);
+  align-self: start;
+}
+
+#inflation-explanation .fi-exp-kpi-label,
+#inflation-explanation .fi-exp-kpi-note {
+  margin: 0;
+}
+
+#inflation-explanation .fi-exp-kpi-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #597286;
+}
+
+#inflation-explanation .fi-exp-kpi-value {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.8vw, 2.45rem);
+  line-height: 1.05;
+  color: #13293d;
+}
+
+#inflation-explanation .fi-exp-kpi-note {
+  color: #5b7487;
+}
+
+#inflation-explanation .fi-exp-story-block {
+  gap: 20px;
+}
+
+#inflation-explanation .fi-exp-formula-steps {
+  display: grid;
+  gap: 12px;
+  padding-left: 1.3rem;
+}
+
+#inflation-explanation .inf-formula-inline {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 95, 135, 0.14);
+  background: rgba(232, 241, 247, 0.82);
+  color: #163e59;
+  font-weight: 700;
+}
+
+#inflation-explanation .table-scroll {
+  overflow: auto;
+  max-height: 440px;
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 24px;
+  background: rgba(248, 251, 249, 0.92);
+}
+
+#inflation-explanation table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#inflation-explanation th,
+#inflation-explanation td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(143, 158, 167, 0.18);
+  text-align: left;
+  vertical-align: top;
+}
+
+#inflation-explanation thead th {
+  background: #f7faf8;
+  color: #13293d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+#inflation-explanation .inf-results-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#inflation-explanation .mtg-exp-section--faq {
+  gap: 18px;
+  margin-top: 10px;
+  padding: 30px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(248, 251, 249, 0.96), rgba(242, 246, 244, 0.94));
+  box-shadow: var(--inf-shadow-card);
+}
+
+#inflation-explanation .bor-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+#inflation-explanation .bor-faq-card {
+  display: grid;
+  gap: 12px;
+  padding: 22px 20px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+}
+
+#inflation-explanation .faq-answer {
+  margin: 0;
+}
+
+#inflation-explanation .inf-notes-card {
+  gap: 18px;
+  margin-top: 16px;
+  padding: 30px;
+  border-radius: 28px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 35%),
+    linear-gradient(180deg, rgba(18, 40, 59, 0.98), rgba(25, 53, 78, 0.96));
+  color: rgba(226, 232, 240, 0.94);
+  box-shadow: 0 20px 42px rgba(12, 24, 34, 0.16);
+}
+
+#inflation-explanation .inf-notes-card h3 {
+  color: #f8fafc;
+}
+
+#inflation-explanation .inf-notes-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 14px;
+}
+
+#inflation-explanation .inf-notes-list li {
+  color: rgba(226, 232, 240, 0.9);
+}
+
+#inflation-explanation .inf-notes-list strong {
+  color: rgba(186, 230, 253, 0.98);
+}
+
+#inflation-explanation + .fi-cluster-related {
+  margin-top: clamp(38px, 5vw, 56px);
+}
+
+#inflation-explanation + .fi-cluster-related .fi-cluster-related-links {
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  #calc-inflation .mtg-hero,
+  #inflation-explanation .fi-exp-article-head,
+  #inflation-explanation .bor-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-inflation .fi-metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-inflation .calculator-ui.finance-ui {
+    gap: var(--inf-space-5);
+  }
+
+  #calc-inflation .mtg-hero {
+    gap: var(--inf-space-4);
+  }
+
+  #calc-inflation .mtg-form-panel,
+  #calc-inflation .mtg-preview-panel {
+    padding: 22px 18px;
+    border-radius: 26px;
+  }
+
+  #calc-inflation .fi-form-section,
+  #inflation-explanation .mtg-exp-section--faq,
+  #inflation-explanation .inf-notes-card {
+    padding: 22px 18px;
+  }
+
+  #calc-inflation .fi-form-section {
+    gap: 16px;
+  }
+
+  #calc-inflation .inf-month-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-inflation .mtg-preview-main,
+  #inflation-explanation .fi-exp-kpi {
+    padding: 22px 18px;
+  }
+
+  #calc-inflation .fi-metric-card,
+  #calc-inflation .fi-snapshot-list,
+  #inflation-explanation .bor-faq-card {
+    padding: 18px 16px;
+  }
+
+  #inflation-explanation {
+    margin-top: var(--inf-space-5);
+    gap: var(--inf-space-5);
+  }
+
+  #inflation-explanation .fi-exp-article {
+    padding: 24px 18px;
+    border-radius: 26px;
+  }
+
+  #inflation-explanation .fi-exp-article-shell,
+  #inflation-explanation .fi-exp-article-main {
+    gap: 28px;
+  }
+
+  #inflation-explanation .fi-exp-story-block {
+    gap: 18px;
+  }
+
+  #inflation-explanation .table-scroll {
+    margin-top: 12px;
+    padding: 0;
+    border-radius: 20px;
+  }
+
+  #inflation-explanation th,
+  #inflation-explanation td {
+    padding: 14px 12px;
+  }
+
+  #calc-inflation .inf-error {
+    max-width: none;
+    font-size: 1rem;
+  }
+
+  #inflation-explanation + .fi-cluster-related {
+    margin-top: var(--inf-space-5);
+  }
+}

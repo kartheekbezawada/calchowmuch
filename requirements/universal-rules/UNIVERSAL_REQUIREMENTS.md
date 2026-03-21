@@ -33,7 +33,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ### 1.2 Step Definitions
 
 - **UR-FLOW-010 (P0): Build:** Implement code, sitemap coverage, local verification.
-- **UR-FLOW-011 (P0): Release Checklist:** Execute release gates per `RELEASE_CHECKLIST.md` release-mode matrix. `SCHEMA_DEDUPE_MAINTENANCE` requires `test:schema:dedupe`; `NEW_BUILD|ONBOARDING|REDESIGN` require full gates (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
+- **UR-FLOW-011 (P0): Release Checklist:** Execute release gates per `RELEASE_CHECKLIST.md` release-mode and release-scope matrix. `SCHEMA_DEDUPE_MAINTENANCE` requires `test:schema:dedupe`. `NEW_BUILD|ONBOARDING|REDESIGN` require scoped gates for cluster/calculator releases and full global gates only for explicit full-site releases.
 - **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` per `RELEASE_SIGNOFF.md`; Master Table updates are optional historical logging.
 - **UR-FLOW-013 (P0): Ready:** Agent confirms "Ready to merge". Agent does NOT merge.
 
@@ -446,7 +446,7 @@ Supersedes note: `UR-SEO-040` to `UR-SEO-051` supersede older generic SEO wordin
 - **UR-TEST-013 (P0):** Finance/Trigger: Button-only regression.
 - **UR-TEST-014 (P0):** Feature Release: Targeted CWV guard (`TARGET={scope}`). Global Release: All-calc CWV guard.
 - **UR-TEST-015 (P0):** Release mode `SCHEMA_DEDUPE_MAINTENANCE`: mandatory gate is `npm run test:schema:dedupe`; other global gates are optional unless promoted by HUMAN.
-- **UR-TEST-016 (P0):** Release modes `NEW_BUILD`, `ONBOARDING`, and `REDESIGN`: full release gates are mandatory (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
+- **UR-TEST-016 (P0):** Release modes `NEW_BUILD`, `ONBOARDING`, and `REDESIGN` must follow the release-scope matrix in `RELEASE_CHECKLIST.md`: cluster/calculator releases run scoped gates (`test:cluster:*`, `test:calc:*`, scoped `test:schema:dedupe`, plus required cluster-contract/isolation checks), while explicit full-site releases run the global suite (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
 
 ### 8.3 Evidence Recording
 

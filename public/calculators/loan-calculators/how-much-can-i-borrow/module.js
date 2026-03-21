@@ -1,6 +1,11 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata, setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateBorrow, computeMonthlyPayment } from '/assets/js/core/loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const metadata = {
   title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
@@ -26,6 +31,14 @@ const termInput = document.querySelector('#bor-term');
 const multipleInput = document.querySelector('#bor-multiple');
 const depositInput = document.querySelector('#bor-deposit');
 
+const grossIncomeField = document.querySelector('#bor-gross-income-field');
+const expensesField = document.querySelector('#bor-expenses-field');
+const debtsField = document.querySelector('#bor-debts-field');
+const rateField = document.querySelector('#bor-rate-field');
+const termField = document.querySelector('#bor-term-field');
+const multipleField = document.querySelector('#bor-multiple-field');
+const depositField = document.querySelector('#bor-deposit-field');
+
 const grossIncomeDisplay = document.querySelector('#bor-gross-income-display');
 // const netIncomeDisplay = document.querySelector('#bor-net-income-display'); // Hidden/Unused in logic now
 const expensesDisplay = document.querySelector('#bor-expenses-display');
@@ -48,7 +61,9 @@ const metricProperty = document.querySelector('#bor-metric-property');
 const metricPayment = document.querySelector('#bor-metric-payment');
 const metricDisposable = document.querySelector('#bor-metric-disposable');
 const constraintTag = document.querySelector('#bor-constraint');
+const summaryNote = document.querySelector('#bor-summary-note');
 const errorDiv = document.querySelector('#bor-error');
+const resultDashboard = document.querySelector('#bor-results');
 
 /* --- Format helpers (no currency symbols) --- */
 
@@ -60,58 +75,92 @@ function fmtDecimal(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-/* --- Slider fill management --- */
-
-function updateSliderFill(input) {
-  if (!input || input.type !== 'range') return;
-  const min = parseFloat(input.min) || 0;
-  const max = parseFloat(input.max) || 100;
-  const val = parseFloat(input.value) || 0;
-  const pct = ((val - min) / (max - min)) * 100;
-  input.style.setProperty('--fill', `${pct}%`);
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
 }
 
 function updateSliderDisplays() {
   if (grossIncomeInput && grossIncomeDisplay) {
     grossIncomeDisplay.textContent = fmt(Number(grossIncomeInput.value));
-    updateSliderFill(grossIncomeInput);
+    updateRangeFill(grossIncomeInput);
   }
   // Net Income (Hidden but simulated)
   if (expensesInput && expensesDisplay) {
     expensesDisplay.textContent = fmt(Number(expensesInput.value));
-    updateSliderFill(expensesInput);
+    updateRangeFill(expensesInput);
   }
   if (debtsInput && debtsDisplay) {
     debtsDisplay.textContent = fmt(Number(debtsInput.value));
-    updateSliderFill(debtsInput);
+    updateRangeFill(debtsInput);
   }
   if (rateInput && rateDisplay) {
     rateDisplay.textContent = `${fmtDecimal(Number(rateInput.value))}%`;
-    updateSliderFill(rateInput);
+    updateRangeFill(rateInput);
   }
   if (termInput && termDisplay) {
     termDisplay.textContent = `${termInput.value} yrs`;
-    updateSliderFill(termInput);
+    updateRangeFill(termInput);
   }
   if (multipleInput && multipleDisplay) {
     multipleDisplay.textContent = `${fmtDecimal(Number(multipleInput.value))}x`;
-    updateSliderFill(multipleInput);
+    updateRangeFill(multipleInput);
   }
   if (depositInput && depositDisplay) {
     depositDisplay.textContent = fmt(Number(depositInput.value));
-    updateSliderFill(depositInput);
+    updateRangeFill(depositInput);
   }
 }
 
-/* Bind slider input events */
-[grossIncomeInput, expensesInput, debtsInput, rateInput, termInput, multipleInput, depositInput]
-  .filter(Boolean)
-  .forEach((input) => {
-    input.addEventListener('input', () => {
-      updateSliderDisplays();
-      calculate();
-    });
+[
+  {
+    rangeInput: grossIncomeInput,
+    textInput: grossIncomeField,
+    formatFieldValue: (value) => String(Math.round(value)),
+    parseFieldValue: parseLooseNumber,
+  },
+  {
+    rangeInput: expensesInput,
+    textInput: expensesField,
+    formatFieldValue: (value) => String(Math.round(value)),
+    parseFieldValue: parseLooseNumber,
+  },
+  {
+    rangeInput: debtsInput,
+    textInput: debtsField,
+    formatFieldValue: (value) => String(Math.round(value)),
+    parseFieldValue: parseLooseNumber,
+  },
+  {
+    rangeInput: rateInput,
+    textInput: rateField,
+    formatFieldValue: (value) => fmtDecimal(value),
+    parseFieldValue: parseLooseNumber,
+  },
+  {
+    rangeInput: termInput,
+    textInput: termField,
+    formatFieldValue: (value) => String(Math.round(value)),
+    parseFieldValue: parseLooseNumber,
+  },
+  {
+    rangeInput: multipleInput,
+    textInput: multipleField,
+    formatFieldValue: (value) => fmtDecimal(value),
+    parseFieldValue: parseLooseNumber,
+  },
+  {
+    rangeInput: depositInput,
+    textInput: depositField,
+    formatFieldValue: (value) => String(Math.round(value)),
+    parseFieldValue: parseLooseNumber,
+  },
+].forEach((config) => {
+  wireRangeWithField({
+    ...config,
+    onVisualUpdate: updateSliderDisplays,
   });
+});
 
 updateSliderDisplays();
 
@@ -135,7 +184,6 @@ if (methodGroup) {
     defaultValue: 'income',
     onChange: (value) => {
       updateMethodUi(value);
-      calculate();
     },
   });
 } else {
@@ -173,6 +221,12 @@ function clearError() {
   }
 }
 
+function updateSummaryNote(message) {
+  if (summaryNote) {
+    summaryNote.textContent = message;
+  }
+}
+
 function setError(msg) {
   if (errorDiv) {
     errorDiv.textContent = msg;
@@ -183,6 +237,7 @@ function setError(msg) {
   if (metricPayment) metricPayment.textContent = '\u2014';
   if (metricDisposable) metricDisposable.textContent = '\u2014';
   if (constraintTag) constraintTag.textContent = '';
+  updateSummaryNote('Refine the inputs, then calculate again to see a clearer borrowing range.');
   // Reset capacity bar to empty state
   updateCapacityBar({ monthlyIncome: 0, expensesMonthly: 0, debtMonthly: 0, monthlyPayment: 0 });
 }
@@ -409,13 +464,17 @@ function animateMetric(el) {
 
 /* --- Main calculate --- */
 
-function calculate() {
+function calculate(options = {}) {
+  const shouldReveal = options.reveal === true;
   clearError();
 
   try {
     const grossIncomeAnnual = Number(grossIncomeInput?.value) || 0;
     if (!Number.isFinite(grossIncomeAnnual) || grossIncomeAnnual <= 0) {
       setError('Gross annual income must be greater than 0.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: errorDiv });
+      }
       return;
     }
 
@@ -440,10 +499,16 @@ function calculate() {
     // Validation
     if (interestRate <= 0) {
       setError('Interest rate must be positive.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: errorDiv });
+      }
       return;
     }
     if (termYears <= 0) {
       setError('Loan term must be valid.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: errorDiv });
+      }
       return;
     }
 
@@ -479,6 +544,9 @@ function calculate() {
       setError(
         'Not affordable: expenses and debts exceed income, or remaining disposable income is too low.'
       );
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: errorDiv });
+      }
       return;
     }
 
@@ -512,24 +580,44 @@ function calculate() {
       }
     }
 
+    if (method === 'payment') {
+      updateSummaryNote(
+        `Using your after-expense payment cap, this points to a property budget around ${fmt(
+          Math.round(data.maxPropertyPrice)
+        )} with a monthly payment near ${fmt(Math.round(data.monthlyPayment))}.`
+      );
+    } else {
+      updateSummaryNote(
+        `Using ${fmtDecimal(incomeMultiple)}x income and your current assumptions, this points to a property budget around ${fmt(
+          Math.round(data.maxPropertyPrice)
+        )}.`
+      );
+    }
+
     /* Explanation: capacity bar + scenario table */
     updateCapacityBar(data);
     renderScenarioTable(data);
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: metricBorrow });
+    }
   } catch (err) {
     console.error('Borrow Calc Error:', err);
     setError('An error occurred during calculation. Please check your inputs.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: errorDiv });
+    }
   }
 }
 
 /* --- Init --- */
 
 calculateButton?.addEventListener('click', () => {
-  ensureExplanation().then(calculate);
+  ensureExplanation().then(() => calculate({ reveal: true }));
 });
 
 async function initialize() {
   await ensureExplanation();
-  calculate();
+  calculate({ reveal: false });
 }
 
 initialize();

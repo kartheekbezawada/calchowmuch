@@ -18,6 +18,12 @@ async function setSliderValue(page, selector, value) {
   }, value);
 }
 
+async function setTextFieldValue(page, selector, value) {
+  const field = page.locator(selector);
+  await field.fill(String(value));
+  await field.blur();
+}
+
 async function fillStandardInputs(page) {
   await setNumberValue(page, '#remo-balance', 220000);
   await setNumberValue(page, '#remo-current-rate', 6);
@@ -38,15 +44,18 @@ async function runCalculation(page) {
 test.describe('Remortgage / Switching Hybrid Requirements', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(CALCULATOR_URL);
-    await page.waitForLoadState('networkidle');
+    await expect(page.locator('.hl-cluster-panel')).toHaveCount(1);
+    await expect(page.locator('#calc-remortgage-switching')).toBeVisible();
   });
 
   test('REMO-HYBRID-1: renders as single pane without Explanation heading', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 768 });
-    const centerPanels = page.locator('.center-column > .panel');
+    const centerPanels = page.locator('.hl-cluster-panel');
 
     await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
     const singlePanel = centerPanels.first();
     await expect(singlePanel.locator('#calc-remortgage-switching')).toBeVisible();
@@ -91,6 +100,22 @@ test.describe('Remortgage / Switching Hybrid Requirements', () => {
     await expect(page.locator('#remo-metric-break-even')).toContainText(/Month|Not within horizon/);
     await expect(page.locator('#remo-metric-total')).toContainText(/[0-9]/);
     await expect(page.locator('#remo-exp-summary')).toContainText(/Over 5 years/);
+  });
+
+  test('REMO-HYBRID-3A: exact-value fields sync without pre-click recalculation', async ({
+    page,
+  }) => {
+    const beforeText = await page.locator('#remo-metric-monthly').innerText();
+
+    await setTextFieldValue(page, '#remo-balance-field', 260000);
+    await expect(page.locator('#remo-balance')).toHaveValue('260000');
+
+    const afterEditText = await page.locator('#remo-metric-monthly').innerText();
+    expect(afterEditText.trim()).toBe(beforeText.trim());
+
+    await runCalculation(page);
+    const afterCalcText = await page.locator('#remo-metric-monthly').innerText();
+    expect(afterCalcText.trim()).not.toBe(beforeText.trim());
   });
 
   test('REMO-HYBRID-4: output text and table values contain no currency symbols', async ({ page }) => {
@@ -163,7 +188,7 @@ test.describe('Remortgage / Switching Hybrid Requirements', () => {
     const titleAlign = await page.locator('#calculator-title').evaluate((el) => getComputedStyle(el).textAlign);
     expect(titleAlign).toBe('center');
 
-    const panel = page.locator('.center-column > .panel').first();
+    const panel = page.locator('.hl-cluster-panel').first();
     expect(await panel.evaluate((el) => el.scrollWidth > el.clientWidth)).toBe(false);
 
     await page.setViewportSize({ width: 390, height: 844 });
@@ -184,17 +209,32 @@ test.describe('Remortgage / Switching Hybrid Requirements', () => {
     const afterToggleBox = await page.locator('#calc-remortgage-switching').boundingBox();
     expect(afterToggleBox?.width).toBe(initialBox?.width);
   });
+
+  test('REMO-HYBRID-11: mobile calculate reveals the switching summary', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await runCalculation(page);
+    await page.waitForTimeout(350);
+
+    const resultBox = await page.locator('#remo-results').boundingBox();
+    expect(resultBox).toBeTruthy();
+    expect(resultBox.y).toBeLessThan(220);
+
+    await expect(page.locator('#remo-metric-monthly')).toBeFocused();
+  });
 });
 
 test.describe('Remortgage / Switching Hybrid', () => {
   test('ISS-REMORT-HYBRID: single-pane ownership and interaction contract', async ({ page }) => {
     await page.goto('/loan-calculators/remortgage-calculator/');
 
-    const centerPanels = page.locator('.center-column > .panel');
+    const centerPanels = page.locator('.hl-cluster-panel');
     await expect(centerPanels).toHaveCount(1);
 
     const panel = centerPanels.first();
-    await expect(panel).toHaveClass(/panel-span-all/);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(panel.locator('#calc-remortgage-switching')).toBeVisible();
     await expect(panel.locator('#loan-remortgage-explanation')).toBeVisible();
 

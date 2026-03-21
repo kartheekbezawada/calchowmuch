@@ -62,10 +62,10 @@
 - **Trigger:** Run immediately after build. No human wait.
 - **Gates:**
     - `lint` (Code quality)
-    - `unit` (Logic - `npm run test`)
-    - `e2e` (Flow - `npm run test:e2e` scoped)
-    - `cwv:all` (Perf - `npm run test:cwv:all`)
-    - `iss-001` (Layout - `npm run test:iss001`)
+    - `unit` (Logic - scoped cluster/calculator gate, or `npm run test` only for explicit full-site releases)
+    - `e2e` (Flow - scoped cluster/calculator gate by default)
+    - `cwv` (Perf - scoped cluster/calculator gate by default; `test:cwv:all` only for explicit full-site releases)
+    - `iss-001` (Layout - run when required by the release-mode and scope matrix)
     - `SEO/SERP/FAQ` (Per `RELEASE_CHECKLIST.md`)
 - **Rule:** Any fail = Fix & Re-test.
 

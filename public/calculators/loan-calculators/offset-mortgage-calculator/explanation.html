@@ -9,7 +9,7 @@
     time, and see how quickly the loan is paid down.
   </p>
 
-  <section class="mtg-exp-section mtg-exp-section--lifetime">
+  <section class="mtg-exp-section mtg-exp-section--lifetime" id="off-section-lifetime">
     <div class="mtg-lifetime-header">
       <h3>Lifetime Totals</h3>
     </div>
@@ -48,7 +48,7 @@
     <p class="mtg-lifetime-summary" data-off="lifetime-summary"></p>
   </section>
 
-  <section class="mtg-exp-section mtg-exp-section--amortization">
+  <section class="mtg-exp-section mtg-exp-section--amortization" id="off-section-amortization">
     <div class="amortization-section">
       <div class="amortization-header">
         <h3>Offset Amortization Table</h3>
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <div class="table-scroll is-hidden" id="off-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="off-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly offset amortisation table">
       <table class="calculator-table" id="off-table-monthly">
         <thead>
           <tr>
@@ -94,7 +94,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="off-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll" id="off-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly offset amortisation table">
       <table class="calculator-table" id="off-table-yearly">
         <thead>
           <tr>
@@ -112,7 +112,7 @@
     </div>
   </section>
 
-    <section class="mtg-exp-section mtg-exp-section--guide" id="off-section-how-to-guide">
+  <section class="mtg-exp-section mtg-exp-section--guide" id="off-section-how-to-guide">
     <h3>How To Guide</h3>
 
     <h4>How much interest can an offset mortgage save me?</h4>
@@ -304,7 +304,7 @@
 
     <h4>Example: how much can I save with a 20,000 offset balance?</h4>
     <p>Using typical defaults:</p>
-    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+    <div class="off-guide-table-wrap table-scroll" tabindex="0" role="region" aria-label="Offset example inputs">
       <table class="calculator-table off-guide-table">
         <thead>
           <tr>
@@ -322,7 +322,7 @@
         </tbody>
       </table>
     </div>
-    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+    <div class="off-guide-table-wrap table-scroll" tabindex="0" role="region" aria-label="Offset example results">
       <table class="calculator-table off-guide-table">
         <thead>
           <tr>
@@ -348,7 +348,7 @@
     </p>
 
     <h4>Full Offset vs Partial / Average - comparison</h4>
-    <div class="off-guide-table-wrap table-scroll" tabindex="0">
+    <div class="off-guide-table-wrap table-scroll" tabindex="0" role="region" aria-label="Full offset vs partial comparison">
       <table class="calculator-table off-guide-table">
         <thead>
           <tr>
@@ -373,7 +373,7 @@
   </section>
 
 
-  <section class="mtg-exp-section mtg-exp-section--faq">
+  <section class="mtg-exp-section mtg-exp-section--faq" id="off-section-faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
       <div class="bor-faq-card">

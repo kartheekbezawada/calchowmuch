@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Homepage Sample | CalcHowMuch</title>
+    <meta
+      name="description"
+      content="Temporary homepage sample showing an Apple-style SEO-focused layout for CalcHowMuch."
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --surface: #f6f7f8;
+        --surface-2: #fbfbfc;
+        --text: #111111;
+        --muted: #666666;
+        --line: #e9eaec;
+        --accent: #2563eb;
+        --accent-soft: #eff5ff;
+        --shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+        --radius: 18px;
+        --max: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+        color: var(--text);
+        font:
+          400 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .wrap {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(18px);
+        background: rgba(255, 255, 255, 0.86);
+        border-bottom: 1px solid rgba(233, 234, 236, 0.9);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 72px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #111111, #2b2b2b);
+        color: #fff;
+        font-size: 18px;
+      }
+
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .hero {
+        padding: 92px 0 72px;
+        text-align: center;
+      }
+
+      .hero-inner {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        padding: 8px 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.02em;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        letter-spacing: -0.03em;
+      }
+
+      h1 {
+        margin-top: 22px;
+        font-size: clamp(40px, 6vw, 54px);
+        line-height: 1.04;
+      }
+
+      .hero p {
+        max-width: 680px;
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: min(720px, 100%);
+        margin: 28px auto 0;
+        padding: 12px 14px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .search input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--text);
+        font: inherit;
+      }
+
+      .search button {
+        border: 0;
+        border-radius: 14px;
+        padding: 11px 16px;
+        background: var(--text);
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .section {
+        padding: 40px 0;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .section-head p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      h2 {
+        font-size: clamp(28px, 4vw, 36px);
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, var(--surface-2), var(--surface));
+        border: 1px solid var(--line);
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid var(--line);
+        color: var(--text);
+        font-weight: 600;
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .chip:hover {
+        transform: translateY(-1px);
+        border-color: rgba(37, 99, 235, 0.24);
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+        text-decoration: none;
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        min-height: 220px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: var(--shadow);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 24px 56px rgba(17, 17, 17, 0.1);
+      }
+
+      .card-kicker {
+        display: inline-flex;
+        margin-bottom: 14px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .card h3 {
+        font-size: 22px;
+      }
+
+      .card p {
+        margin: 10px 0 18px;
+        color: var(--muted);
+      }
+
+      .card-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 14px;
+      }
+
+      .card-links a {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .seo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .seo-block,
+      .trust,
+      .faq,
+      .footer {
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: var(--shadow);
+      }
+
+      .seo-block p,
+      .trust p,
+      .faq p {
+        margin: 14px 0 0;
+        color: var(--muted);
+      }
+
+      .trust {
+        background: linear-gradient(180deg, #fff, #fafbfd);
+      }
+
+      .faq-list {
+        display: grid;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .faq-item {
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+
+      .faq-item:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .faq-item h3 {
+        font-size: 20px;
+      }
+
+      .footer {
+        margin: 40px 0 56px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .footer-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .card-grid,
+        .seo-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .header-inner {
+          min-height: 64px;
+        }
+
+        .header-nav {
+          display: none;
+        }
+
+        .hero {
+          padding: 72px 0 48px;
+        }
+
+        .search {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .search button {
+          width: 100%;
+        }
+
+        .section {
+          padding: 28px 0;
+        }
+
+        .seo-block,
+        .trust,
+        .faq,
+        .footer,
+        .card,
+        .chip-row {
+          padding: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="wrap header-inner">
+        <a class="brand" href="#">
+          <span class="brand-mark">#</span>
+          <span>CalcHowMuch</span>
+        </a>
+        <nav class="header-nav" aria-label="Sample navigation">
+          <a href="#popular">Popular</a>
+          <a href="#clusters">Clusters</a>
+          <a href="#categories">Categories</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <div class="hero-inner">
+          <span class="eyebrow">Sample homepage concept</span>
+          <h1>All Calculators — Finance, Loan, Mortgage & Math Tools</h1>
+          <p>
+            Explore mortgage, loan, credit card, finance, percentage, and time
+            calculators. Get instant results with simple and accurate tools.
+          </p>
+          <div class="search" role="search">
+            <input type="text" value="" placeholder="Search calculators…" />
+            <button type="button">Search</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="popular" class="section">
+        <div class="section-head">
+          <div>
+            <h2>Popular Calculators</h2>
+            <p>High-CTR links placed near the top for SEO and faster user flow.</p>
+          </div>
+        </div>
+        <div class="chip-row">
+          <a class="chip" href="#">Mortgage Calculator</a>
+          <a class="chip" href="#">Loan Calculator</a>
+          <a class="chip" href="#">Credit Card Calculator</a>
+          <a class="chip" href="#">Compound Interest Calculator</a>
+          <a class="chip" href="#">Percentage Calculator</a>
+          <a class="chip" href="#">Age Calculator</a>
+        </div>
+      </section>
+
+      <section id="clusters" class="section">
+        <div class="section-head">
+          <div>
+            <h2>Browse Calculator Clusters</h2>
+            <p>Your existing card-led discovery model, refined with cleaner spacing.</p>
+          </div>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="card-kicker">Loans</span>
+            <h3>Mortgage & Loan</h3>
+            <p>
+              Payment, affordability, refinancing, interest-rate, and borrowing tools.
+            </p>
+            <div class="card-links">
+              <a href="#">Mortgage</a>
+              <a href="#">How Much Can I Borrow</a>
+              <a href="#">Offset</a>
+              <a href="#">LTV</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Finance</span>
+            <h3>Growth & Savings</h3>
+            <p>
+              Interest, compounding, future value, present value, and savings goal tools.
+            </p>
+            <div class="card-links">
+              <a href="#">Compound Interest</a>
+              <a href="#">Present Value</a>
+              <a href="#">Future Value</a>
+              <a href="#">Savings Goal</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="card-kicker">Math</span>
+            <h3>Math & Percentage</h3>
+            <p>
+              Everyday number tools, algebra, percentage changes, and formula helpers.
+            </p>
+            <div class="card-links">
+              <a href="#">Basic</a>
+              <a href="#">Percentage Increase</a>
+              <a href="#">Fraction</a>
+              <a href="#">Probability</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="categories" class="section">
+        <div class="section-head">
+          <div>
+            <h2>Category Guides</h2>
+            <p>Text-led internal linking blocks for ranking depth and crawl clarity.</p>
+          </div>
+        </div>
+        <div class="seo-grid">
+          <section class="seo-block">
+            <h3>Mortgage & Loan Calculators</h3>
+            <p>
+              Estimate monthly payments and total interest using our
+              <a href="#">mortgage calculator</a>, compare borrowing costs with the
+              <a href="#">loan calculator</a>, or analyse rate changes using the
+              <a href="#">interest rate change calculator</a>.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Credit Card Calculators</h3>
+            <p>
+              Compare payoff plans with the <a href="#">credit card repayment tool</a>,
+              review minimum payment costs, and explore
+              <a href="#">balance transfer</a> and consolidation scenarios.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Finance Calculators</h3>
+            <p>
+              Model growth with <a href="#">compound interest</a>, estimate target balances
+              with <a href="#">future value</a>, and test planning assumptions with
+              <a href="#">present value</a> and savings calculators.
+            </p>
+          </section>
+
+          <section class="seo-block">
+            <h3>Time, Percentage & Everyday Tools</h3>
+            <p>
+              Use <a href="#">percentage calculators</a>, date and time tools,
+              and sleep planning calculators to answer fast everyday questions
+              with practical, simple outputs.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="trust">
+          <h2>Why Use CalcHowMuch</h2>
+          <p>
+            CalcHowMuch helps people make better financial and everyday decisions with
+            simple, fast, and accurate calculators. Each tool is designed to surface
+            clear results, useful breakdowns, formulas, and scenario-based insights
+            without overwhelming the page.
+          </p>
+        </div>
+      </section>
+
+      <section id="faq" class="section">
+        <div class="faq">
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>What calculators are available?</h3>
+              <p>
+                Mortgage, loan, credit card, finance, percentage, math, and time calculators
+                are all available through the homepage and cluster pages.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>Are these calculators free?</h3>
+              <p>Yes. All calculators on CalcHowMuch are free and easy to use.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Are the results accurate?</h3>
+              <p>
+                Calculations are based on standard formulas and provide reliable estimates
+                for planning and comparison.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>
+          <strong>CalcHowMuch</strong>
+          <div class="muted">Temporary homepage sample for layout review.</div>
+        </div>
+        <nav class="footer-nav" aria-label="Footer links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+          <a href="#">FAQs</a>
+          <a href="#">Sitemap</a>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

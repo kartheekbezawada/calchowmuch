@@ -17,14 +17,10 @@ Ownership: cluster release owner.
 
 Routes:
 - /loan-calculators/buy-to-let-mortgage-calculator/
-- /car-loan-calculators/car-loan-calculator/
-- /car-loan-calculators/hire-purchase-calculator/
 - /loan-calculators/mortgage-calculator/
 - /loan-calculators/how-much-can-i-borrow/
 - /loan-calculators/interest-rate-change-calculator/
-- /car-loan-calculators/car-lease-calculator/
 - /loan-calculators/ltv-calculator/
-- /car-loan-calculators/auto-loan-calculator/
 - /loan-calculators/offset-mortgage-calculator/
-- /car-loan-calculators/pcp-calculator/
 - /loan-calculators/remortgage-calculator/
+- /loan-calculators/personal-loan-calculator/

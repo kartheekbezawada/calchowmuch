@@ -144,6 +144,142 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-percentage-of-a-number-wave9-20260219",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/car-loan-calculator/",
+      "calculatorId": "car-loan",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/auto-loan-calculator/",
+      "calculatorId": "multiple-car-loan",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/hire-purchase-calculator/",
+      "calculatorId": "hire-purchase",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/pcp-calculator/",
+      "calculatorId": "pcp-calculator",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/car-loan-calculators/car-lease-calculator/",
+      "calculatorId": "leasing-calculator",
+      "activeOwnerClusterId": "auto-loans",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-auto-loan-redesign-20260319",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/present-value-calculator/",
+      "calculatorId": "present-value",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/future-value-calculator/",
+      "calculatorId": "future-value",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/present-value-of-annuity-calculator/",
+      "calculatorId": "present-value-of-annuity",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/future-value-of-annuity-calculator/",
+      "calculatorId": "future-value-of-annuity",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/effective-annual-rate-calculator/",
+      "calculatorId": "effective-annual-rate",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/inflation-calculator/",
+      "calculatorId": "inflation",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260321",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/simple-interest-calculator/",
+      "calculatorId": "simple-interest",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/compound-interest-calculator/",
+      "calculatorId": "compound-interest",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/investment-growth-calculator/",
+      "calculatorId": "investment-growth",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/time-to-savings-goal-calculator/",
+      "calculatorId": "time-to-savings-goal",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/monthly-savings-needed-calculator/",
+      "calculatorId": "monthly-savings-needed",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/finance-calculators/investment-return-calculator/",
+      "calculatorId": "investment-return",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
     }
   ]
 }

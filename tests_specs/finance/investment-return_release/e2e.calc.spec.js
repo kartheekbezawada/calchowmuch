@@ -11,6 +11,8 @@ test.describe('Investment Return Calculator', () => {
     await page.goto('/finance-calculators/investment-return-calculator/');
 
     await expect(page.locator('h1')).toHaveText('Investment Return Calculator');
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
 
     const result = page.locator('#ir-result');
     await expect(result).toBeVisible();
@@ -31,8 +33,13 @@ test.describe('Investment Return Calculator', () => {
     await page.fill('#ir-return', '10');
     await expect(page.locator('#ir-return')).toHaveValue('10');
 
+    await expect(page.locator('#ir-advanced-section')).toBeHidden();
     await page.click('#ir-advanced-toggle');
-    await expect(page.locator('#ir-advanced-section')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#ir-advanced-section')).toBeVisible();
+    await page.click('#ir-advanced-toggle');
+    await expect(page.locator('#ir-advanced-section')).toBeHidden();
+    await page.click('#ir-advanced-toggle');
+    await expect(page.locator('#ir-advanced-section')).toBeVisible();
 
     await page.fill('#ir-var-rate-1', '4');
     await page.click('#ir-add-event');

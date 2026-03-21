@@ -24,26 +24,25 @@ test.describe('Investment Return Calculator SEO', () => {
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Investment Return Calculator');
 
-    await expect(page.locator('#loan-mtg-explanation > h2')).toHaveText(
+    await expect(page.locator('#ir-explanation-content > h2')).toHaveText(
       'How Is Your Portfolio Performing Over Time?'
     );
     await expect(
-      page.locator('#loan-mtg-explanation .mtg-exp-section h3', {
-        hasText: 'Investment Return Complete Practical Guide',
-      })
+      page.locator('#ir-explanation-content .mtg-exp-section h3', { hasText: 'How to Guide' })
     ).toHaveCount(1);
     await expect(
-      page.locator('#loan-mtg-explanation .mtg-exp-section h3', { hasText: 'Important Notes' })
+      page.locator('#ir-explanation-content .mtg-exp-section h3', { hasText: 'Important Notes' })
     ).toHaveCount(1);
-    await expect(page.locator('#loan-mtg-explanation .mtg-exp-section--faq .bor-faq-card')).toHaveCount(10);
+    await expect(
+      page.locator('#ir-explanation-content .mtg-exp-section--faq .bor-faq-card')
+    ).toHaveCount(10);
 
     const guideWordCount = await page.evaluate(() => {
       const section = Array.from(
-        document.querySelectorAll('#loan-mtg-explanation section.mtg-exp-section')
+        document.querySelectorAll('#ir-explanation-content section.mtg-exp-section')
       ).find(
         (node) =>
-          node.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() ===
-          'Investment Return Complete Practical Guide'
+          node.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() === 'How to Guide'
       );
 
       if (!section) {
@@ -57,10 +56,13 @@ test.describe('Investment Return Calculator SEO', () => {
     expect(guideWordCount).toBeLessThanOrEqual(1200);
 
     const contentOrder = await page.evaluate(() => {
-      const sections = Array.from(document.querySelectorAll('#loan-mtg-explanation > section'));
-      const faqIndex = sections.findIndex((node) => node.classList.contains('mtg-exp-section--faq'));
+      const sections = Array.from(document.querySelectorAll('#ir-explanation-content > section'));
+      const faqIndex = sections.findIndex((node) =>
+        node.classList.contains('mtg-exp-section--faq')
+      );
       const notesIndex = sections.findIndex(
-        (node) => node.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() === 'Important Notes'
+        (node) =>
+          node.querySelector('h3')?.textContent?.replace(/\s+/g, ' ').trim() === 'Important Notes'
       );
       return { faqIndex, notesIndex };
     });

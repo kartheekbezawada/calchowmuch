@@ -637,3 +637,233 @@
 
 </body>
 </html>
+
+---
+
+# Homepage SEO Layout Brief
+
+Date logged: 2026-03-18
+
+## Goal
+
+Create a pixel-clean, Apple-style homepage layout for CalcHowMuch that keeps the minimal UI while adding SEO depth, internal linking, and clearer conversion flow.
+
+## Layout Structure
+
+Top to bottom:
+
+1. Sticky minimal header
+2. Hero section
+3. Search bar
+4. Popular calculators block
+5. Cluster cards grid
+6. Category sections with contextual links
+7. Why Use CalcHowMuch section
+8. FAQ section
+9. Footer
+
+## Hero Section
+
+Recommended structure:
+
+```html
+<section class="hero">
+  <h1>All Calculators — Finance, Loan, Mortgage & Math Tools</h1>
+  <p>
+    Explore mortgage, loan, credit card, finance, percentage, and time calculators.
+    Get instant results with simple and accurate tools.
+  </p>
+
+  <input type="text" placeholder="Search calculators…" />
+</section>
+```
+
+Design direction:
+
+- Large clean whitespace
+- Center aligned content
+- Strong typography
+- H1 size: 40px to 48px
+- Body text: 16px to 18px
+- Max width: 680px
+- Padding: 80px top and bottom
+- No clutter above the fold
+
+## Popular Calculators Block
+
+Purpose:
+
+- Highest impact addition for SEO and CTR
+- Adds strong internal linking near the top of the page
+
+Recommended structure:
+
+```html
+<section class="popular">
+  <h2>Popular Calculators</h2>
+  <ul>
+    <li><a href="/mortgage-calculator/">Mortgage Calculator</a></li>
+    <li><a href="/loan-calculator/">Loan Calculator</a></li>
+    <li><a href="/credit-card-calculator/">Credit Card Calculator</a></li>
+    <li><a href="/compound-interest-calculator/">Compound Interest Calculator</a></li>
+    <li><a href="/percentage-calculator/">Percentage Calculator</a></li>
+  </ul>
+</section>
+```
+
+UI guidance:
+
+- Inline horizontal chips or a minimal list
+- Soft grey background
+- Slight hover animation
+
+## Cluster Cards Grid
+
+Keep the existing card/grid concept.
+
+Recommended refinements:
+
+- Equal height cards
+- Border radius: 12px to 16px
+- Subtle shadow
+- Hover scale: `scale(1.02)`
+- Apple-style restraint, no visual noise
+
+## Category SEO Blocks
+
+Purpose:
+
+- Primary ranking layer for homepage SEO
+- Adds contextual keyword coverage and internal links
+
+Recommended example:
+
+```html
+<section>
+  <h2>Mortgage & Loan Calculators</h2>
+  <p>
+    Estimate monthly payments and total interest using our
+    <a href="/mortgage-calculator/">mortgage calculator</a>,
+    compare borrowing costs with the
+    <a href="/loan-calculator/">loan calculator</a>,
+    or analyse rate changes using the
+    <a href="/interest-rate-change-calculator/">interest rate change calculator</a>.
+  </p>
+</section>
+```
+
+Repeat similar text-link blocks for:
+
+- Credit cards
+- Finance
+- Percentage
+- Time
+
+Design guidance:
+
+- Max width: 700px
+- Line height: 1.6 to 1.8
+- Clean text blocks
+- No heavy containers
+
+## Why Use CalcHowMuch
+
+Purpose:
+
+- Trust
+- Engagement
+- Better topical clarity
+
+Recommended structure:
+
+```html
+<section class="why">
+  <h2>Why Use CalcHowMuch</h2>
+  <p>
+    CalcHowMuch helps you make better financial and everyday decisions by providing
+    simple, fast, and accurate calculators. Each tool is designed to give clear
+    results, including breakdowns, formulas, and insights so you can compare scenarios
+    and understand outcomes.
+  </p>
+</section>
+```
+
+## FAQ Section
+
+Purpose:
+
+- Important for SEO
+- Supports SERP visibility
+- Expands keyword and intent coverage
+
+Recommended structure:
+
+```html
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>What calculators are available?</h3>
+  <p>We offer mortgage, loan, credit card, finance, percentage, and time calculators.</p>
+
+  <h3>Are these calculators free?</h3>
+  <p>Yes, all calculators on CalcHowMuch are free and easy to use.</p>
+
+  <h3>Are the results accurate?</h3>
+  <p>Calculations are based on standard formulas and provide reliable estimates.</p>
+</section>
+```
+
+## Design System
+
+Colors:
+
+- Background: `#ffffff`
+- Text: `#111111`
+- Secondary text: `#666666`
+- Accent: `#2563eb`
+
+Spacing:
+
+- Section padding: 80px
+- Between blocks: 48px
+- Text spacing: 16px to 24px
+
+Typography:
+
+- Inter or system font
+- Clean hierarchy
+- Avoid excessive boldness
+
+Cards:
+
+- Border: `1px solid #eee`
+- Very light shadow
+- Subtle hover treatment
+
+## SEO Impact Summary
+
+| Section | Benefit |
+| --- | --- |
+| Hero | Keyword clarity |
+| Popular calculators | Internal linking boost |
+| Cards | Better UX |
+| Category text | Ranking power |
+| FAQ | SERP impression lift |
+| Why section | Better engagement |
+
+## What Not To Do
+
+- Do not add too much text above the fold
+- Do not clutter the UI
+- Do not remove cards
+- Do not keyword stuff
+
+## Expected Outcome
+
+After implementing this direction:
+
+- Homepage becomes a stronger authority hub
+- Internal linking improves significantly
+- Google understands the content structure more clearly
+- Impressions improve
+- CTR improves

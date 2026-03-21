@@ -1,0 +1,687 @@
+#calc-investment-return {
+  --ir-space-1: 10px;
+  --ir-space-2: 14px;
+  --ir-space-3: 18px;
+  --ir-space-4: 24px;
+  --ir-space-5: 30px;
+  --ir-line-soft: rgba(31, 95, 135, 0.12);
+  --ir-line-strong: rgba(31, 95, 135, 0.18);
+  --ir-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 248, 0.98));
+  --ir-surface-soft: linear-gradient(180deg, rgba(248, 251, 250, 0.96), rgba(242, 247, 244, 0.96));
+  --ir-chip-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  --ir-chip-shadow-active: 0 14px 28px rgba(31, 95, 135, 0.16);
+}
+
+#calc-investment-return .mtg-form-panel {
+  display: grid;
+  gap: var(--ir-space-4);
+}
+
+#calc-investment-return .helper {
+  margin: 0;
+  max-width: 68ch;
+  line-height: 1.72;
+  color: #4d6477;
+}
+
+#calc-investment-return .fi-form-section {
+  display: grid;
+  gap: var(--ir-space-4);
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid var(--ir-line-soft);
+  border-radius: 28px;
+  background: var(--ir-surface);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.05);
+}
+
+#calc-investment-return .fi-form-section-header {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-investment-return .fi-form-section-title {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-investment-return .fi-form-section-copy {
+  margin: 0;
+  max-width: 62ch;
+  line-height: 1.7;
+  color: #597286;
+}
+
+#calc-investment-return .ir-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 18px;
+}
+
+#calc-investment-return .ir-grid--inline {
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+}
+
+#calc-investment-return .input-row {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-investment-return .input-row span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #15202b;
+}
+
+#calc-investment-return .input-row input[type='number'],
+#calc-investment-return .input-row input[type='text'],
+#calc-investment-return .input-row input[type='month'],
+#calc-investment-return .input-row select,
+#calc-investment-return .input-row textarea {
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid var(--ir-line-strong);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 248, 246, 0.98));
+  color: #13293d;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 8px 20px rgba(15, 23, 42, 0.03);
+}
+
+#calc-investment-return .input-row input[type='number']:focus-visible,
+#calc-investment-return .input-row input[type='text']:focus-visible,
+#calc-investment-return .input-row input[type='month']:focus-visible,
+#calc-investment-return .input-row select:focus-visible,
+#calc-investment-return .input-row textarea:focus-visible {
+  outline: 2px solid rgba(31, 95, 135, 0.22);
+  outline-offset: 2px;
+  border-color: rgba(31, 95, 135, 0.32);
+}
+
+#calc-investment-return .fi-toggle-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+#calc-investment-return .fi-toggle-group {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 16px 18px 18px;
+  border: 1px solid var(--ir-line-soft);
+  border-radius: 24px;
+  background: var(--ir-surface-soft);
+}
+
+#calc-investment-return .fi-toggle-label {
+  margin: 0;
+  color: #173d57;
+  letter-spacing: 0.01em;
+}
+
+#calc-investment-return .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#calc-investment-return .button-group .calculator-button.secondary {
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--ir-line-strong);
+  background: rgba(255, 255, 255, 0.96);
+  color: #17324a;
+  box-shadow: var(--ir-chip-shadow);
+}
+
+#calc-investment-return .button-group .calculator-button.secondary:hover {
+  border-color: rgba(31, 95, 135, 0.28);
+  background: rgba(250, 253, 255, 0.98);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+#calc-investment-return .button-group .calculator-button.secondary.is-active,
+#calc-investment-return .button-group .calculator-button.secondary[aria-pressed='true'] {
+  border-color: rgba(31, 95, 135, 0.26);
+  background: linear-gradient(180deg, rgba(229, 240, 248, 0.98), rgba(216, 233, 244, 0.98));
+  color: #114567;
+  box-shadow: var(--ir-chip-shadow-active);
+}
+
+#calc-investment-return .fi-toggle-row {
+  align-items: flex-start;
+}
+
+#calc-investment-return .fi-action-rail {
+  gap: 12px;
+}
+
+#calc-investment-return .calculator-button.full-width {
+  min-height: 54px;
+}
+
+#calc-investment-return .ir-advanced-control {
+  margin-top: 4px;
+}
+
+#calc-investment-return #ir-advanced-section {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-investment-return #ir-advanced-section.is-hidden {
+  display: none;
+}
+
+#calc-investment-return .ir-advanced-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid rgba(143, 158, 167, 0.22);
+  border-radius: 22px;
+  background: rgba(248, 250, 248, 0.98);
+}
+
+#calc-investment-return .ir-variable-rows,
+#calc-investment-return .ir-events-rows {
+  display: grid;
+  gap: 12px;
+}
+
+#calc-investment-return .ir-variable-rows {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#calc-investment-return .ir-var-row,
+#calc-investment-return .ir-event-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(143, 158, 167, 0.18);
+  border-radius: 16px;
+  background: #fff;
+}
+
+#calc-investment-return .ir-event-row {
+  grid-template-columns: 1fr 1fr auto auto;
+  align-items: center;
+}
+
+#calc-investment-return .ir-event-timing {
+  display: inline-flex;
+  gap: 6px;
+}
+
+#calc-investment-return .ir-event-timing button {
+  min-height: 36px;
+  padding: 0 14px;
+}
+
+#calc-investment-return .ir-results {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-investment-return .ir-results-shell {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid rgba(143, 158, 167, 0.22);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(248, 250, 248, 0.98), rgba(255, 255, 255, 0.98));
+}
+
+#calc-investment-return .ir-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+#calc-investment-return .ir-results-copy-block {
+  display: grid;
+  gap: 8px;
+  max-width: 72ch;
+}
+
+#calc-investment-return .ir-results-eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2f6e53;
+}
+
+#calc-investment-return .ir-results-title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.6vw, 1.7rem);
+  line-height: 1.2;
+  color: #15202b;
+}
+
+#calc-investment-return .ir-results-copy,
+#calc-investment-return .ir-table-note,
+#ir-explanation .ir-intro-copy p {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.65;
+}
+
+#calc-investment-return .ir-results-controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#calc-investment-return .ir-table-frame {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-investment-return .ir-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(143, 158, 167, 0.18);
+  border-radius: 18px;
+  background: #fff;
+}
+
+#calc-investment-return .ir-breakdown-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#calc-investment-return .ir-breakdown-table th,
+#calc-investment-return .ir-breakdown-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(143, 158, 167, 0.16);
+}
+
+#calc-investment-return .ir-breakdown-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f4f7f4;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #44515c;
+}
+
+#calc-investment-return .ir-breakdown-table tbody th {
+  background: rgba(248, 250, 248, 0.72);
+  font-weight: 700;
+  color: #15202b;
+  text-align: left;
+  white-space: nowrap;
+}
+
+#calc-investment-return .ir-breakdown-table tbody tr:nth-child(even) td,
+#calc-investment-return .ir-breakdown-table tbody tr:nth-child(even) th {
+  background: rgba(244, 247, 244, 0.72);
+}
+
+#calc-investment-return .ir-breakdown-table tbody tr:hover td,
+#calc-investment-return .ir-breakdown-table tbody tr:hover th {
+  background: rgba(228, 238, 232, 0.9);
+}
+
+#calc-investment-return .ir-breakdown-table td,
+#calc-investment-return .ir-breakdown-table th:nth-child(n + 2),
+#calc-investment-return .ir-breakdown-table td:nth-child(n + 2),
+#ir-explanation .ir-results-table td:nth-child(2) {
+  font-variant-numeric: tabular-nums;
+}
+
+#calc-investment-return .ir-breakdown-table th:nth-child(n + 2),
+#calc-investment-return .ir-breakdown-table td:nth-child(n + 2) {
+  text-align: right;
+}
+
+#ir-explanation-content > h2 {
+  margin: 0;
+}
+
+#ir-explanation .ir-intro-copy {
+  display: grid;
+  gap: 12px;
+  max-width: 74ch;
+}
+
+#ir-explanation-content {
+  display: grid;
+  gap: 18px;
+}
+
+#ir-explanation .ir-results-table td:last-child {
+  color: #5f6c78;
+}
+
+#calc-investment-return .is-hidden {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  #calc-investment-return .fi-toggle-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #calc-investment-return .ir-variable-rows,
+  #calc-investment-return .ir-grid,
+  #calc-investment-return .ir-grid--inline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #calc-investment-return .ir-event-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #calc-investment-return .ir-results-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #calc-investment-return .ir-results-controls {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  #calc-investment-return .fi-form-section,
+  #calc-investment-return .fi-toggle-group {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  #calc-investment-return .fi-toggle-row,
+  #calc-investment-return .ir-variable-rows,
+  #calc-investment-return .ir-grid,
+  #calc-investment-return .ir-grid--inline,
+  #calc-investment-return .ir-event-row {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment-return .button-group .calculator-button.secondary {
+    min-width: 0;
+    flex: 1 1 calc(50% - 6px);
+    justify-content: center;
+  }
+
+  #calc-investment-return .ir-results-controls {
+    justify-content: stretch;
+  }
+
+  #calc-investment-return .ir-results-shell {
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  #calc-investment-return .ir-breakdown-table {
+    min-width: 620px;
+  }
+}
+
+#calc-investment-return .fi-exp-hero,
+#calc-investment-return .fi-exp-guide {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-investment-return .fi-exp-intro,
+#calc-investment-return .fi-exp-support,
+#calc-investment-return .fi-exp-section-head,
+#calc-investment-return .fi-exp-guide-step-body {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-investment-return .fi-exp-intro h2,
+#calc-investment-return .fi-exp-section-head h3,
+#calc-investment-return .fi-exp-card h3,
+#calc-investment-return .fi-exp-guide-step h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-investment-return .fi-exp-intro p,
+#calc-investment-return .fi-exp-support p,
+#calc-investment-return .fi-exp-card p,
+#calc-investment-return .fi-exp-section-head p,
+#calc-investment-return .fi-exp-guide-step p,
+#calc-investment-return .fi-exp-guide-summary {
+  margin: 0;
+  max-width: 72ch;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-investment-return .fi-exp-kpi,
+#calc-investment-return .fi-exp-card,
+#calc-investment-return .fi-exp-guide-step {
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-investment-return .fi-exp-kpi {
+  gap: 6px;
+  background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+}
+
+#calc-investment-return .fi-exp-kpi-label,
+#calc-investment-return .fi-exp-step-no {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #557089;
+}
+
+#calc-investment-return .fi-exp-kpi-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.15rem);
+  line-height: 1.1;
+  color: #13293d;
+}
+
+#calc-investment-return .fi-exp-context-grid,
+#calc-investment-return .fi-exp-guide-list {
+  display: grid;
+  gap: 14px;
+}
+
+#calc-investment-return .fi-exp-context-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-investment-return .fi-exp-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-investment-return .fi-exp-link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.08);
+  color: #163e59;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#calc-investment-return .fi-exp-guide-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-investment-return .fi-exp-step-no {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(31, 95, 135, 0.1);
+}
+
+#calc-investment-return .fi-exp-guide-step ol,
+#calc-investment-return .fi-exp-guide-step ul,
+#calc-investment-return .mtg-exp-section--notes ul {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-investment-return .fi-exp-guide-summary {
+  padding-top: 10px;
+  border-top: 1px solid rgba(31, 95, 135, 0.12);
+}
+
+@media (max-width: 720px) {
+  #calc-investment-return .fi-exp-context-grid,
+  #calc-investment-return .fi-exp-guide-step {
+    grid-template-columns: 1fr;
+  }
+}
+
+#calc-investment-return .fi-exp-article,
+#calc-investment-return .fi-exp-article-shell,
+#calc-investment-return .fi-exp-article-main,
+#calc-investment-return .fi-exp-story-block,
+#calc-investment-return .fi-exp-article-intro,
+#calc-investment-return .fi-exp-article-rail,
+#calc-investment-return .fi-exp-rail-card {
+  display: grid;
+}
+
+#calc-investment-return .fi-exp-article {
+  gap: 22px;
+}
+
+#calc-investment-return .fi-exp-article-shell {
+  gap: 20px;
+}
+
+#calc-investment-return .fi-exp-article-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 20px;
+  align-items: start;
+}
+
+#calc-investment-return .fi-exp-article-intro {
+  gap: 12px;
+}
+
+#calc-investment-return .fi-exp-article-intro h2,
+#calc-investment-return .fi-exp-story-block h3,
+#calc-investment-return .fi-exp-rail-card h3 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-investment-return .fi-exp-article-intro p,
+#calc-investment-return .fi-exp-story-block p,
+#calc-investment-return .fi-exp-story-block li,
+#calc-investment-return .fi-exp-rail-card p,
+#calc-investment-return .fi-exp-rail-card li {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.68;
+}
+
+#calc-investment-return .fi-exp-article-intro p,
+#calc-investment-return .fi-exp-story-block p {
+  max-width: 78ch;
+}
+
+#calc-investment-return .fi-exp-article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+  gap: 18px;
+  align-items: start;
+}
+
+#calc-investment-return .fi-exp-article-main {
+  gap: 20px;
+  min-width: 0;
+}
+
+#calc-investment-return .fi-exp-story-block {
+  gap: 12px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-investment-return .fi-exp-story-block--table {
+  margin-bottom: 8px;
+}
+
+#calc-investment-return .fi-exp-story-block--table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+#calc-investment-return .fi-exp-bullet-list,
+#calc-investment-return .fi-exp-rail-list,
+#calc-investment-return .fi-exp-formula-steps {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+#calc-investment-return .fi-exp-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+#calc-investment-return .fi-exp-article-rail {
+  gap: 14px;
+  min-width: 0;
+}
+
+#calc-investment-return .fi-exp-rail-card {
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-investment-return .fi-exp-rail-list strong {
+  color: #13293d;
+}
+
+@media (max-width: 720px) {
+  #calc-investment-return .fi-exp-article-head,
+  #calc-investment-return .fi-exp-article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment-return .fi-exp-story-block,
+  #calc-investment-return .fi-exp-rail-card {
+    padding: 18px;
+  }
+}

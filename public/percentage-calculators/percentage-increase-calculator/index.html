@@ -4270,31 +4270,6 @@
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style>
-      @media (min-width: 861px) {
-        body[data-page='calculator'] .layout-main:has(#calc-percentage-increase) > .ads-column {
-          display: none !important;
-        }
-
-        body[data-page='calculator'] .layout-main:has(#calc-percentage-increase) > .center-column {
-          grid-column: 2 / -1;
-          grid-template-columns: minmax(0, 1fr);
-        }
-
-        body[data-page='calculator']
-          .layout-main:has(#calc-percentage-increase)
-          > .center-column
-          > .panel.panel-span-all {
-          align-items: center;
-        }
-
-        #calc-percentage-increase,
-        #pct-inc-explanation {
-          width: min(100%, 980px);
-          margin-inline: auto;
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral" data-top-nav-static="true">
     <div class="page">
@@ -4378,28 +4353,80 @@
   </div>
 </header>
 
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link is-active" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
+      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
       <main class="layout-main">
         <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
-<div class="fin-nav-group is-expanded" data-fin-subcategory="percentage-core">
-  <button type="button" class="fin-nav-toggle" aria-expanded="true">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">%</span>
-    <span class="fin-nav-toggle-label">Percentage Calculators</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <div id="left-nav-content"><div class="math-nav-container">
+<div class="math-nav-category" data-id="simple">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
+      <span class="math-nav-category-name">SIMPLE</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
   </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/percentage-calculators/percent-change-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">↔️</span>Percent Change</a><a class="fin-nav-item" href="/percentage-calculators/percentage-difference-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⚖️</span>Percentage Difference</a><a class="fin-nav-item is-active" href="/percentage-calculators/percentage-increase-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⬆️</span>Percentage Increase</a><a class="fin-nav-item" href="/percentage-calculators/percentage-decrease-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⬇️</span>Percentage Decrease</a><a class="fin-nav-item" href="/percentage-calculators/percentage-composition-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🧩</span>Percentage Composition</a><a class="fin-nav-item" href="/percentage-calculators/reverse-percentage-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🔁</span>Reverse Percentage</a><a class="fin-nav-item" href="/percentage-calculators/percent-to-fraction-decimal-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🔢</span>Percent to Fraction/Decimal</a><a class="fin-nav-item" href="/percentage-calculators/percentage-finder-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">❓</span>What Percent Is X of Y</a><a class="fin-nav-item" href="/percentage-calculators/percentage-of-a-number-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🎯</span>Find Percentage of a Number</a>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/basic/">Basic Calculator</a><a class="math-nav-item is-active" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator/">Fraction Calculator</a>
   </div>
 </div>
-<div class="fin-nav-group" data-fin-subcategory="pricing-and-margin">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">💼</span>
-    <span class="fin-nav-toggle-label">Pricing & Margin</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+<div class="math-nav-category is-collapsed" data-id="algebra">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+      <span class="math-nav-category-name">ALGEBRA</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
   </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/percentage-calculators/commission-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">💵</span>Commission Calculator</a><a class="fin-nav-item" href="/percentage-calculators/discount-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🏷️</span>Discount Calculator</a><a class="fin-nav-item" href="/percentage-calculators/margin-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📐</span>Margin Calculator</a><a class="fin-nav-item" href="/percentage-calculators/markup-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">➕</span>Markup Calculator</a>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/algebra/quadratic-equation/">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations/">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations/">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring/">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance/">Slope & Distance Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="trigonometry">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+      <span class="math-nav-category-name">TRIGONOMETRY</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/trigonometry/unit-circle/">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver/">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions/">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig/">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines/">Law of Sines/Cosines Calculator</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="calculus">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+      <span class="math-nav-category-name">CALCULUS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/calculus/derivative/">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral/">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit/">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence/">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points/">Critical Points Finder</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="log">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+      <span class="math-nav-category-name">LOG</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/log/natural-log/">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log/">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties/">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations/">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale/">Log Scale Converter</a>
+  </div>
+</div>
+<div class="math-nav-category is-collapsed" data-id="statistics">
+  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
+    <span class="math-nav-category-left">
+      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+      <span class="math-nav-category-name">STATISTICS</span>
+    </span>
+    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+  </button>
+  <div class="math-nav-category-items">
+    <a class="math-nav-item" href="/math/mean-median-mode-range/">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation/">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics/">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval/">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score/">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size/">Sample Size</a><a class="math-nav-item" href="/math/number-sequence/">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination/">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability/">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis/">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova/">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing/">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation/">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution/">Distribution Calculator</a>
   </div>
 </div></div></div>
         </aside>

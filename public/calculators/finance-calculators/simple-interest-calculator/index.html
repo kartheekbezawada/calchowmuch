@@ -1,0 +1,350 @@
+<div id="calc-simple-interest">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Simple interest calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Estimate total simple interest and ending amount from principal, rate, and time when
+          interest is charged only on the original balance.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="si-section-principal">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="si-section-principal">Starting amount</h2>
+              <p class="fi-form-section-copy">
+                Begin with the principal balance the rate will be applied to.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="si-principal">Principal Amount (P)</label>
+              <span class="slider-value" id="si-principal-display">10,000</span>
+            </div>
+            <input
+              id="si-principal"
+              type="range"
+              value="10000"
+              min="100"
+              max="1000000"
+              step="100"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="si-principal-field">
+                Enter principal
+              </label>
+              <input
+                class="slider-precision-input"
+                id="si-principal-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="10000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="si-section-interest">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="si-section-interest">Interest assumptions</h2>
+              <p class="fi-form-section-copy">
+                Set the rate, the time horizon, and whether the rate should be treated as yearly or
+                monthly.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="si-rate">Interest Rate (%)</label>
+                <span class="slider-value" id="si-rate-display">6%</span>
+              </div>
+              <input id="si-rate" type="range" value="6" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="si-rate-field">Enter interest rate</label>
+                <input
+                  class="slider-precision-input"
+                  id="si-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="6"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="si-time">Time Period</label>
+                <span class="slider-value" id="si-time-display">3 yrs</span>
+              </div>
+              <input id="si-time" type="range" value="3" min="1" max="60" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="si-time-field">Enter time period</label>
+                <input
+                  class="slider-precision-input"
+                  id="si-time-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="3"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Time unit</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Time unit"
+                data-button-group="si-time-unit"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Interest basis</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Interest basis"
+                data-button-group="si-basis"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="per-year"
+                  aria-pressed="true"
+                >
+                  Per Year
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="per-month"
+                  aria-pressed="false"
+                >
+                  Per Month
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="si-calc">
+            Calculate Simple Interest
+          </button>
+          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="si-preview" aria-label="Simple interest answer">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Total Interest</p>
+          <div class="result mtg-result-card" id="si-result" aria-live="polite">
+            <span class="mtg-result-value">1,800</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="si-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Ending Amount</span>
+            <strong class="fi-metric-value" data-si="metric-ending-amount">11,800</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Interest Basis</span>
+            <strong class="fi-metric-value" data-si="metric-basis">Per Year</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Time In Years</span>
+            <strong class="fi-metric-value" data-si="metric-years">3</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Time Unit</span>
+            <strong class="fi-metric-value" data-si="metric-time-unit">Years</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Principal</span>
+            <strong data-si="snap-principal">10,000</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Interest rate</span>
+            <strong data-si="snap-rate">6%</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time period</span>
+            <strong data-si="snap-time">3 years</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Interest basis</span>
+            <strong data-si="snap-basis">Per Year</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time in years</span>
+            <strong data-si="snap-years">3</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Total interest</span>
+            <strong data-si="snap-interest">1,800</strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="si-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+
+    <section
+      class="fi-scenario-section"
+      data-si-scenario="section"
+      aria-labelledby="si-scenario-heading"
+    >
+      <div class="fi-scenario-header">
+        <div>
+          <p class="fi-scenario-eyebrow">Scenario Analysis</p>
+          <h2 id="si-scenario-heading">How could this interest cost shift?</h2>
+        </div>
+        <p class="fi-scenario-copy">
+          Compare a baseline, a lighter cost path, and a stress case to see what changes when rate,
+          schedule length, and basis move together.
+        </p>
+      </div>
+
+      <div class="fi-scenario-grid" data-si-scenario="cards">
+        <article class="fi-scenario-card" data-si-scenario-card="baseline" data-tone="baseline">
+          <p class="fi-scenario-label">Baseline</p>
+          <h3 data-si-scenario-question>What does the current simple-interest path suggest?</h3>
+          <p class="fi-scenario-impact" data-si-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-si-scenario-insight>
+            The baseline keeps interest tied to the original principal, so the cost path stays
+            linear rather than compounding on itself.
+          </p>
+          <p class="fi-scenario-action" data-si-scenario-action>
+            Use this as the reference cost path before testing alternatives.
+          </p>
+          <ul class="fi-scenario-drivers" data-si-scenario-drivers>
+            <li>Current principal</li>
+            <li>Current rate</li>
+            <li>Current schedule</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-si-scenario-card="optimized" data-tone="optimized">
+          <p class="fi-scenario-label">Optimized</p>
+          <h3 data-si-scenario-question>What if rate pressure and time both ease?</h3>
+          <p class="fi-scenario-impact" data-si-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-si-scenario-insight>
+            A lower rate, shorter schedule, and lighter basis cut cost from multiple angles without
+            changing the starting balance.
+          </p>
+          <p class="fi-scenario-action" data-si-scenario-action>
+            Use this as the target case when negotiating cheaper terms.
+          </p>
+          <ul class="fi-scenario-drivers" data-si-scenario-drivers>
+            <li>Lower rate</li>
+            <li>Shorter schedule</li>
+            <li>Lighter basis</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-si-scenario-card="stress" data-tone="stress">
+          <p class="fi-scenario-label">Stress</p>
+          <h3 data-si-scenario-question>
+            What if the rate and schedule both work against you?
+          </h3>
+          <p class="fi-scenario-impact" data-si-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-si-scenario-insight>
+            A longer schedule and higher rate raise cost period after period even without
+            compounding.
+          </p>
+          <p class="fi-scenario-action" data-si-scenario-action>
+            Use this path to test worst-case borrowing pressure.
+          </p>
+          <ul class="fi-scenario-drivers" data-si-scenario-drivers>
+            <li>Higher rate</li>
+            <li>Longer schedule</li>
+            <li>Heavier basis</li>
+          </ul>
+        </article>
+
+        <article
+          class="fi-scenario-card"
+          data-si-scenario-card="optional"
+          data-tone="optional"
+          hidden
+        >
+          <p class="fi-scenario-label">Alternative</p>
+          <h3 data-si-scenario-question>What if the balance were allowed to compound instead?</h3>
+          <p class="fi-scenario-impact" data-si-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-si-scenario-insight>
+            If interest were allowed to compound, the gap would widen because new interest would
+            start earning interest too.
+          </p>
+          <p class="fi-scenario-action" data-si-scenario-action>
+            Use this comparison when you need to confirm whether a product is truly simple-interest
+            based.
+          </p>
+          <ul class="fi-scenario-drivers" data-si-scenario-drivers>
+            <li>Compounding logic</li>
+            <li>Same principal</li>
+            <li>Same stated rate</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="fi-scenario-questions" data-si-scenario="paa">
+        <div class="fi-scenario-qa" data-si-scenario-qa="0">
+          <h3 data-si-scenario-qa-question>What changes simple-interest cost the most here?</h3>
+          <p data-si-scenario-qa-answer>
+            The biggest cost drivers are usually rate and schedule length because simple interest
+            scales directly with both.
+          </p>
+        </div>
+
+        <div class="fi-scenario-qa" data-si-scenario-qa="1">
+          <h3 data-si-scenario-qa-question>What is the main downside risk?</h3>
+          <p data-si-scenario-qa-answer>
+            Users often underestimate how much extra time alone can add, even when the rate itself
+            does not change.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

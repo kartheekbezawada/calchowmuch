@@ -1,0 +1,267 @@
+<div id="calc-future-value-of-annuity">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Future value of annuity calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Project how recurring payments could accumulate over time, compare ordinary and due
+          timing, and keep the growth assumptions calm and easy to scan.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="fva-section-payment">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="fva-section-payment">Recurring payment</h2>
+              <p class="fi-form-section-copy">
+                Start with the amount you expect to save or invest in each period.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="fva-payment">Payment Amount (PMT)</label>
+              <span class="slider-value" id="fva-pmt-display">500</span>
+            </div>
+            <input id="fva-payment" type="range" value="500" min="10" max="50000" step="10" />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="fva-payment-field">Enter payment</label>
+              <input
+                class="slider-precision-input"
+                id="fva-payment-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="500"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="fva-section-growth">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="fva-section-growth">Growth assumptions</h2>
+              <p class="fi-form-section-copy">
+                Set the rate, time horizon, payment timing, and compounding pattern you want to
+                compare.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fva-interest-rate">Interest Rate (%)</label>
+                <span class="slider-value" id="fva-rate-display">5%</span>
+              </div>
+              <input id="fva-interest-rate" type="range" value="5" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="fva-interest-rate-field">
+                  Enter interest rate
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="fva-interest-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="fva-periods">Number of Periods</label>
+                <span class="slider-value" id="fva-periods-display">10 yrs</span>
+              </div>
+              <input id="fva-periods" type="range" value="10" min="1" max="60" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="fva-periods-field">
+                  Enter number of periods
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="fva-periods-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="10"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Period type</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Period type"
+                data-button-group="fva-period-type"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Payment timing</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Annuity type"
+                data-button-group="fva-annuity-type"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="ordinary"
+                  aria-pressed="true"
+                >
+                  Ordinary
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="due"
+                  aria-pressed="false"
+                >
+                  Due
+                </button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="fva-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semiannual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="false"
+                >
+                  Monthly
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="fva-calc">
+            Calculate Future Value of Annuity
+          </button>
+          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="fva-preview" aria-label="Future value of annuity answer">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Future Value</p>
+          <div class="result mtg-result-card" id="fva-result" aria-live="polite">
+            <span class="mtg-result-value">6,288.95</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="fva-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Annuity Type</span>
+            <strong class="fi-metric-value" data-fva="metric-annuity-type">Ordinary</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total Payments</span>
+            <strong class="fi-metric-value" data-fva="metric-total-payments">5,000</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Effective Periods</span>
+            <strong class="fi-metric-value" data-fva="metric-effective-periods">10</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Interest Earned</span>
+            <strong class="fi-metric-value" data-fva="metric-total-interest">1,288.95</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Payment amount</span>
+            <strong data-fva="snap-payment">500</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Interest rate</span>
+            <strong data-fva="snap-rate">5%</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Periods</span>
+            <strong data-fva="snap-periods">10 years</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Payment timing</span>
+            <strong data-fva="snap-annuity-type">Ordinary Annuity</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span>
+            <strong data-fva="snap-compounding">Annual</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Effective periods</span>
+            <strong data-fva="snap-effective-periods">10</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Rate per period</span>
+            <strong data-fva="snap-periodic-rate">5%</strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="fva-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+  </div>
+</div>

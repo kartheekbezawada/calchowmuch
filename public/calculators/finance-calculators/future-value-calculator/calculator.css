@@ -1,0 +1,378 @@
+#calc-future-value .fv-results-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#calc-future-value .fv-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+#calc-future-value .fv-formula-steps {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-future-value .fi-exp-article,
+#calc-future-value .fi-exp-article-shell,
+#calc-future-value .fi-exp-article-main,
+#calc-future-value .fi-exp-story-block,
+#calc-future-value .fi-exp-article-intro,
+#calc-future-value .fi-exp-article-rail,
+#calc-future-value .fi-exp-rail-card {
+  display: grid;
+}
+
+#calc-future-value .fi-exp-article {
+  gap: 22px;
+}
+
+#calc-future-value .fi-exp-article-shell {
+  gap: 20px;
+}
+
+#calc-future-value .fi-exp-article-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+  gap: 20px;
+  align-items: start;
+}
+
+#calc-future-value .fi-exp-article-intro {
+  gap: 12px;
+}
+
+#calc-future-value .fi-exp-article-intro h2,
+#calc-future-value .fi-exp-story-block h3,
+#calc-future-value .fi-exp-rail-card h3 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-future-value .fi-exp-article-intro p,
+#calc-future-value .fi-exp-story-block p,
+#calc-future-value .fi-exp-story-block li,
+#calc-future-value .fi-exp-rail-card p,
+#calc-future-value .fi-exp-rail-card li {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.68;
+}
+
+#calc-future-value .fi-exp-article-intro p,
+#calc-future-value .fi-exp-story-block p {
+  max-width: 74ch;
+}
+
+#calc-future-value .fi-exp-article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 300px);
+  gap: 18px;
+  align-items: start;
+}
+
+#calc-future-value .fi-exp-article-main {
+  gap: 18px;
+  min-width: 0;
+}
+
+#calc-future-value .fi-exp-story-block {
+  gap: 12px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-future-value .fi-exp-story-block--table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 2px;
+  margin-bottom: 12px;
+}
+
+#calc-future-value .fi-exp-story-block--table {
+  margin-bottom: 8px;
+}
+
+#calc-future-value .fi-exp-story-block--formula {
+  gap: 14px;
+}
+
+#calc-future-value .fi-exp-bullet-list,
+#calc-future-value .fi-exp-rail-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+#calc-future-value .fi-exp-article-rail {
+  gap: 14px;
+  min-width: 0;
+}
+
+#calc-future-value .fi-exp-rail-card {
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-future-value .fi-exp-rail-list strong {
+  color: #13293d;
+}
+
+#calc-future-value .fi-exp-hero,
+#calc-future-value .fi-exp-guide {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-future-value .fi-exp-hero-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+  gap: 18px;
+  align-items: start;
+}
+
+#calc-future-value .fi-exp-hero-copy {
+  display: grid;
+  gap: 14px;
+}
+
+#calc-future-value .fi-exp-intro,
+#calc-future-value .fi-exp-support,
+#calc-future-value .fi-exp-section-head,
+#calc-future-value .fi-exp-guide-step-body {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-future-value .fi-exp-intro {
+  gap: 10px;
+}
+
+#calc-future-value .fi-exp-intro h2,
+#calc-future-value .fi-exp-section-head h3,
+#calc-future-value .fi-exp-card h3,
+#calc-future-value .fi-exp-guide-step h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-future-value .fi-exp-intro p,
+#calc-future-value .fi-exp-support p,
+#calc-future-value .fi-exp-card p,
+#calc-future-value .fi-exp-section-head p,
+#calc-future-value .fi-exp-guide-step p,
+#calc-future-value .fi-exp-guide-summary {
+  margin: 0;
+  max-width: 72ch;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-future-value .fi-exp-support-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-future-value .fi-exp-support-card {
+  display: grid;
+  align-content: start;
+  min-height: 100%;
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.9);
+}
+
+#calc-future-value .fi-exp-kpi {
+  display: grid;
+  gap: 6px;
+  padding: 18px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: linear-gradient(180deg, rgba(232, 241, 247, 0.88), rgba(255, 255, 255, 0.96));
+}
+
+#calc-future-value .fi-exp-kpi-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #557089;
+}
+
+#calc-future-value .fi-exp-kpi-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.15rem);
+  line-height: 1.1;
+  color: #13293d;
+}
+
+#calc-future-value .fi-exp-kpi-note {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-future-value .fi-exp-context-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#calc-future-value .fi-exp-hero .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 6px;
+}
+
+#calc-future-value .fi-exp-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+#calc-future-value .fi-exp-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-future-value .fi-exp-link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.08);
+  color: #163e59;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#calc-future-value .fi-exp-guide-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#calc-future-value .fi-exp-guide-step {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.96);
+}
+
+#calc-future-value .fi-exp-guide-marker {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+#calc-future-value .fi-exp-guide-marker::after {
+  content: '';
+  width: 1px;
+  min-height: 56px;
+  margin-left: 18px;
+  background: linear-gradient(180deg, rgba(31, 95, 135, 0.2), rgba(31, 95, 135, 0));
+}
+
+#calc-future-value .fi-exp-step-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.1);
+  color: #163e59;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#calc-future-value .fi-exp-guide-step-body h4 {
+  font-size: 1.08rem;
+  line-height: 1.25;
+}
+
+#calc-future-value .fi-exp-guide-step ol,
+#calc-future-value .fi-exp-guide-step ul,
+#calc-future-value .mtg-exp-section--notes ul {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-future-value .fi-exp-formula-stack {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-future-value .fi-exp-guide-step--formula .fi-exp-guide-step-body {
+  gap: 12px;
+}
+
+#calc-future-value .fv-formula-steps {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+#calc-future-value .fi-exp-guide-summary {
+  padding: 16px 20px 0;
+  border-top: 1px solid rgba(31, 95, 135, 0.12);
+}
+
+@media (max-width: 720px) {
+  #calc-future-value .fi-exp-article-head,
+  #calc-future-value .fi-exp-article-layout,
+  #calc-future-value .fi-exp-hero-shell,
+  #calc-future-value .fi-exp-support-grid,
+  #calc-future-value .fi-exp-context-grid,
+  #calc-future-value .fi-exp-guide-step {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-future-value .fi-exp-story-block,
+  #calc-future-value .fi-exp-rail-card {
+    padding: 18px;
+  }
+
+  #calc-future-value .fi-exp-guide-marker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 0;
+  }
+
+  #calc-future-value .fi-exp-guide-marker::after {
+    flex: 1 1 auto;
+    width: auto;
+    min-height: 1px;
+    margin-left: 0;
+    background: linear-gradient(90deg, rgba(31, 95, 135, 0.2), rgba(31, 95, 135, 0));
+  }
+}

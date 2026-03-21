@@ -13,8 +13,13 @@ const crashYearInput = document.querySelector('#ir-crash-year');
 const crashDropInput = document.querySelector('#ir-crash-drop');
 
 const resultOutput = document.querySelector('#ir-result');
-const resultDetail = document.querySelector('#ir-result-detail');
 const calculateButton = document.querySelector('#ir-calc');
+const metricNodes = {
+  contributions: document.querySelector('[data-ir-metric="contributions"]'),
+  profit: document.querySelector('[data-ir-metric="profit"]'),
+  cagr: document.querySelector('[data-ir-metric="cagr"]'),
+  'real-cagr': document.querySelector('[data-ir-metric="real-cagr"]'),
+};
 
 const advancedToggleButton = document.querySelector('#ir-advanced-toggle');
 const advancedSection = document.querySelector('#ir-advanced-section');
@@ -24,6 +29,8 @@ const addEventButton = document.querySelector('#ir-add-event');
 
 const breakdownHead = document.querySelector('#ir-breakdown-head');
 const breakdownBody = document.querySelector('#ir-breakdown-body');
+const breakdownNote = document.querySelector('#ir-breakdown-note');
+const breakdownTable = document.querySelector('#ir-breakdown-table');
 
 const graphTitle = document.querySelector('#ir-graph-title');
 const graphMain = document.querySelector('#ir-graph-main');
@@ -458,6 +465,19 @@ function setText(node, value) {
   node.textContent = value;
 }
 
+function updateBreakdownNote(mode, rows) {
+  if (!breakdownNote) {
+    return;
+  }
+
+  if (mode === 'monthly') {
+    breakdownNote.textContent = `Monthly view shows ${rows} checkpoints so you can inspect contribution timing, compounding, and tax drag in much finer detail.`;
+    return;
+  }
+
+  breakdownNote.textContent = `Annual view shows ${rows} checkpoints so longer plans stay readable while still highlighting when growth, contributions, and taxes change the path.`;
+}
+
 function renderBreakdown(output) {
   if (!breakdownHead || !breakdownBody) {
     return;
@@ -465,11 +485,13 @@ function renderBreakdown(output) {
 
   const mode = breakdownButtons?.getValue() ?? 'annual';
   if (mode === 'monthly') {
-    breakdownHead.innerHTML = '<th>Month</th><th>Start</th><th>Contributions</th><th>Interest</th><th>Tax</th><th>End</th>';
+    breakdownTable?.setAttribute('data-mode', 'monthly');
+    breakdownHead.innerHTML =
+      '<th scope="col">Month</th><th scope="col">Start</th><th scope="col">Contributions</th><th scope="col">Interest</th><th scope="col">Tax</th><th scope="col">End</th>';
     breakdownBody.innerHTML = output.monthlyBreakdown
       .map(
         (row) => `<tr>
-          <td>${row.month}</td>
+          <th scope="row">Month ${row.month}</th>
           <td>${formatMoney(row.startingBalance)}</td>
           <td>${formatMoney(row.contributions)}</td>
           <td>${formatMoney(row.interestEarned)}</td>
@@ -478,14 +500,17 @@ function renderBreakdown(output) {
         </tr>`
       )
       .join('');
+    updateBreakdownNote('monthly', output.monthlyBreakdown.length);
     return;
   }
 
-  breakdownHead.innerHTML = '<th>Year</th><th>Start</th><th>Contributions</th><th>Interest</th><th>Tax</th><th>End</th>';
+  breakdownTable?.setAttribute('data-mode', 'annual');
+  breakdownHead.innerHTML =
+    '<th scope="col">Year</th><th scope="col">Start</th><th scope="col">Contributions</th><th scope="col">Interest</th><th scope="col">Tax</th><th scope="col">End</th>';
   breakdownBody.innerHTML = output.yearlyBreakdown
     .map(
       (row) => `<tr>
-        <td>${row.year}</td>
+        <th scope="row">Year ${row.year}</th>
         <td>${formatMoney(row.startingBalance)}</td>
         <td>${formatMoney(row.contributions)}</td>
         <td>${formatMoney(row.interestEarned)}</td>
@@ -494,6 +519,7 @@ function renderBreakdown(output) {
       </tr>`
     )
     .join('');
+  updateBreakdownNote('annual', output.yearlyBreakdown.length);
 }
 
 function buildPlotPoints(values, minValue, maxValue) {
@@ -692,13 +718,15 @@ function renderGraph(output) {
 }
 
 function renderSummary(output, input) {
-  setText(resultOutput, formatMoney(output.summary.finalValue));
-  if (resultDetail) {
-    resultDetail.innerHTML =
-      `<p><strong>Total Contributions:</strong> ${formatMoney(output.summary.totalContributions)}</p>` +
-      `<p><strong>Total Profit:</strong> ${formatMoney(output.summary.totalGain)}</p>` +
-      `<p><strong>Nominal CAGR:</strong> ${formatPercent(output.summary.nominalCAGR)}</p>`;
+  if (resultOutput) {
+    resultOutput.innerHTML = `<span class="mtg-result-value is-updated">${formatMoney(output.summary.finalValue)}</span>`;
+    const valueEl = resultOutput.querySelector('.mtg-result-value');
+    if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
   }
+  setText(metricNodes.contributions, formatMoney(output.summary.totalContributions));
+  setText(metricNodes.profit, formatMoney(output.summary.totalGain));
+  setText(metricNodes.cagr, formatPercent(output.summary.nominalCAGR));
+  setText(metricNodes['real-cagr'], formatPercent(output.summary.realCAGR));
 
   setText(snapNodes.contributions, formatMoney(output.summary.totalContributions));
   setText(snapNodes.profit, formatMoney(output.summary.totalGain));
@@ -730,9 +758,10 @@ function renderSummary(output, input) {
 
 function renderValidationErrors(errors) {
   setText(resultOutput, errors[0] ?? 'Invalid input');
-  if (resultDetail) {
-    resultDetail.innerHTML = '';
-  }
+  setText(metricNodes.contributions, '-');
+  setText(metricNodes.profit, '-');
+  setText(metricNodes.cagr, '-');
+  setText(metricNodes['real-cagr'], '-');
 }
 
 function calculateAndRender() {
@@ -756,9 +785,11 @@ function toggleAdvancedMode() {
     return;
   }
   advancedSection.classList.toggle('is-hidden', !advancedOpen);
+  advancedSection.setAttribute('aria-hidden', advancedOpen ? 'false' : 'true');
   advancedToggleButton?.setAttribute('aria-expanded', advancedOpen ? 'true' : 'false');
   if (advancedToggleButton) {
     advancedToggleButton.textContent = advancedOpen ? 'Hide Advanced Mode' : 'Show Advanced Mode';
+    advancedToggleButton.classList.toggle('is-active', advancedOpen);
   }
   if (advancedOpen) {
     buildVariableRows();
@@ -798,9 +829,11 @@ function applyDefaultFormState() {
   advancedOpen = false;
   variableRowsTouched = false;
   advancedSection?.classList.add('is-hidden');
+  advancedSection?.setAttribute('aria-hidden', 'true');
   advancedToggleButton?.setAttribute('aria-expanded', 'false');
   if (advancedToggleButton) {
     advancedToggleButton.textContent = 'Show Advanced Mode';
+    advancedToggleButton.classList.remove('is-active');
   }
   variableRowsRoot?.replaceChildren();
   eventsRowsRoot?.replaceChildren();

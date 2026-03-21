@@ -1,0 +1,435 @@
+#calc-present-value .pv-results-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#calc-present-value .pv-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+#calc-present-value .pv-formula-steps {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-present-value .fi-scenario-section {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 38%),
+    linear-gradient(180deg, rgba(247, 250, 252, 0.96), rgba(240, 246, 250, 0.92));
+  display: grid;
+  gap: 16px;
+}
+
+#calc-present-value .fi-scenario-header {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-present-value .fi-scenario-eyebrow {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #557089;
+  font-weight: 700;
+}
+
+#calc-present-value .fi-scenario-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #13293d;
+}
+
+#calc-present-value .fi-scenario-copy {
+  margin: 0;
+  color: #456176;
+}
+
+#calc-present-value .fi-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-present-value .fi-scenario-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+}
+
+#calc-present-value .fi-scenario-card[data-tone='optimized'] {
+  border-color: rgba(21, 128, 61, 0.18);
+  background: linear-gradient(180deg, rgba(241, 253, 244, 0.92), rgba(255, 255, 255, 0.86));
+}
+
+#calc-present-value .fi-scenario-card[data-tone='stress'] {
+  border-color: rgba(180, 83, 9, 0.2);
+  background: linear-gradient(180deg, rgba(255, 248, 235, 0.96), rgba(255, 255, 255, 0.9));
+}
+
+#calc-present-value .fi-scenario-card[data-tone='optional'] {
+  border-color: rgba(30, 64, 175, 0.16);
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.95), rgba(255, 255, 255, 0.88));
+}
+
+#calc-present-value .fi-scenario-label {
+  margin: 0;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(19, 41, 61, 0.08);
+  color: #29445a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#calc-present-value .fi-scenario-card h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  color: #13293d;
+}
+
+#calc-present-value .fi-scenario-impact,
+#calc-present-value .fi-scenario-insight,
+#calc-present-value .fi-scenario-action {
+  margin: 0;
+}
+
+#calc-present-value .fi-scenario-impact {
+  color: #163e59;
+  font-weight: 700;
+}
+
+#calc-present-value .fi-scenario-insight,
+#calc-present-value .fi-scenario-action {
+  color: #456176;
+}
+
+#calc-present-value .fi-scenario-drivers {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#calc-present-value .fi-scenario-drivers li {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(19, 41, 61, 0.06);
+  color: #29445a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-present-value .fi-scenario-questions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-present-value .fi-scenario-qa {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+#calc-present-value .fi-scenario-qa h3,
+#calc-present-value .fi-scenario-qa p {
+  margin: 0;
+}
+
+#calc-present-value .fi-scenario-qa h3 {
+  font-size: 0.98rem;
+  color: #13293d;
+}
+
+#calc-present-value .fi-scenario-qa p {
+  margin-top: 8px;
+  color: #456176;
+}
+
+@media (max-width: 720px) {
+  #calc-present-value .fi-scenario-grid,
+  #calc-present-value .fi-scenario-questions {
+    grid-template-columns: 1fr;
+  }
+}
+
+#calc-present-value .fi-exp-hero,
+#calc-present-value .fi-exp-guide {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-present-value .fi-exp-intro,
+#calc-present-value .fi-exp-support,
+#calc-present-value .fi-exp-section-head,
+#calc-present-value .fi-exp-guide-step-body {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-present-value .fi-exp-intro h2,
+#calc-present-value .fi-exp-section-head h3,
+#calc-present-value .fi-exp-card h3,
+#calc-present-value .fi-exp-guide-step h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-present-value .fi-exp-intro p,
+#calc-present-value .fi-exp-support p,
+#calc-present-value .fi-exp-card p,
+#calc-present-value .fi-exp-section-head p,
+#calc-present-value .fi-exp-guide-step p,
+#calc-present-value .fi-exp-guide-summary {
+  margin: 0;
+  max-width: 72ch;
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-present-value .fi-exp-kpi,
+#calc-present-value .fi-exp-card,
+#calc-present-value .fi-exp-guide-step {
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-present-value .fi-exp-kpi {
+  gap: 6px;
+  background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
+}
+
+#calc-present-value .fi-exp-kpi-label,
+#calc-present-value .fi-exp-step-no {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #557089;
+}
+
+#calc-present-value .fi-exp-kpi-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.15rem);
+  line-height: 1.1;
+  color: #13293d;
+}
+
+#calc-present-value .fi-exp-context-grid,
+#calc-present-value .fi-exp-guide-list {
+  display: grid;
+  gap: 14px;
+}
+
+#calc-present-value .fi-exp-context-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-present-value .fi-exp-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-present-value .fi-exp-link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.08);
+  color: #163e59;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+#calc-present-value .fi-exp-guide-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-present-value .fi-exp-step-no {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(31, 95, 135, 0.1);
+}
+
+#calc-present-value .fi-exp-guide-step ol,
+#calc-present-value .fi-exp-guide-step ul,
+#calc-present-value .mtg-exp-section--notes ul {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-present-value .fi-exp-guide-summary {
+  padding-top: 10px;
+  border-top: 1px solid rgba(31, 95, 135, 0.12);
+}
+
+@media (max-width: 720px) {
+  #calc-present-value .fi-exp-context-grid,
+  #calc-present-value .fi-exp-guide-step {
+    grid-template-columns: 1fr;
+  }
+}
+
+#calc-present-value .fi-exp-article,
+#calc-present-value .fi-exp-article-shell,
+#calc-present-value .fi-exp-article-main,
+#calc-present-value .fi-exp-story-block,
+#calc-present-value .fi-exp-article-intro,
+#calc-present-value .fi-exp-article-rail,
+#calc-present-value .fi-exp-rail-card {
+  display: grid;
+}
+
+#calc-present-value .fi-exp-article {
+  gap: 22px;
+}
+
+#calc-present-value .fi-exp-article-shell {
+  gap: 20px;
+}
+
+#calc-present-value .fi-exp-article-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+  gap: 20px;
+  align-items: start;
+}
+
+#calc-present-value .fi-exp-article-intro {
+  gap: 12px;
+}
+
+#calc-present-value .fi-exp-article-intro h2,
+#calc-present-value .fi-exp-story-block h3,
+#calc-present-value .fi-exp-rail-card h3 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-present-value .fi-exp-article-intro p,
+#calc-present-value .fi-exp-story-block p,
+#calc-present-value .fi-exp-story-block li,
+#calc-present-value .fi-exp-rail-card p,
+#calc-present-value .fi-exp-rail-card li {
+  margin: 0;
+  color: #44515c;
+  line-height: 1.68;
+}
+
+#calc-present-value .fi-exp-article-intro p,
+#calc-present-value .fi-exp-story-block p {
+  max-width: 74ch;
+}
+
+#calc-present-value .fi-exp-article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: 18px;
+  align-items: start;
+}
+
+#calc-present-value .fi-exp-article-main {
+  gap: 20px;
+  min-width: 0;
+}
+
+#calc-present-value .fi-exp-story-block {
+  gap: 12px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+#calc-present-value .fi-exp-story-block--table {
+  margin-bottom: 8px;
+}
+
+#calc-present-value .fi-exp-story-block--table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+#calc-present-value .fi-exp-bullet-list,
+#calc-present-value .fi-exp-rail-list,
+#calc-present-value .fi-exp-formula-steps {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+#calc-present-value .fi-exp-formula-block {
+  width: fit-content;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+#calc-present-value .fi-exp-article-rail {
+  gap: 14px;
+  min-width: 0;
+}
+
+#calc-present-value .fi-exp-rail-card {
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background: rgba(248, 250, 252, 0.94);
+}
+
+#calc-present-value .fi-exp-rail-list strong {
+  color: #13293d;
+}
+
+@media (max-width: 720px) {
+  #calc-present-value .fi-exp-article-head,
+  #calc-present-value .fi-exp-article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-present-value .fi-exp-story-block,
+  #calc-present-value .fi-exp-rail-card {
+    padding: 18px;
+  }
+}

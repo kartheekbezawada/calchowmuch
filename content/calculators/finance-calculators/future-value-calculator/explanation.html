@@ -1,20 +1,36 @@
 <div id="fv-explanation" class="explanation-pane">
   <div id="loan-mtg-explanation">
     <h2>How Much Could Your Money Grow?</h2>
-    <p>
-      Use this future value calculator to estimate how much today&apos;s money could grow over time
-      with compounding and optional regular contributions. It helps when you need to forecast a
-      savings balance, investment target, or long-term growth plan.
-    </p>
-    <p>
-      In this scenario, a starting amount of <span data-fv="present-value"></span> growing at
-      <span data-fv="interest-rate"></span> over <span data-fv="time-period"></span> produces a
-      future value of <span data-fv="future-value"></span>, with total growth of
-      <span data-fv="total-growth"></span>.
-    </p>
+
+    <ul class="journal-bullets">
+      <li>
+        Use this future value calculator to estimate how much today&apos;s money could grow over time
+        with compounding and optional regular contributions. It helps when you need to forecast a
+        savings balance, investment target, or long-term growth plan.
+      </li>
+      <li>
+        In this scenario, a starting amount of <span data-fv="present-value"></span> growing at
+        <span data-fv="interest-rate"></span> over <span data-fv="time-period"></span> produces a
+        future value of <span data-fv="future-value"></span>, with total growth of
+        <span data-fv="total-growth"></span>.
+      </li>
+    </ul>
 
     <section class="mtg-exp-section">
-      <h3>Results Table</h3>
+      <h3 class="snapshot-heading">Current Result Snapshot</h3>
+
+      <p>
+        Read the current output in layers. Start with the projected future value, then move to total
+        contributions and total growth. That sequence lets you see whether the final balance is
+        driven mostly by money you put in or by growth that builds over the full period.
+      </p>
+
+      <ul class="journal-bullets">
+        <li><strong>Starting balance</strong> sets the base that begins compounding immediately.</li>
+        <li><strong>Recurring contributions</strong> control how much fresh capital joins the plan over time.</li>
+        <li><strong>Rate and time</strong> determine how powerful compounding becomes before the plan ends.</li>
+      </ul>
+
       <div class="table-scroll" tabindex="0">
         <table class="fv-results-table">
           <thead>
@@ -84,10 +100,16 @@
 
     <section class="mtg-exp-section">
       <h3>Explanation</h3>
-      <p>
-        Future value (FV) shows how much money today can grow over time when interest is applied
-        repeatedly. Below is a breakdown of how your inputs produce the result.
-      </p>
+
+      <ul class="journal-bullets">
+        <li>
+          Future value (FV) shows how much money today can grow over time when interest is applied
+          repeatedly.
+        </li>
+        <li>
+          Below is a breakdown of how your inputs produce the result.
+        </li>
+      </ul>
 
       <ul class="fv-explanation-list">
         <li>
@@ -224,7 +246,8 @@
 
     <section class="mtg-exp-section mtg-exp-section--notes">
       <h3>Important Notes</h3>
-      <ul>
+
+      <ul class="journal-bullets">
         <li>Results are estimates based on a fixed growth rate and selected compounding frequency.</li>
         <li>Regular contributions are assumed to follow the same timing and amount throughout the full period.</li>
         <li>Higher rates or longer time horizons can materially increase the future value because of compounding.</li>

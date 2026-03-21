@@ -1,15 +1,29 @@
 import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { calculateSavingsGoal } from '/assets/js/core/time-value-utils.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+  wireRangeWithField,
+} from '/calculators/finance-calculators/shared/cluster-ux.js';
 
 /* ── DOM refs: calculator inputs ── */
 const goalInput = document.querySelector('#tsg-goal');
+const goalField = document.querySelector('#tsg-goal-field');
 const currentInput = document.querySelector('#tsg-current');
+const currentField = document.querySelector('#tsg-current-field');
 const contributionInput = document.querySelector('#tsg-contribution');
+const contributionField = document.querySelector('#tsg-contribution-field');
 const rateInput = document.querySelector('#tsg-rate');
+const rateField = document.querySelector('#tsg-rate-field');
 const calculateButton = document.querySelector('#tsg-calc');
 const resultDiv = document.querySelector('#tsg-result');
 const summaryDiv = document.querySelector('#tsg-result-detail');
+const previewPanel = document.querySelector('#tsg-preview');
+const staleNote = document.querySelector('#tsg-stale-note');
+const metricContributions = document.querySelector('[data-tsg="metric-contributions"]');
+const metricInterest = document.querySelector('[data-tsg="metric-interest"]');
+const metricBalance = document.querySelector('[data-tsg="metric-balance"]');
 
 /* ── DOM refs: slider value displays ── */
 const goalDisplay = document.querySelector('#tsg-goal-display');
@@ -51,18 +65,19 @@ const valueTargets = explanationRoot
 /* ── Button groups ── */
 const compoundingGroup = document.querySelector('[data-button-group="tsg-compounding"]');
 const timingGroup = document.querySelector('[data-button-group="tsg-timing"]');
+let staleResultController = null;
 
 const compoundingButtons = setupButtonGroup(compoundingGroup, {
   defaultValue: 'annual',
   onChange() {
-    calculate();
+    staleResultController?.sync();
   },
 });
 
 const timingButtons = setupButtonGroup(timingGroup, {
   defaultValue: 'end',
   onChange() {
-    calculate();
+    staleResultController?.sync();
   },
 });
 
@@ -224,54 +239,76 @@ function fmt(value, opts = {}) {
   });
 }
 
-function setSliderFill(input) {
-  if (!input) {return;}
-  const min = Number(input.min || 0);
-  const max = Number(input.max || 100);
-  const value = Number(input.value);
-  const pct = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  input.style.setProperty('--fill', `${Math.min(100, Math.max(0, pct))}%`);
-}
+const parseNumericFieldValue = (value) =>
+  Number(
+    String(value ?? '')
+      .replace(/,/g, '')
+      .trim()
+  );
+const formatWholeFieldValue = (value) => fmt(value, { maximumFractionDigits: 0 });
+const formatDecimalFieldValue = (value) => (Number.isFinite(value) ? String(value) : '');
 
 function updateSliderDisplays() {
   if (goalInput && goalDisplay) {
-    setSliderFill(goalInput);
     goalDisplay.textContent = fmt(Number(goalInput.value), { maximumFractionDigits: 0 });
   }
   if (currentInput && currentDisplay) {
-    setSliderFill(currentInput);
     currentDisplay.textContent = fmt(Number(currentInput.value), { maximumFractionDigits: 0 });
   }
   if (contributionInput && contribDisplay) {
-    setSliderFill(contributionInput);
     contribDisplay.textContent = fmt(Number(contributionInput.value), { maximumFractionDigits: 0 });
   }
   if (rateInput && rateDisplay) {
-    setSliderFill(rateInput);
     rateDisplay.textContent = `${Number(rateInput.value)}%`;
   }
 }
 
 function updateTargets(targets, value) {
-  if (!targets) {return;}
+  if (!targets) {
+    return;
+  }
   targets.forEach((node) => {
     node.textContent = value;
   });
 }
 
 function setError(message) {
-  if (resultDiv) {resultDiv.textContent = message;}
-  if (summaryDiv) {summaryDiv.textContent = '';}
+  if (resultDiv) {
+    resultDiv.textContent = message;
+  }
+  if (metricContributions) {
+    metricContributions.textContent = '-';
+  }
+  if (metricInterest) {
+    metricInterest.textContent = '-';
+  }
+  if (metricBalance) {
+    metricBalance.textContent = '-';
+  }
+  staleResultController?.markFresh();
 }
 
 function timingLabel(value) {
   return value === 'beginning' ? 'Beginning of Month' : 'End of Month';
 }
 
+function getCalculationSignature() {
+  return [
+    goalInput?.value ?? '',
+    currentInput?.value ?? '',
+    contributionInput?.value ?? '',
+    rateInput?.value ?? '',
+    compoundingButtons?.getValue() ?? '',
+    timingButtons?.getValue() ?? '',
+  ].join('|');
+}
+
 /* ── Core calculate ── */
 
 function calculate() {
-  if (!resultDiv || !summaryDiv) {return;}
+  if (!resultDiv || !summaryDiv) {
+    return;
+  }
   try {
     const goalAmount = Number(goalInput?.value);
     const currentSavings = Number(currentInput?.value);
@@ -300,8 +337,19 @@ function calculate() {
     if (currentSavings >= goalAmount) {
       resultDiv.innerHTML = '<span class="mtg-result-value is-updated">Already reached!</span>';
       const el = resultDiv.querySelector('.mtg-result-value');
-      if (el) {setTimeout(() => el.classList.remove('is-updated'), 420);}
-      summaryDiv.innerHTML = '<p>Your current savings already meet or exceed the goal.</p>';
+      if (el) {
+        setTimeout(() => el.classList.remove('is-updated'), 420);
+      }
+      if (metricContributions) {
+        metricContributions.textContent = '0.00';
+      }
+      if (metricInterest) {
+        metricInterest.textContent = '0.00';
+      }
+      if (metricBalance) {
+        metricBalance.textContent = fmt(currentSavings);
+      }
+      staleResultController?.markFresh();
       return;
     }
 
@@ -347,22 +395,45 @@ function calculate() {
     /* Preview panel */
     resultDiv.innerHTML = `<span class="mtg-result-value is-updated">${timeStr}</span>`;
     const valueEl = resultDiv.querySelector('.mtg-result-value');
-    if (valueEl) {setTimeout(() => valueEl.classList.remove('is-updated'), 420);}
+    if (valueEl) {
+      setTimeout(() => valueEl.classList.remove('is-updated'), 420);
+    }
 
-    summaryDiv.innerHTML =
-      `<p><strong>Total contributions:</strong> ${totalContribStr}</p>` +
-      `<p><strong>Interest earned:</strong> ${totalInterestStr}</p>` +
-      `<p><strong>Final balance:</strong> ${finalBalanceStr}</p>`;
+    if (metricContributions) {
+      metricContributions.textContent = totalContribStr;
+    }
+    if (metricInterest) {
+      metricInterest.textContent = totalInterestStr;
+    }
+    if (metricBalance) {
+      metricBalance.textContent = finalBalanceStr;
+    }
 
     /* Snapshot rows */
-    if (snapGoal) {snapGoal.textContent = goalStr;}
-    if (snapCurrent) {snapCurrent.textContent = currentStr;}
-    if (snapContribution) {snapContribution.textContent = contribStr;}
-    if (snapRate) {snapRate.textContent = rateStr;}
-    if (snapCompounding) {snapCompounding.textContent = compoundingStr;}
-    if (snapTiming) {snapTiming.textContent = timingStr;}
-    if (snapContributions) {snapContributions.textContent = totalContribStr;}
-    if (snapInterest) {snapInterest.textContent = totalInterestStr;}
+    if (snapGoal) {
+      snapGoal.textContent = goalStr;
+    }
+    if (snapCurrent) {
+      snapCurrent.textContent = currentStr;
+    }
+    if (snapContribution) {
+      snapContribution.textContent = contribStr;
+    }
+    if (snapRate) {
+      snapRate.textContent = rateStr;
+    }
+    if (snapCompounding) {
+      snapCompounding.textContent = compoundingStr;
+    }
+    if (snapTiming) {
+      snapTiming.textContent = timingStr;
+    }
+    if (snapContributions) {
+      snapContributions.textContent = totalContribStr;
+    }
+    if (snapInterest) {
+      snapInterest.textContent = totalInterestStr;
+    }
 
     /* Explanation targets */
     if (valueTargets) {
@@ -381,21 +452,81 @@ function calculate() {
       updateTargets(valueTargets.gap, gapStr);
       updateTargets(valueTargets.timeResult, timeStr);
     }
+    staleResultController?.markFresh();
   } catch (err) {
     console.error('[TSG Calculator] calculate():', err);
+    staleResultController?.markFresh();
   }
 }
 
 /* ── Event wiring ── */
 
-[goalInput, currentInput, contributionInput, rateInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    updateSliderDisplays();
-    calculate();
-  });
+wireRangeWithField({
+  rangeInput: goalInput,
+  textInput: goalField,
+  formatFieldValue: formatWholeFieldValue,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: updateSliderDisplays,
 });
 
-calculateButton?.addEventListener('click', calculate);
+wireRangeWithField({
+  rangeInput: currentInput,
+  textInput: currentField,
+  formatFieldValue: formatWholeFieldValue,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: contributionInput,
+  textInput: contributionField,
+  formatFieldValue: formatWholeFieldValue,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+wireRangeWithField({
+  rangeInput: rateInput,
+  textInput: rateField,
+  formatFieldValue: formatDecimalFieldValue,
+  parseFieldValue: parseNumericFieldValue,
+  onVisualUpdate: updateSliderDisplays,
+});
+
+staleResultController = createStaleResultController({
+  resultPanel: previewPanel,
+  staleTargets: [staleNote],
+  getSignature: getCalculationSignature,
+});
+
+staleResultController.watchElements(
+  [
+    goalInput,
+    currentInput,
+    contributionInput,
+    rateInput,
+    goalField,
+    currentField,
+    contributionField,
+    rateField,
+  ],
+  ['input', 'change']
+);
+staleResultController.watchElements(
+  [
+    ...Array.from(compoundingGroup?.querySelectorAll('button') ?? []),
+    ...Array.from(timingGroup?.querySelectorAll('button') ?? []),
+  ],
+  ['click']
+);
+
+calculateButton?.addEventListener('click', () => {
+  calculate();
+  revealResultPanel({
+    resultPanel: previewPanel,
+    focusTarget: resultDiv,
+  });
+});
 
 /* ── Init ── */
 updateSliderDisplays();

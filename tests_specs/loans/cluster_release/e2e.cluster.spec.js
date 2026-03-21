@@ -1,6 +1,10 @@
 import { expect, test } from '@playwright/test';
 
-const ROUTES = ['/loan-calculators/buy-to-let-mortgage-calculator/', '/loan-calculators/mortgage-calculator/', '/car-loan-calculators/car-loan-calculator/'];
+const ROUTES = [
+  '/loan-calculators/buy-to-let-mortgage-calculator/',
+  '/loan-calculators/mortgage-calculator/',
+  '/loan-calculators/personal-loan-calculator/',
+];
 
 function isIgnorableRuntimeError(message) {
   return (

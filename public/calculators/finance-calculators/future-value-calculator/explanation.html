@@ -1,0 +1,455 @@
+<div id="fv-explanation" class="explanation-pane">
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>How Much Could This Balance Grow?</h2>
+          <p>
+            This future value calculator is built for one central question: if you leave money in
+            place and continue adding to it, how large could the ending balance become under a fixed
+            growth assumption?
+          </p>
+          <p>
+            With <span data-fv="present-value"></span> already invested, a rate of
+            <span data-fv="interest-rate"></span>, a horizon of
+            <span data-fv="time-period"></span>, and recurring additions of
+            <span data-fv="regular-contribution"></span>, the current projection points to a future
+            value of <strong><span data-fv="future-value"></span></strong>. That number is not a
+            promise. It is a planning estimate that helps you judge whether your present balance,
+            savings habit, and expected rate are aligned with the outcome you want.
+          </p>
+        </div>
+
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Projected future value</p>
+          <p class="fi-exp-kpi-value"><strong><span data-fv="future-value"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Based on <span data-fv="present-value"></span> invested today and
+            <span data-fv="regular-contribution"></span> added each period.
+          </p>
+        </aside>
+      </header>
+
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>What This Result Is Actually Saying</h3>
+            <p>
+              A future value answer is easiest to use when you stop thinking of it as a single
+              headline number and start reading it as the combined effect of three moving parts:
+              the balance you already have, the money you continue to add, and the compounding that
+              acts on both over time. The projected ending value matters, but the structure behind
+              it matters more. A strong result created mostly by a high contribution burden tells a
+              different story from a similar result created by patience and compounding.
+            </p>
+            <p>
+              That is why this page is best used as a decision tool rather than a curiosity tool.
+              If the projection looks higher than expected, the next question is what produced that
+              improvement. If the projection looks weaker than expected, the next question is
+              whether the problem is the starting balance, the contribution pattern, the time
+              horizon, or the growth assumption. A good future value estimate helps you identify the
+              driver, not just the destination.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li>
+                <strong>Starting balance</strong> sets the base that begins compounding
+                immediately.
+              </li>
+              <li>
+                <strong>Recurring contributions</strong> control how much fresh capital joins the
+                plan over time.
+              </li>
+              <li>
+                <strong>Rate and time</strong> determine how powerful compounding becomes before the
+                plan ends.
+              </li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--table">
+            <h3>Current Result Snapshot</h3>
+            <p>
+              Read the current output in layers. Start with the projected future value. Then move
+              to total contributions and total growth. That sequence lets you see whether the final
+              balance is being driven mostly by money you put in yourself or by growth that builds
+              over the full period.
+            </p>
+            <div class="table-scroll" tabindex="0">
+              <table class="fv-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Present Value</td>
+                    <td><span data-fv="present-value"></span></td>
+                    <td>The balance already invested or saved today.</td>
+                  </tr>
+                  <tr>
+                    <td>Interest Rate</td>
+                    <td><span data-fv="interest-rate"></span></td>
+                    <td>The annual growth assumption used for the projection.</td>
+                  </tr>
+                  <tr>
+                    <td>Contribution / Period</td>
+                    <td><span data-fv="regular-contribution"></span></td>
+                    <td>The recurring amount added alongside the original balance.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Contributions</td>
+                    <td><span data-fv="total-contributions"></span></td>
+                    <td>The sum of all recurring additions made over the full horizon.</td>
+                  </tr>
+                  <tr>
+                    <td>Total Growth</td>
+                    <td><span data-fv="total-growth"></span></td>
+                    <td>The growth created by compounding on both the principal and contributions.</td>
+                  </tr>
+                  <tr>
+                    <td>Effective Periods</td>
+                    <td><span data-fv="total-periods"></span></td>
+                    <td>
+                      The total count of compounding periods created by the time and frequency
+                      settings.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>What Usually Moves The Answer Most</h3>
+            <p>
+              In short-term projections, the biggest lever is often the amount you contribute. In
+              long-term projections, time becomes far more powerful because it gives compounding
+              more chances to operate. Many people over-focus on the rate because it is the most
+              visible percentage on the page, but in practice a realistic time horizon and steady
+              contributions often matter more than small differences in return assumptions.
+            </p>
+            <p>
+              That is why a future value calculator is useful for comparing realistic tradeoffs. If
+              you can increase the contribution only slightly but extend the horizon meaningfully,
+              the longer horizon may do more work than chasing a marginally better rate. Likewise,
+              if the horizon is fixed, then contribution discipline becomes the main lever. A clean
+              reading of the result helps you see which change actually improves the plan instead of
+              guessing based on intuition alone.
+            </p>
+            <p>
+              The most reliable way to use this page is to treat each input as a planning lever and
+              then judge its effect in context. A large opening balance gives the calculation a head
+              start. A steady recurring deposit improves the slope of the outcome. A rate that is
+              too aggressive can make the projection look better than the plan deserves. Time is
+              often the quiet multiplier that turns a reasonable setup into a strong one.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block fi-exp-story-block--formula">
+            <h3>The Formula Behind The Projection</h3>
+            <p>
+              The core future value relationship starts with a simple compound-growth expression:
+              money today is multiplied by a growth factor that repeats over the total number of
+              periods. That core logic becomes more useful when you connect each symbol to a real
+              planning decision instead of treating the formula as abstract math.
+            </p>
+            <p class="fv-formula-block">FV = PV &times; (1 + r)<sup>n</sup></p>
+            <ul class="fi-exp-bullet-list">
+              <li>
+                <strong>FV</strong> is the future value, or the ending balance you are trying to
+                estimate.
+              </li>
+              <li>
+                <strong>PV</strong> is the present value, the amount already available to start
+                compounding now.
+              </li>
+              <li>
+                <strong>r</strong> is the rate applied to each compounding period rather than just
+                the annual headline rate.
+              </li>
+              <li>
+                <strong>n</strong> is the number of effective periods created by the chosen horizon
+                and compounding pattern.
+              </li>
+            </ul>
+            <p>
+              For the current setup, the annual assumption converts to
+              <span data-fv="applied-rate"></span>% per period. The full horizon becomes
+              <span data-fv="total-periods"></span> periods, and the compound growth factor is
+              <span data-fv="formula-growth-factor"></span>. Those numbers matter because they show
+              how the annual assumption is translated into the actual growth steps used in the
+              projection.
+            </p>
+            <ol class="fv-formula-steps">
+              <li>Start with the present value of <span data-fv="present-value"></span>.</li>
+              <li>
+                Convert the annual rate into the applied per-period rate of
+                <span data-fv="applied-rate"></span>%.
+              </li>
+              <li>
+                Convert the full horizon into <span data-fv="total-periods"></span> total periods.
+              </li>
+              <li>
+                Build the compound factor of <span data-fv="formula-growth-factor"></span>.
+              </li>
+              <li>
+                Add the contribution effect so the projection reaches
+                <span data-fv="future-value"></span> instead of reflecting only the opening balance.
+              </li>
+            </ol>
+            <p>
+              The formula is helpful because it shows what the calculator is assuming. It is not
+              saying markets move in a straight line. It is saying that if growth behaves according
+              to the fixed assumptions you entered, this is the balance those assumptions imply.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>How To Use This Calculator Like A Planning Tool</h3>
+            <p>
+              The most useful way to work with future value is to ask practical questions in a
+              disciplined order. Start by confirming that the opening balance is accurate. Then
+              enter only the recurring contribution you genuinely expect to maintain. After that,
+              choose a rate that is defendable for the asset mix or savings context you are
+              modeling. Only then should you lengthen the time horizon and judge whether the final
+              answer feels realistic.
+            </p>
+            <p>
+              This sequence matters because people often begin with the desired outcome and then
+              reverse-engineer an optimistic rate to justify it. That creates an attractive answer
+              but a weak plan. A better approach is to enter the facts you can control, use a rate
+              you can explain, and let the projected balance tell you whether the plan is already
+              good enough or whether contributions, time, or expectations need to change.
+            </p>
+            <ul class="fi-exp-bullet-list">
+              <li>Use the opening balance to reflect money already working for you.</li>
+              <li>Include recurring contributions only if they are likely to stay consistent.</li>
+              <li>Use the output as a planning range anchor, not as a guaranteed future balance.</li>
+              <li>
+                Compare future value, total contributions, and total growth together rather than in
+                isolation.
+              </li>
+              <li>
+                Revisit the rate assumption first when the result looks unusually strong or weak.
+              </li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Why Contributions And Time Work Together</h3>
+            <p>
+              Contributions do more than increase the final total by their face value. Each deposit
+              also creates a new base that may compound for the remaining life of the plan. That is
+              why recurring contributions can reshape a result so materially. The current setup
+              includes total contributions of <span data-fv="total-contributions"></span>, but the
+              ending balance is higher because compounding also acts on those additions as they are
+              made.
+            </p>
+            <p>
+              Time determines how much room that process has to work. A modest deposit program can
+              still produce a meaningful balance when it is given enough periods to build. The same
+              deposit program can look underwhelming when the horizon is too short. This is the real
+              reason future value planning often rewards consistency more than intensity. A plan you
+              can maintain across many periods usually beats a short burst of effort followed by
+              interruption.
+            </p>
+            <p>
+              The current output also shows total growth of <span data-fv="total-growth"></span>.
+              That figure is useful because it separates the compounding effect from the cash you
+              directly contributed. When total growth starts to become a large share of the ending
+              balance, the plan is no longer being carried only by your deposits. It is beginning to
+              benefit from compounding in a more meaningful way.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Choosing A Believable Growth Assumption</h3>
+            <p>
+              The rate you enter should be defensible, not flattering. For a savings account, a
+              conservative range may be appropriate because the balance is stable but growth is
+              modest. For an investment portfolio, the expected rate may be higher, but it should
+              still reflect the level of risk and the fact that real returns rarely arrive in a
+              smooth line. A future value calculator simplifies that uncertainty into a fixed input,
+              so the quality of the answer depends heavily on the honesty of the rate.
+            </p>
+            <p>
+              If you are unsure which rate to use, it is usually better to test a sober base case
+              than to rely on the best historical year you can find. The value of this page is not
+              in producing the highest possible future number. Its value is in helping you see
+              whether a realistic combination of balance, deposits, time, and return can support
+              the goal you have in mind.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>When Future Value Is The Right Tool</h3>
+            <p>
+              Use this calculator when the question is about the size of a balance at a future
+              date. That includes savings plans, investment projections, education funds, wealth
+              accumulation targets, and any situation where you want to estimate what a current
+              balance plus ongoing additions might become. It is especially useful when you need a
+              clean comparison between different savings habits or different time horizons.
+            </p>
+            <p>
+              If your real question is the present-day worth of a future amount, the
+              <a href="/finance-calculators/present-value-calculator/">present value calculator</a>
+              is the better route. If you want a more explicit focus on the mechanics of
+              compounding, the
+              <a href="/finance-calculators/compound-interest-calculator/">compound interest
+              calculator</a> may be a better fit. If you want to compare nominal growth with a more
+              portfolio-oriented lens, the
+              <a href="/finance-calculators/investment-growth-calculator/">investment growth
+              calculator</a> is the natural next step.
+            </p>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <h3>Bottom Line</h3>
+            <p>
+              A good future value result should leave you with a clearer next move. If the answer
+              looks strong, identify whether the strength is coming from time, contributions, or a
+              generous rate assumption. If the answer looks weak, decide which lever you can
+              realistically improve instead of trying to fix everything at once.
+            </p>
+            <p>
+              The most effective use of this page is simple: enter honest assumptions, read the
+              result in the right order, and use the projection to improve the plan rather than to
+              decorate it. When used that way, future value becomes more than a calculator output.
+              It becomes a practical way to connect today’s saving behavior to tomorrow’s balance.
+            </p>
+          </section>
+        </article>
+
+        <aside class="fi-exp-article-rail">
+          <section class="fi-exp-rail-card">
+            <h3>Quick Read</h3>
+            <ul class="fi-exp-rail-list">
+              <li>Projected value: <strong><span data-fv="future-value"></span></strong></li>
+              <li>Starting balance: <span data-fv="present-value"></span></li>
+              <li>Recurring addition: <span data-fv="regular-contribution"></span></li>
+              <li>Total deposits added: <span data-fv="total-contributions"></span></li>
+              <li>Total growth created: <span data-fv="total-growth"></span></li>
+            </ul>
+          </section>
+
+          <section class="fi-exp-rail-card">
+            <h3>Best Use Cases</h3>
+            <p>
+              Best for savings forecasts, contribution planning, and long-horizon balance questions
+              where the ending value is the main decision.
+            </p>
+          </section>
+
+          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
+            <h3>Related Tools</h3>
+            <div class="fi-exp-link-list">
+              <a href="/finance-calculators/compound-interest-calculator/">Compound Interest</a>
+              <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
+              <a href="/finance-calculators/present-value-calculator/">Present Value</a>
+            </div>
+          </nav>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--faq" id="fv-faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">01</span>
+        <h4>What is future value?</h4>
+        <p>Future value is the projected amount your money could become after growth over time.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">02</span>
+        <h4>How is future value different from present value?</h4>
+        <p>
+          Present value states what money is worth today, while future value projects what it may
+          become later.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">03</span>
+        <h4>Why does compounding matter?</h4>
+        <p>
+          Compounding lets growth build on earlier growth, which can accelerate outcomes over longer
+          periods.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">04</span>
+        <h4>Should I include recurring contributions?</h4>
+        <p>
+          Yes, when you expect to add a similar amount regularly and want the projection to reflect
+          that habit.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">05</span>
+        <h4>Can I use months instead of years?</h4>
+        <p>Yes. Use months when you want a shorter planning horizon or more precise timing.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">06</span>
+        <h4>What happens if the rate is 0%?</h4>
+        <p>The ending balance is just the starting balance plus the total of all contributions.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">07</span>
+        <h4>Why can small rate changes create big differences?</h4>
+        <p>
+          Because the rate compounds over every period, even small changes can compound meaningfully
+          over time.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">08</span>
+        <h4>Is this a guarantee of performance?</h4>
+        <p>No. It is a deterministic estimate based on the assumptions you enter.</p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">09</span>
+        <h4>Can I use this for savings goals?</h4>
+        <p>
+          Yes. It is useful for quick savings and investment planning under a fixed-rate assumption.
+        </p>
+      </div>
+      <div class="bor-faq-card">
+        <span class="bor-faq-number">10</span>
+        <h4>Why can real-world balances differ?</h4>
+        <p>
+          Real returns vary, contributions can change, and taxes, fees, or timing differences can
+          alter results.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mtg-exp-section mtg-exp-section--notes">
+    <h3>Important Notes</h3>
+    <ul>
+      <li><strong>Last updated:</strong> March 2026.</li>
+      <li>
+        <strong>Accuracy:</strong> Results are fixed-assumption estimates based on the inputs shown
+        on the page.
+      </li>
+      <li>
+        <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
+        financial, legal, tax, or investment advice.
+      </li>
+      <li>
+        <strong>Assumptions:</strong> The model assumes a fixed rate, the selected compounding
+        pattern, and recurring contributions of the same size for the full period, with no taxes,
+        fees, or irregular deposits included unless modeled elsewhere.
+      </li>
+      <li>
+        <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not
+        stored by us. We do not save the values you enter into calculator fields.
+      </li>
+    </ul>
+  </section>
+</div>

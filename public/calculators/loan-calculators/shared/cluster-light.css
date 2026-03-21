@@ -1,0 +1,1208 @@
+body[data-design-family='home-loan'] {
+  --hl-bg: #f8fbff;
+  --hl-bg-soft: #eef5ff;
+  --hl-bg-strong: #e5eefb;
+  --hl-surface: rgba(255, 255, 255, 0.96);
+  --hl-surface-soft: #f8fbff;
+  --hl-surface-soft-2: #f3f7fc;
+  --hl-text: #0f1724;
+  --hl-muted: #5c697b;
+  --hl-line: rgba(160, 179, 206, 0.36);
+  --hl-line-strong: rgba(129, 152, 186, 0.54);
+  --hl-accent: #2259d2;
+  --hl-accent-soft: #e9f1ff;
+  --hl-accent-strong: #173f9b;
+  --hl-shadow: 0 18px 48px rgba(15, 23, 36, 0.07);
+  --hl-shadow-soft: 0 10px 28px rgba(15, 23, 36, 0.05);
+  --hl-radius-xl: 28px;
+  --hl-radius-lg: 22px;
+  --hl-radius-md: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(34, 89, 210, 0.11), transparent 30%),
+    radial-gradient(circle at 86% 8%, rgba(119, 164, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, #fbfdff 0%, #f5f9ff 100%);
+  color: var(--hl-text);
+}
+
+body[data-design-family='home-loan'] .hl-cluster-page-shell {
+  min-height: 100vh;
+}
+
+body[data-design-family='home-loan'] a {
+  color: var(--hl-accent);
+}
+
+body[data-design-family='home-loan'] .hl-cluster-wrap,
+body[data-design-family='home-loan'] .hl-cluster-center-column {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(18px);
+  background: rgba(251, 253, 255, 0.82);
+  border-bottom: 1px solid rgba(219, 229, 243, 0.94);
+}
+
+body[data-design-family='home-loan'] .hl-cluster-site-header-inner {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--hl-text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-brand:hover {
+  text-decoration: none;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-brand-mark {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0f1724, #23324d);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-site-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-layout-main {
+  padding: 54px 0 68px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-center-column {
+  display: block;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-panel {
+  display: grid;
+  gap: 30px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-page-header {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-page-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--hl-line);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--hl-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body[data-design-family='home-loan'] #calculator-title {
+  margin: 18px 0 0;
+  font-size: clamp(42px, 6vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--hl-text);
+}
+
+body[data-design-family='home-loan'] .hl-cluster-page-intro {
+  max-width: 720px;
+  margin: 16px auto 0;
+  color: var(--hl-muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-flow {
+  gap: 26px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-site-footer {
+  padding: 0 0 54px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 26px 28px;
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--hl-shadow-soft);
+  text-align: center;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-footer-copy {
+  color: var(--hl-muted);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  ) {
+  width: 100%;
+  color: var(--hl-text);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-ui {
+  gap: 24px;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  :is(.mtg-hero, .borrow-hero, .remo-hero, .btl-hero) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 28px;
+  align-items: start;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  :is(.mtg-form-panel, .borrow-form-panel, .remo-form-panel, .btl-form-panel),
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  :is(.mtg-preview-panel, .borrow-result-dashboard, .remo-result-dashboard, .btl-preview-panel) {
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-xl);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 248, 255, 0.98));
+  box-shadow: var(--hl-shadow);
+  padding: 28px;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  :is(.mtg-form-panel, .borrow-form-panel, .remo-form-panel, .btl-form-panel) {
+  display: grid;
+  gap: 24px;
+  align-content: start;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  :is(.mtg-preview-panel, .borrow-result-dashboard, .remo-result-dashboard, .btl-preview-panel) {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .helper,
+body[data-design-family='home-loan'] .borrow-context-note {
+  margin: 0;
+  color: var(--hl-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .input-row {
+  gap: 8px;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  label {
+  margin: 0;
+  color: #243247;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  :is(input[type='number'], input[type='month'], input[type='text'], textarea, select) {
+  min-height: 48px;
+  border-radius: 16px;
+  border: 1px solid var(--hl-line-strong);
+  background: #ffffff;
+  color: var(--hl-text);
+  padding: 12px 14px;
+  font-size: 16px;
+  line-height: 1.35;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 36, 0.03);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  :is(input[type='number'], input[type='month'], input[type='text'], textarea, select):focus-visible {
+  outline: 0;
+  border-color: rgba(34, 89, 210, 0.58);
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .slider-row {
+  padding: 14px 16px;
+  border-radius: var(--hl-radius-md);
+  border: 1px solid rgba(204, 216, 235, 0.92);
+  background: linear-gradient(180deg, #ffffff, #f7faff);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .slider-row:hover {
+  transform: translateY(-1px);
+  border-color: rgba(34, 89, 210, 0.24);
+  box-shadow: var(--hl-shadow-soft);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .slider-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--hl-accent-soft);
+  border: 1px solid rgba(34, 89, 210, 0.12);
+  color: var(--hl-accent);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--hl-accent) 0%,
+    var(--hl-accent) var(--fill, 50%),
+    rgba(193, 206, 225, 0.82) var(--fill, 50%)
+  );
+  cursor: pointer;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  input[type='range']:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: var(--hl-accent);
+  box-shadow: 0 4px 14px rgba(34, 89, 210, 0.24);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: var(--hl-accent);
+  box-shadow: 0 4px 14px rgba(34, 89, 210, 0.24);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  input[type='range']:hover::-webkit-slider-thumb {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(34, 89, 210, 0.32);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--hl-accent), var(--hl-accent-strong));
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 14px 28px rgba(34, 89, 210, 0.14);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(34, 89, 210, 0.2);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button:focus-visible {
+  outline: 0;
+  box-shadow:
+    0 18px 34px rgba(34, 89, 210, 0.2),
+    0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button.secondary {
+  background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+  border-color: var(--hl-line);
+  color: var(--hl-text);
+  box-shadow: none;
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button.is-active,
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button[aria-pressed='true'] {
+  border-color: rgba(34, 89, 210, 0.18);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button.secondary.is-active,
+body[data-design-family='home-loan']
+  :is(
+    #calc-home-loan,
+    #calc-how-much-can-borrow,
+    #calc-remortgage-switching,
+    #calc-buy-to-let,
+    #calc-offset-calculator,
+    #calc-interest-rate-change,
+    #calc-loan-to-value,
+    #calc-personal-loan
+  )
+  .calculator-button.secondary[aria-pressed='true'] {
+  background: var(--hl-accent-soft);
+  border-color: rgba(34, 89, 210, 0.18);
+  color: var(--hl-accent);
+}
+
+body[data-design-family='home-loan'] .form-error,
+body[data-design-family='home-loan'] .borrow-error {
+  margin: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(220, 38, 38, 0.14);
+  background: rgba(254, 242, 242, 0.92);
+  color: #b91c1c;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] {
+  display: grid;
+  gap: 22px;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] > section {
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-xl);
+  background: var(--hl-surface);
+  box-shadow: var(--hl-shadow-soft);
+  padding: 28px;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: var(--hl-text);
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] h4 {
+  margin: 22px 0 8px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--hl-text);
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] p,
+body[data-design-family='home-loan'] [id$='-explanation'] li,
+body[data-design-family='home-loan'] [id$='-explanation'] td,
+body[data-design-family='home-loan'] [id$='-explanation'] th {
+  color: #314156;
+  font-size: 14px;
+  line-height: 1.68;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] ul,
+body[data-design-family='home-loan'] [id$='-explanation'] ol {
+  padding-left: 20px;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
+body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
+body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
+body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
+body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card,
+body[data-design-family='home-loan'] [id$='-explanation'] .bor-related-card {
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-lg);
+  background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+  box-shadow: var(--hl-shadow-soft);
+  padding: 20px;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-number,
+body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  min-height: 38px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: var(--hl-accent-soft);
+  color: var(--hl-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .bor-note-list,
+body[data-design-family='home-loan'] [id$='-explanation'] .remo-note-list,
+body[data-design-family='home-loan'] [id$='-explanation'] .btl-note-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .bor-note-list strong,
+body[data-design-family='home-loan'] [id$='-explanation'] .remo-note-list strong,
+body[data-design-family='home-loan'] [id$='-explanation'] .btl-note-list strong {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin-right: 6px;
+  border-radius: 999px;
+  background: #17233b;
+  color: rgba(186, 230, 253, 0.98);
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .bor-formula-block {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--hl-line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--hl-surface-soft), #ffffff);
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .table-scroll {
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-lg);
+  background:
+    linear-gradient(180deg, rgba(239, 245, 255, 0.94) 0, rgba(255, 255, 255, 0.98) 64px, #ffffff 64px);
+  box-shadow: var(--hl-shadow-soft);
+  overflow: auto;
+}
+
+body[data-design-family='home-loan'] [id$='-explanation'] .table-scroll:focus-visible {
+  outline: 0;
+  box-shadow:
+    var(--hl-shadow-soft),
+    0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
+body[data-design-family='home-loan']
+  :is(
+    #bor-scenario-wrap,
+    #mtg-table-monthly-wrap,
+    #mtg-table-yearly-wrap,
+    #remo-table-monthly-wrap,
+    #remo-table-yearly-wrap,
+    #off-table-monthly-wrap,
+    #off-table-yearly-wrap,
+    #rate-table-monthly-wrap,
+    #rate-table-yearly-wrap,
+    #ltv-table-bands-wrap,
+    #ltv-table-targets-wrap,
+    #pl-table-wrap,
+    .pl-table-wrap
+  ) {
+  height: clamp(320px, 46vh, 440px);
+}
+
+body[data-design-family='home-loan'] .calculator-table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  table-layout: fixed;
+}
+
+body[data-design-family='home-loan'] .calculator-table th,
+body[data-design-family='home-loan'] .calculator-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--hl-line);
+  text-align: left;
+  color: var(--hl-text);
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.98);
+  overflow-wrap: anywhere;
+}
+
+body[data-design-family='home-loan'] .calculator-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid var(--hl-line-strong);
+  background: linear-gradient(180deg, #f2f7ff, #eaf2ff);
+  color: #5d6b83;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body[data-design-family='home-loan'] .calculator-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+body[data-design-family='home-loan'] .calculator-table td:first-child {
+  font-weight: 700;
+}
+
+body[data-design-family='home-loan'] .calculator-table th + th,
+body[data-design-family='home-loan'] .calculator-table td + td {
+  border-left: 1px solid rgba(221, 229, 241, 0.9);
+}
+
+body[data-design-family='home-loan'] .calculator-table tbody tr:nth-child(even) td {
+  background: #f7faff;
+}
+
+@media (hover: hover) {
+  body[data-design-family='home-loan'] .calculator-table tbody tr:hover td {
+    background: #eef4ff;
+  }
+}
+
+body[data-design-family='home-loan'] .calculator-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+body[data-design-family='home-loan'] .calculator-table thead th:first-child {
+  border-top-left-radius: 18px;
+}
+
+body[data-design-family='home-loan'] .calculator-table thead th:last-child {
+  border-top-right-radius: 18px;
+}
+
+body[data-design-family='home-loan'] .calculator-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 18px;
+}
+
+body[data-design-family='home-loan'] .calculator-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 18px;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-pane,
+body[data-design-family='home-loan'] .bor-scenarios-pane {
+  display: grid;
+  gap: 16px;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-visual {
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-lg);
+  background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+  padding: 20px;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-stack-wrap {
+  display: grid;
+  gap: 14px;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-stack-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--hl-muted);
+  font-size: 13px;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-stack {
+  display: flex;
+  align-items: stretch;
+  min-height: 56px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #edf3fb;
+  border: 1px solid rgba(221, 229, 241, 0.9);
+}
+
+body[data-design-family='home-loan'] .bor-capacity-segment {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-segment.is-active {
+  transform: translateY(-1px);
+  filter: saturate(1.04);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+body[data-design-family='home-loan'] .bor-capacity-segment--expenses {
+  background: #6c7ea1;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-segment--debts {
+  background: #4f77d4;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-segment--mortgage {
+  background: var(--hl-accent);
+}
+
+body[data-design-family='home-loan'] .bor-capacity-segment--buffer {
+  background: #80a1e8;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+body[data-design-family='home-loan'] .bor-capacity-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--hl-line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+}
+
+body[data-design-family='home-loan'] .bor-capacity-legend-item span {
+  color: var(--hl-muted);
+}
+
+body[data-design-family='home-loan'] .bor-scenario-highlight td {
+  background: #eef4ff;
+}
+
+body[data-design-family='home-loan'] .borrow-action-row .calculator-button.full-width,
+body[data-design-family='home-loan'] .mtg-action-row .calculator-button.full-width {
+  width: 100%;
+}
+
+body[data-design-family='home-loan'] .advanced-options {
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-md);
+  background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+}
+
+body[data-design-family='home-loan'] .advanced-options summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+body[data-design-family='home-loan'] .advanced-options summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-design-family='home-loan'] .advanced-options summary:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px rgba(34, 89, 210, 0.12);
+}
+
+body[data-design-family='home-loan'] .advanced-options[open] {
+  box-shadow: var(--hl-shadow-soft);
+}
+
+body[data-design-family='home-loan'] .advanced-stack {
+  display: grid;
+  gap: 14px;
+  padding: 0 16px 16px;
+}
+
+body[data-design-family='home-loan'] .advanced-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 980px) {
+  body[data-design-family='home-loan']
+    :is(
+      #calc-home-loan,
+      #calc-how-much-can-borrow,
+      #calc-remortgage-switching,
+      #calc-buy-to-let,
+      #calc-offset-calculator,
+      #calc-interest-rate-change,
+      #calc-loan-to-value,
+      #calc-personal-loan
+    )
+    :is(.mtg-hero, .borrow-hero, .remo-hero, .btl-hero) {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
+  body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
+  body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  body[data-design-family='home-loan'] .hl-cluster-site-header-inner {
+    min-height: 64px;
+  }
+
+  body[data-design-family='home-loan'] .hl-cluster-site-links {
+    display: none;
+  }
+
+  body[data-design-family='home-loan'] .hl-cluster-layout-main {
+    padding: 34px 0 52px;
+  }
+
+  body[data-design-family='home-loan'] .hl-cluster-page-intro {
+    font-size: 15px;
+  }
+
+  body[data-design-family='home-loan']
+    :is(
+      #calc-home-loan,
+      #calc-how-much-can-borrow,
+      #calc-remortgage-switching,
+      #calc-buy-to-let,
+      #calc-offset-calculator,
+      #calc-interest-rate-change,
+      #calc-loan-to-value,
+      #calc-personal-loan
+    )
+    :is(.mtg-form-panel, .borrow-form-panel, .remo-form-panel, .btl-form-panel),
+  body[data-design-family='home-loan']
+    :is(
+      #calc-home-loan,
+      #calc-how-much-can-borrow,
+      #calc-remortgage-switching,
+      #calc-buy-to-let,
+      #calc-offset-calculator,
+      #calc-interest-rate-change,
+      #calc-loan-to-value,
+      #calc-personal-loan
+    )
+    :is(.mtg-preview-panel, .borrow-result-dashboard, .remo-result-dashboard, .btl-preview-panel),
+  body[data-design-family='home-loan'] [id$='-explanation'] > section,
+  body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
+  body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
+  body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card,
+  body[data-design-family='home-loan'] [id$='-explanation'] .bor-related-card,
+  body[data-design-family='home-loan'] .hl-cluster-site-footer-inner {
+    padding: 22px;
+  }
+
+  body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
+  body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
+  body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid,
+  body[data-design-family='home-loan'] .bor-capacity-legend,
+  body[data-design-family='home-loan'] .advanced-pair {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-design-family='home-loan']
+    :is(
+      #bor-scenario-wrap,
+      #mtg-table-monthly-wrap,
+      #mtg-table-yearly-wrap,
+      #remo-table-monthly-wrap,
+      #remo-table-yearly-wrap,
+      #off-table-monthly-wrap,
+      #off-table-yearly-wrap,
+      #rate-table-monthly-wrap,
+      #rate-table-yearly-wrap,
+      #ltv-table-bands-wrap,
+      #ltv-table-targets-wrap,
+      #pl-table-wrap,
+      .pl-table-wrap
+    ) {
+    height: 360px;
+  }
+
+  body[data-design-family='home-loan'] .calculator-table th,
+  body[data-design-family='home-loan'] .calculator-table td {
+    padding: 14px;
+  }
+}

@@ -1,4 +1,4 @@
-<div id="loan-mtg-explanation">
+<div id="hp-auto-loan-explanation" class="auto-loan-explanation">
   <h2>How Much Will a Hire Purchase Deal Cost?</h2>
   <p>
     Use this hire purchase calculator to estimate monthly installments, total interest, final
@@ -17,6 +17,18 @@
     <li>Term: <span data-hp="term">-</span></li>
     <li>Balloon payment: <span data-hp="balloon">-</span></li>
   </ul>
+
+  <div class="al-decision-summary">
+    <h3>Decision summary</h3>
+    <p>
+      The monthly instalment tells you what the agreement feels like now. The balloon tells you
+      what it still asks from you later.
+    </p>
+    <ul>
+      <li>Use the balloon payment to judge whether the lower instalment is genuinely comfortable.</li>
+      <li>Use total payable to compare hire purchase against a standard loan or larger deposit.</li>
+    </ul>
+  </div>
 
   <section class="mtg-exp-section mtg-exp-section--lifetime">
     <div class="mtg-lifetime-header">
@@ -86,7 +98,7 @@
       </div>
     </div>
 
-    <div class="table-scroll is-hidden" id="hp-table-monthly-wrap" tabindex="0">
+    <div class="table-scroll is-hidden" id="hp-table-monthly-wrap" tabindex="0" role="region" aria-label="Monthly amortisation table">
       <table class="calculator-table" id="hp-table-monthly">
         <thead>
           <tr>
@@ -101,7 +113,7 @@
       </table>
     </div>
 
-    <div class="table-scroll" id="hp-table-yearly-wrap" tabindex="0">
+    <div class="table-scroll" id="hp-table-yearly-wrap" tabindex="0" role="region" aria-label="Yearly amortisation table">
       <table class="calculator-table" id="hp-table-yearly">
         <thead>
           <tr>
@@ -179,7 +191,7 @@
 
     <div>
       <h4>How Input Changes Affect the Result</h4>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Input changes effect reference">
         <table class="calculator-table">
           <thead>
             <tr>

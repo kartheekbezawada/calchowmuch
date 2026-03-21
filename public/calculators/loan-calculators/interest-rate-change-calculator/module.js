@@ -1,12 +1,23 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { calculateInterestRateChange } from '/assets/js/core/loan-utils.js';
+import {
+  revealResultPanel,
+  updateRangeFill,
+  wireRangeWithField,
+} from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const balanceInput = document.querySelector('#rate-balance');
 const currentRateInput = document.querySelector('#rate-current');
 const newRateInput = document.querySelector('#rate-new');
 const termInput = document.querySelector('#rate-term');
 const changeMonthsInput = document.querySelector('#rate-change-months');
+
+const balanceField = document.querySelector('#rate-balance-field');
+const currentRateField = document.querySelector('#rate-current-field');
+const newRateField = document.querySelector('#rate-new-field');
+const termField = document.querySelector('#rate-term-field');
+const changeMonthsField = document.querySelector('#rate-change-months-field');
 
 const balanceDisplay = document.querySelector('#rate-balance-display');
 const currentRateDisplay = document.querySelector('#rate-current-display');
@@ -20,6 +31,8 @@ const timingGroup = document.querySelector('[data-button-group="rate-change-timi
 const calculateButton = document.querySelector('#rate-calculate');
 const resultDiv = document.querySelector('#rate-result');
 const summaryDiv = document.querySelector('#rate-summary');
+const resultNote = document.querySelector('#rate-result-note');
+const resultDashboard = document.querySelector('#rate-results');
 
 const snapshotCurrentPayment = document.querySelector('[data-rate="snap-current-payment"]');
 const snapshotNewPayment = document.querySelector('[data-rate="snap-new-payment"]');
@@ -49,7 +62,6 @@ const timingButtons = setupButtonGroup(timingGroup, {
   onChange: (value) => {
     changeMonthsRow?.classList.toggle('is-hidden', value !== 'after');
     updateSliderDisplays();
-    calculate();
   },
 });
 
@@ -76,6 +88,11 @@ function formatWhole(value) {
   return formatNumber(value, { maximumFractionDigits: 0 });
 }
 
+function parseLooseNumber(value) {
+  const parsed = Number(String(value).replace(/,/g, '').replace(/[^0-9.-]/g, ''));
+  return Number.isFinite(parsed) ? parsed : NaN;
+}
+
 function syncChangeMonthsLimit() {
   if (!termInput || !changeMonthsInput) {
     return;
@@ -87,41 +104,49 @@ function syncChangeMonthsLimit() {
   }
 }
 
-function updateSliderFill(input) {
-  if (!input || input.type !== 'range') return;
-  const min = parseFloat(input.min) || 0;
-  const max = parseFloat(input.max) || 100;
-  const val = parseFloat(input.value) || 0;
-  const pct = ((val - min) / (max - min)) * 100;
-  input.style.setProperty('--fill', `${pct}%`);
-}
-
 function updateSliderDisplays() {
   syncChangeMonthsLimit();
 
   if (balanceInput && balanceDisplay) {
     balanceDisplay.textContent = formatWhole(Number(balanceInput.value));
-    updateSliderFill(balanceInput);
+    updateRangeFill(balanceInput);
+    if (balanceField) balanceField.value = String(Math.round(Number(balanceInput.value) || 0));
   }
 
   if (currentRateInput && currentRateDisplay) {
     currentRateDisplay.textContent = formatPercent(Number(currentRateInput.value));
-    updateSliderFill(currentRateInput);
+    updateRangeFill(currentRateInput);
+    if (currentRateField) {
+      currentRateField.value = formatNumber(Number(currentRateInput.value) || 0, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+    }
   }
 
   if (newRateInput && newRateDisplay) {
     newRateDisplay.textContent = formatPercent(Number(newRateInput.value));
-    updateSliderFill(newRateInput);
+    updateRangeFill(newRateInput);
+    if (newRateField) {
+      newRateField.value = formatNumber(Number(newRateInput.value) || 0, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+    }
   }
 
   if (termInput && termDisplay) {
     termDisplay.textContent = `${formatWhole(Number(termInput.value))} yrs`;
-    updateSliderFill(termInput);
+    updateRangeFill(termInput);
+    if (termField) termField.value = String(Math.round(Number(termInput.value) || 0));
   }
 
   if (changeMonthsInput && changeMonthsDisplay) {
     changeMonthsDisplay.textContent = `${formatWhole(Number(changeMonthsInput.value))} mo`;
-    updateSliderFill(changeMonthsInput);
+    updateRangeFill(changeMonthsInput);
+    if (changeMonthsField) {
+      changeMonthsField.value = String(Math.round(Number(changeMonthsInput.value) || 0));
+    }
   }
 }
 
@@ -146,6 +171,10 @@ function setError(message) {
   }
   if (summaryDiv) {
     summaryDiv.textContent = '';
+  }
+  if (resultNote) {
+    resultNote.textContent =
+      'Adjust the balance, rate, term, or timing, then calculate again to refresh the rate-change summary.';
   }
   clearTables();
 }
@@ -264,7 +293,9 @@ function renderYearlyTable(data) {
   }).join('');
 }
 
-function calculate() {
+function calculate(options = {}) {
+  const shouldReveal = options.reveal === true;
+
   if (!resultDiv || !summaryDiv) {
     return;
   }
@@ -276,24 +307,36 @@ function calculate() {
   const balance = Number(balanceInput?.value);
   if (!Number.isFinite(balance) || balance <= 0) {
     setError('Enter a loan balance greater than 0.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
   const currentRate = Number(currentRateInput?.value);
   if (!Number.isFinite(currentRate) || currentRate < 0) {
     setError('Current rate must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
   const newRate = Number(newRateInput?.value);
   if (!Number.isFinite(newRate) || newRate < 0) {
     setError('New rate must be 0 or more.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
   const termYears = Number(termInput?.value);
   if (!Number.isFinite(termYears) || termYears < 1) {
     setError('Remaining term must be at least 1 year.');
+    if (shouldReveal) {
+      revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+    }
     return;
   }
 
@@ -304,10 +347,16 @@ function calculate() {
   if (changeTiming === 'after') {
     if (!Number.isFinite(changeAfterMonths) || changeAfterMonths < 1) {
       setError('Change timing months must be at least 1.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+      }
       return;
     }
     if (changeAfterMonths > termMonths) {
       setError('Change timing months must be within the remaining term.');
+      if (shouldReveal) {
+        revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+      }
       return;
     }
   }
@@ -340,20 +389,75 @@ function calculate() {
       data.totalInterestNew - data.totalInterestBaseline
     )}</p>`;
 
+  if (resultNote) {
+    const monthlyDirection = data.monthlyDifference >= 0 ? 'raises' : 'reduces';
+    const interestChange = data.totalInterestNew - data.totalInterestBaseline;
+    const interestDirection = interestChange >= 0 ? 'adds' : 'cuts';
+    const timingText =
+      changeTiming === 'after'
+        ? `after ${formatWhole(changeAfterMonths)} months`
+        : 'immediately';
+
+    resultNote.textContent =
+      `${timingText.charAt(0).toUpperCase()}${timingText.slice(1)} ${monthlyDirection} your payment by ` +
+      `${formatMoney(Math.abs(data.monthlyDifference))} a month and ${interestDirection} ` +
+      `${formatMoney(Math.abs(interestChange))} of lifetime interest.`;
+  }
+
   updateSnapshot(data, changeTiming);
   updateLifetime(data);
   renderMonthlyTable(data);
   renderYearlyTable(data);
   applyView(tableViewButtons?.getValue() ?? 'yearly');
+
+  if (shouldReveal) {
+    revealResultPanel({ resultPanel: resultDashboard, focusTarget: resultDiv });
+  }
 }
 
-[balanceInput, currentRateInput, newRateInput, termInput, changeMonthsInput]
-  .filter(Boolean)
-  .forEach((input) => {
-    input.addEventListener('input', updateSliderDisplays);
+[
+  {
+    rangeInput: balanceInput,
+    textInput: balanceField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: currentRateInput,
+    textInput: currentRateField,
+    formatFieldValue: (value) =>
+      formatNumber(value, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+  },
+  {
+    rangeInput: newRateInput,
+    textInput: newRateField,
+    formatFieldValue: (value) =>
+      formatNumber(value, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+  },
+  {
+    rangeInput: termInput,
+    textInput: termField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+  {
+    rangeInput: changeMonthsInput,
+    textInput: changeMonthsField,
+    formatFieldValue: (value) => String(Math.round(value)),
+  },
+].forEach((config) => {
+  wireRangeWithField({
+    ...config,
+    parseFieldValue: parseLooseNumber,
+    onVisualUpdate: updateSliderDisplays,
   });
+});
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 changeMonthsRow?.classList.toggle(
   'is-hidden',
@@ -361,4 +465,4 @@ changeMonthsRow?.classList.toggle(
 );
 updateSliderDisplays();
 applyView(tableViewButtons?.getValue() ?? 'yearly');
-calculate();
+calculate({ reveal: false });

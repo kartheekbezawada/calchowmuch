@@ -1,0 +1,363 @@
+<div id="calc-present-value">
+  <div class="calculator-ui finance-ui">
+    <section class="mtg-hero" aria-label="Present value calculator">
+      <div class="mtg-form-panel">
+        <p class="helper">
+          Discount a future lump sum into today&apos;s money using a rate, time horizon, and
+          compounding assumption you can explain clearly.
+        </p>
+
+        <section class="fi-form-section" aria-labelledby="pv-section-future">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="pv-section-future">Future amount</h2>
+              <p class="fi-form-section-copy">
+                Start with the cash value you expect to receive later.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-row slider-row">
+            <div class="slider-header">
+              <label for="pv-future-value">Future Value (FV)</label>
+              <span class="slider-value" id="pv-fv-display">10,000</span>
+            </div>
+            <input
+              id="pv-future-value"
+              type="range"
+              value="10000"
+              min="100"
+              max="500000"
+              step="100"
+            />
+            <div class="slider-precision-row">
+              <label class="slider-precision-label" for="pv-future-value-field">
+                Enter future value
+              </label>
+              <input
+                class="slider-precision-input"
+                id="pv-future-value-field"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+                value="10000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="fi-form-section" aria-labelledby="pv-section-discount">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="pv-section-discount">Discount assumptions</h2>
+              <p class="fi-form-section-copy">
+                Set the return or opportunity-cost rate, then choose the timing and compounding
+                rhythm you want to compare against.
+              </p>
+            </div>
+          </div>
+
+          <div class="input-grid-2-col">
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-discount-rate">Discount Rate (%)</label>
+                <span class="slider-value" id="pv-rate-display">5%</span>
+              </div>
+              <input id="pv-discount-rate" type="range" value="5" min="0" max="30" step="0.1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pv-discount-rate-field">
+                  Enter discount rate
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="pv-discount-rate-field"
+                  type="text"
+                  inputmode="decimal"
+                  maxlength="12"
+                  value="5"
+                />
+              </div>
+            </div>
+
+            <div class="input-row slider-row">
+              <div class="slider-header">
+                <label for="pv-time-period">Time Period</label>
+                <span class="slider-value" id="pv-time-display">3 yrs</span>
+              </div>
+              <input id="pv-time-period" type="range" value="3" min="1" max="50" step="1" />
+              <div class="slider-precision-row">
+                <label class="slider-precision-label" for="pv-time-period-field">
+                  Enter time period
+                </label>
+                <input
+                  class="slider-precision-input"
+                  id="pv-time-period-field"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="12"
+                  value="3"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fi-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Period type</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Period type"
+                data-button-group="pv-period-type"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="years"
+                  aria-pressed="true"
+                >
+                  Years
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="months"
+                  aria-pressed="false"
+                >
+                  Months
+                </button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="pv-compounding"
+              >
+                <button
+                  class="calculator-button secondary is-active"
+                  type="button"
+                  data-value="annual"
+                  aria-pressed="true"
+                >
+                  Annual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="semiannual"
+                  aria-pressed="false"
+                >
+                  Semiannual
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="quarterly"
+                  aria-pressed="false"
+                >
+                  Quarterly
+                </button>
+                <button
+                  class="calculator-button secondary"
+                  type="button"
+                  data-value="monthly"
+                  aria-pressed="false"
+                >
+                  Monthly
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button full-width" type="button" id="pv-calc">
+            Calculate Present Value
+          </button>
+          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
+        </div>
+      </div>
+
+      <aside class="mtg-preview-panel" id="pv-preview" aria-label="Present value answer">
+        <div class="mtg-preview-main">
+          <p class="mtg-preview-label">Estimated Present Value</p>
+          <div class="result mtg-result-card" id="pv-result" aria-live="polite">
+            <span class="mtg-result-value">8,638.38</span>
+          </div>
+        </div>
+
+        <div class="fi-metric-grid" id="pv-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Discount Lost</span>
+            <strong class="fi-metric-value" data-pv="metric-discount-lost">1,361.62</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Compounding</span>
+            <strong class="fi-metric-value" data-pv="metric-compounding">Annual</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Effective Periods</span>
+            <strong class="fi-metric-value" data-pv="metric-periods">3</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Rate Per Period</span>
+            <strong class="fi-metric-value" data-pv="metric-periodic-rate">5%</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list">
+          <div class="fi-snapshot-row">
+            <span>Future value</span>
+            <strong data-pv="snap-fv">10,000</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Discount rate</span>
+            <strong data-pv="snap-rate">5%</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Time period</span>
+            <strong data-pv="snap-time">3 years</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Compounding</span>
+            <strong data-pv="snap-compounding">Annual</strong>
+          </div>
+          <div class="fi-snapshot-row">
+            <span>Effective periods</span>
+            <strong data-pv="snap-periods">3</strong>
+          </div>
+        </div>
+
+        <p class="fi-preview-stale" id="pv-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the answer.
+        </p>
+      </aside>
+    </section>
+
+    <section
+      class="fi-scenario-section"
+      data-pv-scenario="section"
+      aria-labelledby="pv-scenario-heading"
+    >
+      <div class="fi-scenario-header">
+        <div>
+          <p class="fi-scenario-eyebrow">Scenario Analysis</p>
+          <h2 id="pv-scenario-heading">How could this present value shift?</h2>
+        </div>
+        <p class="fi-scenario-copy">
+          Compare the current discount setup against faster, softer, and heavier discount paths to
+          see how rate pressure and time change what the future lump sum is worth today.
+        </p>
+      </div>
+
+      <div class="fi-scenario-grid" data-pv-scenario="cards">
+        <article class="fi-scenario-card" data-pv-scenario-card="baseline" data-tone="baseline">
+          <p class="fi-scenario-label">Baseline</p>
+          <h3 data-pv-scenario-question>What does the current discount setup imply?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            The baseline keeps your current future amount, discount rate, and timing assumptions
+            together as the comparison point.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this as the valuation anchor before testing trade-offs.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Current discount rate</li>
+            <li>Current wait time</li>
+            <li>Current compounding</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-pv-scenario-card="optimized" data-tone="optimized">
+          <p class="fi-scenario-label">Optimized</p>
+          <h3 data-pv-scenario-question>What if discount drag eases and the wait is shorter?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            Lower discount pressure and a shorter wait preserve more of the future amount in
+            today&apos;s dollars.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this as the stretch case when timing or required return improves.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Lower discount rate</li>
+            <li>Shorter wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+
+        <article class="fi-scenario-card" data-pv-scenario-card="stress" data-tone="stress">
+          <p class="fi-scenario-label">Stress</p>
+          <h3 data-pv-scenario-question>What if rate pressure and delay both rise?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            A higher discount rate and a longer wait reduce how much of the future amount survives
+            in present-day terms.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this path to sanity-check downside valuation risk.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Higher discount rate</li>
+            <li>Longer wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+
+        <article
+          class="fi-scenario-card"
+          data-pv-scenario-card="optional"
+          data-tone="optional"
+          hidden
+        >
+          <p class="fi-scenario-label">Alternative</p>
+          <h3 data-pv-scenario-question>What if valuation cadence changes too?</h3>
+          <p class="fi-scenario-impact" data-pv-scenario-impact>
+            Run the calculator to compare this scenario against the current baseline.
+          </p>
+          <p class="fi-scenario-insight" data-pv-scenario-insight>
+            Changing valuation cadence can shift the answer even when the future amount itself
+            stays the same.
+          </p>
+          <p class="fi-scenario-action" data-pv-scenario-action>
+            Use this comparison when payment timing or compounding assumptions are negotiable.
+          </p>
+          <ul class="fi-scenario-drivers" data-pv-scenario-drivers>
+            <li>Different compounding cadence</li>
+            <li>Adjusted wait</li>
+            <li>Same future amount</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="fi-scenario-questions" data-pv-scenario="paa">
+        <div class="fi-scenario-qa" data-pv-scenario-qa="0">
+          <h3 data-pv-scenario-qa-question>Which lever moves present value fastest here?</h3>
+          <p data-pv-scenario-qa-answer>
+            The strongest levers are the discount rate and the wait time because they directly
+            control how much discounting compounds before the cash arrives.
+          </p>
+        </div>
+
+        <div class="fi-scenario-qa" data-pv-scenario-qa="1">
+          <h3 data-pv-scenario-qa-question>What is the main downside risk to watch?</h3>
+          <p data-pv-scenario-qa-answer>
+            Higher required returns combined with a longer delay can erode today&apos;s value faster
+            than most users expect.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

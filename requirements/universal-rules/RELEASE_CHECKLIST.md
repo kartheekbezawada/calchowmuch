@@ -34,7 +34,18 @@ HARD: Other global gates (`npm run lint`, `npm run test`, `npm run test:e2e`, `n
 
 `NEW_BUILD | ONBOARDING | REDESIGN`
 
-HARD: Full release gates are mandatory:
+HARD: Gate selection is determined by release scope:
+
+Cluster/calculator release scope:
+
+- `npm run lint`
+- scoped cluster/calculator unit gate
+- scoped cluster/calculator Playwright gates (`e2e`, `seo`, `cwv`)
+- scoped `npm run test:schema:dedupe`
+- `npm run test:cluster:contracts`
+- `npm run test:isolation:scope`
+
+Explicit full-site release scope:
 
 - `npm run lint`
 - `npm run test`

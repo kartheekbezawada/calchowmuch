@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test';
 
+async function setTextFieldValue(page, selector, value) {
+  const field = page.locator(selector);
+  await field.fill(String(value));
+  await field.blur();
+}
+
 test.describe('Home Loan calculator', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/loan-calculators/mortgage-calculator/');
@@ -85,10 +91,30 @@ test.describe('Home Loan calculator', () => {
     await expect(stickyHeader).toHaveCSS('top', '0px');
   });
 
+  test('HOME-LOAN-TEST-E2E-2A: exact-value fields sync without pre-click recalculation', async ({
+    page,
+  }) => {
+    const beforeText = await page.locator('#mtg-result').innerText();
+
+    await setTextFieldValue(page, '#mtg-price-field', 500000);
+    await expect(page.locator('#mtg-price')).toHaveValue('500000');
+
+    const afterEditText = await page.locator('#mtg-result').innerText();
+    expect(afterEditText.trim()).toBe(beforeText.trim());
+
+    await page.click('#mtg-calculate');
+    await expect(page.locator('#mtg-result')).toContainText('Monthly Payment');
+
+    const afterCalcText = await page.locator('#mtg-result').innerText();
+    expect(afterCalcText.trim()).not.toBe(beforeText.trim());
+  });
+
   test('HOME-LOAN-TEST-E2E-3: renders as single center panel with aligned advanced fields', async ({ page }) => {
-    const centerPanels = page.locator('.center-column > .panel');
-    await expect(centerPanels).toHaveCount(1);
-    await expect(centerPanels.first()).toHaveClass(/panel-span-all/);
+    const clusterPanel = page.locator('.hl-cluster-panel');
+    await expect(clusterPanel).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
 
     await expect(page.locator('#loan-mtg-explanation h3', { hasText: 'Current Inputs' })).toHaveCount(0);
     await expect(page.locator('#calc-home-loan .mtg-preview-label')).toHaveText(
@@ -171,5 +197,19 @@ test.describe('Home Loan calculator', () => {
       return root.scrollWidth > root.clientWidth;
     });
     expect(hasHorizontalScroll).toBe(false);
+  });
+
+  test('HOME-LOAN-TEST-E2E-4: mobile calculate reveals the result snapshot', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.click('#mtg-calculate');
+    await page.waitForTimeout(350);
+
+    const previewBox = await page.locator('#mtg-preview').boundingBox();
+    expect(previewBox).toBeTruthy();
+    expect(previewBox.y).toBeLessThan(220);
+
+    await expect(page.locator('#mtg-result .mtg-result-value')).toBeFocused();
+    await expect(page.locator('#mtg-result-note')).toContainText(/baseline monthly payment|overpayment plan/i);
   });
 });
