@@ -3,6 +3,11 @@ import {
   calculateInflationAdjustment,
   formatCpiMonth,
 } from '../../../public/assets/js/core/inflation-utils.js';
+import {
+  buildInflationChartModel,
+  buildInflationScenarioRows,
+  normalizeScenarioHorizonYears,
+} from '../../../public/calculators/finance-calculators/inflation-calculator/module.js';
 
 describe('Inflation Calculator - INF-TEST-U-1: baseline math', () => {
   it('returns the original amount when both months are the same', () => {
@@ -74,5 +79,46 @@ describe('Inflation Calculator - INF-TEST-U-3: formatting helpers', () => {
   it('formats CPI months for display', () => {
     expect(formatCpiMonth('2000-01')).toBe('January 2000');
     expect(formatCpiMonth('2025-12')).toBe('December 2025');
+  });
+});
+
+describe('Inflation Calculator - INF-TEST-U-4: education scenario helpers', () => {
+  it('normalizes scenario horizon to at least one year', () => {
+    expect(normalizeScenarioHorizonYears(0)).toBe(1);
+    expect(normalizeScenarioHorizonYears(6)).toBe(1);
+    expect(normalizeScenarioHorizonYears(18)).toBeCloseTo(1.5, 8);
+  });
+
+  it('builds low, medium, and high inflation scenario rows from the current amount and span', () => {
+    const scenarios = buildInflationScenarioRows({
+      amount: 1000,
+      monthSpan: 120,
+    });
+
+    expect(scenarios).toHaveLength(3);
+    expect(scenarios[0].id).toBe('low');
+    expect(scenarios[1].id).toBe('medium');
+    expect(scenarios[2].id).toBe('high');
+    expect(scenarios[0].futureValue).toBeCloseTo(1218.994, 3);
+    expect(scenarios[1].futureValue).toBeCloseTo(1628.895, 3);
+    expect(scenarios[2].futureValue).toBeCloseTo(2158.925, 3);
+  });
+
+  it('builds chart data for value and impact views with an active preset', () => {
+    const chartModel = buildInflationChartModel({
+      amount: 1000,
+      monthSpan: 18,
+      activePresetId: 'high',
+    });
+
+    expect(chartModel.horizonYears).toBeCloseTo(1.5, 8);
+    expect(chartModel.valueLines).toHaveLength(3);
+    expect(chartModel.activePreset?.id).toBe('high');
+    expect(chartModel.impactPoints.at(-1)?.y).toBeGreaterThan(0);
+    expect(chartModel.valueLines[0].points[0]).toEqual({
+      x: 0,
+      y: 1000,
+      label: 'Low inflation, year 0: 1,000.00',
+    });
   });
 });

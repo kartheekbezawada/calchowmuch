@@ -1736,6 +1736,108 @@
         gap: var(--inf-space-6);
       }
 
+      #calc-inflation .inf-learning-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+        gap: clamp(24px, 4vw, 42px);
+        align-items: start;
+        padding: clamp(28px, 4vw, 42px);
+        border: 1px solid var(--inf-surface-line);
+        border-radius: 34px;
+        background:
+          radial-gradient(circle at top left, rgba(31, 95, 135, 0.12), transparent 34%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 249, 246, 0.98));
+        box-shadow: var(--inf-shadow-soft);
+      }
+
+      #calc-inflation .inf-learning-copy,
+      #calc-inflation .inf-learning-card,
+      #calc-inflation .inf-result-story,
+      #calc-inflation .inf-result-story-head,
+      #inflation-explanation .inf-section-head,
+      #inflation-explanation .inf-scenario-card,
+      #inflation-explanation .inf-chart-card,
+      #inflation-explanation .inf-info-card,
+      #inflation-explanation .inf-tool-card {
+        display: grid;
+      }
+
+      #calc-inflation .inf-learning-copy {
+        gap: 16px;
+      }
+
+      #calc-inflation .inf-learning-kicker,
+      #inflation-explanation .inf-scenario-rate {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(31, 95, 135, 0.1);
+        color: #1a597d;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      #calc-inflation .inf-learning-hero h2 {
+        margin: 0;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        line-height: 1.02;
+        letter-spacing: -0.05em;
+        color: #13293d;
+      }
+
+      #calc-inflation .inf-learning-lead,
+      #calc-inflation .inf-learning-support {
+        margin: 0;
+        max-width: 62ch;
+        color: #4d6677;
+        line-height: 1.8;
+      }
+
+      #calc-inflation .inf-learning-card {
+        gap: 16px;
+        padding: 24px 22px;
+        border: 1px solid rgba(31, 95, 135, 0.14);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(18, 49, 71, 0.98), rgba(33, 84, 115, 0.98));
+        color: rgba(239, 248, 252, 0.96);
+        box-shadow: var(--inf-shadow-hero);
+      }
+
+      #calc-inflation .inf-learning-card-label {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(194, 228, 246, 0.94);
+      }
+
+      #calc-inflation .inf-learning-card-value {
+        margin: 0;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        color: #fff;
+      }
+
+      #calc-inflation .inf-learning-card-copy,
+      #calc-inflation .inf-learning-points {
+        margin: 0;
+        color: rgba(228, 238, 244, 0.92);
+        line-height: 1.75;
+      }
+
+      #calc-inflation .inf-learning-points {
+        display: grid;
+        gap: 8px;
+        padding-left: 1.15rem;
+      }
+
       #calc-inflation .mtg-hero {
         display: grid;
         grid-template-columns: minmax(0, 1.04fr) minmax(336px, 0.96fr);
@@ -1877,6 +1979,69 @@
         display: grid;
         gap: var(--inf-space-3);
         align-content: start;
+      }
+
+      #calc-inflation .inf-result-story {
+        gap: 14px;
+        padding: 22px 20px;
+        border: 1px solid var(--inf-surface-line);
+        border-radius: 24px;
+        background: rgba(248, 251, 249, 0.94);
+        box-shadow: var(--inf-shadow-card);
+      }
+
+      #calc-inflation .inf-result-story-head {
+        gap: 6px;
+      }
+
+      #calc-inflation .inf-result-story h3,
+      #inflation-explanation .inf-chart-card h4,
+      #inflation-explanation .inf-info-card h4,
+      #inflation-explanation .inf-tool-card strong {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-inflation .inf-result-story-head p,
+      #calc-inflation .inf-result-story-copy,
+      #inflation-explanation .inf-section-head p,
+      #inflation-explanation .inf-scenario-card-copy,
+      #inflation-explanation .inf-chart-card-head p,
+      #inflation-explanation .inf-info-card p,
+      #inflation-explanation .inf-tool-card span,
+      #inflation-explanation .inf-chart-impact-note,
+      #inflation-explanation .inf-chart-summary {
+        margin: 0;
+        color: #536d7e;
+        line-height: 1.75;
+      }
+
+      #calc-inflation .inf-result-story-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-inflation .inf-story-chip {
+        display: grid;
+        gap: 6px;
+        padding: 14px 16px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      #calc-inflation .inf-story-chip span {
+        color: #5b7487;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      #calc-inflation .inf-story-chip strong {
+        color: #163e59;
+        font-size: 1rem;
       }
 
       #calc-inflation .mtg-preview-main {
@@ -2096,6 +2261,167 @@
         gap: 20px;
       }
 
+      #inflation-explanation .inf-section-head {
+        gap: 10px;
+      }
+
+      #inflation-explanation .inf-scenario-summary,
+      #inflation-explanation .inf-chart-grid,
+      #inflation-explanation .inf-card-grid,
+      #inflation-explanation .inf-tool-grid {
+        display: grid;
+      }
+
+      #inflation-explanation .inf-scenario-summary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      #inflation-explanation .inf-scenario-card {
+        gap: 12px;
+        padding: 22px 20px;
+        border: 1px solid var(--inf-surface-line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: var(--inf-shadow-card);
+      }
+
+      #inflation-explanation .inf-scenario-card.is-active {
+        border-color: rgba(31, 95, 135, 0.24);
+        box-shadow: 0 18px 36px rgba(31, 95, 135, 0.12);
+      }
+
+      #inflation-explanation .inf-scenario-card-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #inflation-explanation .inf-scenario-card-value {
+        margin: 0;
+        color: #13293d;
+        font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      #inflation-explanation .inf-chart-toolbar {
+        display: grid;
+        gap: 16px;
+      }
+
+      #inflation-explanation .inf-chart-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      #inflation-explanation .inf-chart-card {
+        gap: 18px;
+        padding: 22px 20px;
+        border: 1px solid var(--inf-surface-line);
+        border-radius: 24px;
+        background: rgba(248, 251, 249, 0.94);
+        box-shadow: var(--inf-shadow-card);
+      }
+
+      #inflation-explanation .inf-chart-card-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      #inflation-explanation .inf-chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      #inflation-explanation .inf-chart-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 28px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.94);
+        color: #355162;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #inflation-explanation .inf-chart-legend-item.is-active {
+        background: rgba(232, 241, 247, 0.96);
+        color: #1f5f87;
+      }
+
+      #inflation-explanation .inf-chart-legend-swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      #inflation-explanation .inf-chart-svg {
+        width: 100%;
+        height: auto;
+        min-height: 260px;
+        border: 1px solid rgba(31, 95, 135, 0.1);
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 247, 0.98));
+      }
+
+      #inflation-explanation .inf-card-grid {
+        gap: 16px;
+      }
+
+      #inflation-explanation .inf-card-grid--three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #inflation-explanation .inf-card-grid--two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #inflation-explanation .inf-info-card {
+        gap: 10px;
+        padding: 20px 18px;
+        border: 1px solid var(--inf-surface-line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+      }
+
+      #inflation-explanation .inf-info-card--wide {
+        padding: 24px;
+      }
+
+      #inflation-explanation .inf-tool-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      #inflation-explanation .inf-tool-card {
+        gap: 8px;
+        padding: 20px 18px;
+        border: 1px solid rgba(31, 95, 135, 0.14);
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(248, 251, 249, 0.96), rgba(255, 255, 255, 0.98));
+        box-shadow: var(--inf-shadow-card);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      #inflation-explanation .inf-tool-card:hover,
+      #inflation-explanation .inf-tool-card:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(31, 95, 135, 0.22);
+        box-shadow: 0 18px 36px rgba(31, 95, 135, 0.12);
+      }
+
       #inflation-explanation .fi-exp-formula-steps {
         display: grid;
         gap: 12px;
@@ -2225,20 +2551,35 @@
       }
 
       @media (max-width: 960px) {
+        #calc-inflation .inf-learning-hero,
         #calc-inflation .mtg-hero,
         #inflation-explanation .fi-exp-article-head,
-        #inflation-explanation .bor-faq-grid {
+        #inflation-explanation .bor-faq-grid,
+        #inflation-explanation .inf-chart-grid,
+        #inflation-explanation .inf-card-grid--three,
+        #inflation-explanation .inf-tool-grid {
           grid-template-columns: 1fr;
         }
 
         #calc-inflation .fi-metric-grid {
           grid-template-columns: 1fr;
         }
+
+        #calc-inflation .inf-result-story-grid,
+        #inflation-explanation .inf-card-grid--two,
+        #inflation-explanation .inf-scenario-summary {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
       }
 
       @media (max-width: 720px) {
         #calc-inflation .calculator-ui.finance-ui {
           gap: var(--inf-space-5);
+        }
+
+        #calc-inflation .inf-learning-hero {
+          padding: 22px 18px;
+          border-radius: 26px;
         }
 
         #calc-inflation .mtg-hero {
@@ -2262,6 +2603,12 @@
         }
 
         #calc-inflation .inf-month-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-inflation .inf-result-story-grid,
+        #inflation-explanation .inf-scenario-summary,
+        #inflation-explanation .inf-card-grid--two {
           grid-template-columns: 1fr;
         }
 
@@ -2295,6 +2642,20 @@
           gap: 18px;
         }
 
+        #inflation-explanation .inf-chart-card,
+        #inflation-explanation .inf-info-card,
+        #inflation-explanation .inf-tool-card {
+          padding: 18px 16px;
+        }
+
+        #inflation-explanation .inf-chart-card-head {
+          display: grid;
+        }
+
+        #inflation-explanation .inf-chart-legend {
+          justify-content: flex-start;
+        }
+
         #inflation-explanation .table-scroll {
           margin-top: 12px;
           padding: 0;
@@ -2317,7 +2678,7 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#webpage","name":"Inflation Calculator","url":"https://calchowmuch.com/finance-calculators/inflation-calculator/","description":"Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication","name":"Inflation Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/inflation-calculator/","description":"Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Inflation-adjusted value comparison","Equivalent value in target month","Cumulative inflation rate","Annualized inflation rate","Purchasing power comparison"],"keywords":"inflation calculator, CPI calculator, purchasing power calculator, inflation-adjusted value, value of money over time","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this inflation calculator do?","acceptedAnswer":{"@type":"Answer","text":"It converts an amount from one U.S. CPI month into the equivalent value in another month so you can compare purchasing power directly."}},{"@type":"Question","name":"What CPI series does it use?","acceptedAnswer":{"@type":"Answer","text":"It uses the U.S. Bureau of Labor Statistics CPI-U series CUUR0000SA0."}},{"@type":"Question","name":"Why is the end amount usually higher than the start amount?","acceptedAnswer":{"@type":"Answer","text":"Because inflation usually increases the CPI level over time, so more dollars are needed in the later month to match the earlier month's purchasing power."}},{"@type":"Question","name":"What is cumulative inflation?","acceptedAnswer":{"@type":"Answer","text":"Cumulative inflation is the total percentage change in CPI between the selected start month and end month."}},{"@type":"Question","name":"What is annualized inflation?","acceptedAnswer":{"@type":"Answer","text":"Annualized inflation is the average yearly inflation rate implied by the CPI change across the selected period."}},{"@type":"Question","name":"Can I compare a month to itself?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the same month is selected for both inputs, the equivalent amount remains the same and inflation is zero."}},{"@type":"Question","name":"Why can't I choose a later start month than end month?","acceptedAnswer":{"@type":"Answer","text":"This calculator is designed for earlier-to-later historical comparisons so the inflation direction and results remain clear."}},{"@type":"Question","name":"Why might a month be unavailable?","acceptedAnswer":{"@type":"Answer","text":"If the official BLS series does not publish a value for a month, the calculator does not use an estimate for that month."}},{"@type":"Question","name":"Is this the same as my personal inflation rate?","acceptedAnswer":{"@type":"Answer","text":"No. CPI-U measures overall consumer prices, while your personal inflation rate depends on your own spending patterns."}},{"@type":"Question","name":"Can I use this for contracts, salaries, or budgets?","acceptedAnswer":{"@type":"Answer","text":"Yes. It can help restate older dollar amounts into later-dollar terms for quick CPI-based purchasing power comparisons."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance Calculators","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Inflation Calculator","item":"https://calchowmuch.com/finance-calculators/inflation-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#webpage","name":"Inflation Calculator","url":"https://calchowmuch.com/finance-calculators/inflation-calculator/","description":"Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication","name":"Inflation Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/inflation-calculator/","description":"Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Inflation-adjusted value comparison","Equivalent value in target month","Cumulative inflation rate","Annualized inflation rate","Purchasing power comparison"],"keywords":"inflation calculator, CPI calculator, purchasing power calculator, inflation-adjusted value, value of money over time","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this inflation calculator do?","acceptedAnswer":{"@type":"Answer","text":"It converts an amount from one U.S. CPI month into the equivalent value in another month so you can compare purchasing power directly."}},{"@type":"Question","name":"What CPI series does it use?","acceptedAnswer":{"@type":"Answer","text":"It uses the U.S. Bureau of Labor Statistics CPI-U series CUUR0000SA0."}},{"@type":"Question","name":"What is a good inflation rate?","acceptedAnswer":{"@type":"Answer","text":"Many people view low and steady inflation as healthier than sharp price swings, but the exact target depends on the economy and policy goals."}},{"@type":"Question","name":"Is inflation always bad?","acceptedAnswer":{"@type":"Answer","text":"Not always. Mild inflation can be normal in a growing economy, but high or unstable inflation makes budgeting and planning much harder."}},{"@type":"Question","name":"How does inflation affect savings?","acceptedAnswer":{"@type":"Answer","text":"If your savings grow more slowly than prices rise, your money may buy less later even when the account balance looks higher."}},{"@type":"Question","name":"Why does money lose value over time?","acceptedAnswer":{"@type":"Answer","text":"Money loses real value when the price of everyday goods and services rises faster than the return you earn or the income you receive."}},{"@type":"Question","name":"What causes inflation?","acceptedAnswer":{"@type":"Answer","text":"Inflation can be driven by stronger demand, higher business costs, supply shortages, or more money circulating through the economy."}},{"@type":"Question","name":"How is inflation measured?","acceptedAnswer":{"@type":"Answer","text":"It is commonly tracked using CPI, which follows the cost of a basket of everyday goods and services over time."}},{"@type":"Question","name":"Why compare low, medium, and high inflation scenarios?","acceptedAnswer":{"@type":"Answer","text":"Scenario comparisons help you see how quickly a small pricing difference can turn into a much larger budget gap over several years."}},{"@type":"Question","name":"Can inflation be controlled?","acceptedAnswer":{"@type":"Answer","text":"Central banks and governments try to influence inflation, but it can still be affected by shocks, supply problems, and wider economic conditions."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance Calculators","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Inflation Calculator","item":"https://calchowmuch.com/finance-calculators/inflation-calculator/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
@@ -2350,6 +2711,36 @@
   <div class="calculator-page-single fi-cluster-flow">
     <div id="calc-inflation">
   <div class="calculator-ui finance-ui">
+    <section class="inf-learning-hero" aria-label="Inflation overview">
+      <div class="inf-learning-copy">
+        <p class="inf-learning-kicker">Understand the squeeze on your money</p>
+        <h2>Inflation Calculator — See How Prices Change Over Time</h2>
+        <p class="inf-learning-lead">
+          Inflation means the same money buys less as everyday prices rise. This page helps you see
+          how much buying power has changed, what that means in plain English, and which strategies
+          people often use to avoid falling behind.
+        </p>
+        <p class="inf-learning-support">
+          Even when the number in your bank account stays the same, your real spending power can
+          quietly shrink if prices rise faster than your income or your savings return.
+        </p>
+      </div>
+
+      <aside class="inf-learning-card" aria-label="Real-world inflation example">
+        <p class="inf-learning-card-label">Quick reality check</p>
+        <p class="inf-learning-card-value">$1,000 today may need about $1,629 in 10 years at 5% inflation.</p>
+        <p class="inf-learning-card-copy">
+          That is the core idea behind inflation: you need more dollars later just to maintain the
+          same standard of living.
+        </p>
+        <ul class="inf-learning-points">
+          <li>Cash loses ground when prices rise.</li>
+          <li>Income that does not keep up can feel like a pay cut.</li>
+          <li>Planning gets easier when you can see the size of the gap.</li>
+        </ul>
+      </aside>
+    </section>
+
     <section class="mtg-hero" aria-label="Inflation calculator">
       <div class="mtg-form-panel">
         <p class="helper">
@@ -2437,6 +2828,35 @@
           </div>
         </div>
 
+        <div class="inf-result-story">
+          <div class="inf-result-story-head">
+            <h3>Plain-English Explanation</h3>
+            <p>
+              Turn the CPI math into a lifestyle answer: how much you would need later to keep the
+              same spending power.
+            </p>
+          </div>
+          <p class="inf-result-story-copy" data-inf="result-plain">
+            Your money would need to stretch further in the target month to buy the same everyday
+            basket of goods.
+          </p>
+
+          <div class="inf-result-story-grid">
+            <article class="inf-story-chip">
+              <span>Needed budget</span>
+              <strong data-inf="result-budget">—</strong>
+            </article>
+            <article class="inf-story-chip">
+              <span>Buying power gap</span>
+              <strong data-inf="result-gap">—</strong>
+            </article>
+            <article class="inf-story-chip">
+              <span>Comparison span</span>
+              <strong data-inf="result-span">—</strong>
+            </article>
+          </div>
+        </div>
+
         <div class="fi-metric-grid" id="inf-result-detail" aria-live="polite">
           <article class="fi-metric-card">
             <span class="fi-metric-label">Purchasing Power Change</span>
@@ -2493,14 +2913,14 @@
     <div class="fi-exp-article-shell">
       <header class="fi-exp-article-head">
         <div class="fi-exp-article-intro">
-          <h2>How Much Buying Power Did Inflation Change?</h2>
+          <h2>How Inflation Is Affecting Your Money</h2>
 
           <p>
             Inflation changes what the same amount of money can buy over time. This calculator uses
             U.S. CPI data to convert <span data-inf="amount"></span> from
             <span data-inf="from-label"></span> into <strong><span data-inf="equivalent"></span></strong>
-            in <span data-inf="to-label"></span>, so the purchasing-power shift is explicit instead
-            of hidden inside changing prices.
+            in <span data-inf="to-label"></span>, so the spending-power shift is explicit instead
+            of hidden inside rising prices.
           </p>
 
           <p>
@@ -2525,75 +2945,326 @@
       <div class="fi-exp-article-layout">
         <article class="fi-exp-article-main">
           <section class="fi-exp-story-block">
-            <h3>How to Guide</h3>
-
-            <p>
-              Use this route when you want to compare the buying power of one amount across two
-              historical U.S. CPI months. It works well for salary comparisons, budget benchmarks,
-              old contract values, and any “what is that worth now?” question tied to inflation.
+            <h3>How to Use This Calculator</h3>
+            <p data-inf="result-plain">
+              Use the result to answer one practical question: how much money you would need in the
+              target month to preserve the same purchasing power.
             </p>
-
             <ol class="fi-exp-formula-steps">
               <li>Enter the amount you want to restate.</li>
-              <li>Choose the earlier CPI month as the starting point.</li>
-              <li>Choose the later CPI month as the target point.</li>
-              <li>Click Calculate to see the equivalent value, CPI factor, and inflation rates.</li>
+              <li>Select the earlier month where that amount originally applied.</li>
+              <li>Select the later month you want to compare against.</li>
+              <li>Click Calculate to see the equivalent value and the inflation gap.</li>
             </ol>
-
             <p>
-              The core comparison uses a simple ratio:
-              <span class="inf-formula-inline">Equivalent Value = Amount × (End CPI ÷ Start CPI)</span>.
-              If the end CPI is higher than the start CPI, the same basket of goods costs more in
-              the target month.
+              This route is historical and data-based. It is strongest when you want to compare a
+              paycheck, savings goal, contract amount, or everyday budget across two real CPI dates.
             </p>
+          </section>
 
-            <h4>Worked Example</h4>
-            <p>
-              Example scenario: <span data-inf="amount"></span> in
-              <span data-inf="from-label"></span> is converted into
-              <span data-inf="equivalent"></span> in <span data-inf="to-label"></span> by applying
-              the CPI ratio <span data-inf="end-cpi"></span> ÷ <span data-inf="start-cpi"></span>.
-              That creates a purchasing-power difference of
-              <span data-inf="absolute-change"></span> across <span data-inf="month-span"></span>.
-            </p>
+          <section class="fi-exp-story-block inf-scenario-section" id="inflation-scenarios">
+            <div class="inf-section-head">
+              <h3>Scenario Analysis: What Happens Under Different Inflation Speeds?</h3>
+              <p>
+                Historical CPI tells you what happened. The scenarios below help you think about
+                what a similar amount might need to look like under low, medium, and high inflation
+                over <span data-inf="scenario-horizon"></span>.
+              </p>
+            </div>
+
+            <div class="inf-scenario-summary" id="inf-scenario-summary" aria-live="polite"></div>
+
+            <div class="table-scroll" tabindex="0">
+              <table class="inf-results-table inf-scenario-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Scenario</th>
+                    <th scope="col">Assumed inflation</th>
+                    <th scope="col">Amount needed</th>
+                    <th scope="col">Cash shortfall</th>
+                    <th scope="col">Inflation impact</th>
+                  </tr>
+                </thead>
+                <tbody id="inf-scenario-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block inf-chart-section" id="inflation-charts">
+            <div class="inf-section-head">
+              <h3>Visualize the Inflation Curve</h3>
+              <p>
+                Use the preset buttons to highlight one inflation path. The first chart shows how
+                much money would be needed over time. The second shows the purchasing-power gap that
+                opens if cash stays flat while prices keep rising.
+              </p>
+            </div>
+
+            <div class="inf-chart-toolbar">
+              <div class="fi-toggle-group">
+                <span class="fi-toggle-label">Chart preset</span>
+                <div class="button-group" role="group" data-button-group="inf-chart-preset" aria-label="Inflation scenario preset">
+                  <button class="calculator-button secondary" type="button" data-value="low" aria-pressed="false">Low 2%</button>
+                  <button class="calculator-button secondary is-active" type="button" data-value="medium" aria-pressed="true">Medium 5%</button>
+                  <button class="calculator-button secondary" type="button" data-value="high" aria-pressed="false">High 8%</button>
+                </div>
+              </div>
+              <p class="inf-chart-summary" id="inf-chart-summary">
+                Scenario summaries update after you calculate.
+              </p>
+            </div>
+
+            <div class="inf-chart-grid">
+              <article class="inf-chart-card">
+                <div class="inf-chart-card-head">
+                  <div>
+                    <h4>Value of Money Over Time</h4>
+                    <p>Three lines show how much the same spending power could cost under each preset.</p>
+                  </div>
+                  <div class="inf-chart-legend" id="inf-chart-legend" aria-hidden="true"></div>
+                </div>
+                <svg
+                  id="inf-value-chart"
+                  class="inf-chart-svg"
+                  viewBox="0 0 680 280"
+                  role="img"
+                  aria-label="Projected value of money over time under low, medium, and high inflation scenarios."
+                ></svg>
+              </article>
+
+              <article class="inf-chart-card">
+                <div class="inf-chart-card-head">
+                  <div>
+                    <h4>Inflation Impact Curve</h4>
+                    <p>The highlighted preset shows the gap that opens if your cash amount does not grow.</p>
+                  </div>
+                  <p class="inf-chart-impact-note" id="inf-impact-summary">
+                    Select a scenario to focus the chart.
+                  </p>
+                </div>
+                <svg
+                  id="inf-impact-chart"
+                  class="inf-chart-svg"
+                  viewBox="0 0 680 280"
+                  role="img"
+                  aria-label="Purchasing power loss curve for the selected inflation scenario."
+                ></svg>
+              </article>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <div class="inf-section-head">
+              <h3>Real-Life Examples</h3>
+              <p>
+                Inflation feels abstract until you link it to daily life. These are the situations
+                where it usually becomes real for people.
+              </p>
+            </div>
+
+            <div class="inf-card-grid inf-card-grid--three">
+              <article class="inf-info-card">
+                <h4>Groceries</h4>
+                <p>
+                  A weekly food shop that once felt routine can climb year after year, even if your
+                  habits barely change.
+                </p>
+              </article>
+              <article class="inf-info-card">
+                <h4>Salary vs Prices</h4>
+                <p>
+                  If your pay rises slowly while rent, food, and transport rise faster, you are
+                  effectively earning less in real terms.
+                </p>
+              </article>
+              <article class="inf-info-card">
+                <h4>Savings Losing Ground</h4>
+                <p>
+                  Cash can look safe, but if interest earned lags inflation, your money may buy less
+                  later than it buys now.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <div class="inf-section-head">
+              <h3>What Causes Inflation?</h3>
+              <p>
+                Inflation usually comes from some version of demand, costs, or money moving faster
+                than the supply of goods and services.
+              </p>
+            </div>
+
+            <div class="inf-card-grid inf-card-grid--three">
+              <article class="inf-info-card">
+                <h4>Demand Rises Faster Than Supply</h4>
+                <p>
+                  When many people want the same things at once and supply is tight, prices often
+                  move up.
+                </p>
+              </article>
+              <article class="inf-info-card">
+                <h4>Business Costs Increase</h4>
+                <p>
+                  If wages, energy, transport, or materials get more expensive, businesses may pass
+                  those costs on to customers.
+                </p>
+              </article>
+              <article class="inf-info-card">
+                <h4>More Money Chasing Goods</h4>
+                <p>
+                  When there is more money circulating than there are goods and services available,
+                  prices can rise across the economy.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <div class="inf-section-head">
+              <h3>How Inflation Is Measured</h3>
+              <p>
+                Inflation is commonly tracked through CPI, short for Consumer Price Index. Think of
+                CPI as a basket of everyday goods and services that is checked over time.
+              </p>
+            </div>
+
+            <div class="inf-info-card inf-info-card--wide">
+              <h4>CPI in Plain Language</h4>
+              <p>
+                Governments and statistical agencies track the prices of things households commonly
+                buy, such as food, housing, transport, and utilities. If that basket becomes more
+                expensive, CPI rises and inflation is reported higher.
+              </p>
+              <p>
+                This route uses the U.S. Bureau of Labor Statistics CPI-U series, which gives you a
+                standardized way to compare purchasing power across time.
+              </p>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <div class="inf-section-head">
+              <h3>How to Protect Yourself Against Inflation</h3>
+              <p>
+                There is no universal fix, but people usually respond by improving return, reducing
+                idle cash drag, or growing income.
+              </p>
+            </div>
+
+            <div class="inf-card-grid inf-card-grid--two">
+              <article class="inf-info-card">
+                <h4>Invest Rather Than Let Cash Sit</h4>
+                <p>
+                  Long-term investing can give money a better chance of outpacing inflation than
+                  holding too much in low-yield cash.
+                </p>
+              </article>
+              <article class="inf-info-card">
+                <h4>Use Interest-Bearing Accounts</h4>
+                <p>
+                  Even modest interest can reduce the damage compared with letting cash earn nothing.
+                </p>
+              </article>
+              <article class="inf-info-card">
+                <h4>Consider Real Assets</h4>
+                <p>
+                  Property, commodities, and productive assets are often discussed because their
+                  values can move with inflation over time.
+                </p>
+              </article>
+              <article class="inf-info-card">
+                <h4>Grow Income, Not Just Savings</h4>
+                <p>
+                  Pay rises, stronger pricing power, or extra income streams can matter as much as
+                  investment returns when inflation is persistent.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <div class="inf-section-head">
+              <h3>Strategy Comparison</h3>
+              <p>
+                Different responses to inflation come with different tradeoffs. Protection level and
+                risk rarely move independently.
+              </p>
+            </div>
 
             <div class="table-scroll" tabindex="0">
               <table class="inf-results-table">
                 <thead>
                   <tr>
-                    <th scope="col">Metric</th>
-                    <th scope="col">Current value</th>
-                    <th scope="col">Why it matters</th>
+                    <th scope="col">Strategy</th>
+                    <th scope="col">Inflation Protection</th>
+                    <th scope="col">Risk Level</th>
+                    <th scope="col">Example</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Original amount</td>
-                    <td><span data-inf="amount"></span></td>
-                    <td>The value anchored to the start month.</td>
+                    <td>Cash savings</td>
+                    <td>Low</td>
+                    <td>Low</td>
+                    <td>Bank account</td>
                   </tr>
                   <tr>
-                    <td>Equivalent amount</td>
-                    <td><span data-inf="equivalent"></span></td>
-                    <td>The amount needed in the target month to match the same CPI basket.</td>
+                    <td>Interest-bearing savings</td>
+                    <td>Low to Medium</td>
+                    <td>Low</td>
+                    <td>High-yield savings</td>
                   </tr>
                   <tr>
-                    <td>Purchasing power change</td>
-                    <td><span data-inf="absolute-change"></span></td>
-                    <td>The dollar gap created by the CPI move between the two months.</td>
+                    <td>Stocks</td>
+                    <td>Medium to High</td>
+                    <td>Medium</td>
+                    <td>Index funds</td>
                   </tr>
                   <tr>
-                    <td>Cumulative inflation</td>
-                    <td><span data-inf="cumulative-rate"></span></td>
-                    <td>The full inflation change across the chosen period.</td>
+                    <td>Property</td>
+                    <td>Medium</td>
+                    <td>Medium</td>
+                    <td>Real estate</td>
                   </tr>
                   <tr>
-                    <td>Annualized inflation</td>
-                    <td><span data-inf="annualized-rate"></span></td>
-                    <td>The average yearly pace implied by the full-period CPI change.</td>
+                    <td>Income growth</td>
+                    <td>Medium to High</td>
+                    <td>Varies</td>
+                    <td>Career advancement</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          <section class="fi-exp-story-block">
+            <div class="inf-section-head">
+              <h3>Tools to Help You Beat Inflation</h3>
+              <p>
+                Inflation rarely acts alone. These related calculators help you turn the inflation
+                insight into a savings, investing, or borrowing decision.
+              </p>
+            </div>
+
+            <div class="inf-tool-grid">
+              <a class="inf-tool-card" href="/finance-calculators/monthly-savings-needed-calculator/">
+                <strong>Monthly Savings Needed Calculator</strong>
+                <span>Work out how much you need to save regularly when prices keep climbing.</span>
+              </a>
+              <a class="inf-tool-card" href="/finance-calculators/investment-return-calculator/">
+                <strong>Investment Return Calculator</strong>
+                <span>Compare whether portfolio growth could outpace inflation over time.</span>
+              </a>
+              <a class="inf-tool-card" href="/finance-calculators/compound-interest-calculator/">
+                <strong>Compound Interest Calculator</strong>
+                <span>See how compounding can help savings grow faster than cash loses value.</span>
+              </a>
+              <a class="inf-tool-card" href="/loan-calculators/mortgage-calculator/">
+                <strong>Mortgage Calculator</strong>
+                <span>Understand how borrowing, payments, and inflation can interact in real life.</span>
+              </a>
             </div>
           </section>
 
@@ -2616,66 +3287,66 @@
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>Why is the end amount usually higher than the start amount?</h4>
+                <h4>What is a good inflation rate?</h4>
                 <p class="faq-answer">
-                  Because inflation usually increases the CPI level over time, so more dollars are
-                  needed in the later month to match the earlier month's purchasing power.
+                  Many people view low and steady inflation as healthier than sharp price swings, but
+                  the exact target depends on the economy and policy goals.
                 </p>
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>What is cumulative inflation?</h4>
+                <h4>Is inflation always bad?</h4>
                 <p class="faq-answer">
-                  Cumulative inflation is the total percentage change in CPI between the selected
-                  start month and end month.
+                  Not always. Mild inflation can be normal in a growing economy, but high or unstable
+                  inflation makes budgeting and planning much harder.
                 </p>
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>What is annualized inflation?</h4>
+                <h4>How does inflation affect savings?</h4>
                 <p class="faq-answer">
-                  Annualized inflation is the average yearly inflation rate implied by the CPI
-                  change across the selected period.
+                  If your savings grow more slowly than prices rise, your money may buy less later
+                  even when the account balance looks higher.
                 </p>
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>Can I compare a month to itself?</h4>
+                <h4>Why does money lose value over time?</h4>
                 <p class="faq-answer">
-                  Yes. If the same month is selected for both inputs, the equivalent amount remains
-                  the same and inflation is zero.
+                  Money loses real value when the price of everyday goods and services rises faster
+                  than the return you earn or the income you receive.
                 </p>
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>Why can't I choose a later start month than end month?</h4>
+                <h4>What causes inflation?</h4>
                 <p class="faq-answer">
-                  This calculator is designed for earlier-to-later historical comparisons so the
-                  inflation direction and results remain clear.
+                  Inflation can be driven by stronger demand, higher business costs, supply shortages,
+                  or more money circulating through the economy.
                 </p>
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>Why might a month be unavailable?</h4>
+                <h4>How is inflation measured?</h4>
                 <p class="faq-answer">
-                  If the official BLS series does not publish a value for a month, the calculator
-                  does not use an estimate for that month.
+                  It is commonly tracked using CPI, which follows the cost of a basket of everyday
+                  goods and services over time.
                 </p>
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>Is this the same as my personal inflation rate?</h4>
+                <h4>Why compare low, medium, and high inflation scenarios?</h4>
                 <p class="faq-answer">
-                  No. CPI-U measures overall consumer prices, while your personal inflation rate
-                  depends on your own spending patterns.
+                  Scenario comparisons help you see how quickly a small pricing difference can turn
+                  into a much larger budget gap over several years.
                 </p>
               </article>
 
               <article class="bor-faq-card faq-card">
-                <h4>Can I use this for contracts, salaries, or budgets?</h4>
+                <h4>Can inflation be controlled?</h4>
                 <p class="faq-answer">
-                  Yes. It can help restate older dollar amounts into later-dollar terms for quick
-                  CPI-based purchasing power comparisons.
+                  Central banks and governments try to influence inflation, but it can still be
+                  affected by shocks, supply problems, and wider economic conditions.
                 </p>
               </article>
             </div>
@@ -2687,16 +3358,16 @@
               <li><strong>Last updated:</strong> March 2026.</li>
               <li>
                 <strong>Accuracy:</strong> Uses locally bundled U.S. CPI-U values from the Bureau of
-                Labor Statistics series `CUUR0000SA0`.
+                Labor Statistics series CUUR0000SA0.
               </li>
               <li>
-                <strong>Disclaimer:</strong> This is a CPI-based purchasing-power estimate. It is not
-                an investment return, wage-growth, or personal-cost-of-living forecast.
+                <strong>Disclaimer:</strong> This is a CPI-based purchasing-power estimate. The
+                educational scenarios are illustrative and are not a forecast or investment promise.
               </li>
               <li>
-                <strong>Assumptions:</strong> The calculator compares one published CPI month with a
-                later published CPI month. If the official series has a missing month, the route
-                rejects that month instead of interpolating it.
+                <strong>Assumptions:</strong> The main calculator compares published CPI months. The
+                separate scenario section uses fixed example inflation rates of 2%, 5%, and 8% to
+                show how money can change over time.
               </li>
               <li>
                 <strong>Privacy:</strong> All calculations run locally in your browser - no data is

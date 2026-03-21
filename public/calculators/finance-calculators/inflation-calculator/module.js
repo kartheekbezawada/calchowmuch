@@ -1,56 +1,67 @@
-import { setPageMetadata } from '/assets/js/core/ui.js';
-import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { setPageMetadata, setupButtonGroup } from '../../../assets/js/core/ui.js';
+import { formatNumber, formatPercent } from '../../../assets/js/core/format.js';
 import {
   calculateInflationAdjustment,
-  formatCpiMonth,
   getAvailableCpiMonthRange,
   getLatestAvailableCpiMonth,
-} from '/assets/js/core/inflation-utils.js';
+} from '../../../assets/js/core/inflation-utils.js';
 import {
   createStaleResultController,
   revealResultPanel,
   wireRangeWithField,
-} from '/calculators/finance-calculators/shared/cluster-ux.js';
+} from '../shared/cluster-ux.js';
 
-const amountInput = document.querySelector('#inf-amount');
-const amountField = document.querySelector('#inf-amount-field');
-const amountDisplay = document.querySelector('#inf-amount-display');
-const fromMonthInput = document.querySelector('#inf-from-month');
-const toMonthInput = document.querySelector('#inf-to-month');
-const calculateButton = document.querySelector('#inf-calc');
-const resultOutput = document.querySelector('#inf-result');
-const detailPanel = document.querySelector('#inf-result-detail');
-const previewPanel = document.querySelector('#inf-preview');
-const staleNote = document.querySelector('#inf-stale-note');
-
-const metricChange = document.querySelector('[data-inf="metric-change"]');
-const metricCumulative = document.querySelector('[data-inf="metric-cumulative"]');
-const metricAnnualized = document.querySelector('[data-inf="metric-annualized"]');
-const metricFactor = document.querySelector('[data-inf="metric-factor"]');
-
-const snapshotAmount = document.querySelector('[data-inf="snap-amount"]');
-const snapshotFrom = document.querySelector('[data-inf="snap-from"]');
-const snapshotTo = document.querySelector('[data-inf="snap-to"]');
-const snapshotStartCpi = document.querySelector('[data-inf="snap-start-cpi"]');
-const snapshotEndCpi = document.querySelector('[data-inf="snap-end-cpi"]');
-const snapshotMonths = document.querySelector('[data-inf="snap-months"]');
-const snapshotEquivalent = document.querySelector('[data-inf="snap-equivalent"]');
-
-const explanationRoot = document.querySelector('#inflation-explanation');
-const valueTargets = explanationRoot
-  ? {
-      amount: explanationRoot.querySelectorAll('[data-inf="amount"]'),
-      equivalent: explanationRoot.querySelectorAll('[data-inf="equivalent"]'),
-      fromLabel: explanationRoot.querySelectorAll('[data-inf="from-label"]'),
-      toLabel: explanationRoot.querySelectorAll('[data-inf="to-label"]'),
-      startCpi: explanationRoot.querySelectorAll('[data-inf="start-cpi"]'),
-      endCpi: explanationRoot.querySelectorAll('[data-inf="end-cpi"]'),
-      absoluteChange: explanationRoot.querySelectorAll('[data-inf="absolute-change"]'),
-      cumulativeRate: explanationRoot.querySelectorAll('[data-inf="cumulative-rate"]'),
-      annualizedRate: explanationRoot.querySelectorAll('[data-inf="annualized-rate"]'),
-      monthSpan: explanationRoot.querySelectorAll('[data-inf="month-span"]'),
-    }
-  : null;
+const CALCULATOR_FAQ_ENTRIES = [
+  {
+    question: 'What does this inflation calculator do?',
+    answer:
+      'It converts an amount from one U.S. CPI month into the equivalent value in another month so you can compare purchasing power directly.',
+  },
+  {
+    question: 'What CPI series does it use?',
+    answer: 'It uses the U.S. Bureau of Labor Statistics CPI-U series CUUR0000SA0.',
+  },
+  {
+    question: 'What is a good inflation rate?',
+    answer:
+      'Many people view low and steady inflation as healthier than sharp price swings, but the exact target depends on the economy and policy goals.',
+  },
+  {
+    question: 'Is inflation always bad?',
+    answer:
+      'Not always. Mild inflation can be normal in a growing economy, but high or unstable inflation makes budgeting and planning much harder.',
+  },
+  {
+    question: 'How does inflation affect savings?',
+    answer:
+      'If your savings grow more slowly than prices rise, your money may buy less later even when the account balance looks higher.',
+  },
+  {
+    question: 'Why does money lose value over time?',
+    answer:
+      'Money loses real value when the price of everyday goods and services rises faster than the return you earn or the income you receive.',
+  },
+  {
+    question: 'What causes inflation?',
+    answer:
+      'Inflation can be driven by stronger demand, higher business costs, supply shortages, or more money circulating through the economy.',
+  },
+  {
+    question: 'How is inflation measured?',
+    answer:
+      'It is commonly tracked using CPI, which follows the cost of a basket of everyday goods and services over time.',
+  },
+  {
+    question: 'Why compare low, medium, and high inflation scenarios?',
+    answer:
+      'Scenario comparisons help you see how quickly a small pricing difference can turn into a much larger budget gap over several years.',
+  },
+  {
+    question: 'Can inflation be controlled?',
+    answer:
+      'Central banks and governments try to influence inflation, but it can still be affected by shocks, supply problems, and wider economic conditions.',
+  },
+];
 
 const metadata = {
   title: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
@@ -124,6 +135,8 @@ const metadata = {
           'Cumulative inflation rate',
           'Annualized inflation rate',
           'Purchasing power comparison',
+          'Educational inflation scenario analysis',
+          'Value of money projection charts',
         ],
         keywords:
           'inflation calculator, CPI calculator, purchasing power calculator, inflation-adjusted value, value of money over time',
@@ -136,88 +149,14 @@ const metadata = {
       {
         '@type': 'FAQPage',
         '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#faq',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'What does this inflation calculator do?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'It converts an amount from one U.S. CPI month into the equivalent value in another month so you can compare purchasing power directly.',
-            },
+        mainEntity: CALCULATOR_FAQ_ENTRIES.map((entry) => ({
+          '@type': 'Question',
+          name: entry.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: entry.answer,
           },
-          {
-            '@type': 'Question',
-            name: 'What CPI series does it use?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'It uses the U.S. Bureau of Labor Statistics CPI-U series CUUR0000SA0.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Why is the end amount usually higher than the start amount?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: "Because inflation usually increases the CPI level over time, so more dollars are needed in the later month to match the earlier month's purchasing power.",
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'What is cumulative inflation?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Cumulative inflation is the total percentage change in CPI between the selected start month and end month.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'What is annualized inflation?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Annualized inflation is the average yearly inflation rate implied by the CPI change across the selected period.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Can I compare a month to itself?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Yes. If the same month is selected for both inputs, the equivalent amount remains the same and inflation is zero.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: "Why can't I choose a later start month than end month?",
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'This calculator is designed for earlier-to-later historical comparisons so the inflation direction and results remain clear.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Why might a month be unavailable?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'If the official BLS series does not publish a value for a month, the calculator does not use an estimate for that month.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Is this the same as my personal inflation rate?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'No. CPI-U measures overall consumer prices, while your personal inflation rate depends on your own spending patterns.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: 'Can I use this for contracts, salaries, or budgets?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: 'Yes. It can help restate older dollar amounts into later-dollar terms for quick CPI-based purchasing power comparisons.',
-            },
-          },
-        ],
+        })),
       },
       {
         '@type': 'BreadcrumbList',
@@ -249,17 +188,197 @@ const metadata = {
 
 setPageMetadata(metadata);
 
-function setTargets(targets, value) {
-  if (!targets) {
-    return;
+export const INFLATION_EDU_PRESETS = [
+  {
+    id: 'low',
+    label: 'Low inflation',
+    shortLabel: 'Low 2%',
+    rate: 0.02,
+    tone: 'A calmer environment where prices rise gradually.',
+    color: '#2f7d57',
+  },
+  {
+    id: 'medium',
+    label: 'Medium inflation',
+    shortLabel: 'Medium 5%',
+    rate: 0.05,
+    tone: 'A noticeable squeeze that steadily changes everyday budgets.',
+    color: '#c27b12',
+  },
+  {
+    id: 'high',
+    label: 'High inflation',
+    shortLabel: 'High 8%',
+    rate: 0.08,
+    tone: 'A fast-rising price environment where cash loses ground quickly.',
+    color: '#b74a4a',
+  },
+];
+
+export function normalizeScenarioHorizonYears(monthSpan) {
+  const parsedMonthSpan = Number(monthSpan);
+  if (!Number.isFinite(parsedMonthSpan) || parsedMonthSpan <= 0) {
+    return 1;
+  }
+  return Math.max(1, parsedMonthSpan / 12);
+}
+
+export function buildProjectionTimeline({ amount, years, rate }) {
+  const safeAmount = Number(amount);
+  const safeYears = normalizeScenarioHorizonYears(years * 12);
+  const safeRate = Number(rate);
+
+  if (!Number.isFinite(safeAmount) || safeAmount <= 0 || !Number.isFinite(safeRate)) {
+    return [];
   }
 
-  targets.forEach((node) => {
-    if (node.textContent !== value) {
-      node.textContent = value;
-    }
+  const checkpoints = new Set([0, safeYears]);
+  const wholeYears = Math.floor(safeYears);
+
+  for (let year = 1; year <= wholeYears; year += 1) {
+    checkpoints.add(year);
+  }
+
+  return Array.from(checkpoints)
+    .sort((left, right) => left - right)
+    .map((year) => {
+      const requiredValue = safeAmount * Math.pow(1 + safeRate, year);
+      const lossAmount = requiredValue - safeAmount;
+      const impactRate = requiredValue > 0 ? lossAmount / requiredValue : 0;
+
+      return {
+        year,
+        requiredValue,
+        lossAmount,
+        impactRate,
+      };
+    });
+}
+
+export function buildInflationScenarioRows({
+  amount,
+  monthSpan,
+  presets = INFLATION_EDU_PRESETS,
+} = {}) {
+  const normalizedAmount = Number(amount);
+  const horizonYears = normalizeScenarioHorizonYears(monthSpan);
+
+  return presets.map((preset) => {
+    const timeline = buildProjectionTimeline({
+      amount: normalizedAmount,
+      years: horizonYears,
+      rate: preset.rate,
+    });
+    const finalPoint = timeline[timeline.length - 1] ?? {
+      requiredValue: normalizedAmount,
+      lossAmount: 0,
+      impactRate: 0,
+    };
+
+    return {
+      ...preset,
+      horizonYears,
+      timeline,
+      futureValue: finalPoint.requiredValue,
+      purchasingPowerLoss: finalPoint.lossAmount,
+      impactRate: finalPoint.requiredValue > 0 ? finalPoint.lossAmount / finalPoint.requiredValue : 0,
+    };
   });
 }
+
+export function buildInflationChartModel({
+  amount,
+  monthSpan,
+  activePresetId = 'medium',
+} = {}) {
+  const scenarioRows = buildInflationScenarioRows({ amount, monthSpan });
+  const activePreset =
+    scenarioRows.find((row) => row.id === activePresetId) ??
+    scenarioRows.find((row) => row.id === 'medium') ??
+    scenarioRows[0] ??
+    null;
+
+  return {
+    horizonYears: normalizeScenarioHorizonYears(monthSpan),
+    scenarioRows,
+    activePreset,
+    valueLines: scenarioRows.map((row) => ({
+      id: row.id,
+      label: row.label,
+      color: row.color,
+      points: row.timeline.map((point) => ({
+        x: point.year,
+        y: point.requiredValue,
+        label: `${row.label}, year ${formatYearValue(point.year)}: ${formatMoney(point.requiredValue)}`,
+      })),
+    })),
+    impactPoints: activePreset
+      ? activePreset.timeline.map((point) => ({
+          x: point.year,
+          y: point.lossAmount,
+          label: `${activePreset.label}, year ${formatYearValue(point.year)}: ${formatMoney(point.lossAmount)} of purchasing power lost`,
+        }))
+      : [],
+  };
+}
+
+const doc = typeof document !== 'undefined' ? document : null;
+
+const amountInput = doc?.querySelector('#inf-amount') ?? null;
+const amountField = doc?.querySelector('#inf-amount-field') ?? null;
+const amountDisplay = doc?.querySelector('#inf-amount-display') ?? null;
+const fromMonthInput = doc?.querySelector('#inf-from-month') ?? null;
+const toMonthInput = doc?.querySelector('#inf-to-month') ?? null;
+const calculateButton = doc?.querySelector('#inf-calc') ?? null;
+const resultOutput = doc?.querySelector('#inf-result') ?? null;
+const previewPanel = doc?.querySelector('#inf-preview') ?? null;
+const staleNote = doc?.querySelector('#inf-stale-note') ?? null;
+
+const metricChange = doc?.querySelector('[data-inf="metric-change"]') ?? null;
+const metricCumulative = doc?.querySelector('[data-inf="metric-cumulative"]') ?? null;
+const metricAnnualized = doc?.querySelector('[data-inf="metric-annualized"]') ?? null;
+const metricFactor = doc?.querySelector('[data-inf="metric-factor"]') ?? null;
+
+const snapshotAmount = doc?.querySelector('[data-inf="snap-amount"]') ?? null;
+const snapshotFrom = doc?.querySelector('[data-inf="snap-from"]') ?? null;
+const snapshotTo = doc?.querySelector('[data-inf="snap-to"]') ?? null;
+const snapshotStartCpi = doc?.querySelector('[data-inf="snap-start-cpi"]') ?? null;
+const snapshotEndCpi = doc?.querySelector('[data-inf="snap-end-cpi"]') ?? null;
+const snapshotMonths = doc?.querySelector('[data-inf="snap-months"]') ?? null;
+const snapshotEquivalent = doc?.querySelector('[data-inf="snap-equivalent"]') ?? null;
+
+const resultPlainTargets = doc?.querySelectorAll('[data-inf="result-plain"]') ?? null;
+const resultBudgetTargets = doc?.querySelectorAll('[data-inf="result-budget"]') ?? null;
+const resultGapTargets = doc?.querySelectorAll('[data-inf="result-gap"]') ?? null;
+const resultSpanTargets = doc?.querySelectorAll('[data-inf="result-span"]') ?? null;
+const scenarioHorizonTargets = doc?.querySelectorAll('[data-inf="scenario-horizon"]') ?? null;
+
+const valueTargets = doc
+  ? {
+      amount: doc.querySelectorAll('[data-inf="amount"]'),
+      equivalent: doc.querySelectorAll('[data-inf="equivalent"]'),
+      fromLabel: doc.querySelectorAll('[data-inf="from-label"]'),
+      toLabel: doc.querySelectorAll('[data-inf="to-label"]'),
+      startCpi: doc.querySelectorAll('[data-inf="start-cpi"]'),
+      endCpi: doc.querySelectorAll('[data-inf="end-cpi"]'),
+      absoluteChange: doc.querySelectorAll('[data-inf="absolute-change"]'),
+      cumulativeRate: doc.querySelectorAll('[data-inf="cumulative-rate"]'),
+      annualizedRate: doc.querySelectorAll('[data-inf="annualized-rate"]'),
+      monthSpan: doc.querySelectorAll('[data-inf="month-span"]'),
+    }
+  : null;
+
+const scenarioSummary = doc?.querySelector('#inf-scenario-summary') ?? null;
+const scenarioBody = doc?.querySelector('#inf-scenario-body') ?? null;
+const valueChart = doc?.querySelector('#inf-value-chart') ?? null;
+const impactChart = doc?.querySelector('#inf-impact-chart') ?? null;
+const chartLegend = doc?.querySelector('#inf-chart-legend') ?? null;
+const chartSummary = doc?.querySelector('#inf-chart-summary') ?? null;
+const impactSummary = doc?.querySelector('#inf-impact-summary') ?? null;
+const chartPresetGroup = doc?.querySelector('[data-button-group="inf-chart-preset"]') ?? null;
+
+let lastSuccessfulOutput = null;
+let activeChartPreset = 'medium';
 
 function formatMoney(value, options = {}) {
   return formatNumber(value, {
@@ -283,6 +402,18 @@ function formatFactor(value) {
   return `${formatNumber(value, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}x`;
 }
 
+function formatYearValue(year) {
+  const decimals = Number.isInteger(year) ? 0 : 1;
+  return formatNumber(year, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+}
+
+function formatScenarioHorizon(years) {
+  return `${formatYearValue(years)} ${years === 1 ? 'year' : 'years'}`;
+}
+
 function formatMonthSpan(monthSpan) {
   if (!Number.isFinite(monthSpan) || monthSpan <= 0) {
     return '0 months';
@@ -300,6 +431,27 @@ function formatMonthSpan(monthSpan) {
   }
 
   return `${parts.join(', ')} (${monthSpan} months)`;
+}
+
+function formatCompactMoney(value) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    notation: 'compact',
+    maximumFractionDigits: 1,
+  }).format(value);
+}
+
+function setTargets(targets, value) {
+  if (!targets) {
+    return;
+  }
+
+  targets.forEach((node) => {
+    if (node.textContent !== value) {
+      node.textContent = value;
+    }
+  });
 }
 
 function parseNumericFieldValue(value) {
@@ -330,11 +482,207 @@ function clearDetailTargets() {
     });
 }
 
-function setError(message) {
-  if (resultOutput) {
-    resultOutput.innerHTML = `<span class="mtg-result-value inf-error">${message}</span>`;
+function buildChartSvg({
+  width = 680,
+  height = 280,
+  lines = [],
+  activeId = null,
+  yTickFormatter,
+  emptyMessage,
+  areaPoints = null,
+  areaColor = 'rgba(31, 95, 135, 0.18)',
+}) {
+  const padding = {
+    top: 18,
+    right: 24,
+    bottom: 42,
+    left: 56,
+  };
+  const chartWidth = width - padding.left - padding.right;
+  const chartHeight = height - padding.top - padding.bottom;
+
+  if (!lines.length || !chartWidth || !chartHeight) {
+    return `<text x="${width / 2}" y="${height / 2}" text-anchor="middle" fill="#6a8192" font-size="16">${emptyMessage}</text>`;
   }
-  clearDetailTargets();
+
+  const allPoints = lines.flatMap((line) => line.points);
+  const maxX = Math.max(...allPoints.map((point) => point.x), 1);
+  const maxY = Math.max(...allPoints.map((point) => point.y), 1);
+  const yTicks = 4;
+  const xTicks = 4;
+
+  const scaleX = (value) => padding.left + (value / maxX) * chartWidth;
+  const scaleY = (value) => padding.top + chartHeight - (value / maxY) * chartHeight;
+
+  const gridLines = [];
+  const yLabels = [];
+  for (let index = 0; index <= yTicks; index += 1) {
+    const ratio = index / yTicks;
+    const yValue = maxY * ratio;
+    const y = scaleY(yValue);
+    gridLines.push(
+      `<line x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}" stroke="rgba(31, 95, 135, 0.12)" stroke-width="1" />`
+    );
+    yLabels.push(
+      `<text x="${padding.left - 10}" y="${y + 4}" text-anchor="end" fill="#6b8090" font-size="11">${yTickFormatter(
+        yValue
+      )}</text>`
+    );
+  }
+
+  const xLabels = [];
+  for (let index = 0; index <= xTicks; index += 1) {
+    const ratio = index / xTicks;
+    const xValue = maxX * ratio;
+    const x = scaleX(xValue);
+    xLabels.push(
+      `<text x="${x}" y="${height - 12}" text-anchor="middle" fill="#6b8090" font-size="11">${formatYearValue(
+        xValue
+      )}y</text>`
+    );
+  }
+
+  const areaMarkup = areaPoints?.length
+    ? (() => {
+        const polygonPoints = [
+          `${scaleX(areaPoints[0].x)},${scaleY(0)}`,
+          ...areaPoints.map((point) => `${scaleX(point.x)},${scaleY(point.y)}`),
+          `${scaleX(areaPoints[areaPoints.length - 1].x)},${scaleY(0)}`,
+        ].join(' ');
+        return `<polygon points="${polygonPoints}" fill="${areaColor}" />`;
+      })()
+    : '';
+
+  const lineMarkup = lines
+    .map((line) => {
+      const strokeWidth = line.id === activeId ? 4 : 2.5;
+      const opacity = activeId && line.id !== activeId ? 0.45 : 1;
+      const polyline = line.points.map((point) => `${scaleX(point.x)},${scaleY(point.y)}`).join(' ');
+      const circles = line.points
+        .map((point) => {
+          const radius = line.id === activeId ? 4 : 3;
+          return `<circle cx="${scaleX(point.x)}" cy="${scaleY(point.y)}" r="${radius}" fill="${line.color}" opacity="${opacity}" tabindex="0"><title>${point.label}</title></circle>`;
+        })
+        .join('');
+
+      return `<polyline points="${polyline}" fill="none" stroke="${line.color}" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" opacity="${opacity}" />${circles}`;
+    })
+    .join('');
+
+  return `${gridLines.join('')}${yLabels.join('')}${xLabels.join('')}${areaMarkup}${lineMarkup}`;
+}
+
+function renderScenarioSummary(model) {
+  if (!scenarioSummary || !scenarioBody) {
+    return;
+  }
+
+  scenarioSummary.innerHTML = model.scenarioRows
+    .map(
+      (row) => `
+        <article class="inf-scenario-card${row.id === model.activePreset?.id ? ' is-active' : ''}">
+          <div class="inf-scenario-card-head">
+            <span class="inf-scenario-rate">${formatPercent(row.rate * 100, { maximumFractionDigits: 0 })}</span>
+            <strong>${row.label}</strong>
+          </div>
+          <p class="inf-scenario-card-value">${formatMoney(row.futureValue)}</p>
+          <p class="inf-scenario-card-copy">${row.tone}</p>
+        </article>
+      `
+    )
+    .join('');
+
+  scenarioBody.innerHTML = model.scenarioRows
+    .map(
+      (row) => `
+        <tr>
+          <td>${row.label}</td>
+          <td>${formatPercent(row.rate * 100, { maximumFractionDigits: 0 })}</td>
+          <td>${formatMoney(row.futureValue)}</td>
+          <td>${formatMoney(row.purchasingPowerLoss)}</td>
+          <td>${formatPercent(row.impactRate * 100, { maximumFractionDigits: 1 })}</td>
+        </tr>
+      `
+    )
+    .join('');
+}
+
+function renderCharts(model) {
+  if (!valueChart || !impactChart || !chartLegend || !chartSummary || !impactSummary) {
+    return;
+  }
+
+  chartLegend.innerHTML = model.scenarioRows
+    .map(
+      (row) => `
+        <span class="inf-chart-legend-item${row.id === model.activePreset?.id ? ' is-active' : ''}">
+          <span class="inf-chart-legend-swatch" style="background:${row.color}"></span>
+          ${row.shortLabel}
+        </span>
+      `
+    )
+    .join('');
+
+  chartSummary.textContent = model.activePreset
+    ? `Focused on ${model.activePreset.shortLabel}. Over ${formatScenarioHorizon(
+        model.horizonYears
+      )}, the same ${formatMoney(lastSuccessfulOutput?.amount ?? 0)} would need to become ${formatMoney(
+        model.activePreset.futureValue
+      )} to keep pace.`
+    : 'Scenario summaries update after you calculate.';
+
+  impactSummary.textContent = model.activePreset
+    ? `${model.activePreset.shortLabel} creates a purchasing-power gap of ${formatMoney(
+        model.activePreset.purchasingPowerLoss
+      )} over ${formatScenarioHorizon(model.horizonYears)} if cash stays flat.`
+    : 'Select a scenario to focus the chart.';
+
+  valueChart.innerHTML = buildChartSvg({
+    lines: model.valueLines,
+    activeId: model.activePreset?.id ?? null,
+    yTickFormatter: formatCompactMoney,
+    emptyMessage: 'Run a valid calculation to render scenario projections.',
+  });
+
+  impactChart.innerHTML = buildChartSvg({
+    lines: model.activePreset
+      ? [
+          {
+            id: model.activePreset.id,
+            color: model.activePreset.color,
+            points: model.impactPoints,
+          },
+        ]
+      : [],
+    activeId: model.activePreset?.id ?? null,
+    yTickFormatter: formatCompactMoney,
+    emptyMessage: 'Run a valid calculation to render the impact curve.',
+    areaPoints: model.impactPoints,
+    areaColor: model.activePreset ? `${model.activePreset.color}26` : 'rgba(31, 95, 135, 0.18)',
+  });
+}
+
+function updateEducation(output) {
+  const scenarioModel = buildInflationChartModel({
+    amount: output.amount,
+    monthSpan: output.monthSpan,
+    activePresetId: activeChartPreset,
+  });
+
+  setTargets(resultBudgetTargets, formatMoney(output.equivalentValue));
+  setTargets(resultGapTargets, formatSignedMoney(output.absoluteChange));
+  setTargets(resultSpanTargets, formatMonthSpan(output.monthSpan));
+  setTargets(scenarioHorizonTargets, formatScenarioHorizon(scenarioModel.horizonYears));
+
+  setTargets(
+    resultPlainTargets,
+    `Your ${formatMoney(output.amount)} from ${output.fromLabel} would need to be about ${formatMoney(
+      output.equivalentValue
+    )} in ${output.toLabel} to buy a similar basket of everyday goods.`
+  );
+
+  renderScenarioSummary(scenarioModel);
+  renderCharts(scenarioModel);
 }
 
 function updateExplanation(output) {
@@ -348,6 +696,7 @@ function updateExplanation(output) {
   setTargets(valueTargets?.cumulativeRate, formatSignedPercent(output.cumulativeInflationRate));
   setTargets(valueTargets?.annualizedRate, formatSignedPercent(output.annualizedInflationRate));
   setTargets(valueTargets?.monthSpan, formatMonthSpan(output.monthSpan));
+  updateEducation(output);
 }
 
 function renderOutput(output) {
@@ -367,23 +716,53 @@ function renderOutput(output) {
   resultOutput.innerHTML = `<span class="mtg-result-value is-updated">${equivalent}</span>`;
   const valueNode = resultOutput.querySelector('.mtg-result-value');
   if (valueNode) {
-    window.setTimeout(() => valueNode.classList.remove('is-updated'), 420);
+    globalThis.setTimeout(() => valueNode.classList.remove('is-updated'), 420);
   }
 
-  metricChange.textContent = absoluteChange;
-  metricCumulative.textContent = cumulativeRate;
-  metricAnnualized.textContent = annualizedRate;
-  metricFactor.textContent = factor;
+  if (metricChange) {
+    metricChange.textContent = absoluteChange;
+  }
+  if (metricCumulative) {
+    metricCumulative.textContent = cumulativeRate;
+  }
+  if (metricAnnualized) {
+    metricAnnualized.textContent = annualizedRate;
+  }
+  if (metricFactor) {
+    metricFactor.textContent = factor;
+  }
 
-  snapshotAmount.textContent = formatMoney(output.amount);
-  snapshotFrom.textContent = output.fromLabel;
-  snapshotTo.textContent = output.toLabel;
-  snapshotStartCpi.textContent = startCpi;
-  snapshotEndCpi.textContent = endCpi;
-  snapshotMonths.textContent = span;
-  snapshotEquivalent.textContent = equivalent;
+  if (snapshotAmount) {
+    snapshotAmount.textContent = formatMoney(output.amount);
+  }
+  if (snapshotFrom) {
+    snapshotFrom.textContent = output.fromLabel;
+  }
+  if (snapshotTo) {
+    snapshotTo.textContent = output.toLabel;
+  }
+  if (snapshotStartCpi) {
+    snapshotStartCpi.textContent = startCpi;
+  }
+  if (snapshotEndCpi) {
+    snapshotEndCpi.textContent = endCpi;
+  }
+  if (snapshotMonths) {
+    snapshotMonths.textContent = span;
+  }
+  if (snapshotEquivalent) {
+    snapshotEquivalent.textContent = equivalent;
+  }
 
+  lastSuccessfulOutput = output;
   updateExplanation(output);
+}
+
+function setError(message) {
+  if (resultOutput) {
+    resultOutput.innerHTML = `<span class="mtg-result-value inf-error">${message}</span>`;
+  }
+  clearDetailTargets();
 }
 
 function getCalculationSignature() {
@@ -395,25 +774,6 @@ function getCalculationSignature() {
   ].join('|');
 }
 
-const amountBinding = wireRangeWithField({
-  rangeInput: amountInput,
-  textInput: amountField,
-  formatFieldValue: (value) => formatNumber(value, { maximumFractionDigits: 0 }),
-  parseFieldValue: parseNumericFieldValue,
-  onVisualUpdate: () => {
-    if (!amountInput || !amountDisplay) {
-      return;
-    }
-    amountDisplay.textContent = formatNumber(amountInput.value, { maximumFractionDigits: 0 });
-  },
-});
-
-const staleResultController = createStaleResultController({
-  resultPanel: previewPanel,
-  staleTargets: [staleNote],
-  getSignature: getCalculationSignature,
-});
-
 function calculate() {
   const output = calculateInflationAdjustment({
     amount: amountInput?.value,
@@ -423,16 +783,18 @@ function calculate() {
 
   if (output.error) {
     setError(output.error);
-    staleResultController.markFresh();
+    staleResultController?.markFresh();
     return;
   }
 
   renderOutput(output);
-  staleResultController.markFresh();
-  revealResultPanel({
-    resultPanel: previewPanel,
-    focusTarget: resultOutput,
-  });
+  staleResultController?.markFresh();
+  if (previewPanel && resultOutput) {
+    revealResultPanel({
+      resultPanel: previewPanel,
+      focusTarget: resultOutput,
+    });
+  }
 }
 
 function initializeMonthBounds() {
@@ -454,22 +816,65 @@ function initializeMonthBounds() {
   }
 }
 
-initializeMonthBounds();
-amountBinding.syncFromRange();
+const amountBinding =
+  amountInput && amountField
+    ? wireRangeWithField({
+        rangeInput: amountInput,
+        textInput: amountField,
+        formatFieldValue: (value) => formatNumber(value, { maximumFractionDigits: 0 }),
+        parseFieldValue: parseNumericFieldValue,
+        onVisualUpdate: () => {
+          if (!amountInput || !amountDisplay) {
+            return;
+          }
+          amountDisplay.textContent = formatNumber(amountInput.value, { maximumFractionDigits: 0 });
+        },
+      })
+    : null;
 
-if (calculateButton) {
-  calculateButton.addEventListener('click', calculate);
+const staleResultController =
+  previewPanel && staleNote
+    ? createStaleResultController({
+        resultPanel: previewPanel,
+        staleTargets: [staleNote],
+        getSignature: getCalculationSignature,
+      })
+    : null;
+
+const chartPresetButtons = chartPresetGroup
+  ? setupButtonGroup(chartPresetGroup, {
+      defaultValue: 'medium',
+      onChange: (value) => {
+        activeChartPreset = value;
+        if (lastSuccessfulOutput) {
+          updateEducation(lastSuccessfulOutput);
+        }
+      },
+    })
+  : null;
+
+if (chartPresetButtons) {
+  activeChartPreset = chartPresetButtons.getValue() ?? 'medium';
 }
 
-staleResultController.watchElements(
-  [amountInput, amountField, fromMonthInput, toMonthInput],
-  ['input', 'change']
-);
+if (doc) {
+  initializeMonthBounds();
+  amountBinding?.syncFromRange();
 
-[fromMonthInput, toMonthInput].filter(Boolean).forEach((input) => {
-  input.addEventListener('blur', () => {
-    staleResultController.sync();
+  if (calculateButton) {
+    calculateButton.addEventListener('click', calculate);
+  }
+
+  staleResultController?.watchElements(
+    [amountInput, amountField, fromMonthInput, toMonthInput].filter(Boolean),
+    ['input', 'change']
+  );
+
+  [fromMonthInput, toMonthInput].filter(Boolean).forEach((input) => {
+    input.addEventListener('blur', () => {
+      staleResultController?.sync();
+    });
   });
-});
 
-calculate();
+  calculate();
+}

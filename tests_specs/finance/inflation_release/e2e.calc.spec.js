@@ -26,9 +26,18 @@ test.describe('Inflation Calculator', () => {
     await expect(page.locator('.left-nav')).toHaveCount(0);
     await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(page.locator('h1')).toHaveText('Inflation Calculator');
+    await expect(page.locator('.inf-learning-hero h2')).toHaveText(
+      'Inflation Calculator — See How Prices Change Over Time'
+    );
+    await expect(page.locator('#inflation-scenarios')).toBeVisible();
+    await expect(page.locator('#inflation-charts')).toBeVisible();
 
     const baselineValue = parseNumber(await page.locator('#inf-result').textContent());
     expect(baselineValue).toBeCloseTo(1919.75, 1);
+    await expect(page.locator('[data-inf="result-plain"]').first()).toContainText(
+      'would need to be about'
+    );
+    await expect(page.locator('#inf-scenario-summary .inf-scenario-card')).toHaveCount(3);
 
     await setInputValue(page, '#inf-amount', 1200);
     await setInputValue(page, '#inf-from-month', '2000-01');
@@ -40,6 +49,12 @@ test.describe('Inflation Calculator', () => {
     await expect(page.locator('#inf-stale-note')).toBeHidden();
     expect(parseNumber(await page.locator('#inf-result').textContent())).toBeCloseTo(2303.7, 1);
     await expect(page.locator('[data-inf="snap-to"]')).toHaveText('December 2025');
+    await expect(page.locator('[data-inf="result-budget"]').first()).toContainText('2,303.70');
+    await expect(page.locator('#inf-scenario-body tr')).toHaveCount(3);
+    await page.click('[data-button-group="inf-chart-preset"] button[data-value="high"]');
+    await expect(page.locator('#inf-impact-summary')).toContainText('High 8%');
+    await expect(page.locator('#inf-value-chart circle').first()).toBeVisible();
+    await expect(page.locator('.inf-tool-grid .inf-tool-card')).toHaveCount(4);
 
     await setInputValue(page, '#inf-to-month', '2025-10');
     await page.click('#inf-calc');
