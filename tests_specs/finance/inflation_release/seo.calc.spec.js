@@ -10,7 +10,7 @@ test.describe('Inflation Calculator SEO', () => {
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.'
+      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.'
     );
 
     const h1 = page.locator('h1');
@@ -30,7 +30,7 @@ test.describe('Inflation Calculator SEO', () => {
     );
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
       'content',
-      'Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.'
+      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.'
     );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
@@ -39,8 +39,38 @@ test.describe('Inflation Calculator SEO', () => {
     const types = structuredData['@graph'].map((node) => node['@type']);
 
     expect(types).toEqual(
-      expect.arrayContaining(['WebPage', 'SoftwareApplication', 'FAQPage', 'BreadcrumbList'])
+      expect.arrayContaining([
+        'WebSite',
+        'Organization',
+        'WebPage',
+        'SoftwareApplication',
+        'FAQPage',
+        'BreadcrumbList',
+      ])
     );
+
+    const webPageNode = structuredData['@graph'].find((node) => node['@type'] === 'WebPage');
+    expect(webPageNode.name).toBe('Inflation Calculator');
+    expect(webPageNode.about).toEqual({
+      '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication',
+    });
+    expect(webPageNode.mainEntity).toEqual({
+      '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication',
+    });
+    expect(webPageNode.breadcrumb).toEqual({
+      '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs',
+    });
+
+    const breadcrumbNode = structuredData['@graph'].find(
+      (node) => node['@type'] === 'BreadcrumbList'
+    );
+    expect(breadcrumbNode.itemListElement).toHaveLength(3);
+    expect(breadcrumbNode.itemListElement[1]).toEqual({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Finance Calculators',
+      item: 'https://calchowmuch.com/finance-calculators/',
+    });
 
     const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
     expect(faqNode.mainEntity).toHaveLength(10);

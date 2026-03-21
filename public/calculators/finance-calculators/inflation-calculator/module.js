@@ -52,128 +52,81 @@ const valueTargets = explanationRoot
     }
   : null;
 
-const pageSchema = {
-  calculatorFAQ: true,
-  globalFAQ: false,
-};
-
-const CALCULATOR_FAQ_SCHEMA = {
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What does this inflation calculator do?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'It converts an amount from one U.S. CPI month into the equivalent value in a later CPI month so you can compare buying power directly.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What CPI series does it use?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'It uses the U.S. Bureau of Labor Statistics CPI-U series CUUR0000SA0 bundled locally with the route.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why is the end amount usually higher than the start amount?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Because inflation usually raises the CPI level over time, so more dollars are needed in the later month to match the earlier month buying power.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is cumulative inflation?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'It is the full percentage change in CPI between the selected start month and end month.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What is annualized inflation?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'It is the average yearly inflation pace implied by the full-period CPI change between the two selected months.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I compare a month to itself?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. If the same month is selected for both inputs, the equivalent amount stays the same and inflation is zero.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why can’t I choose a later start month than end month?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'This route is scoped to earlier-to-later historical comparisons so the inflation direction stays consistent and the explanation remains clear.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why might a month be unavailable?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'If the official BLS series does not publish a month value, the calculator blocks that month instead of filling the gap with an estimate.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is this the same as my personal inflation rate?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. CPI-U measures broad consumer prices, but your personal spending mix may rise faster or slower than the national index.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I use this for contracts, salaries, or budgets?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. It is useful for restating older dollar amounts into later-dollar terms when you want a quick CPI-based purchasing-power comparison.',
-      },
-    },
-  ],
-};
-
 const metadata = {
   title: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
   description:
-    'Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.',
+    'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
   canonical: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
-  pageSchema,
-  calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'WebPage',
-        name: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
-        url: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
-        description:
-          'Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.',
+        '@type': 'WebSite',
+        '@id': 'https://calchowmuch.com/#website',
+        url: 'https://calchowmuch.com/',
+        name: 'CalcHowMuch',
         inLanguage: 'en',
       },
       {
+        '@type': 'Organization',
+        '@id': 'https://calchowmuch.com/#organization',
+        name: 'CalcHowMuch',
+        url: 'https://calchowmuch.com/',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://calchowmuch.com/assets/images/og-default.png',
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#webpage',
+        url: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
+        name: 'Inflation Calculator',
+        description:
+          'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+        inLanguage: 'en',
+        isPartOf: {
+          '@id': 'https://calchowmuch.com/#website',
+        },
+        publisher: {
+          '@id': 'https://calchowmuch.com/#organization',
+        },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: 'https://calchowmuch.com/assets/images/og-default.png',
+        },
+        about: {
+          '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication',
+        },
+        mainEntity: {
+          '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication',
+        },
+        breadcrumb: {
+          '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs',
+        },
+      },
+      {
         '@type': 'SoftwareApplication',
+        '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication',
         name: 'Inflation Calculator',
         applicationCategory: 'FinanceApplication',
-        applicationSubCategory: 'Inflation Calculator',
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
         description:
-          'Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.',
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
+          'Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.',
+        inLanguage: 'en',
+        provider: {
+          '@id': 'https://calchowmuch.com/#organization',
         },
+        featureList: [
+          'Inflation-adjusted value comparison',
+          'Equivalent value in target month',
+          'Cumulative inflation rate',
+          'Annualized inflation rate',
+          'Purchasing power comparison',
+        ],
+        keywords:
+          'inflation calculator, CPI calculator, purchasing power calculator, inflation-adjusted value, value of money over time',
         offers: {
           '@type': 'Offer',
           price: '0',
@@ -181,7 +134,94 @@ const metadata = {
         },
       },
       {
+        '@type': 'FAQPage',
+        '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#faq',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What does this inflation calculator do?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'It converts an amount from one U.S. CPI month into the equivalent value in another month so you can compare purchasing power directly.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What CPI series does it use?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'It uses the U.S. Bureau of Labor Statistics CPI-U series CUUR0000SA0.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Why is the end amount usually higher than the start amount?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: "Because inflation usually increases the CPI level over time, so more dollars are needed in the later month to match the earlier month's purchasing power.",
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is cumulative inflation?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Cumulative inflation is the total percentage change in CPI between the selected start month and end month.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is annualized inflation?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Annualized inflation is the average yearly inflation rate implied by the CPI change across the selected period.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Can I compare a month to itself?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Yes. If the same month is selected for both inputs, the equivalent amount remains the same and inflation is zero.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: "Why can't I choose a later start month than end month?",
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'This calculator is designed for earlier-to-later historical comparisons so the inflation direction and results remain clear.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Why might a month be unavailable?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'If the official BLS series does not publish a value for a month, the calculator does not use an estimate for that month.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Is this the same as my personal inflation rate?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'No. CPI-U measures overall consumer prices, while your personal inflation rate depends on your own spending patterns.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Can I use this for contracts, salaries, or budgets?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Yes. It can help restate older dollar amounts into later-dollar terms for quick CPI-based purchasing power comparisons.',
+            },
+          },
+        ],
+      },
+      {
         '@type': 'BreadcrumbList',
+        '@id': 'https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs',
         itemListElement: [
           {
             '@type': 'ListItem',
@@ -192,7 +232,7 @@ const metadata = {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Finance',
+            name: 'Finance Calculators',
             item: 'https://calchowmuch.com/finance-calculators/',
           },
           {

@@ -433,7 +433,7 @@ const CALCULATOR_OVERRIDES = {
   inflation: {
     title: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
     description:
-      'Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.',
+      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
     h1: 'Inflation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -775,20 +775,27 @@ const FINANCE_SCHEMA_CONFIG = {
   },
   inflation: {
     breadcrumbLabel: 'Inflation Calculator',
+    breadcrumbSectionLabel: 'Finance Calculators',
     softwareName: 'Inflation Calculator',
+    webPageName: 'Inflation Calculator',
+    webPageDescription:
+      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+    linkWebPageToSoftwareApplication: true,
     softwareDescription:
-      'Calculate how money values change with U.S. CPI data, compare past and present amounts, and track cumulative inflation.',
+      'Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.',
     featureList: [
-      'CPI-based equivalent value conversion',
+      'Inflation-adjusted value comparison',
+      'Equivalent value in target month',
       'Cumulative inflation rate',
       'Annualized inflation rate',
       'Purchasing power comparison',
     ],
     keywords: [
       'inflation calculator',
-      'cpi calculator',
+      'CPI calculator',
       'purchasing power calculator',
-      'money value over time',
+      'inflation-adjusted value',
+      'value of money over time',
     ],
   },
   'future-value': {
@@ -1498,7 +1505,11 @@ function buildFinanceStructuredData({
   canonical,
   faqEntries,
   breadcrumbLabel,
+  breadcrumbSectionLabel = 'Finance',
   softwareName,
+  webPageName,
+  webPageDescription,
+  linkWebPageToSoftwareApplication = false,
   softwareDescription,
   featureList = [],
   keywords = [],
@@ -1526,9 +1537,9 @@ function buildFinanceStructuredData({
       {
         '@type': 'WebPage',
         '@id': `${canonical}#webpage`,
-        name: title,
+        name: webPageName || title,
         url: canonical,
-        description,
+        description: webPageDescription || description,
         isPartOf: { '@id': `${SITE_URL}/#website` },
         publisher: { '@id': `${SITE_URL}/#organization` },
         inLanguage: 'en',
@@ -1536,6 +1547,13 @@ function buildFinanceStructuredData({
           '@type': 'ImageObject',
           url: OG_IMAGE,
         },
+        ...(linkWebPageToSoftwareApplication
+          ? {
+              about: { '@id': `${canonical}#softwareapplication` },
+              mainEntity: { '@id': `${canonical}#softwareapplication` },
+              breadcrumb: { '@id': `${canonical}#breadcrumbs` },
+            }
+          : {}),
       },
       {
         '@type': 'SoftwareApplication',
@@ -1573,7 +1591,7 @@ function buildFinanceStructuredData({
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Finance',
+            name: breadcrumbSectionLabel,
             item: `${SITE_URL}/finance-calculators/`,
           },
           {
