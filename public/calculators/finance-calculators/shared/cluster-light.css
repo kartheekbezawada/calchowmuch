@@ -759,7 +759,21 @@ body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-number {
 }
 
 @media (max-width: 960px) {
-  body[data-design-family='neutral'] :is(.mtg-hero, .fi-hero) {
+  body[data-design-family='neutral']
+    :is(
+      #calc-present-value,
+      #calc-future-value,
+      #calc-present-value-of-annuity,
+      #calc-future-value-of-annuity,
+      #calc-effective-annual-rate,
+      #calc-simple-interest,
+      #calc-compound-interest,
+      #calc-investment-growth,
+      #calc-time-to-savings-goal,
+      #calc-monthly-savings-needed,
+      #calc-investment-return
+    )
+    :is(.mtg-hero, .fi-hero) {
     grid-template-columns: 1fr;
   }
 
@@ -781,7 +795,24 @@ body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-number {
     padding: 28px 0 48px;
   }
 
-  body[data-design-family='neutral'] :is(.mtg-form-panel, .mtg-preview-panel, .fi-form-panel, .fi-preview-panel),
+  body[data-design-family='neutral']
+    :is(
+      #calc-present-value,
+      #calc-future-value,
+      #calc-present-value-of-annuity,
+      #calc-future-value-of-annuity,
+      #calc-effective-annual-rate,
+      #calc-simple-interest,
+      #calc-compound-interest,
+      #calc-investment-growth,
+      #calc-time-to-savings-goal,
+      #calc-monthly-savings-needed,
+      #calc-investment-return
+    )
+    :is(.mtg-form-panel, .mtg-preview-panel, .fi-form-panel, .fi-preview-panel) {
+    padding: 22px 18px;
+  }
+
   body[data-design-family='neutral'] [id$='-explanation'] .mtg-exp-section,
   body[data-design-family='neutral'] .fi-cluster-related {
     padding: 22px 18px;

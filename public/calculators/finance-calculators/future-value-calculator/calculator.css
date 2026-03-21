@@ -91,6 +91,8 @@
 }
 
 #calc-future-value .fi-exp-story-block--table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-top: 2px;
   margin-bottom: 12px;
 }
@@ -232,6 +234,8 @@
 }
 
 #calc-future-value .fi-exp-hero .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-top: 6px;
 }
 

@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Compound Interest Calculator | Ending Balance &amp; Growth</title>
-    <meta name="description" content="Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding." />
-    <link rel="canonical" href="https://calchowmuch.com/finance-calculators/compound-interest-calculator/" />
-    <meta property="og:title" content="Compound Interest Calculator | Ending Balance &amp; Growth" />
-    <meta property="og:description" content="Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding." />
+    <title>Inflation Calculator – CPI-Based Value &amp; Purchasing Power Over Time | CalcHowMuch</title>
+    <meta name="description" content="Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly." />
+    <link rel="canonical" href="https://calchowmuch.com/finance-calculators/inflation-calculator/" />
+    <meta property="og:title" content="Inflation Calculator – CPI-Based Value &amp; Purchasing Power Over Time | CalcHowMuch" />
+    <meta property="og:description" content="Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://calchowmuch.com/finance-calculators/compound-interest-calculator/" />
+    <meta property="og:url" content="https://calchowmuch.com/finance-calculators/inflation-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Compound Interest Calculator | Ending Balance &amp; Growth" />
-    <meta name="twitter:description" content="Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding." />
+    <meta name="twitter:title" content="Inflation Calculator – CPI-Based Value &amp; Purchasing Power Over Time | CalcHowMuch" />
+    <meta name="twitter:description" content="Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-finance-cluster="true">
@@ -1711,456 +1711,106 @@
         }
       }
 
-      /* calculators/finance-calculators/compound-interest-calculator/calculator.css */
-      #calc-compound-interest .fi-form-section:first-of-type {
-        background:
-          radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 38%),
-          rgba(246, 249, 247, 0.96);
+      /* calculators/finance-calculators/inflation-calculator/calculator.css */
+      #calc-inflation .inf-month-grid {
+        align-items: start;
       }
 
-      #calc-compound-interest .fi-action-rail {
-        gap: 10px;
-      }
-
-      #calc-compound-interest #ci-result-detail {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      #calc-compound-interest #ci-result-detail .fi-metric-value,
-      #calc-compound-interest .fi-snapshot-row strong,
-      #ci-explanation .ci-results-table td:nth-child(2),
-      #ci-explanation .ci-projection-table td:nth-child(n + 2),
-      #ci-explanation .ci-growth-tooltip strong {
-        font-variant-numeric: tabular-nums;
-      }
-
-      #calc-compound-interest .fi-snapshot-list {
-        background: rgba(248, 250, 248, 0.98);
-      }
-
-      #calc-compound-interest .fi-snapshot-row strong {
-        color: #163e59;
-      }
-
-      #ci-explanation .ci-results-table td:nth-child(2),
-      #ci-explanation .ci-projection-table th:nth-child(n + 2),
-      #ci-explanation .ci-projection-table td:nth-child(n + 2) {
-        text-align: right;
-      }
-
-      #ci-explanation .ci-results-table td:last-child,
-      #ci-explanation .ci-results-table .ci-how-col {
-        color: #5f6c78;
-      }
-
-      #ci-explanation .ci-projection-header,
-      #ci-explanation .ci-growth-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      #ci-explanation .ci-projection-header h3,
-      #ci-explanation .ci-growth-header h3 {
-        margin: 0;
-      }
-
-      #ci-explanation .ci-table-frequency-toggle,
-      #ci-explanation .ci-chart-scale-toggle {
-        display: inline-flex;
-        flex-wrap: wrap;
+      #calc-inflation .inf-month-field {
+        display: grid;
         gap: 8px;
       }
 
-      #ci-explanation #ci-projection-wrap {
-        max-height: 430px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 247, 245, 0.96));
-      }
-
-      #ci-explanation .ci-projection-table {
-        table-layout: fixed;
-      }
-
-      #ci-explanation .ci-projection-placeholder-row td {
-        text-align: center;
-        color: #5f6c78;
-        font-style: italic;
-      }
-
-      #ci-explanation .ci-growth-section {
-        gap: 16px;
-      }
-
-      #ci-explanation .ci-growth-shell {
-        display: grid;
-        gap: 14px;
-        padding: 20px;
-        border: 1px solid rgba(143, 158, 167, 0.24);
-        border-radius: 24px;
-        background:
-          radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 32%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(242, 246, 243, 0.98));
-      }
-
-      #ci-explanation .ci-growth-shell .fi-metric-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      #ci-explanation #ci-growth-status {
-        color: #5f6c78;
-      }
-
-      #ci-explanation .ci-growth-chart-wrap {
-        position: relative;
-        min-height: 320px;
-        border: 1px solid rgba(143, 158, 167, 0.24);
-        border-radius: 20px;
-        background: rgba(250, 252, 250, 0.95);
-        overflow: hidden;
-      }
-
-      #ci-explanation #ci-growth-canvas {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        min-height: 320px;
-      }
-
-      #ci-explanation .ci-growth-tooltip {
-        position: absolute;
-        z-index: 3;
-        max-width: 240px;
-        padding: 10px 12px;
-        border: 1px solid rgba(31, 95, 135, 0.18);
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 16px 32px rgba(21, 32, 43, 0.14);
-        color: #15202b;
-        font-size: 13px;
-        pointer-events: none;
-      }
-
-      #ci-explanation .ci-growth-tooltip p {
-        margin: 0;
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
-        line-height: 1.5;
-      }
-
-      #ci-explanation .ci-growth-tooltip .ci-growth-tooltip-period {
-        margin-bottom: 6px;
-        padding-bottom: 6px;
-        border-bottom: 1px solid rgba(143, 158, 167, 0.18);
+      #calc-inflation .inf-month-field > span {
+        font-size: 0.92rem;
+        font-weight: 700;
         color: #163e59;
-        font-size: 12px;
+      }
+
+      #calc-inflation .inf-month-field input[type='month'] {
+        min-height: 48px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(31, 95, 135, 0.16);
+        background: rgba(255, 255, 255, 0.92);
+        color: #13293d;
+        font: inherit;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      }
+
+      #calc-inflation .inf-month-field input[type='month']:focus-visible {
+        outline: 2px solid rgba(31, 95, 135, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-inflation .inf-source-note {
+        margin-top: 12px;
+      }
+
+      #calc-inflation .inf-error {
+        display: inline-block;
+        max-width: 24ch;
+        color: #8a2d1f;
+        font-size: 1.05rem;
+        line-height: 1.4;
+      }
+
+      #calc-inflation .inf-results-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      #calc-inflation .inf-formula-inline {
+        display: inline-flex;
+        margin-top: 6px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(31, 95, 135, 0.14);
+        background: rgba(232, 241, 247, 0.78);
+        color: #163e59;
         font-weight: 700;
       }
 
-      #ci-explanation .ci-growth-tooltip span {
-        color: #5f6c78;
+      #calc-inflation .inf-notes-card {
+        border-radius: 24px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background:
+          radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 35%),
+          linear-gradient(180deg, rgba(18, 40, 59, 0.98), rgba(25, 53, 78, 0.96));
+        color: rgba(226, 232, 240, 0.94);
       }
 
-      @media (max-width: 980px) {
-        #calc-compound-interest #ci-result-detail,
-        #ci-explanation .ci-growth-shell .fi-metric-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
+      #calc-inflation .inf-notes-card h3 {
+        color: #f8fafc;
       }
 
-      @media (max-width: 720px) {
-        #ci-explanation .ci-projection-header,
-        #ci-explanation .ci-growth-header {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        #ci-explanation .ci-table-frequency-toggle,
-        #ci-explanation .ci-chart-scale-toggle {
-          width: 100%;
-        }
-      }
-
-      @media (max-width: 640px) {
-        #calc-compound-interest #ci-result-detail,
-        #ci-explanation .ci-growth-shell .fi-metric-grid {
-          grid-template-columns: 1fr;
-        }
-
-        #ci-explanation .ci-growth-chart-wrap,
-        #ci-explanation #ci-growth-canvas {
-          min-height: 260px;
-        }
-
-        #ci-explanation .ci-growth-tooltip {
-          max-width: calc(100% - 16px);
-        }
-      }
-
-      #calc-compound-interest .fi-exp-hero,
-      #calc-compound-interest .fi-exp-guide {
-        display: grid;
-        gap: 18px;
-      }
-
-      #calc-compound-interest .fi-exp-intro,
-      #calc-compound-interest .fi-exp-support,
-      #calc-compound-interest .fi-exp-section-head,
-      #calc-compound-interest .fi-exp-guide-step-body {
-        display: grid;
-        gap: 8px;
-      }
-
-      #calc-compound-interest .fi-exp-intro h2,
-      #calc-compound-interest .fi-exp-section-head h3,
-      #calc-compound-interest .fi-exp-card h3,
-      #calc-compound-interest .fi-exp-guide-step h4 {
+      #calc-inflation .inf-notes-list {
         margin: 0;
-        color: #13293d;
+        padding-left: 18px;
+        display: grid;
+        gap: 10px;
       }
 
-      #calc-compound-interest .fi-exp-intro p,
-      #calc-compound-interest .fi-exp-support p,
-      #calc-compound-interest .fi-exp-card p,
-      #calc-compound-interest .fi-exp-section-head p,
-      #calc-compound-interest .fi-exp-guide-step p,
-      #calc-compound-interest .fi-exp-guide-summary {
-        margin: 0;
-        max-width: 72ch;
-        color: #44515c;
+      #calc-inflation .inf-notes-list li {
         line-height: 1.7;
       }
 
-      #calc-compound-interest .fi-exp-kpi,
-      #calc-compound-interest .fi-exp-card,
-      #calc-compound-interest .fi-exp-guide-step {
-        padding: 18px 20px;
-        border-radius: 22px;
-        border: 1px solid rgba(31, 95, 135, 0.12);
-        background: rgba(255, 255, 255, 0.92);
-      }
-
-      #calc-compound-interest .fi-exp-kpi {
-        gap: 6px;
-        background: linear-gradient(180deg, rgba(232, 241, 247, 0.9), rgba(255, 255, 255, 0.96));
-      }
-
-      #calc-compound-interest .fi-exp-kpi-label,
-      #calc-compound-interest .fi-exp-step-no {
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #557089;
-      }
-
-      #calc-compound-interest .fi-exp-kpi-value {
-        margin: 0;
-        font-size: clamp(1.6rem, 2vw, 2.15rem);
-        line-height: 1.1;
-        color: #13293d;
-      }
-
-      #calc-compound-interest .fi-exp-context-grid,
-      #calc-compound-interest .fi-exp-guide-list {
-        display: grid;
-        gap: 14px;
-      }
-
-      #calc-compound-interest .fi-exp-context-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      #calc-compound-interest .fi-exp-link-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      #calc-compound-interest .fi-exp-link-list a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 36px;
-        padding: 0 12px;
-        border-radius: 999px;
-        background: rgba(31, 95, 135, 0.08);
-        color: #163e59;
-        text-decoration: none;
-        font-weight: 700;
-      }
-
-      #calc-compound-interest .fi-exp-guide-step {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 14px;
-        background: rgba(248, 250, 252, 0.94);
-      }
-
-      #calc-compound-interest .fi-exp-step-no {
-        width: 38px;
-        height: 38px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        background: rgba(31, 95, 135, 0.1);
-      }
-
-      #calc-compound-interest .fi-exp-guide-step ol,
-      #calc-compound-interest .fi-exp-guide-step ul,
-      #calc-compound-interest .mtg-exp-section--notes ul {
-        display: grid;
-        gap: 8px;
-      }
-
-      #calc-compound-interest .fi-exp-guide-summary {
-        padding-top: 10px;
-        border-top: 1px solid rgba(31, 95, 135, 0.12);
+      #calc-inflation .inf-notes-list strong {
+        color: rgba(186, 230, 253, 0.98);
       }
 
       @media (max-width: 720px) {
-        #calc-compound-interest .fi-exp-context-grid,
-        #calc-compound-interest .fi-exp-guide-step {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      #calc-compound-interest .fi-exp-article,
-      #calc-compound-interest .fi-exp-article-shell,
-      #calc-compound-interest .fi-exp-article-main,
-      #calc-compound-interest .fi-exp-story-block,
-      #calc-compound-interest .fi-exp-article-intro,
-      #calc-compound-interest .fi-exp-article-rail,
-      #calc-compound-interest .fi-exp-rail-card {
-        display: grid;
-      }
-
-      #calc-compound-interest .fi-exp-article {
-        gap: 22px;
-      }
-
-      #calc-compound-interest .fi-exp-article-shell {
-        gap: 20px;
-      }
-
-      #calc-compound-interest .fi-exp-article-head {
-        display: grid;
-        grid-template-columns: minmax(0, 1.18fr) minmax(260px, 0.82fr);
-        gap: 20px;
-        align-items: start;
-      }
-
-      #calc-compound-interest .fi-exp-article-intro {
-        gap: 12px;
-      }
-
-      #calc-compound-interest .fi-exp-article-intro h2,
-      #calc-compound-interest .fi-exp-story-block h3,
-      #calc-compound-interest .fi-exp-rail-card h3 {
-        margin: 0;
-        color: #13293d;
-      }
-
-      #calc-compound-interest .fi-exp-article-intro p,
-      #calc-compound-interest .fi-exp-story-block p,
-      #calc-compound-interest .fi-exp-story-block li,
-      #calc-compound-interest .fi-exp-rail-card p,
-      #calc-compound-interest .fi-exp-rail-card li {
-        margin: 0;
-        color: #44515c;
-        line-height: 1.68;
-      }
-
-      #calc-compound-interest .fi-exp-article-intro p,
-      #calc-compound-interest .fi-exp-story-block p {
-        max-width: 76ch;
-      }
-
-      #calc-compound-interest .fi-exp-article-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
-        gap: 18px;
-        align-items: start;
-      }
-
-      #calc-compound-interest .fi-exp-article-main {
-        gap: 20px;
-        min-width: 0;
-      }
-
-      #calc-compound-interest .fi-exp-story-block {
-        gap: 12px;
-        padding: 22px 24px;
-        border-radius: 24px;
-        border: 1px solid rgba(31, 95, 135, 0.12);
-        background: rgba(255, 255, 255, 0.92);
-      }
-
-      #calc-compound-interest .fi-exp-story-block--table {
-        margin-bottom: 8px;
-      }
-
-      #calc-compound-interest .fi-exp-story-block--table .table-scroll {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        margin-top: 4px;
-        margin-bottom: 12px;
-      }
-
-      #calc-compound-interest .fi-exp-bullet-list,
-      #calc-compound-interest .fi-exp-rail-list,
-      #calc-compound-interest .fi-exp-formula-steps {
-        display: grid;
-        gap: 8px;
-        margin: 0;
-        padding-left: 1.15rem;
-      }
-
-      #calc-compound-interest .fi-exp-formula-block {
-        width: fit-content;
-        margin: 0;
-        padding: 12px 16px;
-        border-radius: 16px;
-        border: 1px solid rgba(31, 95, 135, 0.16);
-        background: rgba(232, 241, 247, 0.78);
-        color: #163e59;
-        font-size: 1.02rem;
-        font-weight: 700;
-      }
-
-      #calc-compound-interest .fi-exp-article-rail {
-        gap: 14px;
-        min-width: 0;
-      }
-
-      #calc-compound-interest .fi-exp-rail-card {
-        gap: 10px;
-        padding: 18px 20px;
-        border-radius: 22px;
-        border: 1px solid rgba(31, 95, 135, 0.12);
-        background: rgba(248, 250, 252, 0.94);
-      }
-
-      #calc-compound-interest .fi-exp-rail-list strong {
-        color: #13293d;
-      }
-
-      @media (max-width: 720px) {
-        #calc-compound-interest .fi-exp-article-head,
-        #calc-compound-interest .fi-exp-article-layout {
+        #calc-inflation .inf-month-grid {
           grid-template-columns: 1fr;
         }
 
-        #calc-compound-interest .fi-exp-story-block,
-        #calc-compound-interest .fi-exp-rail-card {
-          padding: 18px;
+        #calc-inflation .inf-error {
+          max-width: none;
+          font-size: 1rem;
         }
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#webpage","name":"Compound Interest Calculator | Ending Balance & Growth","url":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/","description":"Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#softwareapplication","name":"Compound Interest Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/","description":"Calculate compound interest to estimate your ending balance, total interest earned, and growth over time.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Ending balance estimate","Total interest earned","Compounding frequency toggle","Yearly contribution slider"],"keywords":"compound interest calculator, interest calculator, investment growth, savings calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is compound interest?","acceptedAnswer":{"@type":"Answer","text":"Compound interest means interest is earned on both the principal and prior accumulated interest."}},{"@type":"Question","name":"What changes the ending balance most?","acceptedAnswer":{"@type":"Answer","text":"Time, rate, and consistent contributions usually have the biggest long-term effect."}},{"@type":"Question","name":"Do recurring contributions matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. They can become a major share of the final balance, especially over longer periods."}},{"@type":"Question","name":"Does compounding frequency matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. More frequent compounding usually produces a slightly higher ending balance under the same nominal rate."}},{"@type":"Question","name":"What if the rate is 0%?","acceptedAnswer":{"@type":"Answer","text":"The ending balance becomes principal plus total contributions because no growth is applied."}},{"@type":"Question","name":"Why can small rate changes matter so much?","acceptedAnswer":{"@type":"Answer","text":"Because even small differences compound over every period and become larger over time."}},{"@type":"Question","name":"Can I use this for savings planning?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works well for deterministic savings and investment scenarios with a fixed rate assumption."}},{"@type":"Question","name":"Is the chart the main answer?","acceptedAnswer":{"@type":"Answer","text":"No. Use the chart for inspection, but make the decision from ending balance, contributions, and interest."}},{"@type":"Question","name":"Why can spreadsheet results differ slightly?","acceptedAnswer":{"@type":"Answer","text":"Display rounding can differ even when the formula logic is effectively the same."}},{"@type":"Question","name":"Is this a guaranteed forecast?","acceptedAnswer":{"@type":"Answer","text":"No. It is a fixed-assumption estimate for planning and comparison."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Compound Interest","item":"https://calchowmuch.com/finance-calculators/compound-interest-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#webpage","name":"Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch","url":"https://calchowmuch.com/finance-calculators/inflation-calculator/","description":"Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#softwareapplication","name":"Inflation Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/inflation-calculator/","description":"Calculate how money values change with U.S. CPI data, compare past and present amounts, and track cumulative inflation.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["CPI-based equivalent value conversion","Cumulative inflation rate","Annualized inflation rate","Purchasing power comparison"],"keywords":"inflation calculator, cpi calculator, purchasing power calculator, money value over time","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this inflation calculator do?","acceptedAnswer":{"@type":"Answer","text":"It converts an amount from one U.S. CPI month into the equivalent value in a later CPI month so you can compare buying power directly."}},{"@type":"Question","name":"What CPI series does it use?","acceptedAnswer":{"@type":"Answer","text":"It uses the U.S. Bureau of Labor Statistics CPI-U series `CUUR0000SA0` bundled locally with the route."}},{"@type":"Question","name":"Why is the end amount usually higher than the start amount?","acceptedAnswer":{"@type":"Answer","text":"Because inflation usually raises the CPI level over time, so more dollars are needed in the later month to match the earlier month’s buying power."}},{"@type":"Question","name":"What is cumulative inflation?","acceptedAnswer":{"@type":"Answer","text":"It is the full percentage change in CPI between the selected start month and end month."}},{"@type":"Question","name":"What is annualized inflation?","acceptedAnswer":{"@type":"Answer","text":"It is the average yearly inflation pace implied by the full-period CPI change between the two selected months."}},{"@type":"Question","name":"Can I compare a month to itself?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the same month is selected for both inputs, the equivalent amount stays the same and inflation is zero."}},{"@type":"Question","name":"Why can’t I choose a later start month than end month?","acceptedAnswer":{"@type":"Answer","text":"This route is scoped to earlier-to-later historical comparisons so the inflation direction stays consistent and the explanation remains clear."}},{"@type":"Question","name":"Why might a month be unavailable?","acceptedAnswer":{"@type":"Answer","text":"If the official BLS series does not publish a month value, the calculator blocks that month instead of filling the gap with an estimate."}},{"@type":"Question","name":"Is this the same as my personal inflation rate?","acceptedAnswer":{"@type":"Answer","text":"No. CPI-U measures broad consumer prices, but your personal spending mix may rise faster or slower than the national index."}},{"@type":"Question","name":"Can I use this for contracts, salaries, or budgets?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is useful for restating older dollar amounts into later-dollar terms when you want a quick CPI-based purchasing-power comparison."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/inflation-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Inflation Calculator","item":"https://calchowmuch.com/finance-calculators/inflation-calculator/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
@@ -2187,270 +1837,180 @@
           <div class="fi-cluster-panel panel-span-all">
   <div class="fi-cluster-page-header">
     <span class="fi-cluster-page-kicker">Finance Calculators</span>
-    <h1 id="calculator-title">Compound Interest Calculator</h1>
-    <p class="fi-cluster-page-intro">Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.</p>
+    <h1 id="calculator-title">Inflation Calculator</h1>
+    <p class="fi-cluster-page-intro">Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.</p>
   </div>
   <div class="calculator-page-single fi-cluster-flow">
-    <div id="calc-compound-interest">
+    <div id="calc-inflation">
   <div class="calculator-ui finance-ui">
-    <section class="mtg-hero" aria-label="Compound interest calculator">
+    <section class="mtg-hero" aria-label="Inflation calculator">
       <div class="mtg-form-panel">
         <p class="helper">
-          Estimate your ending balance, total interest earned, and contribution impact using a fixed
-          compound-growth scenario.
+          Calculate how the buying power of the same amount changes between two U.S. CPI months
+          using the official BLS CPI-U series.
         </p>
 
-        <section class="fi-form-section" aria-labelledby="ci-section-start">
+        <section class="fi-form-section" aria-labelledby="inflation-section-amount">
           <div class="fi-form-section-header">
             <div>
-              <h2 class="fi-form-section-title" id="ci-section-start">Starting amount</h2>
+              <h2 class="fi-form-section-title" id="inflation-section-amount">Amount to compare</h2>
               <p class="fi-form-section-copy">
-                Begin with the balance you already have invested or saved today.
+                Start with the dollar value you want to translate from one CPI month into another.
               </p>
             </div>
           </div>
 
           <div class="input-row slider-row">
             <div class="slider-header">
-              <label for="ci-principal">Initial Principal (P)</label>
-              <span class="slider-value" id="ci-principal-display">10,000</span>
+              <label for="inf-amount">Amount</label>
+              <span class="slider-value" id="inf-amount-display">1,000</span>
             </div>
-            <input
-              id="ci-principal"
-              type="range"
-              value="10000"
-              min="100"
-              max="1000000"
-              step="100"
-            />
+            <input id="inf-amount" type="range" value="1000" min="0" max="1000000" step="100" />
             <div class="slider-precision-row">
-              <label class="slider-precision-label" for="ci-principal-field">
-                Enter starting amount
-              </label>
+              <label class="slider-precision-label" for="inf-amount-field">Enter amount</label>
               <input
                 class="slider-precision-input"
-                id="ci-principal-field"
+                id="inf-amount-field"
                 type="text"
                 inputmode="numeric"
                 maxlength="12"
-                value="10000"
+                value="1000"
               />
             </div>
           </div>
         </section>
 
-        <section class="fi-form-section" aria-labelledby="ci-section-growth">
+        <section class="fi-form-section" aria-labelledby="inflation-section-period">
           <div class="fi-form-section-header">
             <div>
-              <h2 class="fi-form-section-title" id="ci-section-growth">Growth assumptions</h2>
+              <h2 class="fi-form-section-title" id="inflation-section-period">Comparison period</h2>
               <p class="fi-form-section-copy">
-                Set the annual rate, time horizon, recurring contribution, and compounding pattern.
+                Choose the earlier CPI month and the later CPI month you want to compare.
               </p>
             </div>
           </div>
 
-          <div class="input-grid-2-col">
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="ci-rate">Annual Interest Rate (%)</label>
-                <span class="slider-value" id="ci-rate-display">5%</span>
-              </div>
-              <input id="ci-rate" type="range" value="5" min="0" max="30" step="0.1" />
-              <div class="slider-precision-row">
-                <label class="slider-precision-label" for="ci-rate-field">Enter annual rate</label>
-                <input
-                  class="slider-precision-input"
-                  id="ci-rate-field"
-                  type="text"
-                  inputmode="decimal"
-                  maxlength="12"
-                  value="5"
-                />
-              </div>
-            </div>
+          <div class="input-grid-2-col inf-month-grid">
+            <label class="input-row inf-month-field" for="inf-from-month">
+              <span>Start Month</span>
+              <input id="inf-from-month" type="month" value="2000-01" />
+            </label>
 
-            <div class="input-row slider-row">
-              <div class="slider-header">
-                <label for="ci-time">Time Period (Years)</label>
-                <span class="slider-value" id="ci-time-display">10 yrs</span>
-              </div>
-              <input id="ci-time" type="range" value="10" min="1" max="50" step="1" />
-              <div class="slider-precision-row">
-                <label class="slider-precision-label" for="ci-time-field">Enter years</label>
-                <input
-                  class="slider-precision-input"
-                  id="ci-time-field"
-                  type="text"
-                  inputmode="numeric"
-                  maxlength="12"
-                  value="10"
-                />
-              </div>
-            </div>
+            <label class="input-row inf-month-field" for="inf-to-month">
+              <span>End Month</span>
+              <input id="inf-to-month" type="month" value="2025-12" />
+            </label>
           </div>
 
-          <div class="input-row slider-row">
-            <div class="slider-header">
-              <label for="ci-contribution">Contribution Each Compounding Period</label>
-              <span class="slider-value" id="ci-contrib-display">0</span>
-            </div>
-            <input id="ci-contribution" type="range" value="0" min="0" max="10000" step="50" />
-            <div class="slider-precision-row">
-              <label class="slider-precision-label" for="ci-contribution-field">
-                Enter contribution
-              </label>
-              <input
-                class="slider-precision-input"
-                id="ci-contribution-field"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-                value="0"
-              />
-            </div>
-          </div>
-
-          <div class="fi-toggle-row">
-            <div class="fi-toggle-group">
-              <span class="fi-toggle-label">Compounding</span>
-              <div
-                class="button-group"
-                role="group"
-                aria-label="Compounding frequency"
-                data-button-group="ci-compounding"
-              >
-                <button
-                  class="calculator-button secondary is-active"
-                  type="button"
-                  data-value="annual"
-                  aria-pressed="true"
-                >
-                  Annual
-                </button>
-                <button
-                  class="calculator-button secondary"
-                  type="button"
-                  data-value="semiannual"
-                  aria-pressed="false"
-                >
-                  Semi
-                </button>
-                <button
-                  class="calculator-button secondary"
-                  type="button"
-                  data-value="quarterly"
-                  aria-pressed="false"
-                >
-                  Qtr
-                </button>
-              </div>
-            </div>
-          </div>
+          <p class="fi-action-note inf-source-note">
+            Months follow the local BLS CPI-U data bundled with this route. If a published CPI month
+            is unavailable, the calculator will tell you directly.
+          </p>
         </section>
 
         <div class="input-row fi-action-rail">
-          <button class="calculator-button full-width" type="button" id="ci-calc">
-            Calculate Compound Interest
+          <button class="calculator-button full-width" type="button" id="inf-calc">
+            Calculate Inflation Adjustment
           </button>
-          <p class="fi-action-note">Results refresh only after you click Calculate.</p>
+          <p class="fi-action-note">
+            Results refresh only after you click Calculate so you can compare scenarios deliberately.
+          </p>
         </div>
       </div>
 
       <aside
         class="mtg-preview-panel"
-        id="ci-preview"
-        aria-label="Compound interest result snapshot"
+        id="inf-preview"
+        aria-label="Inflation calculator result snapshot"
       >
         <div class="mtg-preview-main">
-          <p class="mtg-preview-label">Estimated Ending Balance</p>
-          <div class="result mtg-result-card" id="ci-result" aria-live="polite">
-            <span class="mtg-result-value">16,288.95</span>
+          <p class="mtg-preview-label">Equivalent Value in Target Month</p>
+          <div class="result mtg-result-card" id="inf-result" aria-live="polite">
+            <span class="mtg-result-value">1,919.75</span>
           </div>
         </div>
 
-        <div class="mtg-summary-card" aria-live="polite">
-          <div class="fi-metric-grid" id="ci-result-detail">
-            <article class="fi-metric-card">
-              <span class="fi-metric-label">Total interest</span>
-              <strong class="fi-metric-value">6,288.95</strong>
-            </article>
-            <article class="fi-metric-card">
-              <span class="fi-metric-label">Total contributions</span>
-              <strong class="fi-metric-value">0</strong>
-            </article>
-            <article class="fi-metric-card">
-              <span class="fi-metric-label">Compounding</span>
-              <strong class="fi-metric-value">Annual</strong>
-            </article>
-          </div>
+        <div class="fi-metric-grid" id="inf-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Purchasing Power Change</span>
+            <strong class="fi-metric-value" data-inf="metric-change">+919.75</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Cumulative Inflation</span>
+            <strong class="fi-metric-value" data-inf="metric-cumulative">+91.98%</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Annualized Inflation</span>
+            <strong class="fi-metric-value" data-inf="metric-annualized">+2.55%</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">CPI Factor</span>
+            <strong class="fi-metric-value" data-inf="metric-factor">1.9198x</strong>
+          </article>
         </div>
 
         <div class="fi-snapshot-list">
           <div class="fi-snapshot-row">
-            <span>Principal (P)</span>
-            <strong data-ci="snap-principal">10,000</strong>
+            <span>Amount</span><strong data-inf="snap-amount"></strong>
           </div>
           <div class="fi-snapshot-row">
-            <span>Interest Rate</span>
-            <strong data-ci="snap-rate">5%</strong>
+            <span>Start Month</span><strong data-inf="snap-from"></strong>
           </div>
           <div class="fi-snapshot-row">
-            <span>Time Period</span>
-            <strong data-ci="snap-time">10 years</strong>
+            <span>End Month</span><strong data-inf="snap-to"></strong>
           </div>
           <div class="fi-snapshot-row">
-            <span>Compounding</span>
-            <strong data-ci="snap-compounding">Annual</strong>
+            <span>Start CPI</span><strong data-inf="snap-start-cpi"></strong>
           </div>
           <div class="fi-snapshot-row">
-            <span>Contribution / Period</span>
-            <strong data-ci="snap-contribution">0</strong>
+            <span>End CPI</span><strong data-inf="snap-end-cpi"></strong>
           </div>
           <div class="fi-snapshot-row">
-            <span>Rate Per Period</span>
-            <strong data-ci="snap-periodic-rate">5%</strong>
+            <span>Months Spanned</span><strong data-inf="snap-months"></strong>
           </div>
           <div class="fi-snapshot-row">
-            <span>Total Periods</span>
-            <strong data-ci="snap-total-periods">10</strong>
+            <span>Equivalent Value</span><strong data-inf="snap-equivalent"></strong>
           </div>
         </div>
 
-        <p class="fi-preview-stale" id="ci-stale-note" hidden aria-hidden="true">
-          Inputs changed. Recalculate to refresh the answer.
+        <p class="fi-preview-stale" id="inf-stale-note" hidden aria-hidden="true">
+          Inputs changed. Click Calculate to refresh the answer.
         </p>
       </aside>
     </section>
   </div>
 </div>
 
-    <div id="ci-explanation" class="explanation-pane">
-  <section class="mtg-exp-section fi-exp-article fi-exp-article--dense">
+    <div id="inflation-explanation" class="explanation-pane">
+  <section class="mtg-exp-section fi-exp-article">
     <div class="fi-exp-article-shell">
       <header class="fi-exp-article-head">
         <div class="fi-exp-article-intro">
-          <h2>How Fast Could This Balance Compound?</h2>
+          <h2>How Much Buying Power Did Inflation Change?</h2>
+
           <p>
-            Compound interest becomes powerful when time, reinvestment, and recurring contributions
-            reinforce each other. This page is designed to show that interaction rather than just
-            produce one ending balance.
+            Inflation changes what the same amount of money can buy over time. This calculator uses
+            U.S. CPI data to convert <span data-inf="amount"></span> from
+            <span data-inf="from-label"></span> into <strong><span data-inf="equivalent"></span></strong>
+            in <span data-inf="to-label"></span>, so the purchasing-power shift is explicit instead
+            of hidden inside changing prices.
           </p>
+
           <p>
-            With principal of <span data-ci="principal"></span>, contributions of
-            <span data-ci="contribution-per-period"></span>, a rate of <span data-ci="rate"></span>,
-            and a horizon of <span data-ci="time"></span>, the plan currently grows to
-            <strong><span data-ci="ending-balance"></span></strong>. Total contributions of
-            <span data-ci="total-contributions"></span> and total interest of
-            <strong><span data-ci="total-interest"></span></strong> show where that balance comes from.
+            The comparison moves from a CPI of <span data-inf="start-cpi"></span> to
+            <span data-inf="end-cpi"></span>. That translates into a purchasing-power change of
+            <span data-inf="absolute-change"></span>, a cumulative inflation move of
+            <span data-inf="cumulative-rate"></span>, and an annualized pace of
+            <span data-inf="annualized-rate"></span> across <span data-inf="month-span"></span>.
           </p>
         </div>
 
         <aside class="fi-exp-kpi">
-          <p class="fi-exp-kpi-label">Projected ending balance</p>
-          <p class="fi-exp-kpi-value"><strong><span data-ci="ending-balance"></span></strong></p>
+          <p class="fi-exp-kpi-label">Target-month equivalent</p>
+          <p class="fi-exp-kpi-value"><strong><span data-inf="equivalent"></span></strong></p>
           <p class="fi-exp-kpi-note">
-            Built from total contributions of <span data-ci="total-contributions"></span> and compound
-            growth of <strong><span data-ci="total-interest"></span></strong>.
+            Based on <span data-inf="amount"></span> in <span data-inf="from-label"></span>
+            translated into <span data-inf="to-label"></span>.
           </p>
         </aside>
       </header>
@@ -2458,33 +2018,40 @@
       <div class="fi-exp-article-layout">
         <article class="fi-exp-article-main">
           <section class="fi-exp-story-block">
-            <h3>What This Result Means</h3>
-            <p>
-              Compound interest is not just interest added once at the end. It is growth earning
-              growth over many periods. That means the ending balance becomes more informative when you
-              read it alongside contributions and total interest rather than as a standalone number.
-            </p>
-            <p>
-              The most useful question is usually not “how big is the balance?” but “how much of the
-              balance came from deposits, and how much came from compounding?” That distinction tells
-              you whether the plan is being driven mainly by cash effort or by time in the market.
-            </p>
-            <ul class="fi-exp-bullet-list">
-              <li><strong>Principal</strong> gives compounding a head start.</li>
-              <li><strong>Recurring deposits</strong> keep adding new capital to the engine.</li>
-              <li><strong>Time and rate</strong> determine how powerful reinvestment becomes.</li>
-            </ul>
-          </section>
+            <h3>How to Guide</h3>
 
-          <section class="fi-exp-story-block fi-exp-story-block--table">
-            <h3>Current Result Snapshot</h3>
             <p>
-              Read ending balance first, then total contributions, then total interest. That order is
-              the quickest way to judge whether progress is coming mostly from what you put in or from
-              what the compounding process created on top.
+              Use this route when you want to compare the buying power of one amount across two
+              historical U.S. CPI months. It works well for salary comparisons, budget benchmarks,
+              old contract values, and any “what is that worth now?” question tied to inflation.
             </p>
+
+            <ol class="fi-exp-formula-steps">
+              <li>Enter the amount you want to restate.</li>
+              <li>Choose the earlier CPI month as the starting point.</li>
+              <li>Choose the later CPI month as the target point.</li>
+              <li>Click Calculate to see the equivalent value, CPI factor, and inflation rates.</li>
+            </ol>
+
+            <p>
+              The core comparison uses a simple ratio:
+              <span class="inf-formula-inline">Equivalent Value = Amount × (End CPI ÷ Start CPI)</span>.
+              If the end CPI is higher than the start CPI, the same basket of goods costs more in
+              the target month.
+            </p>
+
+            <h4>Worked Example</h4>
+            <p>
+              Example scenario: <span data-inf="amount"></span> in
+              <span data-inf="from-label"></span> is converted into
+              <span data-inf="equivalent"></span> in <span data-inf="to-label"></span> by applying
+              the CPI ratio <span data-inf="end-cpi"></span> ÷ <span data-inf="start-cpi"></span>.
+              That creates a purchasing-power difference of
+              <span data-inf="absolute-change"></span> across <span data-inf="month-span"></span>.
+            </p>
+
             <div class="table-scroll" tabindex="0">
-              <table class="ci-results-table">
+              <table class="inf-results-table">
                 <thead>
                   <tr>
                     <th scope="col">Metric</th>
@@ -2494,349 +2061,146 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Initial Principal</td>
-                    <td><span data-ci="principal"></span></td>
-                    <td>The balance already invested at the beginning.</td>
+                    <td>Original amount</td>
+                    <td><span data-inf="amount"></span></td>
+                    <td>The value anchored to the start month.</td>
                   </tr>
                   <tr>
-                    <td>Annual Interest Rate</td>
-                    <td><span data-ci="rate"></span></td>
-                    <td>The headline annual growth assumption.</td>
+                    <td>Equivalent amount</td>
+                    <td><span data-inf="equivalent"></span></td>
+                    <td>The amount needed in the target month to match the same CPI basket.</td>
                   </tr>
                   <tr>
-                    <td>Time Period</td>
-                    <td><span data-ci="time"></span></td>
-                    <td>The full compounding horizon.</td>
+                    <td>Purchasing power change</td>
+                    <td><span data-inf="absolute-change"></span></td>
+                    <td>The dollar gap created by the CPI move between the two months.</td>
                   </tr>
                   <tr>
-                    <td>Contribution Per Period</td>
-                    <td><span data-ci="contribution-per-period"></span></td>
-                    <td>The recurring amount added at each period.</td>
+                    <td>Cumulative inflation</td>
+                    <td><span data-inf="cumulative-rate"></span></td>
+                    <td>The full inflation change across the chosen period.</td>
                   </tr>
                   <tr>
-                    <td>Total Contributions</td>
-                    <td><span data-ci="total-contributions"></span></td>
-                    <td>Your additional deposits over the full term.</td>
-                  </tr>
-                  <tr>
-                    <td>Total Interest Earned</td>
-                    <td><span data-ci="total-interest"></span></td>
-                    <td>The growth created by compounding.</td>
+                    <td>Annualized inflation</td>
+                    <td><span data-inf="annualized-rate"></span></td>
+                    <td>The average yearly pace implied by the full-period CPI change.</td>
                   </tr>
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Ending Balance</td>
-                    <td><span data-ci="ending-balance"></span></td>
-                    <td>Principal plus contributions plus compound growth.</td>
-                  </tr>
-                </tfoot>
               </table>
             </div>
           </section>
 
-          <section class="fi-exp-story-block">
-            <h3>What Usually Changes The Outcome Most</h3>
-            <p>
-              Over longer horizons, time is often the quiet multiplier. A realistic contribution plan
-              held for more years can outperform a shorter plan built on more optimistic rate
-              assumptions. That is why compound-interest decisions improve when horizon, contribution
-              burden, and rate are read together.
-            </p>
-            <p>
-              Contributions matter because each new deposit also gets a chance to compound. That is
-              why the same annual rate can produce very different outcomes depending on whether new
-              money is added consistently or not at all.
-            </p>
-          </section>
+          <section class="mtg-exp-section mtg-exp-section--faq" id="inflation-faq">
+            <h3>FAQ</h3>
+            <div class="bor-faq-grid">
+              <article class="bor-faq-card faq-card">
+                <h4>What does this inflation calculator do?</h4>
+                <p class="faq-answer">
+                  It converts an amount from one U.S. CPI month into the equivalent value in a later
+                  CPI month so you can compare buying power directly.
+                </p>
+              </article>
 
-          <section class="fi-exp-story-block fi-exp-story-block--formula">
-            <h3>The Formula Logic Behind Compound Growth</h3>
-            <p>
-              Compound growth combines two effects: the original balance compounds over the full term,
-              and each recurring contribution compounds over whatever portion of the term remains after
-              it is added.
-            </p>
-            <p class="fi-exp-formula-block">A ≈ Principal Growth + Contribution Growth</p>
-            <p class="fi-exp-formula-block">Compounding works because growth is reinvested each period</p>
-            <ul class="fi-exp-bullet-list">
-              <li>The opening balance gets the longest compounding runway.</li>
-              <li>Each contribution joins later, so timing changes its growth power.</li>
-              <li>The longer the horizon, the larger the share created by interest can become.</li>
-            </ul>
-          </section>
+              <article class="bor-faq-card faq-card">
+                <h4>What CPI series does it use?</h4>
+                <p class="faq-answer">
+                  It uses the U.S. Bureau of Labor Statistics CPI-U series `CUUR0000SA0` bundled
+                  locally with the route.
+                </p>
+              </article>
 
-          <section class="fi-exp-story-block">
-            <h3>How To Use This Result Well</h3>
-            <p>
-              The best way to use this page is to compare the ending balance with the contribution
-              burden. If the result looks attractive only because contributions are extremely high, the
-              plan may be less robust than it appears. If the interest share becomes large, the model
-              is showing the real benefit of time and reinvestment.
-            </p>
-            <p>
-              The projection table and chart below are secondary tools. They help you inspect the
-              path, but the main decision still rests on whether the assumptions behind the path are
-              realistic and sustainable.
-            </p>
-          </section>
+              <article class="bor-faq-card faq-card">
+                <h4>Why is the end amount usually higher than the start amount?</h4>
+                <p class="faq-answer">
+                  Because inflation usually raises the CPI level over time, so more dollars are
+                  needed in the later month to match the earlier month’s buying power.
+                </p>
+              </article>
 
-          <section class="fi-exp-story-block">
-            <h3>When This Calculator Is The Right Tool</h3>
-            <p>
-              Use this route when compounding is the center of the decision. If you want a simpler
-              ending-balance estimate without the heavier projection tools, use the
-              <a href="/finance-calculators/future-value-calculator/">future value calculator</a>. If
-              you want a portfolio framing with inflation context, the
-              <a href="/finance-calculators/investment-growth-calculator/">investment growth
-              calculator</a> is the better companion.
-            </p>
-          </section>
+              <article class="bor-faq-card faq-card">
+                <h4>What is cumulative inflation?</h4>
+                <p class="faq-answer">
+                  It is the full percentage change in CPI between the selected start month and end
+                  month.
+                </p>
+              </article>
 
-          <section class="fi-exp-story-block">
-            <h3>Bottom Line</h3>
-            <p>
-              Compound interest matters because it makes time more valuable. The most reliable way to
-              read the answer is to pair the ending balance with total contributions and total interest,
-              then judge whether that mix fits the plan you can actually follow.
-            </p>
-          </section>
-        </article>
+              <article class="bor-faq-card faq-card">
+                <h4>What is annualized inflation?</h4>
+                <p class="faq-answer">
+                  It is the average yearly inflation pace implied by the full-period CPI change
+                  between the two selected months.
+                </p>
+              </article>
 
-        <aside class="fi-exp-article-rail">
-          <section class="fi-exp-rail-card">
-            <h3>Quick Read</h3>
-            <ul class="fi-exp-rail-list">
-              <li>Ending balance: <strong><span data-ci="ending-balance"></span></strong></li>
-              <li>Principal: <span data-ci="principal"></span></li>
-              <li>Contribution: <span data-ci="contribution-per-period"></span></li>
-              <li>Total contributions: <span data-ci="total-contributions"></span></li>
-              <li>Total interest: <span data-ci="total-interest"></span></li>
-            </ul>
-          </section>
+              <article class="bor-faq-card faq-card">
+                <h4>Can I compare a month to itself?</h4>
+                <p class="faq-answer">
+                  Yes. If the same month is selected for both inputs, the equivalent amount stays the
+                  same and inflation is zero.
+                </p>
+              </article>
 
-          <section class="fi-exp-rail-card">
-            <h3>Best Use Cases</h3>
-            <p>
-              Best for long-horizon savings, wealth-building, and any scenario where reinvestment and
-              contribution discipline drive the answer.
-            </p>
-          </section>
+              <article class="bor-faq-card faq-card">
+                <h4>Why can’t I choose a later start month than end month?</h4>
+                <p class="faq-answer">
+                  This route is scoped to earlier-to-later historical comparisons so the inflation
+                  direction stays consistent and the explanation remains clear.
+                </p>
+              </article>
 
-          <nav class="fi-exp-rail-card fi-exp-card--links" aria-label="Related finance calculators">
-            <h3>Related Tools</h3>
-            <div class="fi-exp-link-list">
-              <a href="/finance-calculators/future-value-calculator/">Future Value</a>
-              <a href="/finance-calculators/investment-growth-calculator/">Investment Growth</a>
+              <article class="bor-faq-card faq-card">
+                <h4>Why might a month be unavailable?</h4>
+                <p class="faq-answer">
+                  If the official BLS series does not publish a month value, the calculator blocks
+                  that month instead of filling the gap with an estimate.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Is this the same as my personal inflation rate?</h4>
+                <p class="faq-answer">
+                  No. CPI-U measures broad consumer prices, but your personal spending mix may rise
+                  faster or slower than the national index.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Can I use this for contracts, salaries, or budgets?</h4>
+                <p class="faq-answer">
+                  Yes. It is useful for restating older dollar amounts into later-dollar terms when
+                  you want a quick CPI-based purchasing-power comparison.
+                </p>
+              </article>
             </div>
-          </nav>
-        </aside>
-      </div>
-    </div>
-  </section>
+          </section>
 
-  <section class="mtg-exp-section">
-    <div class="ci-projection-header">
-      <h3>Growth Projection Table</h3>
-      <div
-        class="ci-table-frequency-toggle"
-        role="group"
-        aria-label="Growth projection frequency"
-        data-button-group="ci-table-frequency"
-      >
-        <button
-          class="calculator-button secondary is-active"
-          type="button"
-          data-value="annual"
-          aria-pressed="true"
-        >
-          Annual
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="semiannual"
-          aria-pressed="false"
-        >
-          Semi-Annual
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="quarterly"
-          aria-pressed="false"
-        >
-          Quarterly
-        </button>
-      </div>
-    </div>
-    <div class="table-scroll" id="ci-projection-wrap" tabindex="0">
-      <table id="ci-projection-table" class="ci-projection-table">
-        <thead>
-          <tr>
-            <th scope="col">Period</th>
-            <th scope="col">Opening Balance</th>
-            <th scope="col">Contribution</th>
-            <th scope="col">Interest Earned</th>
-            <th scope="col">Ending Balance</th>
-          </tr>
-        </thead>
-        <tbody id="ci-projection-body">
-          <tr class="ci-projection-placeholder-row">
-            <td colspan="5">Run a valid calculation to view projection rows.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section ci-growth-section" id="ci-growth-chart-section">
-    <div class="ci-growth-header">
-      <h3>Growth Visualization</h3>
-      <div
-        class="ci-chart-scale-toggle"
-        role="group"
-        aria-label="Growth chart scale"
-        data-button-group="ci-chart-scale"
-      >
-        <button
-          class="calculator-button secondary is-active"
-          type="button"
-          data-value="linear"
-          aria-pressed="true"
-        >
-          Linear
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-value="log"
-          aria-pressed="false"
-        >
-          Log
-        </button>
-      </div>
-    </div>
-    <div class="ci-growth-shell">
-      <div class="fi-metric-grid">
-        <article class="fi-metric-card">
-          <span class="fi-metric-label">Ending balance</span>
-          <strong class="fi-metric-value" data-ci="chart-ending-balance">—</strong>
-        </article>
-        <article class="fi-metric-card">
-          <span class="fi-metric-label">Principal base</span>
-          <strong class="fi-metric-value" data-ci="chart-principal-base">—</strong>
-        </article>
-        <article class="fi-metric-card">
-          <span class="fi-metric-label">Interest total</span>
-          <strong class="fi-metric-value" data-ci="chart-interest-total">—</strong>
+          <section class="mtg-exp-section mtg-exp-section--notes inf-notes-card">
+            <h3>Important Notes</h3>
+            <ul class="inf-notes-list">
+              <li><strong>Last updated:</strong> March 2026.</li>
+              <li>
+                <strong>Accuracy:</strong> Uses locally bundled U.S. CPI-U values from the Bureau of
+                Labor Statistics series `CUUR0000SA0`.
+              </li>
+              <li>
+                <strong>Disclaimer:</strong> This is a CPI-based purchasing-power estimate. It is not
+                an investment return, wage-growth, or personal-cost-of-living forecast.
+              </li>
+              <li>
+                <strong>Assumptions:</strong> The calculator compares one published CPI month with a
+                later published CPI month. If the official series has a missing month, the route
+                rejects that month instead of interpolating it.
+              </li>
+              <li>
+                <strong>Privacy:</strong> All calculations run locally in your browser - no data is
+                stored.
+              </li>
+            </ul>
+          </section>
         </article>
       </div>
-      <p class="helper" id="ci-growth-status">Run a valid calculation to render chart data.</p>
-      <div class="ci-growth-chart-wrap">
-        <canvas id="ci-growth-canvas" width="920" height="380"></canvas>
-        <div class="ci-growth-tooltip" id="ci-growth-tooltip" hidden></div>
-      </div>
     </div>
-  </section>
-
-  <section class="mtg-exp-section mtg-exp-section--faq" id="ci-faq">
-    <h3>Frequently Asked Questions</h3>
-    <div class="bor-faq-grid">
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">01</span>
-        <h4>What is compound interest?</h4>
-        <p>
-          Compound interest means interest is earned on both the principal and prior accumulated
-          interest.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">02</span>
-        <h4>What changes the ending balance most?</h4>
-        <p>Time, rate, and consistent contributions usually have the biggest long-term effect.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">03</span>
-        <h4>Do recurring contributions matter?</h4>
-        <p>
-          Yes. They can become a major share of the final balance, especially over longer periods.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">04</span>
-        <h4>Does compounding frequency matter?</h4>
-        <p>
-          Yes. More frequent compounding usually produces a slightly higher ending balance under the
-          same nominal rate.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">05</span>
-        <h4>What if the rate is 0%?</h4>
-        <p>
-          The ending balance becomes principal plus total contributions because no growth is
-          applied.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">06</span>
-        <h4>Why can small rate changes matter so much?</h4>
-        <p>
-          Because even small differences compound over every period and become larger over time.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">07</span>
-        <h4>Can I use this for savings planning?</h4>
-        <p>
-          Yes. It works well for deterministic savings and investment scenarios with a fixed rate
-          assumption.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">08</span>
-        <h4>Is the chart the main answer?</h4>
-        <p>
-          No. Use the chart for inspection, but make the decision from ending balance,
-          contributions, and interest.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">09</span>
-        <h4>Why can spreadsheet results differ slightly?</h4>
-        <p>Display rounding can differ even when the formula logic is effectively the same.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">10</span>
-        <h4>Is this a guaranteed forecast?</h4>
-        <p>No. It is a fixed-assumption estimate for planning and comparison.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="mtg-exp-section mtg-exp-section--notes">
-    <h3>Important Notes</h3>
-    <ul>
-      <li><strong>Last updated:</strong> March 2026.</li>
-      <li>
-        <strong>Accuracy:</strong> Results are fixed-assumption projections based on the values,
-        frequency, and timing choices entered on the page.
-      </li>
-      <li>
-        <strong>Disclaimer:</strong> Results are for planning and comparison only and are not
-        financial, legal, tax, or investment advice.
-      </li>
-      <li>
-        <strong>Assumptions:</strong> The model assumes a fixed rate, fixed contribution amount, and
-        the selected compounding schedule for the full time horizon, with no taxes, fees, or
-        irregular cash flows included.
-      </li>
-      <li>
-        <strong>Privacy:</strong> No. Calculator inputs and results stay in your browser and are not
-        stored by us. We do not save the values you enter into calculator fields.
-      </li>
-    </ul>
   </section>
 </div>
 
@@ -2863,7 +2227,7 @@
         <span class="fi-cluster-related-card-title">Simple Interest</span>
         <span class="fi-cluster-related-card-copy">Check straight-line interest cost without compounding.</span>
         <span class="fi-cluster-related-card-meta">Interest & Growth</span>
-      </a><a class="fi-cluster-related-link is-active" href="/finance-calculators/compound-interest-calculator/" aria-current="page">
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/compound-interest-calculator/">
         <span class="fi-cluster-related-card-title">Compound Interest</span>
         <span class="fi-cluster-related-card-copy">Model compounding growth with clear interest and balance context.</span>
         <span class="fi-cluster-related-card-meta">Interest & Growth</span>
@@ -2871,7 +2235,7 @@
         <span class="fi-cluster-related-card-title">Effective Annual Rate (EAR)</span>
         <span class="fi-cluster-related-card-copy">Translate a nominal rate into the real annual rate after compounding.</span>
         <span class="fi-cluster-related-card-meta">Interest & Growth</span>
-      </a><a class="fi-cluster-related-link" href="/finance-calculators/inflation-calculator/">
+      </a><a class="fi-cluster-related-link is-active" href="/finance-calculators/inflation-calculator/" aria-current="page">
         <span class="fi-cluster-related-card-title">Inflation Calculator</span>
         <span class="fi-cluster-related-card-copy">Translate an older dollar amount into later CPI-based purchasing power.</span>
         <span class="fi-cluster-related-card-meta">Interest & Growth</span>
@@ -2911,6 +2275,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/finance-calculators/compound-interest-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/finance-calculators/inflation-calculator/module.js?v=20260224"></script>
   </body>
 </html>

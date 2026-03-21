@@ -1642,7 +1642,21 @@
       }
 
       @media (max-width: 960px) {
-        body[data-design-family='neutral'] :is(.mtg-hero, .fi-hero) {
+        body[data-design-family='neutral']
+          :is(
+            #calc-present-value,
+            #calc-future-value,
+            #calc-present-value-of-annuity,
+            #calc-future-value-of-annuity,
+            #calc-effective-annual-rate,
+            #calc-simple-interest,
+            #calc-compound-interest,
+            #calc-investment-growth,
+            #calc-time-to-savings-goal,
+            #calc-monthly-savings-needed,
+            #calc-investment-return
+          )
+          :is(.mtg-hero, .fi-hero) {
           grid-template-columns: 1fr;
         }
 
@@ -1664,7 +1678,24 @@
           padding: 28px 0 48px;
         }
 
-        body[data-design-family='neutral'] :is(.mtg-form-panel, .mtg-preview-panel, .fi-form-panel, .fi-preview-panel),
+        body[data-design-family='neutral']
+          :is(
+            #calc-present-value,
+            #calc-future-value,
+            #calc-present-value-of-annuity,
+            #calc-future-value-of-annuity,
+            #calc-effective-annual-rate,
+            #calc-simple-interest,
+            #calc-compound-interest,
+            #calc-investment-growth,
+            #calc-time-to-savings-goal,
+            #calc-monthly-savings-needed,
+            #calc-investment-return
+          )
+          :is(.mtg-form-panel, .mtg-preview-panel, .fi-form-panel, .fi-preview-panel) {
+          padding: 22px 18px;
+        }
+
         body[data-design-family='neutral'] [id$='-explanation'] .mtg-exp-section,
         body[data-design-family='neutral'] .fi-cluster-related {
           padding: 22px 18px;
@@ -1920,6 +1951,8 @@
       }
 
       #calc-monthly-savings-needed .fi-exp-story-block--table .table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         margin-top: 4px;
         margin-bottom: 12px;
       }
@@ -1999,7 +2032,7 @@
 </header>
       <main class="fi-cluster-layout-main">
         <section class="fi-cluster-center-column">
-          <div class="fi-cluster-panel">
+          <div class="fi-cluster-panel panel-span-all">
   <div class="fi-cluster-page-header">
     <span class="fi-cluster-page-kicker">Finance Calculators</span>
     <h1 id="calculator-title">Monthly Savings Needed Calculator</h1>
@@ -2598,6 +2631,10 @@
       </a><a class="fi-cluster-related-link" href="/finance-calculators/effective-annual-rate-calculator/">
         <span class="fi-cluster-related-card-title">Effective Annual Rate (EAR)</span>
         <span class="fi-cluster-related-card-copy">Translate a nominal rate into the real annual rate after compounding.</span>
+        <span class="fi-cluster-related-card-meta">Interest & Growth</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/inflation-calculator/">
+        <span class="fi-cluster-related-card-title">Inflation Calculator</span>
+        <span class="fi-cluster-related-card-copy">Translate an older dollar amount into later CPI-based purchasing power.</span>
         <span class="fi-cluster-related-card-meta">Interest & Growth</span>
       </a><a class="fi-cluster-related-link" href="/finance-calculators/investment-growth-calculator/">
         <span class="fi-cluster-related-card-title">Investment Growth</span>

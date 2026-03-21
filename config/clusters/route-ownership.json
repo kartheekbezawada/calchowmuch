@@ -226,6 +226,14 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/finance-calculators/inflation-calculator/",
+      "calculatorId": "inflation",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-finance-redesign-20260321",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/finance-calculators/simple-interest-calculator/",
       "calculatorId": "simple-interest",
       "activeOwnerClusterId": "finance",

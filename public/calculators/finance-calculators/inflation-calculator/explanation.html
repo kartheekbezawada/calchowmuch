@@ -1,0 +1,222 @@
+<div id="inflation-explanation" class="explanation-pane">
+  <section class="mtg-exp-section fi-exp-article">
+    <div class="fi-exp-article-shell">
+      <header class="fi-exp-article-head">
+        <div class="fi-exp-article-intro">
+          <h2>How Much Buying Power Did Inflation Change?</h2>
+
+          <p>
+            Inflation changes what the same amount of money can buy over time. This calculator uses
+            U.S. CPI data to convert <span data-inf="amount"></span> from
+            <span data-inf="from-label"></span> into <strong><span data-inf="equivalent"></span></strong>
+            in <span data-inf="to-label"></span>, so the purchasing-power shift is explicit instead
+            of hidden inside changing prices.
+          </p>
+
+          <p>
+            The comparison moves from a CPI of <span data-inf="start-cpi"></span> to
+            <span data-inf="end-cpi"></span>. That translates into a purchasing-power change of
+            <span data-inf="absolute-change"></span>, a cumulative inflation move of
+            <span data-inf="cumulative-rate"></span>, and an annualized pace of
+            <span data-inf="annualized-rate"></span> across <span data-inf="month-span"></span>.
+          </p>
+        </div>
+
+        <aside class="fi-exp-kpi">
+          <p class="fi-exp-kpi-label">Target-month equivalent</p>
+          <p class="fi-exp-kpi-value"><strong><span data-inf="equivalent"></span></strong></p>
+          <p class="fi-exp-kpi-note">
+            Based on <span data-inf="amount"></span> in <span data-inf="from-label"></span>
+            translated into <span data-inf="to-label"></span>.
+          </p>
+        </aside>
+      </header>
+
+      <div class="fi-exp-article-layout">
+        <article class="fi-exp-article-main">
+          <section class="fi-exp-story-block">
+            <h3>How to Guide</h3>
+
+            <p>
+              Use this route when you want to compare the buying power of one amount across two
+              historical U.S. CPI months. It works well for salary comparisons, budget benchmarks,
+              old contract values, and any “what is that worth now?” question tied to inflation.
+            </p>
+
+            <ol class="fi-exp-formula-steps">
+              <li>Enter the amount you want to restate.</li>
+              <li>Choose the earlier CPI month as the starting point.</li>
+              <li>Choose the later CPI month as the target point.</li>
+              <li>Click Calculate to see the equivalent value, CPI factor, and inflation rates.</li>
+            </ol>
+
+            <p>
+              The core comparison uses a simple ratio:
+              <span class="inf-formula-inline">Equivalent Value = Amount × (End CPI ÷ Start CPI)</span>.
+              If the end CPI is higher than the start CPI, the same basket of goods costs more in
+              the target month.
+            </p>
+
+            <h4>Worked Example</h4>
+            <p>
+              Example scenario: <span data-inf="amount"></span> in
+              <span data-inf="from-label"></span> is converted into
+              <span data-inf="equivalent"></span> in <span data-inf="to-label"></span> by applying
+              the CPI ratio <span data-inf="end-cpi"></span> ÷ <span data-inf="start-cpi"></span>.
+              That creates a purchasing-power difference of
+              <span data-inf="absolute-change"></span> across <span data-inf="month-span"></span>.
+            </p>
+
+            <div class="table-scroll" tabindex="0">
+              <table class="inf-results-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Original amount</td>
+                    <td><span data-inf="amount"></span></td>
+                    <td>The value anchored to the start month.</td>
+                  </tr>
+                  <tr>
+                    <td>Equivalent amount</td>
+                    <td><span data-inf="equivalent"></span></td>
+                    <td>The amount needed in the target month to match the same CPI basket.</td>
+                  </tr>
+                  <tr>
+                    <td>Purchasing power change</td>
+                    <td><span data-inf="absolute-change"></span></td>
+                    <td>The dollar gap created by the CPI move between the two months.</td>
+                  </tr>
+                  <tr>
+                    <td>Cumulative inflation</td>
+                    <td><span data-inf="cumulative-rate"></span></td>
+                    <td>The full inflation change across the chosen period.</td>
+                  </tr>
+                  <tr>
+                    <td>Annualized inflation</td>
+                    <td><span data-inf="annualized-rate"></span></td>
+                    <td>The average yearly pace implied by the full-period CPI change.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="mtg-exp-section mtg-exp-section--faq" id="inflation-faq">
+            <h3>FAQ</h3>
+            <div class="bor-faq-grid">
+              <article class="bor-faq-card faq-card">
+                <h4>What does this inflation calculator do?</h4>
+                <p class="faq-answer">
+                  It converts an amount from one U.S. CPI month into the equivalent value in a later
+                  CPI month so you can compare buying power directly.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>What CPI series does it use?</h4>
+                <p class="faq-answer">
+                  It uses the U.S. Bureau of Labor Statistics CPI-U series `CUUR0000SA0` bundled
+                  locally with the route.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Why is the end amount usually higher than the start amount?</h4>
+                <p class="faq-answer">
+                  Because inflation usually raises the CPI level over time, so more dollars are
+                  needed in the later month to match the earlier month’s buying power.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>What is cumulative inflation?</h4>
+                <p class="faq-answer">
+                  It is the full percentage change in CPI between the selected start month and end
+                  month.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>What is annualized inflation?</h4>
+                <p class="faq-answer">
+                  It is the average yearly inflation pace implied by the full-period CPI change
+                  between the two selected months.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Can I compare a month to itself?</h4>
+                <p class="faq-answer">
+                  Yes. If the same month is selected for both inputs, the equivalent amount stays the
+                  same and inflation is zero.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Why can’t I choose a later start month than end month?</h4>
+                <p class="faq-answer">
+                  This route is scoped to earlier-to-later historical comparisons so the inflation
+                  direction stays consistent and the explanation remains clear.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Why might a month be unavailable?</h4>
+                <p class="faq-answer">
+                  If the official BLS series does not publish a month value, the calculator blocks
+                  that month instead of filling the gap with an estimate.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Is this the same as my personal inflation rate?</h4>
+                <p class="faq-answer">
+                  No. CPI-U measures broad consumer prices, but your personal spending mix may rise
+                  faster or slower than the national index.
+                </p>
+              </article>
+
+              <article class="bor-faq-card faq-card">
+                <h4>Can I use this for contracts, salaries, or budgets?</h4>
+                <p class="faq-answer">
+                  Yes. It is useful for restating older dollar amounts into later-dollar terms when
+                  you want a quick CPI-based purchasing-power comparison.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="mtg-exp-section mtg-exp-section--notes inf-notes-card">
+            <h3>Important Notes</h3>
+            <ul class="inf-notes-list">
+              <li><strong>Last updated:</strong> March 2026.</li>
+              <li>
+                <strong>Accuracy:</strong> Uses locally bundled U.S. CPI-U values from the Bureau of
+                Labor Statistics series `CUUR0000SA0`.
+              </li>
+              <li>
+                <strong>Disclaimer:</strong> This is a CPI-based purchasing-power estimate. It is not
+                an investment return, wage-growth, or personal-cost-of-living forecast.
+              </li>
+              <li>
+                <strong>Assumptions:</strong> The calculator compares one published CPI month with a
+                later published CPI month. If the official series has a missing month, the route
+                rejects that month instead of interpolating it.
+              </li>
+              <li>
+                <strong>Privacy:</strong> All calculations run locally in your browser - no data is
+                stored.
+              </li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>

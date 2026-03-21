@@ -23,6 +23,15 @@ const CLUSTER_THEME = {
 };
 
 const CLUSTER_CARD_ROUTE_POLICY = {
+  finance: {
+    preferredRouteIds: [
+      'inflation',
+      'compound-interest',
+      'investment-return',
+      'time-to-savings-goal',
+    ],
+    exploreRouteId: 'inflation',
+  },
   'home-loan': {
     hiddenRouteIds: ['home-loan'],
     preferredRouteIds: [

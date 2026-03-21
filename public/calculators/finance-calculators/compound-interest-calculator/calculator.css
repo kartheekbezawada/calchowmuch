@@ -389,6 +389,8 @@
 }
 
 #calc-compound-interest .fi-exp-story-block--table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-top: 4px;
   margin-bottom: 12px;
 }

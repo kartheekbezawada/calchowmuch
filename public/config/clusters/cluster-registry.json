@@ -66,10 +66,11 @@
     {
       "clusterId": "finance",
       "displayName": "Finance",
-      "status": "legacy",
+      "status": "migrating",
       "routePrefixes": [
-        "/finance/"
+        "/finance-calculators/"
       ],
+      "showOnHomepage": true,
       "contractsEnabled": false,
       "owners": [
         "platform"

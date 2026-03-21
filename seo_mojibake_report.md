@@ -1,6 +1,6 @@
 # SEO Mojibake Report
 
-- Scope: `calc:finance/future-value`
+- Scope: `calc:finance/inflation`
 - HTML files scanned: **1**
 - Calculator pages scanned: **1**
 - Findings: **0**

@@ -1,0 +1,96 @@
+#calc-inflation .inf-month-grid {
+  align-items: start;
+}
+
+#calc-inflation .inf-month-field {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-inflation .inf-month-field > span {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #163e59;
+}
+
+#calc-inflation .inf-month-field input[type='month'] {
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 95, 135, 0.16);
+  background: rgba(255, 255, 255, 0.92);
+  color: #13293d;
+  font: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+#calc-inflation .inf-month-field input[type='month']:focus-visible {
+  outline: 2px solid rgba(31, 95, 135, 0.35);
+  outline-offset: 2px;
+}
+
+#calc-inflation .inf-source-note {
+  margin-top: 12px;
+}
+
+#calc-inflation .inf-error {
+  display: inline-block;
+  max-width: 24ch;
+  color: #8a2d1f;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+#calc-inflation .inf-results-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#calc-inflation .inf-formula-inline {
+  display: inline-flex;
+  margin-top: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 95, 135, 0.14);
+  background: rgba(232, 241, 247, 0.78);
+  color: #163e59;
+  font-weight: 700;
+}
+
+#calc-inflation .inf-notes-card {
+  border-radius: 24px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(31, 95, 135, 0.08), transparent 35%),
+    linear-gradient(180deg, rgba(18, 40, 59, 0.98), rgba(25, 53, 78, 0.96));
+  color: rgba(226, 232, 240, 0.94);
+}
+
+#calc-inflation .inf-notes-card h3 {
+  color: #f8fafc;
+}
+
+#calc-inflation .inf-notes-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+#calc-inflation .inf-notes-list li {
+  line-height: 1.7;
+}
+
+#calc-inflation .inf-notes-list strong {
+  color: rgba(186, 230, 253, 0.98);
+}
+
+@media (max-width: 720px) {
+  #calc-inflation .inf-month-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-inflation .inf-error {
+    max-width: none;
+    font-size: 1rem;
+  }
+}

@@ -73,6 +73,7 @@ const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'investment-growth',
   'investment-return',
   'effective-annual-rate',
+  'inflation',
   'compound-interest',
   'simple-interest',
   'present-value',
@@ -88,6 +89,7 @@ const FINANCE_CALCULATOR_IDS = new Set([
   'simple-interest',
   'compound-interest',
   'effective-annual-rate',
+  'inflation',
   'investment-growth',
   'investment-return',
   'time-to-savings-goal',
@@ -428,6 +430,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  inflation: {
+    title: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
+    description:
+      'Calculate how money values change with U.S. CPI data, compare past and present amounts, track cumulative inflation, and spot purchasing power instantly.',
+    h1: 'Inflation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'time-to-savings-goal': {
     title: 'Time to Savings Goal Calculator | Reach Your Target',
     description:
@@ -761,6 +771,24 @@ const FINANCE_SCHEMA_CONFIG = {
       'ear calculator',
       'nominal vs effective',
       'interest rate converter',
+    ],
+  },
+  inflation: {
+    breadcrumbLabel: 'Inflation Calculator',
+    softwareName: 'Inflation Calculator',
+    softwareDescription:
+      'Calculate how money values change with U.S. CPI data, compare past and present amounts, and track cumulative inflation.',
+    featureList: [
+      'CPI-based equivalent value conversion',
+      'Cumulative inflation rate',
+      'Annualized inflation rate',
+      'Purchasing power comparison',
+    ],
+    keywords: [
+      'inflation calculator',
+      'cpi calculator',
+      'purchasing power calculator',
+      'money value over time',
     ],
   },
   'future-value': {
@@ -2157,6 +2185,7 @@ const FINANCE_CLUSTER_REDESIGN_ORDER = [
   'present-value-of-annuity',
   'future-value-of-annuity',
   'effective-annual-rate',
+  'inflation',
   'simple-interest',
   'compound-interest',
   'investment-growth',
@@ -2172,6 +2201,7 @@ const FINANCE_CLUSTER_REDESIGN_IDS = new Set([
   'present-value-of-annuity',
   'future-value-of-annuity',
   'effective-annual-rate',
+  'inflation',
   'simple-interest',
   'compound-interest',
   'investment-growth',
@@ -2410,6 +2440,7 @@ const FINANCE_RELATED_CARD_COPY = {
   'time-to-savings-goal': 'Estimate how long steady saving may take to reach a target.',
   'monthly-savings-needed': 'Work backward from the goal to the monthly saving requirement.',
   'investment-return': 'Stress test a portfolio path with contributions, events, and downturns.',
+  inflation: 'Translate an older dollar amount into later CPI-based purchasing power.',
 };
 
 function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
@@ -2632,6 +2663,7 @@ const FINANCE_CALCULATOR_ICONS = {
   'simple-interest': '➕',
   'compound-interest': '♻️',
   'effective-annual-rate': '🔄',
+  inflation: '🧾',
   'investment-growth': '📊',
   'investment-return': '📈',
   'time-to-savings-goal': '🎯',
@@ -3018,9 +3050,9 @@ function buildPageHtml({
     ${explanationHtml}
     ${relatedCalculatorsHtml}
   </div>
-</div>`
+        </div>`
         : isMigratedFinanceClusterRoute
-        ? `<div class="fi-cluster-panel${calculatorPanelClassSuffix}">
+        ? `<div class="fi-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="fi-cluster-page-header">
     <span class="fi-cluster-page-kicker">Finance Calculators</span>
     <h1 id="calculator-title">${calculatorTitle}</h1>
@@ -3528,6 +3560,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <a class="chip" href="/loan-calculators/personal-loan-calculator/">Loan Calculator</a>
           <a class="chip" href="/credit-card-calculators/credit-card-payment-calculator/">Credit Card Calculator</a>
           <a class="chip" href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a>
+          <a class="chip" href="/finance-calculators/inflation-calculator/">Inflation Calculator</a>
           <a class="chip" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a>
           <a class="chip" href="/time-and-date/age-calculator/">Age Calculator</a>
         </div>
@@ -3579,6 +3612,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
             <h3>Finance &amp; Savings Calculators</h3>
             <p>
               Forecast growth with the <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>,
+              compare purchasing power with the <a href="/finance-calculators/inflation-calculator/">inflation calculator</a>,
               plan targets using the <a href="/finance-calculators/time-to-savings-goal-calculator/">time to savings goal calculator</a>,
               and compare scenarios with future value tools.
             </p>
@@ -3829,7 +3863,10 @@ function main() {
           const contentCandidateDir = path.join(CONTENT_CALC_DIR, routeDerived);
           if (routeDerived) {
             if (FINANCE_CALCULATOR_IDS.has(calculator.id)) {
-              if (pathExistsAsDirectory(contentCandidateDir)) {
+              if (
+                pathExistsAsDirectory(candidateDir) ||
+                pathExistsAsDirectory(contentCandidateDir)
+              ) {
                 relPath = routeDerived;
               }
             } else if (pathExistsAsDirectory(candidateDir)) {

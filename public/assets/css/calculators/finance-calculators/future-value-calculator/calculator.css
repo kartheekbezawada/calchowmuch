@@ -164,6 +164,10 @@
   font-size: 0.92rem;
 }
 
+#fv-explanation .snapshot-heading {
+  margin-bottom: 0.75rem;
+}
+
 #fv-explanation .mtg-exp-section p {
   margin: 0.25rem 0;
 }

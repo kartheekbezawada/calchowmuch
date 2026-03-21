@@ -307,6 +307,7 @@
         "/finance-calculators/effective-annual-rate-calculator/",
         "/finance-calculators/future-value-of-annuity-calculator/",
         "/finance-calculators/future-value-calculator/",
+        "/finance-calculators/inflation-calculator/",
         "/finance-calculators/investment-growth-calculator/",
         "/finance-calculators/investment-return-calculator/",
         "/finance-calculators/monthly-savings-needed-calculator/",
@@ -343,6 +344,10 @@
         "effective-annual-rate": {
           "route": "/finance-calculators/effective-annual-rate-calculator/",
           "releaseDir": "tests_specs/finance/effective-annual-rate_release"
+        },
+        "inflation": {
+          "route": "/finance-calculators/inflation-calculator/",
+          "releaseDir": "tests_specs/finance/inflation_release"
         },
         "investment-growth": {
           "route": "/finance-calculators/investment-growth-calculator/",

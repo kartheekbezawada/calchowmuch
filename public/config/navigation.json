@@ -720,6 +720,14 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
+            },
+            {
+              "id": "inflation",
+              "name": "Inflation Calculator",
+              "url": "/finance-calculators/inflation-calculator/",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
             }
           ]
         },
