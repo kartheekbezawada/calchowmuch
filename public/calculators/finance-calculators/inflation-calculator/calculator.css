@@ -22,6 +22,108 @@
   gap: var(--inf-space-6);
 }
 
+#calc-inflation .inf-learning-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+  gap: clamp(24px, 4vw, 42px);
+  align-items: start;
+  padding: clamp(28px, 4vw, 42px);
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top left, rgba(31, 95, 135, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 249, 246, 0.98));
+  box-shadow: var(--inf-shadow-soft);
+}
+
+#calc-inflation .inf-learning-copy,
+#calc-inflation .inf-learning-card,
+#calc-inflation .inf-result-story,
+#calc-inflation .inf-result-story-head,
+#inflation-explanation .inf-section-head,
+#inflation-explanation .inf-scenario-card,
+#inflation-explanation .inf-chart-card,
+#inflation-explanation .inf-info-card,
+#inflation-explanation .inf-tool-card {
+  display: grid;
+}
+
+#calc-inflation .inf-learning-copy {
+  gap: 16px;
+}
+
+#calc-inflation .inf-learning-kicker,
+#inflation-explanation .inf-scenario-rate {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(31, 95, 135, 0.1);
+  color: #1a597d;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#calc-inflation .inf-learning-hero h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  color: #13293d;
+}
+
+#calc-inflation .inf-learning-lead,
+#calc-inflation .inf-learning-support {
+  margin: 0;
+  max-width: 62ch;
+  color: #4d6677;
+  line-height: 1.8;
+}
+
+#calc-inflation .inf-learning-card {
+  gap: 16px;
+  padding: 24px 22px;
+  border: 1px solid rgba(31, 95, 135, 0.14);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(18, 49, 71, 0.98), rgba(33, 84, 115, 0.98));
+  color: rgba(239, 248, 252, 0.96);
+  box-shadow: var(--inf-shadow-hero);
+}
+
+#calc-inflation .inf-learning-card-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(194, 228, 246, 0.94);
+}
+
+#calc-inflation .inf-learning-card-value {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+#calc-inflation .inf-learning-card-copy,
+#calc-inflation .inf-learning-points {
+  margin: 0;
+  color: rgba(228, 238, 244, 0.92);
+  line-height: 1.75;
+}
+
+#calc-inflation .inf-learning-points {
+  display: grid;
+  gap: 8px;
+  padding-left: 1.15rem;
+}
+
 #calc-inflation .mtg-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.04fr) minmax(336px, 0.96fr);
@@ -163,6 +265,69 @@
   display: grid;
   gap: var(--inf-space-3);
   align-content: start;
+}
+
+#calc-inflation .inf-result-story {
+  gap: 14px;
+  padding: 22px 20px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 24px;
+  background: rgba(248, 251, 249, 0.94);
+  box-shadow: var(--inf-shadow-card);
+}
+
+#calc-inflation .inf-result-story-head {
+  gap: 6px;
+}
+
+#calc-inflation .inf-result-story h3,
+#inflation-explanation .inf-chart-card h4,
+#inflation-explanation .inf-info-card h4,
+#inflation-explanation .inf-tool-card strong {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-inflation .inf-result-story-head p,
+#calc-inflation .inf-result-story-copy,
+#inflation-explanation .inf-section-head p,
+#inflation-explanation .inf-scenario-card-copy,
+#inflation-explanation .inf-chart-card-head p,
+#inflation-explanation .inf-info-card p,
+#inflation-explanation .inf-tool-card span,
+#inflation-explanation .inf-chart-impact-note,
+#inflation-explanation .inf-chart-summary {
+  margin: 0;
+  color: #536d7e;
+  line-height: 1.75;
+}
+
+#calc-inflation .inf-result-story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#calc-inflation .inf-story-chip {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+#calc-inflation .inf-story-chip span {
+  color: #5b7487;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+#calc-inflation .inf-story-chip strong {
+  color: #163e59;
+  font-size: 1rem;
 }
 
 #calc-inflation .mtg-preview-main {
@@ -382,6 +547,167 @@
   gap: 20px;
 }
 
+#inflation-explanation .inf-section-head {
+  gap: 10px;
+}
+
+#inflation-explanation .inf-scenario-summary,
+#inflation-explanation .inf-chart-grid,
+#inflation-explanation .inf-card-grid,
+#inflation-explanation .inf-tool-grid {
+  display: grid;
+}
+
+#inflation-explanation .inf-scenario-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#inflation-explanation .inf-scenario-card {
+  gap: 12px;
+  padding: 22px 20px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--inf-shadow-card);
+}
+
+#inflation-explanation .inf-scenario-card.is-active {
+  border-color: rgba(31, 95, 135, 0.24);
+  box-shadow: 0 18px 36px rgba(31, 95, 135, 0.12);
+}
+
+#inflation-explanation .inf-scenario-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+#inflation-explanation .inf-scenario-card-value {
+  margin: 0;
+  color: #13293d;
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+#inflation-explanation .inf-chart-toolbar {
+  display: grid;
+  gap: 16px;
+}
+
+#inflation-explanation .inf-chart-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+#inflation-explanation .inf-chart-card {
+  gap: 18px;
+  padding: 22px 20px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 24px;
+  background: rgba(248, 251, 249, 0.94);
+  box-shadow: var(--inf-shadow-card);
+}
+
+#inflation-explanation .inf-chart-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+#inflation-explanation .inf-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+#inflation-explanation .inf-chart-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #355162;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#inflation-explanation .inf-chart-legend-item.is-active {
+  background: rgba(232, 241, 247, 0.96);
+  color: #1f5f87;
+}
+
+#inflation-explanation .inf-chart-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+#inflation-explanation .inf-chart-svg {
+  width: 100%;
+  height: auto;
+  min-height: 260px;
+  border: 1px solid rgba(31, 95, 135, 0.1);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 247, 0.98));
+}
+
+#inflation-explanation .inf-card-grid {
+  gap: 16px;
+}
+
+#inflation-explanation .inf-card-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#inflation-explanation .inf-card-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#inflation-explanation .inf-info-card {
+  gap: 10px;
+  padding: 20px 18px;
+  border: 1px solid var(--inf-surface-line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+}
+
+#inflation-explanation .inf-info-card--wide {
+  padding: 24px;
+}
+
+#inflation-explanation .inf-tool-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#inflation-explanation .inf-tool-card {
+  gap: 8px;
+  padding: 20px 18px;
+  border: 1px solid rgba(31, 95, 135, 0.14);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(248, 251, 249, 0.96), rgba(255, 255, 255, 0.98));
+  box-shadow: var(--inf-shadow-card);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+#inflation-explanation .inf-tool-card:hover,
+#inflation-explanation .inf-tool-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(31, 95, 135, 0.22);
+  box-shadow: 0 18px 36px rgba(31, 95, 135, 0.12);
+}
+
 #inflation-explanation .fi-exp-formula-steps {
   display: grid;
   gap: 12px;
@@ -511,20 +837,35 @@
 }
 
 @media (max-width: 960px) {
+  #calc-inflation .inf-learning-hero,
   #calc-inflation .mtg-hero,
   #inflation-explanation .fi-exp-article-head,
-  #inflation-explanation .bor-faq-grid {
+  #inflation-explanation .bor-faq-grid,
+  #inflation-explanation .inf-chart-grid,
+  #inflation-explanation .inf-card-grid--three,
+  #inflation-explanation .inf-tool-grid {
     grid-template-columns: 1fr;
   }
 
   #calc-inflation .fi-metric-grid {
     grid-template-columns: 1fr;
   }
+
+  #calc-inflation .inf-result-story-grid,
+  #inflation-explanation .inf-card-grid--two,
+  #inflation-explanation .inf-scenario-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 720px) {
   #calc-inflation .calculator-ui.finance-ui {
     gap: var(--inf-space-5);
+  }
+
+  #calc-inflation .inf-learning-hero {
+    padding: 22px 18px;
+    border-radius: 26px;
   }
 
   #calc-inflation .mtg-hero {
@@ -548,6 +889,12 @@
   }
 
   #calc-inflation .inf-month-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-inflation .inf-result-story-grid,
+  #inflation-explanation .inf-scenario-summary,
+  #inflation-explanation .inf-card-grid--two {
     grid-template-columns: 1fr;
   }
 
@@ -579,6 +926,20 @@
 
   #inflation-explanation .fi-exp-story-block {
     gap: 18px;
+  }
+
+  #inflation-explanation .inf-chart-card,
+  #inflation-explanation .inf-info-card,
+  #inflation-explanation .inf-tool-card {
+    padding: 18px 16px;
+  }
+
+  #inflation-explanation .inf-chart-card-head {
+    display: grid;
+  }
+
+  #inflation-explanation .inf-chart-legend {
+    justify-content: flex-start;
   }
 
   #inflation-explanation .table-scroll {

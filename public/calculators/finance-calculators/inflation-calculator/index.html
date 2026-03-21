@@ -1,5 +1,35 @@
 <div id="calc-inflation">
   <div class="calculator-ui finance-ui">
+    <section class="inf-learning-hero" aria-label="Inflation overview">
+      <div class="inf-learning-copy">
+        <p class="inf-learning-kicker">Understand the squeeze on your money</p>
+        <h2>Inflation Calculator — See How Prices Change Over Time</h2>
+        <p class="inf-learning-lead">
+          Inflation means the same money buys less as everyday prices rise. This page helps you see
+          how much buying power has changed, what that means in plain English, and which strategies
+          people often use to avoid falling behind.
+        </p>
+        <p class="inf-learning-support">
+          Even when the number in your bank account stays the same, your real spending power can
+          quietly shrink if prices rise faster than your income or your savings return.
+        </p>
+      </div>
+
+      <aside class="inf-learning-card" aria-label="Real-world inflation example">
+        <p class="inf-learning-card-label">Quick reality check</p>
+        <p class="inf-learning-card-value">$1,000 today may need about $1,629 in 10 years at 5% inflation.</p>
+        <p class="inf-learning-card-copy">
+          That is the core idea behind inflation: you need more dollars later just to maintain the
+          same standard of living.
+        </p>
+        <ul class="inf-learning-points">
+          <li>Cash loses ground when prices rise.</li>
+          <li>Income that does not keep up can feel like a pay cut.</li>
+          <li>Planning gets easier when you can see the size of the gap.</li>
+        </ul>
+      </aside>
+    </section>
+
     <section class="mtg-hero" aria-label="Inflation calculator">
       <div class="mtg-form-panel">
         <p class="helper">
@@ -84,6 +114,35 @@
           <p class="mtg-preview-label">Equivalent Value in Target Month</p>
           <div class="result mtg-result-card" id="inf-result" aria-live="polite">
             <span class="mtg-result-value">1,919.75</span>
+          </div>
+        </div>
+
+        <div class="inf-result-story">
+          <div class="inf-result-story-head">
+            <h3>Plain-English Explanation</h3>
+            <p>
+              Turn the CPI math into a lifestyle answer: how much you would need later to keep the
+              same spending power.
+            </p>
+          </div>
+          <p class="inf-result-story-copy" data-inf="result-plain">
+            Your money would need to stretch further in the target month to buy the same everyday
+            basket of goods.
+          </p>
+
+          <div class="inf-result-story-grid">
+            <article class="inf-story-chip">
+              <span>Needed budget</span>
+              <strong data-inf="result-budget">—</strong>
+            </article>
+            <article class="inf-story-chip">
+              <span>Buying power gap</span>
+              <strong data-inf="result-gap">—</strong>
+            </article>
+            <article class="inf-story-chip">
+              <span>Comparison span</span>
+              <strong data-inf="result-span">—</strong>
+            </article>
           </div>
         </div>
 

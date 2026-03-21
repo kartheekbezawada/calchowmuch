@@ -4,6 +4,8 @@
   "description": "Fast, SEO-friendly calculator platform for math, finance, and health calculations",
   "type": "module",
   "scripts": {
+    "build": "npm run build:css:route-bundles && node scripts/generate-mpa-pages.js --all",
+    "build:css:route-bundles": "node scripts/sync-route-bundle-manifests.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
