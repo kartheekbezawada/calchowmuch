@@ -1,6 +1,7 @@
-<div id="energy-nap-explanation">
-  <section class="energy-exp-section">
-    <h2>Which Nap Length Matches the Energy You Need?</h2>
+<div id="energy-nap-explanation" class="energy-explanation">
+  <section class="energy-exp-card">
+    <p class="energy-exp-kicker">Energy mapping</p>
+    <h2>Which nap length matches the energy you need?</h2>
     <p>
       <strong>The short answer:</strong> choose Quick for a brief reset, Strong for a deeper recharge,
       or Full for a complete sleep cycle when you have enough time.
@@ -13,140 +14,97 @@
     </p>
   </section>
 
-  <section class="energy-exp-section">
+  <section class="energy-exp-card">
     <h3>How to Guide</h3>
     <ol class="energy-exp-steps">
       <li>Choose your goal profile: Quick, Strong, or Full.</li>
       <li>Enter your nap start time: <span data-placeholder="scenario-start">--</span>.</li>
-      <li>
-        Click Calculate to get your primary duration
-        (<span data-placeholder="scenario-primary">90 min</span>) and wake target
-        (<span data-placeholder="result-wake">--</span>).
-      </li>
+      <li>Click Calculate to get the primary duration <span data-placeholder="scenario-primary">90 min</span> and wake target <span data-placeholder="result-wake">--</span>.</li>
       <li>Review alternatives and any night-time caution before setting your alarm.</li>
     </ol>
 
-    <div class="energy-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Value</th>
-            <th>Source</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Selected goal</td>
-            <td><span data-placeholder="scenario-goal">Full</span></td>
-            <td>Calculation Pane</td>
-          </tr>
-          <tr>
-            <td>Time bucket</td>
-            <td><span data-placeholder="scenario-bucket">Day</span></td>
-            <td>Calculator Engine</td>
-          </tr>
-          <tr>
-            <td>Recommended duration</td>
-            <td><span data-placeholder="result-duration">90</span> minutes</td>
-            <td>Calculator Engine</td>
-          </tr>
-          <tr>
-            <td>Primary wake-up</td>
-            <td><span data-placeholder="result-wake">--</span></td>
-            <td>Calculator Engine</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="energy-guide-grid">
+      <article>
+        <span>Selected goal</span>
+        <strong><span data-placeholder="scenario-goal">Full</span></strong>
+      </article>
+      <article>
+        <span>Time bucket</span>
+        <strong><span data-placeholder="scenario-bucket">Day</span></strong>
+      </article>
+      <article>
+        <span>Recommended duration</span>
+        <strong><span data-placeholder="result-duration">90</span> minutes</strong>
+      </article>
+      <article>
+        <span>Primary wake-up</span>
+        <strong><span data-placeholder="result-wake">--</span></strong>
+      </article>
+      <article>
+        <span>Bucket note</span>
+        <strong><span data-placeholder="result-bucket">Day</span></strong>
+      </article>
+      <article>
+        <span>Override applied</span>
+        <strong><span data-placeholder="result-override">No</span></strong>
+      </article>
     </div>
   </section>
 
-  <section class="energy-exp-section">
-    <h3>Important Notes</h3>
-    <ul class="energy-exp-list">
-      <li>
-        This tool uses fixed goal mappings: Quick 15 minutes, Strong 25 minutes, Full 90 minutes.
-      </li>
-      <li>
-        Night-time starts can apply caution logic based on the bucket
-        <span data-placeholder="result-bucket">Day</span>.
-      </li>
-      <li>
-        Override status is shown as <span data-placeholder="result-override">No</span> to make
-        recommendation changes explicit.
-      </li>
-      <li>
-        It is a planning aid and not medical advice; personal sleep needs can vary significantly.
-      </li>
-    </ul>
-  </section>
-
-  <section class="energy-exp-section">
-    <h3>Frequently Asked Questions (FAQ)</h3>
+  <section class="energy-exp-card">
+    <h3>FAQ</h3>
     <div class="energy-faq-list">
       <div class="faq-box">
         <p><strong>What does the Energy-Based Nap Selector do?</strong></p>
-        <p class="faq-answer">
-          It maps your selected goal and start time to a deterministic nap duration and wake-up
-          recommendation with alternatives.
-        </p>
+        <p class="faq-answer">It maps your selected goal and start time to a deterministic nap duration and wake-up recommendation with alternatives.</p>
       </div>
       <div class="faq-box">
         <p><strong>How are Quick, Strong, and Full goals mapped?</strong></p>
-        <p class="faq-answer">
-          Quick is 15 minutes, Strong is 25 minutes, and Full is 90 minutes.
-        </p>
+        <p class="faq-answer">Quick is 15 minutes, Strong is 25 minutes, and Full is 90 minutes.</p>
       </div>
       <div class="faq-box">
         <p><strong>Why can a late-night recommendation become shorter?</strong></p>
-        <p class="faq-answer">
-          Long late-night naps can delay bedtime, so inferred Full recommendations are shortened to
-          reduce disruption risk.
-        </p>
+        <p class="faq-answer">Long late-night naps can delay bedtime, so inferred Full recommendations are shortened to reduce disruption risk.</p>
       </div>
       <div class="faq-box">
         <p><strong>When does the tool keep a full 90-minute nap at night?</strong></p>
-        <p class="faq-answer">
-          If you explicitly choose Full, the recommendation stays at 90 minutes and a warning is
-          shown instead of forcing a downgrade.
-        </p>
+        <p class="faq-answer">If you explicitly choose Full, the recommendation stays at 90 minutes and a warning is shown instead of forcing a downgrade.</p>
       </div>
       <div class="faq-box">
         <p><strong>Does it account for my personal bedtime habits?</strong></p>
-        <p class="faq-answer">
-          No. The output is deterministic and does not model individual routines.
-        </p>
+        <p class="faq-answer">No. The output is deterministic and does not model individual routines.</p>
       </div>
       <div class="faq-box">
         <p><strong>Which time buckets are used?</strong></p>
-        <p class="faq-answer">
-          Results are classified into Day, Afternoon, and Night buckets for recommendation context.
-        </p>
+        <p class="faq-answer">Results are classified into Day, Afternoon, and Night buckets for recommendation context.</p>
       </div>
       <div class="faq-box">
         <p><strong>Can shift workers use this calculator?</strong></p>
-        <p class="faq-answer">
-          Yes. It uses local clock time and works for daytime or overnight schedules.
-        </p>
+        <p class="faq-answer">Yes. It uses local clock time and works for daytime or overnight schedules.</p>
       </div>
       <div class="faq-box">
         <p><strong>Does the calculator set alarms automatically?</strong></p>
-        <p class="faq-answer">
-          No. It provides wake-up targets that you can copy into your own alarm app.
-        </p>
+        <p class="faq-answer">No. It provides wake-up targets that you can copy into your own alarm app.</p>
       </div>
       <div class="faq-box">
         <p><strong>Will changing inputs auto-calculate?</strong></p>
-        <p class="faq-answer">
-          No. Results update only when you click Calculate.
-        </p>
+        <p class="faq-answer">No. Results update only when you click Calculate.</p>
       </div>
       <div class="faq-box">
         <p><strong>Is this medical advice?</strong></p>
-        <p class="faq-answer">
-          No. It is a practical planning tool and does not replace professional medical guidance.
-        </p>
+        <p class="faq-answer">No. It is a practical planning tool and does not replace professional medical guidance.</p>
       </div>
     </div>
+  </section>
+
+  <section class="energy-exp-card">
+    <h3>Important Notes</h3>
+    <ul class="energy-exp-list">
+      <li>This tool uses fixed goal mappings: Quick 15 minutes, Strong 25 minutes, Full 90 minutes.</li>
+      <li>Night-time starts can apply caution logic based on the bucket <span data-placeholder="result-bucket">Day</span>.</li>
+      <li>Override status is shown as <span data-placeholder="result-override">No</span> to make recommendation changes explicit.</li>
+      <li>It is a planning aid and not medical advice; personal sleep needs can vary significantly.</li>
+      <li>All calculations run locally in your browser - no data is stored.</li>
+    </ul>
   </section>
 </div>

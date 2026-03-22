@@ -1,41 +1,18 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
-
-#calculator-title {
-  margin: 0 0 14px;
-  text-align: center;
-  font-family: 'DM Serif Display', 'Georgia', serif;
-  font-size: clamp(30px, 4.8vw, 44px);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #f2cb66;
-  text-shadow:
-    0 0 12px rgba(232, 201, 122, 0.38),
-    0 0 28px rgba(232, 201, 122, 0.2);
-}
-
-body[data-page='calculator'] .layout-main {
-  grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
-}
-
-body[data-page='calculator'] .ads-column {
-  display: none;
-}
-
 #calc-countdown-timer {
-  --bg: #0a0a0f;
-  --surface: #111118;
-  --surface2: #16161f;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-bright: rgba(255, 255, 255, 0.12);
-  --accent: #e8c97a;
-  --accent-dim: rgba(232, 201, 122, 0.12);
-  --accent-glow: rgba(232, 201, 122, 0.25);
-  --glass-fill: rgba(255, 255, 255, 0.03);
-  --text: #f0ede8;
+  --bg: #f7f1e8;
+  --surface: rgba(255, 253, 249, 0.96);
+  --surface2: rgba(244, 237, 228, 0.88);
+  --border: rgba(79, 93, 117, 0.1);
+  --border-bright: rgba(39, 76, 119, 0.16);
+  --accent: #274c77;
+  --accent-dim: rgba(39, 76, 119, 0.1);
+  --accent-glow: rgba(39, 76, 119, 0.16);
+  --glass-fill: rgba(255, 255, 255, 0.7);
+  --text: #1f2730;
   --muted: #6b6878;
-  --muted2: #9996a8;
-  --red: #e87a7a;
-  --green: #7ae8a8;
+  --muted2: #64707c;
+  --red: #b85d49;
+  --green: #4d8d7f;
   max-width: 1200px;
   width: 100%;
   margin: 0;
@@ -55,7 +32,7 @@ body[data-page='calculator'] .ads-column {
 
 #calc-countdown-timer .cd-input-card {
   background:
-    linear-gradient(140deg, rgba(24, 24, 35, 0.86), rgba(13, 13, 20, 0.8)),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.96), rgba(244, 237, 228, 0.9)),
     var(--glass-fill);
   border: 1px solid var(--border-bright);
   border-radius: 16px;
@@ -106,7 +83,7 @@ body[data-page='calculator'] .ads-column {
     border-color 0.2s,
     box-shadow 0.2s;
   -webkit-appearance: none;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 #calc-countdown-timer #countdown-event-name {
@@ -126,7 +103,7 @@ body[data-page='calculator'] .ads-column {
 #calc-countdown-timer .cd-btn {
   width: auto;
   background: var(--accent);
-  color: #0a0a0f;
+  color: #fffdf9;
   border: none;
   border-radius: 10px;
   padding: 15px;
@@ -153,7 +130,7 @@ body[data-page='calculator'] .ads-column {
 
 #calc-countdown-timer .cd-btn-sm {
   width: auto;
-  background: var(--surface2);
+  background: rgba(255, 255, 255, 0.88);
   border: 1px solid var(--border-bright);
   color: var(--text);
   border-radius: 8px;
@@ -191,7 +168,7 @@ body[data-page='calculator'] .ads-column {
 
 #calc-countdown-timer .cd-countdown-card {
   background:
-    linear-gradient(145deg, rgba(22, 22, 33, 0.9), rgba(12, 12, 20, 0.82)),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 238, 228, 0.94)),
     var(--glass-fill);
   border: 1px solid var(--border-bright);
   border-radius: 20px;
@@ -249,6 +226,7 @@ body[data-page='calculator'] .ads-column {
   letter-spacing: -0.02em;
   line-height: 1.15;
   position: static;
+  color: var(--text);
 }
 
 #calc-countdown-timer .cd-title::after {
@@ -264,7 +242,7 @@ body[data-page='calculator'] .ads-column {
 }
 
 #calc-countdown-timer .cd-tile {
-  background: var(--surface2);
+  background: rgba(255, 255, 255, 0.82);
   padding: 32px 12px 24px;
   text-align: center;
   position: relative;
@@ -404,7 +382,7 @@ body[data-page='calculator'] .ads-column {
 
 #calc-countdown-timer .countdown-milestone {
   background:
-    linear-gradient(145deg, rgba(24, 24, 34, 0.86), rgba(14, 14, 22, 0.78)),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(244, 237, 228, 0.88)),
     var(--glass-fill);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -485,9 +463,9 @@ body[data-page='calculator'] .ads-column {
 }
 
 #calc-countdown-timer .cd-actions .cd-btn {
-  background: linear-gradient(145deg, rgba(232, 201, 122, 0.2), rgba(232, 201, 122, 0.1));
-  border: 1px solid rgba(232, 201, 122, 0.45);
-  color: #f7e9bf;
+  background: linear-gradient(145deg, rgba(39, 76, 119, 0.14), rgba(122, 166, 184, 0.08));
+  border: 1px solid rgba(39, 76, 119, 0.24);
+  color: var(--accent);
   font-weight: 600;
   box-shadow:
     0 6px 16px rgba(232, 201, 122, 0.12),
@@ -495,9 +473,9 @@ body[data-page='calculator'] .ads-column {
 }
 
 #calc-countdown-timer .cd-actions .cd-btn:hover {
-  background: linear-gradient(145deg, rgba(232, 201, 122, 0.34), rgba(232, 201, 122, 0.18));
-  border-color: rgba(232, 201, 122, 0.7);
-  color: #fff6dd;
+  background: linear-gradient(145deg, rgba(39, 76, 119, 0.18), rgba(122, 166, 184, 0.12));
+  border-color: rgba(39, 76, 119, 0.32);
+  color: var(--accent);
   box-shadow:
     0 10px 24px rgba(232, 201, 122, 0.22),
     0 0 28px rgba(232, 201, 122, 0.18);
@@ -513,63 +491,105 @@ body[data-page='calculator'] .ads-column {
   display: none;
 }
 
-#calc-countdown-timer .countdown-expl-heading {
-  text-decoration: none;
-  color: #f2cb66;
-  text-shadow:
-    0 0 10px rgba(232, 201, 122, 0.45),
-    0 0 22px rgba(232, 201, 122, 0.25);
-}
-
-#calc-countdown-timer .countdown-expl-heading::after {
-  content: none !important;
-  display: none !important;
-}
-
 #countdown-explanation {
   display: grid;
-  gap: 10px;
+  gap: 16px;
 }
 
-#countdown-explanation h2 {
-  margin: 0;
-  font-size: 15px;
-  color: #f2cb66;
-  text-shadow:
-    0 0 8px rgba(232, 201, 122, 0.38),
-    0 0 16px rgba(232, 201, 122, 0.22);
+#countdown-explanation .countdown-explanation-card {
+  display: grid;
+  gap: 12px;
+  padding: 24px 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(79, 93, 117, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 36px rgba(31, 39, 48, 0.08);
 }
 
-#countdown-explanation p {
+#countdown-explanation .countdown-explanation-kicker,
+#countdown-explanation h3 {
   margin: 0;
-  line-height: 1.45;
+}
+
+#countdown-explanation .countdown-explanation-kicker {
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+#countdown-explanation h2,
+#countdown-explanation h3 {
+  margin: 0;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  color: var(--text);
+}
+
+#countdown-explanation p,
+#countdown-explanation li,
+#countdown-explanation td,
+#countdown-explanation th {
+  margin: 0;
+  line-height: 1.55;
   font-size: 14px;
 }
 
+#countdown-explanation .countdown-guide-steps,
+#countdown-explanation .countdown-notes,
 #countdown-explanation ul {
   margin: 0;
   padding-left: 20px;
   display: grid;
-  gap: 4px;
+  gap: 10px;
 }
 
-#countdown-explanation li {
-  line-height: 1.4;
-  font-size: 13px;
+#countdown-explanation .countdown-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(79, 93, 117, 0.12);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#countdown-explanation .countdown-guide-table th,
+#countdown-explanation .countdown-guide-table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(79, 93, 117, 0.08);
+}
+
+#countdown-explanation .countdown-guide-table th {
+  background: rgba(39, 76, 119, 0.08);
+}
+
+#countdown-explanation .countdown-guide-table tr:last-child td {
+  border-bottom: 0;
+}
+
+#countdown-explanation .countdown-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#countdown-explanation .countdown-faq-item {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(79, 93, 117, 0.1);
+  background: rgba(244, 237, 228, 0.72);
+}
+
+#countdown-explanation .countdown-faq-item p:first-child,
+#countdown-explanation .countdown-notes strong {
   color: var(--text);
 }
 
-#countdown-explanation .countdown-faq-list li {
-  margin-bottom: 1px;
-}
-
 @media (max-width: 860px) {
-  body[data-page='calculator'] .layout-main {
+  #countdown-explanation .countdown-faq-grid {
     grid-template-columns: 1fr;
-  }
-
-  body[data-page='calculator'] .left-nav {
-    display: none;
   }
 }
 

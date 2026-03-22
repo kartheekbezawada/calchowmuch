@@ -6,15 +6,16 @@ test.describe('Time Between Two Dates Calculator', () => {
   }) => {
     await page.goto('/time-and-date/time-between-two-dates-calculator/');
 
-    await expect(page.locator('.top-nav .top-nav-link.is-active')).toContainText('Time & Date');
-    await expect(page.locator('.fin-nav-item.is-active')).toContainText(
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
       'Time Between Two Dates Calculator'
     );
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
-    await expect(page.locator('.ads-column')).toBeHidden();
 
     await expect(page.locator('#date-diff-headline')).not.toHaveText('');
-    await expect(page.locator('#date-diff-preset-status')).toContainText('Today');
+    await expect(page.locator('.td-preset.is-active')).toContainText('+30 days');
 
     await page.locator('#date-diff-start-date').fill('2026-01-01');
     await page.locator('#date-diff-end-date').fill('2026-02-01');
@@ -22,7 +23,7 @@ test.describe('Time Between Two Dates Calculator', () => {
 
     await expect(page.locator('#date-diff-headline')).toHaveText('1 month');
     await expect(page.locator('#date-diff-total-days')).toHaveText('31');
-    await expect(page.locator('#date-diff-direction')).toHaveText('Future interval');
+    await expect(page.locator('#date-diff-direction')).toContainText('Future interval');
   });
 
   test('DATE-DIFF-TEST-E2E-2: date-time mode, reverse range, and copy summary', async ({
@@ -56,8 +57,8 @@ test.describe('Time Between Two Dates Calculator', () => {
 
     await expect(page.locator('#date-diff-direction')).toHaveText('Past interval');
     await expect(page.locator('#date-diff-error')).toBeHidden();
-    await expect(page.locator('#date-diff-summary')).toContainText('From Jan 10, 2026');
-    await expect(page.locator('#date-diff-summary')).toContainText('to Jan 1, 2026');
+    await expect(page.locator('#date-diff-summary')).toContainText('Jan 10');
+    await expect(page.locator('#date-diff-summary')).toContainText('Jan 1');
   });
 
   test('DATE-DIFF-TEST-E2E-3: mobile layout stays single-column without overflow', async ({
@@ -85,5 +86,8 @@ test.describe('Time Between Two Dates Calculator', () => {
     expect(resultBox.y).toBeGreaterThanOrEqual(inputBox.y + inputBox.height - 1);
     expect(detailsBox.y).toBeGreaterThanOrEqual(resultBox.y + resultBox.height - 1);
     expect(explanationBox.y).toBeGreaterThanOrEqual(detailsBox.y + detailsBox.height - 1);
+    await expect(page.locator('#date-diff-explanation h2')).toHaveText(
+      'How much time is between two dates?'
+    );
   });
 });

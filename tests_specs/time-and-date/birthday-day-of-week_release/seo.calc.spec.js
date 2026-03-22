@@ -17,7 +17,7 @@ test.describe('Birthday Day-of-Week SEO', () => {
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Birthday Day-of-Week Calculator');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
     await expect(page.locator('.birthday-dow-workspace')).toHaveCount(1);
     await expect(page.locator('[data-birthday-intent]')).toHaveCount(3);
@@ -44,8 +44,14 @@ test.describe('Birthday Day-of-Week SEO', () => {
     expect(faqNode.mainEntity).toHaveLength(6);
     expect(faqNode.mainEntity[0].name).toBe('Is the birth weekday accurate?');
 
-    await expect(page.locator('#birthday-dow-explanation')).toContainText('What you can do here');
-    await expect(page.locator('#birthday-dow-explanation')).toContainText('celebration timing');
+    const explanation = page.locator('#birthday-dow-explanation');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation).toContainText('What day of the week was I born on?');
+    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
+    await expect(explanation.locator('.birthday-dow-faq-item')).toHaveCount(6);
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

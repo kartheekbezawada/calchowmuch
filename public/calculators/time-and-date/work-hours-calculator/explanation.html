@@ -1,83 +1,85 @@
 <div id="work-hours-explanation">
-  <h2>How Many Hours Did You Work?</h2>
-  <p>
-    Use this work hours calculator to measure time worked across single shifts, split shifts, or a
-    weekly schedule. It subtracts unpaid breaks and shows the result in both HH:MM and decimal
-    hours.
-  </p>
-  <p>
-    This is useful for timesheets, payroll prep, shift planning, and checking how breaks or
-    overnight shifts affect the final total.
-  </p>
-
-  <h2>Why Decimal Hours Matter</h2>
-  <p>
-    Some timesheets and payroll systems use decimal hours. For example, 7 hours 30 minutes is 7.50
-    hours. This calculator shows both formats so you can copy the one you need.
-  </p>
-
-  <h2>Breaks and Unpaid Time</h2>
-  <p>
-    If you take an unpaid break, your paid time is usually your shift length minus the break. This
-    calculator subtracts your selected break minutes from your total.
-  </p>
-
-  <h2>Night Shifts (Ends Next Day)</h2>
-  <p>
-    If your shift ends after midnight, your end time can look earlier than your start time. Use the
-    "Ends next day" option so the calculator treats the end time as the next calendar day.
-  </p>
-
-  <h2>Examples</h2>
-  <p>
-    If you work 09:00 to 17:30 with a <span data-placeholder="break-minutes">30</span> minute unpaid
-    break, your total worked time is <span data-placeholder="total-hhmm">8:00</span>, which is
-    <span data-placeholder="total-decimal">8.00</span> hours.
-  </p>
-  <p>
-    If you work 22:00 to 06:00 and it ends after midnight, enable "Ends next day" to calculate 8:00
-    hours correctly.
-  </p>
-
-  <h2>Assumptions and Limitations</h2>
-  <p>This calculator:</p>
-  <p>Works with time-of-day inputs and does not require dates</p>
-  <p>Subtracts unpaid breaks that you select</p>
-  <p>Does not calculate pay, overtime rules, taxes, or legal compliance requirements</p>
-  <p>Is a general timesheet helper and may not match every employer's rounding policy</p>
-
-  <h2>Frequently Asked Questions</h2>
-
-  <div class="work-hours-faq-item">
-    <p><strong>Can I calculate hours for a night shift?</strong></p>
-    <p>Yes. Enable "Ends next day" when your shift ends after midnight.</p>
-  </div>
-
-  <div class="work-hours-faq-item">
-    <p><strong>Does this include paid breaks?</strong></p>
-    <p>No. Only unpaid breaks that you enter are subtracted.</p>
-  </div>
-
-  <div class="work-hours-faq-item">
-    <p><strong>Why do I see both HH:MM and decimal hours?</strong></p>
+  <section class="work-hours-explanation-card">
+    <p class="work-hours-explanation-kicker">Shift planning</p>
+    <h2>How many work hours are in this shift or week?</h2>
     <p>
-      Different systems use different formats. HH:MM is easier to read, while decimal hours are
-      often used for payroll.
+      Use this calculator to total single shifts, split shifts, or weekly schedules with unpaid
+      breaks removed and overnight work handled correctly.
     </p>
-  </div>
-
-  <div class="work-hours-faq-item">
-    <p><strong>Does it round time?</strong></p>
     <p>
-      No. It uses the exact times you enter. If your employer rounds to the nearest 5, 10, or 15
-      minutes, you should apply that policy separately.
+      Current example: this <span data-work-summary="mode">single shift</span> setup totals
+      <span data-work-summary="totalHHMM">8:00</span> hours, or
+      <span data-work-summary="totalDecimal">8.00</span> decimal hours, after a
+      <span data-work-summary="breakMinutes">30</span>-minute unpaid break.
     </p>
-  </div>
+  </section>
 
-  <h2>Important Notes</h2>
-  <p>This calculator:</p>
-  <p>Works with time-of-day inputs and supports overnight shifts with the next-day option</p>
-  <p>Subtracts only the unpaid breaks you choose</p>
-  <p>Shows both HH:MM and decimal-hour totals for payroll or timesheet use</p>
-  <p>Does not replace employer rounding policies, overtime rules, or payroll compliance checks</p>
+  <section class="work-hours-explanation-card">
+    <h3>How to Guide</h3>
+    <ol class="work-hours-guide-steps">
+      <li>Choose Single Shift, Split Shift, or Weekly Total based on how you track work time.</li>
+      <li>Enter each start and end time, then turn on Ends next day for overnight work.</li>
+      <li>Select the unpaid break deduction that should come off the worked total.</li>
+      <li>Click Calculate to see the HH:MM total, decimal hours, and any per-segment or per-day lines.</li>
+    </ol>
+    <table class="work-hours-guide-table">
+      <thead>
+        <tr>
+          <th scope="col">Mode</th>
+          <th scope="col">Best for</th>
+          <th scope="col">What you get</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Single Shift</td>
+          <td>One start and one finish time</td>
+          <td>Simple shift total after the unpaid break deduction</td>
+        </tr>
+        <tr>
+          <td>Split Shift</td>
+          <td>Two work segments in the same day</td>
+          <td>Combined total plus separate segment lines</td>
+        </tr>
+        <tr>
+          <td>Weekly Total</td>
+          <td>Timesheets across multiple days</td>
+          <td>Week total plus a daily breakdown for each day entered</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="work-hours-explanation-card">
+    <h3>FAQ</h3>
+    <div class="work-hours-faq-grid">
+      <article class="work-hours-faq-item">
+        <p><strong>Can I calculate hours for a night shift?</strong></p>
+        <p>Yes. Enable Ends next day when your shift ends after midnight.</p>
+      </article>
+      <article class="work-hours-faq-item">
+        <p><strong>Does this include paid breaks?</strong></p>
+        <p>No. Only unpaid breaks that you choose are deducted from the worked total.</p>
+      </article>
+      <article class="work-hours-faq-item">
+        <p><strong>Why do I see both HH:MM and decimal hours?</strong></p>
+        <p>HH:MM is easier to read, while decimal hours are commonly used for payroll and timesheets.</p>
+      </article>
+      <article class="work-hours-faq-item">
+        <p><strong>Does it round time?</strong></p>
+        <p>No. It uses the exact inputs you enter, so employer rounding rules need to be applied separately.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="work-hours-explanation-card">
+    <h3>Important Notes</h3>
+    <ul class="work-hours-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> Results depend on the start and end times you enter, including whether a shift rolls into the next day.</li>
+      <li><strong>Disclaimer:</strong> This tool is for planning and timesheet checking, not legal, payroll, or overtime compliance advice.</li>
+      <li><strong>Assumptions:</strong> Unpaid breaks are subtracted exactly as selected, and employer rounding policies are not applied automatically.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
 </div>

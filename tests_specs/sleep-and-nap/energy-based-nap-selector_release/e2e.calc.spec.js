@@ -2,13 +2,15 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Energy-Based Nap Selector', () => {
   test('ENAP-TEST-E2E-1: route journey and deterministic behavior', async ({ page }) => {
-    await page.goto('/time-and-date/energy-based-nap-selector');
+    await page.goto('/time-and-date/energy-based-nap-selector/');
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Time & Date');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Energy-Based Nap Selector');
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Energy-Based Nap Selector'
+    );
 
     await expect(page.locator('select')).toHaveCount(0);
 
@@ -38,41 +40,38 @@ test.describe('Energy-Based Nap Selector', () => {
   });
 
   test('ENAP-TEST-E2E-2: explanation pane and FAQ count', async ({ page }) => {
-    await page.goto('/time-and-date/energy-based-nap-selector');
+    await page.goto('/time-and-date/energy-based-nap-selector/');
 
     const explanation = page.locator('#energy-nap-explanation');
-    await expect(explanation).toContainText('Which Nap Length Matches the Energy You Need?');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation.locator('h2')).toHaveText('Which nap length matches the energy you need?');
     await expect(explanation).toContainText('How to Guide');
-    await expect(explanation).toContainText('Frequently Asked Questions');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.faq-box')).toHaveCount(10);
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
   });
 
-  test('ENAP-TEST-E2E-3: primary recommendation keeps dark-row styling with readable text', async ({
+  test('ENAP-TEST-E2E-3: primary recommendation stays visually differentiated', async ({
     page,
   }) => {
-    await page.goto('/time-and-date/energy-based-nap-selector');
+    await page.goto('/time-and-date/energy-based-nap-selector/');
 
     await page.locator('#energy-nap-start-time').fill('23:30');
     await page.locator('#energy-nap-calculate').click();
 
     const primaryCard = page.locator('#energy-nap-primary');
     await expect(primaryCard).toBeVisible();
+    await expect(primaryCard.locator('h4')).toContainText('Primary recommendation');
 
-    const primaryBackground = await primaryCard.evaluate((card) => getComputedStyle(card).backgroundColor);
-    const headingColor = await primaryCard
-      .locator('h4')
-      .evaluate((heading) => getComputedStyle(heading).color);
-    const metricsColor = await primaryCard
-      .locator('.energy-primary-metrics')
-      .evaluate((metrics) => getComputedStyle(metrics).color);
-    const reasonColor = await primaryCard
-      .locator('.energy-primary-reason')
-      .evaluate((reason) => getComputedStyle(reason).color);
+    const primaryBackground = await primaryCard.evaluate((card) =>
+      getComputedStyle(card).backgroundImage || getComputedStyle(card).backgroundColor
+    );
+    const alternativeBackground = await page.locator('#energy-nap-alternatives .energy-alt-row').first().evaluate((row) =>
+      getComputedStyle(row).backgroundImage || getComputedStyle(row).backgroundColor
+    );
 
-    expect(primaryBackground).toBe('rgb(15, 23, 42)');
-    expect(primaryBackground).not.toBe('rgb(240, 253, 244)');
-    expect(headingColor).not.toBe(primaryBackground);
-    expect(metricsColor).not.toBe(primaryBackground);
-    expect(reasonColor).not.toBe('rgb(20, 83, 45)');
+    expect(primaryBackground).not.toBe('none');
+    expect(primaryBackground).not.toBe(alternativeBackground);
   });
 });

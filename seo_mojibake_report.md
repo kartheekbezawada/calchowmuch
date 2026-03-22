@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `calc:finance/inflation`
-- HTML files scanned: **1**
-- Calculator pages scanned: **1**
+- Scope: `cluster:sleep-and-nap`
+- HTML files scanned: **5**
+- Calculator pages scanned: **5**
 - Findings: **0**
 - Status: **PASS**
 

@@ -2,13 +2,15 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Power Nap Calculator', () => {
   test('POWER-NAP-TEST-E2E-1: user journey and outputs', async ({ page }) => {
-    await page.goto('/time-and-date/power-nap-calculator');
+    await page.goto('/time-and-date/power-nap-calculator/');
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Time & Date');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Power Nap Calculator');
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Power Nap Calculator'
+    );
 
     await page.locator('#power-nap-start-time').fill('13:00');
     await page.locator('#power-nap-calculate').click();
@@ -33,43 +35,45 @@ test.describe('Power Nap Calculator', () => {
   });
 
   test('POWER-NAP-TEST-E2E-2: explanation content and FAQs', async ({ page }) => {
-    await page.goto('/time-and-date/power-nap-calculator');
+    await page.goto('/time-and-date/power-nap-calculator/');
 
     const explanation = page.locator('#power-nap-explanation');
-    await expect(explanation).toContainText('When Should You Wake Up From a Power Nap?');
-    await expect(explanation).toContainText('Frequently Asked Questions');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation.locator('h2')).toHaveText('When should you wake up from a power nap?');
+    await expect(explanation.locator('h3')).toHaveCount(3);
+    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.power-nap-faq-item')).toHaveCount(10);
+    await expect(explanation.locator('.power-nap-notes li')).toHaveCount(5);
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
   });
 
-  test('POWER-NAP-TEST-E2E-2B: recommended rows keep dark-row styling with readable text', async ({
+  test('POWER-NAP-TEST-E2E-2B: recommended rows stay visually differentiated', async ({
     page,
   }) => {
-    await page.goto('/time-and-date/power-nap-calculator');
+    await page.goto('/time-and-date/power-nap-calculator/');
 
     await page.locator('#power-nap-start-time').fill('13:00');
     await page.locator('#power-nap-calculate').click();
 
     const recommended = page.locator('#power-nap-results-list .result-row.is-recommended');
     await expect(recommended).toHaveCount(2);
+    await expect(page.locator('#power-nap-results-list .recommend-badge')).toHaveCount(2);
 
-    const recommendedBackgrounds = await recommended.evaluateAll((rows) =>
-      rows.map((row) => getComputedStyle(row).backgroundColor)
+    const recommendedBackground = await recommended.first().evaluate((row) =>
+      getComputedStyle(row).backgroundImage || getComputedStyle(row).backgroundColor
     );
-    const recommendedTextColors = await recommended.evaluateAll((rows) =>
-      rows.map((row) => getComputedStyle(row).color)
+    const regularBackground = await page.locator('#power-nap-results-list .result-row').first().evaluate((row) =>
+      getComputedStyle(row).backgroundImage || getComputedStyle(row).backgroundColor
     );
 
-    recommendedBackgrounds.forEach((background) => {
-      expect(background).toBe('rgb(15, 23, 42)');
-      expect(background).not.toBe('rgb(240, 253, 244)');
-    });
-    recommendedTextColors.forEach((textColor) => {
-      expect(textColor).not.toBe('rgb(240, 253, 244)');
-    });
+    expect(recommendedBackground).not.toBe('none');
+    expect(recommendedBackground).not.toBe(regularBackground);
   });
 
   test('POWER-NAP-TEST-E2E-3: evening warning for late start', async ({ page }) => {
-    await page.goto('/time-and-date/power-nap-calculator');
+    await page.goto('/time-and-date/power-nap-calculator/');
 
     await page.locator('#power-nap-start-time').fill('19:00');
     await page.locator('#power-nap-calculate').click();

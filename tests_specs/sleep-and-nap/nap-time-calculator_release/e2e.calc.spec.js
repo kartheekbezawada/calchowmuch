@@ -4,13 +4,15 @@ test.describe('Nap Time Calculator', () => {
   test.describe.configure({ mode: 'serial' });
 
   test('NAP-TEST-E2E-1: user journey and outputs', async ({ page }) => {
-    await page.goto('/time-and-date/nap-time-calculator');
+    await page.goto('/time-and-date/nap-time-calculator/');
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Time & Date');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Nap Time Calculator');
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Nap Time Calculator'
+    );
 
     const napTypeButtons = page.locator('[data-button-group="nap-type"] button');
     await expect(napTypeButtons.nth(1)).toHaveClass(/is-active/);
@@ -34,11 +36,17 @@ test.describe('Nap Time Calculator', () => {
   });
 
   test('NAP-TEST-E2E-2: explanation content and FAQs', async ({ page }) => {
-    await page.goto('/time-and-date/nap-time-calculator');
+    await page.goto('/time-and-date/nap-time-calculator/');
 
     const explanation = page.locator('#nap-time-explanation');
-    await expect(explanation).toContainText('When Should You Wake Up From a Nap?');
-    await expect(explanation).toContainText('Which nap is best for work breaks?');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation.locator('h2')).toHaveText('When should you wake up from this nap?');
+    await expect(explanation.locator('h3')).toHaveCount(3);
+    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.nap-faq-item')).toHaveCount(5);
+    await expect(explanation.locator('.nap-notes li')).toHaveCount(5);
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
   });
 });

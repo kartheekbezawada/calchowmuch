@@ -1,7 +1,7 @@
 <div id="birthday-dow-explanation">
-  <section class="birthday-dow-help-intro">
-    <p class="birthday-dow-help-kicker">Secondary help</p>
-    <h2>Simple birthday answers.</h2>
+  <section class="birthday-dow-help-intro birthday-dow-explanation-card">
+    <p class="birthday-dow-help-kicker">Birthday planning</p>
+    <h2>What day of the week was I born on?</h2>
     <p>
       For <span data-birthday-field="dob-label">your birthday date</span>, the birth weekday is
       <span data-birthday-field="birth-weekday">still waiting</span>. In
@@ -9,56 +9,97 @@
       <span data-birthday-field="target-weekday">that year's weekday</span>. The next birthday is
       <span data-birthday-field="next-birthday">still to be calculated</span>.
     </p>
-    <p>Open more only if you need it.</p>
+    <p>
+      Use this planner to confirm the weekday you were born on, preview a future birthday year,
+      and spot the next celebration-friendly weekend without checking a calendar by hand.
+    </p>
   </section>
 
-  <details class="birthday-dow-detail" open>
-    <summary>What you can do here</summary>
-    <div class="birthday-dow-detail-body">
-      <ul>
-        <li>Use <strong>Know my birth day</strong> when you only want the original weekday.</li>
-        <li>Use <strong>Check a future year</strong> when you need one fast planning answer.</li>
-        <li>Use <strong>Plan a weekend birthday</strong> when the real question is celebration timing.</li>
-      </ul>
-    </div>
-  </details>
-
-  <details class="birthday-dow-detail">
-    <summary>How the weekday shifts over time</summary>
-    <div class="birthday-dow-detail-body">
+  <section class="birthday-dow-explanation-card">
+    <h3>How to Guide</h3>
+    <ol class="birthday-dow-guide-steps">
+      <li>Enter the birthday date and optional target year.</li>
+      <li>Choose Birth day, Future year, or Weekend depending on the planning question.</li>
+      <li>Click Show to refresh the spotlight answer, planning panels, and 12-year map.</li>
+    </ol>
+    <table class="birthday-dow-guide-table">
+      <thead>
+        <tr>
+          <th scope="col">Mode</th>
+          <th scope="col">When to use it</th>
+          <th scope="col">Main answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Birth day</td>
+          <td>Original weekday lookup</td>
+          <td>Birth weekday and next birthday snapshot</td>
+        </tr>
+        <tr>
+          <td>Future year</td>
+          <td>Checking one specific year</td>
+          <td>Selected-year weekday plus timeline context</td>
+        </tr>
+        <tr>
+          <td>Weekend</td>
+          <td>Celebration planning</td>
+          <td>Closest Friday, Saturday, and Sunday birthday options</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="birthday-dow-guide-copy">
       <p>
         Birthdays move because a calendar year is not an exact number of weeks. A normal year adds
         one leftover day, and a leap year adds an extra day in February. That is why the same date
         rotates through different weekdays over time.
       </p>
-    </div>
-  </details>
-
-  <details class="birthday-dow-detail">
-    <summary>Leap-day rule</summary>
-    <div class="birthday-dow-detail-body">
       <p>
         February 29 birthdays stay on February 29 in leap years. In non-leap preview years and
         non-leap next-birthday calculations, the planner uses February 28 so the answer stays
         practical for real-world planning.
       </p>
     </div>
-  </details>
+  </section>
 
-  <details class="birthday-dow-detail">
-    <summary>Accuracy and privacy</summary>
-    <div class="birthday-dow-detail-body birthday-dow-faq-stack">
-      <p>
-        <strong>Is the birth weekday accurate?</strong> Yes. The result follows standard Gregorian
-        calendar rules across the supported range.
-      </p>
-      <p>
-        <strong>How far forward can I preview?</strong> The target year range is 1600 to 2100.
-      </p>
-      <p>
-        <strong>Does this store my birthday?</strong> No. Everything runs in the browser and the
-        page does not submit your birthday anywhere.
-      </p>
+  <section class="birthday-dow-explanation-card">
+    <h3>FAQ</h3>
+    <div class="birthday-dow-faq-grid">
+      <article class="birthday-dow-faq-item">
+        <p><strong>Is the birth weekday accurate?</strong></p>
+        <p>Yes. The result follows standard Gregorian calendar rules across the supported range.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>Why does the weekday change every year?</strong></p>
+        <p>Because a normal year leaves one extra day after complete weeks, and leap years can shift it again.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>Can I plan future birthday weekends here?</strong></p>
+        <p>Yes. Use Weekend mode and the 12-year map to find Friday, Saturday, or Sunday birthdays quickly.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>What happens for February 29 birthdays?</strong></p>
+        <p>Leap-day birthdays stay on February 29 in leap years and use February 28 in non-leap preview years.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>How far forward can I preview?</strong></p>
+        <p>The supported target-year range is 1600 to 2100.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>Does this store my birthday?</strong></p>
+        <p>No. The planner runs in the browser and does not submit your birthday anywhere.</p>
+      </article>
     </div>
-  </details>
+  </section>
+
+  <section class="birthday-dow-explanation-card">
+    <h3>Important Notes</h3>
+    <ul class="birthday-dow-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> Results follow Gregorian calendar rules across the supported range.</li>
+      <li><strong>Disclaimer:</strong> Use this planner for scheduling and celebration planning, not legal verification.</li>
+      <li><strong>Assumptions:</strong> February 29 birthdays use February 28 in non-leap preview years.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
 </div>

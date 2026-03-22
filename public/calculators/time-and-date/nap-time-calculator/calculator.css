@@ -114,263 +114,355 @@
 #calc-nap-time .nap-tagline {
   margin: 0 0 18px;
   max-width: 620px;
-  color: rgba(210, 216, 236, 0.82);
-  font-size: 14px;
-  line-height: 1.55;
-}
+  #calc-nap-time {
+    --nap-text: #233046;
+    --nap-accent: #8d6bc1;
+    --nap-accent-soft: rgba(141, 107, 193, 0.14);
+    --nap-moon: #5f86b1;
+    --nap-border: rgba(95, 134, 177, 0.18);
+    --nap-surface: rgba(255, 252, 248, 0.92);
+    --nap-surface-soft: rgba(242, 236, 248, 0.76);
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: radial-gradient(circle at 18% 4%, rgba(141, 107, 193, 0.16), transparent 34%),
+      radial-gradient(circle at 82% 12%, rgba(95, 134, 177, 0.14), transparent 30%),
+      linear-gradient(180deg, #f7f0ff 0%, #eef5fb 100%);
+    border: 1px solid var(--nap-border);
+    box-shadow: 0 24px 54px rgba(35, 48, 70, 0.08);
+  }
 
-#calc-nap-time .nap-two-box {
-  display: grid;
-  grid-template-columns: minmax(0, 1.62fr) minmax(300px, 1.18fr);
-  gap: 16px;
-  align-items: stretch;
-  margin-top: -6px;
-}
+  #calc-nap-time .nap-scene {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
 
-#calc-nap-time .nap-card {
-  height: 100%;
-  border-radius: 22px;
-  padding: 22px;
-  border: 1px solid rgba(148, 172, 244, 0.24);
-  background: linear-gradient(165deg, rgba(12, 18, 38, 0.86), rgba(16, 24, 48, 0.84));
-  box-shadow: 0 16px 38px rgba(2, 8, 28, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-}
+  #calc-nap-time .nap-mist {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 28%, rgba(255, 255, 255, 0.38), transparent 24%),
+      linear-gradient(180deg, rgba(141, 107, 193, 0.12) 0%, rgba(255, 255, 255, 0) 42%);
+  }
 
-#calc-nap-time .nap-card-answer {
-  min-height: 100%;
-}
+  #calc-nap-time .nap-moon {
+    position: absolute;
+    top: 30px;
+    right: 28px;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fffaff 0%, #e8d9ff 44%, #9d84cb 100%);
+    box-shadow: 0 0 30px rgba(157, 132, 203, 0.24);
+  }
 
-#calc-nap-time .nap-label {
-  margin-bottom: 10px;
-  color: rgba(208, 216, 236, 0.52);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
+  #calc-nap-time .nap-orb {
+    position: absolute;
+    left: 10%;
+    bottom: 10%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(95, 134, 177, 0.16), transparent 70%);
+  }
 
-#calc-nap-time .nap-type-wrap,
-#calc-nap-time .nap-buffer-wrap {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 18px;
-}
+  #calc-nap-time .nap-container {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 24px 42px;
+  }
 
-#calc-nap-time .nap-type-btn,
-#calc-nap-time .nap-buffer-btn {
-  flex: 1;
-  min-height: 50px;
-  border-radius: 12px;
-  border: 1px solid rgba(141, 167, 242, 0.28);
-  background: rgba(14, 22, 43, 0.78);
-  color: rgba(227, 234, 248, 0.86);
-  font-size: 14px;
-  font-weight: 600;
-}
+  #calc-nap-time .nap-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--nap-accent);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
 
-#calc-nap-time .nap-type-btn span {
-  font-size: 12px;
-  opacity: 0.85;
-  font-weight: 500;
-}
+  #calc-nap-time .nap-hero-tag::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+  }
 
-#calc-nap-time .nap-type-btn.is-active,
-#calc-nap-time .nap-type-btn[aria-pressed='true'],
-#calc-nap-time .nap-buffer-btn.is-active,
-#calc-nap-time .nap-buffer-btn[aria-pressed='true'] {
-  background: linear-gradient(135deg, rgba(115, 169, 255, 0.34), rgba(163, 122, 255, 0.32));
-  border-color: rgba(141, 167, 242, 0.58);
-  color: #f1f4ff;
-  box-shadow: 0 0 0 3px rgba(130, 160, 248, 0.16);
-}
+  #calc-nap-time .nap-hero-title {
+    margin: 0 0 12px;
+    color: var(--nap-text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 5vw, 2.85rem);
+    line-height: 1.08;
+  }
 
-#calc-nap-time .nap-time-wrap {
-  position: relative;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 18px;
-}
+  #calc-nap-time .nap-hero-title em {
+    color: var(--nap-accent);
+  }
 
-#calc-nap-time .nap-time-input {
-  flex: 1;
-  min-height: 60px;
-  padding: 14px 74px 14px 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(141, 167, 242, 0.3);
-  background: rgba(8, 13, 28, 0.78);
-  color: #f2f5ff;
-  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  outline: none;
-}
+  #calc-nap-time .nap-footer-note {
+    margin: 18px 0 0;
+    color: rgba(35, 48, 70, 0.7);
+    font-size: 14px;
+    line-height: 1.6;
+  }
 
-#calc-nap-time .nap-time-input:focus {
-  border-color: rgba(140, 169, 255, 0.72);
-  box-shadow: 0 0 0 3px rgba(130, 160, 248, 0.2);
-}
+  #calc-nap-time .nap-two-box {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+  }
 
-#calc-nap-time .nap-time-input::-webkit-calendar-picker-indicator {
-  opacity: 0;
-  pointer-events: none;
-}
+  #calc-nap-time .nap-card {
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid var(--nap-border);
+    background: var(--nap-surface);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 36px rgba(35, 48, 70, 0.08);
+  }
 
-#calc-nap-time .nap-time-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 56px;
-  height: 56px;
-  border: 0;
-  border-radius: 14px;
-  background: rgba(16, 24, 45, 0.45);
-  color: rgba(208, 225, 255, 0.95);
-  font-size: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-}
+  #calc-nap-time .nap-label,
+  #calc-nap-time .nap-answer-title {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(35, 48, 70, 0.54);
+  }
 
-#calc-nap-time .nap-time-icon:focus-visible {
-  outline: 2px solid rgba(140, 169, 255, 0.85);
-  outline-offset: 1px;
-}
+  #calc-nap-time .nap-type-wrap,
+  #calc-nap-time .nap-buffer-wrap {
+    display: flex;
+    gap: 8px;
+  }
 
-#calc-nap-time .nap-calc-btn {
-  width: 100%;
-  min-height: 52px;
-  border-radius: 14px;
-  border: 0;
-  color: #f5f7ff;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  background: linear-gradient(90deg, #78a8ff 0%, #8b95ff 52%, #b689ff 100%);
-  box-shadow: 0 14px 30px rgba(95, 122, 214, 0.34);
-}
+  #calc-nap-time .nap-type-btn,
+  #calc-nap-time .nap-buffer-btn,
+  #calc-nap-time .nap-calc-btn,
+  #calc-nap-time .nap-time-icon {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
 
-#calc-nap-time .nap-calc-btn:hover {
-  transform: translateY(-1px);
-}
+  #calc-nap-time .nap-type-btn,
+  #calc-nap-time .nap-buffer-btn {
+    flex: 1;
+    min-height: 48px;
+    border-radius: 14px;
+    border: 1px solid var(--nap-border);
+    background: rgba(255, 255, 255, 0.86);
+    color: rgba(35, 48, 70, 0.72);
+    font-weight: 600;
+  }
 
-#calc-nap-time #nap-results {
-  min-height: 230px;
-}
+  #calc-nap-time .nap-type-btn.is-active,
+  #calc-nap-time .nap-type-btn[aria-pressed='true'],
+  #calc-nap-time .nap-buffer-btn.is-active,
+  #calc-nap-time .nap-buffer-btn[aria-pressed='true'] {
+    background: linear-gradient(135deg, rgba(141, 107, 193, 0.18), rgba(95, 134, 177, 0.14));
+    border-color: rgba(141, 107, 193, 0.34);
+    color: var(--nap-text);
+    box-shadow: 0 10px 24px rgba(141, 107, 193, 0.12);
+  }
 
-#calc-nap-time .nap-answer-title {
-  margin-bottom: 7px;
-  color: rgba(197, 216, 255, 0.9);
-  font-size: 0.9rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
+  #calc-nap-time .nap-time-wrap {
+    position: relative;
+  }
 
-#calc-nap-time .nap-results-list {
-  display: grid;
-  gap: 10px;
-}
+  #calc-nap-time .nap-time-input {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 56px 0 16px;
+    border-radius: 16px;
+    border: 1px solid var(--nap-border);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--nap-text);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 24px;
+    color-scheme: light;
+  }
 
-#calc-nap-time .result-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: center;
-  padding: 11px 12px;
-  border: 1px solid rgba(141, 167, 242, 0.28);
-  border-radius: 12px;
-  background: rgba(10, 16, 32, 0.8);
-  font-size: 14px;
-  color: #dce3fa;
-}
+  #calc-nap-time .nap-time-input:focus {
+    outline: none;
+    border-color: rgba(141, 107, 193, 0.42);
+    box-shadow: 0 0 0 3px rgba(141, 107, 193, 0.12);
+  }
 
-#calc-nap-time .result-row span:last-child {
-  font-weight: 700;
-  color: #f0f4ff;
-}
+  #calc-nap-time .nap-time-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(141, 107, 193, 0.16);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--nap-accent);
+  }
 
-#calc-nap-time .form-error {
-  margin: 8px 0 0;
-  color: #fca5a5;
-  font-size: 13px;
-  font-weight: 600;
-}
+  #calc-nap-time .nap-calc-btn {
+    min-height: 50px;
+    border: 0;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #9c82d6, #6f9bd0);
+    color: #fffdfd;
+    font-weight: 700;
+    box-shadow: 0 16px 28px rgba(141, 107, 193, 0.22);
+  }
 
-#calc-nap-time .nap-footer-note {
-  margin: 12px 0 0;
-  text-align: center;
-  color: rgba(200, 209, 233, 0.76);
-  font-size: 13px;
-}
+  #calc-nap-time .nap-type-btn:hover,
+  #calc-nap-time .nap-buffer-btn:hover,
+  #calc-nap-time .nap-calc-btn:hover,
+  #calc-nap-time .nap-time-icon:hover {
+    transform: translateY(-1px);
+  }
 
-#calc-nap-time .nap-footer-note span {
-  color: #b9b2ff;
-  font-weight: 700;
-}
+  #calc-nap-time .nap-results-list {
+    display: grid;
+    gap: 10px;
+  }
 
-#calc-nap-time .nap-test-proxy {
-  display: none !important;
-}
+  #calc-nap-time .result-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(95, 134, 177, 0.14);
+    background: rgba(255, 255, 255, 0.76);
+    color: var(--nap-text);
+  }
 
-#nap-time-explanation {
-  margin-top: 18px;
-  display: grid;
-  gap: 14px;
-  border: 1px solid rgba(141, 167, 242, 0.2);
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(12, 18, 36, 0.92), rgba(18, 27, 52, 0.88));
-  padding: 18px;
-}
+  #calc-nap-time .nap-test-proxy,
+  #calc-nap-time .is-hidden {
+    display: none !important;
+  }
 
-#calc-nap-time + .nap-explanation-heading::after,
-.panel-span-all .nap-explanation-heading::after {
-  content: none !important;
-}
+  #calc-nap-time .form-error {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(141, 107, 193, 0.26);
+    background: rgba(242, 236, 248, 0.82);
+    color: #744da5;
+  }
 
-#nap-time-explanation h2 {
-  margin: 0;
-  color: #e9edfb;
-  font-size: 1.1rem;
-}
+  #nap-time-explanation {
+    display: grid;
+    gap: 16px;
+    margin-top: 22px;
+  }
 
-#nap-time-explanation h2::after {
-  content: none !important;
-}
+  #nap-time-explanation .nap-explanation-card {
+    padding: 22px;
+    border-radius: 20px;
+    border: 1px solid rgba(95, 134, 177, 0.14);
+    background: rgba(255, 255, 255, 0.86);
+    color: rgba(35, 48, 70, 0.82);
+    box-shadow: 0 16px 32px rgba(35, 48, 70, 0.06);
+  }
 
-#nap-time-explanation .nap-explain-index {
-  margin: 0;
-  padding-left: 1.1rem;
-  color: rgba(198, 210, 238, 0.94);
-  line-height: 1.6;
-}
+  #nap-time-explanation .nap-explanation-kicker {
+    margin: 0 0 10px;
+    color: var(--nap-accent);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
 
-#nap-time-explanation .nap-explain-index li + li {
-  margin-top: 0.3rem;
-}
+  #nap-time-explanation h2,
+  #nap-time-explanation h3,
+  #nap-time-explanation h4 {
+    margin-top: 0;
+    color: var(--nap-text);
+  }
 
-#nap-time-explanation .nap-explain-list {
-  margin: 0;
-  padding-left: 1.1rem;
-  color: rgba(209, 217, 239, 0.9);
-  line-height: 1.58;
-}
+  #nap-time-explanation h2 {
+    margin-bottom: 12px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    line-height: 1.18;
+  }
 
-#nap-time-explanation .nap-explain-list li + li {
-  margin-top: 0.22rem;
-}
+  #nap-time-explanation p,
+  #nap-time-explanation li {
+    font-size: 14px;
+    line-height: 1.7;
+  }
 
-#nap-time-explanation .nap-explain-section {
-  display: grid;
-  gap: 8px;
-  padding: 12px;
-  border: 1px solid rgba(141, 167, 242, 0.2);
-  border-radius: 12px;
-  background: rgba(12, 18, 34, 0.65);
-}
+  #nap-time-explanation .nap-guide-steps,
+  #nap-time-explanation .nap-notes {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  #nap-time-explanation .nap-guide-grid,
+  #nap-time-explanation .nap-guide-notes,
+  #nap-time-explanation .nap-faq-grid {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  #nap-time-explanation .nap-guide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #nap-time-explanation .nap-guide-grid article,
+  #nap-time-explanation .nap-guide-notes article,
+  #nap-time-explanation .nap-faq-item {
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(95, 134, 177, 0.12);
+    background: rgba(242, 236, 248, 0.72);
+  }
+
+  #nap-time-explanation .nap-guide-grid span {
+    display: block;
+    margin-bottom: 6px;
+    color: rgba(35, 48, 70, 0.56);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  #nap-time-explanation .nap-guide-grid strong {
+    color: var(--nap-text);
+    font-size: 15px;
+  }
+
+  @media (max-width: 900px) {
+    #calc-nap-time .nap-two-box,
+    #nap-time-explanation .nap-guide-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    #calc-nap-time .nap-container {
+      padding: 20px 16px 30px;
+    }
+
+    #calc-nap-time .nap-type-wrap,
+    #calc-nap-time .nap-buffer-wrap,
+    #calc-nap-time .result-row {
+      flex-direction: column;
+    }
+
+    #nap-time-explanation .nap-explanation-card {
+      padding: 18px;
+    }
+  }
 
 #nap-time-explanation p {
   margin: 0;

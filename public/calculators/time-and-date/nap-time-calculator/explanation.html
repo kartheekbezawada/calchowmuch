@@ -1,108 +1,102 @@
-<div id="nap-time-explanation">
-  <div class="nap-explain-section">
-    <h2>When Should You Wake Up From a Nap?</h2>
+<div id="nap-time-explanation" class="nap-explanation">
+  <section class="nap-explanation-card">
+    <p class="nap-explanation-kicker">Nap planning</p>
+    <h2>When should you wake up from this nap?</h2>
     <p>
-      Use this nap time calculator to choose a wake-up time based on when you start your nap and
-      the type of nap you want. If you start at
-      <span data-placeholder="start-time">{START_TIME}</span> and choose
-      <span data-placeholder="nap-type">{NAP_TYPE}</span>, it suggests waking up at
-      <span data-placeholder="wake-time">{WAKE_TIME}</span>.
+      Use this nap time calculator to turn a nap style and start time into a practical wake-up
+      target before you close your eyes.
     </p>
-  </div>
-
-  <div class="nap-explain-section">
-    <ul class="nap-explain-list">
-      <li>Nap duration is selected from the chosen nap type.</li>
-      <li>A wake buffer is added on top of the nap duration.</li>
-      <li>Total wake target = start time + nap duration + wake buffer.</li>
-    </ul>
-  </div>
-
-  <div class="nap-explain-section">
-    <p><strong>Quick Nap (10–20 minutes)</strong></p>
-    <ul class="nap-explain-list">
-      <li>Fast boost in alertness.</li>
-      <li>Easy to fit into a busy day.</li>
-      <li>Lower chance of waking up groggy.</li>
-    </ul>
-
-    <p><strong>Power Nap (25–30 minutes)</strong></p>
-    <ul class="nap-explain-list">
-      <li>More restorative than a very short nap.</li>
-      <li>Often improves focus and mood.</li>
-      <li>Can still feel groggy for some people if timing is off.</li>
-    </ul>
-
-    <p><strong>Afternoon Nap (60–90 minutes)</strong></p>
-    <ul class="nap-explain-list">
-      <li>Can provide deeper recovery when very tired.</li>
-      <li>Higher chance of sleep inertia after waking.</li>
-      <li>More likely to affect nighttime sleep if taken too late.</li>
-    </ul>
-  </div>
-
-  <div class="nap-explain-section">
     <p>
-      A wake buffer adds extra minutes after nap duration so you can wake up gradually. This helps
-      with transition time before your next task.
+      If you start at <span data-placeholder="start-time">{START_TIME}</span>, choose
+      <span data-placeholder="nap-type">{NAP_TYPE}</span>, and allow a
+      <span data-placeholder="buffer-minutes">{BUFFER_MINUTES}</span>-minute buffer, the suggested
+      wake-up time is <span data-placeholder="wake-time">{WAKE_TIME}</span>.
     </p>
-    <ul class="nap-explain-list">
-      <li><strong>0 min:</strong> strict wake-up target.</li>
-      <li><strong>5 min:</strong> balanced option for most users.</li>
-      <li><strong>10 min:</strong> extra transition time.</li>
-    </ul>
-  </div>
+  </section>
 
-  <div class="nap-explain-section">
-    <ul class="nap-explain-list">
-      <li>Uses fixed nap durations for simplicity.</li>
-      <li>Uses your local browser time for “now”.</li>
-      <li>Provides general estimates, not medical advice.</li>
-      <li>Results can vary from person to person.</li>
-    </ul>
-  </div>
+  <section class="nap-explanation-card">
+    <h3>How to Guide</h3>
+    <ol class="nap-guide-steps">
+      <li>Select a nap style that matches the kind of reset you need.</li>
+      <li>Enter your nap start time, then choose a wake buffer.</li>
+      <li>Click <strong>Calculate Nap End Time</strong> to lock the target in.</li>
+      <li>Set an alarm for the suggested wake time before you start resting.</li>
+    </ol>
 
-  <div class="nap-faq-item">
-    <p><strong>Which nap is best for work breaks?</strong></p>
-    <p>
-      Quick naps and power naps are usually the easiest to fit into a workday because they are
-      shorter.
-    </p>
-  </div>
+    <div class="nap-guide-grid">
+      <article>
+        <span>Nap type</span>
+        <strong data-placeholder="nap-type">{NAP_TYPE}</strong>
+      </article>
+      <article>
+        <span>Nap length</span>
+        <strong><span data-placeholder="nap-minutes">{NAP_MINUTES}</span> minutes</strong>
+      </article>
+      <article>
+        <span>Wake buffer</span>
+        <strong><span data-placeholder="buffer-minutes">{BUFFER_MINUTES}</span> minutes</strong>
+      </article>
+      <article>
+        <span>Wake target</span>
+        <strong data-placeholder="wake-time">{WAKE_TIME}</strong>
+      </article>
+    </div>
 
-  <div class="nap-faq-item">
-    <p><strong>Why do I sometimes feel worse after a nap?</strong></p>
-    <p>
-      If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a
-      different nap length can help.
-    </p>
-  </div>
+    <div class="nap-guide-notes">
+      <article>
+        <h4>Quick</h4>
+        <p>Best for a short alertness boost when you only have a small break.</p>
+      </article>
+      <article>
+        <h4>Power</h4>
+        <p>Useful when you want more recovery without committing to a long sleep cycle.</p>
+      </article>
+      <article>
+        <h4>Afternoon</h4>
+        <p>Better suited to deeper recovery when you have enough time to wake up slowly.</p>
+      </article>
+    </div>
+  </section>
 
-  <div class="nap-faq-item">
-    <p><strong>Will napping ruin my sleep at night?</strong></p>
-    <p>
-      Naps taken too late in the day can make it harder to fall asleep at night. If this happens,
-      try a shorter nap or nap earlier.
-    </p>
-  </div>
+  <section class="nap-explanation-card">
+    <h3>FAQ</h3>
 
-  <div class="nap-faq-item">
-    <p><strong>What is the best time of day to nap?</strong></p>
-    <p>Many people prefer early afternoon. If you nap late, it may affect nighttime sleep.</p>
-  </div>
+    <div class="nap-faq-grid">
+      <article class="nap-faq-item">
+        <h4>Which nap is best for work breaks?</h4>
+        <p>Quick naps and power naps are usually the easiest to fit into a workday because they are shorter.</p>
+      </article>
 
-  <div class="nap-faq-item">
-    <p><strong>Does the calculator set an alarm?</strong></p>
-    <p>No. It only suggests a wake-up time. You can set an alarm on your phone or device.</p>
-  </div>
+      <article class="nap-faq-item">
+        <h4>Why do I sometimes feel worse after a nap?</h4>
+        <p>If you wake up during deeper sleep, you may feel groggy for a while. A shorter nap or a different nap length can help.</p>
+      </article>
 
-  <div class="nap-explain-section">
+      <article class="nap-faq-item">
+        <h4>Will napping ruin my sleep at night?</h4>
+        <p>Naps taken too late in the day can make it harder to fall asleep at night. If this happens, try a shorter nap or nap earlier.</p>
+      </article>
+
+      <article class="nap-faq-item">
+        <h4>What is the best time of day to nap?</h4>
+        <p>Many people prefer early afternoon. If you nap late, it may affect nighttime sleep.</p>
+      </article>
+
+      <article class="nap-faq-item">
+        <h4>Does the calculator set an alarm?</h4>
+        <p>No. It only suggests a wake-up time. You can set an alarm on your phone or device.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="nap-explanation-card">
     <h3>Important Notes</h3>
-    <ul class="nap-explain-list">
+    <ul class="nap-notes">
       <li>Nap lengths in this calculator are fixed presets for simplicity.</li>
-      <li>The wake buffer gives you extra time to come around after the nap.</li>
-      <li>Individual sleep inertia varies, so exact results can feel different from person to person.</li>
+      <li>The wake buffer gives you extra transition time after the nap ends.</li>
+      <li>Individual sleep inertia varies, so the same nap length can feel different from person to person.</li>
       <li>Use this as a planning aid, not as medical advice.</li>
+      <li>All calculations run locally in your browser - no data is stored.</li>
     </ul>
-  </div>
+  </section>
 </div>
