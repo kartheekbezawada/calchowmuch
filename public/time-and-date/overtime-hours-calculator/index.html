@@ -17,149 +17,1557 @@
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/time-and-date/overtime-hours-calculator/#softwareapplication","name":"Overtime Hours Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/time-and-date/overtime-hours-calculator/","description":"Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/time-and-date/overtime-hours-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Time And Date","item":"https://calchowmuch.com/time-and-date/"},{"@type":"ListItem","position":3,"name":"Overtime Hours Calculator","item":"https://calchowmuch.com/time-and-date/overtime-hours-calculator/"}]}]}</script>
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-time-and-date-cluster="true">
+      /* assets/css/base.css */
+      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+         instead of @import, to eliminate sequential CSS waterfall.
+         See known_issues.md KI-007 / KI-010. */
+
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/time-and-date/shared/cluster-light.css */
+      body[data-design-family='neutral'] {
+        --td-bg: #f6f2ea;
+        --td-bg-soft: #efe8dc;
+        --td-surface: rgba(255, 253, 249, 0.96);
+        --td-surface-soft: #f8f3eb;
+        --td-surface-strong: #f1e9dd;
+        --td-text: #1f2730;
+        --td-muted: #60707c;
+        --td-line: rgba(109, 119, 130, 0.2);
+        --td-line-strong: rgba(39, 76, 119, 0.22);
+        --td-accent: #274c77;
+        --td-accent-soft: #e8eef4;
+        --td-accent-strong: #1d3657;
+        --td-shadow: 0 12px 32px rgba(31, 39, 48, 0.08);
+        --td-shadow-soft: 0 8px 24px rgba(31, 39, 48, 0.06);
+        --td-radius-xl: 28px;
+        --td-radius-lg: 20px;
+        --td-radius-md: 16px;
+        background:
+          radial-gradient(circle at top left, rgba(39, 76, 119, 0.08), transparent 30%),
+          radial-gradient(circle at 86% 6%, rgba(122, 166, 184, 0.12), transparent 22%),
+          linear-gradient(180deg, #fbf8f2 0%, #f6f2ea 100%);
+        color: var(--td-text);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-shell {
+        min-height: 100vh;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-wrap,
+      body[data-design-family='neutral'] .td-cluster-center-column {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(16px);
+        background: rgba(251, 248, 242, 0.82);
+        border-bottom: 1px solid rgba(216, 208, 196, 0.8);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-header-inner {
+        min-height: 72px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 18px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--td-text);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-brand-mark {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #274c77, #7aa6b8);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-label {
+        justify-self: center;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--td-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-links,
+      body[data-design-family='neutral'] .td-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-links a,
+      body[data-design-family='neutral'] .td-cluster-footer-links a {
+        color: var(--td-muted);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-links a:hover,
+      body[data-design-family='neutral'] .td-cluster-footer-links a:hover {
+        color: var(--td-accent);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-layout-main {
+        padding: 40px 0 64px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-panel {
+        display: grid;
+        gap: 28px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-header {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-kicker,
+      body[data-design-family='neutral'] .td-cluster-switch-kicker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        margin: 0 0 14px;
+        border-radius: 999px;
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--td-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] #calculator-title {
+        margin: 0;
+        color: var(--td-text);
+        font-size: clamp(40px, 6vw, 52px);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+
+      body[data-design-family='neutral'] #calculator-title::after {
+        display: none;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-intro,
+      body[data-design-family='neutral'] .td-cluster-page-trust {
+        margin: 14px auto 0;
+        max-width: 680px;
+        color: var(--td-muted);
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-trust {
+        font-size: 14px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-route-switch,
+      body[data-design-family='neutral'] .td-cluster-related {
+        border: 1px solid var(--td-line);
+        border-radius: var(--td-radius-xl);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 243, 235, 0.96));
+        box-shadow: var(--td-shadow-soft);
+        padding: 24px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-route-switch-head,
+      body[data-design-family='neutral'] .td-cluster-related-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-route-switch h2,
+      body[data-design-family='neutral'] .td-cluster-related h2 {
+        margin: 0;
+        color: var(--td-text);
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chips {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chip {
+        flex: 0 0 auto;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--td-text);
+        font-size: 14px;
+        font-weight: 600;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chip:hover,
+      body[data-design-family='neutral'] .td-cluster-switch-chip:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--td-line-strong);
+        box-shadow: var(--td-shadow-soft);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chip.is-active,
+      body[data-design-family='neutral'] .td-cluster-switch-chip[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(39, 76, 119, 0.1), rgba(122, 166, 184, 0.08));
+        border-color: rgba(39, 76, 119, 0.26);
+        color: var(--td-accent-strong);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-link {
+        display: grid;
+        gap: 10px;
+        min-height: 156px;
+        padding: 18px;
+        border-radius: var(--td-radius-lg);
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--td-text);
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-link:hover,
+      body[data-design-family='neutral'] .td-cluster-related-link:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--td-line-strong);
+        box-shadow: var(--td-shadow-soft);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-link.is-active,
+      body[data-design-family='neutral'] .td-cluster-related-link[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(39, 76, 119, 0.08), rgba(122, 166, 184, 0.06));
+        border-color: rgba(39, 76, 119, 0.24);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-card-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-card-copy,
+      body[data-design-family='neutral'] .td-cluster-related-card-meta {
+        color: var(--td-muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-card-meta {
+        margin-top: auto;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-footer {
+        padding: 0 0 52px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 28px;
+        border: 1px solid var(--td-line);
+        border-radius: var(--td-radius-lg);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: var(--td-shadow-soft);
+        text-align: center;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-footer-copy {
+        color: var(--td-muted);
+      }
+
+      @media (max-width: 960px) {
+        body[data-design-family='neutral'] .td-cluster-site-header-inner {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          padding: 14px 0;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-related-links {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        body[data-design-family='neutral'] .td-cluster-wrap,
+        body[data-design-family='neutral'] .td-cluster-center-column {
+          width: min(100% - 24px, 1120px);
+        }
+
+        body[data-design-family='neutral'] .td-cluster-layout-main {
+          padding: 28px 0 48px;
+        }
+
+        body[data-design-family='neutral'] #calculator-title {
+          font-size: 36px;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-route-switch,
+        body[data-design-family='neutral'] .td-cluster-related {
+          padding: 20px;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-switch-chips {
+          flex-wrap: wrap;
+          overflow-x: visible;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-switch-chip {
+          flex: 1 1 100%;
+          min-width: 0;
+          width: 100%;
+          padding: 12px 16px;
+          white-space: normal;
+          text-align: center;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-related-links {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* calculators/time-and-date/overtime-hours-calculator/calculator.css */
+      #calc-overtime-hours {
+        --overtime-surface: rgba(255, 253, 249, 0.96);
+        --overtime-surface-soft: rgba(244, 237, 228, 0.86);
+        --overtime-border: rgba(79, 93, 117, 0.12);
+        --overtime-border-strong: rgba(39, 76, 119, 0.2);
+        --overtime-accent: #274c77;
+        --overtime-text: #1f2730;
+        --overtime-muted: #64707c;
+        display: grid;
+        gap: 20px;
+      }
+
+      #calc-overtime-hours .calculator-ui {
+        display: grid;
+        gap: 18px;
+        padding: 24px;
+        border-radius: 28px;
+        border: 1px solid var(--overtime-border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 237, 228, 0.88));
+        box-shadow: 0 18px 40px rgba(31, 39, 48, 0.08);
+      }
+
+      #calc-overtime-hours .helper {
+        margin: 0;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(39, 76, 119, 0.08);
+        color: var(--overtime-accent);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      #calc-overtime-hours .overtime-section,
+      #calc-overtime-hours .input-row,
+      #calc-overtime-hours .night-settings {
+        display: grid;
+        gap: 12px;
+      }
+
+      #calc-overtime-hours .overtime-section.is-collapsed,
+      #calc-overtime-hours .is-collapsed,
+      #calc-overtime-hours .night-settings.is-collapsed {
+        display: none;
+      }
+
+      #calc-overtime-hours .input-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-overtime-hours .segment-block,
+      #calc-overtime-hours .weekly-day,
+      #calc-overtime-hours .night-settings {
+        border: 1px solid var(--overtime-border);
+        border-radius: 20px;
+        padding: 16px;
+        display: grid;
+        gap: 12px;
+        background: var(--overtime-surface);
+      }
+
+      #calc-overtime-hours .segment-title {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--overtime-accent);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      #calc-overtime-hours .weekly-day-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      #calc-overtime-hours .weekly-day-name {
+        font-weight: 700;
+        color: var(--overtime-text);
+      }
+
+      #calc-overtime-hours .week-range-label {
+        margin: 0;
+      }
+
+      #calc-overtime-hours label,
+      #calc-overtime-hours #overtime-mode-label,
+      #calc-overtime-hours #overtime-rule-label,
+      #calc-overtime-hours #overtime-rounding-label,
+      #calc-overtime-hours #overtime-break-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--overtime-text);
+      }
+
+      #calc-overtime-hours input[type='time'],
+      #calc-overtime-hours input[type='date'],
+      #calc-overtime-hours input[type='number'] {
+        width: 100%;
+        min-height: 46px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 1px solid var(--overtime-border);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--overtime-text);
+      }
+
+      #calc-overtime-hours .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      #calc-overtime-hours .calculator-button.secondary {
+        border-radius: 999px;
+        border: 1px solid var(--overtime-border);
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--overtime-text);
+      }
+
+      #calc-overtime-hours .calculator-button.secondary.is-active,
+      #calc-overtime-hours .calculator-button.secondary[aria-pressed='true'] {
+        border-color: var(--overtime-border-strong);
+        background: rgba(39, 76, 119, 0.12);
+        color: var(--overtime-accent);
+      }
+
+      #calc-overtime-hours .calculator-button.full-width {
+        border-radius: 18px;
+        background: var(--overtime-accent);
+        color: #fffdf9;
+      }
+
+      #calc-overtime-hours .checkbox-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: var(--overtime-muted);
+      }
+
+      #calc-overtime-hours .checkbox-label input {
+        accent-color: var(--overtime-accent);
+      }
+
+      #calc-overtime-hours .form-error {
+        margin: 0;
+        color: #b85d49;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      #calc-overtime-hours #overtime-results {
+        min-height: 180px;
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid var(--overtime-border);
+        background: var(--overtime-surface-soft);
+      }
+
+      #calc-overtime-hours .placeholder {
+        margin: 0;
+        color: var(--overtime-muted);
+      }
+
+      #calc-overtime-hours .overtime-results-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      #calc-overtime-hours .result-line {
+        font-size: 14px;
+        color: var(--overtime-text);
+      }
+
+      #overtime-explanation {
+        display: grid;
+        gap: 16px;
+      }
+
+      #overtime-explanation .overtime-explanation-card {
+        display: grid;
+        gap: 12px;
+        padding: 24px 28px;
+        border-radius: 24px;
+        border: 1px solid var(--overtime-border);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 16px 36px rgba(31, 39, 48, 0.08);
+      }
+
+      #overtime-explanation .overtime-explanation-kicker,
+      #overtime-explanation h3 {
+        margin: 0;
+      }
+
+      #overtime-explanation .overtime-explanation-kicker {
+        font-family: 'DM Mono', 'Consolas', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--overtime-accent);
+      }
+
+      #overtime-explanation h2,
+      #overtime-explanation h3 {
+        margin: 0;
+        font-family: 'DM Serif Display', 'Georgia', serif;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        color: var(--overtime-text);
+      }
+
+      #overtime-explanation p,
+      #overtime-explanation li,
+      #overtime-explanation th,
+      #overtime-explanation td {
+        margin: 0;
+        line-height: 1.55;
+        font-size: 14px;
+      }
+
+      #overtime-explanation .overtime-guide-steps,
+      #overtime-explanation .overtime-notes {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
+      }
+
+      #overtime-explanation .overtime-summary-table,
+      #overtime-explanation .overtime-guide-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--overtime-border);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      #overtime-explanation .overtime-summary-table th,
+      #overtime-explanation .overtime-summary-table td,
+      #overtime-explanation .overtime-guide-table th,
+      #overtime-explanation .overtime-guide-table td {
+        padding: 14px 16px;
+        text-align: left;
+        vertical-align: top;
+        border-bottom: 1px solid rgba(79, 93, 117, 0.08);
+      }
+
+      #overtime-explanation .overtime-summary-table th,
+      #overtime-explanation .overtime-guide-table th {
+        background: rgba(39, 76, 119, 0.08);
+      }
+
+      #overtime-explanation .overtime-summary-table tr:last-child td,
+      #overtime-explanation .overtime-guide-table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      #overtime-explanation .overtime-faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      #overtime-explanation .overtime-faq-item {
+        display: grid;
+        gap: 6px;
+        padding: 18px;
+        border: 1px solid var(--overtime-border);
+        border-radius: 18px;
+        background: rgba(244, 237, 228, 0.72);
+      }
+
+      @media (max-width: 860px) {
+        #calc-overtime-hours .input-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-overtime-hours .weekly-day-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        #overtime-explanation .overtime-faq-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+    <div class="page td-cluster-page-shell">
+      <header class="td-cluster-site-header">
+  <div class="td-cluster-wrap td-cluster-site-header-inner">
+    <a class="td-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="td-cluster-brand-mark" aria-hidden="true">TD</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="td-cluster-site-label" aria-label="Cluster label">Time &amp; Date Calculators</div>
+    <nav class="td-cluster-site-links" aria-label="Site links">
+      <a href="/calculators/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faqs/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link is-active" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true" data-fin-nav-cluster="time-and-date">
-<div class="fin-nav-group" data-fin-subcategory="sleep-time">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">🌙</span>
-    <span class="fin-nav-toggle-label">Sleep Time</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/sleep-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌙</span>Sleep Time Calculator</a><a class="fin-nav-item" href="/time-and-date/wake-up-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🌅</span>Wake-Up Time Calculator</a><a class="fin-nav-item" href="/time-and-date/nap-time-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">😴</span>Nap Time Calculator</a><a class="fin-nav-item" href="/time-and-date/power-nap-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⚡</span>Power Nap Calculator</a><a class="fin-nav-item" href="/time-and-date/energy-based-nap-selector/"><span class="fin-nav-item-icon" aria-hidden="true">🔋</span>Energy-Based Nap Selector</a>
+      <main class="td-cluster-layout-main">
+        <section class="td-cluster-center-column">
+          <div class="td-cluster-panel panel-span-all">
+  <div class="td-cluster-page-header">
+    <h1 id="calculator-title">Overtime Hours Calculator</h1>
+    <p class="td-cluster-page-intro">Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.</p>
   </div>
-</div>
-<div class="fin-nav-group is-expanded" data-fin-subcategory="work-hours">
-  <button type="button" class="fin-nav-toggle" aria-expanded="true">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">⏱️</span>
-    <span class="fin-nav-toggle-label">Work Hours</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/work-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🕒</span>Work Hours Calculator</a><a class="fin-nav-item is-active" href="/time-and-date/overtime-hours-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⌛</span>Overtime Hours Calculator</a>
-  </div>
-</div>
-<div class="fin-nav-group" data-fin-subcategory="date-time">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">📅</span>
-    <span class="fin-nav-toggle-label">Date & Time</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/time-between-two-dates-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🗓️</span>Time Between Two Dates Calculator</a><a class="fin-nav-item" href="/time-and-date/days-until-a-date-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📆</span>Days Until a Date Calculator</a><a class="fin-nav-item" href="/time-and-date/countdown-timer/"><span class="fin-nav-item-icon" aria-hidden="true">⏳</span>Countdown Timer</a>
-  </div>
-</div>
-<div class="fin-nav-group" data-fin-subcategory="age-calculator">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">🎂</span>
-    <span class="fin-nav-toggle-label">Age Calculator</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/time-and-date/age-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🧬</span>Age Calculator</a><a class="fin-nav-item" href="/time-and-date/birthday-day-of-week/"><span class="fin-nav-item-icon" aria-hidden="true">🎉</span>Birthday Day-of-Week</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Overtime Hours Calculator</h1>
-  <div id="calc-overtime-hours">
+  <div class="calculator-page-single td-cluster-flow">
+    <div id="calc-overtime-hours">
   <div class="calculator-ui">
     <p class="helper">
       Calculate regular and overtime hours for single shifts, split shifts, or weekly cycles.
@@ -1026,72 +2434,32 @@
   </div>
 </div>
 
-<style>
-  @import url('/calculators/time-and-date/overtime-hours-calculator/calculator.css?v=20260224');
-</style>
-
-<script type="module" src="/calculators/time-and-date/overtime-hours-calculator/module.js?v=20260224"></script>
-
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="overtime-explanation">
-  <h2>How Much of Your Shift Counts as Overtime?</h2>
-  <p>
-    Use this overtime hours calculator to split worked time into regular hours, overtime hours,
-    and optional night overtime. It supports single shifts, split shifts, and weekly schedules with
-    flexible overtime rules.
-  </p>
-  <p>
-    The calculator helps when you need a clear hours-only breakdown before payroll, timesheet
-    review, or shift planning.
-  </p>
-
-  <ul class="toc">
-    <li><a href="#quick-summary">Quick Summary</a></li>
-    <li><a href="#how-to-use">How to Use</a></li>
-    <li><a href="#weekly-mode">Weekly Mode</a></li>
-    <li><a href="#overtime-rules">Overtime Rules</a></li>
-    <li><a href="#night-overtime">Night Overtime</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
-
-  <h2 id="quick-summary">Quick Summary (Updates As You Change Inputs)</h2>
-  <p>
-    This table updates automatically based on what you enter in the calculator. It shows your
-    current mode, total hours, regular hours, overtime hours, and optional night overtime
-    classification.
-  </p>
-  <p><strong>Table: Current Calculation Summary (Dynamic)</strong></p>
-
-  <div class="table-scroll">
-    <table class="calculator-table">
+    <div id="overtime-explanation">
+  <section class="overtime-explanation-card">
+    <p class="overtime-explanation-kicker">Hours breakdown</p>
+    <h2>How much of this shift counts as overtime?</h2>
+    <p>
+      Use this calculator to split worked time into regular hours, overtime hours, and optional
+      night overtime for single shifts, split shifts, or weekly schedules.
+    </p>
+    <p>
+      Current summary: <span data-placeholder="mode">Single shift</span> mode with the
+      <span data-placeholder="ot-rule-label">Weekly</span> rule shows
+      <span data-placeholder="regular-hhmm">—</span> regular hours and
+      <span data-placeholder="ot-hhmm">—</span> overtime from a total of
+      <span data-placeholder="total-hhmm">—</span>.
+    </p>
+    <table class="overtime-summary-table">
       <thead>
         <tr>
-          <th>Field</th>
-          <th>Value</th>
+          <th scope="col">Field</th>
+          <th scope="col">Value</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Mode</td>
-          <td><span data-placeholder="mode">—</span></td>
-        </tr>
-        <tr>
-          <td>Week range (weekly mode only)</td>
+          <td>Week range</td>
           <td><span data-placeholder="week-range-label">—</span></td>
-        </tr>
-        <tr>
-          <td>Regular hours (HH:MM)</td>
-          <td><span data-placeholder="regular-hhmm">—</span></td>
-        </tr>
-        <tr>
-          <td>Overtime hours (HH:MM)</td>
-          <td><span data-placeholder="ot-hhmm">—</span></td>
-        </tr>
-        <tr>
-          <td>Overtime rule</td>
-          <td><span data-placeholder="ot-rule-label">—</span></td>
         </tr>
         <tr>
           <td>Daily regular limit</td>
@@ -1102,243 +2470,208 @@
           <td><span data-placeholder="weekly-limit">—</span> hours</td>
         </tr>
         <tr>
-          <td>Rounding</td>
-          <td><span data-placeholder="rounding">—</span></td>
-        </tr>
-        <tr>
           <td>Break deducted</td>
           <td><span data-placeholder="break-minutes">—</span> minutes</td>
         </tr>
         <tr>
-          <td>Night hours (if enabled)</td>
-          <td><span data-placeholder="night-hhmm">—</span></td>
+          <td>Rounding</td>
+          <td><span data-placeholder="rounding">—</span></td>
         </tr>
         <tr>
-          <td>Night overtime (if enabled)</td>
+          <td>Night overtime</td>
           <td><span data-placeholder="night-ot-hhmm">—</span></td>
         </tr>
       </tbody>
       <tfoot>
-        <tr>
-          <td>Total worked (HH:MM)</td>
-          <td><span data-placeholder="total-hhmm">—</span></td>
-        </tr>
         <tr>
           <td>Decimal total</td>
           <td><span data-placeholder="total-decimal">—</span> hours</td>
         </tr>
       </tfoot>
     </table>
-  </div>
+  </section>
 
-  <h2>What is an Overtime Hours Calculator?</h2>
-  <p>
-    An Overtime Hours Calculator helps you measure how many hours you worked and split them into
-    regular hours and overtime hours. Your results show Total worked
-    <span data-placeholder="total-hhmm">—</span>, Regular hours
-    <span data-placeholder="regular-hhmm">—</span>, and Overtime hours
-    <span data-placeholder="ot-hhmm">—</span> based on the overtime rule you selected.
-  </p>
-
-  <h2 id="how-to-use">How to Use This Calculator</h2>
-  <p>Choose a mode: Single Shift, Split Shift, or Weekly Shift.</p>
-  <p>Enter your start and end times. If your shift ends after midnight, enable “Ends next day.”</p>
-  <p>Enter unpaid break minutes if needed.</p>
-  <p>Choose an overtime rule: Daily, Weekly, or Daily + Weekly.</p>
-  <p>Set your regular limits (daily and/or weekly).</p>
-  <p>(Optional) Enable night hours tracking to classify night hours and night overtime.</p>
-  <p>Review the summary table and the compact results.</p>
-
-  <h2 id="weekly-mode">Weekly Mode for Different Work Cycles</h2>
-  <p>
-    Not everyone uses a Monday-to-Sunday week. Weekly mode lets you pick a week start day such as
-    Sunday-to-Saturday or Friday-to-Thursday. Choose your week start day and a week start date to
-    label each day with the correct date, then enter the shifts for that 7-day cycle.
-  </p>
-
-  <h2 id="overtime-rules">Overtime Rules Explained (Daily vs Weekly)</h2>
-  <p>
-    Different workplaces use different overtime policies. Some count overtime after a certain number
-    of hours in a day. Others count overtime after a certain number of hours in a week.
-  </p>
-  <p><strong>Table: Common Overtime Policies (Hours-Only)</strong></p>
-  <div class="table-scroll">
-    <table class="calculator-table">
+  <section class="overtime-explanation-card">
+    <h3>How to Guide</h3>
+    <ol class="overtime-guide-steps">
+      <li>Choose Single Shift, Split Shift, or Weekly Shift based on how your hours are tracked.</li>
+      <li>Set the overtime rule and regular-hour limits that match your timesheet policy.</li>
+      <li>Enter start and end times, use Ends next day for overnight work, and subtract unpaid break minutes.</li>
+      <li>Turn on night tracking only if you need a separate night-overtime classification.</li>
+    </ol>
+    <table class="overtime-guide-table">
       <thead>
         <tr>
-          <th>Policy</th>
-          <th>What counts as overtime</th>
-          <th>Best for</th>
-          <th>Notes</th>
+          <th scope="col">Rule</th>
+          <th scope="col">What counts as overtime</th>
+          <th scope="col">Best for</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Daily overtime</td>
-          <td>Time above your daily regular limit</td>
-          <td>Long single days</td>
-          <td>Useful when you work very long shifts</td>
+          <td>Daily</td>
+          <td>Hours above your daily regular limit</td>
+          <td>Long individual shifts</td>
         </tr>
         <tr>
-          <td>Weekly overtime</td>
-          <td>Time above your weekly regular limit</td>
-          <td>Variable schedules</td>
-          <td>Common for weekly timesheets</td>
+          <td>Weekly</td>
+          <td>Hours above your weekly regular limit</td>
+          <td>Variable weekly schedules</td>
         </tr>
         <tr>
           <td>Daily + Weekly</td>
-          <td>Overtime if you exceed either rule</td>
-          <td>Mixed schedules</td>
-          <td>Helps avoid missing overtime in unusual weeks</td>
+          <td>The larger overtime result from the daily or weekly rule</td>
+          <td>Mixed schedules with multiple policy checks</td>
         </tr>
       </tbody>
-      <tfoot></tfoot>
     </table>
+  </section>
+
+  <section class="td-cluster-route-switch" aria-labelledby="td-cluster-route-switch-title">
+  <div class="td-cluster-route-switch-head">
+    <div>
+      <h2 id="td-cluster-route-switch-title">More Work Hours tools</h2>
+    </div>
   </div>
-
-  <h2 id="night-overtime">Night Shifts and Night Overtime</h2>
-  <p>
-    Night shifts often cross midnight, which is why the calculator includes an “Ends next day”
-    option. Night overtime is a classification of overtime that occurs during a night-time window
-    (for example, 22:00 to 06:00). This calculator shows night overtime as hours only and does not
-    calculate pay rates.
-  </p>
-
-  <h2>Breaks, Rounding, and Why Results Differ</h2>
-  <p>
-    Breaks and rounding policies can change totals even when shift times look the same. If your
-    employer rounds time to the nearest 5, 10, or 15 minutes, choose the rounding option that
-    matches your policy.
-  </p>
-
-  <h2>Assumptions and Limitations</h2>
-  <p>This calculator:</p>
-  <p>Calculates hours only, not pay, wages, or overtime rates</p>
-  <p>Does not provide legal compliance guidance</p>
-  <p>Subtracts unpaid breaks that you enter</p>
-  <p>Uses your selected overtime rule and thresholds to split hours</p>
-  <p>May not match an employer’s exact rounding rules unless you select the same rounding option</p>
-
-  <h2 id="faq">Frequently Asked Questions</h2>
-
-  <div class="overtime-faq-item">
-    <p><strong>What is the difference between regular hours and overtime hours?</strong></p>
-    <p>
-      Regular hours are counted up to your limit. Overtime hours are the remaining hours above that
-      limit.
-    </p>
+  <div class="td-cluster-switch-chips" data-td-switch-chips="true">
+    <a class="td-cluster-switch-chip" href="/time-and-date/work-hours-calculator/">Work Hours Calculator</a><a class="td-cluster-switch-chip is-active" href="/time-and-date/overtime-hours-calculator/" aria-current="page">Overtime Hours Calculator</a>
   </div>
+</section>
 
-  <div class="overtime-faq-item">
-    <p><strong>Which overtime rule should I choose?</strong></p>
-    <p>
-      Use the rule that matches your timesheet policy. If you only have a weekly limit, choose
-      Weekly. If you track overtime per day, choose Daily. If both are relevant, choose Daily +
-      Weekly.
-    </p>
+<section class="overtime-explanation-card">
+    <h3>FAQ</h3>
+    <div class="overtime-faq-grid">
+      <article class="overtime-faq-item">
+        <p><strong>What is the difference between regular hours and overtime hours?</strong></p>
+        <p>Regular hours are counted up to your limit. Overtime hours are the remaining hours above that limit.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>Which overtime rule should I choose?</strong></p>
+        <p>Use the rule that matches your timesheet policy. Weekly covers weekly caps, Daily covers daily caps, and Daily + Weekly checks both.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>How does Daily + Weekly avoid double counting overtime?</strong></p>
+        <p>The calculator compares the daily and weekly overtime totals, then keeps the larger overtime result so the same hours are not counted twice.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>Can I calculate overtime for split shifts?</strong></p>
+        <p>Yes. Split-shift segments are combined for the day, then the break deduction and overtime rule are applied.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>What does Ends next day do?</strong></p>
+        <p>It treats the end time as the next calendar day so overnight shifts are counted correctly.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>What is night overtime in this calculator?</strong></p>
+        <p>Night overtime is overtime that falls inside your chosen night window. It is a classification only, not a pay-rate calculation.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>Does this calculator round time the way my employer does?</strong></p>
+        <p>It can if you pick the same rounding option. If your employer uses a different method, results may differ.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>Can I set a custom week like Sunday-Saturday or Friday-Thursday?</strong></p>
+        <p>Yes. Weekly mode lets you choose the week start day and week start date, then labels the next six days automatically.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>Does the calculator save my hours?</strong></p>
+        <p>No. It runs in your browser and does not store your inputs.</p>
+      </article>
+      <article class="overtime-faq-item">
+        <p><strong>How are breaks handled in overtime calculations?</strong></p>
+        <p>Unpaid breaks are deducted from worked time before the calculator splits hours into regular, overtime, and night-overtime buckets.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="td-cluster-related" aria-labelledby="td-cluster-related-title">
+  <div class="td-cluster-related-head">
+    <div>
+      <h2 id="td-cluster-related-title">Related Time &amp; Date calculators</h2>
+    </div>
   </div>
-
-  <div class="overtime-faq-item">
-    <p><strong>How does “Daily + Weekly” avoid double counting overtime?</strong></p>
-    <p>
-      The calculator computes daily overtime and weekly overtime, then uses the larger overtime
-      result as the final overtime amount so overtime is counted once.
-    </p>
+  <div class="td-cluster-related-links">
+    <a class="td-cluster-related-link" href="/time-and-date/sleep-time-calculator/">
+      <span class="td-cluster-related-card-title">Sleep Time Calculator</span>
+      <span class="td-cluster-related-card-copy">Plan bedtime or wake-up options around familiar sleep cycles.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/wake-up-time-calculator/">
+      <span class="td-cluster-related-card-title">Wake-Up Time Calculator</span>
+      <span class="td-cluster-related-card-copy">Compare wake-up windows that line up with sleep-cycle timing.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/nap-time-calculator/">
+      <span class="td-cluster-related-card-title">Nap Time Calculator</span>
+      <span class="td-cluster-related-card-copy">Pick a nap type and see practical wake-up targets fast.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/power-nap-calculator/">
+      <span class="td-cluster-related-card-title">Power Nap Calculator</span>
+      <span class="td-cluster-related-card-copy">Compare short and long nap lengths side by side.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/energy-based-nap-selector/">
+      <span class="td-cluster-related-card-title">Energy-Based Nap Selector</span>
+      <span class="td-cluster-related-card-copy">Match nap length to the kind of energy reset you need.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/work-hours-calculator/">
+      <span class="td-cluster-related-card-title">Work Hours Calculator</span>
+      <span class="td-cluster-related-card-copy">Track daily, split, or weekly hours with unpaid breaks included.</span>
+      <span class="td-cluster-related-card-meta">Work Hours</span>
+    </a><a class="td-cluster-related-link is-active" href="/time-and-date/overtime-hours-calculator/" aria-current="page">
+      <span class="td-cluster-related-card-title">Overtime Hours Calculator</span>
+      <span class="td-cluster-related-card-copy">Separate standard and overtime hours with clearer thresholds.</span>
+      <span class="td-cluster-related-card-meta">Work Hours</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/time-between-two-dates-calculator/">
+      <span class="td-cluster-related-card-title">Time Between Two Dates Calculator</span>
+      <span class="td-cluster-related-card-copy">Measure exact distance between dates or date-times.</span>
+      <span class="td-cluster-related-card-meta">Date & Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/days-until-a-date-calculator/">
+      <span class="td-cluster-related-card-title">Days Until a Date Calculator</span>
+      <span class="td-cluster-related-card-copy">Count days remaining to a deadline or milestone.</span>
+      <span class="td-cluster-related-card-meta">Date & Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/countdown-timer/">
+      <span class="td-cluster-related-card-title">Countdown Timer</span>
+      <span class="td-cluster-related-card-copy">Create a live countdown for launches, trips, birthdays, or events.</span>
+      <span class="td-cluster-related-card-meta">Date & Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/age-calculator/">
+      <span class="td-cluster-related-card-title">Age Calculator</span>
+      <span class="td-cluster-related-card-copy">See exact age, total days, and the next birthday in one view.</span>
+      <span class="td-cluster-related-card-meta">Age Calculator</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/birthday-day-of-week/">
+      <span class="td-cluster-related-card-title">Birthday Day-of-Week</span>
+      <span class="td-cluster-related-card-copy">Find the weekday of birth and compare upcoming birthday years.</span>
+      <span class="td-cluster-related-card-meta">Age Calculator</span>
+    </a>
   </div>
+</section>
 
-  <div class="overtime-faq-item">
-    <p><strong>Can I calculate overtime for split shifts?</strong></p>
-    <p>
-      Yes. Split shifts add segments together for the day, subtract the break once, and then apply
-      the overtime rule.
-    </p>
-  </div>
-
-  <div class="overtime-faq-item">
-    <p><strong>What does “Ends next day” do?</strong></p>
-    <p>It treats the end time as the next day so night shifts are counted correctly.</p>
-  </div>
-
-  <div class="overtime-faq-item">
-    <p><strong>What is night overtime in this calculator?</strong></p>
-    <p>
-      Night overtime is a classification of overtime that occurs during your night window. It does
-      not calculate pay rates.
-    </p>
-  </div>
-
-  <div class="overtime-faq-item">
-    <p><strong>Does this calculator round time the way my employer does?</strong></p>
-    <p>
-      It can. Choose the rounding option that matches your policy. If your employer uses a different
-      rounding method, results may differ.
-    </p>
-  </div>
-
-  <div class="overtime-faq-item">
-    <p><strong>Can I set a custom week like Sunday–Saturday or Friday–Thursday?</strong></p>
-    <p>
-      Yes. Choose the week start day in weekly mode. The calculator treats the next 6 days as the
-      rest of your week.
-    </p>
-  </div>
-
-  <div class="overtime-faq-item">
-    <p><strong>Does the calculator save my hours?</strong></p>
-    <p>No. It runs in your browser and does not store your inputs.</p>
-  </div>
-
-  <div class="overtime-faq-item">
-    <p><strong>How are breaks handled in overtime calculations?</strong></p>
-    <p>
-      Unpaid break minutes are subtracted from total worked time before overtime is calculated. This
-      means breaks reduce your paid hours but do not change when overtime starts.
-    </p>
-  </div>
-
-  <h2>Important Notes</h2>
-  <p>This calculator:</p>
-  <p>Calculates hours only and does not determine overtime pay rates or wages</p>
-  <p>Depends on the daily, weekly, rounding, and night settings you choose</p>
-  <p>Subtracts unpaid breaks before splitting hours into regular and overtime buckets</p>
-  <p>Should be checked against employer policies or local labor rules before using results for payroll decisions</p>
+<section class="overtime-explanation-card">
+    <h3>Important Notes</h3>
+    <ul class="overtime-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> Results depend on your chosen rule, limits, break deduction, rounding option, and whether a shift crosses midnight.</li>
+      <li><strong>Disclaimer:</strong> This calculator breaks down hours only. It does not determine wages, overtime pay rates, or legal compliance.</li>
+      <li><strong>Assumptions:</strong> Breaks are removed before overtime is split, and Daily + Weekly uses the larger overtime result instead of adding both totals together.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
 </div>
 
+  </div>
 </div>
-        </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
         </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="td-cluster-site-footer">
+  <div class="td-cluster-wrap td-cluster-site-footer-inner">
+    <nav class="td-cluster-footer-links" aria-label="Footer links">
+      <a href="/">Home</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms</a>
+      <a href="/contact-us/">Contact</a>
+    </nav>
+    <span class="td-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
+    <script type="module" src="/calculators/time-and-date/shared/cluster-ux.js"></script>
     <script type="module" src="/calculators/time-and-date/overtime-hours-calculator/module.js?v=20260224"></script>
   </body>
 </html>

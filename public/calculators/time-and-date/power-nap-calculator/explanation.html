@@ -1,107 +1,90 @@
-<div id="power-nap-explanation">
-  <h2>When Should You Wake Up From a Power Nap?</h2>
-  <p><strong>The short answer:</strong> short naps usually work best when you set a wake-up target before you close your eyes.</p>
-  <p>
-    If you start your nap at <span data-placeholder="start-time">{START_TIME}</span>, this calculator
-    estimates wake-up options from short resets to full-cycle recovery. For a classic power nap,
-    your 20-minute target ends at <span data-placeholder="wake-time-20">{WAKE_TIME_20}</span>.
-  </p>
-
-  <h3>How to Guide</h3>
-  <ol class="power-nap-howto">
-    <li>Enter your nap start time, or click <strong>Use now</strong>.</li>
-    <li>Click <strong>Calculate Power Nap Times</strong>.</li>
-    <li>Compare the five options and pick a wake-up target that fits your schedule.</li>
-    <li>Prefer 20-30 minutes for alertness when you need a quick reset.</li>
-  </ol>
-
-  <h3>Important Notes</h3>
-  <ul class="power-nap-notes">
-    <li>This tool uses fixed nap durations: 10, 20, 30, 60, and 90 minutes.</li>
-    <li>The <strong>Use now</strong> button uses your browser's local time.</li>
-    <li>Starts at or after 6:00 PM show an evening warning for longer naps.</li>
-    <li>Results are planning estimates and are not medical advice.</li>
-  </ul>
-
-  <h3>FAQ</h3>
-  <p><strong>Frequently Asked Questions</strong></p>
-
-  <div class="power-nap-faq-item faq-card">
-    <h4>What is the best power nap length?</h4>
+<div id="power-nap-explanation" class="power-nap-explanation">
+  <section class="power-nap-exp-card">
+    <p class="power-nap-exp-kicker">Rapid recovery planning</p>
+    <h2>When should you wake up from a power nap?</h2>
+    <p><strong>The short answer:</strong> short naps usually work best when you set a wake-up target before you close your eyes.</p>
     <p>
-      Most people do best with 20 to 30 minutes because that range supports alertness while reducing
-      the chance of waking from deeper sleep.
+      If you start your nap at <span data-placeholder="start-time">{START_TIME}</span>, this
+      calculator compares wake-up options from short resets to full-cycle recovery. For a classic
+      power nap, the 20-minute target ends at
+      <span data-placeholder="wake-time-20">{WAKE_TIME_20}</span>.
     </p>
-  </div>
+  </section>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>Why are 20- and 30-minute options marked as best?</h4>
-    <p>
-      They are commonly used power-nap targets that balance recovery speed and daytime practicality.
-    </p>
-  </div>
+  <section class="power-nap-exp-card">
+    <h3>How to Guide</h3>
+    <ol class="power-nap-howto">
+      <li>Enter your nap start time, or click <strong>Use now</strong>.</li>
+      <li>Click <strong>Calculate Power Nap Times</strong>.</li>
+      <li>Compare the five options and pick a wake-up target that fits your schedule.</li>
+      <li>Prefer 20-30 minutes for alertness when you need a quick reset.</li>
+    </ol>
+  </section>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>Can a 10-minute micro nap still help?</h4>
-    <p>
-      Yes. A short micro nap can reduce sleepiness and provide a quick mental reset when time is
-      limited.
-    </p>
-  </div>
+  <section class="power-nap-exp-card">
+    <h3>FAQ</h3>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>When should I avoid a long nap?</h4>
-    <p>
-      Avoid long naps later in the day, especially in the evening, because they can make nighttime
-      sleep harder.
-    </p>
-  </div>
+    <div class="power-nap-faq-grid">
+      <div class="power-nap-faq-item faq-card">
+        <h4>What is the best power nap length?</h4>
+        <p>Most people do best with 20 to 30 minutes because that range supports alertness while reducing the chance of waking from deeper sleep.</p>
+      </div>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>What does the evening warning mean?</h4>
-    <p>
-      It flags that long naps started after 6:00 PM may delay bedtime and reduce overnight sleep
-      quality.
-    </p>
-  </div>
+      <div class="power-nap-faq-item faq-card">
+        <h4>Why are 20- and 30-minute options marked as best?</h4>
+        <p>They are commonly used power-nap targets that balance recovery speed and daytime practicality.</p>
+      </div>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>Does this calculator set an alarm for me?</h4>
-    <p>
-      No. It gives wake-up targets only. Set an alarm on your phone or device based on your selected
-      result.
-    </p>
-  </div>
+      <div class="power-nap-faq-item faq-card">
+        <h4>Can a 10-minute micro nap still help?</h4>
+        <p>Yes. A short micro nap can reduce sleepiness and provide a quick mental reset when time is limited.</p>
+      </div>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>Can I use this calculator for shift work?</h4>
-    <p>
-      Yes. Enter any start time. The calculation handles rollover across midnight and works for
-      non-standard schedules.
-    </p>
-  </div>
+      <div class="power-nap-faq-item faq-card">
+        <h4>When should I avoid a long nap?</h4>
+        <p>Avoid long naps later in the day, especially in the evening, because they can make nighttime sleep harder.</p>
+      </div>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>Is a 60-minute nap better than a 30-minute nap?</h4>
-    <p>
-      Not always. A 60-minute nap can be restorative but may increase grogginess risk after waking.
-      A 30-minute nap is often easier to recover from quickly.
-    </p>
-  </div>
+      <div class="power-nap-faq-item faq-card">
+        <h4>What does the evening warning mean?</h4>
+        <p>It flags that long naps started after 6:00 PM may delay bedtime and reduce overnight sleep quality.</p>
+      </div>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>What is a full-cycle 90-minute nap for?</h4>
-    <p>
-      A 90-minute option is useful when you are highly sleep-deprived and have enough time for a
-      deeper recovery window.
-    </p>
-  </div>
+      <div class="power-nap-faq-item faq-card">
+        <h4>Does this calculator set an alarm for me?</h4>
+        <p>No. It gives wake-up targets only. Set an alarm on your phone or device based on your selected result.</p>
+      </div>
 
-  <div class="power-nap-faq-item faq-card">
-    <h4>Will napping hurt my nighttime sleep?</h4>
-    <p>
-      Early, short naps usually have less impact. Late or long naps are more likely to interfere
-      with nighttime sleep.
-    </p>
-  </div>
+      <div class="power-nap-faq-item faq-card">
+        <h4>Can I use this calculator for shift work?</h4>
+        <p>Yes. Enter any start time. The calculation handles rollover across midnight and works for non-standard schedules.</p>
+      </div>
+
+      <div class="power-nap-faq-item faq-card">
+        <h4>Is a 60-minute nap better than a 30-minute nap?</h4>
+        <p>Not always. A 60-minute nap can be restorative but may increase grogginess risk after waking. A 30-minute nap is often easier to recover from quickly.</p>
+      </div>
+
+      <div class="power-nap-faq-item faq-card">
+        <h4>What is a full-cycle 90-minute nap for?</h4>
+        <p>A 90-minute option is useful when you are highly sleep-deprived and have enough time for a deeper recovery window.</p>
+      </div>
+
+      <div class="power-nap-faq-item faq-card">
+        <h4>Will napping hurt my nighttime sleep?</h4>
+        <p>Early, short naps usually have less impact. Late or long naps are more likely to interfere with nighttime sleep.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="power-nap-exp-card">
+    <h3>Important Notes</h3>
+    <ul class="power-nap-notes">
+      <li>This tool uses fixed nap durations: 10, 20, 30, 60, and 90 minutes.</li>
+      <li>The <strong>Use now</strong> button uses your browser's local time.</li>
+      <li>Starts at or after 6:00 PM show an evening warning for longer naps.</li>
+      <li>Results are planning estimates and are not medical advice.</li>
+      <li>All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
 </div>

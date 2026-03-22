@@ -1,75 +1,56 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
-
-#calculator-title {
-  margin: 0 0 14px;
-  text-align: center;
-  font-family: 'DM Serif Display', 'Georgia', serif;
-  font-size: clamp(30px, 4.8vw, 44px);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #f2cb66;
-  text-shadow:
-    0 0 12px rgba(232, 201, 122, 0.38),
-    0 0 28px rgba(232, 201, 122, 0.2);
-}
-
-body[data-page='calculator'] .layout-main {
-  grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
-}
-
-body[data-page='calculator'] .ads-column {
-  display: none;
-}
-
 #calc-countdown-timer {
-  --bg: #0a0a0f;
-  --surface: #111118;
-  --surface2: #16161f;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-bright: rgba(255, 255, 255, 0.12);
-  --accent: #e8c97a;
-  --accent-dim: rgba(232, 201, 122, 0.12);
-  --accent-glow: rgba(232, 201, 122, 0.25);
-  --glass-fill: rgba(255, 255, 255, 0.03);
-  --text: #f0ede8;
-  --muted: #6b6878;
-  --muted2: #9996a8;
-  --red: #e87a7a;
-  --green: #7ae8a8;
+  --page-bg: #f6f3ed;
+  --surface: rgba(255, 253, 249, 0.96);
+  --surface-soft: rgba(248, 244, 237, 0.92);
+  --surface-muted: rgba(242, 236, 227, 0.9);
+  --line: rgba(24, 34, 45, 0.08);
+  --line-strong: rgba(24, 34, 45, 0.12);
+  --accent: #234663;
+  --accent-strong: #17364d;
+  --accent-soft: rgba(35, 70, 99, 0.08);
+  --accent-soft-strong: rgba(35, 70, 99, 0.14);
+  --text: #18222d;
+  --muted: #64707b;
+  --muted-soft: #8a949d;
+  --success: #2f7a66;
+  --danger: #a45744;
   max-width: 1200px;
   width: 100%;
-  margin: 0;
+  margin: 0 auto;
+  padding: 12px 0 8px;
   font-family: 'DM Sans', 'Segoe UI', sans-serif;
-  position: relative;
-  padding-top: 8px;
-  margin-left: auto;
-  margin-right: auto;
+  color: var(--text);
 }
 
 #calc-countdown-timer .cd-main-cards {
   display: grid;
-  grid-template-columns: minmax(360px, 1fr) minmax(420px, 1.2fr);
-  gap: 24px;
-  margin-bottom: 20px;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.35fr);
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 22px;
+}
+
+#calc-countdown-timer .cd-input-card,
+#calc-countdown-timer .cd-countdown-card,
+#calc-countdown-timer .cd-actions,
+#countdown-explanation .countdown-explanation-card {
+  border-radius: 28px;
 }
 
 #calc-countdown-timer .cd-input-card {
-  background:
-    linear-gradient(140deg, rgba(24, 24, 35, 0.86), rgba(13, 13, 20, 0.8)),
-    var(--glass-fill);
-  border: 1px solid var(--border-bright);
-  border-radius: 16px;
-  padding: 34px;
-  margin-bottom: 0;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 100%;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(249, 246, 240, 0.98));
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 36px rgba(24, 34, 45, 0.05);
 }
 
 #calc-countdown-timer .cd-input-grid {
   display: grid;
-  gap: 16px;
+  gap: 18px;
+  align-content: start;
 }
 
 #calc-countdown-timer .cd-field-full {
@@ -78,15 +59,16 @@ body[data-page='calculator'] .ads-column {
 
 #calc-countdown-timer .cd-fallback {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 #calc-countdown-timer .cd-field-label {
   display: grid;
-  gap: 8px;
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 10px;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--muted);
@@ -94,161 +76,173 @@ body[data-page='calculator'] .ads-column {
 
 #calc-countdown-timer .cd-field {
   width: 100%;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 16px;
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.86);
   color: var(--text);
   font-family: 'DM Sans', 'Segoe UI', sans-serif;
   font-size: 15px;
   outline: none;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  color-scheme: light;
   -webkit-appearance: none;
-  color-scheme: dark;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
-#calc-countdown-timer #countdown-event-name {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px var(--accent-dim);
+#calc-countdown-timer .cd-field:hover {
+  border-color: var(--line-strong);
 }
 
 #calc-countdown-timer .cd-field:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-dim);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+#calc-countdown-timer #countdown-event-name {
+  font-size: 16px;
+  font-weight: 600;
 }
 
 #calc-countdown-timer .cd-field::placeholder {
-  color: var(--muted);
+  color: var(--muted-soft);
+}
+
+#calc-countdown-timer .cd-cta-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: stretch;
 }
 
 #calc-countdown-timer .cd-btn {
-  width: auto;
-  background: var(--accent);
-  color: #0a0a0f;
-  border: none;
-  border-radius: 10px;
-  padding: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 18px;
+  border-radius: 18px;
+  border: 1px solid transparent;
   font-family: 'DM Sans', 'Segoe UI', sans-serif;
-  font-weight: 600;
   font-size: 15px;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   cursor: pointer;
   transition:
-    opacity 0.2s,
-    transform 0.15s,
-    box-shadow 0.2s;
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease;
 }
 
 #calc-countdown-timer .cd-btn:hover {
-  opacity: 0.92;
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px var(--accent-glow);
 }
 
 #calc-countdown-timer .cd-btn:active {
   transform: translateY(0);
 }
 
-#calc-countdown-timer .cd-btn-sm {
-  width: auto;
-  background: var(--surface2);
-  border: 1px solid var(--border-bright);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 9px 14px;
-  font-size: 13px;
+#calc-countdown-timer .cd-btn-primary {
+  background: var(--accent-strong);
+  color: #fffdf9;
+  box-shadow: 0 14px 28px rgba(23, 54, 77, 0.16);
 }
 
-#calc-countdown-timer .cd-btn-ghost:hover {
-  border-color: var(--accent);
-  background: var(--accent-dim);
+#calc-countdown-timer .cd-btn-primary:hover {
+  box-shadow: 0 18px 30px rgba(23, 54, 77, 0.18);
+}
+
+#calc-countdown-timer .cd-btn-secondary {
+  min-width: 132px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--text);
+  border-color: var(--line-strong);
+  box-shadow: 0 8px 18px rgba(24, 34, 45, 0.04);
+}
+
+#calc-countdown-timer .cd-btn-secondary:hover {
+  border-color: var(--accent-soft-strong);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+#calc-countdown-timer .cd-btn-tertiary {
+  min-height: 42px;
+  padding: 0 14px;
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--accent);
+  font-size: 13px;
   box-shadow: none;
 }
 
-#calc-countdown-timer .cd-cta-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: nowrap;
-  align-items: stretch;
-}
-
-#calc-countdown-timer #countdown-start {
-  flex: 1 1 auto;
-}
-
-#calc-countdown-timer #countdown-stop {
-  flex: 1 1 auto;
+#calc-countdown-timer .cd-btn-tertiary:hover {
+  border-color: var(--accent-soft-strong);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 #calc-countdown-timer .cd-error {
-  margin: 12px 0 0;
-  color: var(--red);
+  margin: 14px 0 0;
+  color: var(--danger);
   font-size: 13px;
   font-weight: 600;
 }
 
 #calc-countdown-timer .cd-countdown-card {
-  background:
-    linear-gradient(145deg, rgba(22, 22, 33, 0.9), rgba(12, 12, 20, 0.82)),
-    var(--glass-fill);
-  border: 1px solid var(--border-bright);
-  border-radius: 20px;
-  overflow: hidden;
-  margin-bottom: 0;
-  min-height: 100%;
   position: relative;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  min-height: 100%;
+  background: linear-gradient(180deg, #fffdfa 0%, #f7f2ea 100%);
+  border: 1px solid rgba(24, 34, 45, 0.06);
+  box-shadow: 0 26px 64px rgba(24, 34, 45, 0.08);
 }
 
-#calc-countdown-timer .cd-tile,
-#calc-countdown-timer .countdown-milestone {
-  transition:
-    border-color 0.28s ease,
-    box-shadow 0.28s ease,
-    transform 0.28s ease;
-}
-
-#calc-countdown-timer .cd-tile::after,
-#calc-countdown-timer .countdown-milestone::before {
+#calc-countdown-timer .cd-countdown-card::before {
   content: '';
   position: absolute;
-  inset: -35% -18%;
+  inset: 0;
   background:
-    radial-gradient(circle at 80% 8%, rgba(232, 201, 122, 0.42), transparent 44%),
-    radial-gradient(circle at 10% 100%, rgba(122, 232, 168, 0.24), transparent 36%);
-  opacity: 0;
-  transform: translateY(10px) scale(1.05);
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
+    radial-gradient(circle at 50% 0%, rgba(35, 70, 99, 0.08), transparent 52%),
+    radial-gradient(circle at 100% 100%, rgba(179, 154, 109, 0.08), transparent 32%);
   pointer-events: none;
-  z-index: 0;
+}
+
+#calc-countdown-timer .cd-countdown-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 100%;
 }
 
 #calc-countdown-timer .cd-countdown-header {
-  padding: 28px 32px 24px;
-  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: 10px;
+  padding: 42px 40px 18px;
+  text-align: center;
 }
 
 #calc-countdown-timer .cd-kicker {
-  margin: 0 0 8px;
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 10px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
+  letter-spacing: 0.18em;
+  color: var(--muted);
 }
 
 #calc-countdown-timer .cd-title {
-  margin: 0 0 6px;
+  margin: 0;
   font-family: 'DM Serif Display', 'Georgia', serif;
-  font-size: clamp(22px, 4vw, 34px);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  position: static;
+  font-size: clamp(2.2rem, 4.8vw, 4.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  text-wrap: balance;
 }
 
 #calc-countdown-timer .cd-title::after {
@@ -258,388 +252,444 @@ body[data-page='calculator'] .ads-column {
 
 #calc-countdown-timer .cd-tiles {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 10px 24px 26px;
 }
 
 #calc-countdown-timer .cd-tile {
-  background: var(--surface2);
-  padding: 32px 12px 24px;
+  position: relative;
+  padding: 18px 16px 12px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 
-#calc-countdown-timer .cd-tile > *,
-#calc-countdown-timer .countdown-milestone > * {
-  position: relative;
-  z-index: 1;
-}
-
-#calc-countdown-timer .cd-tile::before {
+#calc-countdown-timer .cd-tile + .cd-tile::before {
   content: '';
   position: absolute;
-  top: 0;
   left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--accent);
-  opacity: 0.2;
+  top: 20%;
+  bottom: 18%;
+  width: 1px;
+  background: rgba(24, 34, 45, 0.08);
 }
 
 #calc-countdown-timer .cd-num {
   display: block;
   margin-bottom: 10px;
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: clamp(36px, 6vw, 58px);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: clamp(3.85rem, 8vw, 6.75rem);
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.08em;
   color: var(--text);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 #calc-countdown-timer .cd-unit {
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--muted);
+  letter-spacing: 0.24em;
+  color: var(--muted-soft);
 }
 
 #calc-countdown-timer .cd-expired {
-  background: rgba(232, 122, 122, 0.08);
-  border: 1px solid rgba(232, 122, 122, 0.2);
-  border-radius: 12px;
-  padding: 16px 20px;
-  color: var(--red);
-  font-size: 14px;
-  margin: 16px 32px 0;
-  font-family: 'DM Mono', 'Consolas', monospace;
+  margin: 0 40px 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(164, 87, 68, 0.08);
+  border: 1px solid rgba(164, 87, 68, 0.14);
+  color: var(--danger);
   text-align: center;
-  letter-spacing: 0.04em;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 #calc-countdown-timer .cd-countdown-footer {
-  padding: 0 32px 6px;
   display: flex;
-  align-items: flex-end;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  position: relative;
-  min-height: 52px;
-}
-
-#calc-countdown-timer .cd-badge {
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-glow);
-  color: var(--accent);
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 11px;
-  padding: 6px 12px;
-  border-radius: 100px;
-  letter-spacing: 0.06em;
-}
-
-#calc-countdown-timer .cd-summary {
-  color: var(--muted2);
-  font-size: 12px;
+  padding: 0 40px 24px;
 }
 
 #calc-countdown-timer .cd-live {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(24, 34, 45, 0.06);
   color: var(--muted);
   font-size: 12px;
-  width: max-content;
   text-align: center;
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  bottom: 2px;
-  transform: translateX(-50%);
-  white-space: nowrap;
 }
 
 #calc-countdown-timer .cd-live-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--green);
-  animation: pulse 2s infinite;
+  background: var(--success);
+  animation: cd-pulse 2s infinite;
 }
 
-@keyframes pulse {
+@keyframes cd-pulse {
   0%,
   100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.3;
+    opacity: 0.35;
+    transform: scale(0.92);
   }
 }
 
 #calc-countdown-timer .cd-milestone-section {
-  margin-bottom: 20px;
+  padding: 20px 28px 30px;
+  border-top: 1px solid rgba(24, 34, 45, 0.06);
+  background: rgba(255, 255, 255, 0.34);
 }
 
 #calc-countdown-timer .cd-section-label {
   margin: 0 0 12px;
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   color: var(--muted);
 }
 
 #calc-countdown-timer .cd-milestones {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
 }
 
 #calc-countdown-timer .countdown-milestone {
-  background:
-    linear-gradient(145deg, rgba(24, 24, 34, 0.86), rgba(14, 14, 22, 0.78)),
-    var(--glass-fill);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 14px;
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(24, 34, 45, 0.06);
 }
 
 #calc-countdown-timer .countdown-milestone-label {
-  margin: 0 0 4px;
+  margin: 0;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--text);
 }
 
 #calc-countdown-timer .countdown-milestone-state {
   margin: 0;
-  font-family: 'DM Mono', 'Consolas', monospace;
   font-size: 10px;
-  color: var(--muted);
-}
-
-#calc-countdown-timer .countdown-milestone.is-passed {
-  border-color: rgba(232, 201, 122, 0.2);
-}
-
-#calc-countdown-timer .countdown-milestone.is-live {
-  border-color: var(--accent);
-}
-
-@media (hover: hover) {
-  #calc-countdown-timer .cd-tile:hover {
-    border-color: rgba(232, 201, 122, 0.36);
-    box-shadow:
-      0 22px 56px rgba(6, 9, 18, 0.58),
-      0 0 0 1px rgba(232, 201, 122, 0.2),
-      0 0 52px rgba(232, 201, 122, 0.36),
-      0 0 96px rgba(122, 232, 168, 0.14);
-    transform: translateY(-4px) scale(1.015);
-    z-index: 2;
-  }
-
-  #calc-countdown-timer .cd-tile:hover::before {
-    opacity: 0.95;
-    box-shadow: 0 0 20px rgba(232, 201, 122, 0.42);
-  }
-
-  #calc-countdown-timer .countdown-milestone:hover {
-    border-color: rgba(232, 201, 122, 0.42);
-    box-shadow:
-      0 18px 44px rgba(6, 9, 18, 0.52),
-      0 0 0 1px rgba(232, 201, 122, 0.16),
-      0 0 44px rgba(232, 201, 122, 0.28),
-      0 0 80px rgba(122, 232, 168, 0.1);
-    transform: translateY(-3px) scale(1.01);
-  }
-
-  #calc-countdown-timer .cd-tile:hover::after,
-  #calc-countdown-timer .countdown-milestone:hover::before {
-    opacity: 0.95;
-    transform: translateY(0) scale(1);
-  }
-}
-
-#calc-countdown-timer .cd-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 10px 0 2px;
-}
-
-#calc-countdown-timer .cd-actions-label {
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--muted);
 }
 
-#calc-countdown-timer .cd-actions .cd-btn {
-  background: linear-gradient(145deg, rgba(232, 201, 122, 0.2), rgba(232, 201, 122, 0.1));
-  border: 1px solid rgba(232, 201, 122, 0.45);
-  color: #f7e9bf;
-  font-weight: 600;
-  box-shadow:
-    0 6px 16px rgba(232, 201, 122, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+#calc-countdown-timer .countdown-milestone.is-live {
+  background: var(--accent-soft);
+  border-color: rgba(35, 70, 99, 0.16);
 }
 
-#calc-countdown-timer .cd-actions .cd-btn:hover {
-  background: linear-gradient(145deg, rgba(232, 201, 122, 0.34), rgba(232, 201, 122, 0.18));
-  border-color: rgba(232, 201, 122, 0.7);
-  color: #fff6dd;
-  box-shadow:
-    0 10px 24px rgba(232, 201, 122, 0.22),
-    0 0 28px rgba(232, 201, 122, 0.18);
+#calc-countdown-timer .countdown-milestone.is-live .countdown-milestone-state {
+  color: var(--accent);
+}
+
+#calc-countdown-timer .countdown-milestone.is-passed {
+  background: rgba(47, 122, 102, 0.08);
+  border-color: rgba(47, 122, 102, 0.12);
+}
+
+#calc-countdown-timer .countdown-milestone.is-passed .countdown-milestone-state {
+  color: var(--success);
+}
+
+#calc-countdown-timer .cd-actions {
+  display: grid;
+  gap: 12px;
+  padding: 18px 20px 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(244, 238, 229, 0.94));
+  border: 1px solid rgba(24, 34, 45, 0.08);
+  box-shadow: 0 14px 30px rgba(24, 34, 45, 0.05);
+}
+
+#calc-countdown-timer .cd-actions-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+#calc-countdown-timer .cd-actions-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+#calc-countdown-timer .cd-actions .cd-btn-tertiary {
+  min-height: 46px;
+  padding: 0 16px;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(35, 70, 99, 0.06);
+}
+
+#calc-countdown-timer .cd-actions .cd-btn-share-primary {
+  border-color: rgba(35, 70, 99, 0.16);
+  background: linear-gradient(180deg, rgba(35, 70, 99, 0.14), rgba(35, 70, 99, 0.1));
+  color: var(--accent-strong);
+  box-shadow: 0 12px 24px rgba(35, 70, 99, 0.1);
+}
+
+#calc-countdown-timer .cd-actions .cd-btn-share-primary:hover {
+  border-color: rgba(35, 70, 99, 0.22);
+  background: linear-gradient(180deg, rgba(35, 70, 99, 0.18), rgba(35, 70, 99, 0.13));
+  box-shadow: 0 14px 26px rgba(35, 70, 99, 0.12);
+}
+
+#calc-countdown-timer .cd-actions .cd-btn-share-secondary {
+  border-color: rgba(24, 34, 45, 0.1);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--accent);
+}
+
+#calc-countdown-timer .cd-actions .cd-btn-share-secondary:hover {
+  border-color: rgba(35, 70, 99, 0.16);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 #calc-countdown-timer .cd-copy-msg {
-  color: var(--green);
   font-size: 12px;
-  font-family: 'DM Mono', 'Consolas', monospace;
+  font-weight: 600;
+  color: var(--success);
 }
 
 #calc-countdown-timer .is-hidden {
   display: none;
 }
 
-#calc-countdown-timer .countdown-expl-heading {
-  text-decoration: none;
-  color: #f2cb66;
-  text-shadow:
-    0 0 10px rgba(232, 201, 122, 0.45),
-    0 0 22px rgba(232, 201, 122, 0.25);
-}
-
-#calc-countdown-timer .countdown-expl-heading::after {
-  content: none !important;
-  display: none !important;
-}
-
 #countdown-explanation {
   display: grid;
-  gap: 10px;
+  gap: 18px;
+}
+
+#countdown-explanation .countdown-explanation-card {
+  display: grid;
+  gap: 14px;
+  padding: 26px 30px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 28px rgba(24, 34, 45, 0.04);
+}
+
+#countdown-explanation .countdown-explanation-kicker,
+#countdown-explanation h3 {
+  margin: 0;
+}
+
+#countdown-explanation .countdown-explanation-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+#countdown-explanation h2,
+#countdown-explanation h3 {
+  margin: 0;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  color: var(--text);
+  letter-spacing: -0.02em;
 }
 
 #countdown-explanation h2 {
-  margin: 0;
-  font-size: 15px;
-  color: #f2cb66;
-  text-shadow:
-    0 0 8px rgba(232, 201, 122, 0.38),
-    0 0 16px rgba(232, 201, 122, 0.22);
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
 }
 
-#countdown-explanation p {
+#countdown-explanation h3 {
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+}
+
+#countdown-explanation p,
+#countdown-explanation li,
+#countdown-explanation td,
+#countdown-explanation th {
   margin: 0;
-  line-height: 1.45;
   font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
 }
 
-#countdown-explanation ul {
-  margin: 0;
-  padding-left: 20px;
-  display: grid;
-  gap: 4px;
-}
-
-#countdown-explanation li {
-  line-height: 1.4;
-  font-size: 13px;
+#countdown-explanation strong {
   color: var(--text);
 }
 
-#countdown-explanation .countdown-faq-list li {
-  margin-bottom: 1px;
+#countdown-explanation .countdown-guide-steps,
+#countdown-explanation .countdown-notes,
+#countdown-explanation ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 20px;
 }
 
-@media (max-width: 860px) {
-  body[data-page='calculator'] .layout-main {
+#countdown-explanation .countdown-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(24, 34, 45, 0.08);
+}
+
+#countdown-explanation .countdown-guide-table th,
+#countdown-explanation .countdown-guide-table td {
+  padding: 15px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(24, 34, 45, 0.06);
+}
+
+#countdown-explanation .countdown-guide-table th {
+  background: rgba(35, 70, 99, 0.06);
+  color: var(--text);
+}
+
+#countdown-explanation .countdown-guide-table tr:last-child td {
+  border-bottom: 0;
+}
+
+#countdown-explanation .countdown-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#countdown-explanation .countdown-faq-item {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(246, 241, 234, 0.9);
+  border: 1px solid rgba(24, 34, 45, 0.06);
+}
+
+@media (max-width: 980px) {
+  #calc-countdown-timer .cd-main-cards {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
 
-  body[data-page='calculator'] .left-nav {
-    display: none;
+  #calc-countdown-timer .cd-countdown-card {
+    order: -1;
+  }
+
+  #calc-countdown-timer .cd-title {
+    font-size: clamp(2rem, 7vw, 3.4rem);
+  }
+
+  #calc-countdown-timer .cd-tiles {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #calc-countdown-timer .cd-milestones,
+  #countdown-explanation .countdown-faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 720px) {
-  #calc-countdown-timer .cd-main-cards {
-    grid-template-columns: 1fr;
+  #calc-countdown-timer .cd-input-card,
+  #calc-countdown-timer .cd-actions,
+  #countdown-explanation .countdown-explanation-card {
+    border-radius: 24px;
+  }
+
+  #calc-countdown-timer .cd-countdown-card {
+    order: 0;
   }
 
   #calc-countdown-timer .cd-input-card {
-    padding: 20px;
+    min-height: auto;
+    padding: 22px;
   }
 
-  #calc-countdown-timer .cd-fallback {
+  #calc-countdown-timer .cd-fallback,
+  #calc-countdown-timer .cd-cta-row,
+  #calc-countdown-timer .cd-milestones,
+  #countdown-explanation .countdown-faq-grid {
     grid-template-columns: 1fr;
   }
 
   #calc-countdown-timer .cd-cta-row {
-    flex-direction: column;
-    flex-wrap: wrap;
+    display: grid;
   }
 
-  #calc-countdown-timer #countdown-start,
-  #calc-countdown-timer #countdown-stop {
+  #calc-countdown-timer .cd-btn-primary,
+  #calc-countdown-timer .cd-btn-secondary {
     width: 100%;
   }
 
-  #calc-countdown-timer .cd-countdown-header,
-  #calc-countdown-timer .cd-countdown-footer {
-    padding: 20px;
-  }
-
-  #calc-countdown-timer .cd-countdown-footer {
-    min-height: 50px;
-  }
-
-  #calc-countdown-timer .cd-live {
-    bottom: 2px;
+  #calc-countdown-timer .cd-countdown-header {
+    padding: 30px 22px 10px;
   }
 
   #calc-countdown-timer .cd-tiles {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 8px 22px 22px;
   }
 
-  #calc-countdown-timer .cd-milestones {
-    grid-template-columns: repeat(2, 1fr);
+  #calc-countdown-timer .cd-tile {
+    padding: 18px 12px 16px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(24, 34, 45, 0.06);
+  }
+
+  #calc-countdown-timer .cd-tile + .cd-tile::before {
+    content: none;
+  }
+
+  #calc-countdown-timer .cd-num {
+    font-size: clamp(3.1rem, 12vw, 5rem);
+  }
+
+  #calc-countdown-timer .cd-expired,
+  #calc-countdown-timer .cd-countdown-footer,
+  #calc-countdown-timer .cd-milestone-section {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  #calc-countdown-timer .cd-actions-group {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
   #calc-countdown-timer .cd-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    align-items: stretch;
+    padding: 18px;
   }
 
-  #calc-countdown-timer .cd-actions-label {
-    margin-bottom: 2px;
-  }
-
-  #calc-countdown-timer .cd-actions .cd-btn {
+  #calc-countdown-timer .cd-btn-tertiary {
     width: 100%;
-    min-height: 42px;
     justify-content: center;
-    box-shadow:
-      0 4px 12px rgba(232, 201, 122, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 
-  #calc-countdown-timer .cd-actions .cd-btn:hover {
-    box-shadow:
-      0 6px 16px rgba(232, 201, 122, 0.14),
-      0 0 16px rgba(232, 201, 122, 0.12);
+  #countdown-explanation .countdown-explanation-card {
+    padding: 22px;
+  }
+
+  #countdown-explanation .countdown-guide-table {
+    display: block;
+    overflow-x: auto;
   }
 }

@@ -6,17 +6,17 @@ test.describe('Birthday Day-of-Week Calculator', () => {
   }) => {
     await page.goto('/time-and-date/birthday-day-of-week');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(page.locator('.birthday-dow-workspace')).toBeVisible();
     await expect(page.locator('[data-birthday-intent]')).toHaveCount(3);
     await expect(page.locator('[data-plan-view]')).toHaveCount(3);
-
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Time & Date');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Birthday Day-of-Week');
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Birthday Day-of-Week'
+    );
 
     await page.locator('[data-birthday-intent="weekend"]').click();
     await expect(page.locator('[data-birthday-intent="weekend"]')).toHaveAttribute('aria-pressed', 'true');
@@ -84,5 +84,8 @@ test.describe('Birthday Day-of-Week Calculator', () => {
     expect(calculatorBox).toBeTruthy();
     expect(explanationBox).toBeTruthy();
     expect(calculatorBox.y).toBeLessThan(explanationBox.y);
+    await expect(page.locator('#birthday-dow-explanation h2')).toHaveText(
+      'What day of the week was I born on?'
+    );
   });
 });

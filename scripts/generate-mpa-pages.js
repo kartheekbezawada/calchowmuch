@@ -293,9 +293,9 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Work Hours Calculator',
   },
   'time-between-two-dates-calculator': {
-    title: 'Time Between Two Dates Calculator | Date Difference',
+    title: 'Time Between Two Dates Calculator | Days, Months & Business Days',
     description:
-      'Calculate the difference between two dates or date-times in days, weeks, months, hours, and minutes.',
+      'Find days, weeks, months, business days, and exact hours between two dates. Use date-only or date-time mode, inclusive counting, and copy-ready summaries.',
     h1: 'Time Between Two Dates Calculator',
   },
   'sleep-time-calculator': {
@@ -2234,6 +2234,43 @@ FINANCE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   }
 });
 
+const TIME_AND_DATE_CLUSTER_REDESIGN_ORDER = [
+  'age-calculator',
+  'birthday-day-of-week',
+  'days-until-a-date-calculator',
+  'time-between-two-dates-calculator',
+  'countdown-timer-generator',
+  'work-hours-calculator',
+  'overtime-hours-calculator',
+  'sleep-time-calculator',
+  'wake-up-time-calculator',
+  'nap-time-calculator',
+  'power-nap-calculator',
+  'energy-based-nap-selector',
+];
+
+// Opt-in list so the cluster can be migrated and released one calculator at a time.
+const TIME_AND_DATE_CLUSTER_REDESIGN_IDS = new Set([
+  'age-calculator',
+  'birthday-day-of-week',
+  'days-until-a-date-calculator',
+  'time-between-two-dates-calculator',
+  'countdown-timer-generator',
+  'work-hours-calculator',
+  'overtime-hours-calculator',
+  'sleep-time-calculator',
+  'wake-up-time-calculator',
+  'nap-time-calculator',
+  'power-nap-calculator',
+  'energy-based-nap-selector',
+]);
+
+TIME_AND_DATE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!TIME_AND_DATE_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Time & Date redesign calculator id: ${calculatorId}`);
+  }
+});
+
 function buildCreditCardClusterInlineCss(calculatorRelPath) {
   const sources = [
     path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
@@ -2299,6 +2336,26 @@ function buildFinanceClusterInlineCss(calculatorRelPath) {
     path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
     path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
     path.join(PUBLIC_DIR, 'calculators', 'finance-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildTimeAndDateClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'time-and-date', 'shared', 'cluster-light.css'),
   ];
 
   if (calculatorRelPath) {
@@ -2438,6 +2495,37 @@ function buildFinanceClusterFooterHtml() {
 </footer>`;
 }
 
+function buildTimeAndDateClusterHeaderHtml() {
+  return `<header class="td-cluster-site-header">
+  <div class="td-cluster-wrap td-cluster-site-header-inner">
+    <a class="td-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="td-cluster-brand-mark" aria-hidden="true">TD</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="td-cluster-site-label" aria-label="Cluster label">Time &amp; Date Calculators</div>
+    <nav class="td-cluster-site-links" aria-label="Site links">
+      <a href="/calculators/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faqs/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildTimeAndDateClusterFooterHtml() {
+  return `<footer class="td-cluster-site-footer">
+  <div class="td-cluster-wrap td-cluster-site-footer-inner">
+    <nav class="td-cluster-footer-links" aria-label="Footer links">
+      <a href="/">Home</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms</a>
+      <a href="/contact-us/">Contact</a>
+    </nav>
+    <span class="td-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
 const AUTO_LOAN_RELATED_CARD_COPY = {
   'car-loan-calculator': 'See the financed amount, monthly payment, and full borrowing cost.',
   'auto-loan-calculator': 'Compare two offers side by side before you choose the cheaper path.',
@@ -2459,6 +2547,21 @@ const FINANCE_RELATED_CARD_COPY = {
   'monthly-savings-needed': 'Work backward from the goal to the monthly saving requirement.',
   'investment-return': 'Stress test a portfolio path with contributions, events, and downturns.',
   inflation: 'Translate an older dollar amount into later CPI-based purchasing power.',
+};
+
+const TIME_AND_DATE_RELATED_CARD_COPY = {
+  'sleep-time-calculator': 'Plan bedtime or wake-up options around familiar sleep cycles.',
+  'wake-up-time-calculator': 'Compare wake-up windows that line up with sleep-cycle timing.',
+  'nap-time-calculator': 'Pick a nap type and see practical wake-up targets fast.',
+  'power-nap-calculator': 'Compare short and long nap lengths side by side.',
+  'energy-based-nap-selector': 'Match nap length to the kind of energy reset you need.',
+  'work-hours-calculator': 'Track daily, split, or weekly hours with unpaid breaks included.',
+  'overtime-hours-calculator': 'Separate standard and overtime hours with clearer thresholds.',
+  'time-between-two-dates-calculator': 'Measure exact distance between dates or date-times.',
+  'days-until-a-date-calculator': 'Count days remaining to a deadline or milestone.',
+  'countdown-timer-generator': 'Create a live countdown for launches, trips, birthdays, or events.',
+  'age-calculator': 'See exact age, total days, and the next birthday in one view.',
+  'birthday-day-of-week': 'Find the weekday of birth and compare upcoming birthday years.',
 };
 
 function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
@@ -2554,6 +2657,121 @@ function buildFinanceRelatedCalculatorsHtml(category, activeCalculatorId) {
     ${linksHtml}
   </div>
 </section>`;
+}
+
+function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCalculatorId) {
+  const subcategories = Array.isArray(category?.subcategories) ? category.subcategories : [];
+  const currentGroupCalculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+  const calculators = subcategories.flatMap((group) =>
+    Array.isArray(group?.calculators)
+      ? group.calculators.map((calculator) => ({
+          ...calculator,
+          sectionLabel: group.name,
+        }))
+      : []
+  );
+
+  const switcherHtml = currentGroupCalculators.length
+    ? `<section class="td-cluster-route-switch" aria-labelledby="td-cluster-route-switch-title">
+  <div class="td-cluster-route-switch-head">
+    <div>
+      <h2 id="td-cluster-route-switch-title">More ${subcategory.name} tools</h2>
+    </div>
+  </div>
+  <div class="td-cluster-switch-chips" data-td-switch-chips="true">
+    ${currentGroupCalculators
+      .map((calculator) => {
+        const isActive = calculator.id === activeCalculatorId;
+        return `<a class="td-cluster-switch-chip${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+          isActive ? ' aria-current="page"' : ''
+        }>${calculator.name}</a>`;
+      })
+      .join('')}
+  </div>
+</section>`
+    : '';
+
+  const relatedHtml = calculators.length
+    ? `<section class="td-cluster-related" aria-labelledby="td-cluster-related-title">
+  <div class="td-cluster-related-head">
+    <div>
+      <h2 id="td-cluster-related-title">Related Time &amp; Date calculators</h2>
+    </div>
+  </div>
+  <div class="td-cluster-related-links">
+    ${calculators
+      .map((calculator) => {
+        const isActive = calculator.id === activeCalculatorId;
+        const description =
+          TIME_AND_DATE_RELATED_CARD_COPY[calculator.id] ||
+          'Explore this Time & Date calculator in the shared redesign system.';
+
+        return `<a class="td-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+          isActive ? ' aria-current="page"' : ''
+        }>
+      <span class="td-cluster-related-card-title">${calculator.name}</span>
+      <span class="td-cluster-related-card-copy">${description}</span>
+      <span class="td-cluster-related-card-meta">${calculator.sectionLabel}</span>
+    </a>`;
+      })
+      .join('')}
+  </div>
+</section>`
+    : '';
+
+  return {
+    switcherHtml,
+    relatedHtml,
+  };
+}
+
+function injectBeforeImportantNotes(explanationHtml, injectedHtml) {
+  if (!injectedHtml || typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const importantNotesHeadingRe = /<h3>\s*Important Notes\s*<\/h3>/i;
+  const headingMatch = explanationHtml.match(importantNotesHeadingRe);
+
+  if (!headingMatch || typeof headingMatch.index !== 'number') {
+    return `${explanationHtml}\n${injectedHtml}`;
+  }
+
+  const sectionStart = explanationHtml.lastIndexOf('<section', headingMatch.index);
+
+  if (sectionStart === -1) {
+    return `${explanationHtml.slice(0, headingMatch.index)}${injectedHtml}\n${explanationHtml.slice(headingMatch.index)}`;
+  }
+
+  return `${explanationHtml.slice(0, sectionStart)}${injectedHtml}\n\n${explanationHtml.slice(sectionStart)}`;
+}
+
+function injectBeforeFaq(explanationHtml, injectedHtml) {
+  if (!injectedHtml || typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const faqHeadingRe = /<h3>\s*FAQ\s*<\/h3>/i;
+  const headingMatch = explanationHtml.match(faqHeadingRe);
+
+  if (!headingMatch || typeof headingMatch.index !== 'number') {
+    return `${injectedHtml}\n${explanationHtml}`;
+  }
+
+  const sectionStart = explanationHtml.lastIndexOf('<section', headingMatch.index);
+
+  if (sectionStart === -1) {
+    return `${explanationHtml.slice(0, headingMatch.index)}${injectedHtml}\n${explanationHtml.slice(headingMatch.index)}`;
+  }
+
+  return `${explanationHtml.slice(0, sectionStart)}${injectedHtml}\n\n${explanationHtml.slice(sectionStart)}`;
+}
+
+function injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) {
+  return injectBeforeImportantNotes(
+    injectBeforeFaq(explanationHtml, routeSwitchHtml),
+    relatedCalculatorsHtml
+  );
 }
 
 const mathIcons = {
@@ -2986,11 +3204,14 @@ function buildPageHtml({
   staticStructuredData = null,
   injectStaticStructuredData = false,
   relatedCalculatorsHtml = '',
+  routeSwitchHtml = '',
 }) {
   const isCreditCardClusterRoute =
     designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
   const isMigratedFinanceClusterRoute =
     canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
+  const isMigratedTimeAndDateClusterRoute =
+    canonical.includes('/time-and-date/') && TIME_AND_DATE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedAutoLoanClusterRoute =
     designFamily === 'auto-loans' &&
     canonical.includes('/car-loan-calculators/') &&
@@ -3004,11 +3225,12 @@ function buildPageHtml({
     (assetConfig ||
       isCreditCardClusterRoute ||
       isMigratedFinanceClusterRoute ||
+      isMigratedTimeAndDateClusterRoute ||
       isMigratedAutoLoanClusterRoute ||
       isMigratedHomeLoanClusterRoute) &&
     typeof versionedCalculatorHtml === 'string'
       ? versionedCalculatorHtml.replace(
-          /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css(?:\?[^'"]*)?['"]\);\s*<\/style>/gi,
+          /<style>\s*@import\s+url\(['"]\/calculators\/[^'"]+\/calculator\.css(?:\?[^'"]*)?['"]\);\s*<\/style>|<script\s+type=['"]module['"]\s+src=['"]\/calculators\/[^'"]+\/module\.js(?:\?[^'"]*)?['"]><\/script>/gi,
           ''
         )
       : versionedCalculatorHtml;
@@ -3082,6 +3304,17 @@ function buildPageHtml({
     ${relatedCalculatorsHtml}
   </div>
 </div>`
+        : isMigratedTimeAndDateClusterRoute
+        ? `<div class="td-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+  <div class="td-cluster-page-header">
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="td-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single td-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
+  </div>
+</div>`
         : isMigratedAutoLoanClusterRoute
         ? `<div class="al-cluster-panel${calculatorPanelClassSuffix}">
   <div class="al-cluster-page-header">
@@ -3126,6 +3359,8 @@ ${explanationTitleHtml}  ${explanationHtml}
     calcContent = `<div class="${
       isMigratedFinanceClusterRoute
         ? 'fi-cluster-panel'
+        : isMigratedTimeAndDateClusterRoute
+        ? 'td-cluster-panel'
         : isMigratedAutoLoanClusterRoute
         ? 'al-cluster-panel'
         : isMigratedHomeLoanClusterRoute
@@ -3133,8 +3368,9 @@ ${explanationTitleHtml}  ${explanationHtml}
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-  <div class="calculator-page-single">
+  <div class="calculator-page-single${isMigratedTimeAndDateClusterRoute ? ' td-cluster-flow' : ''}">
     ${sanitizedCalculatorHtml}
+    ${isMigratedTimeAndDateClusterRoute ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) : ''}
     ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? relatedCalculatorsHtml : ''}
   </div>
 </div>`;
@@ -3142,6 +3378,8 @@ ${explanationTitleHtml}  ${explanationHtml}
     calcContent = `<div class="${
       isMigratedFinanceClusterRoute
         ? 'fi-cluster-panel'
+        : isMigratedTimeAndDateClusterRoute
+        ? 'td-cluster-panel'
         : isMigratedAutoLoanClusterRoute
         ? 'al-cluster-panel'
         : isMigratedHomeLoanClusterRoute
@@ -3149,13 +3387,15 @@ ${explanationTitleHtml}  ${explanationHtml}
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${explanationHtml}
+${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedTimeAndDateClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${isMigratedTimeAndDateClusterRoute ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) : explanationHtml}
 ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
 </div>`;
   } else if (routeArchetype === 'content_shell') {
     calcContent = `<div class="${
       isMigratedFinanceClusterRoute
         ? 'fi-cluster-panel'
+        : isMigratedTimeAndDateClusterRoute
+        ? 'td-cluster-panel'
         : isMigratedAutoLoanClusterRoute
         ? 'al-cluster-panel'
         : isMigratedHomeLoanClusterRoute
@@ -3174,6 +3414,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   const designFamilyAttribute = designFamily ? ` data-design-family="${designFamily}"` : '';
   const topNavStaticAttribute =
     topNavStatic &&
+    !isMigratedTimeAndDateClusterRoute &&
     !isMigratedFinanceClusterRoute &&
     !isMigratedAutoLoanClusterRoute &&
     !isMigratedHomeLoanClusterRoute
@@ -3185,10 +3426,14 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   if (
     isCreditCardClusterRoute ||
     isMigratedFinanceClusterRoute ||
+    isMigratedTimeAndDateClusterRoute ||
     isMigratedAutoLoanClusterRoute ||
     isMigratedHomeLoanClusterRoute
   ) {
     const defaultScripts = [];
+    if (isMigratedTimeAndDateClusterRoute) {
+      defaultScripts.push('/calculators/time-and-date/shared/cluster-ux.js');
+    }
     if (routeModuleScriptHref) {
       defaultScripts.push(routeModuleScriptHref);
     }
@@ -3229,6 +3474,11 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   if (isCreditCardClusterRoute) {
     cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(
       buildCreditCardClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedTimeAndDateClusterRoute) {
+    cssLinksHtml = `    <style data-time-and-date-cluster="true">\n${indentBlock(
+      buildTimeAndDateClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
   } else if (isMigratedFinanceClusterRoute) {
@@ -3281,6 +3531,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
     suppressAdsColumn ||
     isCreditCardClusterRoute ||
     isMigratedFinanceClusterRoute ||
+    isMigratedTimeAndDateClusterRoute ||
     isMigratedAutoLoanClusterRoute ||
     isMigratedHomeLoanClusterRoute
       ? ''
@@ -3308,6 +3559,16 @@ ${adPanelHtml}
         </section>
       </main>
       ${buildFinanceClusterFooterHtml()}
+    </div>`
+    : isMigratedTimeAndDateClusterRoute
+    ? `    <div class="page td-cluster-page-shell">
+      ${buildTimeAndDateClusterHeaderHtml()}
+      <main class="td-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="td-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildTimeAndDateClusterFooterHtml()}
     </div>`
     : isMigratedAutoLoanClusterRoute
     ? `    <div class="page al-cluster-page-shell">
@@ -3947,6 +4208,9 @@ function main() {
     const isMigratedFinanceClusterRoute =
       calculator.url.startsWith('/finance-calculators/') &&
       FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
+    const isMigratedTimeAndDateClusterRoute =
+      calculator.url.startsWith('/time-and-date/') &&
+      TIME_AND_DATE_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedAutoLoanClusterRoute =
       calculator.designFamily === 'auto-loans' &&
       calculator.url.startsWith('/car-loan-calculators/') &&
@@ -3958,6 +4222,7 @@ function main() {
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
     if (
       assetConfig?.options?.generationMode === 'manual' &&
+      !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
       !isMigratedHomeLoanClusterRoute
@@ -3993,6 +4258,7 @@ function main() {
     const routeBundleEntry =
       !assetConfig &&
       !isCreditCardClusterRoute &&
+      !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id)
@@ -4001,11 +4267,14 @@ function main() {
     let cssBundleConfig = null;
     const topNavStatic =
       Boolean(assetConfig?.options?.topNavStatic) ||
-      (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) && !isMigratedFinanceClusterRoute);
+      (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+        !isMigratedFinanceClusterRoute &&
+        !isMigratedTimeAndDateClusterRoute);
 
     if (
       !assetConfig &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+      !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !routeBundleEntry
     ) {
@@ -4067,6 +4336,10 @@ function main() {
       injectStaticStructuredData = true;
     }
 
+    const timeAndDateRelatedSections = isMigratedTimeAndDateClusterRoute
+      ? buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, calculator.id)
+      : null;
+
     const pageHtml = buildPageHtml({
       title: pageTitle,
       description: pageDescription,
@@ -4100,10 +4373,15 @@ function main() {
       layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
       relatedCalculatorsHtml: isCreditCardClusterRoute
         ? buildCreditCardRelatedCalculatorsHtml(subcategory, calculator.id)
+        : isMigratedTimeAndDateClusterRoute
+        ? timeAndDateRelatedSections.relatedHtml
         : isMigratedFinanceClusterRoute
         ? buildFinanceRelatedCalculatorsHtml(category, calculator.id)
         : isMigratedAutoLoanClusterRoute
         ? buildAutoLoanRelatedCalculatorsHtml(subcategory, calculator.id)
+        : '',
+      routeSwitchHtml: isMigratedTimeAndDateClusterRoute
+        ? timeAndDateRelatedSections.switcherHtml
         : '',
     });
 

@@ -1,34 +1,71 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
-
-#calc-overtime-hours .overtime-section {
+#calc-overtime-hours {
+  --overtime-surface: rgba(255, 253, 249, 0.96);
+  --overtime-surface-soft: rgba(244, 237, 228, 0.86);
+  --overtime-border: rgba(79, 93, 117, 0.12);
+  --overtime-border-strong: rgba(39, 76, 119, 0.2);
+  --overtime-accent: #274c77;
+  --overtime-text: #1f2730;
+  --overtime-muted: #64707c;
   display: grid;
-  gap: 16px;
+  gap: 20px;
 }
 
-#calc-overtime-hours .overtime-section.is-collapsed {
+#calc-overtime-hours .calculator-ui {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid var(--overtime-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 237, 228, 0.88));
+  box-shadow: 0 18px 40px rgba(31, 39, 48, 0.08);
+}
+
+#calc-overtime-hours .helper {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(39, 76, 119, 0.08);
+  color: var(--overtime-accent);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+#calc-overtime-hours .overtime-section,
+#calc-overtime-hours .input-row,
+#calc-overtime-hours .night-settings {
+  display: grid;
+  gap: 12px;
+}
+
+#calc-overtime-hours .overtime-section.is-collapsed,
+#calc-overtime-hours .is-collapsed,
+#calc-overtime-hours .night-settings.is-collapsed {
   display: none;
 }
 
-#calc-overtime-hours .is-collapsed {
-  display: none;
+#calc-overtime-hours .input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
 #calc-overtime-hours .segment-block,
-#calc-overtime-hours .weekly-day {
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 12px;
+#calc-overtime-hours .weekly-day,
+#calc-overtime-hours .night-settings {
+  border: 1px solid var(--overtime-border);
+  border-radius: 20px;
+  padding: 16px;
   display: grid;
   gap: 12px;
-  background: var(--panel-bg);
+  background: var(--overtime-surface);
 }
 
 #calc-overtime-hours .segment-title {
   margin: 0;
   font-size: 12px;
   font-weight: 700;
-  color: var(--muted-text);
-  letter-spacing: 0.04em;
+  color: var(--overtime-accent);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -40,11 +77,60 @@
 }
 
 #calc-overtime-hours .weekly-day-name {
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--overtime-text);
 }
 
 #calc-overtime-hours .week-range-label {
   margin: 0;
+}
+
+#calc-overtime-hours label,
+#calc-overtime-hours #overtime-mode-label,
+#calc-overtime-hours #overtime-rule-label,
+#calc-overtime-hours #overtime-rounding-label,
+#calc-overtime-hours #overtime-break-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--overtime-text);
+}
+
+#calc-overtime-hours input[type='time'],
+#calc-overtime-hours input[type='date'],
+#calc-overtime-hours input[type='number'] {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--overtime-border);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--overtime-text);
+}
+
+#calc-overtime-hours .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#calc-overtime-hours .calculator-button.secondary {
+  border-radius: 999px;
+  border: 1px solid var(--overtime-border);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--overtime-text);
+}
+
+#calc-overtime-hours .calculator-button.secondary.is-active,
+#calc-overtime-hours .calculator-button.secondary[aria-pressed='true'] {
+  border-color: var(--overtime-border-strong);
+  background: rgba(39, 76, 119, 0.12);
+  color: var(--overtime-accent);
+}
+
+#calc-overtime-hours .calculator-button.full-width {
+  border-radius: 18px;
+  background: var(--overtime-accent);
+  color: #fffdf9;
 }
 
 #calc-overtime-hours .checkbox-label {
@@ -52,33 +138,43 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: var(--muted-text);
+  color: var(--overtime-muted);
 }
 
-#calc-overtime-hours .night-settings.is-collapsed {
-  display: none;
+#calc-overtime-hours .checkbox-label input {
+  accent-color: var(--overtime-accent);
 }
 
 #calc-overtime-hours .form-error {
-  margin: 8px 0 0;
-  color: #dc2626;
+  margin: 0;
+  color: #b85d49;
   font-size: 13px;
   font-weight: 600;
+}
+
+#calc-overtime-hours #overtime-results {
+  min-height: 180px;
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid var(--overtime-border);
+  background: var(--overtime-surface-soft);
+}
+
+#calc-overtime-hours .placeholder {
+  margin: 0;
+  color: var(--overtime-muted);
 }
 
 #calc-overtime-hours .overtime-results-list {
   display: grid;
   gap: 8px;
-  margin-top: 8px;
 }
 
 #calc-overtime-hours .result-line {
   font-size: 14px;
-  color: var(--text-color);
-}
-
-#calc-overtime-hours #overtime-results {
-  min-height: 180px;
+  color: var(--overtime-text);
 }
 
 #overtime-explanation {
@@ -86,28 +182,109 @@
   gap: 16px;
 }
 
-#overtime-explanation h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-#overtime-explanation p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-#overtime-explanation .toc {
-  margin: 0;
-  padding-left: 18px;
+#overtime-explanation .overtime-explanation-card {
   display: grid;
-  gap: 6px;
+  gap: 12px;
+  padding: 24px 28px;
+  border-radius: 24px;
+  border: 1px solid var(--overtime-border);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 36px rgba(31, 39, 48, 0.08);
+}
+
+#overtime-explanation .overtime-explanation-kicker,
+#overtime-explanation h3 {
+  margin: 0;
+}
+
+#overtime-explanation .overtime-explanation-kicker {
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--overtime-accent);
+}
+
+#overtime-explanation h2,
+#overtime-explanation h3 {
+  margin: 0;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  color: var(--overtime-text);
+}
+
+#overtime-explanation p,
+#overtime-explanation li,
+#overtime-explanation th,
+#overtime-explanation td {
+  margin: 0;
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+#overtime-explanation .overtime-guide-steps,
+#overtime-explanation .overtime-notes {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+#overtime-explanation .overtime-summary-table,
+#overtime-explanation .overtime-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--overtime-border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#overtime-explanation .overtime-summary-table th,
+#overtime-explanation .overtime-summary-table td,
+#overtime-explanation .overtime-guide-table th,
+#overtime-explanation .overtime-guide-table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(79, 93, 117, 0.08);
+}
+
+#overtime-explanation .overtime-summary-table th,
+#overtime-explanation .overtime-guide-table th {
+  background: rgba(39, 76, 119, 0.08);
+}
+
+#overtime-explanation .overtime-summary-table tr:last-child td,
+#overtime-explanation .overtime-guide-table tr:last-child td {
+  border-bottom: 0;
+}
+
+#overtime-explanation .overtime-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 #overtime-explanation .overtime-faq-item {
   display: grid;
   gap: 6px;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--panel-bg);
+  padding: 18px;
+  border: 1px solid var(--overtime-border);
+  border-radius: 18px;
+  background: rgba(244, 237, 228, 0.72);
+}
+
+@media (max-width: 860px) {
+  #calc-overtime-hours .input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-overtime-hours .weekly-day-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #overtime-explanation .overtime-faq-grid {
+    grid-template-columns: 1fr;
+  }
 }

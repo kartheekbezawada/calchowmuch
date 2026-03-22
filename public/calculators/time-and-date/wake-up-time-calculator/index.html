@@ -1,99 +1,101 @@
 <div id="calc-wake-up">
-  <div class="wake-scene" aria-hidden="true">
-    <div class="wake-haze"></div>
-    <div class="wake-sun"></div>
-    <div class="wake-glow"></div>
-  </div>
-
-  <div class="wake-container">
-    <div class="wake-hero-tag">Wake Rhythm</div>
-    <h2 class="wake-hero-title">Wake with the <em>sun</em>, not the snooze</h2>
-    <p class="wake-tagline">
-      Plan wake-up windows around complete 90-minute sleep cycles and start your morning clearer.
-    </p>
-
-    <div class="wake-two-box">
-      <div class="wake-card wake-card-calc">
-        <div class="wake-mode-label">I want wake times from...</div>
-        <div
-          class="wake-toggle-wrap"
-          role="group"
-          aria-labelledby="wake-mode-label"
-          data-button-group="wake-mode"
-        >
-          <button
-            class="wake-toggle-btn calculator-button secondary is-active"
-            id="wake-sleep-btn"
-            type="button"
-            data-value="sleep"
-            aria-pressed="true"
-          >
-            Fall-Asleep Time
-          </button>
-          <button
-            class="wake-toggle-btn calculator-button secondary"
-            id="wake-bed-btn"
-            type="button"
-            data-value="bed"
-            aria-pressed="false"
-          >
-            Bedtime
-          </button>
-        </div>
-
-        <div class="wake-field-label" id="wake-field-label">I plan to fall asleep at...</div>
-        <div class="wake-time-input-wrap">
-          <input id="wake-time-primary" class="wake-time-input" type="time" step="900" />
-          <button
-            id="wake-time-picker"
-            class="wake-time-icon"
-            type="button"
-            aria-label="Open time picker"
-          >
-            ⏰
-          </button>
-        </div>
-
-        <input
-          id="wake-latency-proxy"
-          class="wake-test-proxy"
-          type="number"
-          inputmode="numeric"
-          min="0"
-          max="1439"
-          step="15"
-          value="0"
-          aria-hidden="true"
-          tabindex="-1"
-        />
-        <button
-          id="wake-calc"
-          class="wake-test-proxy"
-          type="button"
-          aria-hidden="true"
-          tabindex="-1"
-        >
-          Calc
-        </button>
-        <div id="wake-result" class="wake-test-proxy" aria-hidden="true"></div>
-
-        <button class="wake-calc-btn" type="button" id="wake-calculate">Calculate Wake-Up Times</button>
+  <div class="wake-shell">
+    <section class="wake-surface">
+      <div class="wake-lead">
+        <p class="wake-intro">Compare wake-up times that line up with 4, 5, and 6 sleep cycles.</p>
       </div>
 
-      <div class="wake-card wake-card-answer">
-        <div class="wake-answer-title">Recommended Wake Options</div>
-        <p class="wake-answer-note">Defaults are visible. Update time, then click Calculate.</p>
-        <div class="result" id="wake-results" aria-live="polite">
-          <p class="placeholder" id="wake-placeholder">Select a time and click Calculate.</p>
-          <p class="form-error is-hidden" id="wake-error"></p>
-          <div class="wake-results-list" id="wake-results-list"></div>
+      <div class="wake-planner-grid">
+        <div class="wake-controls">
+          <div class="wake-control-block">
+            <div class="wake-mode-label">Plan from</div>
+            <div
+              class="wake-toggle-wrap"
+              role="group"
+              aria-labelledby="wake-mode-label"
+              data-button-group="wake-mode"
+            >
+              <button
+                class="wake-toggle-btn calculator-button secondary is-active"
+                id="wake-sleep-btn"
+                type="button"
+                data-value="sleep"
+                aria-pressed="true"
+              >
+                Fall-Asleep Time
+              </button>
+              <button
+                class="wake-toggle-btn calculator-button secondary"
+                id="wake-bed-btn"
+                type="button"
+                data-value="bed"
+                aria-pressed="false"
+              >
+                Bedtime
+              </button>
+            </div>
+          </div>
+
+          <div class="wake-control-block">
+            <label class="wake-input-label" for="wake-time-primary">
+              <span class="wake-field-label" id="wake-field-label">I plan to fall asleep at...</span>
+            </label>
+            <div class="wake-time-input-wrap">
+              <input id="wake-time-primary" class="wake-time-input" type="time" step="900" />
+              <button
+                id="wake-time-picker"
+                class="wake-time-icon"
+                type="button"
+                aria-label="Open time picker"
+              >
+                ⏰
+              </button>
+            </div>
+          </div>
+
+          <input
+            id="wake-latency-proxy"
+            class="wake-test-proxy"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            max="1439"
+            step="15"
+            value="0"
+            aria-hidden="true"
+            tabindex="-1"
+          />
+          <button
+            id="wake-calc"
+            class="wake-test-proxy"
+            type="button"
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            Calc
+          </button>
+          <div id="wake-result" class="wake-test-proxy" aria-hidden="true"></div>
+
+          <button class="wake-calc-btn" type="button" id="wake-calculate">Calculate wake-up times</button>
+        </div>
+
+        <div class="wake-results-panel">
+          <div class="wake-results-head">
+            <div class="wake-answer-title">Recommended wake options</div>
+            <p class="wake-answer-note">Five cycles is highlighted as the most balanced option.</p>
+          </div>
+
+          <div class="result" id="wake-results" aria-live="polite">
+            <p class="placeholder" id="wake-placeholder">Select a time and click Calculate.</p>
+            <p class="form-error is-hidden" id="wake-error"></p>
+            <div class="wake-results-list" id="wake-results-list"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <p class="wake-footer-note">
-      Built on <span>90-minute sleep cycles</span> with a fixed
-      <span id="wake-buffer-copy">15-minute</span> fall-asleep buffer in bedtime mode.
+      Uses a <span id="wake-buffer-copy">15-minute</span> fall-asleep buffer only when you plan from bedtime.
     </p>
   </div>
 </div>

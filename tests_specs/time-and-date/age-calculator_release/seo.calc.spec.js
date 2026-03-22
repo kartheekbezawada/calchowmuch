@@ -44,8 +44,12 @@ test.describe('Age Calculator SEO', () => {
     );
 
     const explanation = page.locator('#age-explanation');
-    await expect(explanation).toContainText('Find exact age without the clutter');
-    await expect(explanation).toContainText('Questions people ask before trusting the answer');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation).toContainText('How old am I on a specific date?');
+    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
     await expect(explanation.locator('.age-faq-item')).toHaveCount(10);
 
     const sitemapResponse = await page.request.get('/sitemap.xml');

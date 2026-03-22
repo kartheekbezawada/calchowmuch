@@ -15,6 +15,9 @@ test.describe('Time Between Two Dates Calculator SEO', () => {
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Time Between Two Dates Calculator');
 
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);
     await expect(canonical).toHaveAttribute(
@@ -39,9 +42,13 @@ test.describe('Time Between Two Dates Calculator SEO', () => {
     expect(faqNode.mainEntity[0].name).toBe('How do I calculate the days between two dates?');
 
     const explanation = page.locator('#date-diff-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(6);
-    await expect(explanation).toContainText('Find the days between dates without the clutter');
-    await expect(explanation).toContainText('Questions people ask before trusting the answer');
+    await expect(explanation.locator('h2')).toHaveCount(1);
+    await expect(explanation).toContainText('How much time is between two dates?');
+    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
+    await expect(explanation.locator('.td-faq-item')).toHaveCount(6);
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

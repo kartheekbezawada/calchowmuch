@@ -1,91 +1,90 @@
 <div id="calc-sleep-time">
-  <div class="sleep-scene" aria-hidden="true">
-    <div class="sleep-aurora"></div>
-    <div class="sleep-starfield" id="sleep-starfield"></div>
-    <div class="sleep-moon-wrap">
-      <div class="sleep-moon-circle"></div>
-    </div>
-  </div>
-
-  <div class="sleep-container">
-    <div class="sleep-hero-tag">Sleep Science</div>
-    <h2 class="sleep-hero-title">Rest like the <em>stars</em> sleep in cycles</h2>
-    <p class="sleep-tagline">
-      Each 90-minute cycle brings you deeper rest. Wake at the right moment - refreshed, not groggy.
-    </p>
-
-    <div class="sleep-two-box">
-      <div class="sleep-card sleep-card-calc">
-        <div class="sleep-mode-label">I want to know my...</div>
-        <div
-          class="sleep-toggle-wrap"
-          role="group"
-          aria-labelledby="sleep-mode-label"
-          data-button-group="sleep-mode"
-        >
-          <button
-            class="sleep-toggle-btn calculator-button secondary is-active"
-            id="sleep-wake-btn"
-            type="button"
-            data-value="wake"
-            aria-pressed="true"
-          >
-            Wake-Up Time
-          </button>
-          <button
-            class="sleep-toggle-btn calculator-button secondary"
-            id="sleep-bed-btn"
-            type="button"
-            data-value="sleep"
-            aria-pressed="false"
-          >
-            Bedtime
-          </button>
-        </div>
-
-        <div class="sleep-field-label" id="sleep-field-label">I want to wake up at...</div>
-        <div class="sleep-time-input-wrap">
-          <input id="sleep-time-primary" class="sleep-time-input" type="time" step="900" />
-        </div>
-        <input
-          id="sleep-latency-proxy"
-          class="sleep-test-proxy"
-          type="number"
-          inputmode="numeric"
-          min="0"
-          max="1439"
-          step="15"
-          value="0"
-          aria-hidden="true"
-          tabindex="-1"
-        />
-        <button
-          id="sleep-calc"
-          class="sleep-test-proxy"
-          type="button"
-          aria-hidden="true"
-          tabindex="-1"
-        >
-          Calc
-        </button>
-        <div id="sleep-result" class="sleep-test-proxy" aria-hidden="true"></div>
-
-        <button class="sleep-calc-btn" type="button" id="sleep-calculate">Calculate My Sleep Plan</button>
+  <div class="sleep-shell">
+    <section class="sleep-surface">
+      <div class="sleep-lead">
+        <p class="sleep-intro">Plan a bedtime or wake-up time around 90-minute sleep cycles.</p>
       </div>
 
-      <div class="sleep-card sleep-card-answer">
-        <div class="sleep-answer-title">Your Ideal Options</div>
-        <p class="sleep-answer-note">Default values are shown. Update inputs and click calculate.</p>
-        <div class="result" id="sleep-results" aria-live="polite">
-          <p class="placeholder" id="sleep-placeholder">Select a time and click Calculate.</p>
-          <div class="sleep-results-list" id="sleep-results-list"></div>
+      <div class="sleep-planner-grid">
+        <div class="sleep-controls">
+          <div class="sleep-control-block">
+            <div class="sleep-mode-label">Plan for</div>
+            <div
+              class="sleep-toggle-wrap"
+              role="group"
+              aria-labelledby="sleep-mode-label"
+              data-button-group="sleep-mode"
+            >
+              <button
+                class="sleep-toggle-btn calculator-button secondary is-active"
+                id="sleep-wake-btn"
+                type="button"
+                data-value="wake"
+                aria-pressed="true"
+              >
+                Wake-Up Time
+              </button>
+              <button
+                class="sleep-toggle-btn calculator-button secondary"
+                id="sleep-bed-btn"
+                type="button"
+                data-value="sleep"
+                aria-pressed="false"
+              >
+                Bedtime
+              </button>
+            </div>
+          </div>
+
+          <div class="sleep-control-block">
+            <label class="sleep-input-label" for="sleep-time-primary">
+              <span class="sleep-field-label" id="sleep-field-label">I want to wake up at...</span>
+            </label>
+            <div class="sleep-time-input-wrap">
+              <input id="sleep-time-primary" class="sleep-time-input" type="time" step="900" />
+            </div>
+          </div>
+
+          <input
+            id="sleep-latency-proxy"
+            class="sleep-test-proxy"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            max="1439"
+            step="15"
+            value="0"
+            aria-hidden="true"
+            tabindex="-1"
+          />
+          <button
+            id="sleep-calc"
+            class="sleep-test-proxy"
+            type="button"
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            Calc
+          </button>
+          <div id="sleep-result" class="sleep-test-proxy" aria-hidden="true"></div>
+
+          <button class="sleep-calc-btn" type="button" id="sleep-calculate">Calculate sleep plan</button>
+        </div>
+
+        <div class="sleep-results-panel">
+          <div class="sleep-results-head">
+            <div class="sleep-answer-title">Recommended times</div>
+            <p class="sleep-answer-note">The balanced 5-cycle option is highlighted.</p>
+          </div>
+
+          <div class="result" id="sleep-results" aria-live="polite">
+            <p class="placeholder" id="sleep-placeholder">Select a time and click Calculate.</p>
+            <div class="sleep-results-list" id="sleep-results-list"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <p class="sleep-footer-note">
-      Based on <span>90-minute ultradian sleep cycles</span> + ~14 min to fall asleep.<br />
-      Your body knows the rhythm - trust the science.
-    </p>
+    <p class="sleep-footer-note">Based on 90-minute sleep cycles with a short fall-asleep buffer.</p>
   </div>
 </div>

@@ -8,14 +8,13 @@ test.describe('Age Calculator', () => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);
     await page.goto('/time-and-date/age-calculator/');
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Time & Date');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Age Calculator');
-
-    await expect(page.locator('.center-column .panel.panel-span-all')).toHaveCount(1);
-    await expect(page.locator('.ads-column')).toBeHidden();
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Age Calculator'
+    );
 
     const headline = page.locator('#age-headline');
     const initialHeadline = (await headline.textContent())?.trim();
@@ -60,6 +59,12 @@ test.describe('Age Calculator', () => {
     await expect(page.locator('#age-error')).toContainText(
       'Date of birth must be on or before the as-of date.'
     );
+
+    await expect(page.locator('#age-explanation h2')).toHaveText(
+      'How old am I on a specific date?'
+    );
+    await expect(page.locator('#age-explanation h3').first()).toHaveText('How to Guide');
+    await expect(page.locator('#age-explanation .age-notes')).toContainText('Last updated:');
 
     const workbench = page.locator('.age-workbench');
     const fieldCard = page.locator('.age-input-card');

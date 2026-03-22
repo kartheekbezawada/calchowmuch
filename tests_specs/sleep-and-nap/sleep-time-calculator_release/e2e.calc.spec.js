@@ -4,13 +4,15 @@ test.describe('Sleep Time Calculator', () => {
   test.describe.configure({ mode: 'serial' });
 
   test('SLEEP-TEST-E2E-1: user journey and recommendations', async ({ page }) => {
-    await page.goto('/time-and-date/sleep-time-calculator');
+    await page.goto('/time-and-date/sleep-time-calculator/');
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Time & Date');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Sleep Time Calculator');
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Sleep Time Calculator'
+    );
 
     const modeButtons = page.locator('[data-button-group="sleep-mode"] button');
     await expect(modeButtons.first()).toHaveClass(/is-active/);
@@ -29,13 +31,13 @@ test.describe('Sleep Time Calculator', () => {
   test('SLEEP-TEST-E2E-1B: left nav includes nap calculator links and navigation works', async ({
     page,
   }) => {
-    await page.goto('/time-and-date/sleep-time-calculator');
+    await page.goto('/time-and-date/sleep-time-calculator/');
 
     const powerNapLink = page.locator(
-      '.left-nav .fin-nav-item[href="/time-and-date/power-nap-calculator/"]'
+      '.td-cluster-route-switch a[href="/time-and-date/power-nap-calculator/"]'
     );
     const energyNapLink = page.locator(
-      '.left-nav .fin-nav-item[href="/time-and-date/energy-based-nap-selector/"]'
+      '.td-cluster-route-switch a[href="/time-and-date/energy-based-nap-selector/"]'
     );
 
     await expect(powerNapLink).toBeVisible();
@@ -47,19 +49,21 @@ test.describe('Sleep Time Calculator', () => {
       page.waitForURL('**/time-and-date/power-nap-calculator/'),
       powerNapLink.click(),
     ]);
-    await expect(page.locator('.fin-nav-item.is-active')).toContainText('Power Nap Calculator');
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Power Nap Calculator'
+    );
 
     await Promise.all([
       page.waitForURL('**/time-and-date/energy-based-nap-selector/'),
-      page.locator('.left-nav .fin-nav-item[href="/time-and-date/energy-based-nap-selector/"]').click(),
+      page.locator('.td-cluster-route-switch a[href="/time-and-date/energy-based-nap-selector/"]').click(),
     ]);
-    await expect(page.locator('.fin-nav-item.is-active')).toContainText(
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
       'Energy-Based Nap Selector'
     );
   });
 
   test('SLEEP-TEST-E2E-2: mode switch resets results (UI-2.6)', async ({ page }) => {
-    await page.goto('/time-and-date/sleep-time-calculator');
+    await page.goto('/time-and-date/sleep-time-calculator/');
 
     const resultsList = page.locator('#sleep-results-list');
     await expect(resultsList).not.toHaveClass(/is-hidden/);
@@ -76,7 +80,7 @@ test.describe('Sleep Time Calculator', () => {
   });
 
   test('SLEEP-TEST-E2E-3: input change resets results (UI-2.6)', async ({ page }) => {
-    await page.goto('/time-and-date/sleep-time-calculator');
+    await page.goto('/time-and-date/sleep-time-calculator/');
 
     const resultsList = page.locator('#sleep-results-list');
     await expect(resultsList).not.toHaveClass(/is-hidden/);
@@ -95,11 +99,19 @@ test.describe('Sleep Time Calculator', () => {
   });
 
   test('SLEEP-TEST-E2E-4: explanation content and FAQs', async ({ page }) => {
-    await page.goto('/time-and-date/sleep-time-calculator');
+    await page.goto('/time-and-date/sleep-time-calculator/');
 
     const explanation = page.locator('#sleep-time-explanation');
-    await expect(explanation).toContainText('When Should You Go to Sleep or Wake Up?');
-    await expect(explanation).toContainText('Frequently Asked Questions');
+    await expect(explanation.locator('.sleep-explanation-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.sleep-explanation-card h2')).toHaveText(
+      'When should you go to sleep or wake up?'
+    );
+    await expect(explanation.locator('.sleep-explanation-card h3')).toHaveCount(3);
+    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.sleep-faq-item')).toHaveCount(10);
+    await expect(explanation.locator('.sleep-notes li')).toHaveCount(5);
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
   });
 });

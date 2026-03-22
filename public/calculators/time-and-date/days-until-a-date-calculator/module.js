@@ -97,9 +97,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Days Until Date Calculator | Business Days, Date Range, and Share Tools',
+  title: 'Days Until a Date Calculator | Count Days to Any Date',
   description:
-    'Calculate days until, days since, business days, and custom date ranges with presets, planning breakdowns, and share tools.',
+    'Count how many days remain until a future date or how many days have passed since a past date.',
   canonical: 'https://calchowmuch.com/time-and-date/days-until-a-date-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

@@ -1,8 +1,45 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
+#calc-work-hours {
+  --work-surface: rgba(255, 253, 249, 0.96);
+  --work-surface-soft: rgba(244, 237, 228, 0.86);
+  --work-border: rgba(79, 93, 117, 0.12);
+  --work-border-strong: rgba(39, 76, 119, 0.2);
+  --work-accent: #274c77;
+  --work-text: #1f2730;
+  --work-muted: #64707c;
+  display: grid;
+  gap: 20px;
+}
 
+#calc-work-hours .calculator-ui {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid var(--work-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 237, 228, 0.88));
+  box-shadow: 0 18px 40px rgba(31, 39, 48, 0.08);
+}
+
+#calc-work-hours .helper {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(39, 76, 119, 0.08);
+  color: var(--work-accent);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+#calc-work-hours .input-row,
 #calc-work-hours .work-hours-section {
   display: grid;
-  gap: 16px;
+  gap: 12px;
+}
+
+#calc-work-hours .input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
 #calc-work-hours .work-hours-section.is-collapsed {
@@ -11,20 +48,20 @@
 
 #calc-work-hours .segment-block,
 #calc-work-hours .weekly-day {
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 12px;
+  border: 1px solid var(--work-border);
+  border-radius: 20px;
+  padding: 16px;
   display: grid;
   gap: 12px;
-  background: var(--panel-bg);
+  background: var(--work-surface);
 }
 
 #calc-work-hours .segment-title {
   margin: 0;
   font-size: 12px;
   font-weight: 700;
-  color: var(--muted-text);
-  letter-spacing: 0.04em;
+  color: var(--work-accent);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -36,7 +73,53 @@
 }
 
 #calc-work-hours .weekly-day-name {
+  font-weight: 700;
+  color: var(--work-text);
+}
+
+#calc-work-hours label,
+#calc-work-hours #work-hours-mode-label,
+#calc-work-hours #work-hours-single-break-label,
+#calc-work-hours #work-hours-split-break-label {
+  font-size: 14px;
   font-weight: 600;
+  color: var(--work-text);
+}
+
+#calc-work-hours input[type='time'] {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--work-border);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--work-text);
+}
+
+#calc-work-hours .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#calc-work-hours .calculator-button.secondary {
+  border-radius: 999px;
+  border: 1px solid var(--work-border);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--work-text);
+}
+
+#calc-work-hours .calculator-button.secondary.is-active,
+#calc-work-hours .calculator-button.secondary[aria-pressed='true'] {
+  border-color: var(--work-border-strong);
+  background: rgba(39, 76, 119, 0.12);
+  color: var(--work-accent);
+}
+
+#calc-work-hours .calculator-button.full-width {
+  border-radius: 18px;
+  background: var(--work-accent);
+  color: #fffdf9;
 }
 
 #calc-work-hours .checkbox-label {
@@ -44,45 +127,59 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: var(--muted-text);
+  color: var(--work-muted);
+}
+
+#calc-work-hours .checkbox-label input {
+  accent-color: var(--work-accent);
 }
 
 #calc-work-hours .form-error {
-  margin: 8px 0 0;
-  color: #dc2626;
+  margin: 0;
+  color: #b85d49;
   font-size: 13px;
   font-weight: 600;
+}
+
+#calc-work-hours #work-hours-results {
+  min-height: 180px;
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid var(--work-border);
+  background: var(--work-surface-soft);
+}
+
+#calc-work-hours .placeholder {
+  margin: 0;
+  color: var(--work-muted);
 }
 
 #calc-work-hours .work-hours-results-list {
   display: grid;
   gap: 10px;
-  margin-top: 8px;
 }
 
 #calc-work-hours .result-row {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--work-border);
+  border-radius: 14px;
   font-size: 14px;
-  background: var(--panel-bg);
+  background: rgba(255, 255, 255, 0.84);
 }
 
 #calc-work-hours .result-row span:last-child {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 #calc-work-hours .result-line {
   font-size: 14px;
-  color: var(--text-color);
+  color: var(--work-text);
   padding-left: 4px;
-}
-
-#calc-work-hours #work-hours-results {
-  min-height: 180px;
 }
 
 #work-hours-explanation {
@@ -90,38 +187,102 @@
   gap: 16px;
 }
 
-#work-hours-explanation h2 {
-  margin: 0;
-  font-size: 18px;
+#work-hours-explanation .work-hours-explanation-card {
+  display: grid;
+  gap: 12px;
+  padding: 24px 28px;
+  border-radius: 24px;
+  border: 1px solid var(--work-border);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 36px rgba(31, 39, 48, 0.08);
 }
 
+#work-hours-explanation .work-hours-explanation-kicker,
 #work-hours-explanation h3 {
   margin: 0;
 }
 
-#work-hours-explanation p {
+#work-hours-explanation .work-hours-explanation-kicker {
+  font-family: 'DM Mono', 'Consolas', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--work-accent);
+}
+
+#work-hours-explanation h2,
+#work-hours-explanation h3 {
   margin: 0;
-  line-height: 1.5;
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  color: var(--work-text);
 }
 
-#work-hours-explanation table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
+#work-hours-explanation p,
+#work-hours-explanation li,
 #work-hours-explanation th,
 #work-hours-explanation td {
-  border: 1px solid var(--border-color);
-  padding: 8px 10px;
-  text-align: left;
-  vertical-align: top;
+  margin: 0;
+  line-height: 1.55;
+  font-size: 14px;
 }
 
-#work-hours-explanation .faq-box {
+#work-hours-explanation .work-hours-guide-steps,
+#work-hours-explanation .work-hours-notes {
+  margin: 0;
+  padding-left: 20px;
   display: grid;
-  gap: 6px;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--panel-bg);
+  gap: 10px;
+}
+
+#work-hours-explanation .work-hours-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--work-border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#work-hours-explanation .work-hours-guide-table th,
+#work-hours-explanation .work-hours-guide-table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(79, 93, 117, 0.08);
+}
+
+#work-hours-explanation .work-hours-guide-table th {
+  background: rgba(39, 76, 119, 0.08);
+}
+
+#work-hours-explanation .work-hours-guide-table tr:last-child td {
+  border-bottom: 0;
+}
+
+#work-hours-explanation .work-hours-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#work-hours-explanation .work-hours-faq-item {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid var(--work-border);
+  background: rgba(244, 237, 228, 0.72);
+}
+
+@media (max-width: 860px) {
+  #calc-work-hours .input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-work-hours .weekly-day-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #work-hours-explanation .work-hours-faq-grid {
+    grid-template-columns: 1fr;
+  }
 }

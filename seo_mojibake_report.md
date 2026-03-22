@@ -1,6 +1,6 @@
 # SEO Mojibake Report
 
-- Scope: `calc:finance/inflation`
+- Scope: `calc:sleep-and-nap/nap-time-calculator`
 - HTML files scanned: **1**
 - Calculator pages scanned: **1**
 - Findings: **0**

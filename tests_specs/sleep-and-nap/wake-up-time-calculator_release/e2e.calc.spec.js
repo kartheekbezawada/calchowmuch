@@ -4,13 +4,15 @@ test.describe('Wake-Up Time Calculator', () => {
   test.describe.configure({ mode: 'serial' });
 
   test('WAKEUP-TEST-E2E-1: user journey and recommendations', async ({ page }) => {
-    await page.goto('/time-and-date/wake-up-time-calculator');
+    await page.goto('/time-and-date/wake-up-time-calculator/');
 
-    const topNavActive = page.locator('.top-nav .top-nav-link.is-active');
-    await expect(topNavActive).toContainText('Time & Date');
-
-    const leftActive = page.locator('.fin-nav-item.is-active');
-    await expect(leftActive).toContainText('Wake-Up Time Calculator');
+    await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('.ads-column')).toHaveCount(0);
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Wake-Up Time Calculator'
+    );
 
     const modeButtons = page.locator('[data-button-group="wake-mode"] button');
     await expect(modeButtons.first()).toHaveClass(/is-active/);
@@ -39,13 +41,13 @@ test.describe('Wake-Up Time Calculator', () => {
   test('WAKEUP-TEST-E2E-1B: left nav includes nap calculator links and navigation works', async ({
     page,
   }) => {
-    await page.goto('/time-and-date/wake-up-time-calculator');
+    await page.goto('/time-and-date/wake-up-time-calculator/');
 
     const powerNapLink = page.locator(
-      '.left-nav .fin-nav-item[href="/time-and-date/power-nap-calculator/"]'
+      '.td-cluster-switch-chips a[href="/time-and-date/power-nap-calculator/"]'
     );
     const energyNapLink = page.locator(
-      '.left-nav .fin-nav-item[href="/time-and-date/energy-based-nap-selector/"]'
+      '.td-cluster-switch-chips a[href="/time-and-date/energy-based-nap-selector/"]'
     );
 
     await expect(powerNapLink).toBeVisible();
@@ -57,56 +59,44 @@ test.describe('Wake-Up Time Calculator', () => {
       page.waitForURL('**/time-and-date/power-nap-calculator/'),
       powerNapLink.click(),
     ]);
-    await expect(page.locator('.fin-nav-item.is-active')).toContainText('Power Nap Calculator');
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Power Nap Calculator'
+    );
 
     await Promise.all([
       page.waitForURL('**/time-and-date/energy-based-nap-selector/'),
-      page.locator('.left-nav .fin-nav-item[href="/time-and-date/energy-based-nap-selector/"]').click(),
+      page
+        .locator('.td-cluster-switch-chips a[href="/time-and-date/energy-based-nap-selector/"]')
+        .click(),
     ]);
-    await expect(page.locator('.fin-nav-item.is-active')).toContainText(
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
       'Energy-Based Nap Selector'
     );
   });
 
-  test('WAKEUP-TEST-E2E-1C: finance-style accordion groups and link inventory', async ({
+  test('WAKEUP-TEST-E2E-1C: sleep tools route switch inventory stays intact', async ({
     page,
   }) => {
-    await page.goto('/time-and-date/wake-up-time-calculator');
+    await page.goto('/time-and-date/wake-up-time-calculator/');
 
-    const groups = page.locator('.left-nav .fin-nav-group');
-    await expect(groups).toHaveCount(4);
-
-    const groupLabels = page.locator('.left-nav .fin-nav-toggle-label');
-    await expect(groupLabels).toHaveText(['Sleep Time', 'Work Hours', 'Date & Time', 'Age Calculator']);
-
-    const allLinks = page.locator('.left-nav .fin-nav-item');
-    await expect(allLinks).toHaveCount(12);
-    await expect(allLinks).toContainText([
+    const switcher = page.locator('.td-cluster-route-switch');
+    const switchChips = page.locator('.td-cluster-switch-chips .td-cluster-switch-chip');
+    await expect(switcher).toHaveCount(1);
+    await expect(switchChips).toHaveCount(5);
+    await expect(switchChips).toContainText([
       'Sleep Time Calculator',
       'Wake-Up Time Calculator',
       'Nap Time Calculator',
       'Power Nap Calculator',
       'Energy-Based Nap Selector',
-      'Work Hours Calculator',
-      'Overtime Hours Calculator',
-      'Time Between Two Dates Calculator',
-      'Days Until a Date Calculator',
-      'Countdown Timer Generator',
-      'Age Calculator',
-      'Birthday Day-of-Week',
     ]);
-
-    const toggles = page.locator('.left-nav .fin-nav-toggle');
-    await expect(page.locator('.left-nav .fin-nav-toggle[aria-expanded="true"]')).toHaveCount(1);
-
-    await toggles.nth(1).click();
-    await expect(page.locator('.left-nav .fin-nav-toggle[aria-expanded="true"]')).toHaveCount(1);
-    await expect(toggles.nth(1)).toHaveAttribute('aria-expanded', 'true');
-    await expect(toggles.nth(0)).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
+      'Wake-Up Time Calculator'
+    );
   });
 
   test('WAKEUP-TEST-E2E-2: calculate-only updates and explanation content', async ({ page }) => {
-    await page.goto('/time-and-date/wake-up-time-calculator');
+    await page.goto('/time-and-date/wake-up-time-calculator/');
 
     const resultsList = page.locator('#wake-results-list');
     const firstResultBefore = await resultsList.locator('.wake-result-time').first().textContent();
@@ -123,11 +113,16 @@ test.describe('Wake-Up Time Calculator', () => {
     expect(firstAfterCalculate).not.toBe(firstResultBefore);
 
     const explanation = page.locator('#wake-up-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    expect(await explanation.locator('h3').count()).toBeGreaterThanOrEqual(4);
-    await expect(explanation).toContainText('Scenario Summary');
-    await expect(explanation).toContainText('Results Table');
-    await expect(explanation).toContainText('Frequently Asked Questions');
-    expect(await explanation.locator('.faq-box').count()).toBeGreaterThanOrEqual(10);
+    await expect(explanation.locator('.wake-explanation-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.wake-explanation-card h2')).toHaveText(
+      'When should you wake up from this bedtime or fall-asleep time?'
+    );
+    await expect(explanation.locator('.wake-explanation-card h3')).toHaveCount(3);
+    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation).toContainText('FAQ');
+    await expect(explanation).toContainText('Important Notes');
+    await expect(explanation.locator('.wake-faq-item')).toHaveCount(10);
+    await expect(explanation.locator('.wake-notes li')).toHaveCount(5);
+    await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
   });
 });
