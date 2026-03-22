@@ -1,100 +1,143 @@
 <div id="calc-days-until">
-  <div class="du-header-row">
-    <p class="du-kicker">Countdown planning</p>
-  </div>
-
-  <div class="du-main-cards">
-    <section class="du-input-card" aria-labelledby="days-until-input-title">
-      <p class="du-section-label">Choose your mode</p>
-      <div class="du-mode-tabs" role="group" aria-label="Date counting mode">
-        <button class="du-mode-tab is-selected" type="button" data-mode="today" aria-pressed="true">
-          From today
-        </button>
-        <button class="du-mode-tab" type="button" data-mode="range" aria-pressed="false">
-          Date range
-        </button>
-      </div>
-
-      <div class="du-grid">
-        <label class="du-field-label" for="days-until-date">
-          <span>Target date</span>
-          <input class="du-field" id="days-until-date" type="date" />
-        </label>
-
-        <label class="du-field-label is-hidden" id="days-until-start-wrap" for="days-until-start-date">
-          <span>Start date</span>
-          <input class="du-field" id="days-until-start-date" type="date" />
-        </label>
-
-        <label class="du-field-label" for="days-until-preset">
-          <span>Quick preset</span>
-          <select class="du-field" id="days-until-preset">
-            <option value="">Pick a preset</option>
-            <option value="next-7">In 7 days</option>
-            <option value="next-30">In 30 days</option>
-            <option value="next-weekend">Next weekend</option>
-            <option value="end-of-month">End of this month</option>
-            <option value="first-next-month">First day of next month</option>
-            <option value="new-year">Next New Year</option>
-          </select>
-        </label>
-
-        <div class="du-toggle-row">
-          <label class="du-toggle" for="days-until-include-end">
-            <input id="days-until-include-end" type="checkbox" />
-            <span>Include both dates</span>
-          </label>
-          <label class="du-toggle" for="days-until-business-days">
-            <input id="days-until-business-days" type="checkbox" />
-            <span>Weekdays only</span>
-          </label>
+  <div class="du-shell">
+    <div class="du-main-cards">
+      <section class="du-input-card" aria-labelledby="days-until-input-title">
+        <div class="du-card-head">
+          <p class="du-section-eyebrow">Setup</p>
+          <h2 class="du-card-title" id="days-until-input-title">Build your date plan</h2>
         </div>
 
-        <div class="du-cta-row">
-          <button class="du-btn calculator-button" type="button" id="days-until-calculate">
-            Calculate
-          </button>
-          <button class="du-btn du-btn-ghost" type="button" id="days-until-reset">Reset</button>
+        <div class="du-grid">
+          <section class="du-control-group" aria-labelledby="days-until-mode-title">
+            <p class="du-section-label" id="days-until-mode-title">Mode</p>
+            <div class="du-mode-tabs" role="group" aria-label="Date counting mode">
+              <button class="du-mode-tab is-selected" type="button" data-mode="today" aria-pressed="true">
+                From today
+              </button>
+              <button class="du-mode-tab" type="button" data-mode="range" aria-pressed="false">
+                Date range
+              </button>
+            </div>
+          </section>
+
+          <section class="du-control-group" aria-labelledby="days-until-dates-title">
+            <p class="du-section-label" id="days-until-dates-title">Dates</p>
+
+            <label class="du-field-label" for="days-until-date">
+              <span>Target date</span>
+              <input class="du-field" id="days-until-date" type="date" />
+            </label>
+
+            <label class="du-field-label is-hidden" id="days-until-start-wrap" for="days-until-start-date">
+              <span>Start date</span>
+              <input class="du-field" id="days-until-start-date" type="date" />
+            </label>
+
+            <label class="du-field-label" for="days-until-preset">
+              <span>Quick preset</span>
+              <select class="du-field" id="days-until-preset">
+                <option value="">Pick a preset</option>
+                <option value="next-7">In 7 days</option>
+                <option value="next-30">In 30 days</option>
+                <option value="next-weekend">Next weekend</option>
+                <option value="end-of-month">End of this month</option>
+                <option value="first-next-month">First day of next month</option>
+                <option value="new-year">Next New Year</option>
+              </select>
+            </label>
+          </section>
+
+          <section class="du-control-group" aria-labelledby="days-until-options-title">
+            <p class="du-section-label" id="days-until-options-title">Options</p>
+            <div class="du-toggle-row">
+              <label class="du-toggle" for="days-until-include-end">
+                <input id="days-until-include-end" type="checkbox" />
+                <span>Include both dates</span>
+              </label>
+              <label class="du-toggle" for="days-until-business-days">
+                <input id="days-until-business-days" type="checkbox" />
+                <span>Weekdays only</span>
+              </label>
+            </div>
+          </section>
+
+          <div class="du-cta-row">
+            <button class="du-btn calculator-button" type="button" id="days-until-calculate">
+              Calculate
+            </button>
+            <button class="du-btn du-btn-ghost" type="button" id="days-until-reset">Reset</button>
+          </div>
+
+          <p class="du-error is-hidden" id="days-until-error"></p>
+
+          <div class="du-meta-list" aria-label="Date context">
+            <p class="du-meta" id="days-until-timezone">Local time zone</p>
+            <p class="du-meta" id="days-until-today">Today</p>
+          </div>
         </div>
-
-        <p class="du-error is-hidden" id="days-until-error"></p>
-        <p class="du-kicker" id="days-until-timezone">Local time zone</p>
-        <p class="du-kicker" id="days-until-today">Today</p>
-      </div>
-    </section>
-
-    <section class="du-result-card" aria-live="polite" aria-labelledby="days-until-result-title">
-      <p class="du-result-kicker" id="days-until-result-kicker">Date result</p>
-      <div class="du-result-main">
-        <p class="du-result-value" id="days-until-result-value">--</p>
-        <p class="du-result-unit" id="days-until-result-unit">days</p>
-      </div>
-      <p class="du-result-summary" id="days-until-result-summary">
-        Choose a target date to see the date plan.
-      </p>
-      <p class="du-clarification" id="days-until-clarification">
-        The result updates using your local date.
-      </p>
-
-      <div class="du-status" id="days-until-status"></div>
-      <div class="du-breakdown" id="days-until-breakdown"></div>
-
-      <section class="du-milestones is-hidden" id="days-until-milestones-wrap" aria-labelledby="days-until-milestones-title">
-        <p class="du-section-label" id="days-until-milestones-title">Planning markers</p>
-        <div class="du-milestone-grid" id="days-until-milestones"></div>
       </section>
 
-      <section class="du-actions is-hidden" id="days-until-actions" aria-labelledby="days-until-actions-title">
-        <p class="du-actions-label" id="days-until-actions-title">Share and export</p>
-        <button class="du-btn du-btn-small" type="button" id="days-until-copy-summary">Copy summary</button>
-        <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-dates">Copy dates</button>
-        <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-google">Google Calendar</button>
-        <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-outlook">Outlook</button>
-        <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-ics">Download .ics</button>
-        <button class="du-btn du-btn-small" type="button" id="days-until-generate-share-card">Generate share card</button>
-        <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-share-png">Download PNG</button>
-        <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-share-image">Copy image</button>
-      </section>
+      <div class="du-side-column">
+        <section class="du-result-card" aria-live="polite" aria-labelledby="days-until-result-title">
+          <h2 class="du-sr-only" id="days-until-result-title">Answer</h2>
+          <p class="du-result-kicker" id="days-until-result-kicker">Date result</p>
+          <div class="du-result-main">
+            <p class="du-result-value" id="days-until-result-value">--</p>
+            <p class="du-result-unit" id="days-until-result-unit">days</p>
+          </div>
+          <p class="du-result-summary" id="days-until-result-summary">
+            Choose a target date to see the date plan.
+          </p>
+          <p class="du-clarification" id="days-until-clarification">
+            The result updates using your local date.
+          </p>
+
+          <div class="du-status" id="days-until-status"></div>
+        </section>
+
+        <section class="du-detail-card" aria-labelledby="days-until-detail-title">
+          <div class="du-card-head">
+            <p class="du-section-eyebrow">Details</p>
+            <h2 class="du-card-title du-card-title-small" id="days-until-detail-title">Breakdown and markers</h2>
+          </div>
+
+          <div class="du-breakdown" id="days-until-breakdown"></div>
+
+          <section class="du-milestones is-hidden" id="days-until-milestones-wrap" aria-labelledby="days-until-milestones-title">
+            <p class="du-section-label" id="days-until-milestones-title">Planning markers</p>
+            <div class="du-milestone-grid" id="days-until-milestones"></div>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <section class="du-actions du-actions-card is-hidden" id="days-until-actions" aria-labelledby="days-until-actions-title">
+      <div class="du-card-head du-actions-head">
+        <p class="du-section-eyebrow">Utilities</p>
+        <h2 class="du-card-title du-card-title-small" id="days-until-actions-title">Share and export</h2>
+      </div>
+
+      <div class="du-actions-layout">
+        <section class="du-action-group" aria-labelledby="days-until-share-group-title">
+          <p class="du-actions-label" id="days-until-share-group-title">Share</p>
+          <div class="du-action-grid du-action-grid-share">
+            <button class="du-btn du-btn-small" type="button" id="days-until-generate-share-card">Generate share card</button>
+            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-summary">Copy summary</button>
+            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-dates">Copy dates</button>
+            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-share-png">Download PNG</button>
+            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-share-image">Copy image</button>
+          </div>
+        </section>
+
+        <section class="du-action-group" aria-labelledby="days-until-calendar-group-title">
+          <p class="du-actions-label" id="days-until-calendar-group-title">Calendar export</p>
+          <div class="du-action-grid du-action-grid-calendar">
+            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-google">Google Calendar</button>
+            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-outlook">Outlook</button>
+            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-ics">Download .ics</button>
+          </div>
+        </section>
+      </div>
 
       <p class="du-feedback is-hidden" id="days-until-copy-feedback"></p>
     </section>
