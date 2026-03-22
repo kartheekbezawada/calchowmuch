@@ -2675,7 +2675,6 @@ function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCal
     ? `<section class="td-cluster-route-switch" aria-labelledby="td-cluster-route-switch-title">
   <div class="td-cluster-route-switch-head">
     <div>
-      <p class="td-cluster-switch-kicker">Browse this section</p>
       <h2 id="td-cluster-route-switch-title">More ${subcategory.name} tools</h2>
     </div>
   </div>
@@ -2696,7 +2695,6 @@ function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCal
     ? `<section class="td-cluster-related" aria-labelledby="td-cluster-related-title">
   <div class="td-cluster-related-head">
     <div>
-      <p class="td-cluster-switch-kicker">Explore the cluster</p>
       <h2 id="td-cluster-related-title">Related Time &amp; Date calculators</h2>
     </div>
   </div>
@@ -2721,7 +2719,59 @@ function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCal
 </section>`
     : '';
 
-  return `${switcherHtml}${relatedHtml}`;
+  return {
+    switcherHtml,
+    relatedHtml,
+  };
+}
+
+function injectBeforeImportantNotes(explanationHtml, injectedHtml) {
+  if (!injectedHtml || typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const importantNotesHeadingRe = /<h3>\s*Important Notes\s*<\/h3>/i;
+  const headingMatch = explanationHtml.match(importantNotesHeadingRe);
+
+  if (!headingMatch || typeof headingMatch.index !== 'number') {
+    return `${explanationHtml}\n${injectedHtml}`;
+  }
+
+  const sectionStart = explanationHtml.lastIndexOf('<section', headingMatch.index);
+
+  if (sectionStart === -1) {
+    return `${explanationHtml.slice(0, headingMatch.index)}${injectedHtml}\n${explanationHtml.slice(headingMatch.index)}`;
+  }
+
+  return `${explanationHtml.slice(0, sectionStart)}${injectedHtml}\n\n${explanationHtml.slice(sectionStart)}`;
+}
+
+function injectBeforeFaq(explanationHtml, injectedHtml) {
+  if (!injectedHtml || typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const faqHeadingRe = /<h3>\s*FAQ\s*<\/h3>/i;
+  const headingMatch = explanationHtml.match(faqHeadingRe);
+
+  if (!headingMatch || typeof headingMatch.index !== 'number') {
+    return `${injectedHtml}\n${explanationHtml}`;
+  }
+
+  const sectionStart = explanationHtml.lastIndexOf('<section', headingMatch.index);
+
+  if (sectionStart === -1) {
+    return `${explanationHtml.slice(0, headingMatch.index)}${injectedHtml}\n${explanationHtml.slice(headingMatch.index)}`;
+  }
+
+  return `${explanationHtml.slice(0, sectionStart)}${injectedHtml}\n\n${explanationHtml.slice(sectionStart)}`;
+}
+
+function injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) {
+  return injectBeforeImportantNotes(
+    injectBeforeFaq(explanationHtml, routeSwitchHtml),
+    relatedCalculatorsHtml
+  );
 }
 
 const mathIcons = {
@@ -3154,6 +3204,7 @@ function buildPageHtml({
   staticStructuredData = null,
   injectStaticStructuredData = false,
   relatedCalculatorsHtml = '',
+  routeSwitchHtml = '',
 }) {
   const isCreditCardClusterRoute =
     designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
@@ -3256,15 +3307,12 @@ function buildPageHtml({
         : isMigratedTimeAndDateClusterRoute
         ? `<div class="td-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="td-cluster-page-header">
-    <span class="td-cluster-page-kicker">Time &amp; Date Calculators</span>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="td-cluster-page-intro">${description}</p>
-    <p class="td-cluster-page-trust">Simple planning tools that run locally in your browser.</p>
   </div>
-  ${relatedCalculatorsHtml}
   <div class="calculator-page-single td-cluster-flow">
     ${sanitizedCalculatorHtml}
-    ${explanationHtml}
+    ${injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
   </div>
 </div>`
         : isMigratedAutoLoanClusterRoute
@@ -3321,8 +3369,8 @@ ${explanationTitleHtml}  ${explanationHtml}
     }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single${isMigratedTimeAndDateClusterRoute ? ' td-cluster-flow' : ''}">
-    ${isMigratedTimeAndDateClusterRoute ? `${relatedCalculatorsHtml}
-    ` : ''}${sanitizedCalculatorHtml}
+    ${sanitizedCalculatorHtml}
+    ${isMigratedTimeAndDateClusterRoute ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) : ''}
     ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? relatedCalculatorsHtml : ''}
   </div>
 </div>`;
@@ -3339,8 +3387,8 @@ ${explanationTitleHtml}  ${explanationHtml}
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedTimeAndDateClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${explanationHtml}
-${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedTimeAndDateClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
+${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedTimeAndDateClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${isMigratedTimeAndDateClusterRoute ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) : explanationHtml}
+${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
 </div>`;
   } else if (routeArchetype === 'content_shell') {
     calcContent = `<div class="${
@@ -4288,6 +4336,10 @@ function main() {
       injectStaticStructuredData = true;
     }
 
+    const timeAndDateRelatedSections = isMigratedTimeAndDateClusterRoute
+      ? buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, calculator.id)
+      : null;
+
     const pageHtml = buildPageHtml({
       title: pageTitle,
       description: pageDescription,
@@ -4322,11 +4374,14 @@ function main() {
       relatedCalculatorsHtml: isCreditCardClusterRoute
         ? buildCreditCardRelatedCalculatorsHtml(subcategory, calculator.id)
         : isMigratedTimeAndDateClusterRoute
-        ? buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, calculator.id)
+        ? timeAndDateRelatedSections.relatedHtml
         : isMigratedFinanceClusterRoute
         ? buildFinanceRelatedCalculatorsHtml(category, calculator.id)
         : isMigratedAutoLoanClusterRoute
         ? buildAutoLoanRelatedCalculatorsHtml(subcategory, calculator.id)
+        : '',
+      routeSwitchHtml: isMigratedTimeAndDateClusterRoute
+        ? timeAndDateRelatedSections.switcherHtml
         : '',
     });
 
