@@ -61,15 +61,23 @@ test.describe('Power Nap Calculator', () => {
     await expect(recommended).toHaveCount(2);
     await expect(page.locator('#power-nap-results-list .recommend-badge')).toHaveCount(2);
 
-    const recommendedBackground = await recommended.first().evaluate((row) =>
-      getComputedStyle(row).backgroundImage || getComputedStyle(row).backgroundColor
-    );
-    const regularBackground = await page.locator('#power-nap-results-list .result-row').first().evaluate((row) =>
-      getComputedStyle(row).backgroundImage || getComputedStyle(row).backgroundColor
-    );
+    const recommendedBackground = await recommended.first().evaluate((row) => {
+      const styles = getComputedStyle(row);
+      return {
+        image: styles.backgroundImage,
+        color: styles.backgroundColor,
+      };
+    });
+    const regularBackground = await page.locator('#power-nap-results-list .result-row').first().evaluate((row) => {
+      const styles = getComputedStyle(row);
+      return {
+        image: styles.backgroundImage,
+        color: styles.backgroundColor,
+      };
+    });
 
-    expect(recommendedBackground).not.toBe('none');
-    expect(recommendedBackground).not.toBe(regularBackground);
+    expect(recommendedBackground.image !== 'none' || recommendedBackground.color !== regularBackground.color).toBeTruthy();
+    expect(recommendedBackground).not.toEqual(regularBackground);
   });
 
   test('POWER-NAP-TEST-E2E-3: evening warning for late start', async ({ page }) => {

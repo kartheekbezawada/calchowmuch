@@ -66,6 +66,130 @@ Notes:
 
 - scoped SEO emitted a thin-content quality warning artifact, but the route passed its hard SEO gate and mojibake scan with zero findings
 
+## 2026-03-22 — Route Complete: `energy-based-nap-selector`
+
+Status:
+
+- completed
+
+Changes:
+
+- corrected the primary-card visual differentiation test so it inspects the computed background image and color values instead of treating the string `none` as a visual state
+- added explicit light-theme overrides for the primary recommendation card, alternative rows, warning surface, footer note, and explanation cards so the final cascade matches the redesigned Time & Date cluster
+- aligned the SEO test with the route's actual calculator structured-data output, which serializes `WebPage` and `FAQPage` in `data-calculator-ld`
+
+Files touched:
+
+- `public/calculators/time-and-date/energy-based-nap-selector/calculator.css`
+- `tests_specs/sleep-and-nap/energy-based-nap-selector_release/e2e.calc.spec.js`
+- `tests_specs/sleep-and-nap/energy-based-nap-selector_release/seo.calc.spec.js`
+- `public/time-and-date/energy-based-nap-selector/index.html`
+
+Validation:
+
+- `node scripts/generate-mpa-pages.js --calc-id energy-based-nap-selector` -> pass
+- `CLUSTER=sleep-and-nap CALC=energy-based-nap-selector npm run test:calc:unit` -> pass
+- `CLUSTER=sleep-and-nap CALC=energy-based-nap-selector npm run test:calc:e2e` -> pass
+- `CLUSTER=sleep-and-nap CALC=energy-based-nap-selector npm run test:calc:seo` -> pass
+- `CLUSTER=sleep-and-nap CALC=energy-based-nap-selector npm run test:calc:cwv` -> pass
+- `CLUSTER=sleep-and-nap CALC=energy-based-nap-selector npm run test:schema:dedupe -- --scope=calc` -> pass
+- `npm run lint:css-import` -> pass
+
+Notes:
+
+- scoped SEO emitted a thin-content quality warning artifact, but the route passed its hard SEO gate and mojibake scan with zero findings
+
+## 2026-03-22 — Cluster Closeout: `time-and-date`
+
+Status:
+
+- completed
+
+Changes:
+
+- ran cluster-closeout validation for the full Time & Date rollout using the two scoped test suites that cover the migrated routes: `time-and-date` and `sleep-and-nap`
+- confirmed that all 12 target routes in the action page are now complete and validated under the redesigned Time & Date shell
+
+Validation:
+
+- `npm run lint` -> pass
+- `CLUSTER=time-and-date npm run test:cluster:unit` -> pass
+- `CLUSTER=time-and-date npm run test:cluster:e2e` -> pass
+- `CLUSTER=time-and-date npm run test:cluster:seo` -> pass
+- `CLUSTER=time-and-date npm run test:cluster:cwv` -> pass
+- `CLUSTER=time-and-date npm run test:schema:dedupe -- --scope=cluster` -> pass
+- `CLUSTER=sleep-and-nap npm run test:cluster:unit` -> pass
+- `CLUSTER=sleep-and-nap npm run test:cluster:e2e` -> pass
+- `CLUSTER=sleep-and-nap npm run test:cluster:seo` -> pass
+- `CLUSTER=sleep-and-nap npm run test:cluster:cwv` -> pass
+- `CLUSTER=sleep-and-nap npm run test:schema:dedupe -- --scope=cluster` -> pass
+- `npm run lint:css-import` -> pass
+
+Notes:
+
+- cluster-closeout log completed with no failure markers in the saved terminal transcript
+
+## 2026-03-22 — Route Complete: `power-nap-calculator`
+
+Status:
+
+- completed
+
+Changes:
+
+- replaced the mixed dark/light route stylesheet with a clean light-shell implementation so the calculator surface and explanation match the redesigned Time & Date cluster
+- fixed the release test that checked row highlighting so it compares actual computed background styles rather than treating the string `none` as a visual value
+- validated that recommended nap rows are now visibly distinct while preserving the existing nap-duration logic and evening warning behavior
+
+Files touched:
+
+- `public/calculators/time-and-date/power-nap-calculator/calculator.css`
+- `tests_specs/sleep-and-nap/power-nap-calculator_release/e2e.calc.spec.js`
+- `public/time-and-date/power-nap-calculator/index.html`
+
+Validation:
+
+- `node scripts/generate-mpa-pages.js --calc-id power-nap-calculator` -> pass
+- `CLUSTER=sleep-and-nap CALC=power-nap-calculator npm run test:calc:unit` -> pass
+- `CLUSTER=sleep-and-nap CALC=power-nap-calculator npm run test:calc:e2e` -> pass
+- `CLUSTER=sleep-and-nap CALC=power-nap-calculator npm run test:calc:seo` -> pass
+- `CLUSTER=sleep-and-nap CALC=power-nap-calculator npm run test:calc:cwv` -> pass
+- `CLUSTER=sleep-and-nap CALC=power-nap-calculator npm run test:schema:dedupe -- --scope=calc` -> pass
+- `npm run lint:css-import` -> pass
+
+Notes:
+
+- scoped SEO emitted a thin-content quality warning artifact, but the route passed its hard SEO gate and mojibake scan with zero findings
+
+## 2026-03-22 — Route Complete: `nap-time-calculator`
+
+Status:
+
+- completed
+
+Changes:
+
+- validated the migrated nap-time route on the dedicated Time & Date light shell with no top nav, left nav, or ads column
+- confirmed the route explanation, FAQ schema, subgroup switcher, and generated public page already matched the release contract without additional source edits
+
+Files touched:
+
+- `public/time-and-date/nap-time-calculator/index.html`
+
+Validation:
+
+- `node scripts/generate-mpa-pages.js --calc-id nap-time-calculator` -> pass
+- `CLUSTER=sleep-and-nap CALC=nap-time-calculator npm run test:calc:unit` -> pass
+- `CLUSTER=sleep-and-nap CALC=nap-time-calculator npm run test:calc:e2e` -> pass
+- `CLUSTER=sleep-and-nap CALC=nap-time-calculator npm run test:calc:seo` -> pass
+- `CLUSTER=sleep-and-nap CALC=nap-time-calculator npm run test:calc:cwv` -> pass
+- `CLUSTER=sleep-and-nap CALC=nap-time-calculator npm run test:schema:dedupe -- --scope=calc` -> pass
+- `npm run lint:css-import` -> pass
+
+Notes:
+
+- scoped SEO emitted a thin-content quality warning artifact, but the route passed its hard SEO gate and mojibake scan with zero findings
+
 - This log is append-only.
 - Each route completion entry must record files touched, what changed, evidence, and test results.
 
@@ -138,6 +262,36 @@ Validation:
 Notes:
 
 - the generated public route now uses the new `td-cluster-page-shell` branch
+
+## 2026-03-22 — Route Complete: `wake-up-time-calculator`
+
+Status:
+
+- completed
+
+Changes:
+
+- validated the migrated wake-up route on the dedicated Time & Date light shell with no top nav, left nav, or ads column
+- corrected the sleep-tools route-switch release tests so they target the migrated cluster-switch markup instead of the retired route-switch selectors
+- aligned the subgroup inventory assertion with the actual sleep-tools switcher, which intentionally renders the five sleep and nap tools rather than the full Time & Date catalog
+
+Files touched:
+
+- `tests_specs/sleep-and-nap/wake-up-time-calculator_release/e2e.calc.spec.js`
+
+Validation:
+
+- `node scripts/generate-mpa-pages.js --calc-id wake-up-time-calculator` -> pass
+- `CLUSTER=sleep-and-nap CALC=wake-up-time-calculator npm run test:calc:unit` -> pass
+- `CLUSTER=sleep-and-nap CALC=wake-up-time-calculator npm run test:calc:e2e` -> pass
+- `CLUSTER=sleep-and-nap CALC=wake-up-time-calculator npm run test:calc:seo` -> pass
+- `CLUSTER=sleep-and-nap CALC=wake-up-time-calculator npm run test:calc:cwv` -> pass
+- `CLUSTER=sleep-and-nap CALC=wake-up-time-calculator npm run test:schema:dedupe -- --scope=calc` -> pass
+- `npm run lint:css-import` -> pass
+
+Notes:
+
+- scoped SEO emitted a thin-content quality warning artifact, but the route passed its hard SEO gate and mojibake scan with zero findings
 
 ## 2026-03-22 — Route Complete: `sleep-time-calculator`
 

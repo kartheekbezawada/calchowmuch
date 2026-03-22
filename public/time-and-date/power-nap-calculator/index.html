@@ -1246,504 +1246,346 @@
 
       /* calculators/time-and-date/power-nap-calculator/calculator.css */
       #calc-power-nap {
-        --pn-ink: #e6eeff;
-        --pn-muted: #9aa8d0;
-        --pn-accent: #59f3ff;
-        --pn-accent-2: #7f8dff;
-        --pn-accent-3: #34d399;
-        --pn-bg-1: #040711;
-        --pn-bg-2: #0a1026;
-        #calc-power-nap {
-          --power-text: #243244;
-          --power-accent: #db7a34;
-          --power-highlight: #6d9a66;
-          --power-border: rgba(109, 154, 102, 0.18);
-          --power-surface: rgba(255, 251, 245, 0.92);
-          --power-surface-soft: rgba(245, 240, 230, 0.78);
-          position: relative;
-          border-radius: 24px;
-          overflow: hidden;
-          background: radial-gradient(circle at 14% 8%, rgba(219, 122, 52, 0.18), transparent 34%),
-            radial-gradient(circle at 88% 14%, rgba(109, 154, 102, 0.16), transparent 28%),
-            linear-gradient(180deg, #fff4e6 0%, #edf5e8 100%);
-          border: 1px solid var(--power-border);
-          box-shadow: 0 24px 54px rgba(36, 50, 68, 0.08);
-        }
+        --power-text: #243244;
+        --power-muted: rgba(36, 50, 68, 0.72);
+        --power-accent: #db7a34;
+        --power-highlight: #6d9a66;
+        --power-border: rgba(109, 154, 102, 0.18);
+        --power-border-strong: rgba(219, 122, 52, 0.3);
+        --power-surface: rgba(255, 251, 245, 0.92);
+        --power-surface-soft: rgba(245, 240, 230, 0.78);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--power-border);
+        border-radius: 24px;
+        background:
+          radial-gradient(circle at 14% 8%, rgba(219, 122, 52, 0.18), transparent 34%),
+          radial-gradient(circle at 88% 14%, rgba(109, 154, 102, 0.16), transparent 28%),
+          linear-gradient(180deg, #fff4e6 0%, #edf5e8 100%);
+        box-shadow: 0 24px 54px rgba(36, 50, 68, 0.08);
+      }
 
-        #calc-power-nap .power-nap-scene {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-        }
+      #calc-power-nap .power-nap-scene {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
 
-        #calc-power-nap .power-nap-aurora {
-          position: absolute;
-          width: 320px;
-          height: 320px;
-          filter: blur(44px);
-          opacity: 0.46;
-        }
+      #calc-power-nap .power-nap-aurora {
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        filter: blur(44px);
+        opacity: 0.46;
+      }
 
-        #calc-power-nap .power-nap-aurora-one {
-          top: -90px;
-          left: -28px;
-          background: rgba(219, 122, 52, 0.5);
-        }
+      #calc-power-nap .power-nap-aurora-one {
+        top: -90px;
+        left: -28px;
+        background: rgba(219, 122, 52, 0.5);
+      }
 
-        #calc-power-nap .power-nap-aurora-two {
-          top: -70px;
-          right: -30px;
-          background: rgba(109, 154, 102, 0.4);
-        }
+      #calc-power-nap .power-nap-aurora-two {
+        top: -70px;
+        right: -30px;
+        background: rgba(109, 154, 102, 0.4);
+      }
 
-        #calc-power-nap .power-nap-grid-glow {
-          position: absolute;
-          inset: auto 0 0;
-          height: 40%;
-          background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(109, 154, 102, 0.08) 100%),
-            linear-gradient(90deg, rgba(109, 154, 102, 0.08) 1px, transparent 1px),
-            linear-gradient(180deg, rgba(109, 154, 102, 0.08) 1px, transparent 1px);
-          background-size: auto, 48px 48px, 48px 48px;
-        }
+      #calc-power-nap .power-nap-grid-glow {
+        position: absolute;
+        inset: auto 0 0;
+        height: 40%;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(109, 154, 102, 0.08) 100%),
+          linear-gradient(90deg, rgba(109, 154, 102, 0.08) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(109, 154, 102, 0.08) 1px, transparent 1px);
+        background-size: auto, 48px 48px, 48px 48px;
+      }
 
-        #calc-power-nap .power-nap-orb {
-          position: absolute;
-          left: 12%;
-          bottom: 14%;
-          width: 180px;
-          height: 180px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(244, 188, 97, 0.22), transparent 70%);
-        }
+      #calc-power-nap .power-nap-orb {
+        position: absolute;
+        left: 12%;
+        bottom: 14%;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(244, 188, 97, 0.22), transparent 70%);
+      }
 
-        #calc-power-nap .power-nap-container {
-          position: relative;
-          z-index: 1;
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 24px 24px 42px;
-        }
+      #calc-power-nap .power-nap-container {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 24px 24px 42px;
+      }
 
-        #calc-power-nap .power-nap-hero-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 12px;
-          color: var(--power-highlight);
-          font-size: 11px;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
-        }
+      #calc-power-nap .power-nap-hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        color: var(--power-highlight);
+        font-size: 11px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
 
-        #calc-power-nap .power-nap-hero-tag::before {
-          content: '';
-          width: 28px;
-          height: 1px;
-          background: currentColor;
-        }
+      #calc-power-nap .power-nap-hero-tag::before {
+        content: '';
+        width: 28px;
+        height: 1px;
+        background: currentColor;
+      }
 
-        #calc-power-nap .power-nap-hero-title {
-          margin: 0 0 10px;
-          color: var(--power-text);
-          font-family: Georgia, 'Times New Roman', serif;
-          font-size: clamp(2rem, 5vw, 2.85rem);
-          line-height: 1.08;
-        }
+      #calc-power-nap .power-nap-hero-title {
+        margin: 0 0 10px;
+        color: var(--power-text);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(2rem, 5vw, 2.85rem);
+        line-height: 1.08;
+      }
 
-        #calc-power-nap .power-nap-hero-title em {
-          color: var(--power-accent);
-        }
+      #calc-power-nap .power-nap-hero-title em {
+        color: var(--power-accent);
+      }
 
-        #calc-power-nap .power-nap-tagline,
-        #calc-power-nap .power-nap-results-note,
-        #calc-power-nap .power-nap-micro-note {
-          margin: 0;
-          color: rgba(36, 50, 68, 0.72);
-          font-size: 14px;
-          line-height: 1.6;
-        }
+      #calc-power-nap .power-nap-tagline,
+      #calc-power-nap .power-nap-results-note,
+      #calc-power-nap .power-nap-micro-note,
+      #calc-power-nap .placeholder,
+      #calc-power-nap .evening-warning,
+      #calc-power-nap .form-error {
+        margin: 0;
+        color: var(--power-muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
 
-        #calc-power-nap .power-nap-layout {
-          display: grid;
-          grid-template-columns: minmax(0, 1.3fr) minmax(280px, 1fr);
-          gap: 14px;
-          margin-top: 24px;
-        }
+      #calc-power-nap .power-nap-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(280px, 1fr);
+        gap: 14px;
+        margin-top: 24px;
+      }
 
-        #calc-power-nap .power-nap-card {
-          display: grid;
-          gap: 14px;
-          padding: 22px;
-          border-radius: 24px;
-          border: 1px solid var(--power-border);
-          background: var(--power-surface);
-          box-shadow: 0 18px 36px rgba(36, 50, 68, 0.08);
-        }
+      #calc-power-nap .power-nap-card {
+        display: grid;
+        gap: 14px;
+        padding: 22px;
+        border-radius: 24px;
+        border: 1px solid var(--power-border);
+        background: var(--power-surface);
+        box-shadow: 0 18px 36px rgba(36, 50, 68, 0.08);
+      }
 
-        #calc-power-nap .power-nap-results-title,
-        #calc-power-nap .power-nap-label {
-          margin: 0;
-          color: rgba(36, 50, 68, 0.56);
-          font-size: 11px;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-        }
+      #calc-power-nap .power-nap-results-title,
+      #calc-power-nap .power-nap-label {
+        margin: 0;
+        color: rgba(36, 50, 68, 0.56);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
 
-        #calc-power-nap .power-nap-input-row label {
-          display: block;
-          margin-bottom: 8px;
-          color: var(--power-text);
-        }
+      #calc-power-nap .power-nap-input-row label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--power-text);
+      }
 
-        #calc-power-nap .power-nap-input-with-action {
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) auto;
-          gap: 10px;
-        }
+      #calc-power-nap .power-nap-input-with-action {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px;
+      }
 
-        #calc-power-nap .power-nap-input-with-action input {
-          min-height: 52px;
-          padding: 0 16px;
-          border-radius: 16px;
-          border: 1px solid var(--power-border);
-          background: rgba(255, 255, 255, 0.92);
-          color: var(--power-text);
-          font-family: Georgia, 'Times New Roman', serif;
-          font-size: 24px;
-          color-scheme: light;
-        }
+      #calc-power-nap .power-nap-input-with-action input {
+        min-height: 52px;
+        padding: 0 16px;
+        border-radius: 16px;
+        border: 1px solid var(--power-border);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--power-text);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 24px;
+        color-scheme: light;
+      }
 
-        #calc-power-nap .power-nap-input-with-action input:focus {
-          outline: none;
-          border-color: rgba(219, 122, 52, 0.42);
-          box-shadow: 0 0 0 3px rgba(219, 122, 52, 0.12);
-        }
+      #calc-power-nap .power-nap-input-with-action input:focus {
+        outline: none;
+        border-color: rgba(219, 122, 52, 0.42);
+        box-shadow: 0 0 0 3px rgba(219, 122, 52, 0.12);
+      }
 
-        #calc-power-nap .power-nap-calculate,
-        #calc-power-nap .power-nap-input-with-action .calculator-button {
-          min-height: 50px;
-          border-radius: 16px;
-          transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-        }
+      #calc-power-nap .power-nap-calculate,
+      #calc-power-nap .power-nap-input-with-action .calculator-button {
+        min-height: 50px;
+        border-radius: 16px;
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      }
 
-        #calc-power-nap .power-nap-input-with-action .calculator-button {
-          border: 1px solid var(--power-border);
-          background: rgba(255, 255, 255, 0.86);
-          color: var(--power-text);
-        }
+      #calc-power-nap .power-nap-input-with-action .calculator-button {
+        border: 1px solid var(--power-border);
+        background: rgba(255, 255, 255, 0.86);
+        color: var(--power-text);
+      }
 
-        #calc-power-nap .power-nap-calculate {
-          border: 0;
-          background: linear-gradient(135deg, #f1a258, #7dac74);
-          color: #fffef8;
-          font-weight: 700;
-          box-shadow: 0 16px 28px rgba(219, 122, 52, 0.22);
-        }
+      #calc-power-nap .power-nap-calculate {
+        border: 0;
+        background: linear-gradient(135deg, #f1a258, #7dac74);
+        color: #fffef8;
+        font-weight: 700;
+        box-shadow: 0 16px 28px rgba(219, 122, 52, 0.22);
+      }
 
-        #calc-power-nap .power-nap-calculate:hover,
-        #calc-power-nap .power-nap-input-with-action .calculator-button:hover {
-          transform: translateY(-1px);
-        }
+      #calc-power-nap .power-nap-calculate:hover,
+      #calc-power-nap .power-nap-input-with-action .calculator-button:hover {
+        transform: translateY(-1px);
+      }
 
-        #calc-power-nap .power-nap-results-list {
-          display: grid;
-          gap: 10px;
-        }
+      #calc-power-nap .power-nap-results-list {
+        display: grid;
+        gap: 10px;
+      }
 
-        #calc-power-nap .result-row {
-          display: flex;
-          justify-content: space-between;
-          gap: 16px;
-          padding: 14px 16px;
-          border-radius: 16px;
-          border: 1px solid rgba(109, 154, 102, 0.14);
-          background: rgba(255, 255, 255, 0.76);
-          color: var(--power-text);
-        }
+      #calc-power-nap .result-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(109, 154, 102, 0.14);
+        background-color: rgba(255, 255, 255, 0.76);
+        background-image: none;
+        color: var(--power-text);
+      }
 
-        #calc-power-nap .result-row.is-recommended {
-          background: linear-gradient(135deg, rgba(255, 241, 225, 0.98), rgba(235, 247, 231, 0.94));
-          border-color: rgba(219, 122, 52, 0.28);
-          box-shadow: 0 14px 28px rgba(219, 122, 52, 0.1);
-        }
-
-        #calc-power-nap .recommend-badge {
-          display: inline-flex;
-          margin-left: 8px;
-          padding: 4px 10px;
-          border-radius: 999px;
-          background: rgba(109, 154, 102, 0.14);
-          color: var(--power-highlight);
-          font-size: 11px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-        }
-
-        #calc-power-nap .evening-warning,
-        #calc-power-nap .placeholder,
-        #calc-power-nap .form-error {
-          margin: 0;
-          padding: 14px 16px;
-          border-radius: 16px;
-          background: var(--power-surface-soft);
-          color: rgba(36, 50, 68, 0.72);
-        }
-
-        #calc-power-nap .evening-warning {
-          border: 1px solid rgba(219, 122, 52, 0.22);
-          color: #98511d;
-        }
-
-        #calc-power-nap .form-error,
-        #calc-power-nap .is-hidden {
-          display: none !important;
-        }
-
-        #power-nap-explanation {
-          display: grid;
-          gap: 16px;
-          margin-top: 22px;
-        }
-
-        #power-nap-explanation .power-nap-exp-card {
-          padding: 22px;
-          border-radius: 20px;
-          border: 1px solid rgba(109, 154, 102, 0.14);
-          background: rgba(255, 255, 255, 0.86);
-          color: rgba(36, 50, 68, 0.82);
-          box-shadow: 0 16px 32px rgba(36, 50, 68, 0.06);
-        }
-
-        #power-nap-explanation .power-nap-exp-kicker {
-          margin: 0 0 10px;
-          color: var(--power-highlight);
-          font-size: 11px;
-          letter-spacing: 0.24em;
-          text-transform: uppercase;
-        }
-
-        #power-nap-explanation h2,
-        #power-nap-explanation h3,
-        #power-nap-explanation h4 {
-          margin-top: 0;
-          color: var(--power-text);
-        }
-
-        #power-nap-explanation h2 {
-          margin-bottom: 12px;
-          font-family: Georgia, 'Times New Roman', serif;
-          font-size: clamp(1.6rem, 3vw, 2rem);
-          line-height: 1.18;
-        }
-
-        #power-nap-explanation p,
-        #power-nap-explanation li {
-          font-size: 14px;
-          line-height: 1.7;
-        }
-
-        #power-nap-explanation .power-nap-howto,
-        #power-nap-explanation .power-nap-notes {
-          margin: 0;
-          padding-left: 18px;
-        }
-
-        #power-nap-explanation .power-nap-faq-grid {
-          display: grid;
-          gap: 12px;
-        }
-
-        #power-nap-explanation .faq-card {
-          padding: 16px 18px;
-          border-radius: 16px;
-          border: 1px solid rgba(109, 154, 102, 0.12);
-          background: rgba(245, 240, 230, 0.74);
-        }
-
-        @media (max-width: 900px) {
-          #calc-power-nap .power-nap-layout {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-width: 640px) {
-          #calc-power-nap .power-nap-container {
-            padding: 20px 16px 30px;
-          }
-
-          #calc-power-nap .power-nap-input-with-action,
-          #calc-power-nap .result-row {
-            grid-template-columns: 1fr;
-            flex-direction: column;
-          }
-
-          #power-nap-explanation .power-nap-exp-card {
-            padding: 18px;
-          }
-        }
       #calc-power-nap .result-row span:last-child {
         font-weight: 700;
-        color: #f2f7ff;
+        color: var(--power-text);
       }
 
       #calc-power-nap .result-row.is-recommended {
-        border-color: rgba(89, 243, 255, 0.58);
-        background-color: rgb(15, 23, 42);
-        background-image: linear-gradient(140deg, rgba(10, 21, 46, 0.9), rgba(18, 39, 72, 0.86));
+        border-color: var(--power-border-strong);
+        background-color: rgb(252, 243, 231);
+        background-image: linear-gradient(135deg, rgba(255, 241, 225, 0.98), rgba(235, 247, 231, 0.94));
+        box-shadow: 0 14px 28px rgba(219, 122, 52, 0.1);
       }
 
       #calc-power-nap .recommend-badge {
+        display: inline-flex;
         margin-left: 8px;
-        color: var(--pn-accent);
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(109, 154, 102, 0.14);
+        color: var(--power-highlight);
         font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
+      }
+
+      #calc-power-nap .placeholder,
+      #calc-power-nap .evening-warning,
+      #calc-power-nap .form-error {
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: var(--power-surface-soft);
       }
 
       #calc-power-nap .evening-warning {
-        margin-top: 10px;
-        border: 1px solid rgba(245, 158, 11, 0.48);
-        border-radius: 12px;
-        padding: 10px 12px;
-        background: linear-gradient(160deg, rgba(55, 32, 10, 0.86), rgba(35, 23, 9, 0.84));
-        color: #ffdca2;
-        font-size: 13px;
-        line-height: 1.5;
+        border: 1px solid rgba(219, 122, 52, 0.22);
+        color: #98511d;
       }
 
       #calc-power-nap .form-error {
-        margin: 8px 0 0;
-        color: #fca5a5;
-        font-size: 13px;
-        font-weight: 700;
+        color: #aa4f29;
       }
 
-      .panel-span-all > h3 {
-        margin-top: 18px;
+      #calc-power-nap .is-hidden {
+        display: none !important;
       }
 
       #power-nap-explanation {
-        margin-top: 8px;
         display: grid;
-        gap: 14px;
-        border: 1px solid rgba(127, 141, 255, 0.26);
-        border-radius: 18px;
-        background: linear-gradient(180deg, rgba(10, 15, 33, 0.94), rgba(14, 22, 48, 0.9));
-        padding: 18px;
-        content-visibility: auto;
-        contain-intrinsic-size: 1px 940px;
+        gap: 16px;
+        margin-top: 22px;
       }
 
-      #power-nap-explanation h2 {
-        margin: 0;
-        color: #e8f4ff;
-        font-size: 1.1rem;
+      #power-nap-explanation .power-nap-exp-card {
+        padding: 22px;
+        border-radius: 20px;
+        border: 1px solid rgba(109, 154, 102, 0.14);
+        background: rgba(255, 255, 255, 0.86);
+        color: rgba(36, 50, 68, 0.82);
+        box-shadow: 0 16px 32px rgba(36, 50, 68, 0.06);
       }
 
-      #power-nap-explanation h3 {
-        margin: 6px 0 0;
-        color: #c8dcff;
-        font-size: 0.95rem;
-        letter-spacing: 0.08em;
+      #power-nap-explanation .power-nap-exp-kicker {
+        margin: 0 0 10px;
+        color: var(--power-highlight);
+        font-size: 11px;
+        letter-spacing: 0.24em;
         text-transform: uppercase;
       }
 
+      #power-nap-explanation h2,
+      #power-nap-explanation h3,
       #power-nap-explanation h4 {
-        margin: 0;
-        color: #d7e7ff;
-        font-size: 0.95rem;
+        margin-top: 0;
+        color: var(--power-text);
+      }
+
+      #power-nap-explanation h2 {
+        margin-bottom: 12px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(1.6rem, 3vw, 2rem);
+        line-height: 1.18;
       }
 
       #power-nap-explanation p,
       #power-nap-explanation li {
-        margin: 0;
-        color: rgba(214, 225, 249, 0.9);
-        line-height: 1.6;
         font-size: 14px;
+        line-height: 1.7;
       }
 
       #power-nap-explanation .power-nap-howto,
       #power-nap-explanation .power-nap-notes {
         margin: 0;
         padding-left: 18px;
+      }
+
+      #power-nap-explanation .power-nap-faq-grid {
         display: grid;
-        gap: 7px;
+        gap: 12px;
       }
 
-      #power-nap-explanation .power-nap-updated {
-        color: rgba(154, 200, 255, 0.92);
-        font-size: 13px;
-        font-weight: 700;
+      #power-nap-explanation .faq-card {
+        padding: 16px 18px;
+        border-radius: 16px;
+        border: 1px solid rgba(109, 154, 102, 0.12);
+        background: rgba(245, 240, 230, 0.74);
       }
 
-      #power-nap-explanation .power-nap-faq-item {
-        display: grid;
-        gap: 8px;
-        border: 1px solid rgba(127, 141, 255, 0.3);
-        border-radius: 14px;
-        background: rgba(8, 13, 30, 0.78);
-        padding: 12px 13px;
-      }
-
-      @media (min-width: 861px) {
-        body[data-page='calculator'] .ads-column {
-          display: none !important;
-        }
-
-        body[data-page='calculator'] .center-column.calculator-page-single {
-          grid-column: 2 / -1;
-          grid-template-columns: minmax(0, 1fr);
-        }
-
-        body[data-page='calculator'] .center-column.calculator-page-single > .panel.panel-span-all {
-          align-items: center;
-        }
-
-        #calc-power-nap,
-        #power-nap-explanation {
-          width: min(100%, 1120px);
-          margin-inline: auto;
-        }
-      }
-
-      @media (max-width: 980px) {
+      @media (max-width: 900px) {
         #calc-power-nap .power-nap-layout {
           grid-template-columns: 1fr;
         }
-
-        #calc-power-nap .power-nap-orb {
-          width: 78px;
-          height: 78px;
-          top: 14px;
-          right: 14px;
-        }
       }
 
-      @media (max-width: 700px) {
+      @media (max-width: 640px) {
         #calc-power-nap .power-nap-container {
-          padding: 16px 14px 34px;
+          padding: 20px 16px 30px;
         }
 
-        #calc-power-nap .power-nap-hero-title {
-          max-width: 100%;
+        #calc-power-nap .power-nap-input-with-action,
+        #calc-power-nap .result-row {
+          flex-direction: column;
         }
 
-        #calc-power-nap .power-nap-input-with-action {
-          grid-template-columns: 1fr;
-        }
-
-        #calc-power-nap #power-nap-start-time,
-        #calc-power-nap #power-nap-use-now {
-          min-height: 52px;
-        }
-
-        #calc-power-nap #power-nap-start-time {
-          font-size: 24px;
-        }
-
-        #power-nap-explanation {
-          padding: 14px;
+        #power-nap-explanation .power-nap-exp-card {
+          padding: 18px;
         }
       }
     </style>

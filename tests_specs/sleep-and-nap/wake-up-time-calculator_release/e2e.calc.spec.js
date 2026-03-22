@@ -44,10 +44,10 @@ test.describe('Wake-Up Time Calculator', () => {
     await page.goto('/time-and-date/wake-up-time-calculator/');
 
     const powerNapLink = page.locator(
-      '.td-route-switch a[href="/time-and-date/power-nap-calculator/"]'
+      '.td-cluster-switch-chips a[href="/time-and-date/power-nap-calculator/"]'
     );
     const energyNapLink = page.locator(
-      '.td-route-switch a[href="/time-and-date/energy-based-nap-selector/"]'
+      '.td-cluster-switch-chips a[href="/time-and-date/energy-based-nap-selector/"]'
     );
 
     await expect(powerNapLink).toBeVisible();
@@ -65,33 +65,30 @@ test.describe('Wake-Up Time Calculator', () => {
 
     await Promise.all([
       page.waitForURL('**/time-and-date/energy-based-nap-selector/'),
-      page.locator('.td-route-switch a[href="/time-and-date/energy-based-nap-selector/"]').click(),
+      page
+        .locator('.td-cluster-switch-chips a[href="/time-and-date/energy-based-nap-selector/"]')
+        .click(),
     ]);
     await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
       'Energy-Based Nap Selector'
     );
   });
 
-  test('WAKEUP-TEST-E2E-1C: route switch inventory stays intact', async ({
+  test('WAKEUP-TEST-E2E-1C: sleep tools route switch inventory stays intact', async ({
     page,
   }) => {
     await page.goto('/time-and-date/wake-up-time-calculator/');
 
-    const switcher = page.locator('.td-route-switch');
+    const switcher = page.locator('.td-cluster-route-switch');
+    const switchChips = page.locator('.td-cluster-switch-chips .td-cluster-switch-chip');
     await expect(switcher).toHaveCount(1);
-    await expect(switcher).toContainText([
+    await expect(switchChips).toHaveCount(5);
+    await expect(switchChips).toContainText([
       'Sleep Time Calculator',
       'Wake-Up Time Calculator',
       'Nap Time Calculator',
       'Power Nap Calculator',
       'Energy-Based Nap Selector',
-      'Work Hours Calculator',
-      'Overtime Hours Calculator',
-      'Time Between Two Dates Calculator',
-      'Days Until a Date Calculator',
-      'Countdown Timer Generator',
-      'Age Calculator',
-      'Birthday Day-of-Week',
     ]);
     await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
       'Wake-Up Time Calculator'

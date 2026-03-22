@@ -64,14 +64,25 @@ test.describe('Energy-Based Nap Selector', () => {
     await expect(primaryCard).toBeVisible();
     await expect(primaryCard.locator('h4')).toContainText('Primary recommendation');
 
-    const primaryBackground = await primaryCard.evaluate((card) =>
-      getComputedStyle(card).backgroundImage || getComputedStyle(card).backgroundColor
-    );
-    const alternativeBackground = await page.locator('#energy-nap-alternatives .energy-alt-row').first().evaluate((row) =>
-      getComputedStyle(row).backgroundImage || getComputedStyle(row).backgroundColor
-    );
+    const primaryBackground = await primaryCard.evaluate((card) => {
+      const styles = getComputedStyle(card);
+      return {
+        image: styles.backgroundImage,
+        color: styles.backgroundColor,
+      };
+    });
+    const alternativeBackground = await page
+      .locator('#energy-nap-alternatives .energy-alt-row')
+      .first()
+      .evaluate((row) => {
+        const styles = getComputedStyle(row);
+        return {
+          image: styles.backgroundImage,
+          color: styles.backgroundColor,
+        };
+      });
 
-    expect(primaryBackground).not.toBe('none');
-    expect(primaryBackground).not.toBe(alternativeBackground);
+    expect(primaryBackground.image !== 'none' || primaryBackground.color !== alternativeBackground.color).toBeTruthy();
+    expect(primaryBackground).not.toEqual(alternativeBackground);
   });
 });

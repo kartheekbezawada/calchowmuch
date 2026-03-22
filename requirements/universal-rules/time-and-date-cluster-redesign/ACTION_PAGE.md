@@ -147,10 +147,10 @@ Out-of-scope violation rule:
 6. [x] `work-hours-calculator`
 7. [x] `overtime-hours-calculator`
 8. [x] `sleep-time-calculator`
-9. [ ] `wake-up-time-calculator`
-10. [ ] `nap-time-calculator`
-11. [ ] `power-nap-calculator`
-12. [ ] `energy-based-nap-selector`
+9. [x] `wake-up-time-calculator`
+10. [x] `nap-time-calculator`
+11. [x] `power-nap-calculator`
+12. [x] `energy-based-nap-selector`
 
 ## Per-Calculator Checklist
 
@@ -179,7 +179,7 @@ Out-of-scope violation rule:
 | `work-hours-calculator` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
 | `overtime-hours-calculator` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
 | `sleep-time-calculator` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
-| `wake-up-time-calculator` | Pending | - | - | - | - | - | - | - |
-| `nap-time-calculator` | Pending | - | - | - | - | - | - | - |
-| `power-nap-calculator` | Pending | - | - | - | - | - | - | - |
-| `energy-based-nap-selector` | Pending | - | - | - | - | - | - | - |
+| `wake-up-time-calculator` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `nap-time-calculator` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `power-nap-calculator` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `energy-based-nap-selector` | Complete | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
