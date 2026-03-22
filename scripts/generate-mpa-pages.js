@@ -2380,7 +2380,7 @@ function buildCreditCardClusterHeaderHtml() {
     </a>
     <nav class="cc-cluster-site-links" aria-label="Site links">
       <a href="/">Home</a>
-      <a href="/calculators/">All Calculators</a>
+      <a href="/">All Calculators</a>
       <a href="/faq/">FAQs</a>
     </nav>
   </div>
@@ -2411,7 +2411,7 @@ function buildHomeLoanClusterHeaderHtml() {
     </a>
     <nav class="hl-cluster-site-links" aria-label="Site links">
       <a href="/">Home</a>
-      <a href="/calculators/">All Calculators</a>
+      <a href="/">All Calculators</a>
       <a href="/faq/">FAQs</a>
     </nav>
   </div>
@@ -2442,7 +2442,7 @@ function buildAutoLoanClusterHeaderHtml() {
     </a>
     <nav class="al-cluster-site-links" aria-label="Site links">
       <a href="/">Home</a>
-      <a href="/calculators/">All Calculators</a>
+      <a href="/">All Calculators</a>
       <a href="/faq/">FAQs</a>
     </nav>
   </div>
@@ -2473,7 +2473,7 @@ function buildFinanceClusterHeaderHtml() {
     </a>
     <nav class="fi-cluster-site-links" aria-label="Site links">
       <a href="/">Home</a>
-      <a href="/calculators/">All Calculators</a>
+      <a href="/">All Calculators</a>
       <a href="/faq/">FAQs</a>
     </nav>
   </div>
@@ -2504,7 +2504,7 @@ function buildTimeAndDateClusterHeaderHtml() {
     </a>
     <div class="td-cluster-site-label" aria-label="Cluster label">Time &amp; Date Calculators</div>
     <nav class="td-cluster-site-links" aria-label="Site links">
-      <a href="/calculators/">All Calculators</a>
+      <a href="/">All Calculators</a>
       <a href="/contact-us/">Contact</a>
       <a href="/faqs/">FAQs</a>
     </nav>
