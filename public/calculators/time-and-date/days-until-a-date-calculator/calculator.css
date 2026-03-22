@@ -1,382 +1,515 @@
-#calc-days-until .du-header-row {
-  display: block;
-  margin: 0 0 10px;
-}
-
 #calc-days-until {
-  --du-surface: rgba(255, 255, 255, 0.86);
-  --du-surface-strong: rgba(255, 255, 255, 0.98);
-  --du-border: rgba(67, 104, 184, 0.14);
-  --du-border-strong: rgba(67, 104, 184, 0.2);
-  --du-text: #14213d;
-  --du-muted: #5f6f8e;
-  --du-blue: #2b5fd9;
-  --du-blue-soft: rgba(43, 95, 217, 0.12);
-  --du-gold: #e6b84a;
+  --du-page: #f5f5f7;
+  --du-surface: rgba(255, 255, 255, 0.94);
+  --du-surface-soft: rgba(250, 250, 252, 0.96);
+  --du-line: rgba(17, 17, 17, 0.08);
+  --du-line-strong: rgba(17, 17, 17, 0.12);
+  --du-text: #1d1d1f;
+  --du-muted: #6e6e73;
+  --du-accent: #0071e3;
+  --du-accent-strong: #005bb5;
   position: relative;
-  max-width: 1180px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding-top: 0;
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  color: var(--du-text);
 }
 
-#calc-days-until .du-btn:focus-visible,
-#calc-days-until .du-mode-tab:focus-visible,
-#calc-days-until .du-toggle input:focus-visible,
-#calc-days-until .du-field:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(43, 95, 217, 0.12);
+#calc-days-until::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(0, 113, 227, 0.08), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(0, 113, 227, 0.05), transparent 30%),
+    linear-gradient(180deg, rgba(245, 245, 247, 0.96), rgba(245, 245, 247, 0.72));
+  pointer-events: none;
+}
+
+#calc-days-until .du-shell {
+  position: relative;
+  z-index: 1;
 }
 
 #calc-days-until .du-main-cards {
   display: grid;
-  grid-template-columns: minmax(360px, 0.95fr) minmax(420px, 1.15fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    'setup summary'
+    'details details'
+    'actions actions';
+  gap: 20px;
   align-items: stretch;
-  margin-bottom: 20px;
 }
 
 #calc-days-until .du-input-card,
-#calc-days-until .du-result-card {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--du-border-strong);
-  border-radius: 22px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+#calc-days-until .du-result-card,
+#calc-days-until .du-detail-card,
+#calc-days-until .du-actions-card {
+  height: 100%;
+  border: 1px solid var(--du-line);
+  border-radius: 20px;
+  background: var(--du-surface);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 #calc-days-until .du-input-card {
-  padding: 28px;
-  background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(244, 248, 255, 0.9)),
-    var(--du-surface);
+  grid-area: setup;
 }
 
 #calc-days-until .du-result-card {
-  padding: 30px 32px;
-  background:
-    linear-gradient(160deg, rgba(21, 46, 92, 0.95), rgba(18, 33, 64, 0.96)),
-    #15295a;
-  color: #f8fbff;
-  min-height: 100%;
-  box-shadow:
-    0 30px 70px rgba(16, 38, 78, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  grid-area: summary;
 }
 
-#calc-days-until .du-kicker,
+#calc-days-until .du-detail-card {
+  grid-area: details;
+}
+
+#calc-days-until .du-actions-card {
+  grid-area: actions;
+}
+
+#calc-days-until .du-input-card,
+#calc-days-until .du-result-card,
+#calc-days-until .du-detail-card {
+  padding: 28px;
+}
+
+#calc-days-until .du-actions-card {
+  padding: 24px 28px;
+  background: var(--du-surface-soft);
+}
+
+#calc-days-until .du-card-head {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+#calc-days-until .du-section-eyebrow,
 #calc-days-until .du-section-label,
 #calc-days-until .du-actions-label {
-  margin: 0 0 10px;
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: #36548d;
-}
-
-#calc-days-until .du-mode-tabs {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 6px;
-  border: 1px solid var(--du-border);
-  border-radius: 999px;
-  background: rgba(232, 240, 255, 0.68);
-  margin-bottom: 18px;
-}
-
-#calc-days-until .du-mode-tab {
-  border: none;
-  background: transparent;
-  color: #24427a;
-  padding: 10px 16px;
-  border-radius: 999px;
+  margin: 0;
+  font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.18s ease;
+  line-height: 1.4;
+  color: var(--du-muted);
 }
 
-#calc-days-until .du-mode-tab.is-selected {
-  background: linear-gradient(135deg, #2b5fd9, #4f86ff);
-  color: #fff;
-  box-shadow: 0 12px 28px rgba(43, 95, 217, 0.22);
+#calc-days-until .du-card-title {
+  margin: 0;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--du-text);
+}
+
+#calc-days-until .du-card-title-small {
+  font-size: 24px;
+  line-height: 1.25;
 }
 
 #calc-days-until .du-grid {
   display: grid;
-  gap: 16px;
+  gap: 18px;
+}
+
+#calc-days-until .du-control-group {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 2px;
+}
+
+#calc-days-until .du-mode-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--du-line);
+  border-radius: 16px;
+  background: #f2f2f5;
+}
+
+#calc-days-until .du-mode-tab,
+#calc-days-until .du-btn,
+#calc-days-until .du-field,
+#calc-days-until .du-toggle {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.18s ease;
+}
+
+#calc-days-until .du-mode-tab {
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--du-muted);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#calc-days-until .du-mode-tab.is-selected {
+  background: #ffffff;
+  color: var(--du-text);
+  border-color: rgba(0, 113, 227, 0.12);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#calc-days-until .du-mode-tab:focus-visible,
+#calc-days-until .du-btn:focus-visible,
+#calc-days-until .du-field:focus-visible,
+#calc-days-until .du-toggle:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
 }
 
 #calc-days-until .du-field-label {
   display: grid;
   gap: 8px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
   color: var(--du-muted);
-  font-family: 'DM Mono', 'Consolas', monospace;
 }
 
 #calc-days-until .du-field {
   width: 100%;
   min-height: 48px;
-  border: 1px solid var(--du-border);
+  border: 1px solid var(--du-line);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.88);
+  background: #ffffff;
   color: var(--du-text);
-  padding: 13px 14px;
-  font-size: 15px;
-  outline: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  padding: 0 14px;
+  font-size: 16px;
+}
+
+#calc-days-until .du-field:hover {
+  border-color: var(--du-line-strong);
 }
 
 #calc-days-until .du-field:focus {
-  border-color: rgba(43, 95, 217, 0.45);
-  box-shadow: 0 0 0 4px rgba(43, 95, 217, 0.12);
+  outline: none;
+  border-color: rgba(0, 113, 227, 0.32);
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
 }
 
 #calc-days-until .du-toggle-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
 #calc-days-until .du-toggle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 14px;
-  border: 1px solid var(--du-border);
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--du-line);
   border-radius: 14px;
-  background: rgba(250, 252, 255, 0.9);
+  background: #ffffff;
   color: var(--du-text);
   font-size: 14px;
   font-weight: 500;
 }
 
 #calc-days-until .du-toggle input {
-  accent-color: var(--du-blue);
+  accent-color: var(--du-accent);
 }
 
 #calc-days-until .du-cta-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px;
 }
 
 #calc-days-until .du-btn {
-  border: none;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
   border-radius: 14px;
-  min-height: 48px;
-  padding: 12px 18px;
-  background: linear-gradient(135deg, #2b5fd9, #4f86ff);
-  color: #fff;
+  background: linear-gradient(180deg, var(--du-accent), #0077ed);
+  color: #ffffff;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    filter 0.18s ease;
 }
 
 #calc-days-until .du-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(43, 95, 217, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 113, 227, 0.18);
 }
 
 #calc-days-until .du-btn-ghost {
-  background: rgba(255, 255, 255, 0.92);
-  color: #24427a;
-  border: 1px solid var(--du-border);
+  border: 1px solid var(--du-line);
+  background: #ffffff;
+  color: var(--du-text);
 }
 
 #calc-days-until .du-btn-small {
-  min-height: 40px;
-  padding: 9px 14px;
-  font-size: 13px;
+  min-height: 44px;
+  font-size: 14px;
 }
 
 #calc-days-until .du-error {
-  margin: 14px 0 0;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(191, 46, 46, 0.14);
+  background: rgba(191, 46, 46, 0.06);
+  color: #b3261e;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#calc-days-until .du-meta-list {
+  display: grid;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+#calc-days-until .du-meta {
+  margin: 0;
+  color: var(--du-muted);
   font-size: 13px;
-  color: #c52f2f;
-  font-weight: 700;
+  line-height: 1.5;
+}
+
+#calc-days-until .du-result-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 36px 32px;
+  text-align: center;
 }
 
 #calc-days-until .du-result-kicker {
-  margin: 0 0 8px;
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(227, 235, 255, 0.82);
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--du-muted);
 }
 
 #calc-days-until .du-result-main {
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   gap: 12px;
-  margin-bottom: 10px;
+}
+
+#calc-days-until .du-result-value,
+#calc-days-until .du-result-unit,
+#calc-days-until .du-result-summary,
+#calc-days-until .du-clarification,
+#calc-days-until .du-feedback {
+  margin: 0;
 }
 
 #calc-days-until .du-result-value {
-  font-family: 'DM Serif Display', 'Georgia', serif;
-  font-size: clamp(58px, 8vw, 92px);
+  font-size: clamp(88px, 12vw, 120px);
+  font-weight: 600;
   line-height: 0.94;
-  letter-spacing: -0.05em;
-  color: #ffffff;
+  letter-spacing: -0.04em;
+  color: var(--du-text);
 }
 
 #calc-days-until .du-result-unit {
-  padding-bottom: 10px;
-  font-size: 20px;
-  color: rgba(227, 235, 255, 0.88);
+  padding-bottom: 12px;
+  color: var(--du-muted);
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 500;
+  line-height: 1;
 }
 
 #calc-days-until .du-result-summary {
-  margin: 0 0 14px;
-  font-size: 16px;
+  color: var(--du-text);
+  max-width: 24ch;
+  font-size: clamp(20px, 2.8vw, 28px);
   line-height: 1.5;
-  color: rgba(244, 248, 255, 0.92);
 }
 
 #calc-days-until .du-clarification {
-  margin: 14px 0 0;
-  color: rgba(227, 235, 255, 0.8);
-  font-size: 14px;
+  max-width: 34ch;
+  color: var(--du-muted);
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 #calc-days-until .du-status {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-top: 4px;
+  padding-top: 2px;
 }
 
 #calc-days-until .du-status-chip {
   display: inline-flex;
   align-items: center;
-  min-height: 30px;
-  padding: 6px 11px;
+  min-height: 32px;
+  padding: 0 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 113, 227, 0.08);
+  color: var(--du-accent-strong);
   font-size: 12px;
-  color: rgba(245, 248, 255, 0.92);
+  font-weight: 600;
+}
+
+#calc-days-until .du-detail-card {
+  display: grid;
+  gap: 18px;
+  background: var(--du-surface-soft);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 #calc-days-until .du-breakdown {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
 }
 
 #calc-days-until .du-breakdown-card,
 #calc-days-until .du-milestone-card {
-  position: relative;
-  overflow: hidden;
+  padding: 16px;
   border-radius: 16px;
-  border: 1px solid rgba(67, 104, 184, 0.2);
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(242, 247, 255, 0.96)),
-    rgba(255, 255, 255, 0.94);
-  box-shadow: 0 14px 26px rgba(28, 57, 112, 0.08);
-  padding: 14px;
+  border: 1px solid var(--du-line);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 #calc-days-until .du-breakdown-label,
 #calc-days-until .du-milestone-state {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
+  color: var(--du-muted);
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #5f6f8e;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 #calc-days-until .du-breakdown-value,
 #calc-days-until .du-milestone-label {
   margin: 0;
+  color: var(--du-text);
   font-size: 15px;
-  font-weight: 700;
-  line-height: 1.4;
-  color: #19325e;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 #calc-days-until .du-milestones {
-  margin-bottom: 20px;
+  display: grid;
+  gap: 12px;
 }
 
 #calc-days-until .du-milestone-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+#calc-days-until .du-actions-card {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-days-until .du-actions-head {
+  margin-bottom: 0;
+}
+
+#calc-days-until .du-actions-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.9fr);
+  gap: 20px;
+}
+
+#calc-days-until .du-action-group {
+  display: grid;
+  gap: 12px;
+}
+
+#calc-days-until .du-action-grid {
+  display: grid;
   gap: 10px;
 }
 
-#calc-days-until .du-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
+#calc-days-until .du-action-grid-share {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-#calc-days-until .du-actions .du-btn {
-  background: linear-gradient(145deg, rgba(43, 95, 217, 0.92), rgba(79, 134, 255, 0.92));
+#calc-days-until .du-action-grid-calendar {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-#calc-days-until .du-actions .du-btn-ghost {
-  background: rgba(255, 255, 255, 0.94);
-  color: #24427a;
+#calc-days-until .du-action-grid-calendar #days-until-download-ics {
+  grid-column: 1 / -1;
 }
 
 #calc-days-until .du-feedback {
-  color: #1f7a4d;
-  font-size: 12px;
-  font-family: 'DM Mono', 'Consolas', monospace;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(0, 113, 227, 0.06);
+  color: var(--du-accent-strong);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+#calc-days-until .du-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 #calc-days-until .is-hidden {
-  display: none;
+  display: none !important;
 }
 
 #days-until-explanation {
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
 #days-until-explanation .days-until-explanation-card {
   display: grid;
-  gap: 12px;
-  padding: 24px 28px;
-  border-radius: 24px;
-  border: 1px solid rgba(73, 114, 204, 0.12);
+  gap: 14px;
+  padding: 26px 30px;
+  border-radius: 20px;
+  border: 1px solid var(--du-line);
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 16px 36px rgba(35, 77, 155, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 #days-until-explanation .days-until-explanation-kicker {
   margin: 0;
-  font-family: 'DM Mono', 'Consolas', monospace;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: #36548d;
+  color: var(--du-muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 #days-until-explanation h2,
 #days-until-explanation h3 {
   margin: 0;
-  font-family: 'DM Serif Display', 'Georgia', serif;
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
-  color: #1d3768;
-  text-shadow: none;
+  color: var(--du-text);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
 }
 
 #days-until-explanation p,
@@ -384,30 +517,33 @@
 #days-until-explanation td,
 #days-until-explanation th {
   margin: 0;
-  color: #2a3b60;
-  font-size: 14px;
-  line-height: 1.6;
+  color: var(--du-muted);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 #days-until-explanation .days-until-guide-steps,
 #days-until-explanation .days-until-notes,
 #days-until-explanation ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-#days-until-explanation .days-until-guide-steps,
-#days-until-explanation .days-until-notes {
   display: grid;
   gap: 10px;
+  padding-left: 20px;
 }
 
 #days-until-explanation .days-until-guide-table {
   width: 100%;
-  border-collapse: collapse;
-  border: 1px solid rgba(73, 114, 204, 0.12);
-  border-radius: 18px;
+  min-width: 720px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--du-line);
+  border-radius: 16px;
   overflow: hidden;
+  background: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+#days-until-explanation .days-until-guide-table thead {
+  background: linear-gradient(180deg, rgba(0, 113, 227, 0.08), rgba(0, 113, 227, 0.03));
 }
 
 #days-until-explanation .days-until-guide-table th,
@@ -415,12 +551,31 @@
   padding: 14px 16px;
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid rgba(73, 114, 204, 0.1);
+  border-bottom: 1px solid var(--du-line);
 }
 
 #days-until-explanation .days-until-guide-table th {
-  background: rgba(43, 95, 217, 0.08);
+  color: var(--du-text);
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+#days-until-explanation .days-until-guide-table td {
+  background: #ffffff;
+}
+
+#days-until-explanation .days-until-guide-table th + th,
+#days-until-explanation .days-until-guide-table td + td {
+  border-left: 1px solid var(--du-line);
+}
+
+#days-until-explanation .days-until-guide-table tbody tr:nth-child(even) td {
+  background: rgba(245, 245, 247, 0.9);
+}
+
+#days-until-explanation .days-until-guide-table tbody tr:hover td {
+  background: rgba(0, 113, 227, 0.04);
 }
 
 #days-until-explanation .days-until-guide-table tr:last-child td {
@@ -434,84 +589,66 @@
 }
 
 #days-until-explanation .days-until-faq-item {
-  padding: 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(73, 114, 204, 0.1);
-  background: rgba(244, 248, 255, 0.72);
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--du-line);
+  background: var(--du-surface-soft);
 }
 
-#days-until-explanation .days-until-faq-item p:first-child,
-#days-until-explanation .days-until-notes strong {
-  color: #18325f;
-}
+@media (max-width: 960px) {
+  #calc-days-until .du-actions-layout {
+    grid-template-columns: 1fr;
+  }
 
-@media (max-width: 860px) {
+  #calc-days-until .du-milestone-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   #days-until-explanation .days-until-faq-grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 760px) {
-  #calc-days-until .du-header-row {
-    margin-bottom: 12px;
-  }
-
-  #calc-days-until {
-    padding-top: 0;
-  }
-
+@media (max-width: 720px) {
   #calc-days-until .du-main-cards {
     grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-areas:
+      'setup'
+      'summary'
+      'details'
+      'actions';
   }
 
   #calc-days-until .du-input-card,
-  #calc-days-until .du-result-card {
-    padding: 22px 20px;
-  }
-
-  #calc-days-until .du-cta-row {
-    flex-direction: column;
-  }
-
-  #calc-days-until .du-btn,
-  #calc-days-until .du-btn-ghost {
-    width: 100%;
-  }
-
-  #calc-days-until .du-breakdown,
-  #calc-days-until .du-milestone-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  #calc-days-until .du-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
+  #calc-days-until .du-result-card,
+  #calc-days-until .du-detail-card,
+  #calc-days-until .du-actions-card,
   #days-until-explanation .days-until-explanation-card {
     padding: 20px;
   }
-}
 
-@media (max-width: 520px) {
   #calc-days-until .du-toggle-row,
+  #calc-days-until .du-cta-row,
   #calc-days-until .du-breakdown,
-  #calc-days-until .du-milestone-grid {
+  #calc-days-until .du-milestone-grid,
+  #calc-days-until .du-action-grid-share,
+  #calc-days-until .du-action-grid-calendar {
     grid-template-columns: 1fr;
-  }
-
-  #calc-days-until .du-toggle-row {
-    display: grid;
   }
 
   #calc-days-until .du-result-main {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    align-items: center;
+    gap: 6px;
   }
 
   #calc-days-until .du-result-unit {
     padding-bottom: 0;
+  }
+
+  #days-until-explanation .days-until-guide-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }

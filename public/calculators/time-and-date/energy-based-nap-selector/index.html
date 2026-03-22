@@ -1,94 +1,96 @@
 <div id="calc-energy-nap">
-  <div class="energy-scene" aria-hidden="true">
-    <div class="energy-grid"></div>
-    <div class="energy-wave energy-wave-a"></div>
-    <div class="energy-wave energy-wave-b"></div>
-    <div class="energy-orb"></div>
-    <div class="energy-battery-shell">
-      <div class="energy-battery-core"></div>
-    </div>
-  </div>
-
-  <div class="energy-container">
-    <div class="energy-hero-tag">Neon Recharge</div>
-    <h2 class="energy-hero-title">Pick your <em>energy level</em>, wake at the right charge</h2>
-    <p class="energy-tagline">
-      Choose Quick, Strong, or Full, then get a deterministic wake target and two practical
-      alternatives in one focused plan.
-    </p>
-
-    <div class="energy-two-box">
-      <div class="energy-card energy-card-calc">
-        <div class="energy-label" id="energy-goal-label">Energy goal</div>
-        <div
-          class="energy-goal-wrap"
-          role="group"
-          aria-labelledby="energy-goal-label"
-          data-button-group="energy-goal"
-        >
-          <button
-            class="energy-goal-btn calculator-button secondary"
-            type="button"
-            data-value="quick"
-            aria-pressed="false"
-          >
-            Quick<br /><span>15 min</span>
-          </button>
-          <button
-            class="energy-goal-btn calculator-button secondary"
-            type="button"
-            data-value="strong"
-            aria-pressed="false"
-          >
-            Strong<br /><span>25 min</span>
-          </button>
-          <button
-            class="energy-goal-btn calculator-button secondary is-active"
-            type="button"
-            data-value="full"
-            aria-pressed="true"
-          >
-            Full<br /><span>90 min</span>
-          </button>
-        </div>
-
-        <div class="energy-label">Nap start time</div>
-        <div class="energy-time-wrap">
-          <input id="energy-nap-start-time" class="energy-time-input" type="time" />
-          <button
-            class="energy-now-btn calculator-button secondary"
-            type="button"
-            id="energy-nap-use-now"
-          >
-            Use now
-          </button>
-        </div>
-
-        <button class="energy-calc-btn" type="button" id="energy-nap-calculate">
-          Calculate Recharge Plan
-        </button>
+  <div class="energy-shell">
+    <section class="energy-surface">
+      <div class="energy-lead">
+        <p class="energy-intro">
+          Choose the kind of recharge you need and get one recommended wake target plus two practical alternatives.
+        </p>
       </div>
 
-      <div class="energy-card energy-card-answer">
-        <div class="energy-answer-title">Recharge Recommendation</div>
-        <p class="energy-answer-note">Default values are shown. Update inputs and click Calculate.</p>
-
-        <div class="result" id="energy-nap-results" aria-live="polite">
-          <p class="placeholder" id="energy-nap-placeholder">
-            Select a goal, set a start time, and click Calculate.
-          </p>
-          <p class="form-error is-hidden" id="energy-nap-error"></p>
-          <div class="energy-results">
-            <div class="energy-primary-card is-hidden" id="energy-nap-primary"></div>
-            <div class="energy-alt-list is-hidden" id="energy-nap-alternatives"></div>
+      <div class="energy-planner-grid">
+        <div class="energy-controls">
+          <div class="energy-control-block">
+            <div class="energy-mode-label" id="energy-goal-label">Energy goal</div>
+            <div
+              class="energy-goal-wrap"
+              role="group"
+              aria-labelledby="energy-goal-label"
+              data-button-group="energy-goal"
+            >
+              <button
+                class="energy-goal-btn calculator-button secondary"
+                type="button"
+                data-value="quick"
+                aria-pressed="false"
+              >
+                Quick
+                <span>15 min</span>
+              </button>
+              <button
+                class="energy-goal-btn calculator-button secondary"
+                type="button"
+                data-value="strong"
+                aria-pressed="false"
+              >
+                Strong
+                <span>25 min</span>
+              </button>
+              <button
+                class="energy-goal-btn calculator-button secondary is-active"
+                type="button"
+                data-value="full"
+                aria-pressed="true"
+              >
+                Full
+                <span>90 min</span>
+              </button>
+            </div>
           </div>
-          <div class="energy-warning is-hidden" id="energy-nap-warning"></div>
+
+          <div class="energy-control-block">
+            <label class="energy-input-label" for="energy-nap-start-time">
+              <span class="energy-field-label">Nap start time</span>
+            </label>
+            <div class="energy-time-wrap">
+              <input id="energy-nap-start-time" class="energy-time-input" type="time" />
+              <button
+                class="energy-now-btn calculator-button secondary"
+                type="button"
+                id="energy-nap-use-now"
+              >
+                Use now
+              </button>
+            </div>
+          </div>
+
+          <button class="energy-calc-btn" type="button" id="energy-nap-calculate">
+            Calculate recharge plan
+          </button>
+        </div>
+
+        <div class="energy-results-panel">
+          <div class="energy-results-head">
+            <div class="energy-answer-title">Recharge recommendation</div>
+            <p class="energy-answer-note">
+              Full stays best when you truly have time. Late-night inferred full naps are shortened to protect bedtime.
+            </p>
+          </div>
+
+          <div class="result" id="energy-nap-results" aria-live="polite">
+            <p class="placeholder" id="energy-nap-placeholder">
+              Select a goal, set a start time, and click Calculate.
+            </p>
+            <p class="form-error is-hidden" id="energy-nap-error"></p>
+            <div class="energy-results">
+              <div class="energy-primary-card is-hidden" id="energy-nap-primary"></div>
+              <div class="energy-alt-list is-hidden" id="energy-nap-alternatives"></div>
+            </div>
+            <div class="energy-warning is-hidden" id="energy-nap-warning"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <p class="energy-footer-note">
-      Deterministic profiles: <span>Quick 15m</span>, <span>Strong 25m</span>, <span>Full 90m</span>.
-    </p>
+    <p class="energy-footer-note">Quick is 15 minutes, Strong is 25 minutes, and Full is 90 minutes.</p>
   </div>
 </div>

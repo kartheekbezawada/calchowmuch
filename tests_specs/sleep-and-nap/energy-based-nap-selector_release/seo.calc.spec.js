@@ -41,9 +41,9 @@ test.describe('Energy-Based Nap Selector SEO', () => {
     expect(faqNode.mainEntity[0].name).toBe('What does the Energy-Based Nap Selector do?');
 
     const explanation = page.locator('#energy-nap-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h2')).toHaveText('Which nap length matches the energy you need?');
-    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation.locator('.energy-exp-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.energy-exp-card h2')).toHaveText('Which nap length matches the energy you need?');
+    await expect(explanation).toContainText('How to use it');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.faq-box')).toHaveCount(10);
