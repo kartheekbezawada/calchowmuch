@@ -1,13 +1,8 @@
 <div id="calc-age" class="age-page">
-  <p class="age-intro">
-    Find exact age, total days, and the next birthday from one birth date.
-  </p>
-
   <div class="age-workbench">
     <section class="age-card age-input-card" aria-labelledby="age-input-title">
       <div class="age-card-head">
-        <p class="age-kicker">Set the dates</p>
-        <h2 id="age-input-title">Choose dates.</h2>
+        <h2 id="age-input-title">Choose Dates</h2>
       </div>
 
       <div class="age-field-grid">
@@ -41,46 +36,60 @@
         <div class="age-answer-copy">
           <p class="age-kicker">Exact age</p>
           <h2 id="age-headline">0 years, 0 months, 0 days</h2>
-          <p id="age-summary">As of today.</p>
-        </div>
-
-        <button class="calculator-button age-copy-button" type="button" id="age-copy-summary">
-          Copy summary
-        </button>
-      </div>
-
-      <div class="age-stat-grid">
-        <div class="age-stat-tile">
-          <span class="age-stat-label">Total months</span>
-          <strong id="age-total-months">0</strong>
-        </div>
-
-        <div class="age-stat-tile">
-          <span class="age-stat-label">Total weeks</span>
-          <strong id="age-total-weeks">0</strong>
-        </div>
-
-        <div class="age-stat-tile">
-          <span class="age-stat-label">Total days</span>
-          <strong id="age-total-days">0</strong>
         </div>
       </div>
     </section>
-  </div>
 
-  <div class="age-detail-grid">
-    <section class="age-card age-detail-card" aria-labelledby="age-born-label">
-      <p class="age-kicker">Born on</p>
-      <h2 id="age-born-label">Weekday of birth</h2>
-      <strong id="age-born-weekday">Friday</strong>
-      <p id="age-born-detail">Jun 15, 1990</p>
-    </section>
+    <section class="age-card age-overview-card" aria-labelledby="age-overview-title">
+      <h2 class="age-overview-title" id="age-overview-title">Context, Totals, and Life Events</h2>
 
-    <section class="age-card age-detail-card" aria-labelledby="age-next-birthday-label">
-      <p class="age-kicker">Next birthday</p>
-      <h2 id="age-next-birthday-label">Birthday countdown</h2>
-      <strong id="age-next-birthday-headline">In 0 days</strong>
-      <p id="age-next-birthday-detail">Turns 0 on Jan 1, 2000</p>
+      <div class="age-answer-sections">
+        <section class="age-answer-section age-context-section" aria-labelledby="age-context-label">
+          <p class="age-section-label" id="age-context-label">Context</p>
+          <p class="age-context-line" id="age-summary">As of today.</p>
+        </section>
+
+        <section class="age-answer-section age-totals-section" aria-labelledby="age-totals-label">
+          <p class="age-section-label" id="age-totals-label">Totals</p>
+          <dl class="age-data-list">
+            <div class="age-data-row">
+              <dt>Total months</dt>
+              <dd><strong id="age-total-months">0</strong></dd>
+            </div>
+
+            <div class="age-data-row">
+              <dt>Total weeks</dt>
+              <dd><strong id="age-total-weeks">0</strong></dd>
+            </div>
+
+            <div class="age-data-row">
+              <dt>Total days</dt>
+              <dd><strong id="age-total-days">0</strong></dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="age-answer-section age-events-section" aria-labelledby="age-events-label">
+          <p class="age-section-label" id="age-events-label">Life events</p>
+          <dl class="age-data-list age-life-list">
+            <div class="age-data-row age-data-row-rich">
+              <dt>Next birthday</dt>
+              <dd>
+                <strong id="age-next-birthday-headline">In 0 days</strong>
+                <p id="age-next-birthday-detail">Turns 0 on Jan 1, 2000</p>
+              </dd>
+            </div>
+
+            <div class="age-data-row age-data-row-rich">
+              <dt>Weekday of birth</dt>
+              <dd>
+                <strong id="age-born-weekday">Friday</strong>
+                <p id="age-born-detail">Jun 15, 1990</p>
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
     </section>
   </div>
 </div>
