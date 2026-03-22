@@ -39,10 +39,10 @@ test.describe('Nap Time Calculator', () => {
     await page.goto('/time-and-date/nap-time-calculator/');
 
     const explanation = page.locator('#nap-time-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h2')).toHaveText('When should you wake up from this nap?');
-    await expect(explanation.locator('h3')).toHaveCount(3);
-    await expect(explanation).toContainText('How to Guide');
+    await expect(explanation.locator('.nap-explanation-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.nap-explanation-card h2')).toHaveText('When should you wake up from this nap?');
+    await expect(explanation.locator('.nap-explanation-card h3')).toHaveCount(3);
+    await expect(explanation).toContainText('How to use it');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.nap-faq-item')).toHaveCount(5);

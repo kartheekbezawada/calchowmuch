@@ -1,223 +1,126 @@
 #calc-sleep-time {
-  --ink: #0a0a1a;
-  --deep: #07091a;
-  --mid: #0f1535;
-  --mist: #1a2048;
-  --lavender: #8b8fff;
-  --moon: #e8e4d8;
-  --gold: #f5c842;
-  --teal: #5ee8c8;
+  --sleep-page: #f5f3ee;
+  --sleep-surface: rgba(255, 255, 255, 0.92);
+  --sleep-surface-soft: rgba(251, 249, 245, 0.92);
+  --sleep-line: rgba(17, 24, 39, 0.1);
+  --sleep-line-strong: rgba(17, 24, 39, 0.14);
+  --sleep-text: #111827;
+  --sleep-muted: #5f6b76;
+  --sleep-muted-soft: #73808d;
+  --sleep-accent: #315e8c;
+  --sleep-accent-strong: #1f3b5b;
+  --sleep-accent-soft: rgba(49, 94, 140, 0.08);
+  --sleep-accent-wash: rgba(49, 94, 140, 0.14);
+  --sleep-mint: #567c6f;
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  background: radial-gradient(ellipse at 20% 0%, rgba(94, 232, 200, 0.1), transparent 45%),
-    radial-gradient(ellipse at 85% 0%, rgba(139, 143, 255, 0.14), transparent 42%),
-    linear-gradient(180deg, #050715 0%, #04061a 100%);
-  border: 1px solid rgba(139, 143, 255, 0.18);
-}
-
-/* Keep route H1 in DOM for SEO/accessibility, but remove it visually */
-.panel-span-all > #calculator-title {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.panel-span-all > #calculator-title::after {
-  content: none;
-}
-
-/* Pull visual hero area upward after hiding title */
-.panel-span-all .calculator-page-single {
-  margin-top: -14px;
-}
-
-#calc-sleep-time .sleep-scene {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-#calc-sleep-time .sleep-aurora {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 40% at 20% 0%, rgba(94, 232, 200, 0.11) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 30% at 80% 10%, rgba(139, 143, 255, 0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 123, 156, 0.06) 0%, transparent 70%);
-  animation: sleep-aurora-shift 12s ease-in-out infinite alternate;
-#calc-sleep-time {
-  --sleep-text: #233044;
-  --sleep-accent: #5f84b8;
-  --sleep-accent-soft: rgba(95, 132, 184, 0.12);
-  --sleep-mint: #4d8d7f;
-  --sleep-border: rgba(95, 132, 184, 0.16);
-  --sleep-surface: rgba(255, 253, 249, 0.92);
-  --sleep-surface-soft: rgba(237, 244, 251, 0.78);
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  background: radial-gradient(ellipse at 18% 0%, rgba(77, 141, 127, 0.12), transparent 44%),
-    radial-gradient(ellipse at 82% 0%, rgba(95, 132, 184, 0.14), transparent 40%),
-    linear-gradient(180deg, #f7f2e8 0%, #eef4fb 100%);
-  border: 1px solid var(--sleep-border);
-  box-shadow: 0 24px 54px rgba(35, 48, 68, 0.08);
-}
-
-#calc-sleep-time .sleep-scene {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-#calc-sleep-time .sleep-aurora {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 40% at 20% 0%, rgba(77, 141, 127, 0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 30% at 80% 10%, rgba(95, 132, 184, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(232, 190, 129, 0.1) 0%, transparent 70%);
-  animation: sleep-aurora-shift 12s ease-in-out infinite alternate;
-}
-
-#calc-sleep-time .sleep-starfield {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-#calc-sleep-time .sleep-star {
-  position: absolute;
-  border-radius: 999px;
-  background: rgba(95, 132, 184, 0.85);
-  opacity: var(--base-op, 0.4);
-  animation: sleep-twinkle var(--dur, 3s) ease-in-out infinite alternate;
-}
-
-#calc-sleep-time .sleep-moon-wrap {
-  position: absolute;
-  top: 24px;
-  right: 26px;
-}
-
-#calc-sleep-time .sleep-moon-circle {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fffdf7, #f0ddbc 45%, #d3a95c 85%);
-  box-shadow: 0 0 26px 10px rgba(211, 169, 92, 0.18), 0 0 64px 20px rgba(211, 169, 92, 0.08);
-  animation: sleep-moon-glow 6s ease-in-out infinite alternate;
-}
-
-#calc-sleep-time .sleep-container {
-  position: relative;
-  z-index: 1;
-  max-width: 780px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 22px 24px 42px;
-}
-
-#calc-sleep-time .sleep-hero-tag {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  color: var(--sleep-mint);
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-#calc-sleep-time .sleep-hero-tag::before {
-  content: '';
-  width: 30px;
-  height: 1px;
-  background: currentColor;
-}
-
-#calc-sleep-time .sleep-hero-title {
-  margin: 0 0 10px;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.95rem, 5vw, 2.8rem);
-  line-height: 1.08;
+  padding: 10px 0 6px;
   color: var(--sleep-text);
 }
 
-#calc-sleep-time .sleep-hero-title em {
-  color: var(--sleep-accent);
+#calc-sleep-time::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(86, 124, 111, 0.1), transparent 30%),
+    radial-gradient(circle at 100% 0%, rgba(49, 94, 140, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(245, 243, 238, 0.9), rgba(245, 243, 238, 0.74));
+  pointer-events: none;
 }
 
-#calc-sleep-time .sleep-tagline {
-  margin: 0 0 26px;
-  color: rgba(35, 48, 68, 0.7);
-  font-size: 14px;
+#calc-sleep-time .sleep-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 16px;
+}
+
+#calc-sleep-time .sleep-surface {
+  display: grid;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 28px;
+  background: var(--sleep-surface);
+  border: 1px solid var(--sleep-line);
+  box-shadow: 0 16px 40px rgba(17, 24, 39, 0.08);
+}
+
+#calc-sleep-time .sleep-lead {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#calc-sleep-time .sleep-intro {
+  margin: 0;
+  color: var(--sleep-muted);
+  font-size: 15px;
   line-height: 1.6;
 }
 
-#calc-sleep-time .sleep-two-box {
+#calc-sleep-time .sleep-planner-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
-  gap: 14px;
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
+  gap: 28px;
+  align-items: start;
 }
 
-#calc-sleep-time .sleep-card {
+#calc-sleep-time .sleep-controls,
+#calc-sleep-time .sleep-results-panel {
   display: grid;
-  gap: 14px;
-  height: 100%;
-  padding: 22px;
-  border-radius: 24px;
-  border: 1px solid var(--sleep-border);
-  background: var(--sleep-surface);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 42px rgba(35, 48, 68, 0.08);
-  animation: sleep-card-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  gap: 18px;
+}
+
+#calc-sleep-time .sleep-control-block {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-sleep-time .sleep-input-label {
+  display: block;
 }
 
 #calc-sleep-time .sleep-answer-title,
 #calc-sleep-time .sleep-mode-label,
 #calc-sleep-time .sleep-field-label {
   margin: 0;
+  color: var(--sleep-muted-soft);
   font-size: 11px;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(35, 48, 68, 0.56);
-}
-
-#calc-sleep-time .sleep-answer-note {
-  margin: 0;
-  color: rgba(35, 48, 68, 0.68);
-  font-size: 13px;
-  line-height: 1.5;
 }
 
 #calc-sleep-time .sleep-toggle-wrap {
-  display: flex;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 18px;
+  background: #f2f4f7;
+  border: 1px solid rgba(17, 24, 39, 0.08);
 }
 
 #calc-sleep-time .sleep-toggle-btn {
-  flex: 1;
   min-height: 48px;
+  border: 1px solid transparent;
   border-radius: 14px;
-  border: 1px solid var(--sleep-border);
-  background: rgba(255, 255, 255, 0.82);
-  color: rgba(35, 48, 68, 0.72);
-  font-size: 14px;
+  background: transparent;
+  color: #4b5563;
+  font-size: 15px;
   font-weight: 600;
+  box-shadow: none;
 }
 
 #calc-sleep-time .sleep-toggle-btn.is-active,
 #calc-sleep-time .sleep-toggle-btn[aria-pressed='true'] {
-  background: linear-gradient(135deg, rgba(95, 132, 184, 0.18), rgba(77, 141, 127, 0.14));
-  border-color: rgba(95, 132, 184, 0.36);
+  background: #ffffff;
   color: var(--sleep-text);
-  box-shadow: 0 10px 24px rgba(95, 132, 184, 0.12);
+  border-color: rgba(49, 94, 140, 0.12);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 
 #calc-sleep-time .sleep-time-input-wrap {
@@ -228,114 +131,97 @@
   display: none !important;
 }
 
-#calc-sleep-time .sleep-time-input,
-#calc-sleep-time .sleep-advanced-grid .input-row input {
+#calc-sleep-time .sleep-time-input {
   width: 100%;
-  min-height: 48px;
-  padding: 0 16px;
-  border: 1px solid var(--sleep-border);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--sleep-text);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 24px;
-  letter-spacing: 0.04em;
-  color-scheme: light;
-}
-
-#calc-sleep-time .sleep-time-input:focus,
-#calc-sleep-time .sleep-advanced-grid .input-row input:focus {
-  outline: none;
-  border-color: rgba(95, 132, 184, 0.46);
-  box-shadow: 0 0 0 3px rgba(95, 132, 184, 0.12);
-}
-
-#calc-sleep-time .sleep-advanced {
-  margin: 0;
-  border: 1px solid var(--sleep-border);
-  border-radius: 16px;
-  background: rgba(237, 244, 251, 0.6);
-  overflow: clip;
-}
-
-#calc-sleep-time .sleep-advanced summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 14px;
-  cursor: pointer;
-  list-style: none;
-  color: var(--sleep-text);
-  font-size: 12px;
+  min-height: 64px;
+  padding: 0 20px;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  border-radius: 18px;
+  background: #fcfcfd;
+  color: #0f172a;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 32px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color-scheme: light;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
 }
 
-#calc-sleep-time .sleep-advanced summary::-webkit-details-marker {
-  display: none;
+#calc-sleep-time .sleep-time-input:hover {
+  border-color: var(--sleep-line-strong);
 }
 
-#calc-sleep-time .sleep-advanced summary::after {
-  content: '+';
-  font-size: 16px;
-  line-height: 1;
-  color: var(--sleep-accent);
-}
-
-#calc-sleep-time .sleep-advanced[open] summary::after {
-  content: '−';
-}
-
-#calc-sleep-time .sleep-advanced-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  padding: 12px;
-  border-top: 1px solid var(--sleep-border);
-}
-
-#calc-sleep-time .sleep-advanced-grid .input-row {
-  display: grid;
-  gap: 6px;
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid var(--sleep-border);
-  background: rgba(255, 255, 255, 0.76);
-}
-
-#calc-sleep-time .sleep-advanced-grid .input-row label {
-  margin: 0;
-  color: rgba(35, 48, 68, 0.62);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+#calc-sleep-time .sleep-time-input:focus {
+  outline: none;
+  border-color: rgba(49, 94, 140, 0.32);
+  box-shadow: 0 0 0 4px rgba(49, 94, 140, 0.14);
+  background: #ffffff;
 }
 
 #calc-sleep-time .sleep-calc-btn {
   width: 100%;
-  min-height: 54px;
-  padding: 14px;
+  min-height: 56px;
+  padding: 0 18px;
   border: 0;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #5f84b8 0%, #4d8d7f 100%);
-  color: #fffdf7;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  box-shadow: 0 12px 34px rgba(95, 132, 184, 0.24);
+  border-radius: 18px;
+  background: var(--sleep-accent-strong);
+  color: #ffffff;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  box-shadow: 0 10px 24px rgba(31, 59, 91, 0.18);
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+#calc-sleep-time .sleep-calc-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(31, 59, 91, 0.2);
+}
+
+#calc-sleep-time .sleep-calc-btn:active {
+  transform: translateY(0);
+}
+
+#calc-sleep-time .sleep-results-panel {
+  align-content: start;
+  padding-left: 28px;
+  border-left: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+#calc-sleep-time .sleep-results-head {
+  display: grid;
+  gap: 8px;
+}
+
+#calc-sleep-time .sleep-answer-note {
+  margin: 0;
+  color: var(--sleep-muted);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 #calc-sleep-time #sleep-results {
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 #calc-sleep-time #sleep-placeholder {
   margin: 0;
-  color: rgba(35, 48, 68, 0.58);
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px dashed rgba(17, 24, 39, 0.12);
+  background: var(--sleep-surface-soft);
+  color: var(--sleep-muted);
+  font-size: 14px;
 }
 
 #calc-sleep-time #sleep-placeholder.is-hidden {
@@ -343,34 +229,47 @@
 }
 
 #calc-sleep-time .sleep-results-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  gap: 12px;
 }
 
 #calc-sleep-time .sleep-result {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
     'time badge'
     'meta meta';
-  gap: 4px 10px;
+  gap: 6px 10px;
   align-items: center;
-  padding: 14px;
-  border: 1px solid var(--sleep-border);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.84);
-  animation: sleep-card-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  min-height: 78px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid #e3e8ee;
+  background: #fafbfc;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease,
+    transform 0.18s ease;
+  animation: sleep-card-pop 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-#calc-sleep-time .sleep-result:nth-child(1) { animation-delay: 0.05s; }
-#calc-sleep-time .sleep-result:nth-child(2) { animation-delay: 0.12s; }
-#calc-sleep-time .sleep-result:nth-child(3) { animation-delay: 0.19s; }
+#calc-sleep-time .sleep-result:nth-child(1) {
+  animation-delay: 0.02s;
+}
+
+#calc-sleep-time .sleep-result:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+#calc-sleep-time .sleep-result:nth-child(3) {
+  animation-delay: 0.14s;
+}
 
 #calc-sleep-time .sleep-result.is-primary {
-  border-color: rgba(77, 141, 127, 0.34);
-  background: rgba(77, 141, 127, 0.08);
-  box-shadow: 0 0 28px rgba(77, 141, 127, 0.1);
+  background: #eef5ff;
+  border-color: #b8cee6;
+  box-shadow: 0 8px 20px rgba(72, 109, 151, 0.1);
 }
 
 #calc-sleep-time .sleep-result-info {
@@ -381,36 +280,34 @@
   display: none;
 }
 
-#calc-sleep-time .sleep-result-hours {
-  grid-area: meta;
-  color: rgba(35, 48, 68, 0.7);
-  font-size: 12px;
-  line-height: 1.3;
-}
-
 #calc-sleep-time .sleep-result-time {
   grid-area: time;
   color: var(--sleep-text);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 24px;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.05em;
 }
 
-#calc-sleep-time .sleep-result.is-primary .sleep-result-time {
-  color: var(--sleep-mint);
+#calc-sleep-time .sleep-result-hours {
+  grid-area: meta;
+  color: var(--sleep-muted);
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 #calc-sleep-time .sleep-recommended-badge {
   grid-area: badge;
   display: none;
-  padding: 4px 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(77, 141, 127, 0.28);
-  background: rgba(77, 141, 127, 0.12);
-  color: var(--sleep-mint);
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  background: #ddebfa;
+  color: var(--sleep-accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -419,31 +316,27 @@
 }
 
 #calc-sleep-time .sleep-footer-note {
-  margin: 16px 0 0;
+  margin: 0;
   text-align: center;
-  color: rgba(35, 48, 68, 0.52);
+  color: var(--sleep-muted);
   font-size: 12px;
-  line-height: 1.8;
-}
-
-#calc-sleep-time .sleep-footer-note span {
-  color: var(--sleep-mint);
+  line-height: 1.6;
 }
 
 #sleep-time-explanation {
   display: grid;
-  gap: 16px;
-  margin-top: 20px;
+  gap: 18px;
+  margin-top: 18px;
 }
 
 #sleep-time-explanation .sleep-explanation-card {
   display: grid;
-  gap: 12px;
-  padding: 24px 28px;
-  border: 1px solid var(--sleep-border);
+  gap: 14px;
+  padding: 26px 30px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 16px 36px rgba(35, 48, 68, 0.08);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.05);
 }
 
 #sleep-time-explanation .sleep-explanation-kicker,
@@ -453,8 +346,8 @@
 
 #sleep-time-explanation .sleep-explanation-kicker {
   color: var(--sleep-accent);
-  font-family: 'DM Mono', 'Consolas', monospace;
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -463,8 +356,16 @@
 #sleep-time-explanation h3 {
   margin: 0;
   color: var(--sleep-text);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-family: 'DM Serif Display', 'Georgia', serif;
+  letter-spacing: -0.02em;
+}
+
+#sleep-time-explanation h2 {
+  font-size: clamp(1.55rem, 2.2vw, 2.1rem);
+}
+
+#sleep-time-explanation h3 {
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
 }
 
 #sleep-time-explanation p,
@@ -472,37 +373,42 @@
 #sleep-time-explanation th,
 #sleep-time-explanation td {
   margin: 0;
-  color: rgba(35, 48, 68, 0.86);
+  color: var(--sleep-muted);
   font-size: 14px;
-  line-height: 1.58;
+  line-height: 1.65;
+}
+
+#sleep-time-explanation strong {
+  color: var(--sleep-text);
 }
 
 #sleep-time-explanation .sleep-guide-steps,
 #sleep-time-explanation .sleep-notes {
-  margin: 0;
-  padding-left: 20px;
   display: grid;
   gap: 10px;
+  margin: 0;
+  padding-left: 20px;
 }
 
 #sleep-time-explanation .sleep-guide-table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--sleep-border);
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
+  border: 1px solid rgba(17, 24, 39, 0.08);
 }
 
 #sleep-time-explanation .sleep-guide-table th,
 #sleep-time-explanation .sleep-guide-table td {
-  padding: 14px 16px;
+  padding: 15px 16px;
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid rgba(95, 132, 184, 0.08);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.06);
 }
 
 #sleep-time-explanation .sleep-guide-table th {
-  background: var(--sleep-accent-soft);
+  background: rgba(49, 94, 140, 0.06);
+  color: var(--sleep-text);
 }
 
 #sleep-time-explanation .sleep-guide-table tr:last-child td {
@@ -517,99 +423,99 @@
 
 #sleep-time-explanation .sleep-faq-item {
   display: grid;
-  gap: 6px;
-  padding: 18px;
-  border: 1px solid var(--sleep-border);
-  border-radius: 18px;
-  background: var(--sleep-surface-soft);
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid rgba(17, 24, 39, 0.06);
+  border-radius: 20px;
+  background: rgba(250, 249, 246, 0.94);
 }
 
 #sleep-time-explanation .sleep-faq-item p:first-child {
   color: var(--sleep-text);
 }
 
-#sleep-time-explanation .sleep-faq-item p:last-child {
-  color: rgba(35, 48, 68, 0.74);
-}
-
-@keyframes sleep-twinkle {
-  from { opacity: var(--base-op, 0.3); transform: scale(1); }
-  to { opacity: 1; transform: scale(1.35); }
-}
-
-@keyframes sleep-aurora-shift {
-  0% { opacity: 0.6; transform: translateY(0) scaleX(1); }
-  50% { opacity: 1; transform: translateY(-18px) scaleX(1.05); }
-  100% { opacity: 0.7; transform: translateY(4px) scaleX(0.97); }
-}
-
-@keyframes sleep-moon-glow {
-  from { box-shadow: 0 0 26px 10px rgba(211, 169, 92, 0.18), 0 0 64px 20px rgba(211, 169, 92, 0.08); }
-  to { box-shadow: 0 0 40px 18px rgba(211, 169, 92, 0.28), 0 0 82px 34px rgba(211, 169, 92, 0.12); }
-}
-
-@keyframes sleep-card-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes sleep-card-pop {
-  from { opacity: 0; transform: scale(0.95) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (min-width: 861px) {
-  #calc-sleep-time,
   #sleep-time-explanation {
-    width: min(100%, 1140px);
+    width: min(100%, 1040px);
     margin-inline: auto;
   }
 }
 
 @media (max-width: 860px) {
-  #calc-sleep-time .sleep-container {
-    padding: 12px 16px 34px;
+  #calc-sleep-time .sleep-surface {
+    padding: 22px;
+    border-radius: 24px;
   }
 
-  #calc-sleep-time .sleep-hero-title {
-    font-size: clamp(1.7rem, 7.3vw, 2.25rem);
-  }
-
-  #calc-sleep-time .sleep-two-box {
+  #calc-sleep-time .sleep-planner-grid {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
 
-  #calc-sleep-time .sleep-card {
-    padding: 18px;
-    border-radius: 18px;
+  #calc-sleep-time .sleep-results-panel {
+    padding-left: 0;
+    padding-top: 22px;
+    border-left: 0;
+    border-top: 1px solid rgba(17, 24, 39, 0.08);
   }
 
-  #calc-sleep-time .sleep-toggle-wrap,
-  #calc-sleep-time .sleep-advanced-grid {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-  }
-
-  #calc-sleep-time .sleep-result {
-    padding: 12px;
-  }
-
-  #calc-sleep-time .sleep-result-time {
-    font-size: 22px;
-  }
-
-  #calc-sleep-time .sleep-moon-wrap {
-    top: 14px;
-    right: 14px;
-  }
-
-  #calc-sleep-time .sleep-moon-circle {
-    width: 48px;
-    height: 48px;
+  #calc-sleep-time .sleep-time-input {
+    font-size: 28px;
   }
 
   #sleep-time-explanation .sleep-faq-grid {
     grid-template-columns: 1fr;
   }
 }
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.64), rgba(8, 15, 28, 0.6));
+
+@media (max-width: 640px) {
+  #calc-sleep-time .sleep-surface,
+  #sleep-time-explanation .sleep-explanation-card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  #calc-sleep-time .sleep-toggle-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-sleep-time .sleep-toggle-btn,
+  #calc-sleep-time .sleep-calc-btn {
+    width: 100%;
+  }
+
+  #calc-sleep-time .sleep-time-input {
+    min-height: 60px;
+    font-size: 26px;
+  }
+
+  #calc-sleep-time .sleep-result {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'time'
+      'badge'
+      'meta';
+    justify-items: start;
+  }
+
+  #calc-sleep-time .sleep-result-time {
+    font-size: 26px;
+  }
+
+  #sleep-time-explanation .sleep-guide-table {
+    display: block;
+    overflow-x: auto;
+  }
+}

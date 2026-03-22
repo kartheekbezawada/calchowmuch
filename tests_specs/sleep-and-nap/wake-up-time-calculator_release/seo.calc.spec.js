@@ -41,8 +41,8 @@ test.describe('Wake-Up Time Calculator SEO', () => {
     expect(faqNode.mainEntity).toHaveLength(10);
 
     const explanation = page.locator('#wake-up-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h2')).toHaveText(
+    await expect(explanation.locator('.wake-explanation-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.wake-explanation-card h2')).toHaveText(
       'When should you wake up from this bedtime or fall-asleep time?'
     );
     await expect(explanation).toContainText('How to Guide');

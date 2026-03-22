@@ -113,11 +113,11 @@ test.describe('Wake-Up Time Calculator', () => {
     expect(firstAfterCalculate).not.toBe(firstResultBefore);
 
     const explanation = page.locator('#wake-up-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h2')).toHaveText(
+    await expect(explanation.locator('.wake-explanation-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.wake-explanation-card h2')).toHaveText(
       'When should you wake up from this bedtime or fall-asleep time?'
     );
-    await expect(explanation.locator('h3')).toHaveCount(3);
+    await expect(explanation.locator('.wake-explanation-card h3')).toHaveCount(3);
     await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');

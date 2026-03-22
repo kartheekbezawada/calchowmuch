@@ -34,10 +34,10 @@ test.describe('Sleep Time Calculator', () => {
     await page.goto('/time-and-date/sleep-time-calculator/');
 
     const powerNapLink = page.locator(
-      '.td-route-switch a[href="/time-and-date/power-nap-calculator/"]'
+      '.td-cluster-route-switch a[href="/time-and-date/power-nap-calculator/"]'
     );
     const energyNapLink = page.locator(
-      '.td-route-switch a[href="/time-and-date/energy-based-nap-selector/"]'
+      '.td-cluster-route-switch a[href="/time-and-date/energy-based-nap-selector/"]'
     );
 
     await expect(powerNapLink).toBeVisible();
@@ -55,7 +55,7 @@ test.describe('Sleep Time Calculator', () => {
 
     await Promise.all([
       page.waitForURL('**/time-and-date/energy-based-nap-selector/'),
-      page.locator('.td-route-switch a[href="/time-and-date/energy-based-nap-selector/"]').click(),
+      page.locator('.td-cluster-route-switch a[href="/time-and-date/energy-based-nap-selector/"]').click(),
     ]);
     await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
       'Energy-Based Nap Selector'
@@ -102,9 +102,11 @@ test.describe('Sleep Time Calculator', () => {
     await page.goto('/time-and-date/sleep-time-calculator/');
 
     const explanation = page.locator('#sleep-time-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h2')).toHaveText('When should you go to sleep or wake up?');
-    await expect(explanation.locator('h3')).toHaveCount(3);
+    await expect(explanation.locator('.sleep-explanation-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.sleep-explanation-card h2')).toHaveText(
+      'When should you go to sleep or wake up?'
+    );
+    await expect(explanation.locator('.sleep-explanation-card h3')).toHaveCount(3);
     await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');

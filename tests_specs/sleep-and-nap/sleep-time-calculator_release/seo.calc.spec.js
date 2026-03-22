@@ -39,8 +39,10 @@ test.describe('Sleep Time Calculator SEO', () => {
     expect(faqNode.mainEntity[0].name).toBe('How many hours of sleep do I need?');
 
     const explanation = page.locator('#sleep-time-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation.locator('h2')).toHaveText('When should you go to sleep or wake up?');
+    await expect(explanation.locator('.sleep-explanation-card h2')).toHaveCount(1);
+    await expect(explanation.locator('.sleep-explanation-card h2')).toHaveText(
+      'When should you go to sleep or wake up?'
+    );
     await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');

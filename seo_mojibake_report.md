@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:sleep-and-nap`
-- HTML files scanned: **5**
-- Calculator pages scanned: **5**
+- Scope: `calc:sleep-and-nap/nap-time-calculator`
+- HTML files scanned: **1**
+- Calculator pages scanned: **1**
 - Findings: **0**
 - Status: **PASS**
 

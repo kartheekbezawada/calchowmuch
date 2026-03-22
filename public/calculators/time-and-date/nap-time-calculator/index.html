@@ -1,69 +1,81 @@
 <div id="calc-nap-time">
-  <div class="nap-scene" aria-hidden="true">
-    <div class="nap-mist"></div>
-    <div class="nap-moon"></div>
-    <div class="nap-orb"></div>
-  </div>
-
-  <div class="nap-container">
-    <div class="nap-hero-tag">Nap Planner</div>
-    <h2 class="nap-hero-title">Reset in a <em>calm window</em>, wake with clarity</h2>
-
-    <div class="nap-two-box">
-      <div class="nap-card nap-card-calc">
-        <div class="nap-label">Select nap style</div>
-        <div class="nap-type-wrap" role="group" aria-labelledby="nap-type-label" data-button-group="nap-type">
-          <button class="nap-type-btn calculator-button secondary" type="button" data-value="quick" aria-pressed="false">
-            Quick<br /><span>20 min</span>
-          </button>
-          <button class="nap-type-btn calculator-button secondary is-active" type="button" data-value="power" aria-pressed="true">
-            Power<br /><span>30 min</span>
-          </button>
-          <button class="nap-type-btn calculator-button secondary" type="button" data-value="afternoon" aria-pressed="false">
-            Afternoon<br /><span>90 min</span>
-          </button>
-        </div>
-
-        <div class="nap-label">Nap start time</div>
-        <div class="nap-time-wrap">
-          <input id="nap-start-time" class="nap-time-input" type="time" />
-          <button id="nap-time-picker" class="nap-time-icon" type="button" aria-label="Open time picker">🕘</button>
-        </div>
-
-        <div class="nap-label">Wake buffer</div>
-        <div class="nap-buffer-wrap" role="group" aria-labelledby="nap-buffer-label" data-button-group="nap-buffer">
-          <button class="nap-buffer-btn calculator-button secondary" type="button" data-value="0" aria-pressed="false">0 min</button>
-          <button class="nap-buffer-btn calculator-button secondary is-active" type="button" data-value="5" aria-pressed="true">5 min</button>
-          <button class="nap-buffer-btn calculator-button secondary" type="button" data-value="10" aria-pressed="false">10 min</button>
-        </div>
-
-        <input
-          id="nap-latency-proxy"
-          class="nap-test-proxy"
-          type="number"
-          inputmode="numeric"
-          min="0"
-          max="1439"
-          step="5"
-          value="0"
-          aria-hidden="true"
-          tabindex="-1"
-        />
-        <button id="nap-calc" class="nap-test-proxy" type="button" aria-hidden="true" tabindex="-1">Calc</button>
-        <div id="nap-result" class="nap-test-proxy" aria-hidden="true"></div>
-
-        <button class="nap-calc-btn" type="button" id="nap-calculate">Calculate Nap End Time</button>
+  <div class="nap-shell">
+    <section class="nap-surface">
+      <div class="nap-lead">
+        <p class="nap-intro">Pick a nap length, set a start time, and get one clean wake target.</p>
       </div>
 
-      <div class="nap-card nap-card-answer">
-        <div class="nap-answer-title">Your Nap Result</div>
-        <div class="result" id="nap-results" aria-live="polite">
-          <p class="form-error is-hidden" id="nap-error"></p>
-          <div class="nap-results-list" id="nap-results-list"></div>
+      <div class="nap-planner-grid">
+        <div class="nap-controls">
+          <div class="nap-control-block">
+            <div class="nap-mode-label">Nap style</div>
+            <div class="nap-type-wrap" role="group" aria-labelledby="nap-type-label" data-button-group="nap-type">
+              <button class="nap-type-btn calculator-button secondary" type="button" data-value="quick" aria-pressed="false">
+                Quick
+                <span>20 min</span>
+              </button>
+              <button class="nap-type-btn calculator-button secondary is-active" type="button" data-value="power" aria-pressed="true">
+                Power
+                <span>30 min</span>
+              </button>
+              <button class="nap-type-btn calculator-button secondary" type="button" data-value="afternoon" aria-pressed="false">
+                Afternoon
+                <span>90 min</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="nap-control-block">
+            <label class="nap-input-label" for="nap-start-time">
+              <span class="nap-field-label">Start time</span>
+            </label>
+            <div class="nap-time-wrap">
+              <input id="nap-start-time" class="nap-time-input" type="time" />
+              <button id="nap-time-picker" class="nap-time-icon" type="button" aria-label="Open time picker">Set</button>
+            </div>
+          </div>
+
+          <div class="nap-control-block">
+            <div class="nap-buffer-label">Wake buffer</div>
+            <div class="nap-buffer-wrap" role="group" aria-labelledby="nap-buffer-label" data-button-group="nap-buffer">
+              <button class="nap-buffer-btn calculator-button secondary" type="button" data-value="0" aria-pressed="false">0 min</button>
+              <button class="nap-buffer-btn calculator-button secondary is-active" type="button" data-value="5" aria-pressed="true">5 min</button>
+              <button class="nap-buffer-btn calculator-button secondary" type="button" data-value="10" aria-pressed="false">10 min</button>
+            </div>
+          </div>
+
+          <input
+            id="nap-latency-proxy"
+            class="nap-test-proxy"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            max="1439"
+            step="5"
+            value="0"
+            aria-hidden="true"
+            tabindex="-1"
+          />
+          <button id="nap-calc" class="nap-test-proxy" type="button" aria-hidden="true" tabindex="-1">Calc</button>
+          <div id="nap-result" class="nap-test-proxy" aria-hidden="true"></div>
+
+          <button class="nap-calc-btn" type="button" id="nap-calculate">Calculate nap end time</button>
+        </div>
+
+        <div class="nap-results-panel">
+          <div class="nap-results-head">
+            <div class="nap-answer-title">Wake target</div>
+            <p class="nap-answer-note">Quick for a reset, power for a fuller recharge, afternoon for one full cycle.</p>
+          </div>
+
+          <div class="result" id="nap-results" aria-live="polite">
+            <p class="form-error is-hidden" id="nap-error"></p>
+            <div class="nap-results-list" id="nap-results-list"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <p class="nap-footer-note">Built for practical breaks: <span>quick</span>, <span>power</span>, and <span>afternoon</span> nap profiles.</p>
+    <p class="nap-footer-note">Your wake buffer is added after the nap length.</p>
   </div>
 </div>
