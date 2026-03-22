@@ -1276,30 +1276,44 @@
       #calc-days-until .du-shell {
         position: relative;
         z-index: 1;
-        display: grid;
-        gap: 18px;
       }
 
       #calc-days-until .du-main-cards {
         display: grid;
-        grid-template-columns: minmax(320px, 0.44fr) minmax(0, 0.56fr);
-        gap: 32px;
-        align-items: start;
-      }
-
-      #calc-days-until .du-side-column {
-        display: grid;
-        gap: 16px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+          'setup summary'
+          'details details'
+          'actions actions';
+        gap: 20px;
+        align-items: stretch;
       }
 
       #calc-days-until .du-input-card,
       #calc-days-until .du-result-card,
       #calc-days-until .du-detail-card,
       #calc-days-until .du-actions-card {
+        height: 100%;
         border: 1px solid var(--du-line);
         border-radius: 20px;
         background: var(--du-surface);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+
+      #calc-days-until .du-input-card {
+        grid-area: setup;
+      }
+
+      #calc-days-until .du-result-card {
+        grid-area: summary;
+      }
+
+      #calc-days-until .du-detail-card {
+        grid-area: details;
+      }
+
+      #calc-days-until .du-actions-card {
+        grid-area: actions;
       }
 
       #calc-days-until .du-input-card,
@@ -1515,13 +1529,18 @@
       }
 
       #calc-days-until .du-result-card {
-        display: grid;
-        gap: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 36px 32px;
+        text-align: center;
       }
 
       #calc-days-until .du-result-kicker {
         margin: 0;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
         line-height: 1.4;
         color: var(--du-muted);
@@ -1530,7 +1549,8 @@
       #calc-days-until .du-result-main {
         display: flex;
         align-items: flex-end;
-        gap: 10px;
+        justify-content: center;
+        gap: 12px;
       }
 
       #calc-days-until .du-result-value,
@@ -1542,7 +1562,7 @@
       }
 
       #calc-days-until .du-result-value {
-        font-size: clamp(80px, 9vw, 88px);
+        font-size: clamp(88px, 12vw, 120px);
         font-weight: 600;
         line-height: 0.94;
         letter-spacing: -0.04em;
@@ -1550,30 +1570,34 @@
       }
 
       #calc-days-until .du-result-unit {
-        padding-bottom: 10px;
+        padding-bottom: 12px;
         color: var(--du-muted);
-        font-size: 22px;
+        font-size: clamp(24px, 3vw, 30px);
         font-weight: 500;
         line-height: 1;
       }
 
       #calc-days-until .du-result-summary {
         color: var(--du-text);
-        font-size: 18px;
+        max-width: 24ch;
+        font-size: clamp(20px, 2.8vw, 28px);
         line-height: 1.5;
       }
 
       #calc-days-until .du-clarification {
+        max-width: 34ch;
         color: var(--du-muted);
-        font-size: 14px;
+        font-size: 15px;
         line-height: 1.55;
       }
 
       #calc-days-until .du-status {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 8px;
-        padding-top: 4px;
+        margin-top: 4px;
+        padding-top: 2px;
       }
 
       #calc-days-until .du-status-chip {
@@ -1590,14 +1614,14 @@
 
       #calc-days-until .du-detail-card {
         display: grid;
-        gap: 16px;
+        gap: 18px;
         background: var(--du-surface-soft);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
       }
 
       #calc-days-until .du-breakdown {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 12px;
       }
 
@@ -1635,7 +1659,7 @@
 
       #calc-days-until .du-milestone-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 12px;
       }
 
@@ -1755,10 +1779,18 @@
 
       #days-until-explanation .days-until-guide-table {
         width: 100%;
-        border-collapse: collapse;
+        min-width: 720px;
+        border-collapse: separate;
+        border-spacing: 0;
         border: 1px solid var(--du-line);
         border-radius: 16px;
         overflow: hidden;
+        background: #ffffff;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      }
+
+      #days-until-explanation .days-until-guide-table thead {
+        background: linear-gradient(180deg, rgba(0, 113, 227, 0.08), rgba(0, 113, 227, 0.03));
       }
 
       #days-until-explanation .days-until-guide-table th,
@@ -1767,6 +1799,30 @@
         text-align: left;
         vertical-align: top;
         border-bottom: 1px solid var(--du-line);
+      }
+
+      #days-until-explanation .days-until-guide-table th {
+        color: var(--du-text);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      #days-until-explanation .days-until-guide-table td {
+        background: #ffffff;
+      }
+
+      #days-until-explanation .days-until-guide-table th + th,
+      #days-until-explanation .days-until-guide-table td + td {
+        border-left: 1px solid var(--du-line);
+      }
+
+      #days-until-explanation .days-until-guide-table tbody tr:nth-child(even) td {
+        background: rgba(245, 245, 247, 0.9);
+      }
+
+      #days-until-explanation .days-until-guide-table tbody tr:hover td {
+        background: rgba(0, 113, 227, 0.04);
       }
 
       #days-until-explanation .days-until-guide-table tr:last-child td {
@@ -1787,13 +1843,8 @@
       }
 
       @media (max-width: 960px) {
-        #calc-days-until .du-main-cards,
         #calc-days-until .du-actions-layout {
           grid-template-columns: 1fr;
-        }
-
-        #calc-days-until .du-side-column {
-          gap: 14px;
         }
 
         #calc-days-until .du-milestone-grid {
@@ -1806,6 +1857,15 @@
       }
 
       @media (max-width: 720px) {
+        #calc-days-until .du-main-cards {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            'setup'
+            'summary'
+            'details'
+            'actions';
+        }
+
         #calc-days-until .du-input-card,
         #calc-days-until .du-result-card,
         #calc-days-until .du-detail-card,
@@ -1824,16 +1884,19 @@
         }
 
         #calc-days-until .du-result-main {
-          gap: 8px;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
         }
 
         #calc-days-until .du-result-unit {
-          padding-bottom: 8px;
+          padding-bottom: 0;
         }
 
         #days-until-explanation .days-until-guide-table {
           display: block;
           overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
         }
       }
     </style>
@@ -1947,70 +2010,68 @@
         </div>
       </section>
 
-      <div class="du-side-column">
-        <section class="du-result-card" aria-live="polite" aria-labelledby="days-until-result-title">
-          <h2 class="du-sr-only" id="days-until-result-title">Answer</h2>
-          <p class="du-result-kicker" id="days-until-result-kicker">Date result</p>
-          <div class="du-result-main">
-            <p class="du-result-value" id="days-until-result-value">--</p>
-            <p class="du-result-unit" id="days-until-result-unit">days</p>
-          </div>
-          <p class="du-result-summary" id="days-until-result-summary">
-            Choose a target date to see the date plan.
-          </p>
-          <p class="du-clarification" id="days-until-clarification">
-            The result updates using your local date.
-          </p>
+      <section class="du-result-card" aria-live="polite" aria-labelledby="days-until-result-title">
+        <h2 class="du-sr-only" id="days-until-result-title">Answer</h2>
+        <p class="du-result-kicker" id="days-until-result-kicker">Date result</p>
+        <div class="du-result-main">
+          <p class="du-result-value" id="days-until-result-value">--</p>
+          <p class="du-result-unit" id="days-until-result-unit">days</p>
+        </div>
+        <p class="du-result-summary" id="days-until-result-summary">
+          Choose a target date to see the date plan.
+        </p>
+        <p class="du-clarification" id="days-until-clarification">
+          The result updates using your local date.
+        </p>
 
-          <div class="du-status" id="days-until-status"></div>
+        <div class="du-status" id="days-until-status"></div>
+      </section>
+
+      <section class="du-detail-card" aria-labelledby="days-until-detail-title">
+        <div class="du-card-head">
+          <p class="du-section-eyebrow">Details</p>
+          <h2 class="du-card-title du-card-title-small" id="days-until-detail-title">Breakdown and markers</h2>
+        </div>
+
+        <div class="du-breakdown" id="days-until-breakdown"></div>
+
+        <section class="du-milestones is-hidden" id="days-until-milestones-wrap" aria-labelledby="days-until-milestones-title">
+          <p class="du-section-label" id="days-until-milestones-title">Planning markers</p>
+          <div class="du-milestone-grid" id="days-until-milestones"></div>
         </section>
+      </section>
 
-        <section class="du-detail-card" aria-labelledby="days-until-detail-title">
-          <div class="du-card-head">
-            <p class="du-section-eyebrow">Details</p>
-            <h2 class="du-card-title du-card-title-small" id="days-until-detail-title">Breakdown and markers</h2>
-          </div>
+      <section class="du-actions du-actions-card is-hidden" id="days-until-actions" aria-labelledby="days-until-actions-title">
+        <div class="du-card-head du-actions-head">
+          <p class="du-section-eyebrow">Utilities</p>
+          <h2 class="du-card-title du-card-title-small" id="days-until-actions-title">Share and export</h2>
+        </div>
 
-          <div class="du-breakdown" id="days-until-breakdown"></div>
-
-          <section class="du-milestones is-hidden" id="days-until-milestones-wrap" aria-labelledby="days-until-milestones-title">
-            <p class="du-section-label" id="days-until-milestones-title">Planning markers</p>
-            <div class="du-milestone-grid" id="days-until-milestones"></div>
+        <div class="du-actions-layout">
+          <section class="du-action-group" aria-labelledby="days-until-share-group-title">
+            <p class="du-actions-label" id="days-until-share-group-title">Share</p>
+            <div class="du-action-grid du-action-grid-share">
+              <button class="du-btn du-btn-small" type="button" id="days-until-generate-share-card">Generate share card</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-summary">Copy summary</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-dates">Copy dates</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-share-png">Download PNG</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-share-image">Copy image</button>
+            </div>
           </section>
-        </section>
-      </div>
+
+          <section class="du-action-group" aria-labelledby="days-until-calendar-group-title">
+            <p class="du-actions-label" id="days-until-calendar-group-title">Calendar export</p>
+            <div class="du-action-grid du-action-grid-calendar">
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-google">Google Calendar</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-outlook">Outlook</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-ics">Download .ics</button>
+            </div>
+          </section>
+        </div>
+
+        <p class="du-feedback is-hidden" id="days-until-copy-feedback"></p>
+      </section>
     </div>
-
-    <section class="du-actions du-actions-card is-hidden" id="days-until-actions" aria-labelledby="days-until-actions-title">
-      <div class="du-card-head du-actions-head">
-        <p class="du-section-eyebrow">Utilities</p>
-        <h2 class="du-card-title du-card-title-small" id="days-until-actions-title">Share and export</h2>
-      </div>
-
-      <div class="du-actions-layout">
-        <section class="du-action-group" aria-labelledby="days-until-share-group-title">
-          <p class="du-actions-label" id="days-until-share-group-title">Share</p>
-          <div class="du-action-grid du-action-grid-share">
-            <button class="du-btn du-btn-small" type="button" id="days-until-generate-share-card">Generate share card</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-summary">Copy summary</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-dates">Copy dates</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-share-png">Download PNG</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-share-image">Copy image</button>
-          </div>
-        </section>
-
-        <section class="du-action-group" aria-labelledby="days-until-calendar-group-title">
-          <p class="du-actions-label" id="days-until-calendar-group-title">Calendar export</p>
-          <div class="du-action-grid du-action-grid-calendar">
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-google">Google Calendar</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-outlook">Outlook</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-ics">Download .ics</button>
-          </div>
-        </section>
-      </div>
-
-      <p class="du-feedback is-hidden" id="days-until-copy-feedback"></p>
-    </section>
   </div>
 </div>
 

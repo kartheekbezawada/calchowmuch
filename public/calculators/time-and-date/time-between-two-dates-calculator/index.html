@@ -85,63 +85,69 @@
 
     <section class="td-card td-result-card" id="date-diff-result-card" aria-live="polite">
       <div class="td-result-top">
-        <div>
-          <p class="td-section-kicker" id="date-diff-direction">Future interval</p>
-        </div>
-        <div class="td-result-actions">
-          <button class="td-btn td-btn-secondary" type="button" id="date-diff-copy-summary">
-            Copy summary
-          </button>
-        </div>
+        <p class="td-section-kicker" id="date-diff-direction">Future interval</p>
+        <button class="td-btn td-btn-secondary" type="button" id="date-diff-copy-summary">
+          Copy summary
+        </button>
       </div>
 
-      <div class="td-hero-answer">
+      <div class="td-result-primary">
+        <p class="td-result-label">Total duration</p>
         <p class="td-hero-value" id="date-diff-headline">30 days</p>
         <p class="td-hero-summary" id="date-diff-summary">
           Mar 17 to Apr 16. 22 business days.
         </p>
+        <p class="td-visually-hidden" aria-hidden="true">
+          Total days: <span id="date-diff-total-days">30</span>
+        </p>
       </div>
 
-      <div class="td-breakdown-strip" aria-label="Calendar breakdown">
-        <div class="td-breakdown-pill">
-          <span class="td-breakdown-label">Years</span>
-          <span class="td-breakdown-value" id="date-diff-years">0</span>
-        </div>
-        <div class="td-breakdown-pill">
-          <span class="td-breakdown-label">Months</span>
-          <span class="td-breakdown-value" id="date-diff-months">0</span>
-        </div>
-        <div class="td-breakdown-pill">
-          <span class="td-breakdown-label">Days</span>
-          <span class="td-breakdown-value" id="date-diff-days">30</span>
-        </div>
-      </div>
+      <div class="td-result-sections">
+        <section class="td-result-section td-result-section-key" aria-labelledby="date-diff-key-metrics-title">
+          <div class="td-section-head">
+            <h3 id="date-diff-key-metrics-title">Key metrics</h3>
+            <span class="td-meta-chip" id="date-diff-options-chip">End date excluded</span>
+          </div>
 
-      <div class="td-metrics-grid">
-        <div class="td-metric-tile" data-result="total-days">
-          <span class="td-metric-label">Total days</span>
-          <span class="td-metric-value" id="date-diff-total-days">30</span>
-        </div>
-        <div class="td-metric-tile" data-result="total-weeks">
-          <span class="td-metric-label">Total weeks</span>
-          <span class="td-metric-value" id="date-diff-total-weeks">4.29</span>
-        </div>
-        <div class="td-metric-tile" data-result="business-days">
-          <span class="td-metric-label">Business days</span>
-          <span class="td-metric-value" id="date-diff-business-days">22</span>
-        </div>
-        <div class="td-metric-tile" data-result="total-hours">
-          <span class="td-metric-label">Total hours</span>
-          <span class="td-metric-value" id="date-diff-total-hours">720</span>
-        </div>
-        <div class="td-metric-tile" data-result="total-minutes">
-          <span class="td-metric-label">Total minutes</span>
-          <span class="td-metric-value" id="date-diff-total-minutes">43,200</span>
-        </div>
+          <div class="td-support-list">
+            <div class="td-support-item" data-result="total-weeks">
+              <span class="td-support-label">Total weeks</span>
+              <span class="td-support-value" id="date-diff-total-weeks">4.29</span>
+            </div>
+            <div class="td-support-item" data-result="business-days">
+              <span class="td-support-label">Business days</span>
+              <span class="td-support-value" id="date-diff-business-days">22</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="td-result-section" aria-labelledby="date-diff-breakdown-title">
+          <h3 id="date-diff-breakdown-title">Detailed breakdown</h3>
+          <p class="td-breakdown-line">
+            <span><span class="td-breakdown-inline-value" id="date-diff-years">0</span> years</span>
+            <span class="td-breakdown-separator">•</span>
+            <span><span class="td-breakdown-inline-value" id="date-diff-months">0</span> months</span>
+            <span class="td-breakdown-separator">•</span>
+            <span><span class="td-breakdown-inline-value" id="date-diff-days">30</span> days</span>
+          </p>
+        </section>
+
+        <section class="td-result-section" aria-labelledby="date-diff-extended-title">
+          <h3 id="date-diff-extended-title">Extended details</h3>
+          <div class="td-detail-metrics">
+            <div class="td-detail-metric" data-result="total-hours">
+              <span class="td-detail-metric-label">Total hours</span>
+              <span class="td-detail-metric-value" id="date-diff-total-hours">720</span>
+            </div>
+            <div class="td-detail-metric" data-result="total-minutes">
+              <span class="td-detail-metric-label">Total minutes</span>
+              <span class="td-detail-metric-value" id="date-diff-total-minutes">43,200</span>
+            </div>
+          </div>
+        </section>
       </div>
 
       <div class="td-result-meta">
-        <span class="td-meta-chip" id="date-diff-options-chip">End date excluded</span>
         <span class="td-meta-chip" id="date-diff-dirty-note">Up to date</span>
         <span class="td-copy-feedback is-hidden" id="date-diff-copy-feedback">Copied</span>
       </div>

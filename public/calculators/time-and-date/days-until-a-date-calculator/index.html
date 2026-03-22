@@ -77,69 +77,67 @@
         </div>
       </section>
 
-      <div class="du-side-column">
-        <section class="du-result-card" aria-live="polite" aria-labelledby="days-until-result-title">
-          <h2 class="du-sr-only" id="days-until-result-title">Answer</h2>
-          <p class="du-result-kicker" id="days-until-result-kicker">Date result</p>
-          <div class="du-result-main">
-            <p class="du-result-value" id="days-until-result-value">--</p>
-            <p class="du-result-unit" id="days-until-result-unit">days</p>
-          </div>
-          <p class="du-result-summary" id="days-until-result-summary">
-            Choose a target date to see the date plan.
-          </p>
-          <p class="du-clarification" id="days-until-clarification">
-            The result updates using your local date.
-          </p>
+      <section class="du-result-card" aria-live="polite" aria-labelledby="days-until-result-title">
+        <h2 class="du-sr-only" id="days-until-result-title">Answer</h2>
+        <p class="du-result-kicker" id="days-until-result-kicker">Date result</p>
+        <div class="du-result-main">
+          <p class="du-result-value" id="days-until-result-value">--</p>
+          <p class="du-result-unit" id="days-until-result-unit">days</p>
+        </div>
+        <p class="du-result-summary" id="days-until-result-summary">
+          Choose a target date to see the date plan.
+        </p>
+        <p class="du-clarification" id="days-until-clarification">
+          The result updates using your local date.
+        </p>
 
-          <div class="du-status" id="days-until-status"></div>
+        <div class="du-status" id="days-until-status"></div>
+      </section>
+
+      <section class="du-detail-card" aria-labelledby="days-until-detail-title">
+        <div class="du-card-head">
+          <p class="du-section-eyebrow">Details</p>
+          <h2 class="du-card-title du-card-title-small" id="days-until-detail-title">Breakdown and markers</h2>
+        </div>
+
+        <div class="du-breakdown" id="days-until-breakdown"></div>
+
+        <section class="du-milestones is-hidden" id="days-until-milestones-wrap" aria-labelledby="days-until-milestones-title">
+          <p class="du-section-label" id="days-until-milestones-title">Planning markers</p>
+          <div class="du-milestone-grid" id="days-until-milestones"></div>
         </section>
+      </section>
 
-        <section class="du-detail-card" aria-labelledby="days-until-detail-title">
-          <div class="du-card-head">
-            <p class="du-section-eyebrow">Details</p>
-            <h2 class="du-card-title du-card-title-small" id="days-until-detail-title">Breakdown and markers</h2>
-          </div>
+      <section class="du-actions du-actions-card is-hidden" id="days-until-actions" aria-labelledby="days-until-actions-title">
+        <div class="du-card-head du-actions-head">
+          <p class="du-section-eyebrow">Utilities</p>
+          <h2 class="du-card-title du-card-title-small" id="days-until-actions-title">Share and export</h2>
+        </div>
 
-          <div class="du-breakdown" id="days-until-breakdown"></div>
-
-          <section class="du-milestones is-hidden" id="days-until-milestones-wrap" aria-labelledby="days-until-milestones-title">
-            <p class="du-section-label" id="days-until-milestones-title">Planning markers</p>
-            <div class="du-milestone-grid" id="days-until-milestones"></div>
+        <div class="du-actions-layout">
+          <section class="du-action-group" aria-labelledby="days-until-share-group-title">
+            <p class="du-actions-label" id="days-until-share-group-title">Share</p>
+            <div class="du-action-grid du-action-grid-share">
+              <button class="du-btn du-btn-small" type="button" id="days-until-generate-share-card">Generate share card</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-summary">Copy summary</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-dates">Copy dates</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-share-png">Download PNG</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-share-image">Copy image</button>
+            </div>
           </section>
-        </section>
-      </div>
+
+          <section class="du-action-group" aria-labelledby="days-until-calendar-group-title">
+            <p class="du-actions-label" id="days-until-calendar-group-title">Calendar export</p>
+            <div class="du-action-grid du-action-grid-calendar">
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-google">Google Calendar</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-outlook">Outlook</button>
+              <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-ics">Download .ics</button>
+            </div>
+          </section>
+        </div>
+
+        <p class="du-feedback is-hidden" id="days-until-copy-feedback"></p>
+      </section>
     </div>
-
-    <section class="du-actions du-actions-card is-hidden" id="days-until-actions" aria-labelledby="days-until-actions-title">
-      <div class="du-card-head du-actions-head">
-        <p class="du-section-eyebrow">Utilities</p>
-        <h2 class="du-card-title du-card-title-small" id="days-until-actions-title">Share and export</h2>
-      </div>
-
-      <div class="du-actions-layout">
-        <section class="du-action-group" aria-labelledby="days-until-share-group-title">
-          <p class="du-actions-label" id="days-until-share-group-title">Share</p>
-          <div class="du-action-grid du-action-grid-share">
-            <button class="du-btn du-btn-small" type="button" id="days-until-generate-share-card">Generate share card</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-summary">Copy summary</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-dates">Copy dates</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-share-png">Download PNG</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-copy-share-image">Copy image</button>
-          </div>
-        </section>
-
-        <section class="du-action-group" aria-labelledby="days-until-calendar-group-title">
-          <p class="du-actions-label" id="days-until-calendar-group-title">Calendar export</p>
-          <div class="du-action-grid du-action-grid-calendar">
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-google">Google Calendar</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-add-outlook">Outlook</button>
-            <button class="du-btn du-btn-small du-btn-ghost" type="button" id="days-until-download-ics">Download .ics</button>
-          </div>
-        </section>
-      </div>
-
-      <p class="du-feedback is-hidden" id="days-until-copy-feedback"></p>
-    </section>
   </div>
 </div>
