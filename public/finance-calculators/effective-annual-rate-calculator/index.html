@@ -984,7 +984,7 @@
       }
 
       body[data-design-family='neutral'] .fi-cluster-page-header {
-        max-width: 760px;
+        max-width: 1120px;
         margin: 0 auto;
         text-align: center;
       }
@@ -1005,11 +1005,12 @@
       }
 
       body[data-design-family='neutral'] #calculator-title {
-        margin: 18px 0 0;
-        font-size: clamp(40px, 6vw, 58px);
+        margin: 0;
+        font-size: clamp(34px, 4vw, 52px);
         line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--fi-text);
+        white-space: nowrap;
       }
 
       body[data-design-family='neutral'] .fi-cluster-page-intro {
@@ -1669,6 +1670,15 @@
       }
 
       @media (max-width: 720px) {
+        body[data-design-family='neutral'] .fi-cluster-page-header {
+          max-width: 100%;
+        }
+
+        body[data-design-family='neutral'] #calculator-title {
+          font-size: clamp(32px, 9vw, 42px);
+          white-space: normal;
+        }
+
         body[data-design-family='neutral'] .fi-cluster-wrap,
         body[data-design-family='neutral'] .fi-cluster-center-column {
           width: min(100% - 20px, 1180px);
@@ -2046,7 +2056,6 @@
         <section class="fi-cluster-center-column">
           <div class="fi-cluster-panel panel-span-all">
   <div class="fi-cluster-page-header">
-    <span class="fi-cluster-page-kicker">Finance Calculators</span>
     <h1 id="calculator-title">Effective Annual Rate Calculator</h1>
     <p class="fi-cluster-page-intro">Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.</p>
   </div>

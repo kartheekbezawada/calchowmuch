@@ -1,54 +1,28 @@
 <div id="comm-explanation" class="explanation-pane pct-explanation">
-  <section>
-    <h2>How Much Commission Will the Sale Generate?</h2>
-    <p>
-      Use this calculator to estimate commission earnings from a flat percentage or a tiered plan.
-    </p>
-    <p>
-      It is useful for sales compensation, brokerage, affiliate arrangements, and any payout model
-      where earnings depend on sales volume.
-    </p>
-  </section>
+  <h2>How Much Commission Will This Sale Generate?</h2>
+  <h3>How to Guide</h3>
+  <p>
+    Use this calculator to estimate commission from a flat rate or tiered structure. In
+    <span data-comm="mode">Flat Commission %</span> mode, total sales of
+    <span data-comm="sales">$30,000.00</span> with rate input of
+    <span data-comm="rates">7.50%</span> produce estimated commission of
+    <span data-comm="commission">$2,250.00</span> and an effective rate of
+    <span data-comm="effective-rate">7.50%</span>.
+  </p>
+  <p>
+    Flat mode applies one rate to the full sale. Tiered mode prices each band separately, so only
+    the sales inside a band earn that band's rate. That makes the effective rate the cleanest way
+    to compare offers, test threshold changes, or check what a compensation plan really pays.
+  </p>
+  <p>
+    The flat-rate formula is
+    <span data-comm="formula">Commission = Sales x (Rate / 100)</span>. In tiered mode, the
+    calculator applies the same logic band by band and adds the results together. Use the same
+    sales basis your plan actually pays on, such as gross revenue, net revenue, collected cash, or
+    your split share, or the estimate will drift from the real payout.
+  </p>
 
-  <section>
-    <h3>How to Guide</h3>
-    <ol class="pv-formula-steps">
-      <li>Choose flat rate or tiered plan mode.</li>
-      <li>Enter total sales and the rate inputs for the selected mode.</li>
-      <li>Click <strong>Calculate commission</strong> to see total commission and effective rate.</li>
-      <li>In tiered mode, review the summary and breakdown table for each commission band.</li>
-    </ol>
-
-    <h4>At a Glance</h4>
-    <ul class="pv-explanation-list">
-      <li><strong>Mode:</strong> <span data-comm="mode">Flat Commission %</span></li>
-      <li><strong>Total sales:</strong> <span data-comm="sales">$30,000.00</span></li>
-      <li><strong>Rate(s):</strong> <span data-comm="rates">7.50%</span></li>
-      <li><strong>Total commission:</strong> <span data-comm="commission">$2,250.00</span></li>
-      <li><strong>Effective rate:</strong> <span data-comm="effective-rate">7.50%</span></li>
-    </ul>
-
-    <h4>Worked Example</h4>
-    <p>
-      In flat-rate mode, if total sales are <span data-comm="sales">$30,000.00</span> and the rate is
-      <span data-comm="rates">7.50%</span>, commission equals 30,000 x 0.075, which gives
-      <span data-comm="commission">$2,250.00</span>. The effective rate is also
-      <span data-comm="effective-rate">7.50%</span> because one flat rate was applied to the whole sale.
-    </p>
-    <p>
-      In tiered mode, each sales band is priced at its own rate, then the tier payouts are added
-      together to reach the final commission total.
-    </p>
-
-    <h4>Formula</h4>
-    <p class="pv-formula-block"><span data-comm="formula">Commission = Sales x (Rate / 100)</span></p>
-    <p>
-      In tiered mode, the calculator applies each rate to the matching sales band and then adds the
-      tier commissions to get the total payout.
-    </p>
-  </section>
-
-  <section id="comm-breakdown-wrap" hidden>
+  <div id="comm-breakdown-wrap" hidden>
     <h3>Tiered Breakdown</h3>
     <div class="table-scroll" tabindex="0">
       <table class="pv-results-table">
@@ -63,47 +37,36 @@
         <tbody id="comm-breakdown-body"></tbody>
       </table>
     </div>
-  </section>
+  </div>
 
-  <section>
-    <h3>Frequently Asked Questions</h3>
-    <div class="bor-faq-grid">
-      <div class="bor-faq-card">
-        <h4>What is a commission calculator?</h4>
-        <p>It estimates payout from sales using a flat rate or tiered commission structure.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>How do you calculate flat commission?</h4>
-        <p>Multiply total sales by the commission percentage written as a decimal.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>How do tiered commissions work?</h4>
-        <p>Different portions of sales earn different rates based on the tier thresholds.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is effective commission rate?</h4>
-        <p>It is total commission divided by total sales, expressed as a percentage.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Can commission rates use decimals like 7.5%?</h4>
-        <p>Yes. Decimal commission rates are handled the same way as whole numbers.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What happens when sales are zero?</h4>
-        <p>Total commission becomes zero, and the effective rate may be shown as zero.</p>
-      </div>
-    </div>
-  </section>
+  <h3>Frequently Asked Questions</h3>
+  <p>
+    <strong>How do flat and tiered commission differ?</strong> Flat commission uses one rate on the
+    full sale, while tiered commission applies different rates to different slices of sales.
+  </p>
+  <p>
+    <strong>What is the effective commission rate?</strong> It is total commission divided by total
+    sales, expressed as a percentage.
+  </p>
+  <p>
+    <strong>Can I use this for brokerage, affiliate, or real estate payouts?</strong> Yes, as long
+    as the payout follows a flat-rate or tiered-rate structure.
+  </p>
+  <p>
+    <strong>Does the calculator include caps or clawbacks?</strong> No. It calculates the base
+    payout from the sales and rate inputs only.
+  </p>
+  <p>
+    <strong>What is the most common mistake?</strong> Treating the highest tier as if it applies to
+    the whole sale instead of only the sales inside that band.
+  </p>
 
-  <section>
-    <h3>Important Notes</h3>
-    <ul class="pv-explanation-list pct-important-notes">
-      <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Accuracy:</strong> Results use standard flat and tiered commission formulas.</li>
-      <li><strong>Assumptions:</strong> Sales totals and tier thresholds should use the same currency basis, and tiered mode assumes each rate applies only to its defined sales band.</li>
-      <li><strong>Use case:</strong> Best for sales compensation, affiliate payouts, and brokerage estimates.</li>
-      <li><strong>Disclaimer:</strong> This calculator estimates mathematical commission only and does not include caps, clawbacks, bonuses, draws, overrides, payroll deductions, or contract-specific payout rules unless you model them in the inputs.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
-    </ul>
-  </section>
+  <h3>Important Notes</h3>
+  <ul class="pv-explanation-list pct-important-notes">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Accuracy:</strong> Standard flat and tiered commission formulas</li>
+    <li><strong>Assumptions:</strong> Same currency basis; tiered rates apply only inside each band</li>
+    <li><strong>Disclaimer:</strong> Excludes caps, clawbacks, splits, accelerators, bonuses, and taxes unless modeled in the inputs</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser</li>
+  </ul>
 </div>
