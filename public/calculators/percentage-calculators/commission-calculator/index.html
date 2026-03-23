@@ -1,858 +1,113 @@
 <div id="calc-commission-calculator">
-  <style>
-    #calculator-title {
-      text-align: center;
-      color: #000 !important;
-    }
-
-    .layout-main.layout-main--no-ads {
-      grid-template-columns: minmax(200px, 230px) minmax(0, 1fr);
-    }
-
-    .layout-main.layout-main--no-ads .center-column {
-      background: linear-gradient(180deg, rgba(236, 253, 245, 0.94), rgba(220, 252, 231, 0.92));
-      border: 1px solid rgba(52, 211, 153, 0.25);
-      border-radius: 16px;
-    }
-
-    .layout-main.layout-main--no-ads .center-column .panel.panel--shellless {
-      color: #0f2a1f;
-    }
-
-    .panel.panel--shellless {
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      padding: 0;
-    }
-
-    .panel.panel--shellless > h2 {
-      display: none;
-    }
-
-    #calc-commission-calculator .comm-layout {
-      gap: 12px;
-      align-content: start;
-      padding: 0 14px 8px 18px;
-    }
-
-    #calc-commission-calculator .comm-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 620px) minmax(540px, 760px);
-      gap: 14px;
-      align-items: start;
-      justify-content: start;
-      max-width: 1240px;
-    }
-
-    #calc-commission-calculator .comm-form-panel,
-    #calc-commission-calculator .comm-answer-deck {
-      border-radius: 14px;
-      border: 1px solid rgba(52, 211, 153, 0.34);
-      background: linear-gradient(160deg, rgba(236, 253, 245, 0.95), rgba(209, 250, 229, 0.9));
-      box-shadow:
-        0 10px 20px rgba(2, 44, 34, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
-      padding: 12px;
-      color: #0f2a1f;
-    }
-
-    #calc-commission-calculator .comm-form-panel {
-      max-width: 780px;
-    }
-
-    #calc-commission-calculator .comm-mode-row {
-      gap: 6px;
-    }
-
-    #calc-commission-calculator .comm-mode-chips {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    #calc-commission-calculator .comm-mode-radio {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #calc-commission-calculator .comm-mode-chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #14532d;
-      background: rgba(240, 253, 244, 0.9);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-      white-space: nowrap;
-    }
-
-    #calc-commission-calculator .comm-mode-chip.is-active {
-      border-color: rgba(56, 189, 248, 0.52);
-      color: #052e16;
-      background: linear-gradient(130deg, rgba(110, 231, 183, 0.95), rgba(74, 222, 128, 0.95));
-      box-shadow: 0 4px 10px rgba(22, 101, 52, 0.2);
-    }
-
-    #calc-commission-calculator .comm-mode-radio:focus-visible + .comm-mode-chip {
-      outline: 2px solid rgba(125, 211, 252, 0.7);
-      outline-offset: 2px;
-    }
-
-    #calc-commission-calculator .comm-form-panel .input-stack {
-      gap: 10px;
-    }
-
-    #calc-commission-calculator .comm-form-panel .input-row input[type='number'] {
-      min-height: 42px;
-      max-width: 520px;
-      background: rgba(255, 255, 255, 0.88);
-      border-color: rgba(20, 83, 45, 0.22);
-      color: #052e16;
-    }
-
-    #calc-commission-calculator .comm-form-panel .input-row label,
-    #calc-commission-calculator .comm-form-panel .helper {
-      color: rgba(20, 83, 45, 0.9);
-    }
-
-    #calc-commission-calculator #comm-tiered-section .helper {
-      margin-bottom: 2px;
-    }
-
-    #calc-commission-calculator #comm-tier-rows {
-      gap: 8px;
-    }
-
-    #calc-commission-calculator .commission-tier-row {
-      padding: 8px;
-      gap: 8px;
-      border-radius: 10px;
-      border-color: rgba(16, 185, 129, 0.28);
-      background: rgba(240, 253, 244, 0.7);
-    }
-
-    #calc-commission-calculator .commission-tier-row input[type='number'] {
-      max-width: none;
-      min-height: 38px;
-      padding: 8px 11px;
-      background: rgba(255, 255, 255, 0.92);
-      color: #052e16;
-    }
-
-    #calc-commission-calculator .commission-tier-row .calculator-button {
-      min-height: 38px;
-      padding: 8px 10px;
-      min-width: 86px;
-    }
-
-    #calc-commission-calculator #comm-add-tier {
-      width: fit-content;
-      min-height: 36px;
-      padding: 7px 11px;
-    }
-
-    #calc-commission-calculator .comm-sticky-action {
-      position: sticky;
-      bottom: 0;
-      z-index: 12;
-      margin-top: 2px;
-      padding-top: 8px;
-      padding-bottom: 6px;
-      background: linear-gradient(180deg, rgba(236, 253, 245, 0) 0%, rgba(209, 250, 229, 0.92) 55%);
-    }
-
-    #calc-commission-calculator #comm-calc {
-      max-width: 520px;
-      min-height: 42px;
-    }
-
-    #calc-commission-calculator .comm-answer-deck {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 1.2fr);
-      gap: 12px;
-      width: 100%;
-      max-width: 100%;
-      justify-self: start;
-      align-items: start;
-    }
-
-    #calc-commission-calculator .comm-answer-stack {
-      display: grid;
-      gap: 10px;
-    }
-
-    #calc-commission-calculator .comm-answer-card {
-      border-radius: 12px;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      background: linear-gradient(160deg, rgba(236, 253, 245, 0.9), rgba(220, 252, 231, 0.92));
-      padding: 10px;
-      display: grid;
-      gap: 6px;
-    }
-
-    #calc-commission-calculator .comm-answer-main {
-      display: grid;
-      gap: 6px;
-      align-content: center;
-      min-height: 164px;
-      padding: 8px 10px;
-    }
-
-    #calc-commission-calculator .comm-answer-label {
-      margin: 0;
-      font-size: 0.7rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: #065f46;
-      font-weight: 750;
-      line-height: 1.2;
-    }
-
-    #calc-commission-calculator #comm-result {
-      margin: 0;
-      min-height: 0;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      text-align: left;
-      font-size: 1.9rem;
-      font-weight: 780;
-      line-height: 1.15;
-      color: #064e3b;
-      text-shadow: none;
-    }
-
-    #calc-commission-calculator #comm-result-detail {
-      margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.45;
-      color: rgba(6, 78, 59, 0.9);
-      text-align: left;
-      max-width: 28ch;
-    }
-
-    #calc-commission-calculator .comm-chart-card {
-      border-radius: 12px;
-      border: 1px solid rgba(16, 185, 129, 0.28);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(236, 253, 245, 0.74));
-      padding: 16px;
-      display: grid;
-      gap: 16px;
-      align-content: start;
-      min-height: 100%;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
-    }
-
-    #calc-commission-calculator .comm-chart-head {
-      display: grid;
-      gap: 4px;
-    }
-
-    #calc-commission-calculator .comm-chart-title {
-      margin: 0;
-      color: #065f46;
-      font-size: 0.9rem;
-      font-weight: 760;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    #calc-commission-calculator .comm-chart-subtitle {
-      margin: 0;
-      color: rgba(6, 78, 59, 0.78);
-      font-size: 0.84rem;
-      line-height: 1.4;
-    }
-
-    #calc-commission-calculator .comm-chart-visual {
-      display: grid;
-      place-items: center;
-      min-height: 272px;
-      border-radius: 12px;
-      background:
-        radial-gradient(circle at top, rgba(255, 255, 255, 0.75), rgba(209, 250, 229, 0.16)),
-        rgba(240, 253, 244, 0.64);
-      border: 1px solid rgba(16, 185, 129, 0.16);
-      padding: 18px;
-    }
-
-    #calc-commission-calculator .comm-chart-donut {
-      --comm-chart-fill: conic-gradient(
-        from -90deg,
-        rgba(167, 243, 208, 0.85) 0deg 360deg
-      );
-      width: 216px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--comm-chart-fill);
-      position: relative;
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.45),
-        0 12px 22px rgba(6, 78, 59, 0.12);
-      display: grid;
-      place-items: center;
-    }
-
-    #calc-commission-calculator .comm-chart-donut[hidden],
-    #calc-commission-calculator .comm-chart-placeholder[hidden] {
-      display: none !important;
-    }
-
-    #calc-commission-calculator .comm-chart-donut::after {
-      content: '';
-      position: absolute;
-      inset: 34px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(220, 252, 231, 0.94));
-      box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.16);
-    }
-
-    #calc-commission-calculator .comm-chart-center {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 4px;
-      text-align: center;
-      padding: 0 18px;
-    }
-
-    #calc-commission-calculator .comm-chart-center-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: rgba(6, 78, 59, 0.72);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    #calc-commission-calculator .comm-chart-center-value {
-      font-size: 1.18rem;
-      font-weight: 780;
-      line-height: 1.2;
-      color: #064e3b;
-    }
-
-    #calc-commission-calculator .comm-chart-center-meta {
-      font-size: 0.82rem;
-      line-height: 1.35;
-      color: rgba(6, 78, 59, 0.82);
-      font-weight: 650;
-    }
-
-    #calc-commission-calculator .comm-chart-placeholder {
-      display: grid;
-      gap: 10px;
-      justify-items: center;
-      text-align: center;
-      color: rgba(6, 78, 59, 0.76);
-      max-width: 240px;
-    }
-
-    #calc-commission-calculator .comm-chart-placeholder-icon {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      border: 1px dashed rgba(16, 185, 129, 0.34);
-      background:
-        radial-gradient(circle at center, rgba(255, 255, 255, 0.92) 0 44%, transparent 45%),
-        conic-gradient(
-          from -90deg,
-          rgba(16, 185, 129, 0.22) 0 120deg,
-          rgba(52, 211, 153, 0.32) 120deg 240deg,
-          rgba(167, 243, 208, 0.72) 240deg 360deg
-        );
-    }
-
-    #calc-commission-calculator .comm-chart-placeholder strong {
-      font-size: 0.8rem;
-      color: #065f46;
-    }
-
-    #calc-commission-calculator .comm-chart-placeholder p {
-      margin: 0;
-      font-size: 0.73rem;
-      line-height: 1.45;
-    }
-
-    #calc-commission-calculator .comm-chart-legend {
-      display: grid;
-      gap: 8px;
-    }
-
-    #calc-commission-calculator .comm-chart-legend-item {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      gap: 10px;
-      align-items: center;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(16, 185, 129, 0.14);
-    }
-
-    #calc-commission-calculator .comm-chart-legend-item.is-muted {
-      color: rgba(6, 78, 59, 0.76);
-      font-size: 0.78rem;
-      line-height: 1.45;
-      grid-template-columns: 1fr;
-      text-align: center;
-      padding: 12px;
-    }
-
-    #calc-commission-calculator .comm-chart-legend-swatch {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.92),
-        0 0 0 3px rgba(16, 185, 129, 0.12);
-    }
-
-    #calc-commission-calculator .comm-chart-legend-copy {
-      min-width: 0;
-      display: grid;
-      gap: 2px;
-    }
-
-    #calc-commission-calculator .comm-chart-legend-label {
-      font-size: 0.8rem;
-      color: #065f46;
-      font-weight: 700;
-      line-height: 1.35;
-      overflow-wrap: anywhere;
-    }
-
-    #calc-commission-calculator .comm-chart-legend-meta {
-      font-size: 0.74rem;
-      color: rgba(6, 78, 59, 0.76);
-      line-height: 1.35;
-    }
-
-    #calc-commission-calculator .comm-chart-legend-value {
-      font-size: 0.82rem;
-      font-weight: 760;
-      color: #14532d;
-      white-space: nowrap;
-    }
-
-    #calc-commission-calculator .comm-metrics {
-      border-radius: 12px;
-      border: 1px solid rgba(16, 185, 129, 0.24);
-      background: rgba(240, 253, 244, 0.72);
-      padding: 8px 12px;
-      display: grid;
-      gap: 4px;
-    }
-
-    #calc-commission-calculator .comm-metric-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.16);
-    }
-
-    #calc-commission-calculator .comm-metric-row:last-child {
-      border-bottom: 0;
-    }
-
-    #calc-commission-calculator .comm-metric-row span {
-      color: rgba(6, 78, 59, 0.82);
-      font-size: 0.8rem;
-      line-height: 1.35;
-    }
-
-    #calc-commission-calculator .comm-metric-row strong {
-      color: #166534;
-      font-size: 0.84rem;
-      line-height: 1.35;
-      text-align: right;
-      max-width: 62%;
-      overflow-wrap: anywhere;
-    }
-
-    #calc-commission-calculator .comm-metric-row.comm-metric-row-rates {
-      align-items: start;
-    }
-
-    #calc-commission-calculator .comm-metric-row.comm-metric-row-rates strong {
-      max-width: 68%;
-    }
-
-    #calc-commission-calculator .comm-tier-summary {
-      display: grid;
-      gap: 6px;
-      width: 100%;
-    }
-
-    #calc-commission-calculator .comm-tier-summary-item {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 4px 0;
-      border-bottom: 1px dashed rgba(16, 185, 129, 0.18);
-    }
-
-    #calc-commission-calculator .comm-tier-summary-item:last-child {
-      border-bottom: 0;
-    }
-
-    #calc-commission-calculator .comm-tier-summary-top {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    #calc-commission-calculator .comm-tier-summary-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-      font-size: 0.78rem;
-      font-weight: 680;
-      color: #065f46;
-      text-align: left;
-    }
-
-    #calc-commission-calculator .comm-tier-summary-text {
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-
-    #calc-commission-calculator .comm-tier-swatch {
-      width: 10px;
-      height: 10px;
-      flex: 0 0 10px;
-      border-radius: 999px;
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
-    }
-
-    #calc-commission-calculator .comm-tier-summary-rate,
-    #calc-commission-calculator .comm-tier-summary-commission {
-      font-size: 0.77rem;
-      font-weight: 760;
-      color: #14532d;
-      white-space: nowrap;
-    }
-
-    #calc-commission-calculator .comm-tier-summary-share {
-      font-size: 0.72rem;
-      color: rgba(6, 78, 59, 0.78);
-    }
-
-    #calc-commission-calculator .comm-tier-summary-empty {
-      padding: 3px 0 1px;
-      color: rgba(6, 78, 59, 0.76);
-      font-size: 0.74rem;
-      line-height: 1.45;
-      text-align: left;
-    }
-
-    #comm-explanation {
-      max-width: 1120px;
-      margin-top: 0;
-      color: #0f2a1f;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      padding: 8px 0 10px 16px;
-    }
-
-    #comm-explanation h2,
-    #comm-explanation h3,
-    #comm-explanation p,
-    #comm-explanation li,
-    #comm-explanation strong,
-    #comm-explanation .prose-note {
-      color: #0f2a1f;
-    }
-
-    #comm-explanation h3 {
-      margin-top: 14px;
-      margin-bottom: 8px;
-      font-size: 1.7rem;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      color: #052e16;
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    #comm-explanation > h3:first-child {
-      margin-top: 0;
-    }
-
-    #comm-explanation h3::after {
-      content: none;
-      display: none;
-    }
-
-    #comm-explanation .table-scroll {
-      max-width: 980px;
-      width: 100%;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      overflow: auto;
-      margin-bottom: 14px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(16, 185, 129, 0.55) transparent;
-    }
-
-    #comm-explanation .table-scroll::-webkit-scrollbar {
-      height: 9px;
-      width: 9px;
-    }
-
-    #comm-explanation .table-scroll::-webkit-scrollbar-track {
-      background: transparent;
-      border-radius: 999px;
-    }
-
-    #comm-explanation .table-scroll::-webkit-scrollbar-thumb {
-      background: rgba(16, 185, 129, 0.55);
-      border-radius: 999px;
-      border: 1px solid rgba(220, 252, 231, 0.75);
-    }
-
-    #comm-explanation .calculator-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      min-width: 740px;
-    }
-
-    #comm-explanation .calculator-table th {
-      background: linear-gradient(180deg, rgba(187, 247, 208, 0.9), rgba(167, 243, 208, 0.88));
-      color: #064e3b;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 750;
-      padding: 11px 14px;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.24);
-    }
-
-    #comm-explanation .calculator-table td {
-      color: #14532d;
-      font-size: 1.01rem;
-      line-height: 1.35;
-      padding: 11px 14px;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.14);
-      background: rgba(255, 255, 255, 0.7);
-    }
-
-    #comm-explanation .calculator-table tbody tr:nth-child(even) td {
-      background: rgba(236, 253, 245, 0.82);
-    }
-
-    #comm-explanation .calculator-table tbody tr:hover td {
-      background: rgba(209, 250, 229, 0.92);
-    }
-
-    #comm-explanation .calculator-table td:first-child {
-      font-weight: 650;
-      color: #14532d;
-    }
-
-    #comm-explanation .calculator-table td:nth-child(2),
-    #comm-explanation .calculator-table th:nth-child(2),
-    #comm-explanation .calculator-table td:nth-child(3),
-    #comm-explanation .calculator-table th:nth-child(3),
-    #comm-explanation .calculator-table td:nth-child(4),
-    #comm-explanation .calculator-table th:nth-child(4) {
-      text-align: right;
-    }
-
-    #comm-explanation .calculator-table tfoot td {
-      background: linear-gradient(180deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.28));
-      color: #064e3b;
-      font-weight: 780;
-      border-top: 1px solid rgba(5, 150, 105, 0.35);
-      border-bottom: 0;
-    }
-
-    #comm-explanation .calculator-table tbody tr:last-child td {
-      border-bottom: 0;
-    }
-
-    @media (max-width: 860px) {
-      #calc-commission-calculator .comm-layout {
-        padding: 0 8px 8px 10px;
-      }
-
-      #comm-explanation h3 {
-        font-size: 1.4rem;
-      }
-
-      #comm-explanation .calculator-table td,
-      #comm-explanation .calculator-table th {
-        padding: 10px 11px;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      #calc-commission-calculator .comm-hero {
-        grid-template-columns: 1fr;
-        max-width: 760px;
-      }
-
-      #calc-commission-calculator .comm-answer-deck {
-        grid-template-columns: 1fr;
-        max-width: 760px;
-      }
-    }
-
-    @media (max-width: 860px) {
-      #calc-commission-calculator .comm-form-panel .input-row input[type='number'],
-      #calc-commission-calculator #comm-calc {
-        max-width: 100%;
-      }
-
-      #calc-commission-calculator .comm-sticky-action {
-        bottom: -2px;
-      }
-
-      #calc-commission-calculator .comm-chart-visual {
-        min-height: 220px;
-      }
-
-      #calc-commission-calculator .comm-chart-donut {
-        width: 176px;
-      }
-
-      #calc-commission-calculator .comm-metric-row,
-      #calc-commission-calculator .comm-tier-summary-item {
-        align-items: start;
-      }
-
-      #calc-commission-calculator #comm-result,
-      #calc-commission-calculator #comm-result-detail {
-        text-align: center;
-        justify-content: center;
-        margin-inline: auto;
-      }
-    }
-  </style>
-
-  <div class="calculator-ui comm-layout">
-    <p class="helper">
-      Calculate commission earnings from total sales using a flat commission rate or tiered rates.
-    </p>
-
-    <section class="comm-hero" aria-label="Commission calculation and result deck">
-      <div class="comm-form-panel">
-        <input
-          id="comm-tiered-toggle"
-          type="checkbox"
-          role="switch"
-          aria-label="Enable tiered commission mode"
-          hidden
-          tabindex="-1"
-        />
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css" />
+
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool" aria-label="Commission calculator">
+      <div class="pct-input-card">
+        <h2 class="pct-input-title">Compare flat and tiered commission plans clearly</h2>
+        <p class="pct-lead">
+          Enter total sales, then switch between a flat rate and a tiered structure to see total
+          commission and effective rate in one consistent view.
+        </p>
 
         <div class="input-stack">
-          <div class="input-row comm-mode-row">
+          <div class="input-row">
             <label>Mode</label>
-            <div class="comm-mode-chips" role="radiogroup" aria-label="Commission mode">
-              <input
-                id="comm-mode-flat"
-                class="comm-mode-radio"
-                type="radio"
-                name="comm-mode"
-                value="flat"
-                checked
-              />
-              <label class="comm-mode-chip is-active" for="comm-mode-flat" data-comm-mode-label="flat">
-                Flat Commission %
+            <div class="mode-switch-control" role="group" aria-label="Commission mode">
+              <span class="mode-switch-label is-active" data-comm-mode-label="flat">
+                Flat Rate
+              </span>
+              <label class="mode-switch-toggle" for="comm-tiered-toggle">
+                <input
+                  id="comm-tiered-toggle"
+                  type="checkbox"
+                  role="switch"
+                  aria-label="Switch to tiered commission mode"
+                />
+                <span class="mode-switch-track" aria-hidden="true">
+                  <span class="mode-switch-thumb"></span>
+                </span>
               </label>
-
-              <input
-                id="comm-mode-tiered"
-                class="comm-mode-radio"
-                type="radio"
-                name="comm-mode"
-                value="tiered"
-              />
-              <label class="comm-mode-chip" for="comm-mode-tiered" data-comm-mode-label="tiered">
-                Tiered Commission
-              </label>
+              <span class="mode-switch-label" data-comm-mode-label="tiered">
+                Tiered Plan
+              </span>
             </div>
           </div>
 
           <div class="input-row">
-            <label for="comm-sales">Total Sales (S)</label>
+            <label for="comm-sales">Total sales</label>
             <input id="comm-sales" type="number" value="30000" min="0" step="0.01" />
           </div>
 
           <div id="comm-flat-section" class="input-stack">
-            <div class="input-row">
-              <label for="comm-rate">Commission Rate % (R)</label>
+            <div class="input-row pct-inline-input">
+              <label for="comm-rate">Commission rate</label>
               <input id="comm-rate" type="number" value="7.5" min="0" step="0.01" />
+              <span class="pct-inline-suffix" aria-hidden="true">%</span>
             </div>
           </div>
 
           <div id="comm-tiered-section" class="input-stack is-hidden" aria-hidden="true" hidden>
-            <p class="helper">
-              Set tiers in ascending “Up to” order. Leave the last “Up to” blank for “Above last
-              threshold”.
+            <p class="pct-utility-note">
+              Add tiers in ascending order. Leave the final <strong>Up to</strong> field empty to
+              represent everything above the last threshold.
             </p>
-            <div id="comm-tier-rows" class="input-stack"></div>
+            <div id="comm-tier-rows"></div>
             <button class="calculator-button secondary" id="comm-add-tier" type="button">
-              Add Tier
+              Add tier
             </button>
           </div>
+        </div>
 
-          <div class="comm-sticky-action">
-            <button class="calculator-button full-width" type="button" id="comm-calc">
-              Calculate Commission
-            </button>
-          </div>
+        <div class="pct-actions">
+          <button class="calculator-button full-width" type="button" id="comm-calc">
+            Calculate commission
+          </button>
         </div>
       </div>
 
-      <aside class="comm-answer-deck" aria-label="Commission answer deck">
-        <div class="comm-answer-stack">
-          <div class="comm-answer-card">
-            <p class="comm-answer-label">Commission Result</p>
-            <div class="comm-answer-main">
-              <div class="result" id="comm-result" aria-live="polite"></div>
-              <div class="result-detail" id="comm-result-detail" aria-live="polite"></div>
-            </div>
-          </div>
+      <aside class="pct-answer-card" id="comm-answer-card" aria-label="Commission answer">
+        <div class="result pct-answer-value" id="comm-result" aria-live="polite">$2,250.00</div>
+        <p class="pct-answer-sentence" id="comm-result-detail" aria-live="polite">
+          Effective commission rate is 7.50% on $30,000.00 in sales.
+        </p>
+        <p class="pct-answer-context" id="comm-result-context" aria-live="polite">
+          Formula: Commission = Sales x (Rate / 100).
+        </p>
 
-          <div class="comm-metrics" aria-label="Result metrics">
-            <div class="comm-metric-row"><span>Mode</span><strong id="comm-deck-mode">Flat Commission %</strong></div>
-            <div class="comm-metric-row"><span>Total Sales</span><strong id="comm-deck-sales">$30,000.00</strong></div>
-            <div class="comm-metric-row comm-metric-row-rates">
-              <span>Rate(s)</span>
-              <strong id="comm-deck-rates" hidden>7.50%</strong>
-              <div class="comm-tier-summary" id="comm-tier-summary" aria-live="polite">
-                <div class="comm-tier-summary-empty" id="comm-tier-summary-empty">
-                  One flat rate applies to the full sale amount.
-                </div>
-              </div>
-            </div>
-            <div class="comm-metric-row"><span>Total Commission</span><strong id="comm-deck-commission">$2,250.00</strong></div>
-            <div class="comm-metric-row"><span>Effective Rate</span><strong id="comm-deck-effective-rate">7.50%</strong></div>
+        <div class="pct-support-list" aria-label="Commission details">
+          <div class="pct-support-row">
+            <span>Mode</span>
+            <strong id="comm-deck-mode">Flat Commission %</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Total sales</span>
+            <strong id="comm-deck-sales">$30,000.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Rate(s)</span>
+            <strong id="comm-deck-rates">7.50%</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Total commission</span>
+            <strong id="comm-deck-commission">$2,250.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Effective rate</span>
+            <strong id="comm-deck-effective-rate">7.50%</strong>
           </div>
         </div>
 
-        <section class="comm-chart-card" id="comm-chart-card" aria-label="Commission distribution chart">
+        <div class="pct-breakdown" aria-label="Commission breakdown summary">
+          <div class="pct-breakdown-head">
+            <strong>Tier summary</strong>
+          </div>
+          <div class="comm-tier-summary" id="comm-tier-summary" aria-live="polite">
+            <div class="comm-tier-summary-empty">One flat rate applies to the full sale amount.</div>
+          </div>
+        </div>
+
+        <section class="comm-chart-card" aria-label="Commission mix chart">
           <div class="comm-chart-head">
             <p class="comm-chart-title">Commission Mix</p>
             <p class="comm-chart-subtitle" id="comm-chart-subtitle">
@@ -863,7 +118,7 @@
             <div class="comm-chart-placeholder" id="comm-chart-placeholder">
               <div class="comm-chart-placeholder-icon" aria-hidden="true"></div>
               <strong>Tiered chart appears here</strong>
-              <p>Switch to Tiered Commission and calculate to see how each tier contributes.</p>
+              <p>Switch to Tiered Plan and calculate to see how each tier contributes.</p>
             </div>
             <div class="comm-chart-donut" id="comm-chart-donut" hidden aria-hidden="true">
               <div class="comm-chart-center">
@@ -882,7 +137,4 @@
   </div>
 </div>
 
-<script
-  type="module"
-  src="/calculators/percentage-calculators/commission-calculator/module.js"
-></script>
+<script type="module" src="/calculators/percentage-calculators/commission-calculator/module.js"></script>

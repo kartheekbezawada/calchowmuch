@@ -24,6 +24,12 @@ const addRowButton = document.querySelector('#markup-add-row');
 const calculateButton = document.querySelector('#markup-calc');
 const resultOutput = document.querySelector('#markup-result');
 const resultDetail = document.querySelector('#markup-result-detail');
+const resultContext = document.querySelector('#markup-result-context');
+const snapMode = document.querySelector('#markup-snap-mode');
+const snapProductCount = document.querySelector('#markup-snap-product-count');
+const snapTotalCost = document.querySelector('#markup-snap-total-cost');
+const snapTotalPrice = document.querySelector('#markup-snap-total-price');
+const snapTotalMarkup = document.querySelector('#markup-snap-total-markup');
 
 const singleCostInput = document.querySelector('#markup-single-cost');
 const singleMarkupInput = document.querySelector('#markup-single-markup');
@@ -230,6 +236,12 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateNode(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 function setVisibility(element, visible) {
   if (!element) {
     return;
@@ -343,10 +355,17 @@ function calculateSingle() {
     if (!result) {
       resultOutput.textContent = 'Enter valid cost and markup percent values.';
       resultDetail.textContent = '';
+      updateNode(resultContext, '');
       return;
     }
-    resultOutput.textContent = `Selling Price: ${formatCurrency(result.price)}`;
-    resultDetail.textContent = `Markup Amount: ${formatCurrency(result.markupAmount)}. Formula: P = ${formatCurrency(result.cost)} × (1 + ${formatPercent(result.markupPercent).replace('%', '')} / 100) = ${formatCurrency(result.price)}.`;
+    resultOutput.textContent = formatCurrency(result.price);
+    resultDetail.textContent = `Markup amount is ${formatCurrency(result.markupAmount)} on a ${formatCurrency(result.cost)} cost.`;
+    updateNode(resultContext, 'Formula: P = C x (1 + M / 100).');
+    updateNode(snapMode, 'Single Product — Cost -> Price');
+    updateNode(snapProductCount, '1');
+    updateNode(snapTotalCost, formatCurrency(result.cost));
+    updateNode(snapTotalPrice, formatCurrency(result.price));
+    updateNode(snapTotalMarkup, formatCurrency(result.markupAmount));
 
     updateTargets(valueTargets?.mode, 'Single Product — Cost → Price');
     updateTargets(valueTargets?.productCount, '1');
@@ -364,13 +383,20 @@ function calculateSingle() {
     if (!result) {
       resultOutput.textContent = 'Enter valid cost and selling price values.';
       resultDetail.textContent = '';
+      updateNode(resultContext, '');
       return;
     }
     const markupText =
       result.markupPercent === null ? 'N/A (cost is zero)' : formatPercent(result.markupPercent);
     const warning = result.cost === 0 ? ' (Markup % undefined when cost is zero)' : '';
-    resultOutput.textContent = `Markup: ${markupText}${warning}`;
-    resultDetail.textContent = `Markup Amount: ${formatCurrency(result.markupAmount)}. Formula: M = ((${formatCurrency(result.price)} − ${formatCurrency(result.cost)}) ÷ ${formatCurrency(result.cost)}) × 100.`;
+    resultOutput.textContent = `${markupText}${warning}`;
+    resultDetail.textContent = `Markup amount is ${formatCurrency(result.markupAmount)} on a ${formatCurrency(result.price)} selling price.`;
+    updateNode(resultContext, 'Formula: M = ((P - C) / C) x 100.');
+    updateNode(snapMode, 'Single Product — Price -> Markup %');
+    updateNode(snapProductCount, '1');
+    updateNode(snapTotalCost, formatCurrency(result.cost));
+    updateNode(snapTotalPrice, formatCurrency(result.price));
+    updateNode(snapTotalMarkup, formatCurrency(result.markupAmount));
 
     updateTargets(valueTargets?.mode, 'Single Product — Price → Markup %');
     updateTargets(valueTargets?.productCount, '1');
@@ -414,6 +440,7 @@ function calculateBasket() {
   if (!rows.length) {
     resultOutput.textContent = 'Add at least one product row.';
     resultDetail.textContent = '';
+    updateNode(resultContext, '');
     return;
   }
 
@@ -422,6 +449,7 @@ function calculateBasket() {
     resultOutput.textContent =
       'Check row values. Cost, quantity, and required fields must be valid.';
     resultDetail.textContent = '';
+    updateNode(resultContext, '');
     return;
   }
 
@@ -431,8 +459,17 @@ function calculateBasket() {
       : formatPercent(result.basketMarkupPercent);
   const warning =
     result.totalCost === 0 ? ' (Basket markup % undefined when total cost is zero)' : '';
-  resultOutput.textContent = `Basket Markup: ${basketPctText}${warning}`;
-  resultDetail.textContent = `Total Cost: ${formatCurrency(result.totalCost)} | Total Price: ${formatCurrency(result.totalPrice)} | Total Markup: ${formatCurrency(result.totalMarkup)} | Products: ${result.rows.length}`;
+  resultOutput.textContent = `${basketPctText}${warning}`;
+  resultDetail.textContent = `Total markup is ${formatCurrency(result.totalMarkup)} across ${result.rows.length} products.`;
+  updateNode(resultContext, 'Formula: (Total Price - Total Cost) / Total Cost x 100.');
+  updateNode(
+    snapMode,
+    `Basket — ${getCalcMode() === 'cost-to-price' ? 'Cost -> Price' : 'Price -> Markup %'}`
+  );
+  updateNode(snapProductCount, String(result.rows.length));
+  updateNode(snapTotalCost, formatCurrency(result.totalCost));
+  updateNode(snapTotalPrice, formatCurrency(result.totalPrice));
+  updateNode(snapTotalMarkup, formatCurrency(result.totalMarkup));
 
   updateTargets(
     valueTargets?.mode,

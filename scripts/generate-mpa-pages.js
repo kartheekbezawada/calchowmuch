@@ -2281,6 +2281,10 @@ const PERCENTAGE_CLUSTER_REDESIGN_ORDER = [
   'percent-to-fraction-decimal',
   'what-percent-is-x-of-y',
   'percentage-of-a-number',
+  'commission-calculator',
+  'discount-calculator',
+  'margin-calculator',
+  'markup-calculator',
 ];
 
 // Opt-in list so the percentage cluster can move fully to the new shell one calculator at a time.
@@ -2294,6 +2298,10 @@ const PERCENTAGE_CLUSTER_REDESIGN_IDS = new Set([
   'percent-to-fraction-decimal',
   'what-percent-is-x-of-y',
   'percentage-of-a-number',
+  'commission-calculator',
+  'discount-calculator',
+  'margin-calculator',
+  'markup-calculator',
 ]);
 
 PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {

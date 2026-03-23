@@ -7,6 +7,11 @@ const discountPercentInput = document.querySelector('#discount-percent');
 const calculateButton = document.querySelector('#discount-calc');
 const resultOutput = document.querySelector('#discount-result');
 const resultDetail = document.querySelector('#discount-result-detail');
+const resultContext = document.querySelector('#discount-result-context');
+const snapOriginalPrice = document.querySelector('#discount-snap-original-price');
+const snapDiscountPercent = document.querySelector('#discount-snap-discount-percent');
+const snapDiscountAmount = document.querySelector('#discount-snap-discount-amount');
+const snapFinalPrice = document.querySelector('#discount-snap-final-price');
 
 const explanationRoot = document.querySelector('#discount-explanation');
 const valueTargets = explanationRoot
@@ -194,6 +199,12 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateNode(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 function updateExplanation(values) {
   if (!valueTargets) {
     return;
@@ -215,12 +226,14 @@ function calculate() {
   if (!Number.isFinite(originalPrice)) {
     resultOutput.textContent = 'Enter a valid original price.';
     resultDetail.textContent = '';
+    updateNode(resultContext, '');
     return;
   }
 
   if (!Number.isFinite(discountPercent)) {
     resultOutput.textContent = 'Enter a valid discount percent.';
     resultDetail.textContent = '';
+    updateNode(resultContext, '');
     return;
   }
 
@@ -229,11 +242,20 @@ function calculate() {
 
   let warning = '';
   if (discountPercent > 100) {
-    warning = ' (Discount over 100% results in a negative price)';
+    warning = 'Discount over 100% produces a negative final price.';
   }
 
-  resultOutput.textContent = `Final Price: ${formatCurrency(finalPrice)}${warning}`;
-  resultDetail.textContent = `Savings: ${formatCurrency(discountAmount)}. Formula: Final = ${formatCurrency(originalPrice)} × (1 − ${formatPercent(discountPercent).replace('%', '')} / 100) = ${formatCurrency(finalPrice)}.`;
+  resultOutput.textContent = formatCurrency(finalPrice);
+  resultDetail.textContent = `You save ${formatCurrency(discountAmount)} on an ${formatCurrency(originalPrice)} item.`;
+  updateNode(
+    resultContext,
+    warning || 'Formula: Final price = P x (1 - X / 100).'
+  );
+
+  updateNode(snapOriginalPrice, formatCurrency(originalPrice));
+  updateNode(snapDiscountPercent, formatPercent(discountPercent));
+  updateNode(snapDiscountAmount, formatCurrency(discountAmount));
+  updateNode(snapFinalPrice, formatCurrency(finalPrice));
 
   updateExplanation({
     originalPrice: formatCurrency(originalPrice),

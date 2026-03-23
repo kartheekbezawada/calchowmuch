@@ -14,6 +14,10 @@ const MIGRATED_PERCENTAGE_ROUTE_DIRS = new Set([
   'percent-to-fraction-decimal-calculator',
   'percentage-finder-calculator',
   'percentage-of-a-number-calculator',
+  'commission-calculator',
+  'discount-calculator',
+  'margin-calculator',
+  'markup-calculator',
 ]);
 
 const requiredTokens = ['class="fin-nav-container"', 'class="fin-nav-group"', 'class="fin-nav-item"'];

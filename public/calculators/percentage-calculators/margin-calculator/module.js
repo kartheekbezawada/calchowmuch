@@ -13,6 +13,11 @@ const modeCostMargin = document.querySelector('#margin-mode-cost-margin');
 const calculateButton = document.querySelector('#margin-calc');
 const resultOutput = document.querySelector('#margin-result');
 const resultDetail = document.querySelector('#margin-result-detail');
+const resultContext = document.querySelector('#margin-result-context');
+const snapMode = document.querySelector('#margin-snap-mode');
+const snapCost = document.querySelector('#margin-snap-cost');
+const snapPrice = document.querySelector('#margin-snap-price');
+const snapProfit = document.querySelector('#margin-snap-profit');
 
 const explanationRoot = document.querySelector('#margin-explanation');
 const valueTargets = explanationRoot
@@ -201,6 +206,12 @@ function updateTargets(nodes, value) {
   });
 }
 
+function updateNode(node, value) {
+  if (node) {
+    node.textContent = value;
+  }
+}
+
 function setModeVisibility(mode) {
   const isCostPrice = mode === 'cost-price';
   modeCostPrice.hidden = !isCostPrice;
@@ -233,6 +244,7 @@ function calculate() {
   if (!Number.isFinite(cost) || cost < 0) {
     resultOutput.textContent = 'Enter a valid non-negative cost.';
     resultDetail.textContent = '';
+    updateNode(resultContext, '');
     return;
   }
 
@@ -244,11 +256,13 @@ function calculate() {
     if (!Number.isFinite(price) || price < 0) {
       resultOutput.textContent = 'Enter a valid non-negative selling price.';
       resultDetail.textContent = '';
+      updateNode(resultContext, '');
       return;
     }
     if (price === 0) {
       resultOutput.textContent = 'Gross margin is undefined when selling price is 0.';
       resultDetail.textContent = 'Provide a selling price greater than 0.';
+      updateNode(resultContext, '');
       return;
     }
     result = calculateMargin({ mode, cost, price });
@@ -258,6 +272,7 @@ function calculate() {
     if (!Number.isFinite(marginPercent) || marginPercent < 0 || marginPercent >= 100) {
       resultOutput.textContent = 'Enter a valid gross margin % between 0 and less than 100.';
       resultDetail.textContent = '';
+      updateNode(resultContext, '');
       return;
     }
     result = calculateMargin({ mode, cost, marginPercent });
@@ -267,13 +282,22 @@ function calculate() {
   if (!result) {
     resultOutput.textContent = 'Unable to calculate with the current inputs.';
     resultDetail.textContent = 'Check the input values and try again.';
+    updateNode(resultContext, '');
     return;
   }
 
   hasCalculated = true;
 
-  resultOutput.textContent = `Gross Margin: ${formatPercent(result.marginPercent)}`;
-  resultDetail.textContent = `Profit: ${formatCurrency(result.profit)} | Selling Price: ${formatCurrency(result.price)}`;
+  resultOutput.textContent = formatPercent(result.marginPercent);
+  resultDetail.textContent =
+    mode === 'cost-price'
+      ? `Profit is ${formatCurrency(result.profit)} on a ${formatCurrency(result.price)} selling price.`
+      : `You need ${formatCurrency(result.price)} in selling price to hold this margin.`;
+  updateNode(resultContext, `Formula: ${result.formula}`);
+  updateNode(snapMode, modeLabel);
+  updateNode(snapCost, formatCurrency(result.cost));
+  updateNode(snapPrice, formatCurrency(result.price));
+  updateNode(snapProfit, formatCurrency(result.profit));
 
   updateTargets(valueTargets?.mode, modeLabel);
   updateTargets(valueTargets?.cost, formatCurrency(result.cost));
