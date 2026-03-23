@@ -1604,24 +1604,25 @@
       body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+        gap: 12px;
       }
 
       body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-card {
         display: grid;
-        gap: 10px;
-        padding: 18px;
+        gap: 8px;
+        padding: 16px;
         border: 1px solid var(--fi-line);
         border-radius: 20px;
         background: var(--fi-surface-soft);
       }
 
       body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-number {
-        color: var(--fi-muted);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        display: none;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-card h4,
+      body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-card p {
+        margin: 0;
       }
 
       @keyframes fi-result-pulse {
@@ -2503,13 +2504,13 @@
       #inflation-explanation .bor-faq-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
+        gap: 14px;
       }
 
       #inflation-explanation .bor-faq-card {
         display: grid;
-        gap: 12px;
-        padding: 22px 20px;
+        gap: 8px;
+        padding: 18px 18px;
         border: 1px solid var(--inf-surface-line);
         border-radius: 22px;
         background: rgba(255, 255, 255, 0.94);
