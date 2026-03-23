@@ -1,15 +1,14 @@
 <div id="pon-explanation" class="explanation-pane pct-explanation">
   <section class="pon-exp-section">
     <h2>How Much Is X% of Y?</h2>
-    <p><strong>The short answer:</strong> convert the percentage into a decimal, then multiply it by the number.</p>
     <p>
-      Use this calculator when you know the percentage and the base number and want the resulting
-      amount, such as tax, discount, commission, or interest calculations.
+      Convert the percentage into a decimal, then multiply it by the number. This is useful for
+      tax, discount, commission, tip, and simple percentage checks.
     </p>
   </section>
 
   <section class="pon-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter the percentage in X and the base value in Y.</li>
       <li>Click <strong>Calculate percentage</strong> to convert the rate into an amount.</li>
@@ -17,42 +16,13 @@
       <li>Reuse the result for discounts, tax estimates, commissions, or simple percentage checks.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Percentage (X)</td>
-            <td><span data-pon="percent">20.00%</span></td>
-            <td class="pv-how-col">The percent portion applied to the base number</td>
-          </tr>
-          <tr>
-            <td>Number (Y)</td>
-            <td><span data-pon="number">50.00</span></td>
-            <td class="pv-how-col">The full value from which the percentage is taken</td>
-          </tr>
-          <tr>
-            <td>Result</td>
-            <td><span data-pon="result">10.00</span></td>
-            <td class="pv-how-col">The computed amount represented by X% of Y</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Formula</td>
-            <td><span data-pon="formula">(X / 100) x Y</span></td>
-            <td class="pv-how-col">Convert percent to per-one form, then multiply</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Percentage:</strong> <span data-pon="percent">20.00%</span></li>
+      <li><strong>Base number:</strong> <span data-pon="number">50.00</span></li>
+      <li><strong>Result:</strong> <span data-pon="result">10.00</span></li>
+      <li><strong>Formula:</strong> <span data-pon="formula">(X / 100) x Y</span></li>
+    </ul>
 
     <h4>Worked Example</h4>
     <p>
@@ -69,27 +39,13 @@
       percentages produce negative amounts.
     </p>
 
-    <h4>Formula Breakdown</h4>
+    <h4>Formula</h4>
     <p class="pv-formula-block" data-pon="formula">(X / 100) x Y</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Start with X:</strong>
-        X = <span data-pon="percent">20.00%</span>.
-      </li>
-      <li>
-        <strong>Convert to ratio:</strong>
-        X / 100.
-      </li>
-      <li>
-        <strong>Multiply by Y:</strong>
-        (<span data-pon="percent">20.00%</span> / 100) x
-        <span data-pon="number">50.00</span>.
-      </li>
-      <li>
-        <strong>Final result:</strong>
-        <span data-pon="result">10.00</span>.
-      </li>
-    </ol>
+    <p>
+      Start with <span data-pon="percent">20.00%</span>, divide by 100 to get its decimal form,
+      then multiply that decimal by <span data-pon="number">50.00</span> to reach
+      <span data-pon="result">10.00</span>.
+    </p>
   </section>
 
   <section class="pon-exp-section pon-exp-section--faq">
@@ -104,28 +60,16 @@
         <p>Divide X by 100 and multiply the result by Y.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>What is the formula for percentage of a number?</h4>
-        <p>The formula is (X / 100) x Y.</p>
-      </div>
-      <div class="bor-faq-card">
         <h4>Can percentages be greater than 100%?</h4>
         <p>Yes, percentages greater than 100% represent values larger than the original number.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Can the number be negative?</h4>
-        <p>Yes, percentage calculations work with negative numbers.</p>
       </div>
       <div class="bor-faq-card">
         <h4>Can percentages include decimals?</h4>
         <p>Yes, percentages can include decimal values such as 2.5% or 12.75%.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>Is this calculator accurate for large numbers?</h4>
-        <p>Yes, it accurately calculates percentages for both small and large numbers.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>How are percentages used in real life?</h4>
-        <p>Percentages are used for discounts, taxes, interest rates, grades, and financial comparisons.</p>
+        <h4>Can the number be negative?</h4>
+        <p>Yes, percentage calculations work with negative numbers as well.</p>
       </div>
       <div class="bor-faq-card">
         <h4>What is 0% of a number?</h4>
@@ -143,9 +87,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator applies the standard percentage formula and rounds displayed values to two decimals.</li>
-      <li><strong>Disclaimer:</strong> Use the result as a quick calculation aid; invoices, tax filings, and contracts may require your own validated figures.</li>
       <li><strong>Assumptions:</strong> X is treated as a percent rate and Y is treated as the full base amount the rate applies to.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use it for discounts, tax estimates, commissions, and quick amount checks.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

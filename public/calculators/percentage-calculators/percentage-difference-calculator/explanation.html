@@ -1,7 +1,6 @@
 <div id="pct-diff-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Far Apart Are the Two Values?</h2>
-    <p><strong>The short answer:</strong> percentage difference measures the gap between two values using their average baseline.</p>
     <p>
       Use this percentage difference calculator when you want to compare two values without
       treating either one as the starting point. It measures the gap between them against their
@@ -15,7 +14,7 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter Value A and Value B.</li>
       <li>Click <strong>Calculate percentage difference</strong> to compare the two values symmetrically.</li>
@@ -23,52 +22,14 @@
       <li>Use the average baseline and percentage result together when neither input should be treated as the original.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Value A</td>
-            <td><span data-pct-diff="a">80.00</span></td>
-            <td class="pv-how-col">First value in the symmetric comparison</td>
-          </tr>
-          <tr>
-            <td>Value B</td>
-            <td><span data-pct-diff="b">100.00</span></td>
-            <td class="pv-how-col">Second value in the symmetric comparison</td>
-          </tr>
-          <tr>
-            <td>Absolute Difference</td>
-            <td><span data-pct-diff="abs-diff">20.00</span></td>
-            <td class="pv-how-col">Calculated as |A - B|</td>
-          </tr>
-          <tr>
-            <td>Average Baseline</td>
-            <td><span data-pct-diff="avg-baseline">90.00</span></td>
-            <td class="pv-how-col">Calculated as (|A| + |B|) / 2</td>
-          </tr>
-          <tr>
-            <td>Formula</td>
-            <td><span data-pct-diff="formula">(|A - B| / ((|A| + |B|) / 2)) x 100</span></td>
-            <td class="pv-how-col">Symmetric percentage difference formula</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Percentage Difference</td>
-            <td><span data-pct-diff="pct-diff">22.22%</span></td>
-            <td class="pv-how-col">Always non-negative because absolute difference is used</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Value A:</strong> <span data-pct-diff="a">80.00</span></li>
+      <li><strong>Value B:</strong> <span data-pct-diff="b">100.00</span></li>
+      <li><strong>Absolute difference:</strong> <span data-pct-diff="abs-diff">20.00</span></li>
+      <li><strong>Average baseline:</strong> <span data-pct-diff="avg-baseline">90.00</span></li>
+      <li><strong>Percentage difference:</strong> <span data-pct-diff="pct-diff">22.22%</span></li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section">
@@ -88,28 +49,14 @@
       value clearly acts as the baseline.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percentage difference formula is:</p>
+    <h4>Formula</h4>
     <p class="pv-formula-block">% Difference = (|A - B| / ((|A| + |B|) / 2)) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Compute absolute difference:</strong>
-        |A - B| = <span data-pct-diff="abs-diff">20.00</span>.
-      </li>
-      <li>
-        <strong>Compute average baseline:</strong>
-        (|A| + |B|) / 2 = <span data-pct-diff="avg-baseline">90.00</span>.
-      </li>
-      <li>
-        <strong>Divide and scale:</strong>
-        (<span data-pct-diff="abs-diff">20.00</span> / <span data-pct-diff="avg-baseline">90.00</span>) x 100 =
-        <span data-pct-diff="pct-diff">22.22%</span>.
-      </li>
-      <li>
-        <strong>Handle zero baseline:</strong>
-        If A and B are both 0, the baseline is 0 so percentage difference is undefined.
-      </li>
-    </ol>
+    <p>
+      Find the absolute gap, <span data-pct-diff="abs-diff">20.00</span>, divide it by the
+      average baseline, <span data-pct-diff="avg-baseline">90.00</span>, then multiply by 100
+      to get <span data-pct-diff="pct-diff">22.22%</span>.
+    </p>
+    <p>If A and B are both 0, the baseline is 0 so percentage difference is undefined.</p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq">
@@ -125,10 +72,6 @@
       <div class="bor-faq-card">
         <h4>How do you calculate percentage difference between A and B?</h4>
         <p>Take |A - B|, divide by ((|A| + |B|) / 2), then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is the percentage difference formula?</h4>
-        <p>The formula is (|A - B| / ((|A| + |B|) / 2)) x 100.</p>
       </div>
       <div class="bor-faq-card">
         <h4>Why is percentage difference symmetric?</h4>
@@ -163,13 +106,6 @@
         </p>
       </div>
       <div class="bor-faq-card">
-        <h4>When should you use percentage difference?</h4>
-        <p>
-          Use it when neither value should be treated as the original, such as comparing two
-          measurements or prices.
-        </p>
-      </div>
-      <div class="bor-faq-card">
         <h4>Can percentage difference be more than 100%?</h4>
         <p>
           Yes, if the two values differ a lot compared to their average, the percentage difference
@@ -184,9 +120,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator uses the standard symmetric percentage difference formula and rounds displayed values for readability.</li>
-      <li><strong>Disclaimer:</strong> Use this result as an analysis aid only; domain-specific reporting may require a different comparison method.</li>
       <li><strong>Assumptions:</strong> Value A and Value B should represent the same unit and context so the average-baseline comparison remains meaningful.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use percentage difference when neither input should act as the official baseline.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

@@ -1753,11 +1753,291 @@
         scrollbar-gutter: stable;
       }
 
-      #calc-percentage-difference.pct-route {
-        --pct-accent: #2c6dd5;
-        --pct-accent-strong: #184a9d;
-        --pct-accent-soft: #edf4ff;
-        --pct-answer-value-size: clamp(2.4rem, 5vw, 3.6rem);
+      .pct-cluster-page-shell {
+        --pct-accent: #2563eb;
+        --pct-accent-strong: #1d4ed8;
+        --pct-accent-soft: #eff5ff;
+        --pct-ink: #111111;
+        --pct-muted: #666666;
+        --pct-success: #0f8a5f;
+        --pct-danger: #b54747;
+        --pct-surface: #ffffff;
+        --pct-surface-soft: #f6f7f8;
+        --pct-line: #e9eaec;
+        --pct-line-strong: #d7dbe0;
+        --pct-shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+        --pct-shadow-soft: 0 12px 30px rgba(17, 17, 17, 0.05);
+      }
+
+      .pct-cluster-page-shell {
+        background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+      }
+
+      .pct-cluster-site-header {
+        background: rgba(255, 255, 255, 0.86);
+        border-bottom: 1px solid rgba(233, 234, 236, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .pct-cluster-brand {
+        color: var(--pct-ink);
+      }
+
+      .pct-cluster-brand-mark {
+        background: linear-gradient(135deg, #111111, #2b2b2b);
+        font-size: 0;
+      }
+
+      .pct-cluster-brand-mark::before {
+        content: '#';
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .pct-cluster-site-label {
+        display: none;
+      }
+
+      .pct-cluster-site-links,
+      .pct-cluster-footer-links {
+        gap: 20px;
+      }
+
+      .pct-cluster-page-header {
+        max-width: 760px;
+      }
+
+      .pct-cluster-page-shell #calculator-title {
+        max-width: 760px;
+        margin: 0 auto;
+        color: var(--pct-ink);
+        font-size: clamp(40px, 6vw, 54px);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        white-space: normal;
+      }
+
+      .pct-cluster-page-intro {
+        max-width: 680px;
+        margin-top: 18px;
+        color: var(--pct-muted);
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      #calc-percentage-difference {
+        --pct-answer-value-size: clamp(2.8rem, 5vw, 4.2rem);
+      }
+
+      #calc-percentage-difference .pct-input-card,
+      #calc-percentage-difference .pct-answer-card,
+      #pct-diff-explanation section,
+      .pct-cluster-page-shell .pct-cluster-related {
+        border-radius: 18px;
+        border: 1px solid var(--pct-line);
+        background: #ffffff;
+        box-shadow: var(--pct-shadow);
+      }
+
+      #calc-percentage-difference .pct-input-card,
+      #calc-percentage-difference .pct-answer-card {
+        padding: 24px;
+        gap: 16px;
+      }
+
+      #calc-percentage-difference .pct-tool {
+        gap: 20px;
+      }
+
+      #calc-percentage-difference .pct-input-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+      }
+
+      #calc-percentage-difference .pct-lead,
+      #calc-percentage-difference .pct-answer-context,
+      #calc-percentage-difference .pct-stale-note,
+      #pct-diff-explanation p,
+      #pct-diff-explanation li,
+      #pct-diff-explanation .bor-faq-card p {
+        color: var(--pct-muted);
+        line-height: 1.65;
+      }
+
+      #calc-percentage-difference .pct-eyebrow,
+      .pct-cluster-page-shell .pct-cluster-route-switch,
+      .pct-cluster-page-shell .pct-cluster-related .pct-cluster-switch-kicker {
+        display: none;
+      }
+
+      #calc-percentage-difference input[type='number'],
+      #calc-percentage-difference input[type='text'] {
+        min-height: 50px;
+        border-radius: 12px;
+        border: 1px solid var(--pct-line-strong);
+        background: #ffffff;
+        box-shadow: none;
+      }
+
+      #calc-percentage-difference input[type='number']:focus,
+      #calc-percentage-difference input[type='text']:focus {
+        outline: 2px solid rgba(37, 99, 235, 0.18);
+        outline-offset: 2px;
+        border-color: var(--pct-accent);
+      }
+
+      #calc-percentage-difference .calculator-button {
+        min-height: 50px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      #calc-percentage-difference .calculator-button:not(.secondary) {
+        background: #111111;
+        color: #ffffff;
+        border: 1px solid #111111;
+        box-shadow: none;
+      }
+
+      #calc-percentage-difference .pct-answer-card {
+        gap: 16px;
+      }
+
+      #calc-percentage-difference .pct-answer-value {
+        color: var(--pct-ink);
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      #calc-percentage-difference .pct-answer-sentence {
+        font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      }
+
+      #calc-percentage-difference .pct-support-list {
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related {
+        padding: 24px;
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related h2 {
+        color: var(--pct-ink);
+        font-size: 1.25rem;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-links {
+        gap: 10px;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link {
+        min-height: auto;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: var(--pct-surface-soft);
+        box-shadow: none;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link.is-active,
+      .pct-cluster-page-shell .pct-cluster-related-link[aria-current='page'] {
+        background: var(--pct-accent-soft);
+        border-color: rgba(37, 99, 235, 0.22);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-card-copy,
+      .pct-cluster-page-shell .pct-cluster-related-card-meta {
+        display: none;
+      }
+
+      #pct-diff-explanation {
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      #pct-diff-explanation section {
+        padding: 24px;
+      }
+
+      #pct-diff-explanation h2,
+      #pct-diff-explanation h3,
+      #pct-diff-explanation h4 {
+        color: var(--pct-ink);
+      }
+
+      #pct-diff-explanation h2 {
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+      }
+
+      #pct-diff-explanation h3 {
+        font-size: 1.2rem;
+      }
+
+      #pct-diff-explanation h4 {
+        font-size: 1rem;
+      }
+
+      #pct-diff-explanation .pv-formula-block {
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-accent-soft);
+        color: var(--pct-ink);
+        font-weight: 700;
+      }
+
+      #pct-diff-explanation .pv-explanation-list,
+      #pct-diff-explanation .pv-formula-steps {
+        gap: 8px;
+      }
+
+      #pct-diff-explanation .bor-faq-grid {
+        gap: 12px;
+      }
+
+      #pct-diff-explanation .bor-faq-card {
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      #pct-diff-explanation .pct-important-notes strong {
+        color: var(--pct-ink);
+      }
+
+      @media (max-width: 720px) {
+        .pct-cluster-page-shell #calculator-title {
+          font-size: clamp(2.1rem, 10vw, 3rem);
+          line-height: 1.08;
+          white-space: normal;
+        }
+
+        .pct-cluster-page-intro {
+          font-size: 16px;
+        }
+
+        #calc-percentage-difference .pct-input-card,
+        #calc-percentage-difference .pct-answer-card,
+        #pct-diff-explanation section,
+        .pct-cluster-page-shell .pct-cluster-related {
+          padding: 20px;
+          border-radius: 16px;
+        }
+
+        #calc-percentage-difference .pct-support-row {
+          align-items: flex-start;
+        }
+
+        #calc-percentage-difference .pct-support-row strong {
+          text-align: left;
+        }
       }
     </style>
  
@@ -1797,11 +2077,10 @@
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool" aria-label="Percentage difference calculator">
       <div class="pct-input-card">
-        <p class="pct-eyebrow">Symmetric Compare</p>
-        <h2 class="pct-input-title">Compare two values without picking a winner</h2>
+        <h2 class="pct-input-title">Compare two values on an even baseline</h2>
         <p class="pct-lead">
           Enter Value A and Value B to measure the gap between them using their average baseline.
-          Swapping the inputs keeps the same answer.
+          Swapping the inputs keeps the same result.
         </p>
 
         <div class="pct-field-grid">
@@ -1827,12 +2106,9 @@
       </div>
 
       <aside class="pct-answer-card" id="pct-diff-answer-card" aria-label="Percentage difference answer">
-        <p class="pct-eyebrow">Answer</p>
-        <div class="result pct-answer-value" id="pct-diff-result" aria-live="polite">
-          Percentage Difference: 22.22%
-        </div>
+        <div class="result pct-answer-value" id="pct-diff-result" aria-live="polite">22.22%</div>
         <p class="pct-answer-sentence" id="pct-diff-result-detail" aria-live="polite">
-          Absolute Difference: 20.00 | Average Baseline: 90.00 | The two values differ by 22.22%.
+          The two values differ by 22.22%.
         </p>
         <p class="pct-answer-context" id="pct-diff-result-context" aria-live="polite">
           Formula: (|A - B| / ((|A| + |B|) / 2)) x 100.
@@ -1875,7 +2151,6 @@
 <div id="pct-diff-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Far Apart Are the Two Values?</h2>
-    <p><strong>The short answer:</strong> percentage difference measures the gap between two values using their average baseline.</p>
     <p>
       Use this percentage difference calculator when you want to compare two values without
       treating either one as the starting point. It measures the gap between them against their
@@ -1889,7 +2164,7 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter Value A and Value B.</li>
       <li>Click <strong>Calculate percentage difference</strong> to compare the two values symmetrically.</li>
@@ -1897,52 +2172,14 @@
       <li>Use the average baseline and percentage result together when neither input should be treated as the original.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Value A</td>
-            <td><span data-pct-diff="a">80.00</span></td>
-            <td class="pv-how-col">First value in the symmetric comparison</td>
-          </tr>
-          <tr>
-            <td>Value B</td>
-            <td><span data-pct-diff="b">100.00</span></td>
-            <td class="pv-how-col">Second value in the symmetric comparison</td>
-          </tr>
-          <tr>
-            <td>Absolute Difference</td>
-            <td><span data-pct-diff="abs-diff">20.00</span></td>
-            <td class="pv-how-col">Calculated as |A - B|</td>
-          </tr>
-          <tr>
-            <td>Average Baseline</td>
-            <td><span data-pct-diff="avg-baseline">90.00</span></td>
-            <td class="pv-how-col">Calculated as (|A| + |B|) / 2</td>
-          </tr>
-          <tr>
-            <td>Formula</td>
-            <td><span data-pct-diff="formula">(|A - B| / ((|A| + |B|) / 2)) x 100</span></td>
-            <td class="pv-how-col">Symmetric percentage difference formula</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Percentage Difference</td>
-            <td><span data-pct-diff="pct-diff">22.22%</span></td>
-            <td class="pv-how-col">Always non-negative because absolute difference is used</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Value A:</strong> <span data-pct-diff="a">80.00</span></li>
+      <li><strong>Value B:</strong> <span data-pct-diff="b">100.00</span></li>
+      <li><strong>Absolute difference:</strong> <span data-pct-diff="abs-diff">20.00</span></li>
+      <li><strong>Average baseline:</strong> <span data-pct-diff="avg-baseline">90.00</span></li>
+      <li><strong>Percentage difference:</strong> <span data-pct-diff="pct-diff">22.22%</span></li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section">
@@ -1962,28 +2199,14 @@
       value clearly acts as the baseline.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percentage difference formula is:</p>
+    <h4>Formula</h4>
     <p class="pv-formula-block">% Difference = (|A - B| / ((|A| + |B|) / 2)) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Compute absolute difference:</strong>
-        |A - B| = <span data-pct-diff="abs-diff">20.00</span>.
-      </li>
-      <li>
-        <strong>Compute average baseline:</strong>
-        (|A| + |B|) / 2 = <span data-pct-diff="avg-baseline">90.00</span>.
-      </li>
-      <li>
-        <strong>Divide and scale:</strong>
-        (<span data-pct-diff="abs-diff">20.00</span> / <span data-pct-diff="avg-baseline">90.00</span>) x 100 =
-        <span data-pct-diff="pct-diff">22.22%</span>.
-      </li>
-      <li>
-        <strong>Handle zero baseline:</strong>
-        If A and B are both 0, the baseline is 0 so percentage difference is undefined.
-      </li>
-    </ol>
+    <p>
+      Find the absolute gap, <span data-pct-diff="abs-diff">20.00</span>, divide it by the
+      average baseline, <span data-pct-diff="avg-baseline">90.00</span>, then multiply by 100
+      to get <span data-pct-diff="pct-diff">22.22%</span>.
+    </p>
+    <p>If A and B are both 0, the baseline is 0 so percentage difference is undefined.</p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq">
@@ -1999,10 +2222,6 @@
       <div class="bor-faq-card">
         <h4>How do you calculate percentage difference between A and B?</h4>
         <p>Take |A - B|, divide by ((|A| + |B|) / 2), then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is the percentage difference formula?</h4>
-        <p>The formula is (|A - B| / ((|A| + |B|) / 2)) x 100.</p>
       </div>
       <div class="bor-faq-card">
         <h4>Why is percentage difference symmetric?</h4>
@@ -2034,13 +2253,6 @@
         <p>
           Percent change uses one value as the original baseline, while percentage difference uses
           the average of both values.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>When should you use percentage difference?</h4>
-        <p>
-          Use it when neither value should be treated as the original, such as comparing two
-          measurements or prices.
         </p>
       </div>
       <div class="bor-faq-card">
@@ -2106,9 +2318,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator uses the standard symmetric percentage difference formula and rounds displayed values for readability.</li>
-      <li><strong>Disclaimer:</strong> Use this result as an analysis aid only; domain-specific reporting may require a different comparison method.</li>
       <li><strong>Assumptions:</strong> Value A and Value B should represent the same unit and context so the average-baseline comparison remains meaningful.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use percentage difference when neither input should act as the official baseline.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

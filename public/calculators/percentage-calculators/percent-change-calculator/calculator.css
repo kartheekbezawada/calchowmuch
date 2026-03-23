@@ -1,14 +1,286 @@
-#calc-percent-change,
-#pct-change-explanation {
-  --pct-accent: #1f78af;
-  --pct-accent-strong: #12507d;
-  --pct-accent-soft: #e9f5fc;
-  --pct-ink: #16344b;
-  --pct-muted: #667c8e;
-  --pct-success: #15835f;
-  --pct-danger: #c55f4b;
+.pct-cluster-page-shell {
+  --pct-accent: #2563eb;
+  --pct-accent-strong: #1d4ed8;
+  --pct-accent-soft: #eff5ff;
+  --pct-ink: #111111;
+  --pct-muted: #666666;
+  --pct-success: #0f8a5f;
+  --pct-danger: #b54747;
+  --pct-surface: #ffffff;
+  --pct-surface-soft: #f6f7f8;
+  --pct-line: #e9eaec;
+  --pct-line-strong: #d7dbe0;
+  --pct-shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+  --pct-shadow-soft: 0 12px 30px rgba(17, 17, 17, 0.05);
+}
+
+.pct-cluster-page-shell {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+}
+
+.pct-cluster-site-header {
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid rgba(233, 234, 236, 0.9);
+  backdrop-filter: blur(18px);
+}
+
+.pct-cluster-brand {
+  color: var(--pct-ink);
+}
+
+.pct-cluster-brand-mark {
+  background: linear-gradient(135deg, #111111, #2b2b2b);
+  font-size: 0;
+}
+
+.pct-cluster-brand-mark::before {
+  content: '#';
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pct-cluster-site-label {
+  display: none;
+}
+
+.pct-cluster-site-links,
+.pct-cluster-footer-links {
+  gap: 20px;
+}
+
+.pct-cluster-page-header {
+  max-width: 760px;
+}
+
+.pct-cluster-page-shell #calculator-title {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--pct-ink);
+  font-size: clamp(40px, 6vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  white-space: normal;
+}
+
+.pct-cluster-page-intro {
+  max-width: 680px;
+  margin-top: 18px;
+  color: var(--pct-muted);
+  font-size: 18px;
+  line-height: 1.65;
 }
 
 #calc-percent-change {
-  --pct-answer-value-size: clamp(3rem, 6vw, 4.8rem);
+  --pct-answer-value-size: clamp(2.8rem, 5vw, 4.2rem);
+}
+
+#calc-percent-change .pct-input-card,
+#calc-percent-change .pct-answer-card,
+#pct-change-explanation section,
+.pct-cluster-page-shell .pct-cluster-related {
+  border-radius: 18px;
+  border: 1px solid var(--pct-line);
+  background: #ffffff;
+  box-shadow: var(--pct-shadow);
+}
+
+#calc-percent-change .pct-input-card,
+#calc-percent-change .pct-answer-card {
+  padding: 24px;
+  gap: 16px;
+}
+
+#calc-percent-change .pct-tool {
+  gap: 20px;
+}
+
+#calc-percent-change .pct-input-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+#calc-percent-change .pct-lead,
+#calc-percent-change .pct-answer-context,
+#calc-percent-change .pct-stale-note,
+#pct-change-explanation p,
+#pct-change-explanation li,
+#pct-change-explanation .bor-faq-card p {
+  color: var(--pct-muted);
+  line-height: 1.65;
+}
+
+#calc-percent-change .pct-eyebrow,
+.pct-cluster-page-shell .pct-cluster-route-switch,
+.pct-cluster-page-shell .pct-cluster-related .pct-cluster-switch-kicker {
+  display: none;
+}
+
+#calc-percent-change input[type='number'],
+#calc-percent-change input[type='text'] {
+  min-height: 50px;
+  border-radius: 12px;
+  border: 1px solid var(--pct-line-strong);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+#calc-percent-change input[type='number']:focus,
+#calc-percent-change input[type='text']:focus {
+  outline: 2px solid rgba(37, 99, 235, 0.18);
+  outline-offset: 2px;
+  border-color: var(--pct-accent);
+}
+
+#calc-percent-change .calculator-button {
+  min-height: 50px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+#calc-percent-change .calculator-button:not(.secondary) {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+  box-shadow: none;
+}
+
+#calc-percent-change .pct-answer-card {
+  gap: 16px;
+}
+
+#calc-percent-change .pct-answer-value {
+  color: var(--pct-ink);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+#calc-percent-change .pct-answer-sentence {
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+}
+
+#calc-percent-change .pct-support-list {
+  border-radius: 14px;
+  border: 1px solid var(--pct-line);
+  background: var(--pct-surface-soft);
+}
+
+.pct-cluster-page-shell .pct-cluster-related {
+  padding: 24px;
+  box-shadow: var(--pct-shadow-soft);
+}
+
+.pct-cluster-page-shell .pct-cluster-related h2 {
+  color: var(--pct-ink);
+  font-size: 1.25rem;
+}
+
+.pct-cluster-page-shell .pct-cluster-related-links {
+  gap: 10px;
+}
+
+.pct-cluster-page-shell .pct-cluster-related-link {
+  min-height: auto;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--pct-surface-soft);
+  box-shadow: none;
+}
+
+.pct-cluster-page-shell .pct-cluster-related-link.is-active,
+.pct-cluster-page-shell .pct-cluster-related-link[aria-current='page'] {
+  background: var(--pct-accent-soft);
+  border-color: rgba(37, 99, 235, 0.22);
+}
+
+.pct-cluster-page-shell .pct-cluster-related-card-copy,
+.pct-cluster-page-shell .pct-cluster-related-card-meta {
+  display: none;
+}
+
+#pct-change-explanation {
+  gap: 16px;
+  margin-top: 24px;
+}
+
+#pct-change-explanation section {
+  padding: 24px;
+}
+
+#pct-change-explanation h2,
+#pct-change-explanation h3,
+#pct-change-explanation h4 {
+  color: var(--pct-ink);
+}
+
+#pct-change-explanation h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+#pct-change-explanation h3 {
+  font-size: 1.2rem;
+}
+
+#pct-change-explanation h4 {
+  font-size: 1rem;
+}
+
+#pct-change-explanation .pv-formula-block {
+  border-radius: 14px;
+  border: 1px solid var(--pct-line);
+  background: var(--pct-accent-soft);
+  color: var(--pct-ink);
+  font-weight: 700;
+}
+
+#pct-change-explanation .pv-explanation-list,
+#pct-change-explanation .pv-formula-steps {
+  gap: 8px;
+}
+
+#pct-change-explanation .bor-faq-grid {
+  gap: 12px;
+}
+
+#pct-change-explanation .bor-faq-card {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--pct-line);
+  background: var(--pct-surface-soft);
+}
+
+#pct-change-explanation .pct-important-notes strong {
+  color: var(--pct-ink);
+}
+
+@media (max-width: 720px) {
+  .pct-cluster-page-shell #calculator-title {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+    line-height: 1.08;
+    white-space: normal;
+  }
+
+  .pct-cluster-page-intro {
+    font-size: 16px;
+  }
+
+  #calc-percent-change .pct-input-card,
+  #calc-percent-change .pct-answer-card,
+  #pct-change-explanation section,
+  .pct-cluster-page-shell .pct-cluster-related {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  #calc-percent-change .pct-support-row {
+    align-items: flex-start;
+  }
+
+  #calc-percent-change .pct-support-row strong {
+    text-align: left;
+  }
 }

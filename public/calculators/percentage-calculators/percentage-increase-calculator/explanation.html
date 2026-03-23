@@ -1,7 +1,6 @@
 <div id="pct-inc-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Much Did the Value Grow?</h2>
-    <p><strong>The short answer:</strong> percentage increase shows how far a new value moved above or below the original value.</p>
     <p>
       Use this calculator when the original value is the baseline and you want to express the
       change as a signed percentage.
@@ -9,7 +8,7 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter the original value in X and the new value in Y.</li>
       <li>Click <strong>Calculate percentage increase</strong> to see the signed result and direction.</li>
@@ -17,52 +16,15 @@
       <li>Use the sign and direction together to tell whether the change is growth, decline, or no change.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Original Value (X)</td>
-            <td><span data-pct-inc="x">80.00</span></td>
-            <td class="pv-how-col">Starting amount used as the baseline denominator</td>
-          </tr>
-          <tr>
-            <td>New Value (Y)</td>
-            <td><span data-pct-inc="y">100.00</span></td>
-            <td class="pv-how-col">Updated amount compared against the original value</td>
-          </tr>
-          <tr>
-            <td>Increase Amount</td>
-            <td><span data-pct-inc="amount">20.00</span></td>
-            <td class="pv-how-col">Computed as Y - X</td>
-          </tr>
-          <tr>
-            <td>Direction</td>
-            <td><span data-pct-inc="direction">Increase</span></td>
-            <td class="pv-how-col">Positive means increase, negative means decrease</td>
-          </tr>
-          <tr>
-            <td>Formula</td>
-            <td>((Y - X) / X) x 100</td>
-            <td class="pv-how-col">Standard percentage increase formula</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Percentage Increase</td>
-            <td><span data-pct-inc="percent">+25.00%</span></td>
-            <td class="pv-how-col">Final signed percentage result</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Original value:</strong> <span data-pct-inc="x">80.00</span></li>
+      <li><strong>New value:</strong> <span data-pct-inc="y">100.00</span></li>
+      <li><strong>Increase amount:</strong> <span data-pct-inc="amount">20.00</span></li>
+      <li><strong>Direction:</strong> <span data-pct-inc="direction">Increase</span></li>
+      <li><strong>Percentage increase:</strong> <span data-pct-inc="percent">+25.00%</span></li>
+    </ul>
+
     <h4>Worked Example</h4>
     <p>
       With X = <span data-pct-inc="x">80.00</span> and Y =
@@ -78,28 +40,13 @@
       compare growth across different baselines and the increase amount when you need the raw unit change.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percentage increase formula is:</p>
+    <h4>Formula</h4>
     <p class="pv-formula-block">% Increase = ((Y - X) / X) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Difference:</strong>
-        Y - X = <span data-pct-inc="amount">20.00</span>.
-      </li>
-      <li>
-        <strong>Relative ratio:</strong>
-        (<span data-pct-inc="amount">20.00</span>) / (<span data-pct-inc="x">80.00</span>) gives
-        the growth ratio over the original value.
-      </li>
-      <li>
-        <strong>Percentage value:</strong>
-        Multiply by 100 to get <span data-pct-inc="percent">+25.00%</span>.
-      </li>
-      <li>
-        <strong>Direction:</strong>
-        Use the sign to label this as <span data-pct-inc="direction">Increase</span>.
-      </li>
-    </ol>
+    <p>
+      Subtract the original value from the new value to get <span data-pct-inc="amount">20.00</span>,
+      divide by <span data-pct-inc="x">80.00</span>, then multiply by 100 to reach
+      <span data-pct-inc="percent">+25.00%</span>.
+    </p>
     <p>If X is 0, percentage increase is undefined because division by zero is not possible.</p>
   </section>
 
@@ -113,10 +60,6 @@
       <div class="bor-faq-card">
         <h4>How do you calculate percentage increase from X to Y?</h4>
         <p>Subtract X from Y, divide by X, then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is the percentage increase formula?</h4>
-        <p>The formula is ((Y - X) / X) x 100.</p>
       </div>
       <div class="bor-faq-card">
         <h4>What is the difference between increase amount and percentage increase?</h4>
@@ -135,16 +78,8 @@
         <p>Then the result is not an increase; it will produce a negative percentage, which indicates a decrease.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>Can I use decimals for the original and new values?</h4>
-        <p>Yes, the calculation works the same for decimal values.</p>
-      </div>
-      <div class="bor-faq-card">
         <h4>Is percentage increase the same as percent change?</h4>
         <p>Not always; percent change can be increase or decrease, while percentage increase focuses on growth.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Where is percentage increase used in real life?</h4>
-        <p>It is used for price rises, salary increases, growth rates, and comparing performance over time.</p>
       </div>
     </div>
   </section>
@@ -154,9 +89,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator uses the standard percentage increase formula and rounds displayed values for readability.</li>
-      <li><strong>Disclaimer:</strong> Use this result as an analysis aid only; official reporting may require your own rounding or accounting policy.</li>
       <li><strong>Assumptions:</strong> X and Y should describe the same unit, category, and period so the comparison is meaningful.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use percentage increase for price rises, salary growth, KPI gains, and before-versus-after comparisons.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

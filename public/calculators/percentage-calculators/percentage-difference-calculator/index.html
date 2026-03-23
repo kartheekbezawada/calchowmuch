@@ -4,11 +4,10 @@
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool" aria-label="Percentage difference calculator">
       <div class="pct-input-card">
-        <p class="pct-eyebrow">Symmetric Compare</p>
-        <h2 class="pct-input-title">Compare two values without picking a winner</h2>
+        <h2 class="pct-input-title">Compare two values on an even baseline</h2>
         <p class="pct-lead">
           Enter Value A and Value B to measure the gap between them using their average baseline.
-          Swapping the inputs keeps the same answer.
+          Swapping the inputs keeps the same result.
         </p>
 
         <div class="pct-field-grid">
@@ -34,12 +33,9 @@
       </div>
 
       <aside class="pct-answer-card" id="pct-diff-answer-card" aria-label="Percentage difference answer">
-        <p class="pct-eyebrow">Answer</p>
-        <div class="result pct-answer-value" id="pct-diff-result" aria-live="polite">
-          Percentage Difference: 22.22%
-        </div>
+        <div class="result pct-answer-value" id="pct-diff-result" aria-live="polite">22.22%</div>
         <p class="pct-answer-sentence" id="pct-diff-result-detail" aria-live="polite">
-          Absolute Difference: 20.00 | Average Baseline: 90.00 | The two values differ by 22.22%.
+          The two values differ by 22.22%.
         </p>
         <p class="pct-answer-context" id="pct-diff-result-context" aria-live="polite">
           Formula: (|A - B| / ((|A| + |B|) / 2)) x 100.

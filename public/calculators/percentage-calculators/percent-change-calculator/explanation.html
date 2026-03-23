@@ -1,15 +1,14 @@
 <div id="pct-change-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Much Did the Value Increase or Decrease?</h2>
-    <p><strong>The short answer:</strong> percent change shows how far a new value moved relative to the original value.</p>
     <p>
-      Enter the starting value and the new value to see the signed percentage change, the change
-      amount, and whether the movement is an increase or a decrease.
+      Percent change shows how far a new value moved relative to the original value. Use it when
+      you want a normalized comparison, not just the raw difference.
     </p>
   </section>
 
   <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter the original value in A and the new value in B.</li>
       <li>Click <strong>Calculate percent change</strong> to see the signed result and direction.</li>
@@ -17,52 +16,14 @@
       <li>Use the sign to tell whether the result is an increase, a decrease, or no change.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Original Value (A)</td>
-            <td><span data-pct-change="a">50.00</span></td>
-            <td class="pv-how-col">Starting value used as the denominator base</td>
-          </tr>
-          <tr>
-            <td>New Value (B)</td>
-            <td><span data-pct-change="b">60.00</span></td>
-            <td class="pv-how-col">Ending value used to compute the change amount</td>
-          </tr>
-          <tr>
-            <td>Change Amount</td>
-            <td><span data-pct-change="amount">10.00</span></td>
-            <td class="pv-how-col">Calculated as B - A</td>
-          </tr>
-          <tr>
-            <td>Direction</td>
-            <td><span data-pct-change="direction">Increase</span></td>
-            <td class="pv-how-col">Increase if positive, decrease if negative, no change if zero</td>
-          </tr>
-          <tr>
-            <td>Formula</td>
-            <td>((B - A) / A) x 100</td>
-            <td class="pv-how-col">Percent change formula using original value as base</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Percent Change</td>
-            <td><span data-pct-change="percent">+20.00%</span></td>
-            <td class="pv-how-col">Final signed percentage result</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Original value:</strong> <span data-pct-change="a">50.00</span></li>
+      <li><strong>New value:</strong> <span data-pct-change="b">60.00</span></li>
+      <li><strong>Change amount:</strong> <span data-pct-change="amount">10.00</span></li>
+      <li><strong>Direction:</strong> <span data-pct-change="direction">Increase</span></li>
+      <li><strong>Percent change:</strong> <span data-pct-change="percent">+20.00%</span></li>
+    </ul>
 
     <h4>Worked Example</h4>
     <p>
@@ -80,28 +41,14 @@
       raw difference in the same unit as the inputs.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percent change formula is:</p>
+    <h4>Formula</h4>
     <p class="pv-formula-block">% Change = ((B - A) / A) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Compute difference:</strong>
-        B - A = <span data-pct-change="amount">10.00</span>.
-      </li>
-      <li>
-        <strong>Divide by original:</strong>
-        (<span data-pct-change="amount">10.00</span>) / (<span data-pct-change="a">50.00</span>)
-        gives the relative change ratio.
-      </li>
-      <li>
-        <strong>Convert to percentage:</strong>
-        Multiply the ratio by 100 to get <span data-pct-change="percent">+20.00%</span>.
-      </li>
-      <li>
-        <strong>Assign direction:</strong>
-        Use the sign to label the result as <span data-pct-change="direction">Increase</span>.
-      </li>
-    </ol>
+    <p>
+      Subtract the original value from the new value to get
+      <span data-pct-change="amount">10.00</span>, divide by
+      <span data-pct-change="a">50.00</span>, then multiply by 100 to reach
+      <span data-pct-change="percent">+20.00%</span>.
+    </p>
     <p>If A is zero, percent change is undefined because division by zero is not possible.</p>
   </section>
 
@@ -115,10 +62,6 @@
       <div class="bor-faq-card">
         <h4>How do you calculate percent change from A to B?</h4>
         <p>Subtract A from B, divide by A, then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is the percent change formula?</h4>
-        <p>The formula is ((B - A) / A) x 100.</p>
       </div>
       <div class="bor-faq-card">
         <h4>Why does percent change include a plus or minus sign?</h4>
@@ -137,19 +80,11 @@
         <p>Percent change is undefined because you cannot divide by zero.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>Can I use decimals for A and B?</h4>
-        <p>Yes, percent change works the same for decimal values.</p>
-      </div>
-      <div class="bor-faq-card">
         <h4>Is percent change the same as percentage increase?</h4>
         <p>
           No, percentage increase only applies when the value goes up, while percent change can be
           increase or decrease.
         </p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Where is percent change used in real life?</h4>
-        <p>It is used for tracking prices, KPIs, growth rates, and changes over time.</p>
       </div>
     </div>
   </section>
@@ -159,9 +94,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator uses the standard percent change formula and rounds displayed values for readability.</li>
-      <li><strong>Disclaimer:</strong> Use percent change as an analysis aid only; official reporting may require your own rounding or accounting policy.</li>
       <li><strong>Assumptions:</strong> A and B should describe the same unit, category, and measurement period so the comparison is meaningful.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use percent change for prices, KPIs, growth tracking, and before-versus-after comparisons.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

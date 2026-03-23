@@ -1748,19 +1748,295 @@
       }
 
       /* calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css */
-      #calc-percentage-of-a-number,
-      #pon-explanation {
-        --pct-accent: #d88717;
-        --pct-accent-strong: #9d5700;
-        --pct-accent-soft: #fff3df;
-        --pct-ink: #4a3113;
-        --pct-muted: #796651;
-        --pct-success: #1e7b55;
-        --pct-danger: #bb5c47;
+      .pct-cluster-page-shell {
+        --pct-accent: #2563eb;
+        --pct-accent-strong: #1d4ed8;
+        --pct-accent-soft: #eff5ff;
+        --pct-ink: #111111;
+        --pct-muted: #666666;
+        --pct-success: #0f8a5f;
+        --pct-danger: #b54747;
+        --pct-surface: #ffffff;
+        --pct-surface-soft: #f6f7f8;
+        --pct-line: #e9eaec;
+        --pct-line-strong: #d7dbe0;
+        --pct-shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+        --pct-shadow-soft: 0 12px 30px rgba(17, 17, 17, 0.05);
+      }
+
+      .pct-cluster-page-shell {
+        background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+      }
+
+      .pct-cluster-site-header {
+        background: rgba(255, 255, 255, 0.86);
+        border-bottom: 1px solid rgba(233, 234, 236, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .pct-cluster-brand {
+        color: var(--pct-ink);
+      }
+
+      .pct-cluster-brand-mark {
+        background: linear-gradient(135deg, #111111, #2b2b2b);
+        font-size: 0;
+      }
+
+      .pct-cluster-brand-mark::before {
+        content: '#';
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .pct-cluster-site-label {
+        display: none;
+      }
+
+      .pct-cluster-site-links,
+      .pct-cluster-footer-links {
+        gap: 20px;
+      }
+
+      .pct-cluster-page-header {
+        max-width: 760px;
+      }
+
+      .pct-cluster-page-shell #calculator-title {
+        max-width: 760px;
+        margin: 0 auto;
+        color: var(--pct-ink);
+        font-size: clamp(40px, 6vw, 54px);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        white-space: normal;
+      }
+
+      .pct-cluster-page-intro {
+        max-width: 680px;
+        margin-top: 18px;
+        color: var(--pct-muted);
+        font-size: 18px;
+        line-height: 1.65;
       }
 
       #calc-percentage-of-a-number {
-        --pct-answer-value-size: clamp(3.1rem, 6vw, 5rem);
+        --pct-answer-value-size: clamp(2.8rem, 5vw, 4.2rem);
+      }
+
+      #calc-percentage-of-a-number .pct-input-card,
+      #calc-percentage-of-a-number .pct-answer-card,
+      #pon-explanation section,
+      .pct-cluster-page-shell .pct-cluster-related {
+        border-radius: 18px;
+        border: 1px solid var(--pct-line);
+        background: #ffffff;
+        box-shadow: var(--pct-shadow);
+      }
+
+      #calc-percentage-of-a-number .pct-input-card,
+      #calc-percentage-of-a-number .pct-answer-card {
+        padding: 24px;
+        gap: 16px;
+      }
+
+      #calc-percentage-of-a-number .pct-tool {
+        gap: 20px;
+      }
+
+      #calc-percentage-of-a-number .pct-input-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+      }
+
+      #calc-percentage-of-a-number .pct-lead,
+      #calc-percentage-of-a-number .pct-answer-context,
+      #calc-percentage-of-a-number .pct-stale-note,
+      #pon-explanation p,
+      #pon-explanation li,
+      #pon-explanation .bor-faq-card p {
+        color: var(--pct-muted);
+        line-height: 1.65;
+      }
+
+      #calc-percentage-of-a-number .pct-eyebrow,
+      .pct-cluster-page-shell .pct-cluster-route-switch,
+      .pct-cluster-page-shell .pct-cluster-related .pct-cluster-switch-kicker {
+        display: none;
+      }
+
+      #calc-percentage-of-a-number input[type='number'],
+      #calc-percentage-of-a-number input[type='text'] {
+        min-height: 50px;
+        border-radius: 12px;
+        border: 1px solid var(--pct-line-strong);
+        background: #ffffff;
+        box-shadow: none;
+      }
+
+      #calc-percentage-of-a-number input[type='number']:focus,
+      #calc-percentage-of-a-number input[type='text']:focus {
+        outline: 2px solid rgba(37, 99, 235, 0.18);
+        outline-offset: 2px;
+        border-color: var(--pct-accent);
+      }
+
+      #calc-percentage-of-a-number .pct-inline-suffix {
+        color: var(--pct-ink);
+      }
+
+      #calc-percentage-of-a-number .calculator-button {
+        min-height: 50px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      #calc-percentage-of-a-number .calculator-button:not(.secondary) {
+        background: #111111;
+        color: #ffffff;
+        border: 1px solid #111111;
+        box-shadow: none;
+      }
+
+      #calc-percentage-of-a-number .pct-answer-card {
+        gap: 16px;
+      }
+
+      #calc-percentage-of-a-number .pct-answer-value {
+        color: var(--pct-ink);
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      #calc-percentage-of-a-number .pct-answer-sentence {
+        font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      }
+
+      #calc-percentage-of-a-number .pct-support-list {
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related {
+        padding: 24px;
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related h2 {
+        color: var(--pct-ink);
+        font-size: 1.25rem;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-links {
+        gap: 10px;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link {
+        min-height: auto;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: var(--pct-surface-soft);
+        box-shadow: none;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link.is-active,
+      .pct-cluster-page-shell .pct-cluster-related-link[aria-current='page'] {
+        background: var(--pct-accent-soft);
+        border-color: rgba(37, 99, 235, 0.22);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-card-copy,
+      .pct-cluster-page-shell .pct-cluster-related-card-meta {
+        display: none;
+      }
+
+      #pon-explanation {
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      #pon-explanation section {
+        padding: 24px;
+      }
+
+      #pon-explanation h2,
+      #pon-explanation h3,
+      #pon-explanation h4 {
+        color: var(--pct-ink);
+      }
+
+      #pon-explanation h2 {
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+      }
+
+      #pon-explanation h3 {
+        font-size: 1.2rem;
+      }
+
+      #pon-explanation h4 {
+        font-size: 1rem;
+      }
+
+      #pon-explanation .pv-formula-block {
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-accent-soft);
+        color: var(--pct-ink);
+        font-weight: 700;
+      }
+
+      #pon-explanation .pv-explanation-list,
+      #pon-explanation .pv-formula-steps {
+        gap: 8px;
+      }
+
+      #pon-explanation .bor-faq-grid {
+        gap: 12px;
+      }
+
+      #pon-explanation .bor-faq-card {
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      #pon-explanation .pct-important-notes strong {
+        color: var(--pct-ink);
+      }
+
+      @media (max-width: 720px) {
+        .pct-cluster-page-shell #calculator-title {
+          font-size: clamp(2.1rem, 10vw, 3rem);
+          line-height: 1.08;
+          white-space: normal;
+        }
+
+        .pct-cluster-page-intro {
+          font-size: 16px;
+        }
+
+        #calc-percentage-of-a-number .pct-input-card,
+        #calc-percentage-of-a-number .pct-answer-card,
+        #pon-explanation section,
+        .pct-cluster-page-shell .pct-cluster-related {
+          padding: 20px;
+          border-radius: 16px;
+        }
+
+        #calc-percentage-of-a-number .pct-support-row {
+          align-items: flex-start;
+        }
+
+        #calc-percentage-of-a-number .pct-support-row strong {
+          text-align: left;
+        }
       }
     </style>
  
@@ -1812,11 +2088,9 @@
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool pon-hero" aria-label="Find percentage of a number calculator">
       <div class="pct-input-card">
-        <p class="pct-eyebrow">Answer First</p>
-        <h2 class="pct-input-title">See X% of Y instantly</h2>
+        <h2 class="pct-input-title">Find the amount represented by any percentage</h2>
         <p class="pct-lead">
-          Enter the percentage and the base number. The main answer stays large, obvious, and easy
-          to read.
+          Enter a percentage and a base number to get the exact amount in one clear result.
         </p>
 
         <div class="pct-field-grid">
@@ -1845,10 +2119,9 @@
       </div>
 
       <aside class="pct-answer-card" id="pon-answer-card" aria-label="Percentage of a number answer">
-        <p class="pct-eyebrow">Answer</p>
-        <div class="result pct-answer-value" id="pon-result" aria-live="polite">Result: 10.00</div>
+        <div class="result pct-answer-value" id="pon-result" aria-live="polite">10.00</div>
         <p class="pct-answer-sentence" id="pon-result-detail" aria-live="polite">
-          Formula: (20.00 / 100) x 50.00 = 10.00 | 20.00% of 50.00 is 10.00.
+          20.00% of 50.00 is 10.00.
         </p>
         <p class="pct-answer-context" id="pon-result-context" aria-live="polite">
           Formula: (X / 100) x Y.
@@ -1892,15 +2165,14 @@
 <div id="pon-explanation" class="explanation-pane pct-explanation">
   <section class="pon-exp-section">
     <h2>How Much Is X% of Y?</h2>
-    <p><strong>The short answer:</strong> convert the percentage into a decimal, then multiply it by the number.</p>
     <p>
-      Use this calculator when you know the percentage and the base number and want the resulting
-      amount, such as tax, discount, commission, or interest calculations.
+      Convert the percentage into a decimal, then multiply it by the number. This is useful for
+      tax, discount, commission, tip, and simple percentage checks.
     </p>
   </section>
 
   <section class="pon-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter the percentage in X and the base value in Y.</li>
       <li>Click <strong>Calculate percentage</strong> to convert the rate into an amount.</li>
@@ -1908,42 +2180,13 @@
       <li>Reuse the result for discounts, tax estimates, commissions, or simple percentage checks.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Percentage (X)</td>
-            <td><span data-pon="percent">20.00%</span></td>
-            <td class="pv-how-col">The percent portion applied to the base number</td>
-          </tr>
-          <tr>
-            <td>Number (Y)</td>
-            <td><span data-pon="number">50.00</span></td>
-            <td class="pv-how-col">The full value from which the percentage is taken</td>
-          </tr>
-          <tr>
-            <td>Result</td>
-            <td><span data-pon="result">10.00</span></td>
-            <td class="pv-how-col">The computed amount represented by X% of Y</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Formula</td>
-            <td><span data-pon="formula">(X / 100) x Y</span></td>
-            <td class="pv-how-col">Convert percent to per-one form, then multiply</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Percentage:</strong> <span data-pon="percent">20.00%</span></li>
+      <li><strong>Base number:</strong> <span data-pon="number">50.00</span></li>
+      <li><strong>Result:</strong> <span data-pon="result">10.00</span></li>
+      <li><strong>Formula:</strong> <span data-pon="formula">(X / 100) x Y</span></li>
+    </ul>
 
     <h4>Worked Example</h4>
     <p>
@@ -1960,27 +2203,13 @@
       percentages produce negative amounts.
     </p>
 
-    <h4>Formula Breakdown</h4>
+    <h4>Formula</h4>
     <p class="pv-formula-block" data-pon="formula">(X / 100) x Y</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Start with X:</strong>
-        X = <span data-pon="percent">20.00%</span>.
-      </li>
-      <li>
-        <strong>Convert to ratio:</strong>
-        X / 100.
-      </li>
-      <li>
-        <strong>Multiply by Y:</strong>
-        (<span data-pon="percent">20.00%</span> / 100) x
-        <span data-pon="number">50.00</span>.
-      </li>
-      <li>
-        <strong>Final result:</strong>
-        <span data-pon="result">10.00</span>.
-      </li>
-    </ol>
+    <p>
+      Start with <span data-pon="percent">20.00%</span>, divide by 100 to get its decimal form,
+      then multiply that decimal by <span data-pon="number">50.00</span> to reach
+      <span data-pon="result">10.00</span>.
+    </p>
   </section>
 
   <section class="pon-exp-section pon-exp-section--faq">
@@ -1995,28 +2224,16 @@
         <p>Divide X by 100 and multiply the result by Y.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>What is the formula for percentage of a number?</h4>
-        <p>The formula is (X / 100) x Y.</p>
-      </div>
-      <div class="bor-faq-card">
         <h4>Can percentages be greater than 100%?</h4>
         <p>Yes, percentages greater than 100% represent values larger than the original number.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Can the number be negative?</h4>
-        <p>Yes, percentage calculations work with negative numbers.</p>
       </div>
       <div class="bor-faq-card">
         <h4>Can percentages include decimals?</h4>
         <p>Yes, percentages can include decimal values such as 2.5% or 12.75%.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>Is this calculator accurate for large numbers?</h4>
-        <p>Yes, it accurately calculates percentages for both small and large numbers.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>How are percentages used in real life?</h4>
-        <p>Percentages are used for discounts, taxes, interest rates, grades, and financial comparisons.</p>
+        <h4>Can the number be negative?</h4>
+        <p>Yes, percentage calculations work with negative numbers as well.</p>
       </div>
       <div class="bor-faq-card">
         <h4>What is 0% of a number?</h4>
@@ -2082,9 +2299,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator applies the standard percentage formula and rounds displayed values to two decimals.</li>
-      <li><strong>Disclaimer:</strong> Use the result as a quick calculation aid; invoices, tax filings, and contracts may require your own validated figures.</li>
       <li><strong>Assumptions:</strong> X is treated as a percent rate and Y is treated as the full base amount the rate applies to.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use it for discounts, tax estimates, commissions, and quick amount checks.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

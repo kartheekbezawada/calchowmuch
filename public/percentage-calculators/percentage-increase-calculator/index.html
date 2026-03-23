@@ -1753,51 +1753,104 @@
         scrollbar-gutter: stable;
       }
 
-      #calc-percentage-increase.pct-route {
-        --pct-accent: #0b8f82;
-        --pct-accent-strong: #0b5f68;
-        --pct-accent-soft: #e8fbf8;
-        --pct-success: #0f8b64;
-        position: relative;
-        margin: 0 auto 28px;
-        padding: 28px;
-        border-radius: 36px;
-        overflow: hidden;
+      .pct-cluster-page-shell {
+        --pct-accent: #2563eb;
+        --pct-accent-strong: #1d4ed8;
+        --pct-accent-soft: #eff5ff;
+        --pct-ink: #111111;
+        --pct-muted: #666666;
+        --pct-success: #0f8a5f;
+        --pct-danger: #b54747;
+        --pct-surface: #ffffff;
+        --pct-surface-soft: #f6f7f8;
+        --pct-line: #e9eaec;
+        --pct-line-strong: #d7dbe0;
+        --pct-shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+        --pct-shadow-soft: 0 12px 30px rgba(17, 17, 17, 0.05);
+      }
+
+      .pct-cluster-page-shell {
         background:
-          radial-gradient(circle at 0% 0%, rgba(11, 143, 130, 0.18), transparent 24%),
-          radial-gradient(circle at 100% 4%, rgba(180, 236, 230, 0.72), transparent 28%),
-          linear-gradient(180deg, rgba(248, 254, 253, 0.98), rgba(235, 247, 245, 0.96));
-        box-shadow: 0 28px 70px rgba(8, 40, 44, 0.18);
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
       }
 
-      #calc-percentage-increase.pct-route::before {
-        content: '';
-        position: absolute;
-        inset: 18px;
-        border-radius: 28px;
-        border: 1px solid rgba(11, 95, 104, 0.08);
-        pointer-events: none;
+      .pct-cluster-site-header {
+        background: rgba(255, 255, 255, 0.86);
+        border-bottom: 1px solid rgba(233, 234, 236, 0.9);
+        backdrop-filter: blur(18px);
       }
 
-      #calc-percentage-increase .pct-inc-stage {
-        position: relative;
-        z-index: 1;
+      .pct-cluster-brand {
+        color: var(--pct-ink);
+      }
+
+      .pct-cluster-brand-mark {
+        background: linear-gradient(135deg, #111111, #2b2b2b);
+        font-size: 0;
+      }
+
+      .pct-cluster-brand-mark::before {
+        content: '#';
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .pct-cluster-site-label {
+        display: none;
+      }
+
+      .pct-cluster-site-links,
+      .pct-cluster-footer-links {
+        gap: 20px;
+      }
+
+      .pct-cluster-page-header {
+        max-width: 760px;
+      }
+
+      .pct-cluster-page-shell #calculator-title {
+        max-width: 760px;
+        margin: 0 auto;
+        color: var(--pct-ink);
+        font-size: clamp(40px, 6vw, 54px);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        white-space: normal;
+      }
+
+      .pct-cluster-page-intro {
+        max-width: 680px;
+        margin-top: 18px;
+        color: var(--pct-muted);
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      #calc-percentage-increase {
+        --pct-answer-value-size: clamp(2.8rem, 5vw, 4.2rem);
+        margin: 0 auto;
       }
 
       #calc-percentage-increase .pct-inc-tool {
-        gap: 28px;
+        gap: 20px;
       }
 
       #calc-percentage-increase .pct-inc-input-card,
       #calc-percentage-increase .pct-inc-answer-card,
-      #pct-inc-explanation.pct-explanation {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 252, 251, 0.97));
-        border-color: rgba(13, 95, 104, 0.12);
-        box-shadow: 0 24px 44px rgba(15, 57, 62, 0.08);
+      #pct-inc-explanation section,
+      .pct-cluster-page-shell .pct-cluster-related {
+        border-radius: 18px;
+        border: 1px solid var(--pct-line);
+        background: #ffffff;
+        box-shadow: var(--pct-shadow);
       }
 
-      #calc-percentage-increase .pct-inc-input-card {
-        gap: 22px;
+      #calc-percentage-increase .pct-inc-input-card,
+      #calc-percentage-increase .pct-inc-answer-card {
+        padding: 24px;
+        gap: 16px;
       }
 
       #calc-percentage-increase .pct-inc-intro {
@@ -1805,136 +1858,214 @@
         gap: 10px;
       }
 
-      #calc-percentage-increase .pct-inc-signal-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+      #calc-percentage-increase .pct-input-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
       }
 
-      #calc-percentage-increase .pct-inc-signal-card {
-        display: grid;
-        gap: 6px;
-        padding: 16px 18px;
-        border-radius: 18px;
-        border: 1px solid rgba(11, 95, 104, 0.1);
-        background: linear-gradient(180deg, rgba(235, 248, 245, 0.9), rgba(255, 255, 255, 0.96));
-      }
-
-      #calc-percentage-increase .pct-inc-signal-card span,
-      #calc-percentage-increase .pct-inc-answer-kicker,
+      #calc-percentage-increase .pct-lead,
+      #calc-percentage-increase .pct-answer-context,
+      #calc-percentage-increase .pct-stale-note,
       #calc-percentage-increase .pct-inc-field-note,
-      #calc-percentage-increase .pct-inc-baseline-note {
-        color: #5f7480;
+      #pct-inc-explanation p,
+      #pct-inc-explanation li,
+      #pct-inc-explanation .bor-faq-card p {
+        color: var(--pct-muted);
+        line-height: 1.65;
       }
 
-      #calc-percentage-increase .pct-inc-signal-card span,
-      #calc-percentage-increase .pct-inc-answer-kicker {
-        font-size: 0.74rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        font-weight: 800;
+      #calc-percentage-increase .pct-eyebrow,
+      #calc-percentage-increase .pct-inc-answer-kicker,
+      #calc-percentage-increase .pct-inc-signal-row,
+      #calc-percentage-increase .pct-inc-baseline-note,
+      .pct-cluster-page-shell .pct-cluster-route-switch,
+      .pct-cluster-page-shell .pct-cluster-related .pct-cluster-switch-kicker {
+        display: none;
       }
 
-      #calc-percentage-increase .pct-inc-signal-card strong {
-        font-size: 0.98rem;
-        line-height: 1.4;
-        color: #14343f;
-      }
-
-      #calc-percentage-increase .pct-inc-field-grid {
-        gap: 16px;
+      #calc-percentage-increase .pct-field-grid {
+        gap: 14px;
       }
 
       #calc-percentage-increase .pct-inc-field {
         padding: 18px;
-        border-radius: 22px;
-        border: 1px solid rgba(11, 95, 104, 0.1);
-        background: rgba(255, 255, 255, 0.76);
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
       }
 
-      #calc-percentage-increase .pct-inc-field-note,
-      #calc-percentage-increase .pct-inc-baseline-note {
-        margin: 8px 0 0;
-        font-size: 0.87rem;
-        line-height: 1.5;
+      #calc-percentage-increase input[type='number'],
+      #calc-percentage-increase input[type='text'] {
+        min-height: 50px;
+        border-radius: 12px;
+        border: 1px solid var(--pct-line-strong);
+        background: #ffffff;
+        box-shadow: none;
       }
 
-      #calc-percentage-increase .pct-inc-actions {
-        gap: 14px;
+      #calc-percentage-increase input[type='number']:focus,
+      #calc-percentage-increase input[type='text']:focus {
+        outline: 2px solid rgba(37, 99, 235, 0.18);
+        outline-offset: 2px;
+        border-color: var(--pct-accent);
       }
 
-      #calc-percentage-increase .pct-inc-baseline-note {
-        margin: 0;
+      #calc-percentage-increase .calculator-button {
+        min-height: 50px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      #calc-percentage-increase .calculator-button:not(.secondary) {
+        background: #111111;
+        color: #ffffff;
+        border: 1px solid #111111;
+        box-shadow: none;
       }
 
       #calc-percentage-increase .pct-inc-answer-card {
-        gap: 20px;
-      }
-
-      #calc-percentage-increase .pct-inc-answer-head {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
+        gap: 16px;
       }
 
       #calc-percentage-increase .pct-inc-answer-shell {
         display: grid;
-        gap: 16px;
-        padding: 22px;
-        border-radius: 24px;
-        background:
-          radial-gradient(circle at 100% 0%, rgba(11, 143, 130, 0.12), transparent 34%),
-          linear-gradient(180deg, rgba(244, 252, 250, 0.98), rgba(233, 246, 243, 0.96));
-        border: 1px solid rgba(11, 95, 104, 0.1);
+        gap: 14px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+
+      #calc-percentage-increase .pct-answer-value {
+        color: var(--pct-ink);
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      #calc-percentage-increase .pct-answer-sentence {
+        font-size: clamp(1.05rem, 2.5vw, 1.3rem);
       }
 
       #calc-percentage-increase .pct-inc-support-list {
-        background: rgba(255, 255, 255, 0.84);
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
       }
 
-      #pct-inc-explanation.pct-explanation {
-        margin: 0 auto;
-        padding: 32px;
-        border-radius: 32px;
-        max-width: 1120px;
+      .pct-cluster-page-shell .pct-cluster-related {
+        padding: 24px;
+        box-shadow: var(--pct-shadow-soft);
       }
 
-      #pct-inc-explanation .mtg-exp-section + .mtg-exp-section {
-        margin-top: 28px;
+      .pct-cluster-page-shell .pct-cluster-related h2 {
+        color: var(--pct-ink);
+        font-size: 1.25rem;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-links {
+        gap: 10px;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link {
+        min-height: auto;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: var(--pct-surface-soft);
+        box-shadow: none;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link.is-active,
+      .pct-cluster-page-shell .pct-cluster-related-link[aria-current='page'] {
+        background: var(--pct-accent-soft);
+        border-color: rgba(37, 99, 235, 0.22);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-card-copy,
+      .pct-cluster-page-shell .pct-cluster-related-card-meta {
+        display: none;
+      }
+
+      #pct-inc-explanation {
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      #pct-inc-explanation section {
+        padding: 24px;
       }
 
       #pct-inc-explanation h2,
       #pct-inc-explanation h3,
       #pct-inc-explanation h4 {
-        color: #163247;
+        color: var(--pct-ink);
       }
 
-      #pct-inc-explanation .pv-results-table,
-      #pct-inc-explanation .bor-faq-card,
+      #pct-inc-explanation h2 {
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+      }
+
+      #pct-inc-explanation h3 {
+        font-size: 1.2rem;
+      }
+
+      #pct-inc-explanation h4 {
+        font-size: 1rem;
+      }
+
       #pct-inc-explanation .pv-formula-block {
-        border-color: rgba(11, 95, 104, 0.12);
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-accent-soft);
+        color: var(--pct-ink);
+        font-weight: 700;
       }
 
-      @media (max-width: 960px) {
-        #calc-percentage-increase.pct-route {
-          padding: 18px;
-          border-radius: 28px;
-        }
+      #pct-inc-explanation .pv-explanation-list,
+      #pct-inc-explanation .pv-formula-steps {
+        gap: 8px;
+      }
 
-        #calc-percentage-increase .pct-inc-signal-row {
-          grid-template-columns: 1fr;
-        }
+      #pct-inc-explanation .bor-faq-grid {
+        gap: 12px;
+      }
+
+      #pct-inc-explanation .bor-faq-card {
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      #pct-inc-explanation .pct-important-notes strong {
+        color: var(--pct-ink);
       }
 
       @media (max-width: 720px) {
-        #calc-percentage-increase .pct-inc-answer-head {
-          align-items: flex-start;
-          flex-direction: column;
+        .pct-cluster-page-shell #calculator-title {
+          font-size: clamp(2.1rem, 10vw, 3rem);
+          line-height: 1.08;
+          white-space: normal;
         }
 
-        #pct-inc-explanation.pct-explanation {
-          padding: 22px;
+        .pct-cluster-page-intro {
+          font-size: 16px;
+        }
+
+        #calc-percentage-increase .pct-inc-input-card,
+        #calc-percentage-increase .pct-inc-answer-card,
+        #pct-inc-explanation section,
+        .pct-cluster-page-shell .pct-cluster-related {
+          padding: 20px;
+          border-radius: 16px;
+        }
+
+        #calc-percentage-increase .pct-support-row {
+          align-items: flex-start;
+        }
+
+        #calc-percentage-increase .pct-support-row strong {
+          text-align: left;
         }
       }
     </style>
@@ -1976,23 +2107,10 @@
     <section class="pct-tool pct-inc-tool" aria-label="Percentage increase calculator">
       <div class="pct-input-card pct-inc-input-card">
         <div class="pct-inc-intro">
-          <p class="pct-eyebrow">Growth Focus</p>
-          <h2 class="pct-input-title">See the increase instantly</h2>
+          <h2 class="pct-input-title">Compare an original value against its higher result</h2>
           <p class="pct-lead">
-            Start with the original number, add the new number, and get the signed growth answer
-            without scanning through extra boxes.
+            Enter the original value and the newer value to see the signed growth percentage and raw increase in one clear summary.
           </p>
-        </div>
-
-        <div class="pct-inc-signal-row" aria-label="When to use this calculator">
-          <div class="pct-inc-signal-card">
-            <span>Best for</span>
-            <strong>Price rises, salary growth, KPI lift</strong>
-          </div>
-          <div class="pct-inc-signal-card">
-            <span>Primary answer</span>
-            <strong>Signed growth percentage plus raw increase</strong>
-          </div>
         </div>
 
         <div class="pct-field-grid pct-inc-field-grid">
@@ -2017,24 +2135,13 @@
             Calculate percentage increase
           </button>
         </div>
-
-        <p class="pct-inc-baseline-note">
-          Percentage increase always compares the change to the original value, not the new one.
-        </p>
       </div>
 
       <aside class="pct-answer-card pct-inc-answer-card" id="pct-inc-answer-card" aria-label="Percentage increase answer">
-        <div class="pct-inc-answer-head">
-          <p class="pct-eyebrow">Answer</p>
-          <p class="pct-inc-answer-kicker">Clear growth result</p>
-        </div>
-
         <div class="pct-inc-answer-shell">
-          <div class="result pct-answer-value" id="pct-inc-result" aria-live="polite">
-            Percentage Increase: +25.00%
-          </div>
+          <div class="result pct-answer-value" id="pct-inc-result" aria-live="polite">+25.00%</div>
           <p class="pct-answer-sentence" id="pct-inc-result-detail" aria-live="polite">
-            Increase Amount: 20.00 | Direction: Increase | 100.00 is a +25.00% increase from 80.00.
+            100.00 is a +25.00% increase from 80.00.
           </p>
           <p class="pct-answer-context" id="pct-inc-result-context" aria-live="polite">
             Formula: ((Y - X) / X) x 100.
@@ -2078,7 +2185,6 @@
 <div id="pct-inc-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Much Did the Value Grow?</h2>
-    <p><strong>The short answer:</strong> percentage increase shows how far a new value moved above or below the original value.</p>
     <p>
       Use this calculator when the original value is the baseline and you want to express the
       change as a signed percentage.
@@ -2086,7 +2192,7 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter the original value in X and the new value in Y.</li>
       <li>Click <strong>Calculate percentage increase</strong> to see the signed result and direction.</li>
@@ -2094,52 +2200,15 @@
       <li>Use the sign and direction together to tell whether the change is growth, decline, or no change.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Original Value (X)</td>
-            <td><span data-pct-inc="x">80.00</span></td>
-            <td class="pv-how-col">Starting amount used as the baseline denominator</td>
-          </tr>
-          <tr>
-            <td>New Value (Y)</td>
-            <td><span data-pct-inc="y">100.00</span></td>
-            <td class="pv-how-col">Updated amount compared against the original value</td>
-          </tr>
-          <tr>
-            <td>Increase Amount</td>
-            <td><span data-pct-inc="amount">20.00</span></td>
-            <td class="pv-how-col">Computed as Y - X</td>
-          </tr>
-          <tr>
-            <td>Direction</td>
-            <td><span data-pct-inc="direction">Increase</span></td>
-            <td class="pv-how-col">Positive means increase, negative means decrease</td>
-          </tr>
-          <tr>
-            <td>Formula</td>
-            <td>((Y - X) / X) x 100</td>
-            <td class="pv-how-col">Standard percentage increase formula</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Percentage Increase</td>
-            <td><span data-pct-inc="percent">+25.00%</span></td>
-            <td class="pv-how-col">Final signed percentage result</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Original value:</strong> <span data-pct-inc="x">80.00</span></li>
+      <li><strong>New value:</strong> <span data-pct-inc="y">100.00</span></li>
+      <li><strong>Increase amount:</strong> <span data-pct-inc="amount">20.00</span></li>
+      <li><strong>Direction:</strong> <span data-pct-inc="direction">Increase</span></li>
+      <li><strong>Percentage increase:</strong> <span data-pct-inc="percent">+25.00%</span></li>
+    </ul>
+
     <h4>Worked Example</h4>
     <p>
       With X = <span data-pct-inc="x">80.00</span> and Y =
@@ -2155,28 +2224,13 @@
       compare growth across different baselines and the increase amount when you need the raw unit change.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percentage increase formula is:</p>
+    <h4>Formula</h4>
     <p class="pv-formula-block">% Increase = ((Y - X) / X) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Difference:</strong>
-        Y - X = <span data-pct-inc="amount">20.00</span>.
-      </li>
-      <li>
-        <strong>Relative ratio:</strong>
-        (<span data-pct-inc="amount">20.00</span>) / (<span data-pct-inc="x">80.00</span>) gives
-        the growth ratio over the original value.
-      </li>
-      <li>
-        <strong>Percentage value:</strong>
-        Multiply by 100 to get <span data-pct-inc="percent">+25.00%</span>.
-      </li>
-      <li>
-        <strong>Direction:</strong>
-        Use the sign to label this as <span data-pct-inc="direction">Increase</span>.
-      </li>
-    </ol>
+    <p>
+      Subtract the original value from the new value to get <span data-pct-inc="amount">20.00</span>,
+      divide by <span data-pct-inc="x">80.00</span>, then multiply by 100 to reach
+      <span data-pct-inc="percent">+25.00%</span>.
+    </p>
     <p>If X is 0, percentage increase is undefined because division by zero is not possible.</p>
   </section>
 
@@ -2190,10 +2244,6 @@
       <div class="bor-faq-card">
         <h4>How do you calculate percentage increase from X to Y?</h4>
         <p>Subtract X from Y, divide by X, then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is the percentage increase formula?</h4>
-        <p>The formula is ((Y - X) / X) x 100.</p>
       </div>
       <div class="bor-faq-card">
         <h4>What is the difference between increase amount and percentage increase?</h4>
@@ -2212,16 +2262,8 @@
         <p>Then the result is not an increase; it will produce a negative percentage, which indicates a decrease.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>Can I use decimals for the original and new values?</h4>
-        <p>Yes, the calculation works the same for decimal values.</p>
-      </div>
-      <div class="bor-faq-card">
         <h4>Is percentage increase the same as percent change?</h4>
         <p>Not always; percent change can be increase or decrease, while percentage increase focuses on growth.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Where is percentage increase used in real life?</h4>
-        <p>It is used for price rises, salary increases, growth rates, and comparing performance over time.</p>
       </div>
     </div>
   </section>
@@ -2279,9 +2321,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator uses the standard percentage increase formula and rounds displayed values for readability.</li>
-      <li><strong>Disclaimer:</strong> Use this result as an analysis aid only; official reporting may require your own rounding or accounting policy.</li>
       <li><strong>Assumptions:</strong> X and Y should describe the same unit, category, and period so the comparison is meaningful.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use percentage increase for price rises, salary growth, KPI gains, and before-versus-after comparisons.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>
