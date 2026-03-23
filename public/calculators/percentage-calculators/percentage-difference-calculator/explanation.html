@@ -1,4 +1,4 @@
-<div id="pct-diff-explanation" class="explanation-pane">
+<div id="pct-diff-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Far Apart Are the Two Values?</h2>
     <p>
@@ -14,116 +14,55 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>Results Table</h3>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Value A</td>
-            <td><span data-pct-diff="a">80.00</span></td>
-            <td class="pv-how-col">First value in the symmetric comparison</td>
-          </tr>
-          <tr>
-            <td>Value B</td>
-            <td><span data-pct-diff="b">100.00</span></td>
-            <td class="pv-how-col">Second value in the symmetric comparison</td>
-          </tr>
-          <tr>
-            <td>Absolute Difference</td>
-            <td><span data-pct-diff="abs-diff">20.00</span></td>
-            <td class="pv-how-col">Calculated as |A - B|</td>
-          </tr>
-          <tr>
-            <td>Average Baseline</td>
-            <td><span data-pct-diff="avg-baseline">90.00</span></td>
-            <td class="pv-how-col">Calculated as (|A| + |B|) / 2</td>
-          </tr>
-          <tr>
-            <td>Formula</td>
-            <td><span data-pct-diff="formula">(|A - B| / ((|A| + |B|) / 2)) x 100</span></td>
-            <td class="pv-how-col">Symmetric percentage difference formula</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Percentage Difference</td>
-            <td><span data-pct-diff="pct-diff">22.22%</span></td>
-            <td class="pv-how-col">Always non-negative because absolute difference is used</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter Value A and Value B.</li>
+      <li>Click <strong>Calculate percentage difference</strong> to compare the two values symmetrically.</li>
+      <li>Check the absolute difference to see the raw gap before it is normalized.</li>
+      <li>Use the average baseline and percentage result together when neither input should be treated as the original.</li>
+    </ol>
+
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Value A:</strong> <span data-pct-diff="a">80.00</span></li>
+      <li><strong>Value B:</strong> <span data-pct-diff="b">100.00</span></li>
+      <li><strong>Absolute difference:</strong> <span data-pct-diff="abs-diff">20.00</span></li>
+      <li><strong>Average baseline:</strong> <span data-pct-diff="avg-baseline">90.00</span></li>
+      <li><strong>Percentage difference:</strong> <span data-pct-diff="pct-diff">22.22%</span></li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section">
-    <h3>Explanation</h3>
+    <h4>Worked Example</h4>
     <p>
-      Percentage difference compares how far apart two values are using their average baseline, so
-      swapping A and B gives the same result.
+      With Value A = <span data-pct-diff="a">80.00</span> and Value B =
+      <span data-pct-diff="b">100.00</span>, the absolute difference is
+      <span data-pct-diff="abs-diff">20.00</span> and the average baseline is
+      <span data-pct-diff="avg-baseline">90.00</span>. Dividing 20.00 by 90.00 and multiplying
+      by 100 gives <span data-pct-diff="pct-diff">22.22%</span>.
     </p>
 
-    <ul class="pv-explanation-list">
-      <li>
-        <strong>Start with both values:</strong>
-        Value A is <span data-pct-diff="a">80.00</span> and Value B is
-        <span data-pct-diff="b">100.00</span>.
-      </li>
-      <li>
-        <strong>Find absolute difference:</strong>
-        Calculate |A - B| to get <span data-pct-diff="abs-diff">20.00</span>.
-      </li>
-      <li>
-        <strong>Find average baseline:</strong>
-        Compute (|A| + |B|) / 2 to get <span data-pct-diff="avg-baseline">90.00</span>.
-      </li>
-      <li>
-        <strong>Convert to percent:</strong>
-        Divide the absolute difference by the average baseline and multiply by 100 to get
-        <span data-pct-diff="pct-diff">22.22%</span>.
-      </li>
-      <li>
-        <strong>Interpret result:</strong>
-        The result is symmetric and non-negative for this calculator.
-      </li>
-    </ul>
+    <h4>How to Interpret Your Result</h4>
+    <p>
+      The result is always non-negative because the formula uses an absolute difference. Use this
+      metric when neither value is the official starting point; use percent change instead when one
+      value clearly acts as the baseline.
+    </p>
 
-    <h4>How the Formula Works</h4>
-    <p>The percentage difference formula is:</p>
+    <h4>Formula</h4>
     <p class="pv-formula-block">% Difference = (|A - B| / ((|A| + |B|) / 2)) x 100</p>
-    <p>Substituting your values step by step:</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Compute absolute difference:</strong>
-        |A - B| = <span data-pct-diff="abs-diff">20.00</span>.
-      </li>
-      <li>
-        <strong>Compute average baseline:</strong>
-        (|A| + |B|) / 2 = <span data-pct-diff="avg-baseline">90.00</span>.
-      </li>
-      <li>
-        <strong>Divide and scale:</strong>
-        (<span data-pct-diff="abs-diff">20.00</span> / <span data-pct-diff="avg-baseline">90.00</span>) x 100 =
-        <span data-pct-diff="pct-diff">22.22%</span>.
-      </li>
-      <li>
-        <strong>Handle zero baseline:</strong>
-        If A and B are both 0, the baseline is 0 so percentage difference is undefined.
-      </li>
-    </ol>
+    <p>
+      Find the absolute gap, <span data-pct-diff="abs-diff">20.00</span>, divide it by the
+      average baseline, <span data-pct-diff="avg-baseline">90.00</span>, then multiply by 100
+      to get <span data-pct-diff="pct-diff">22.22%</span>.
+    </p>
+    <p>If A and B are both 0, the baseline is 0 so percentage difference is undefined.</p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
       <div class="bor-faq-card">
-        <span class="bor-faq-number">01</span>
         <h4>What is percentage difference?</h4>
         <p>
           Percentage difference compares two values as a percentage of their average, so the result
@@ -131,38 +70,28 @@
         </p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">02</span>
         <h4>How do you calculate percentage difference between A and B?</h4>
         <p>Take |A - B|, divide by ((|A| + |B|) / 2), then multiply by 100.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">03</span>
-        <h4>What is the percentage difference formula?</h4>
-        <p>The formula is (|A - B| / ((|A| + |B|) / 2)) x 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">04</span>
         <h4>Why is percentage difference symmetric?</h4>
         <p>
           Because it uses an absolute difference and divides by the average of the two magnitudes.
         </p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">05</span>
         <h4>Is percentage difference always non-negative?</h4>
         <p>
           Yes, percentage difference uses an absolute difference, so it is never negative.
         </p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">06</span>
         <h4>Can A and B be negative?</h4>
         <p>
           Yes, the baseline uses |A| and |B| so negative values are supported.
         </p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">07</span>
         <h4>What happens if both values are zero?</h4>
         <p>
           Percentage difference is undefined because the average baseline is 0 and division by zero
@@ -170,7 +99,6 @@
         </p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">08</span>
         <h4>How is percentage difference different from percent change?</h4>
         <p>
           Percent change uses one value as the original baseline, while percentage difference uses
@@ -178,15 +106,6 @@
         </p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">09</span>
-        <h4>When should you use percentage difference?</h4>
-        <p>
-          Use it when neither value should be treated as the original, such as comparing two
-          measurements or prices.
-        </p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">10</span>
         <h4>Can percentage difference be more than 100%?</h4>
         <p>
           Yes, if the two values differ a lot compared to their average, the percentage difference
@@ -198,10 +117,13 @@
 
   <section class="mtg-exp-section">
     <h3>Important Notes</h3>
-    <ul class="pv-explanation-list">
-      <li>Percentage difference is always non-negative because the formula uses an absolute difference.</li>
-      <li>Use percent change instead if one value is clearly the original baseline.</li>
-      <li>If both values are 0, the average baseline is 0 so percentage difference is undefined.</li>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> This calculator uses the standard symmetric percentage difference formula and rounds displayed values for readability.</li>
+      <li><strong>Assumptions:</strong> Value A and Value B should represent the same unit and context so the average-baseline comparison remains meaningful.</li>
+      <li><strong>Use case:</strong> Use percentage difference when neither input should act as the official baseline.</li>
+      <li><strong>Disclaimer:</strong> This calculator uses the symmetric average-baseline method, so it is not a substitute for percent change when one value is the official starting point.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>

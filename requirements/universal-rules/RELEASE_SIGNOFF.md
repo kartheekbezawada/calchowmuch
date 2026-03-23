@@ -40,6 +40,7 @@
 | :--- | :--- |
 | Release checklist reference | |
 | Scoped route proof (target route + scope lock) | |
+| Homepage search verification keyword(s) | |
 | SEO/schema evidence | |
 | CWV artifact (`scoped-cwv` or global) | |
 | Thin-content artifact (if `calc_exp` / `exp_only`) | |
@@ -48,6 +49,7 @@
 
 Notes:
 - Attach only evidence relevant to this release scope.
+- If an approved homepage-search exclusion is used, record `EXCLUDED` in the keyword row and cite the matching `homepageSearchExclusionEvidence` value.
 - `Release Sign-Off Master Table.md` update is optional historical logging, not a release blocker.
 
 ---

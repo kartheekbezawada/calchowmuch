@@ -1,65 +1,70 @@
-<div id="calc-percentage-increase">
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="inc-hero" aria-label="Percentage increase calculator">
-        <div class="inc-form-panel">
-          <p class="helper">
-            Measure how much a value has grown from the original amount to the new amount. Enter X
-            and Y, then calculate the increase percentage.
-          </p>
+<div id="calc-percentage-increase" class="pct-route pct-route-increase">
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css" />
 
-          <div class="input-row">
+  <div class="pct-inc-stage calculator-ui pct-answer-ui">
+    <section class="pct-tool pct-inc-tool" aria-label="Percentage increase calculator">
+      <div class="pct-input-card pct-inc-input-card">
+        <div class="pct-inc-intro">
+          <h2 class="pct-input-title">Compare an original value against its higher result</h2>
+          <p class="pct-lead">
+            Enter the original value and the newer value to see the signed growth percentage and raw increase in one clear summary.
+          </p>
+        </div>
+
+        <div class="pct-field-grid pct-inc-field-grid">
+          <div class="input-row pct-inc-field">
             <label for="pct-inc-x">Original Value (X)</label>
             <input id="pct-inc-x" type="number" value="80" step="0.01" inputmode="decimal" />
+            <p class="pct-inc-field-note">This is the baseline used as the denominator.</p>
           </div>
 
-          <div class="input-row">
+          <div class="input-row pct-inc-field">
             <label for="pct-inc-y">New Value (Y)</label>
             <input id="pct-inc-y" type="number" value="100" step="0.01" inputmode="decimal" />
-          </div>
-
-          <div class="input-row action-row inc-action-row">
-            <button class="calculator-button full-width" type="button" id="pct-inc-calc">
-              Calculate Percentage Increase
-            </button>
+            <p class="pct-inc-field-note">This is the updated number you want to compare.</p>
           </div>
         </div>
 
-        <aside class="inc-insight-panel" aria-label="Percentage increase result snapshot">
-          <div class="inc-result-shell">
-            <p class="inc-result-label">Growth Snapshot</p>
-            <div class="result inc-result-value" id="pct-inc-result" aria-live="polite">
-              Percentage Increase: +25.00%
-            </div>
-            <div class="result-detail inc-result-detail" id="pct-inc-result-detail" aria-live="polite">
-              Increase Amount: 20.00 | Direction: Increase | Formula: ((Y - X) / X) x 100
-            </div>
-          </div>
+        <div class="pct-actions pct-inc-actions">
+          <p class="pct-stale-note" id="pct-inc-stale-note" hidden aria-hidden="true">
+            Inputs changed. Calculate again to refresh the answer.
+          </p>
+          <button class="calculator-button full-width" type="button" id="pct-inc-calc">
+            Calculate percentage increase
+          </button>
+        </div>
+      </div>
 
-          <div class="inc-metrics-list">
-            <div class="inc-metric-row">
-              <span>Original Value (X)</span>
-              <strong data-pct-inc-snap="x">80.00</strong>
-            </div>
-            <div class="inc-metric-row">
-              <span>New Value (Y)</span>
-              <strong data-pct-inc-snap="y">100.00</strong>
-            </div>
-            <div class="inc-metric-row">
-              <span>Increase Amount</span>
-              <strong data-pct-inc-snap="amount">20.00</strong>
-            </div>
-            <div class="inc-metric-row">
-              <span>Direction</span>
-              <strong data-pct-inc-snap="direction">Increase</strong>
-            </div>
-            <div class="inc-metric-row">
-              <span>Formula</span>
-              <strong>((Y - X) / X) x 100</strong>
-            </div>
+      <aside class="pct-answer-card pct-inc-answer-card" id="pct-inc-answer-card" aria-label="Percentage increase answer">
+        <div class="pct-inc-answer-shell">
+          <div class="result pct-answer-value" id="pct-inc-result" aria-live="polite">+25.00%</div>
+          <p class="pct-answer-sentence" id="pct-inc-result-detail" aria-live="polite">
+            100.00 is a +25.00% increase from 80.00.
+          </p>
+          <p class="pct-answer-context" id="pct-inc-result-context" aria-live="polite">
+            Formula: ((Y - X) / X) x 100.
+          </p>
+        </div>
+
+        <div class="pct-support-list pct-inc-support-list" aria-label="Percentage increase details">
+          <div class="pct-support-row">
+            <span>Original value</span>
+            <strong data-pct-inc-snap="x">80.00</strong>
           </div>
-        </aside>
-      </section>
-    </div>
+          <div class="pct-support-row">
+            <span>New value</span>
+            <strong data-pct-inc-snap="y">100.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Increase amount</span>
+            <strong data-pct-inc-snap="amount">20.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Direction</span>
+            <strong data-pct-inc-snap="direction">Increase</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>

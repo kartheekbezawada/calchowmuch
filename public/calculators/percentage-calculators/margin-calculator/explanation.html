@@ -1,172 +1,93 @@
-<div id="margin-explanation" class="explanation-pane">
+<div id="margin-explanation" class="explanation-pane pct-explanation">
   <section>
     <h2>What Margin Does Your Price Create?</h2>
-    <p><strong>The short answer:</strong> margin tells you what share of the selling price remains as profit after covering cost.</p>
     <p>
-      Use this calculator either to measure gross margin from cost and selling price, or to find
-      the selling price needed to reach a target margin.
+      Gross margin shows how much of the selling price remains as profit after cost has been
+      covered.
+    </p>
+    <p>
+      This calculator works in both directions, so you can either measure current margin or solve
+      for the selling price needed to reach a target margin.
     </p>
   </section>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Mode</td>
-          <td><span data-margin="mode"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Cost (C)</td>
-          <td><span data-margin="cost"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Selling Price (P)</td>
-          <td><span data-margin="price"></span></td>
-          <td>Input or Engine</td>
-        </tr>
-        <tr>
-          <td>Profit</td>
-          <td><span data-margin="profit"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Gross Margin %</td>
-          <td><span data-margin="margin-percent"></span></td>
-          <td>Input or Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  <section>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Choose whether you want to calculate margin or solve for selling price.</li>
+      <li>Enter the cost and the additional input for the selected mode.</li>
+      <li>Click <strong>Calculate margin</strong> to see the margin, price, and profit summary.</li>
+      <li>Use the support rows to confirm the exact values behind the percentage result.</li>
+    </ol>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Cost (C)</td>
-          <td><span data-margin="cost"></span></td>
-          <td>Cost of the item</td>
-        </tr>
-        <tr>
-          <td>Selling Price (P)</td>
-          <td><span data-margin="price"></span></td>
-          <td>Price charged to customer</td>
-        </tr>
-        <tr>
-          <td>Profit</td>
-          <td><span data-margin="profit"></span></td>
-          <td>P - C</td>
-        </tr>
-        <tr>
-          <td>Gross Margin %</td>
-          <td><span data-margin="margin-percent"></span></td>
-          <td>Profit / P x 100</td>
-        </tr>
-        <tr>
-          <td>Formula</td>
-          <td><span data-margin="formula"></span></td>
-          <td>Mode-specific margin formula</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Mode:</strong> <span data-margin="mode">Cost + Price -> Margin %</span></li>
+      <li><strong>Cost:</strong> <span data-margin="cost">$60.00</span></li>
+      <li><strong>Selling price:</strong> <span data-margin="price">$100.00</span></li>
+      <li><strong>Profit:</strong> <span data-margin="profit">$40.00</span></li>
+      <li><strong>Gross margin:</strong> <span data-margin="margin-percent">40.00%</span></li>
+    </ul>
 
-  <h3>Explanation</h3>
-  <p>
-    Gross margin shows how much of the selling price is profit after covering the cost. To calculate
-    gross margin %, subtract cost from selling price to get profit, then divide profit by the
-    selling price and multiply by 100.
-  </p>
-  <p>
-    For example, if cost is 60 and the selling price is 100, profit is 40 and gross margin is (40 /
-    100) x 100 = 40%.
-  </p>
-  <p>
-    To find the selling price needed for a target gross margin, divide cost by (1 - margin). For
-    example, if cost is 60 and the target margin is 40%, the selling price is 60 / (1 - 0.40) = 100.
-  </p>
-  <p>
-    If the selling price is zero, margin cannot be calculated. If the margin is 100%, the selling
-    price cannot be calculated because division by zero is not possible.
-  </p>
+    <h4>Worked Example</h4>
+    <p>
+      If cost is <span data-margin="cost">$60.00</span> and selling price is
+      <span data-margin="price">$100.00</span>, profit is
+      <span data-margin="profit">$40.00</span>. Dividing that profit by the selling price gives a
+      gross margin of <span data-margin="margin-percent">40.00%</span>.
+    </p>
+    <p>
+      In reverse mode, the calculator uses the same relationship to work backward from cost and a
+      target margin to the price you need to charge.
+    </p>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is gross margin?</strong></p>
-    <p class="faq-answer">
-      A: Gross margin is profit expressed as a percentage of the selling price.
+    <h4>Formula</h4>
+    <p class="pv-formula-block"><span data-margin="formula">((P - C) / P) x 100</span></p>
+    <p>
+      Margin is based on selling price, which is why margin and markup are not the same
+      percentage.
     </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate gross margin %?</strong></p>
-    <p class="faq-answer">A: Subtract cost from price, divide by price, then multiply by 100.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is the gross margin formula?</strong></p>
-    <p class="faq-answer">A: The formula is ((P - C) / P) x 100.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate profit?</strong></p>
-    <p class="faq-answer">A: Profit equals selling price minus cost.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate selling price from cost and margin %?</strong></p>
-    <p class="faq-answer">A: Divide cost by (1 - margin/100).</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is margin the same as markup?</strong></p>
-    <p class="faq-answer">
-      A: No, margin is based on selling price, while markup is based on cost.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can gross margin be negative?</strong></p>
-    <p class="faq-answer">
-      A: Yes, if the selling price is lower than the cost, profit is negative and margin is
-      negative.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if the selling price is zero?</strong></p>
-    <p class="faq-answer">A: Gross margin is undefined because you cannot divide by zero.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can margin be 100%?</strong></p>
-    <p class="faq-answer">
-      A: A 100% margin would require zero cost or an undefined selling price in this formula.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Where is gross margin used in real life?</strong></p>
-    <p class="faq-answer">
-      A: It is used for product pricing, profitability analysis, and business planning.
-    </p>
-  </div>
+  </section>
 
-  <h3>Important Notes</h3>
-  <ul class="pv-explanation-list">
-    <li><strong>Margin is based on selling price:</strong> that is why margin and markup are different percentages.</li>
-    <li><strong>Profit is price minus cost:</strong> margin converts that profit into a percentage of price.</li>
-    <li><strong>Target margin pricing works backward:</strong> the calculator solves for the price needed to keep the chosen margin.</li>
-    <li><strong>Zero selling price is invalid for margin:</strong> the formula cannot divide by zero.</li>
-  </ul>
+  <section>
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <h4>What is gross margin?</h4>
+        <p>Gross margin is profit expressed as a percentage of selling price.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>How do you calculate gross margin?</h4>
+        <p>Subtract cost from price, divide by price, then multiply by 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>How do you find price from cost and margin?</h4>
+        <p>Divide cost by one minus the margin rate written as a decimal.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>Is margin the same as markup?</h4>
+        <p>No. Margin is based on selling price, while markup is based on cost.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>Can margin be negative?</h4>
+        <p>Yes. If selling price is below cost, profit and margin are both negative.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>What happens when selling price is zero?</h4>
+        <p>Margin cannot be calculated because the formula would divide by zero.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Important Notes</h3>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> Results use standard gross-margin formulas with rounded display values.</li>
+      <li><strong>Assumptions:</strong> Cost and selling price should use the same currency basis, and target margin mode assumes you are solving for gross margin before overhead or tax.</li>
+      <li><strong>Use case:</strong> Best for pricing, profitability checks, and target-margin planning.</li>
+      <li><strong>Disclaimer:</strong> This calculator shows gross margin from the values you enter and does not account for overhead, tax, shipping, financing costs, or channel fees.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
 </div>

@@ -105,6 +105,10 @@ HARD: New cluster/category onboarding must include full contract compliance (`co
 
 HARD: Homepage discoverability contract must pass for onboarding/cluster changes: clusters with `showOnHomepage !== false` must render on `/` via registry + governed route sources, and `showOnHomepage` intent must be explicitly set/validated in registry updates.
 
+HARD: Homepage search discoverability contract must pass for newly released public calculator routes: each new route must be returned by `/` search for its primary calculator identity/navigation keywords from governed route sources unless an approved exclusion is encoded in `config/clusters/route-ownership.json` via homepage-search exclusion fields and documented in signoff evidence.
+
+HARD: Releases that add or onboard public calculator routes must run `npm run test:homepage:search:contracts` or an enclosing release script that includes it.
+
 3. TESTING POLICY — DEFAULT = ONE CALCULATOR (MANDATORY)
 
 Goal: Avoid universal tests touching every calculator.
@@ -836,6 +840,8 @@ AdSense loader snippet compliance proof (head snippet exact-match evidence)
 Ad unit snippet compliance proof (`<ins>` attributes + single `push({})` activation)
 
 SERP validation notes (canonical + schema + FAQ parity)
+
+Homepage search verification keyword(s) used per released route (or `EXCLUDED` plus route-ownership evidence reference)
 
 Intent-led content structure validation notes (`How to Guide -> FAQ -> Important Notes`, `Important Notes` final-position evidence, and `Last updated` freshness evidence)
 

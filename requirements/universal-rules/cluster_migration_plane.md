@@ -282,6 +282,26 @@ Required fields in route ownership entries:
 2. `previousOwnerClusterId`
 3. `rollbackTag`
 
+Optional homepage-search governance fields:
+1. `homepageSearchExcluded` = `true` only for approved route-level exclusions.
+2. `homepageSearchExclusionReason` = required when excluded.
+3. `homepageSearchExclusionEvidence` = required when excluded and must point to approval/signoff evidence.
+
+Example route ownership entry fragment:
+
+```json
+{
+  "route": "/finance-calculators/example-calculator/",
+  "calculatorId": "example-calculator",
+  "activeOwnerClusterId": "finance",
+  "previousOwnerClusterId": "legacy-shared",
+  "rollbackTag": "pre-example-release",
+  "homepageSearchExcluded": true,
+  "homepageSearchExclusionReason": "Temporarily withheld pending coordinated navigation/content launch.",
+  "homepageSearchExclusionEvidence": "RELEASE_SIGNOFF_REL-YYYYMMDD-EXAMPLE"
+}
+```
+
 Rollback operation:
 1. Flip `activeOwnerClusterId` to `previousOwnerClusterId`.
 2. Restore `rollbackTag` target build.
@@ -397,6 +417,7 @@ Any new cluster/category must:
 3. Implement cluster-owned shell/assets/build stack.
 4. Use only immutable core for allowed shared runtime.
 5. Pass all isolation contract, fence, and manifest checks before merge.
+6. Ensure newly onboarded public routes are homepage-search discoverable on `/` by default from governed route sources, unless an explicit approved exclusion is documented.
 
 ## 20.1 Single-Pane Layout Guard (Mandatory)
 For calculator routes that include both calculation and explanation (`routeArchetype=calc_exp`):

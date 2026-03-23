@@ -1,12 +1,19 @@
 import { percentageChange } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const originalInput = document.querySelector('#pct-inc-x');
 const newInput = document.querySelector('#pct-inc-y');
 const calculateButton = document.querySelector('#pct-inc-calc');
+const answerCard = document.querySelector('#pct-inc-answer-card');
+const staleNote = document.querySelector('#pct-inc-stale-note');
 const resultOutput = document.querySelector('#pct-inc-result');
 const resultDetail = document.querySelector('#pct-inc-result-detail');
+const resultContext = document.querySelector('#pct-inc-result-context');
 
 const snapshotTargets = {
   x: document.querySelector('[data-pct-inc-snap="x"]'),
@@ -189,9 +196,12 @@ function formatValue(value) {
 }
 
 function formatSignedPercent(value) {
-  const formatted = formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const sign = value > 0 ? '+' : '';
-  return `${sign}${formatted}%`;
+  if (Math.abs(value) < 1e-12) {
+    return '0%';
+  }
+
+  const prefix = value > 0 ? '+' : '-';
+  return `${prefix}${formatNumber(Math.abs(value), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
 }
 
 function updateTargets(nodes, value) {
@@ -213,19 +223,41 @@ function updateSnapshot(key, value) {
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
-function calculate() {
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature: () => `${originalInput?.value ?? ''}|${newInput?.value ?? ''}`,
+});
+
+staleController.watchElements([originalInput, newInput]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function calculate({ reveal = false } = {}) {
   const x = Number.parseFloat(originalInput?.value ?? '');
   const y = Number.parseFloat(newInput?.value ?? '');
 
   if (!Number.isFinite(x)) {
     resultOutput.textContent = 'Enter a valid original value (X).';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid original value to measure percentage growth.';
+    resultContext.textContent = 'Percentage increase uses the original value as the denominator.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   if (!Number.isFinite(y)) {
     resultOutput.textContent = 'Enter a valid new value (Y).';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid new value to compare it with the original amount.';
+    resultContext.textContent = 'The answer updates after you calculate again.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -233,8 +265,10 @@ function calculate() {
   if (percentIncrease === null) {
     resultOutput.textContent = 'Percentage increase is undefined when original value (X) is 0.';
     resultDetail.textContent = 'Provide an original value other than 0.';
+    resultContext.textContent = 'Formula: ((Y - X) / X) x 100.';
     updateTargets(valueTargets?.direction, 'Undefined');
     updateSnapshot('direction', 'Undefined');
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -247,7 +281,8 @@ function calculate() {
   const formattedPercent = formatSignedPercent(percentIncrease);
 
   resultOutput.textContent = `Percentage Increase: ${formattedPercent}`;
-  resultDetail.textContent = `Increase Amount: ${formattedAmount} | Direction: ${direction} | Formula: ((Y - X) / X) x 100`;
+  resultDetail.textContent = `Increase Amount: ${formattedAmount} | Direction: ${direction} | ${formattedY} is a ${formattedPercent} ${direction.toLowerCase()} from ${formattedX}.`;
+  resultContext.textContent = 'Formula: ((Y - X) / X) x 100.';
 
   updateSnapshot('x', formattedX);
   updateSnapshot('y', formattedY);
@@ -261,9 +296,10 @@ function calculate() {
   updateTargets(valueTargets?.direction, direction);
 
   hasCalculated = true;
+  finishCalculation({ reveal, trend: percentIncrease > 0 ? 'increase' : percentIncrease < 0 ? 'decrease' : 'neutral' });
 }
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 [originalInput, newInput].forEach((input) => {
   input?.addEventListener('input', () => {

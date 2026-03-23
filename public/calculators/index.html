@@ -225,7 +225,27 @@
           return;
         }
 
-        const normalize = (value) => String(value || '').trim().toLowerCase();
+        const normalize = (value) =>
+          String(value || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim()
+            .replace(/s+/g, ' ');
+        const getTokens = (value) => normalize(value).split(' ').filter(Boolean);
+        const matchesQuery = (searchable, rawQuery) => {
+          const query = normalize(rawQuery);
+          if (!query) {
+            return true;
+          }
+
+          const normalizedSearchable = normalize(searchable);
+          if (normalizedSearchable.includes(query)) {
+            return true;
+          }
+
+          const queryTokens = getTokens(query);
+          return queryTokens.length > 1 && queryTokens.every((token) => normalizedSearchable.includes(token));
+        };
         const sections = Array.from(panel.querySelectorAll('section')).map((section) => {
           const groups = Array.from(section.querySelectorAll('h3'))
             .map((heading) => {
@@ -261,7 +281,7 @@
                 const link = item.querySelector('a');
                 const searchable =
                   (item.textContent || '') + ' ' + (link ? link.getAttribute('href') || '' : '');
-                const isMatch = !query || normalize(searchable).includes(query);
+                const isMatch = matchesQuery(searchable, query);
                 item.hidden = !isMatch;
                 if (isMatch) {
                   groupVisibleCount += 1;

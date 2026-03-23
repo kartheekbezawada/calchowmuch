@@ -1,156 +1,81 @@
-<div id="pon-explanation" class="explanation-pane">
+<div id="pon-explanation" class="explanation-pane pct-explanation">
   <section class="pon-exp-section">
     <h2>How Much Is X% of Y?</h2>
-    <p><strong>The short answer:</strong> convert the percentage into a decimal, then multiply it by the number.</p>
     <p>
-      Use this calculator when you know the percentage and the base number and want the resulting
-      amount, such as tax, discount, commission, or interest calculations.
+      Convert the percentage into a decimal, then multiply it by the number. This is useful for
+      tax, discount, commission, tip, and simple percentage checks.
     </p>
   </section>
 
   <section class="pon-exp-section">
-    <h3>Results Table</h3>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Percentage (X)</td>
-            <td><span data-pon="percent">20.00%</span></td>
-            <td class="pv-how-col">The percent portion applied to the base number</td>
-          </tr>
-          <tr>
-            <td>Number (Y)</td>
-            <td><span data-pon="number">50.00</span></td>
-            <td class="pv-how-col">The full value from which the percentage is taken</td>
-          </tr>
-          <tr>
-            <td>Result</td>
-            <td><span data-pon="result">10.00</span></td>
-            <td class="pv-how-col">The computed amount represented by X% of Y</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Formula</td>
-            <td><span data-pon="formula">(X / 100) x Y</span></td>
-            <td class="pv-how-col">Convert percent to per-one form, then multiply</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  </section>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter the percentage in X and the base value in Y.</li>
+      <li>Click <strong>Calculate percentage</strong> to convert the rate into an amount.</li>
+      <li>Check the formula line to see exactly how the percentage was applied to the base number.</li>
+      <li>Reuse the result for discounts, tax estimates, commissions, or simple percentage checks.</li>
+    </ol>
 
-  <section class="pon-exp-section">
-    <h3>Explanation</h3>
-    <p>
-      This calculation answers the question, "What is X% of Y?" by converting percentage into a
-      ratio and applying it to the base value.
-    </p>
-
+    <h4>At a Glance</h4>
     <ul class="pv-explanation-list">
-      <li>
-        <strong>Read your input values:</strong>
-        Percentage is <span data-pon="percent">20.00%</span> and number is
-        <span data-pon="number">50.00</span>.
-      </li>
-      <li>
-        <strong>Convert percent to decimal form:</strong>
-        Divide percentage by 100.
-      </li>
-      <li>
-        <strong>Multiply by the number:</strong>
-        Apply the decimal to Y to get <span data-pon="result">10.00</span>.
-      </li>
-      <li>
-        <strong>Use for real scenarios:</strong>
-        Works for discounts, taxes, commissions, rates, and grade-based calculations.
-      </li>
-      <li>
-        <strong>Edge compatibility:</strong>
-        Handles decimal percentages, values greater than 100%, and negative inputs.
-      </li>
+      <li><strong>Percentage:</strong> <span data-pon="percent">20.00%</span></li>
+      <li><strong>Base number:</strong> <span data-pon="number">50.00</span></li>
+      <li><strong>Result:</strong> <span data-pon="result">10.00</span></li>
+      <li><strong>Formula:</strong> <span data-pon="formula">(X / 100) x Y</span></li>
     </ul>
 
-    <h4>How the Formula Works</h4>
+    <h4>Worked Example</h4>
+    <p>
+      If X is <span data-pon="percent">20.00%</span> and Y is
+      <span data-pon="number">50.00</span>, divide 20.00 by 100 to get 0.20. Then multiply 0.20
+      by 50.00 to get <span data-pon="result">10.00</span>.
+    </p>
+
+    <h4>How to Interpret Your Result</h4>
+    <p>
+      The result is the exact amount represented by the selected percentage of the base number. If
+      the answer is 10.00, that means 10.00 units out of the base value come from the 20.00% rate.
+      Percentages above 100% can produce values larger than the base number, and negative
+      percentages produce negative amounts.
+    </p>
+
+    <h4>Formula</h4>
     <p class="pv-formula-block" data-pon="formula">(X / 100) x Y</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Start with X:</strong>
-        X = <span data-pon="percent">20.00%</span>.
-      </li>
-      <li>
-        <strong>Convert to ratio:</strong>
-        X / 100.
-      </li>
-      <li>
-        <strong>Multiply by Y:</strong>
-        (<span data-pon="percent">20.00%</span> / 100) x
-        <span data-pon="number">50.00</span>.
-      </li>
-      <li>
-        <strong>Final result:</strong>
-        <span data-pon="result">10.00</span>.
-      </li>
-    </ol>
+    <p>
+      Start with <span data-pon="percent">20.00%</span>, divide by 100 to get its decimal form,
+      then multiply that decimal by <span data-pon="number">50.00</span> to reach
+      <span data-pon="result">10.00</span>.
+    </p>
   </section>
 
   <section class="pon-exp-section pon-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
       <div class="bor-faq-card">
-        <span class="bor-faq-number">01</span>
         <h4>What does percentage of a number mean?</h4>
         <p>It means calculating how much a given percentage represents out of a total value.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">02</span>
         <h4>How do you calculate X% of Y?</h4>
         <p>Divide X by 100 and multiply the result by Y.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">03</span>
-        <h4>What is the formula for percentage of a number?</h4>
-        <p>The formula is (X / 100) x Y.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">04</span>
         <h4>Can percentages be greater than 100%?</h4>
         <p>Yes, percentages greater than 100% represent values larger than the original number.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">05</span>
-        <h4>Can the number be negative?</h4>
-        <p>Yes, percentage calculations work with negative numbers.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">06</span>
         <h4>Can percentages include decimals?</h4>
         <p>Yes, percentages can include decimal values such as 2.5% or 12.75%.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">07</span>
-        <h4>Is this calculator accurate for large numbers?</h4>
-        <p>Yes, it accurately calculates percentages for both small and large numbers.</p>
+        <h4>Can the number be negative?</h4>
+        <p>Yes, percentage calculations work with negative numbers as well.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">08</span>
-        <h4>How are percentages used in real life?</h4>
-        <p>Percentages are used for discounts, taxes, interest rates, grades, and financial comparisons.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">09</span>
         <h4>What is 0% of a number?</h4>
         <p>Zero percent of any number is always zero.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">10</span>
         <h4>Why do we divide by 100 in percentage calculations?</h4>
         <p>Because a percentage represents a fraction out of 100.</p>
       </div>
@@ -159,11 +84,13 @@
 
   <section class="pon-exp-section">
     <h3>Important Notes</h3>
-    <ul class="pv-explanation-list">
-      <li><strong>The percentage is the rate:</strong> the number is the base value the rate is applied to.</li>
-      <li><strong>Percent means per hundred:</strong> this is why the formula divides X by 100 before multiplying.</li>
-      <li><strong>Results can exceed the base number:</strong> percentages above 100% produce values larger than Y.</li>
-      <li><strong>Negative values are valid:</strong> the same formula works for signed numbers and signed percentages.</li>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> This calculator applies the standard percentage formula and rounds displayed values to two decimals.</li>
+      <li><strong>Assumptions:</strong> X is treated as a percent rate and Y is treated as the full base amount the rate applies to.</li>
+      <li><strong>Use case:</strong> Use it for discounts, tax estimates, commissions, and quick amount checks.</li>
+      <li><strong>Disclaimer:</strong> This calculator applies one direct percentage rate to one base value and does not include caps, taxes, or extra adjustments unless you enter them manually.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>

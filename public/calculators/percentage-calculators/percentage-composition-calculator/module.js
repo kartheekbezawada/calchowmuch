@@ -1,6 +1,10 @@
 import { calculatePercentageComposition } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const knownModeToggle = document.querySelector('#composition-known-toggle');
 const calculatedModeLabel = document.querySelector('[data-composition-mode-label="calculated"]');
@@ -10,14 +14,18 @@ const knownTotalInput = document.querySelector('#composition-known-total');
 const rowsContainer = document.querySelector('#composition-rows');
 const addRowButton = document.querySelector('#composition-add-row');
 const calculateButton = document.querySelector('#composition-calc');
+const answerCard = document.querySelector('#composition-answer-card');
+const staleNote = document.querySelector('#composition-stale-note');
 const resultOutput = document.querySelector('#composition-result');
 const resultDetail = document.querySelector('#composition-result-detail');
+const resultContext = document.querySelector('#composition-result-context');
+const breakdownOutput = document.querySelector('#composition-breakdown');
+const breakdownSummary = document.querySelector('#composition-breakdown-summary');
 
 const snapshotTargets = {
   itemsCount: document.querySelector('[data-composition-snap="items-count"]'),
   totalUsed: document.querySelector('[data-composition-snap="total-used"]'),
   total: document.querySelector('[data-composition-snap="total"]'),
-  sumItems: document.querySelector('[data-composition-snap="sum-items"]'),
   remainderPercent: document.querySelector('[data-composition-snap="remainder-percent"]'),
 };
 
@@ -123,7 +131,7 @@ const CALCULATOR_FAQ_SCHEMA = {
   ],
 };
 
-const metadata = {
+setPageMetadata({
   title: 'Percentage Composition Calculator | Share of Total',
   description:
     "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
@@ -186,9 +194,7 @@ const metadata = {
       },
     ],
   },
-};
-
-setPageMetadata(metadata);
+});
 
 function fmt(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -198,6 +204,7 @@ function updateTargets(nodes, value) {
   if (!nodes) {
     return;
   }
+
   nodes.forEach((node) => {
     node.textContent = value;
   });
@@ -214,6 +221,7 @@ function setVisibility(element, visible) {
   if (!element) {
     return;
   }
+
   element.hidden = !visible;
   element.setAttribute('aria-hidden', String(!visible));
 }
@@ -268,15 +276,79 @@ function collectItems() {
   return items;
 }
 
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
+function getSignature() {
+  return JSON.stringify({
+    mode: getMode(),
+    total: knownTotalInput?.value ?? '',
+    items: collectItems().map((item) => ({ name: item.name, value: item.value })),
+  });
+}
 
-function calculate() {
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature,
+});
+
+staleController.watchElements([knownModeToggle, knownTotalInput, rowsContainer]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function renderBreakdown(items) {
+  if (!breakdownOutput) {
+    return;
+  }
+
+  breakdownOutput.innerHTML = items
+    .map(
+      (item) => `
+        <div class="pct-breakdown-item">
+          <div class="pct-breakdown-item-name">
+            <strong>${escapeHtml(item.displayName)}</strong>
+            <small>${fmt(item.value)} of total</small>
+          </div>
+          <div class="pct-breakdown-item-value">${fmt(item.percent)}%</div>
+        </div>
+      `
+    )
+    .join('');
+}
+
+function setLegacyResult(primaryText, lines = []) {
+  if (!resultOutput) {
+    return;
+  }
+
+  if (!lines.length) {
+    resultOutput.textContent = primaryText;
+    return;
+  }
+
+  resultOutput.innerHTML = `
+    <span class="pct-answer-primary">${escapeHtml(primaryText)}</span>
+    <span class="pct-answer-legacy">${lines
+      .map((line) => `<span class="pct-answer-legacy-line">${escapeHtml(line)}</span>`)
+      .join('')}</span>
+  `;
+}
+
+function calculate({ reveal = false } = {}) {
   const items = collectItems();
 
   if (!items.length) {
-    resultOutput.textContent = 'Add at least one item.';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Add items';
+    resultDetail.textContent = 'Add at least one item to calculate the composition.';
+    resultContext.textContent = 'Each item becomes a share of the total.';
+    breakdownOutput.innerHTML = '';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -284,69 +356,91 @@ function calculate() {
   const knownTotal = mode === 'known' ? Number.parseFloat(knownTotalInput?.value ?? '') : null;
 
   if (mode === 'known' && !Number.isFinite(knownTotal)) {
-    resultOutput.textContent = 'Enter a valid known total.';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Enter a total';
+    resultDetail.textContent = 'Add a valid known total to calculate each share.';
+    resultContext.textContent = 'Known total mode needs a denominator before the answer can appear.';
+    breakdownOutput.innerHTML = '';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   const result = calculatePercentageComposition(items, knownTotal);
 
   if (result === null) {
-    resultOutput.textContent = 'Total is zero - percentages are undefined.';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'undefined';
+    resultDetail.textContent = 'Composition percentages are undefined when the total is 0.';
+    resultContext.textContent = 'Use values that produce a total greater than 0.';
+    breakdownOutput.innerHTML = '';
     updateTargets(valueTargets?.remainderPercent, 'N/A');
     updateSnapshot('remainderPercent', 'N/A');
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
-  const lineItems = result.items
-    .map((item) => `${item.name}: ${fmt(item.value)} (${fmt(item.percent)}%)`)
-    .join(' | ');
+  const decoratedItems = result.items.map((item, index) => ({
+    ...item,
+    displayName: item.name?.trim() || `Item ${index + 1}`,
+  }));
+  const topItem = decoratedItems.reduce(
+    (current, item) => (item.percent > current.percent ? item : current),
+    decoratedItems[0]
+  );
+  const totalSource = result.useKnownTotal ? 'Known total' : 'Sum of items';
+  const itemsCount = String(decoratedItems.length);
+  const totalText = fmt(result.total);
+  const sumItemsText = fmt(result.sumItems);
+  const remainderPercentText = result.useKnownTotal ? `${fmt(result.remainderPercent)}%` : 'N/A';
+  const legacyLines = decoratedItems.map(
+    (item) => `${item.displayName}: ${fmt(item.value)} (${fmt(item.percent)}%)`
+  );
 
-  const remainderText = result.useKnownTotal
-    ? ` | Remainder (Other): ${fmt(result.remainingValue)} (${fmt(result.remainderPercent)}%)`
-    : '';
-
-  let warning = '';
-  if (result.useKnownTotal && result.remainingValue < 0) {
-    warning = ' (Items exceed total)';
+  if (result.useKnownTotal && Math.abs(result.remainingValue) > 1e-12) {
+    legacyLines.push(
+      `Remainder (Other): ${fmt(result.remainingValue)} (${fmt(result.remainderPercent)}%)`
+    );
   }
 
-  resultOutput.textContent = `Composition: ${lineItems}${remainderText}${warning}`;
-  resultDetail.textContent = `Total: ${fmt(result.total)} | Sum of Items: ${fmt(result.sumItems)} | Formula: (Item / ${fmt(result.total)}) x 100`;
+  setLegacyResult(`${fmt(topItem.percent)}%`, legacyLines);
+  resultDetail.textContent = `${topItem.displayName} is the largest share of the total.`;
 
-  const itemsCount = String(result.items.length);
-  const totalSource = result.useKnownTotal ? 'Known total' : 'Sum of items';
-  const total = fmt(result.total);
-  const sumItems = fmt(result.sumItems);
-  const remainderPercent = result.useKnownTotal ? `${fmt(result.remainderPercent)}%` : 'N/A';
+  let trend = 'neutral';
+  if (result.useKnownTotal && result.remainingValue < 0) {
+    trend = 'warning';
+    resultContext.textContent = `Items exceed the known total by ${fmt(Math.abs(result.remainderPercent))}%.`;
+  } else if (result.useKnownTotal && result.remainingValue > 0) {
+    resultContext.textContent = `${fmt(result.remainderPercent)}% of the total is still unassigned.`;
+  } else {
+    resultContext.textContent = `${itemsCount} items across a total of ${totalText}.`;
+  }
 
   updateSnapshot('itemsCount', itemsCount);
   updateSnapshot('totalUsed', totalSource);
-  updateSnapshot('total', total);
-  updateSnapshot('sumItems', sumItems);
-  updateSnapshot('remainderPercent', remainderPercent);
+  updateSnapshot('total', totalText);
+  updateSnapshot('remainderPercent', remainderPercentText);
 
   updateTargets(valueTargets?.itemsCount, itemsCount);
   updateTargets(valueTargets?.totalUsed, totalSource);
-  updateTargets(valueTargets?.total, total);
-  updateTargets(valueTargets?.sumItems, sumItems);
-  updateTargets(valueTargets?.remainderPercent, remainderPercent);
+  updateTargets(valueTargets?.total, totalText);
+  updateTargets(valueTargets?.sumItems, sumItemsText);
+  updateTargets(valueTargets?.remainderPercent, remainderPercentText);
 
-  hasCalculated = true;
+  if (breakdownSummary) {
+    breakdownSummary.textContent = `Sum of items: ${sumItemsText}`;
+  }
+  renderBreakdown(decoratedItems);
+
+  finishCalculation({ reveal, trend });
 }
 
 syncModeUI();
 
 knownModeToggle?.addEventListener('change', () => {
   syncModeUI();
-  if (liveUpdatesEnabled && hasCalculated) {
-    calculate();
-  }
 });
 
 addRowButton?.addEventListener('click', () => {
   rowsContainer?.appendChild(renderItemRow());
+  window.requestAnimationFrame(() => staleController.sync());
 });
 
 rowsContainer?.addEventListener('click', (event) => {
@@ -361,22 +455,9 @@ rowsContainer?.addEventListener('click', (event) => {
   }
 
   button.closest('.composition-item-row')?.remove();
-
-  if (liveUpdatesEnabled && hasCalculated) {
-    calculate();
-  }
+  window.requestAnimationFrame(() => staleController.sync());
 });
 
-rowsContainer?.addEventListener('input', () => {
-  if (liveUpdatesEnabled && hasCalculated) {
-    calculate();
-  }
-});
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
-knownTotalInput?.addEventListener('input', () => {
-  if (liveUpdatesEnabled && hasCalculated) {
-    calculate();
-  }
-});
-
-calculateButton?.addEventListener('click', calculate);
+calculate();

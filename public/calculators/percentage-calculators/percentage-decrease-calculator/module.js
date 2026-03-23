@@ -1,12 +1,19 @@
 import { calculatePercentageDecrease } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const originalInput = document.querySelector('#pctdec-original');
 const newInput = document.querySelector('#pctdec-new');
 const calculateButton = document.querySelector('#pctdec-calc');
+const answerCard = document.querySelector('#pctdec-answer-card');
+const staleNote = document.querySelector('#pctdec-stale-note');
 const resultOutput = document.querySelector('#pctdec-result');
 const resultDetail = document.querySelector('#pctdec-result-detail');
+const resultContext = document.querySelector('#pctdec-result-context');
 
 const snapshotTargets = {
   originalValue: document.querySelector('[data-pctdec-snap="original-value"]'),
@@ -212,19 +219,41 @@ function updateSnapshot(key, value) {
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
-function calculate() {
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature: () => `${originalInput?.value ?? ''}|${newInput?.value ?? ''}`,
+});
+
+staleController.watchElements([originalInput, newInput]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function calculate({ reveal = false } = {}) {
   const x = Number.parseFloat(originalInput?.value ?? '');
   const y = Number.parseFloat(newInput?.value ?? '');
 
   if (!Number.isFinite(x)) {
     resultOutput.textContent = 'Enter a valid original value (X).';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid original value to measure percentage decrease.';
+    resultContext.textContent = 'Percentage decrease uses the original value as the denominator.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   if (!Number.isFinite(y)) {
     resultOutput.textContent = 'Enter a valid new value (Y).';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid new value to compare it with the original amount.';
+    resultContext.textContent = 'The answer updates after you calculate again.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -233,8 +262,10 @@ function calculate() {
   if (result === null) {
     resultOutput.textContent = 'Percentage decrease is undefined when original value (X) is 0.';
     resultDetail.textContent = 'Provide an original value other than 0.';
+    resultContext.textContent = 'Formula: ((X - Y) / X) x 100.';
     updateTargets(valueTargets?.direction, 'Undefined');
     updateSnapshot('direction', 'Undefined');
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -246,7 +277,8 @@ function calculate() {
   const formattedPercent = formatSignedPercent(result.percentDecrease);
 
   resultOutput.textContent = `Percentage Decrease: ${formattedPercent}`;
-  resultDetail.textContent = `Decrease Amount: ${formattedAmount} | Direction: ${direction} | Formula: ((X - Y) / X) x 100`;
+  resultDetail.textContent = `Decrease Amount: ${formattedAmount} | Direction: ${direction} | ${formattedY} is ${formattedPercent} ${direction === 'Decrease' ? 'below' : 'above'} ${formattedX}.`;
+  resultContext.textContent = 'Formula: ((X - Y) / X) x 100.';
 
   updateSnapshot('originalValue', formattedX);
   updateSnapshot('newValue', formattedY);
@@ -260,9 +292,10 @@ function calculate() {
   updateTargets(valueTargets?.direction, direction);
 
   hasCalculated = true;
+  finishCalculation({ reveal, trend: result.percentDecrease > 0 ? 'decrease' : result.percentDecrease < 0 ? 'increase' : 'neutral' });
 }
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 [originalInput, newInput].forEach((input) => {
   input?.addEventListener('input', () => {

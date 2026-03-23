@@ -1,187 +1,94 @@
-<div id="markup-explanation" class="explanation-pane">
+<div id="markup-explanation" class="explanation-pane pct-explanation">
   <section>
-    <h2>What Selling Price Does Your Markup Create?</h2>
-    <p><strong>The short answer:</strong> markup adds a percentage on top of cost so you can turn cost into a selling price.</p>
+    <h2>What Selling Price or Markup Percentage Does Your Cost Create?</h2>
     <p>
-      This calculator lets you work in either direction: find the selling price from cost and
-      markup, or work backward from cost and price to see the markup percentage.
+      Markup adds an amount on top of cost, so it is a useful pricing tool whenever you want to
+      move from cost into price or work backward from price into markup.
+    </p>
+    <p>
+      This calculator supports both single-product pricing and basket-level analysis across multiple
+      products.
     </p>
   </section>
 
-  <h3>Scenario Summary</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Category</th>
-          <th scope="col">Value</th>
-          <th scope="col">Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Mode</td>
-          <td><span data-markup="mode"></span></td>
-          <td>Calculation Pane</td>
-        </tr>
-        <tr>
-          <td>Products Count</td>
-          <td><span data-markup="product-count"></span></td>
-          <td>Basket Grid</td>
-        </tr>
-        <tr>
-          <td>Total Cost</td>
-          <td><span data-markup="total-cost"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-        <tr>
-          <td>Total Price</td>
-          <td><span data-markup="total-price"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>Total Markup</td>
-          <td><span data-markup="total-markup"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-        <tr>
-          <td>Basket Markup %</td>
-          <td><span data-markup="basket-markup-percent"></span></td>
-          <td>Calculator Engine</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  <section>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Choose between single-product and basket mode.</li>
+      <li>Select whether you want to calculate price from markup or markup from price.</li>
+      <li>Enter the values for the active mode and click <strong>Calculate markup</strong>.</li>
+      <li>Use the summary rows to review weighted totals when you are in basket mode.</li>
+    </ol>
 
-  <h3>Results Table</h3>
-  <div class="table-scroll" tabindex="0">
-    <table class="calculator-table">
-      <thead>
-        <tr>
-          <th scope="col">Metric</th>
-          <th scope="col">Value</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Explanation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Cost (C)</td>
-          <td><span data-markup="cost"></span></td>
-          <td>Currency</td>
-          <td>Base cost</td>
-        </tr>
-        <tr>
-          <td>Selling Price (P)</td>
-          <td><span data-markup="price"></span></td>
-          <td>Currency</td>
-          <td>Final selling price</td>
-        </tr>
-        <tr>
-          <td>Markup Amount</td>
-          <td><span data-markup="markup-amount"></span></td>
-          <td>Currency</td>
-          <td>P − C</td>
-        </tr>
-        <tr>
-          <td>Markup Percent</td>
-          <td><span data-markup="markup-percent"></span></td>
-          <td>Percent</td>
-          <td>Markup based on cost</td>
-        </tr>
-        <tr>
-          <td>Formula</td>
-          <td><span data-markup="formula"></span></td>
-          <td>Mode</td>
-          <td>Mode-specific markup formula</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Mode:</strong> <span data-markup="mode">Single Product — Cost → Price</span></li>
+      <li><strong>Products:</strong> <span data-markup="product-count">1</span></li>
+      <li><strong>Total cost:</strong> <span data-markup="total-cost">$50.00</span></li>
+      <li><strong>Total price:</strong> <span data-markup="total-price">$70.00</span></li>
+      <li><strong>Total markup:</strong> <span data-markup="total-markup">$20.00</span></li>
+      <li><strong>Basket markup:</strong> <span data-markup="basket-markup-percent">40.00%</span></li>
+    </ul>
 
-  <h3>Explanation</h3>
-  <p>
-    Markup is the amount added to cost to get selling price. Markup percentage is calculated
-    relative to the cost.
-  </p>
-  <p>
-    For a single product, markup % can be used to calculate price from cost, or computed from cost
-    and price.
-  </p>
-  <p>
-    For multiple products, basket markup uses totals so the result is weighted. Basket markup % is
-    calculated by dividing the total markup amount (total price minus total cost) by the total cost
-    and multiplying by 100.
-  </p>
-  <p>
-    If cost is zero for an item, markup % for that row cannot be calculated because division by zero
-    is not possible.
-  </p>
+    <h4>Worked Example</h4>
+    <p>
+      If cost is <span data-markup="cost">$50.00</span> and markup is
+      <span data-markup="markup-percent">40.00%</span>, the markup amount is
+      <span data-markup="markup-amount">$20.00</span>. That gives a selling price of
+      <span data-markup="price">$70.00</span>.
+    </p>
+    <p>
+      In basket mode, the calculator compares total price to total cost so the combined markup is
+      weighted rather than averaged across rows.
+    </p>
 
-  <h3>Frequently Asked Questions</h3>
-  <div class="faq-box">
-    <p><strong>Q: What is markup?</strong></p>
-    <p class="faq-answer">A: Markup is the amount added to cost to get the selling price.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate selling price from cost and markup %?</strong></p>
-    <p class="faq-answer">A: Multiply the cost by (1 + markup/100).</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate markup % from cost and price?</strong></p>
-    <p class="faq-answer">A: Divide (price minus cost) by cost and multiply by 100.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What is basket markup?</strong></p>
-    <p class="faq-answer">
-      A: Basket markup is the markup calculated across multiple products using total cost and total
-      price.
+    <h4>Formula</h4>
+    <p class="pv-formula-block"><span data-markup="formula">P = C x (1 + M / 100)</span></p>
+    <p>
+      When you work backward from selling price, markup percentage is calculated on the cost base,
+      not the selling price.
     </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: How do you calculate weighted average markup?</strong></p>
-    <p class="faq-answer">
-      A: Compute (total price minus total cost) divided by total cost, then multiply by 100.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is basket markup the same as averaging the item markups?</strong></p>
-    <p class="faq-answer">
-      A: No, basket markup is weighted by costs (and quantities), so it can differ from a simple
-      average.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Can markup be negative?</strong></p>
-    <p class="faq-answer">
-      A: Yes, if the selling price is lower than the cost, the markup is negative.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: What happens if cost is zero?</strong></p>
-    <p class="faq-answer">A: Markup percent is undefined because you cannot divide by zero.</p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Is markup the same as profit margin?</strong></p>
-    <p class="faq-answer">
-      A: No, markup is based on cost, while margin is based on selling price.
-    </p>
-  </div>
-  <div class="faq-box">
-    <p><strong>Q: Where is markup used in real life?</strong></p>
-    <p class="faq-answer">
-      A: Markup is used in retail pricing, quoting, invoicing, and setting prices for product
-      ranges.
-    </p>
-  </div>
+  </section>
 
-  <h3>Important Notes</h3>
-  <ul class="pv-explanation-list">
-    <li><strong>Markup is based on cost:</strong> this is why markup and margin are not the same percentage.</li>
-    <li><strong>Higher markup means higher selling price:</strong> if cost stays fixed, increasing markup raises price directly.</li>
-    <li><strong>Basket markup is weighted:</strong> the combined result depends on total cost and total price, not a simple average of item markups.</li>
-    <li><strong>Zero cost breaks markup percentage:</strong> markup percent cannot be calculated when the cost base is zero.</li>
-  </ul>
+  <section>
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <div class="bor-faq-card">
+        <h4>What is markup?</h4>
+        <p>Markup is the amount added to cost to get the selling price.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>How do you calculate price from cost and markup?</h4>
+        <p>Multiply cost by one plus the markup rate written as a decimal.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>How do you calculate markup from cost and price?</h4>
+        <p>Divide price minus cost by cost, then multiply by 100.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>What is basket markup?</h4>
+        <p>Basket markup compares total price against total cost across multiple products.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>Is markup the same as margin?</h4>
+        <p>No. Markup is based on cost, while margin is based on selling price.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>What happens if cost is zero?</h4>
+        <p>Markup percentage becomes undefined because the formula would divide by zero.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Important Notes</h3>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> Results use standard markup formulas and weighted basket totals.</li>
+      <li><strong>Assumptions:</strong> Markup is measured against cost, and basket mode assumes every row is entered on the same currency basis before totals are combined.</li>
+      <li><strong>Use case:</strong> Best for retail pricing, quoting, and basket-level pricing reviews.</li>
+      <li><strong>Disclaimer:</strong> This calculator estimates markup from the entered cost and price values only and does not model tax, shipping, overhead, channel fees, or negotiated discounts.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
 </div>

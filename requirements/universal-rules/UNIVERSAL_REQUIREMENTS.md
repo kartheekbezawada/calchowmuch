@@ -141,10 +141,28 @@ This is the only active governance file under `requirements/universal-rules/`. A
 - **UR-CLUSTER-019 (P0):** Legacy shared shell/runtime files are forbidden for isolated routes after decommission phase completion.
 - **UR-CLUSTER-020 (P0):** Exceptions to cluster isolation require explicit approval, documented rationale, and signoff evidence.
 - **UR-CLUSTER-021 (P0):** Homepage discoverability is registry-driven: clusters with `showOnHomepage !== false` must be renderable on `/` from cluster registry plus governed route sources (`navigation` and/or cluster `routePrefixes` fallback).
+- **UR-CLUSTER-022 (P0):** Homepage search discoverability is route-driven by default: every newly released public calculator route must be discoverable from `/` search via governed route sources (`config/clusters/route-ownership.json` plus cluster navigation and/or approved governed fallback). Route-level exclusion is allowed only via machine-readable route-ownership metadata plus explicit approval, documented rationale, and signoff evidence.
 
 ### 3.5.1 Cluster Contract Field Baseline (Normative)
 
 - **Route ownership contract (`config/clusters/route-ownership.json`) minimum fields:** `route`, `calculatorId`, `activeOwnerClusterId`, `previousOwnerClusterId`, `rollbackTag`.
+- **Route ownership optional homepage-search governance fields:** `homepageSearchExcluded` (boolean, default `false`), `homepageSearchExclusionReason` (required when excluded), `homepageSearchExclusionEvidence` (required when excluded).
+
+  Example excluded route entry:
+
+  ```json
+  {
+    "route": "/finance-calculators/example-calculator/",
+    "calculatorId": "example-calculator",
+    "activeOwnerClusterId": "finance",
+    "previousOwnerClusterId": "legacy-shared",
+    "rollbackTag": "pre-example-release",
+    "homepageSearchExcluded": true,
+    "homepageSearchExclusionReason": "Temporarily withheld pending coordinated navigation/content launch.",
+    "homepageSearchExclusionEvidence": "RELEASE_SIGNOFF_REL-YYYYMMDD-EXAMPLE"
+  }
+  ```
+
 - **Cluster registry contract (`config/clusters/cluster-registry.json`) minimum fields:** `clusterId`, `displayName`, `status`, `routePrefixes`, `owners`. Optional governance fields: `showOnHomepage` (default `true`), `contractsEnabled` (default `false`).
 - **Per-cluster navigation contract:** `clusters/<cluster-id>/config/navigation.json` must include cluster-local sections plus required global-destination parity fields.
 - **Per-cluster asset manifest contract:** `clusters/<cluster-id>/config/asset-manifest.json` must include route-level CSS/JS ownership mappings and isolation boundary metadata.

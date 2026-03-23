@@ -15,6 +15,7 @@ const addTierButton = document.querySelector('#comm-add-tier');
 const calculateButton = document.querySelector('#comm-calc');
 const resultOutput = document.querySelector('#comm-result');
 const resultDetail = document.querySelector('#comm-result-detail');
+const resultContext = document.querySelector('#comm-result-context');
 const deckMode = document.querySelector('#comm-deck-mode');
 const deckSales = document.querySelector('#comm-deck-sales');
 const deckRates = document.querySelector('#comm-deck-rates');
@@ -544,6 +545,9 @@ function calculate() {
   if (!Number.isFinite(sales) || sales < 0) {
     resultOutput.textContent = 'Enter a valid non-negative sales amount.';
     resultDetail.textContent = '';
+    if (resultContext) {
+      resultContext.textContent = '';
+    }
     renderDeckState({ mode, ratesText: mode === 'flat' ? formatPercent(Number(flatRateInput.value) || 0) : '' });
     return;
   }
@@ -560,6 +564,9 @@ function calculate() {
     if (error) {
       resultOutput.textContent = error;
       resultDetail.textContent = '';
+      if (resultContext) {
+        resultContext.textContent = '';
+      }
       renderDeckState({ mode, ratesText: '' });
       return;
     }
@@ -576,14 +583,23 @@ function calculate() {
   if (!result) {
     resultOutput.textContent = 'Unable to calculate with the current inputs.';
     resultDetail.textContent = 'Check tier ordering and numeric values.';
+    if (resultContext) {
+      resultContext.textContent = '';
+    }
     renderDeckState({ mode, ratesText, result: null });
     return;
   }
 
   hasCalculated = true;
 
-  resultOutput.textContent = `Total Commission: ${formatCurrency(result.totalCommission)}`;
-  resultDetail.textContent = `Effective Commission Rate: ${formatPercent(result.effectiveRate)}`;
+  resultOutput.textContent = formatCurrency(result.totalCommission);
+  resultDetail.textContent =
+    mode === 'flat'
+      ? `Effective commission rate is ${formatPercent(result.effectiveRate)} on ${formatCurrency(result.sales)} in sales.`
+      : `Effective commission rate is ${formatPercent(result.effectiveRate)} across ${result.breakdown.length} commission tiers.`;
+  if (resultContext) {
+    resultContext.textContent = `Formula: ${result.formula}`;
+  }
 
   updateTargets(valueTargets?.mode, mode === 'flat' ? 'Flat Commission %' : 'Tiered Commission');
   updateTargets(valueTargets?.sales, formatCurrency(result.sales));

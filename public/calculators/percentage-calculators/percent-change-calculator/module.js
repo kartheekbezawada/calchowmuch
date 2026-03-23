@@ -1,12 +1,19 @@
 import { percentageChange } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const originalInput = document.querySelector('#pct-change-a');
 const newInput = document.querySelector('#pct-change-b');
 const calculateButton = document.querySelector('#pct-change-calc');
+const answerCard = document.querySelector('#pct-change-answer-card');
+const staleNote = document.querySelector('#pct-change-stale-note');
 const resultOutput = document.querySelector('#pct-change-result');
 const resultDetail = document.querySelector('#pct-change-result-detail');
+const resultContext = document.querySelector('#pct-change-result-context');
 
 const snapshotTargets = {
   a: document.querySelector('[data-pct-change-snap="a"]'),
@@ -117,7 +124,7 @@ const CALCULATOR_FAQ_SCHEMA = {
   ],
 };
 
-const metadata = {
+setPageMetadata({
   title: 'Percent Change Calculator | Increase or Decrease',
   description:
     'Calculate percentage increase or decrease from one value to another with the correct sign and formula.',
@@ -180,14 +187,13 @@ const metadata = {
       },
     ],
   },
-};
-
-setPageMetadata(metadata);
+});
 
 function formatSignedPercent(value) {
   if (Math.abs(value) < 1e-12) {
     return '0%';
   }
+
   const prefix = value > 0 ? '+' : '-';
   return `${prefix}${formatNumber(Math.abs(value), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
 }
@@ -200,6 +206,7 @@ function updateTargets(nodes, value) {
   if (!nodes) {
     return;
   }
+
   nodes.forEach((node) => {
     node.textContent = value;
   });
@@ -212,21 +219,41 @@ function updateSnapshot(key, value) {
   }
 }
 
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature: () => `${originalInput?.value ?? ''}|${newInput?.value ?? ''}`,
+});
 
-function calculate() {
+staleController.watchElements([originalInput, newInput]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function calculate({ reveal = false } = {}) {
   const a = Number.parseFloat(originalInput?.value ?? '');
   const b = Number.parseFloat(newInput?.value ?? '');
 
   if (!Number.isFinite(a)) {
     resultOutput.textContent = 'Enter a valid original value (A).';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid original value to see the percent change.';
+    resultContext.textContent = 'Percent change uses the original value as the baseline.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
+
   if (!Number.isFinite(b)) {
     resultOutput.textContent = 'Enter a valid new value (B).';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid new value to compare it with the original value.';
+    resultContext.textContent = 'The answer updates after you calculate again.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -234,19 +261,26 @@ function calculate() {
   if (percent === null) {
     resultOutput.textContent = 'Percent change is undefined when original value (A) is 0.';
     resultDetail.textContent = 'Provide an original value other than 0.';
+    resultContext.textContent = 'Use an original value greater than 0 to get a valid answer.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   const changeAmount = b - a;
   const direction = changeAmount > 0 ? 'Increase' : changeAmount < 0 ? 'Decrease' : 'No change';
+  const trend = changeAmount > 0 ? 'increase' : changeAmount < 0 ? 'decrease' : 'neutral';
   const signedPercent = formatSignedPercent(percent);
-
-  resultOutput.textContent = `Percent Change: ${signedPercent}`;
-  resultDetail.textContent = `Change Amount: ${formatValue(changeAmount)} | Direction: ${direction} | Formula: ((B - A) / A) x 100`;
-
   const formattedA = formatValue(a);
   const formattedB = formatValue(b);
   const formattedAmount = formatValue(changeAmount);
+
+  resultOutput.textContent = `Percent Change: ${signedPercent}`;
+  if (direction === 'No change') {
+    resultDetail.textContent = `Change Amount: ${formattedAmount} | Direction: ${direction} | ${formattedB} is unchanged from ${formattedA}.`;
+  } else {
+    resultDetail.textContent = `Change Amount: ${formattedAmount} | Direction: ${direction} | ${formattedB} is a ${signedPercent} ${direction.toLowerCase()} from ${formattedA}.`;
+  }
+  resultContext.textContent = 'Formula: ((B - A) / A) x 100.';
 
   updateSnapshot('a', formattedA);
   updateSnapshot('b', formattedB);
@@ -259,15 +293,9 @@ function calculate() {
   updateTargets(valueTargets?.percent, signedPercent);
   updateTargets(valueTargets?.direction, direction);
 
-  hasCalculated = true;
+  finishCalculation({ reveal, trend });
 }
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
-[originalInput, newInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  });
-});
+calculate();
