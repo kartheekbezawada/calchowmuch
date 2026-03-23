@@ -1,53 +1,90 @@
 <div id="calc-reverse-percentage">
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="mtg-hero" aria-label="Reverse percentage calculator">
-        <div class="mtg-form-panel">
-          <p class="helper">Find the original value from a percentage.</p>
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css" />
+  <link
+    rel="preload"
+    href="/calculators/percentage-calculators/reverse-percentage-calculator/calculator.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="/calculators/percentage-calculators/reverse-percentage-calculator/calculator.css"
+    />
+  </noscript>
 
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool revpct-tool" aria-label="Reverse percentage calculator">
+      <div class="pct-input-card">
+        <p class="pct-eyebrow">Recover the base amount</p>
+        <h2 class="pct-input-title">Find the original value behind any percentage result</h2>
+        <p class="pct-lead">
+          Enter the known percentage share and the final value to work backward to the original
+          number.
+        </p>
+
+        <div class="pct-field-grid">
           <div class="input-row">
-            <label for="revpct-percent">Percentage (X%)</label>
-            <input id="revpct-percent" type="number" value="20" step="any" inputmode="decimal" />
+            <label for="revpct-percent">Percentage (X)</label>
+            <div class="pct-inline-input">
+              <input id="revpct-percent" type="number" value="20" step="any" inputmode="decimal" />
+              <span class="pct-inline-suffix" aria-hidden="true">%</span>
+            </div>
           </div>
 
           <div class="input-row">
-            <label for="revpct-final">Final Value (Y)</label>
+            <label for="revpct-final">Final value (Y)</label>
             <input id="revpct-final" type="number" value="60" step="any" inputmode="decimal" />
-          </div>
-
-          <div class="input-row action-row mtg-action-row">
-            <button class="calculator-button full-width" type="button" id="revpct-calc">
-              Calculate Original Value
-            </button>
           </div>
         </div>
 
-        <aside class="mtg-preview-panel" aria-label="Reverse percentage result snapshot">
-          <div class="mtg-preview-main">
-            <div class="result mtg-result-card" id="revpct-result" aria-live="polite"></div>
-            <div class="result-detail mtg-summary-card" id="revpct-result-detail" aria-live="polite"></div>
-          </div>
+        <div class="pct-actions">
+          <p class="pct-stale-note" id="revpct-stale-note" hidden aria-hidden="true">
+            Inputs changed. Calculate again to refresh the answer.
+          </p>
+          <button class="calculator-button full-width" type="button" id="revpct-calc">
+            Calculate original value
+          </button>
+        </div>
+      </div>
 
-          <div class="mtg-snapshot-list">
-            <div class="mtg-snapshot-row">
-              <span>Percentage (X%)</span>
-              <strong data-revpct-snap="percentage">20.00%</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Final Value (Y)</span>
-              <strong data-revpct-snap="final-value">60.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Original Value</span>
-              <strong data-revpct-snap="original">300.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Formula</span>
-              <strong>Original = (Y × 100) ÷ X</strong>
-            </div>
+      <aside class="pct-answer-card" id="revpct-answer-card" aria-label="Reverse percentage answer">
+        <div class="result pct-answer-value" id="revpct-result" aria-live="polite">300.00</div>
+        <p class="pct-answer-sentence" id="revpct-result-detail" aria-live="polite">
+          60.00 is 20.00% of 300.00.
+        </p>
+        <p class="pct-answer-context" id="revpct-result-context" aria-live="polite">
+          Formula: Original = (Y × 100) ÷ X.
+        </p>
+
+        <div class="pct-support-list" aria-label="Reverse percentage details">
+          <div class="pct-support-row">
+            <span>Percentage</span>
+            <strong data-revpct-snap="percentage">20.00%</strong>
           </div>
-        </aside>
-      </section>
-    </div>
+          <div class="pct-support-row">
+            <span>Final value</span>
+            <strong data-revpct-snap="final-value">60.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Original value</span>
+            <strong data-revpct-snap="original">300.00</strong>
+          </div>
+        </div>
+
+        <div class="pct-breakdown">
+          <div class="pct-breakdown-head">
+            <span>How it was solved</span>
+            <strong id="revpct-breakdown-summary">Reverse percentage steps</strong>
+          </div>
+          <div class="pct-breakdown-list" id="revpct-breakdown" aria-live="polite"></div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
+
+<script
+  type="module"
+  src="/calculators/percentage-calculators/reverse-percentage-calculator/module.js"
+></script>

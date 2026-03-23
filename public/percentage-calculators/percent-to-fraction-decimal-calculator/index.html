@@ -2186,297 +2186,28 @@
         scrollbar-gutter: stable;
       }
 
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
-        gap: 0.95rem;
+      #calc-percent-to-fraction-decimal .ptfd-tool {
+        --pct-answer-value-size: clamp(2.35rem, 5vw, 3.4rem);
       }
 
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-form-panel {
-        border-radius: 16px;
-        border: 1px solid rgba(56, 189, 248, 0.24);
-        background:
-          radial-gradient(circle at 12% 12%, rgba(34, 211, 238, 0.14), transparent 54%),
-          linear-gradient(166deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.94));
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.14),
-          0 16px 34px rgba(2, 6, 23, 0.3);
-        padding: 0.95rem;
+      #calc-percent-to-fraction-decimal .pct-input-card,
+      #calc-percent-to-fraction-decimal .pct-answer-card {
+        min-height: 100%;
       }
 
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-form-panel .helper {
-        margin-bottom: 0.78rem;
+      #calc-percent-to-fraction-decimal .pct-answer-context {
+        padding-bottom: 2px;
+        border-bottom: 1px solid var(--pct-line);
       }
 
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-form-panel .input-row label {
-        display: block;
-        margin-bottom: 0.3rem;
+      #calc-percent-to-fraction-decimal .pct-breakdown-item-value {
+        max-width: 58%;
+        overflow-wrap: anywhere;
       }
 
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-form-panel input[type='text'] {
-        min-height: 46px;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-action-row {
-        margin-top: 0.9rem;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-action-row .calculator-button {
-        background: linear-gradient(130deg, #0891b2, #2563eb 76%);
-        box-shadow:
-          0 12px 26px rgba(8, 145, 178, 0.3),
-          0 4px 10px rgba(37, 99, 235, 0.26);
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-insight-panel {
-        border-radius: 16px;
-        border: 1px solid rgba(96, 165, 250, 0.24);
-        background:
-          radial-gradient(circle at 88% 16%, rgba(59, 130, 246, 0.16), transparent 44%),
-          linear-gradient(166deg, rgba(21, 31, 58, 0.86), rgba(11, 17, 35, 0.96));
-        padding: 0.92rem;
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.08),
-          0 16px 30px rgba(2, 8, 25, 0.34);
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-result-shell {
-        border-radius: 14px;
-        border: 1px solid rgba(56, 189, 248, 0.34);
-        background: linear-gradient(155deg, rgba(15, 23, 42, 0.76), rgba(30, 58, 138, 0.34));
-        padding: 0.8rem 0.82rem;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan #ptfd-result {
-        min-height: 70px;
-        display: grid;
-        gap: 0.3rem;
-        align-content: center;
-        justify-items: center;
-        text-align: center;
-        font-size: 1.1rem;
+      #ptfd-explanation [data-ptfd] {
+        color: var(--pct-accent-strong);
         font-weight: 800;
-        color: #e0f2fe;
-        line-height: 1.45;
-        text-shadow:
-          0 0 16px rgba(34, 211, 238, 0.42),
-          0 0 28px rgba(37, 99, 235, 0.26);
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan #ptfd-result-detail {
-        font-size: 0.85rem;
-        line-height: 1.45;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-result-line {
-        display: block;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-steps-list {
-        margin: 0;
-        padding-left: 1.1rem;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-steps-list li {
-        margin: 0.2rem 0;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-snapshot-list {
-        margin-top: 0.78rem;
-        border-radius: 12px;
-        border: 1px solid rgba(59, 130, 246, 0.26);
-        background: rgba(2, 6, 23, 0.3);
-        padding: 0.3rem 0.7rem;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-snapshot-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 0.52rem 0;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.14);
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-snapshot-row:last-child {
-        border-bottom: 0;
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-snapshot-row span {
-        color: rgba(226, 232, 240, 0.82);
-      }
-
-      #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-snapshot-row strong {
-        color: #7dd3fc;
-        text-align: right;
-      }
-
-      #ptfd-explanation .pv-results-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      #ptfd-explanation .pv-results-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 3;
-        font-size: 0.74rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #bae6fd;
-        background: rgba(30, 41, 59, 0.98);
-        text-align: left;
-        padding: 0.6rem 0.75rem;
-        border: 1px solid rgba(148, 163, 184, 0.24);
-      }
-
-      #ptfd-explanation .pv-results-table td {
-        font-size: 0.8rem;
-        color: rgba(226, 232, 240, 0.94);
-        padding: 0.58rem 0.75rem;
-        border: 1px solid rgba(148, 163, 184, 0.18);
-        line-height: 1.4;
-      }
-
-      #ptfd-explanation .pv-results-table tbody tr:nth-child(even) {
-        background: rgba(30, 41, 59, 0.35);
-      }
-
-      #ptfd-explanation .pv-results-table tbody tr:hover {
-        background: rgba(2, 132, 199, 0.12);
-      }
-
-      #ptfd-explanation .pv-results-table tfoot td {
-        font-weight: 700;
-        color: #e0f2fe;
-        background: linear-gradient(160deg, rgba(14, 116, 144, 0.22), rgba(30, 58, 138, 0.2));
-        border-top: 2px solid rgba(56, 189, 248, 0.38);
-        font-size: 0.84rem;
-      }
-
-      #ptfd-explanation .pv-results-table .pv-how-col {
-        font-size: 0.74rem;
-        color: rgba(148, 163, 184, 0.88);
-        font-style: italic;
-      }
-
-      #ptfd-explanation .pv-explanation-list {
-        list-style: none;
-        padding: 0;
-        margin: 0.62rem 0 0.52rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.44rem;
-      }
-
-      #ptfd-explanation .pv-explanation-list li {
-        position: relative;
-        padding-left: 1.3rem;
-        line-height: 1.64;
-        font-size: 0.88rem;
-        color: rgba(226, 232, 240, 0.94);
-      }
-
-      #ptfd-explanation .pv-explanation-list li::before {
-        content: '▸';
-        position: absolute;
-        left: 0;
-        color: rgba(56, 189, 248, 0.92);
-        font-weight: 700;
-      }
-
-      #ptfd-explanation .pv-explanation-list li [data-ptfd] {
-        font-weight: 700;
-        color: #7dd3fc;
-      }
-
-      #ptfd-explanation .pv-formula-block {
-        text-align: center;
-        font-size: 1.02rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        padding: 0.52rem 0.8rem;
-        margin: 0.35rem auto;
-        border-radius: 10px;
-        max-width: 460px;
-        background: rgba(15, 23, 42, 0.55);
-        border: 1px solid rgba(56, 189, 248, 0.3);
-        color: #e0f2fe;
-        text-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
-      }
-
-      #ptfd-explanation .pv-formula-steps {
-        padding-left: 1.5rem;
-        margin: 0.35rem 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-      }
-
-      #ptfd-explanation .pv-formula-steps li {
-        line-height: 1.64;
-        font-size: 0.86rem;
-        color: rgba(226, 232, 240, 0.92);
-      }
-
-      #ptfd-explanation .bor-faq-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.8rem;
-        margin-top: 0.6rem;
-      }
-
-      #ptfd-explanation .bor-faq-card {
-        position: relative;
-        border: 1px solid rgba(56, 189, 248, 0.24);
-        border-radius: 12px;
-        background: linear-gradient(160deg, rgba(30, 41, 59, 0.74), rgba(30, 58, 138, 0.28));
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.08),
-          0 10px 24px rgba(2, 8, 25, 0.26);
-        padding: 0.74rem 0.78rem 0.78rem;
-        min-height: 130px;
-      }
-
-      #ptfd-explanation .bor-faq-number {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 32px;
-        height: 26px;
-        border-radius: 999px;
-        border: 1px solid rgba(56, 189, 248, 0.42);
-        background: rgba(15, 23, 42, 0.7);
-        color: #bae6fd;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-      }
-
-      #ptfd-explanation .bor-faq-card h4 {
-        margin: 0.48rem 0 0.35rem;
-        font-size: 0.9rem;
-        line-height: 1.36;
-        color: #e2e8f0;
-      }
-
-      #ptfd-explanation .bor-faq-card p {
-        margin: 0;
-        font-size: 0.82rem;
-        line-height: 1.52;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      @media (max-width: 1024px) {
-        #calc-percent-to-fraction-decimal #calc-home-loan .ptfd-hero {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 768px) {
-        #ptfd-explanation .bor-faq-grid {
-          grid-template-columns: 1fr;
-        }
       }
 
       @media (min-width: 861px) {
@@ -2494,12 +2225,6 @@
           > .center-column
           > .panel.panel-span-all {
           align-items: center;
-        }
-
-        #calc-percent-to-fraction-decimal,
-        #ptfd-explanation {
-          width: min(100%, 980px);
-          margin-inline: auto;
         }
       }
     </style>
@@ -2535,15 +2260,31 @@
   </div>
   <div class="calculator-page-single pct-cluster-flow">
     <div id="calc-percent-to-fraction-decimal">
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="ptfd-hero" aria-label="Percent to fraction and decimal converter">
-        <div class="ptfd-form-panel">
-          <p class="helper">
-            Convert any percentage into its decimal and simplified fraction form. Enter a value such
-            as 12.5 or 12.5% and click convert.
-          </p>
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css?v=20260224" />
+  <link
+    rel="preload"
+    href="/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css?v=20260224"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="/calculators/percentage-calculators/percent-to-fraction-decimal-calculator/calculator.css?v=20260224"
+    />
+  </noscript>
 
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool ptfd-tool" aria-label="Percent to fraction and decimal converter">
+      <div class="pct-input-card">
+        <p class="pct-eyebrow">Convert one percentage three ways</p>
+        <h2 class="pct-input-title">Turn any percent into decimal, fraction, and mixed form</h2>
+        <p class="pct-lead">
+          Enter a value such as 12.5 or 12.5% to convert it into clean numeric formats you can use
+          immediately.
+        </p>
+
+        <div class="pct-field-grid">
           <div class="input-row">
             <label for="ptfd-percent">Percentage (X)</label>
             <input
@@ -2555,52 +2296,59 @@
               maxlength="12"
             />
           </div>
+        </div>
 
-          <div class="input-row action-row ptfd-action-row">
-            <button class="calculator-button full-width" type="button" id="ptfd-calc">Convert</button>
+        <div class="pct-actions">
+          <p class="pct-stale-note" id="ptfd-stale-note" hidden aria-hidden="true">
+            Input changed. Convert again to refresh the answer.
+          </p>
+          <button class="calculator-button full-width" type="button" id="ptfd-calc">Convert</button>
+        </div>
+      </div>
+
+      <aside class="pct-answer-card" id="ptfd-answer-card" aria-label="Percent conversion answer">
+        <div class="result pct-answer-value" id="ptfd-result" aria-live="polite">
+          <span class="pct-answer-primary">0.125</span>
+          <span class="pct-answer-legacy">
+            <span class="pct-answer-legacy-line">Fraction: 1/8</span>
+            <span class="pct-answer-legacy-line">Mixed: N/A (proper fraction)</span>
+          </span>
+        </div>
+        <p class="pct-answer-sentence" id="ptfd-result-detail" aria-live="polite">
+          12.5% equals 0.125 as a decimal and 1/8 as a simplified fraction.
+        </p>
+        <p class="pct-answer-context" id="ptfd-result-context" aria-live="polite">
+          Formula: divide the percent by 100, then simplify X/100.
+        </p>
+
+        <div class="pct-support-list" aria-label="Percent conversion details">
+          <div class="pct-support-row">
+            <span>Input percent</span>
+            <strong data-ptfd-snap="percent">12.5%</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Decimal</span>
+            <strong data-ptfd-snap="decimal">0.125</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Fraction</span>
+            <strong data-ptfd-snap="fraction">1/8</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Mixed number</span>
+            <strong data-ptfd-snap="mixed">N/A (proper fraction)</strong>
           </div>
         </div>
 
-        <aside class="ptfd-insight-panel" aria-label="Percent conversion result snapshot">
-          <div class="ptfd-result-shell">
-            <div class="result" id="ptfd-result" aria-live="polite">
-              <span class="ptfd-result-line">Decimal: 0.125</span>
-              <span class="ptfd-result-line">Fraction: 1/8</span>
-            </div>
-            <div class="result-detail" id="ptfd-result-detail" aria-live="polite">
-              <ul class="ptfd-steps-list">
-                <li>Write percent over 100: 12.5% = 12.5/100.</li>
-                <li>Convert to decimal: 12.5 / 100 = 0.125.</li>
-                <li>Simplify fraction: 12.5/100 = 1/8.</li>
-              </ul>
-            </div>
+        <div class="pct-breakdown">
+          <div class="pct-breakdown-head">
+            <span>Conversion path</span>
+            <strong id="ptfd-breakdown-summary">Percent to decimal and fraction</strong>
           </div>
-
-          <div class="ptfd-snapshot-list">
-            <div class="ptfd-snapshot-row">
-              <span>Input Percent</span>
-              <strong data-ptfd-snap="percent">12.5%</strong>
-            </div>
-            <div class="ptfd-snapshot-row">
-              <span>Decimal</span>
-              <strong data-ptfd-snap="decimal">0.125</strong>
-            </div>
-            <div class="ptfd-snapshot-row">
-              <span>Fraction</span>
-              <strong data-ptfd-snap="fraction">1/8</strong>
-            </div>
-            <div class="ptfd-snapshot-row">
-              <span>Mixed Number</span>
-              <strong data-ptfd-snap="mixed">N/A (proper fraction)</strong>
-            </div>
-            <div class="ptfd-snapshot-row">
-              <span>Formula</span>
-              <strong data-ptfd-snap="formula">X / 100</strong>
-            </div>
-          </div>
-        </aside>
-      </section>
-    </div>
+          <div class="pct-breakdown-list" id="ptfd-breakdown" aria-live="polite"></div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
@@ -2620,7 +2368,7 @@
     <a class="pct-cluster-switch-chip" href="/percentage-calculators/percent-change-calculator/">Percent Change</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-difference-calculator/">Percentage Difference</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-increase-calculator/">Percentage Increase</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-decrease-calculator/">Percentage Decrease</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-composition-calculator/">Percentage Composition</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/reverse-percentage-calculator/">Reverse Percentage</a><a class="pct-cluster-switch-chip is-active" href="/percentage-calculators/percent-to-fraction-decimal-calculator/" aria-current="page">Percent to Fraction/Decimal</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-finder-calculator/">What Percent Is X of Y</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-of-a-number-calculator/">Find Percentage of a Number</a>
   </div>
 </section>
-<div id="ptfd-explanation" class="explanation-pane">
+<div id="ptfd-explanation" class="explanation-pane pct-explanation">
   <section class="ptfd-exp-section">
     <h2>How Do You Convert a Percent into Decimal and Fraction Form?</h2>
     <p>
