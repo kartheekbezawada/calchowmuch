@@ -2281,10 +2281,6 @@ const PERCENTAGE_CLUSTER_REDESIGN_ORDER = [
   'percent-to-fraction-decimal',
   'what-percent-is-x-of-y',
   'percentage-of-a-number',
-  'commission-calculator',
-  'discount-calculator',
-  'margin-calculator',
-  'markup-calculator',
 ];
 
 // Opt-in list so the percentage cluster can move fully to the new shell one calculator at a time.
@@ -2298,15 +2294,26 @@ const PERCENTAGE_CLUSTER_REDESIGN_IDS = new Set([
   'percent-to-fraction-decimal',
   'what-percent-is-x-of-y',
   'percentage-of-a-number',
+]);
+
+const PRICING_CLUSTER_REDESIGN_ORDER = [
   'commission-calculator',
   'discount-calculator',
   'margin-calculator',
   'markup-calculator',
-]);
+];
 
 PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   if (!PERCENTAGE_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
     throw new Error(`Unknown Percentage redesign calculator id: ${calculatorId}`);
+  }
+});
+
+const PRICING_CLUSTER_REDESIGN_IDS = new Set(PRICING_CLUSTER_REDESIGN_ORDER);
+
+PRICING_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!PRICING_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Pricing redesign calculator id: ${calculatorId}`);
   }
 });
 
@@ -2415,6 +2422,26 @@ function buildPercentageClusterInlineCss(calculatorRelPath) {
     path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
     path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
     path.join(PUBLIC_DIR, 'calculators', 'percentage-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildPricingClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'pricing-calculators', 'shared', 'cluster-light.css'),
   ];
 
   if (calculatorRelPath) {
@@ -2603,6 +2630,38 @@ function buildPercentageClusterHeaderHtml() {
 }
 
 function buildPercentageClusterFooterHtml() {
+  return `<footer class="pct-cluster-site-footer">
+  <div class="pct-cluster-wrap pct-cluster-site-footer-inner">
+    <nav class="pct-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="pct-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildPricingClusterHeaderHtml() {
+  return `<header class="pct-cluster-site-header">
+  <div class="pct-cluster-wrap pct-cluster-site-header-inner">
+    <a class="pct-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="pct-cluster-brand-mark" aria-hidden="true">$</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="pct-cluster-site-label" aria-label="Cluster label">Pricing Calculators</div>
+    <nav class="pct-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildPricingClusterFooterHtml() {
   return `<footer class="pct-cluster-site-footer">
   <div class="pct-cluster-wrap pct-cluster-site-footer-inner">
     <nav class="pct-cluster-footer-links" aria-label="Footer links">
@@ -2869,6 +2928,129 @@ function buildPercentageRelatedCalculatorsHtml(subcategory, activeCalculatorId) 
     switcherHtml,
     relatedHtml,
   };
+}
+
+function buildPricingRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
+  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+
+  const switcherHtml = calculators.length
+    ? `<section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
+  <div class="pct-cluster-route-switch-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Switch scenario</span>
+      <h2 id="pct-cluster-route-switch-title">Compare another pricing question</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-switch-chips">
+    ${calculators
+      .map((calculator) => {
+        const isActive = calculator.id === activeCalculatorId;
+        return `<a class="pct-cluster-switch-chip${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+          isActive ? ' aria-current="page"' : ''
+        }>${calculator.name}</a>`;
+      })
+      .join('')}
+  </div>
+</section>`
+    : '';
+
+  const relatedHtml = calculators.length
+    ? `<section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
+  <div class="pct-cluster-related-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Keep exploring</span>
+      <h2 id="pct-cluster-related-title">More pricing calculators in the new design</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-related-links">
+    ${calculators
+      .map((calculator) => {
+        const isActive = calculator.id === activeCalculatorId;
+        return `<a class="pct-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+          isActive ? ' aria-current="page"' : ''
+        }>
+      <span class="pct-cluster-related-card-title">${calculator.name}</span>
+      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
+      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
+    </a>`;
+      })
+      .join('')}
+  </div>
+</section>`
+    : '';
+
+  return {
+    switcherHtml,
+    relatedHtml,
+  };
+}
+
+function buildPricingClusterLandingPage(category) {
+  const calculators = Array.isArray(category?.subcategories)
+    ? category.subcategories.flatMap((subcategory) => subcategory.calculators || [])
+    : [];
+  const title = 'Pricing Calculators | Discount, Margin, Markup and Commission';
+  const description =
+    'Browse pricing calculators for discount, markup, margin, and commission with the shared answer-first shell.';
+  const canonical = buildCanonical('/pricing-calculators/');
+  const headMetaHtml = generateHeadMeta({
+    canonicalUrl: canonical,
+    seoTitle: title,
+    seoDescription: description,
+    ogImageUrl: OG_IMAGE,
+    h1: 'Pricing Calculators',
+    isCalculatorPage: true,
+  });
+
+  const cardsHtml = calculators
+    .map(
+      (calculator) => `<a class="pct-cluster-related-link" href="${calculator.url}">
+      <span class="pct-cluster-related-card-title">${calculator.name}</span>
+      <span class="pct-cluster-related-card-copy">Open the focused pricing workflow for ${calculator.name.toLowerCase()}.</span>
+      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
+    </a>`
+    )
+    .join('');
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+${headMetaHtml}
+    <style data-pricing-cluster="true">
+${indentBlock(buildPricingClusterInlineCss(null), '      ')}
+    </style>
+${renderManagedHeadAdsenseBlock()}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
+  <body data-page="pricing-cluster" data-route-archetype="content_shell" data-design-family="neutral">
+    <div class="page pct-cluster-page-shell">
+      ${buildPricingClusterHeaderHtml()}
+      <main class="pct-cluster-layout-main">
+        <section class="pct-cluster-center-column">
+          <section class="pct-cluster-panel panel-span-all">
+            <div class="pct-cluster-page-header">
+              <h1>Pricing Calculators</h1>
+              <p class="pct-cluster-page-intro">Pick a pricing workflow and get to margin, markup, discount, or commission answers without going through generic percentage routes.</p>
+            </div>
+            <section class="pct-cluster-related" aria-labelledby="pricing-cluster-list-title">
+              <div class="pct-cluster-related-head">
+                <div>
+                  <span class="pct-cluster-switch-kicker">Choose a tool</span>
+                  <h2 id="pricing-cluster-list-title">Pricing and margin calculators</h2>
+                </div>
+              </div>
+              <div class="pct-cluster-related-links">
+                ${cardsHtml}
+              </div>
+            </section>
+          </section>
+        </section>
+      </main>
+      ${buildPricingClusterFooterHtml()}
+    </div>
+  </body>
+</html>
+`;
 }
 
 function injectBeforeImportantNotes(explanationHtml, injectedHtml) {
@@ -3297,6 +3479,10 @@ function buildLeftNavHtml(
     return buildPercentageNav(category, activeCalculatorId, calcLookup);
   }
 
+  if (category.id === 'pricing') {
+    return buildPercentageNav(category, activeCalculatorId, calcLookup);
+  }
+
   if (category.id === 'time-and-date') {
     return buildTimeAndDateNav(category, activeCalculatorId, calcLookup);
   }
@@ -3306,7 +3492,7 @@ function buildLeftNavHtml(
 
 function assertPercentageFinNavContract({ leftNavHtml, calculatorId, routePath }) {
   // Hard gate (percentage only): keep legacy deletion deferred until all clusters migrate.
-  const requiredTokens = ['class="fin-nav-container"', 'class="fin-nav-group"', 'class="fin-nav-item"'];
+  const requiredTokens = ['class="fin-nav-container"', 'class="fin-nav-group', 'class="fin-nav-item"'];
   const forbiddenTokens = ['class="nav-item', 'class="nav-category'];
 
   const missingTokens = requiredTokens.filter((token) => !leftNavHtml.includes(token));
@@ -3363,6 +3549,8 @@ function buildPageHtml({
     designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
   const isMigratedPercentageClusterRoute =
     canonical.includes('/percentage-calculators/') && PERCENTAGE_CLUSTER_REDESIGN_IDS.has(calculatorId);
+  const isMigratedPricingClusterRoute =
+    canonical.includes('/pricing-calculators/') && PRICING_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedFinanceClusterRoute =
     canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedTimeAndDateClusterRoute =
@@ -3380,6 +3568,7 @@ function buildPageHtml({
     (assetConfig ||
       isCreditCardClusterRoute ||
       isMigratedPercentageClusterRoute ||
+      isMigratedPricingClusterRoute ||
       isMigratedFinanceClusterRoute ||
       isMigratedTimeAndDateClusterRoute ||
       isMigratedAutoLoanClusterRoute ||
@@ -3635,6 +3824,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   if (
     isCreditCardClusterRoute ||
     isMigratedPercentageClusterRoute ||
+    isMigratedPricingClusterRoute ||
     isMigratedFinanceClusterRoute ||
     isMigratedTimeAndDateClusterRoute ||
     isMigratedAutoLoanClusterRoute ||
@@ -3689,6 +3879,11 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   } else if (isMigratedPercentageClusterRoute) {
     cssLinksHtml = `    <style data-percentage-cluster="true">\n${indentBlock(
       buildPercentageClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedPricingClusterRoute) {
+    cssLinksHtml = `    <style data-pricing-cluster="true">\n${indentBlock(
+      buildPricingClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
   } else if (isMigratedTimeAndDateClusterRoute) {
@@ -3746,6 +3941,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
     suppressAdsColumn ||
     isCreditCardClusterRoute ||
     isMigratedPercentageClusterRoute ||
+    isMigratedPricingClusterRoute ||
     isMigratedFinanceClusterRoute ||
     isMigratedTimeAndDateClusterRoute ||
     isMigratedAutoLoanClusterRoute ||
@@ -3775,6 +3971,16 @@ ${adPanelHtml}
         </section>
       </main>
       ${buildPercentageClusterFooterHtml()}
+    </div>`
+    : isMigratedPricingClusterRoute
+    ? `    <div class="page pct-cluster-page-shell">
+      ${buildPricingClusterHeaderHtml()}
+      <main class="pct-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="pct-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildPricingClusterFooterHtml()}
     </div>`
     : isMigratedFinanceClusterRoute
     ? `    <div class="page fi-cluster-page-shell">
@@ -4373,6 +4579,8 @@ function main() {
   const scope = parseGenerationScope();
   const shouldWriteRootHomepage = scope.fullSite || scope.targetRoute === '/';
   const shouldWriteCalculatorIndex = scope.fullSite || scope.targetRoute === '/calculators/';
+  const shouldWritePricingClusterLanding =
+    scope.fullSite || scope.targetRoute === '/pricing-calculators/';
 
   if (scope.fullSite || shouldWriteRootHomepage) {
     syncClusterRegistryToPublic();
@@ -4449,7 +4657,12 @@ function main() {
         return routeMatch && calcMatch;
       });
 
-  if (!selectedEntries.length && !shouldWriteRootHomepage && !shouldWriteCalculatorIndex) {
+  if (
+    !selectedEntries.length &&
+    !shouldWriteRootHomepage &&
+    !shouldWriteCalculatorIndex &&
+    !shouldWritePricingClusterLanding
+  ) {
     throw new Error(
       `No calculators matched the requested scope (route=${scope.targetRoute ?? 'n/a'}, calcId=${scope.targetCalcId ?? 'n/a'}).`
     );
@@ -4465,6 +4678,9 @@ function main() {
     const isMigratedPercentageClusterRoute =
       calculator.url.startsWith('/percentage-calculators/') &&
       PERCENTAGE_CLUSTER_REDESIGN_IDS.has(calculator.id);
+    const isMigratedPricingClusterRoute =
+      calculator.url.startsWith('/pricing-calculators/') &&
+      PRICING_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedFinanceClusterRoute =
       calculator.url.startsWith('/finance-calculators/') &&
       FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
@@ -4483,6 +4699,7 @@ function main() {
     if (
       assetConfig?.options?.generationMode === 'manual' &&
       !isMigratedPercentageClusterRoute &&
+      !isMigratedPricingClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
@@ -4520,6 +4737,7 @@ function main() {
       !assetConfig &&
       !isCreditCardClusterRoute &&
       !isMigratedPercentageClusterRoute &&
+      !isMigratedPricingClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
@@ -4531,6 +4749,7 @@ function main() {
       Boolean(assetConfig?.options?.topNavStatic) ||
       (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
         !isMigratedPercentageClusterRoute &&
+        !isMigratedPricingClusterRoute &&
         !isMigratedFinanceClusterRoute &&
         !isMigratedTimeAndDateClusterRoute);
 
@@ -4538,6 +4757,7 @@ function main() {
       !assetConfig &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
       !isMigratedPercentageClusterRoute &&
+      !isMigratedPricingClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !routeBundleEntry
@@ -4606,6 +4826,9 @@ function main() {
     const percentageRelatedSections = isMigratedPercentageClusterRoute
       ? buildPercentageRelatedCalculatorsHtml(subcategory, calculator.id)
       : null;
+    const pricingRelatedSections = isMigratedPricingClusterRoute
+      ? buildPricingRelatedCalculatorsHtml(subcategory, calculator.id)
+      : null;
 
     const pageHtml = buildPageHtml({
       title: pageTitle,
@@ -4642,6 +4865,8 @@ function main() {
         ? buildCreditCardRelatedCalculatorsHtml(subcategory, calculator.id)
         : isMigratedPercentageClusterRoute
         ? percentageRelatedSections.relatedHtml
+        : isMigratedPricingClusterRoute
+        ? pricingRelatedSections.relatedHtml
         : isMigratedTimeAndDateClusterRoute
         ? timeAndDateRelatedSections.relatedHtml
         : isMigratedFinanceClusterRoute
@@ -4651,6 +4876,8 @@ function main() {
         : '',
       routeSwitchHtml: isMigratedPercentageClusterRoute
         ? percentageRelatedSections.switcherHtml
+        : isMigratedPricingClusterRoute
+        ? pricingRelatedSections.switcherHtml
         : isMigratedTimeAndDateClusterRoute
         ? timeAndDateRelatedSections.switcherHtml
         : '',
@@ -4680,6 +4907,18 @@ function main() {
     writeFile(
       path.join(PUBLIC_DIR, 'calculators', 'index.html'),
       buildCalculatorIndex(navigation.categories)
+    );
+  }
+
+  if (shouldWritePricingClusterLanding) {
+    const pricingCategory = navigation.categories.find((category) => category.id === 'pricing');
+    if (!pricingCategory) {
+      throw new Error('Missing pricing category in public/config/navigation.json');
+    }
+
+    writeFile(
+      path.join(PUBLIC_DIR, 'pricing-calculators', 'index.html'),
+      buildPricingClusterLandingPage(pricingCategory)
     );
   }
 

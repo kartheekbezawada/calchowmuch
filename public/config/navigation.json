@@ -1109,7 +1109,13 @@
               "paneLayout": "single"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing Calculators",
+      "subcategories": [
         {
           "id": "pricing-and-margin",
           "name": "Pricing & Margin",
@@ -1117,7 +1123,7 @@
             {
               "id": "commission-calculator",
               "name": "Commission Calculator",
-              "url": "/percentage-calculators/commission-calculator/",
+              "url": "/pricing-calculators/commission-calculator/",
               "keywords": [
                 "commission calculator",
                 "sales commission",
@@ -1131,7 +1137,7 @@
             {
               "id": "discount-calculator",
               "name": "Discount Calculator",
-              "url": "/percentage-calculators/discount-calculator/",
+              "url": "/pricing-calculators/discount-calculator/",
               "keywords": [
                 "discount calculator",
                 "percentage discount",
@@ -1141,12 +1147,12 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "margin-calculator",
               "name": "Margin Calculator",
-              "url": "/percentage-calculators/margin-calculator/",
+              "url": "/pricing-calculators/margin-calculator/",
               "keywords": [
                 "margin calculator",
                 "gross margin calculator",
@@ -1155,12 +1161,12 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "markup-calculator",
               "name": "Markup Calculator",
-              "url": "/percentage-calculators/markup-calculator/",
+              "url": "/pricing-calculators/markup-calculator/",
               "keywords": [
                 "markup calculator",
                 "markup percentage",
@@ -1170,7 +1176,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             }
           ]
         }

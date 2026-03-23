@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "clusterId": "pricing",
+  "routes": {
+    "/pricing-calculators/commission-calculator/": {
+      "route": "/pricing-calculators/commission-calculator/",
+      "calculatorId": "commission-calculator",
+      "clusterId": "pricing",
+      "buildId": "pricing-initial-20260323",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/pricing-calculators/commission-calculator/module.js"
+        ]
+      }
+    },
+    "/pricing-calculators/discount-calculator/": {
+      "route": "/pricing-calculators/discount-calculator/",
+      "calculatorId": "discount-calculator",
+      "clusterId": "pricing",
+      "buildId": "pricing-initial-20260323",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/pricing-calculators/discount-calculator/module.js"
+        ]
+      }
+    },
+    "/pricing-calculators/margin-calculator/": {
+      "route": "/pricing-calculators/margin-calculator/",
+      "calculatorId": "margin-calculator",
+      "clusterId": "pricing",
+      "buildId": "pricing-initial-20260323",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/pricing-calculators/margin-calculator/module.js"
+        ]
+      }
+    },
+    "/pricing-calculators/markup-calculator/": {
+      "route": "/pricing-calculators/markup-calculator/",
+      "calculatorId": "markup-calculator",
+      "clusterId": "pricing",
+      "buildId": "pricing-initial-20260323",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/pricing-calculators/markup-calculator/module.js"
+        ]
+      }
+    }
+  }
+}

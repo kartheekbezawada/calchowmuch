@@ -36,6 +36,11 @@
       "clusterId": "percentage",
       "label": "Percentage Calculators",
       "href": "/percentage-calculators/percent-change-calculator/"
+    },
+    {
+      "clusterId": "pricing",
+      "label": "Pricing Calculators",
+      "href": "/pricing-calculators/"
     }
   ],
   "sections": [

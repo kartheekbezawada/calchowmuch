@@ -1,0 +1,140 @@
+<div id="calc-commission-calculator">
+  <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css" />
+
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool" aria-label="Commission calculator">
+      <div class="pct-input-card">
+        <h2 class="pct-input-title">Compare flat and tiered commission plans clearly</h2>
+        <p class="pct-lead">
+          Enter total sales, then switch between a flat rate and a tiered structure to see total
+          commission and effective rate in one consistent view.
+        </p>
+
+        <div class="input-stack">
+          <div class="input-row">
+            <label>Mode</label>
+            <div class="mode-switch-control" role="group" aria-label="Commission mode">
+              <span class="mode-switch-label is-active" data-comm-mode-label="flat">
+                Flat Rate
+              </span>
+              <label class="mode-switch-toggle" for="comm-tiered-toggle">
+                <input
+                  id="comm-tiered-toggle"
+                  type="checkbox"
+                  role="switch"
+                  aria-label="Switch to tiered commission mode"
+                />
+                <span class="mode-switch-track" aria-hidden="true">
+                  <span class="mode-switch-thumb"></span>
+                </span>
+              </label>
+              <span class="mode-switch-label" data-comm-mode-label="tiered">
+                Tiered Plan
+              </span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <label for="comm-sales">Total sales</label>
+            <input id="comm-sales" type="number" value="30000" min="0" step="0.01" />
+          </div>
+
+          <div id="comm-flat-section" class="input-stack">
+            <div class="input-row pct-inline-input">
+              <label for="comm-rate">Commission rate</label>
+              <input id="comm-rate" type="number" value="7.5" min="0" step="0.01" />
+              <span class="pct-inline-suffix" aria-hidden="true">%</span>
+            </div>
+          </div>
+
+          <div id="comm-tiered-section" class="input-stack is-hidden" aria-hidden="true" hidden>
+            <p class="pct-utility-note">
+              Add tiers in ascending order. Leave the final <strong>Up to</strong> field empty to
+              represent everything above the last threshold.
+            </p>
+            <div id="comm-tier-rows"></div>
+            <button class="calculator-button secondary" id="comm-add-tier" type="button">
+              Add tier
+            </button>
+          </div>
+        </div>
+
+        <div class="pct-actions">
+          <button class="calculator-button full-width" type="button" id="comm-calc">
+            Calculate commission
+          </button>
+        </div>
+      </div>
+
+      <aside class="pct-answer-card" id="comm-answer-card" aria-label="Commission answer">
+        <div class="result pct-answer-value" id="comm-result" aria-live="polite">$2,250.00</div>
+        <p class="pct-answer-sentence" id="comm-result-detail" aria-live="polite">
+          Effective commission rate is 7.50% on $30,000.00 in sales.
+        </p>
+        <p class="pct-answer-context" id="comm-result-context" aria-live="polite">
+          Formula: Commission = Sales x (Rate / 100).
+        </p>
+
+        <div class="pct-support-list" aria-label="Commission details">
+          <div class="pct-support-row">
+            <span>Mode</span>
+            <strong id="comm-deck-mode">Flat Commission %</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Total sales</span>
+            <strong id="comm-deck-sales">$30,000.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Rate(s)</span>
+            <strong id="comm-deck-rates">7.50%</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Total commission</span>
+            <strong id="comm-deck-commission">$2,250.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Effective rate</span>
+            <strong id="comm-deck-effective-rate">7.50%</strong>
+          </div>
+        </div>
+
+        <div class="pct-breakdown" aria-label="Commission breakdown summary">
+          <div class="pct-breakdown-head">
+            <strong>Tier summary</strong>
+          </div>
+          <div class="comm-tier-summary" id="comm-tier-summary" aria-live="polite">
+            <div class="comm-tier-summary-empty">One flat rate applies to the full sale amount.</div>
+          </div>
+        </div>
+
+        <section class="comm-chart-card" aria-label="Commission mix chart">
+          <div class="comm-chart-head">
+            <p class="comm-chart-title">Commission Mix</p>
+            <p class="comm-chart-subtitle" id="comm-chart-subtitle">
+              Tier-by-tier share of total commission earned.
+            </p>
+          </div>
+          <div class="comm-chart-visual" id="comm-chart-visual">
+            <div class="comm-chart-placeholder" id="comm-chart-placeholder">
+              <div class="comm-chart-placeholder-icon" aria-hidden="true"></div>
+              <strong>Tiered chart appears here</strong>
+              <p>Switch to Tiered Plan and calculate to see how each tier contributes.</p>
+            </div>
+            <div class="comm-chart-donut" id="comm-chart-donut" hidden aria-hidden="true">
+              <div class="comm-chart-center">
+                <span class="comm-chart-center-label">Top Tier</span>
+                <span class="comm-chart-center-value" id="comm-chart-center-value">0.00%</span>
+                <span class="comm-chart-center-meta" id="comm-chart-center-meta">Largest commission share</span>
+              </div>
+            </div>
+          </div>
+          <div class="comm-chart-legend" id="comm-chart-legend" aria-live="polite">
+            <div class="comm-chart-legend-item is-muted">Tier legend will appear after calculation.</div>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<script type="module" src="/calculators/pricing-calculators/commission-calculator/module.js"></script>

@@ -592,8 +592,8 @@
         "deferCoreCss": true
       }
     },
-    "/percentage-calculators/commission-calculator/": {
-      "route": "/percentage-calculators/commission-calculator/",
+    "/pricing-calculators/commission-calculator/": {
+      "route": "/pricing-calculators/commission-calculator/",
       "calculatorId": "commission-calculator",
       "isolationBoundary": "route",
       "css": {
@@ -608,7 +608,7 @@
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/percentage-calculators/commission-calculator/module.js"
+          "/calculators/pricing-calculators/commission-calculator/module.js"
         ]
       },
       "options": {
