@@ -118,7 +118,7 @@
 }
 
 .pct-cluster-page-header {
-  max-width: 760px;
+  max-width: min(1120px, calc(100vw - 32px));
   margin: 0 auto;
   text-align: center;
 }
@@ -140,12 +140,18 @@
   text-transform: uppercase;
 }
 
+.pct-cluster-page-kicker {
+  display: none;
+}
+
 .pct-cluster-page-shell #calculator-title {
   margin: 0;
   color: var(--pct-ink);
-  font-size: clamp(40px, 6vw, 52px);
-  line-height: 1.04;
+  max-width: 100%;
+  font-size: clamp(1rem, 4vw, 52px);
+  line-height: 1.08;
   letter-spacing: -0.04em;
+  white-space: nowrap;
 }
 
 .pct-cluster-page-shell #calculator-title::after {
@@ -777,7 +783,7 @@
 }
 
 .pct-explanation .bor-faq-number {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 30px;

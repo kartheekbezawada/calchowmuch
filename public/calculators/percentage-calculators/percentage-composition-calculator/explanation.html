@@ -12,7 +12,7 @@
   </section>
 
   <section class="comp-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Add each category or item value on its own row.</li>
       <li>Choose whether the total should come from the item sum or from a known total you enter manually.</li>
@@ -20,52 +20,13 @@
       <li>Use the remainder result in known-total mode to spot unassigned or over-allocated amounts.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Items Count</td>
-            <td><span data-composition="items-count">3</span></td>
-            <td class="pv-how-col">Number of active item rows used in the calculation</td>
-          </tr>
-          <tr>
-            <td>Total Source</td>
-            <td><span data-composition="total-used">Sum of items</span></td>
-            <td class="pv-how-col">Either calculated from items or taken from known total mode</td>
-          </tr>
-          <tr>
-            <td>Total Used</td>
-            <td><span data-composition="total">1000.00</span></td>
-            <td class="pv-how-col">Denominator used for each share calculation</td>
-          </tr>
-          <tr>
-            <td>Sum of Items</td>
-            <td><span data-composition="sum-items">1000.00</span></td>
-            <td class="pv-how-col">Sum of all row values</td>
-          </tr>
-          <tr>
-            <td>Remainder %</td>
-            <td><span data-composition="remainder-percent">N/A</span></td>
-            <td class="pv-how-col">Shown when known total mode is active</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Formula</td>
-            <td>(Item / Total) x 100</td>
-            <td class="pv-how-col">Share-of-total formula for each item</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Active items:</strong> <span data-composition="items-count">3</span></li>
+      <li><strong>Total source:</strong> <span data-composition="total-used">Sum of items</span></li>
+      <li><strong>Total used:</strong> <span data-composition="total">1000.00</span></li>
+      <li><strong>Remainder share:</strong> <span data-composition="remainder-percent">N/A</span> in known-total mode</li>
+    </ul>
 
     <h4>Worked Example</h4>
     <p>
@@ -86,84 +47,44 @@
       means the listed items already exceed the total you entered.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percentage composition formula is:</p>
-    <p class="pv-formula-block">Item Share % = (Item / Total) x 100</p>
-    <p>Known-total remainder formula:</p>
+    <h4>Formula</h4>
+    <p class="pv-formula-block">Item share % = (Item / Total) x 100</p>
+    <p>If you use a known total, the unassigned share is:</p>
     <p class="pv-formula-block">Remainder % = ((Total - Sum of Items) / Total) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Compute total:</strong>
-        Use <span data-composition="total-used">Sum of items</span> and set total to
-        <span data-composition="total">1000.00</span>.
-      </li>
-      <li>
-        <strong>Compute shares:</strong>
-        Divide each item by total, then multiply by 100.
-      </li>
-      <li>
-        <strong>Compute remainder in known mode:</strong>
-        Use total minus sum of items (<span data-composition="sum-items">1000.00</span>) and convert to percent.
-      </li>
-      <li>
-        <strong>Guard baseline:</strong>
-        If total is 0, composition percentages are undefined.
-      </li>
-    </ol>
+    <p>
+      With <span data-composition="total-used">Sum of items</span> as the source and a total of
+      <span data-composition="total">1000.00</span>, each item is divided by the total and converted
+      to a percentage. If the listed items add to <span data-composition="sum-items">1000.00</span>,
+      the remainder share is <span data-composition="remainder-percent">N/A</span>.
+    </p>
   </section>
 
   <section class="comp-exp-section comp-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
       <div class="bor-faq-card">
-        <span class="bor-faq-number">01</span>
         <h4>What is percentage composition?</h4>
         <p>Percentage composition shows each item's share of a total as a percentage.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">02</span>
         <h4>How do you calculate percent of total for an item?</h4>
         <p>Divide the item value by the total and multiply by 100.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">03</span>
-        <h4>What is the share of total formula?</h4>
-        <p>The formula is (Item / Total) x 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">04</span>
         <h4>What is remainder percentage?</h4>
         <p>Remainder percentage is the part of total not covered by listed items, expressed as a percentage.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">05</span>
-        <h4>How do you calculate remainder %?</h4>
-        <p>Subtract sum of items from total, divide by total, then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">06</span>
-        <h4>What if the items already add up to the total?</h4>
-        <p>Then remainder is zero and remainder percentage is 0%.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">07</span>
-        <h4>What if the items exceed the total?</h4>
-        <p>The remainder becomes negative, indicating listed items are larger than the total.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">08</span>
-        <h4>Can I use decimals for item values?</h4>
-        <p>Yes, decimals work the same way for percent of total calculations.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">09</span>
         <h4>Do percentages always add up to 100%?</h4>
         <p>They should, but rounding can cause very small differences.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">10</span>
-        <h4>Where is percentage composition used in real life?</h4>
-        <p>It is used for budgets, allocations, category breakdowns, and percent share reporting.</p>
+        <h4>What if the items exceed the total?</h4>
+        <p>The remainder becomes negative, indicating listed items are larger than the total.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>Can I use decimals for item values?</h4>
+        <p>Yes, decimals work the same way for percent of total calculations.</p>
       </div>
     </div>
   </section>
@@ -173,9 +94,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> Shares are calculated with the standard share-of-total formula and rounded for display.</li>
-      <li><strong>Disclaimer:</strong> Use this calculator for planning and analysis only; audited reports may require your own rounding and category rules.</li>
-      <li><strong>Assumptions:</strong> Every item should belong to the same total, and known-total mode assumes the supplied total is the correct full denominator.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Assumptions:</strong> Every item should belong to the same total, and known-total mode assumes the supplied total is the full denominator.</li>
+      <li><strong>Use case:</strong> This calculator is best for budgets, allocations, and category breakdowns.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

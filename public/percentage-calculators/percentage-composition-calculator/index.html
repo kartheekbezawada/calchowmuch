@@ -1748,19 +1748,347 @@
       }
 
       /* calculators/percentage-calculators/percentage-composition-calculator/calculator.css */
-      #calc-percentage-composition,
-      #composition-explanation {
-        --pct-accent: #d66d2f;
-        --pct-accent-strong: #924421;
-        --pct-accent-soft: #fff0e4;
-        --pct-ink: #4b2f21;
-        --pct-muted: #79604f;
-        --pct-success: #15795b;
-        --pct-danger: #c55f4b;
+      .pct-cluster-page-shell {
+        --pct-accent: #2563eb;
+        --pct-accent-strong: #1d4ed8;
+        --pct-accent-soft: #eff5ff;
+        --pct-ink: #111111;
+        --pct-muted: #666666;
+        --pct-success: #0f8a5f;
+        --pct-danger: #b54747;
+        --pct-surface: #ffffff;
+        --pct-surface-soft: #f6f7f8;
+        --pct-line: #e9eaec;
+        --pct-line-strong: #d7dbe0;
+        --pct-shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+        --pct-shadow-soft: 0 12px 30px rgba(17, 17, 17, 0.05);
+      }
+
+      .pct-cluster-page-shell {
+        background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+      }
+
+      .pct-cluster-site-header {
+        background: rgba(255, 255, 255, 0.86);
+        border-bottom: 1px solid rgba(233, 234, 236, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .pct-cluster-brand {
+        color: var(--pct-ink);
+      }
+
+      .pct-cluster-brand-mark {
+        background: linear-gradient(135deg, #111111, #2b2b2b);
+        font-size: 0;
+      }
+
+      .pct-cluster-brand-mark::before {
+        content: '#';
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .pct-cluster-site-label {
+        display: none;
+      }
+
+      .pct-cluster-site-links,
+      .pct-cluster-footer-links {
+        gap: 20px;
+      }
+
+      .pct-cluster-page-header {
+        max-width: 760px;
+      }
+
+      .pct-cluster-page-shell #calculator-title {
+        max-width: 760px;
+        margin: 0 auto;
+        color: var(--pct-ink);
+        font-size: clamp(40px, 6vw, 54px);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        white-space: normal;
+      }
+
+      .pct-cluster-page-intro {
+        max-width: 680px;
+        margin-top: 18px;
+        color: var(--pct-muted);
+        font-size: 18px;
+        line-height: 1.65;
       }
 
       #calc-percentage-composition {
-        --pct-answer-value-size: clamp(2.7rem, 5vw, 4.2rem);
+        --pct-answer-value-size: clamp(2.6rem, 5vw, 4rem);
+      }
+
+      #calc-percentage-composition .pct-input-card,
+      #calc-percentage-composition .pct-answer-card,
+      #composition-explanation section,
+      .pct-cluster-page-shell .pct-cluster-related {
+        border-radius: 18px;
+        border: 1px solid var(--pct-line);
+        background: #ffffff;
+        box-shadow: var(--pct-shadow);
+      }
+
+      #calc-percentage-composition .pct-input-card,
+      #calc-percentage-composition .pct-answer-card {
+        padding: 24px;
+        gap: 16px;
+      }
+
+      #calc-percentage-composition .pct-tool {
+        gap: 20px;
+      }
+
+      #calc-percentage-composition .pct-input-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+      }
+
+      #calc-percentage-composition .pct-lead,
+      #calc-percentage-composition .pct-answer-context,
+      #calc-percentage-composition .pct-stale-note,
+      #composition-explanation p,
+      #composition-explanation li,
+      #composition-explanation .bor-faq-card p {
+        color: var(--pct-muted);
+        line-height: 1.65;
+      }
+
+      #calc-percentage-composition .pct-eyebrow,
+      .pct-cluster-page-shell .pct-cluster-route-switch,
+      .pct-cluster-page-shell .pct-cluster-related .pct-cluster-switch-kicker {
+        display: none;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        width: 100%;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--pct-muted);
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: var(--pct-ink);
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        background: #d9dee5;
+        border: 1px solid transparent;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        box-shadow: 0 2px 6px rgba(17, 17, 17, 0.14);
+      }
+
+      #calc-percentage-composition #composition-known-toggle:checked + .composition-toggle-track {
+        background: var(--pct-accent);
+      }
+
+      #calc-percentage-composition input[type='number'],
+      #calc-percentage-composition input[type='text'] {
+        min-height: 50px;
+        border-radius: 12px;
+        border: 1px solid var(--pct-line-strong);
+        background: #ffffff;
+        box-shadow: none;
+      }
+
+      #calc-percentage-composition input[type='number']:focus,
+      #calc-percentage-composition input[type='text']:focus {
+        outline: 2px solid rgba(37, 99, 235, 0.18);
+        outline-offset: 2px;
+        border-color: var(--pct-accent);
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      #calc-percentage-composition .calculator-button {
+        min-height: 50px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      #calc-percentage-composition .calculator-button:not(.secondary) {
+        background: #111111;
+        color: #ffffff;
+        border: 1px solid #111111;
+        box-shadow: none;
+      }
+
+      #calc-percentage-composition .calculator-button.secondary {
+        background: #ffffff;
+        color: #111111;
+        border: 1px solid var(--pct-line-strong);
+      }
+
+      #calc-percentage-composition .pct-answer-card {
+        gap: 16px;
+      }
+
+      #calc-percentage-composition .pct-answer-value {
+        color: var(--pct-ink);
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      #calc-percentage-composition .pct-answer-sentence {
+        font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      }
+
+      #calc-percentage-composition .pct-support-list,
+      #calc-percentage-composition .pct-breakdown-item {
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      #calc-percentage-composition .pct-breakdown-list {
+        gap: 8px;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related {
+        padding: 24px;
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related h2 {
+        color: var(--pct-ink);
+        font-size: 1.25rem;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-links {
+        gap: 10px;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link {
+        min-height: auto;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: var(--pct-surface-soft);
+        box-shadow: none;
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-link.is-active,
+      .pct-cluster-page-shell .pct-cluster-related-link[aria-current='page'] {
+        background: var(--pct-accent-soft);
+        border-color: rgba(37, 99, 235, 0.22);
+      }
+
+      .pct-cluster-page-shell .pct-cluster-related-card-copy,
+      .pct-cluster-page-shell .pct-cluster-related-card-meta {
+        display: none;
+      }
+
+      #composition-explanation {
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      #composition-explanation section {
+        padding: 24px;
+      }
+
+      #composition-explanation h2,
+      #composition-explanation h3,
+      #composition-explanation h4 {
+        color: var(--pct-ink);
+      }
+
+      #composition-explanation h2 {
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+      }
+
+      #composition-explanation h3 {
+        font-size: 1.2rem;
+      }
+
+      #composition-explanation h4 {
+        font-size: 1rem;
+      }
+
+      #composition-explanation .pv-formula-block {
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-accent-soft);
+        color: var(--pct-ink);
+        font-weight: 700;
+      }
+
+      #composition-explanation .pv-explanation-list,
+      #composition-explanation .pv-formula-steps {
+        gap: 8px;
+      }
+
+      #composition-explanation .bor-faq-grid {
+        gap: 12px;
+      }
+
+      #composition-explanation .bor-faq-card {
+        padding: 16px;
+        border-radius: 14px;
+        border: 1px solid var(--pct-line);
+        background: var(--pct-surface-soft);
+      }
+
+      #composition-explanation .pct-important-notes strong {
+        color: var(--pct-ink);
+      }
+
+      @media (max-width: 720px) {
+        .pct-cluster-page-shell #calculator-title {
+          font-size: clamp(2.1rem, 10vw, 3rem);
+          line-height: 1.08;
+          white-space: normal;
+        }
+
+        .pct-cluster-page-intro {
+          font-size: 16px;
+        }
+
+        #calc-percentage-composition .pct-input-card,
+        #calc-percentage-composition .pct-answer-card,
+        #composition-explanation section,
+        .pct-cluster-page-shell .pct-cluster-related {
+          padding: 20px;
+          border-radius: 16px;
+        }
+
+        #calc-percentage-composition .pct-support-row,
+        #calc-percentage-composition .pct-breakdown-head,
+        #calc-percentage-composition .pct-breakdown-item {
+          align-items: flex-start;
+        }
+
+        #calc-percentage-composition .pct-support-row strong,
+        #calc-percentage-composition .pct-breakdown-item-value {
+          text-align: left;
+        }
       }
     </style>
  
@@ -1790,7 +2118,6 @@
         <section class="pct-cluster-center-column">
           <div class="pct-cluster-panel panel-span-all">
   <div class="pct-cluster-page-header">
-    <span class="pct-cluster-page-kicker">Percentage Calculators</span>
     <h1 id="calculator-title">Percentage Composition Calculator</h1>
     <p class="pct-cluster-page-intro">Calculate each item's share of a total and the remainder percentage from a known or calculated total.</p>
   </div>
@@ -1801,11 +2128,9 @@
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool" aria-label="Percentage composition calculator">
       <div class="pct-input-card">
-        <p class="pct-eyebrow">Answer First</p>
-        <h2 class="pct-input-title">See the biggest share first</h2>
+        <h2 class="pct-input-title">Break down one total into clear percentage shares</h2>
         <p class="pct-lead">
-          Add item values, choose whether the total is calculated or known, then see the leading
-          share and the full breakdown in one place.
+          Enter item values and compare each share of the total in one readable summary.
         </p>
 
         <div class="composition-mode-switch" role="group" aria-label="Total source mode">
@@ -1870,20 +2195,19 @@
         </div>
 
         <div class="pct-actions">
+          <button class="calculator-button full-width" type="button" id="composition-calc">
+            Calculate composition
+          </button>
           <button type="button" class="calculator-button secondary" id="composition-add-row">
             Add item
           </button>
           <p class="pct-stale-note" id="composition-stale-note" hidden aria-hidden="true">
             Inputs changed. Calculate again to refresh the answer.
           </p>
-          <button class="calculator-button full-width" type="button" id="composition-calc">
-            Calculate composition
-          </button>
         </div>
       </div>
 
       <aside class="pct-answer-card" id="composition-answer-card" aria-label="Composition answer">
-        <p class="pct-eyebrow">Answer</p>
         <div class="result pct-answer-value" id="composition-result" aria-live="polite">
           <span class="pct-answer-primary">50.00%</span>
           <span class="pct-answer-legacy">
@@ -1920,7 +2244,6 @@
 
         <div class="pct-breakdown">
           <div class="pct-breakdown-head">
-            <span class="pct-eyebrow">Breakdown</span>
             <strong id="composition-breakdown-summary">Share of total</strong>
           </div>
           <div class="pct-breakdown-list" id="composition-breakdown" aria-live="polite"></div>
@@ -1955,7 +2278,7 @@
   </section>
 
   <section class="comp-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Add each category or item value on its own row.</li>
       <li>Choose whether the total should come from the item sum or from a known total you enter manually.</li>
@@ -1963,52 +2286,13 @@
       <li>Use the remainder result in known-total mode to spot unassigned or over-allocated amounts.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Items Count</td>
-            <td><span data-composition="items-count">3</span></td>
-            <td class="pv-how-col">Number of active item rows used in the calculation</td>
-          </tr>
-          <tr>
-            <td>Total Source</td>
-            <td><span data-composition="total-used">Sum of items</span></td>
-            <td class="pv-how-col">Either calculated from items or taken from known total mode</td>
-          </tr>
-          <tr>
-            <td>Total Used</td>
-            <td><span data-composition="total">1000.00</span></td>
-            <td class="pv-how-col">Denominator used for each share calculation</td>
-          </tr>
-          <tr>
-            <td>Sum of Items</td>
-            <td><span data-composition="sum-items">1000.00</span></td>
-            <td class="pv-how-col">Sum of all row values</td>
-          </tr>
-          <tr>
-            <td>Remainder %</td>
-            <td><span data-composition="remainder-percent">N/A</span></td>
-            <td class="pv-how-col">Shown when known total mode is active</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Formula</td>
-            <td>(Item / Total) x 100</td>
-            <td class="pv-how-col">Share-of-total formula for each item</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Active items:</strong> <span data-composition="items-count">3</span></li>
+      <li><strong>Total source:</strong> <span data-composition="total-used">Sum of items</span></li>
+      <li><strong>Total used:</strong> <span data-composition="total">1000.00</span></li>
+      <li><strong>Remainder share:</strong> <span data-composition="remainder-percent">N/A</span> in known-total mode</li>
+    </ul>
 
     <h4>Worked Example</h4>
     <p>
@@ -2029,84 +2313,44 @@
       means the listed items already exceed the total you entered.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percentage composition formula is:</p>
-    <p class="pv-formula-block">Item Share % = (Item / Total) x 100</p>
-    <p>Known-total remainder formula:</p>
+    <h4>Formula</h4>
+    <p class="pv-formula-block">Item share % = (Item / Total) x 100</p>
+    <p>If you use a known total, the unassigned share is:</p>
     <p class="pv-formula-block">Remainder % = ((Total - Sum of Items) / Total) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Compute total:</strong>
-        Use <span data-composition="total-used">Sum of items</span> and set total to
-        <span data-composition="total">1000.00</span>.
-      </li>
-      <li>
-        <strong>Compute shares:</strong>
-        Divide each item by total, then multiply by 100.
-      </li>
-      <li>
-        <strong>Compute remainder in known mode:</strong>
-        Use total minus sum of items (<span data-composition="sum-items">1000.00</span>) and convert to percent.
-      </li>
-      <li>
-        <strong>Guard baseline:</strong>
-        If total is 0, composition percentages are undefined.
-      </li>
-    </ol>
+    <p>
+      With <span data-composition="total-used">Sum of items</span> as the source and a total of
+      <span data-composition="total">1000.00</span>, each item is divided by the total and converted
+      to a percentage. If the listed items add to <span data-composition="sum-items">1000.00</span>,
+      the remainder share is <span data-composition="remainder-percent">N/A</span>.
+    </p>
   </section>
 
   <section class="comp-exp-section comp-exp-section--faq">
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
       <div class="bor-faq-card">
-        <span class="bor-faq-number">01</span>
         <h4>What is percentage composition?</h4>
         <p>Percentage composition shows each item's share of a total as a percentage.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">02</span>
         <h4>How do you calculate percent of total for an item?</h4>
         <p>Divide the item value by the total and multiply by 100.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">03</span>
-        <h4>What is the share of total formula?</h4>
-        <p>The formula is (Item / Total) x 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">04</span>
         <h4>What is remainder percentage?</h4>
         <p>Remainder percentage is the part of total not covered by listed items, expressed as a percentage.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">05</span>
-        <h4>How do you calculate remainder %?</h4>
-        <p>Subtract sum of items from total, divide by total, then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">06</span>
-        <h4>What if the items already add up to the total?</h4>
-        <p>Then remainder is zero and remainder percentage is 0%.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">07</span>
-        <h4>What if the items exceed the total?</h4>
-        <p>The remainder becomes negative, indicating listed items are larger than the total.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">08</span>
-        <h4>Can I use decimals for item values?</h4>
-        <p>Yes, decimals work the same way for percent of total calculations.</p>
-      </div>
-      <div class="bor-faq-card">
-        <span class="bor-faq-number">09</span>
         <h4>Do percentages always add up to 100%?</h4>
         <p>They should, but rounding can cause very small differences.</p>
       </div>
       <div class="bor-faq-card">
-        <span class="bor-faq-number">10</span>
-        <h4>Where is percentage composition used in real life?</h4>
-        <p>It is used for budgets, allocations, category breakdowns, and percent share reporting.</p>
+        <h4>What if the items exceed the total?</h4>
+        <p>The remainder becomes negative, indicating listed items are larger than the total.</p>
+      </div>
+      <div class="bor-faq-card">
+        <h4>Can I use decimals for item values?</h4>
+        <p>Yes, decimals work the same way for percent of total calculations.</p>
       </div>
     </div>
   </section>
@@ -2164,9 +2408,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> Shares are calculated with the standard share-of-total formula and rounded for display.</li>
-      <li><strong>Disclaimer:</strong> Use this calculator for planning and analysis only; audited reports may require your own rounding and category rules.</li>
-      <li><strong>Assumptions:</strong> Every item should belong to the same total, and known-total mode assumes the supplied total is the correct full denominator.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Assumptions:</strong> Every item should belong to the same total, and known-total mode assumes the supplied total is the full denominator.</li>
+      <li><strong>Use case:</strong> This calculator is best for budgets, allocations, and category breakdowns.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>

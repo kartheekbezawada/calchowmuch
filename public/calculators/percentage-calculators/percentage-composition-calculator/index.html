@@ -4,11 +4,9 @@
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool" aria-label="Percentage composition calculator">
       <div class="pct-input-card">
-        <p class="pct-eyebrow">Answer First</p>
-        <h2 class="pct-input-title">See the biggest share first</h2>
+        <h2 class="pct-input-title">Break down one total into clear percentage shares</h2>
         <p class="pct-lead">
-          Add item values, choose whether the total is calculated or known, then see the leading
-          share and the full breakdown in one place.
+          Enter item values and compare each share of the total in one readable summary.
         </p>
 
         <div class="composition-mode-switch" role="group" aria-label="Total source mode">
@@ -73,20 +71,19 @@
         </div>
 
         <div class="pct-actions">
+          <button class="calculator-button full-width" type="button" id="composition-calc">
+            Calculate composition
+          </button>
           <button type="button" class="calculator-button secondary" id="composition-add-row">
             Add item
           </button>
           <p class="pct-stale-note" id="composition-stale-note" hidden aria-hidden="true">
             Inputs changed. Calculate again to refresh the answer.
           </p>
-          <button class="calculator-button full-width" type="button" id="composition-calc">
-            Calculate composition
-          </button>
         </div>
       </div>
 
       <aside class="pct-answer-card" id="composition-answer-card" aria-label="Composition answer">
-        <p class="pct-eyebrow">Answer</p>
         <div class="result pct-answer-value" id="composition-result" aria-live="polite">
           <span class="pct-answer-primary">50.00%</span>
           <span class="pct-answer-legacy">
@@ -123,7 +120,6 @@
 
         <div class="pct-breakdown">
           <div class="pct-breakdown-head">
-            <span class="pct-eyebrow">Breakdown</span>
             <strong id="composition-breakdown-summary">Share of total</strong>
           </div>
           <div class="pct-breakdown-list" id="composition-breakdown" aria-live="polite"></div>

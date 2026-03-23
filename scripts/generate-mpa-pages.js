@@ -3442,7 +3442,6 @@ function buildPageHtml({
         : isMigratedPercentageClusterRoute
         ? `<div class="pct-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="pct-cluster-page-header">
-    <span class="pct-cluster-page-kicker">Percentage Calculators</span>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="pct-cluster-page-intro">${description}</p>
   </div>
