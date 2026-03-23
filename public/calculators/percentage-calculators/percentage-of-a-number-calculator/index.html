@@ -1,4 +1,5 @@
 <div id="calc-percentage-of-a-number">
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css" />
   <link
     rel="preload"
     href="/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css"
@@ -11,61 +12,68 @@
       href="/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css"
     />
   </noscript>
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="pon-hero" aria-label="Find percentage of a number calculator">
-        <div class="pon-form-panel">
-          <p class="helper">
-            Enter a percentage and a base number to compute the exact amount represented by that
-            percentage.
-          </p>
 
-          <div class="input-row pon-input-row pon-input-row--percent">
-            <label for="pon-percent">Percentage (X)</label>
-            <div class="pon-input-wrap">
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool pon-hero" aria-label="Find percentage of a number calculator">
+      <div class="pct-input-card">
+        <p class="pct-eyebrow">Answer First</p>
+        <h2 class="pct-input-title">See X% of Y instantly</h2>
+        <p class="pct-lead">
+          Enter the percentage and the base number. The main answer stays large, obvious, and easy
+          to read.
+        </p>
+
+        <div class="pct-field-grid">
+          <div class="input-row">
+            <label for="pon-percent">Percentage</label>
+            <div class="pct-inline-input">
               <input id="pon-percent" type="number" value="20" step="any" inputmode="decimal" />
-              <span class="pon-input-suffix" aria-hidden="true">%</span>
+              <span class="pct-inline-suffix" aria-hidden="true">%</span>
             </div>
           </div>
 
-          <div class="input-row pon-input-row">
-            <label for="pon-number">Number (Y)</label>
+          <div class="input-row">
+            <label for="pon-number">Base number</label>
             <input id="pon-number" type="number" value="50" step="any" inputmode="decimal" />
-          </div>
-
-          <div class="input-row action-row pon-action-row">
-            <button class="calculator-button full-width" type="button" id="pon-calc">
-              Calculate Percentage
-            </button>
           </div>
         </div>
 
-        <aside class="pon-insight-panel" aria-label="Result summary">
-          <div class="pon-result-shell">
-            <div class="result" id="pon-result" aria-live="polite"></div>
-            <div class="result-detail" id="pon-result-detail" aria-live="polite"></div>
+        <div class="pct-actions">
+          <p class="pct-stale-note" id="pon-stale-note" hidden aria-hidden="true">
+            Inputs changed. Calculate again to refresh the answer.
+          </p>
+          <button class="calculator-button full-width" type="button" id="pon-calc">
+            Calculate percentage
+          </button>
+        </div>
+      </div>
+
+      <aside class="pct-answer-card" id="pon-answer-card" aria-label="Percentage of a number answer">
+        <p class="pct-eyebrow">Answer</p>
+        <div class="result pct-answer-value" id="pon-result" aria-live="polite">Result: 10.00</div>
+        <p class="pct-answer-sentence" id="pon-result-detail" aria-live="polite">
+          Formula: (20.00 / 100) x 50.00 = 10.00 | 20.00% of 50.00 is 10.00.
+        </p>
+        <p class="pct-answer-context" id="pon-result-context" aria-live="polite">
+          Formula: (X / 100) x Y.
+        </p>
+
+        <div class="pct-support-list" aria-label="Percentage of a number details">
+          <div class="pct-support-row">
+            <span>Percentage</span>
+            <strong data-pon-snap="percent">20.00%</strong>
           </div>
-          <div class="pon-snapshot-list">
-            <div class="pon-snapshot-row">
-              <span>Percentage (X)</span>
-              <strong data-pon-snap="percent">20.00%</strong>
-            </div>
-            <div class="pon-snapshot-row">
-              <span>Number (Y)</span>
-              <strong data-pon-snap="number">50.00</strong>
-            </div>
-            <div class="pon-snapshot-row">
-              <span>Result</span>
-              <strong data-pon-snap="result">10.00</strong>
-            </div>
-            <div class="pon-snapshot-row">
-              <span>Formula</span>
-              <strong data-pon-snap="formula">(X / 100) x Y</strong>
-            </div>
+          <div class="pct-support-row">
+            <span>Base number</span>
+            <strong data-pon-snap="number">50.00</strong>
           </div>
-        </aside>
-      </section>
-    </div>
+          <div class="pct-support-row">
+            <span>Result</span>
+            <strong data-pon-snap="result">10.00</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 

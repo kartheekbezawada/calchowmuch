@@ -141,7 +141,94 @@ test.describe('Official standalone homepage', () => {
     expect(faqNode.mainEntity.length).toBeGreaterThanOrEqual(10);
   });
 
-  test('HOME-SEO-002: /calculators/?q= query contract filters results and handles empty matches', async ({
+  test('HOME-SEARCH-001: homepage search shows inline suggestions and matching calculators', async ({
+    page,
+  }) => {
+    await page.goto('/');
+
+    const searchInput = page.locator('#homepage-search');
+    await searchInput.fill('credit card');
+
+    const suggestions = page.locator('#homepage-search-suggestions');
+    await expect(suggestions).toBeVisible();
+    const creditCardSuggestion = suggestions.locator(
+      'a.search-suggestion[href="/credit-card-calculators/credit-card-payment-calculator/"]'
+    );
+    await expect(creditCardSuggestion).toHaveCount(1);
+    await expect(creditCardSuggestion.locator('.search-suggestion-title')).toHaveText('Repayment');
+    await expect(creditCardSuggestion.locator('.search-suggestion-meta')).toHaveText(
+      'Loans • Credit Cards'
+    );
+    await expect(suggestions.locator('a.search-suggestion')).toHaveCount(5);
+    await expect(
+      suggestions.locator('a.search-suggestion-view-all[href="/calculators/?q=credit%20card"]')
+    ).toHaveCount(1);
+
+    const creditCardCard = page.locator('[data-cluster-id="credit-cards"]');
+    await expect(creditCardCard).toBeVisible();
+    await expect(
+      creditCardCard.locator(
+        '[data-route-link][href="/credit-card-calculators/credit-card-payment-calculator/"]'
+      )
+    ).toHaveCount(1);
+
+    await creditCardSuggestion.click();
+
+    await expect(page).toHaveURL('/credit-card-calculators/credit-card-payment-calculator/');
+
+    await page.goto('/');
+    await searchInput.fill('mortgage');
+
+    await expect(page.locator('#homepage-search-suggestions')).toBeVisible();
+    await expect(
+      page
+        .locator('#homepage-search-suggestions')
+        .locator('a.search-suggestion[href="/loan-calculators/mortgage-calculator/"]')
+    ).toHaveCount(1);
+
+    const homeLoanCard = page.locator('[data-cluster-id="home-loan"]');
+    await expect(homeLoanCard).toBeVisible();
+    await expect(
+      homeLoanCard.locator('[data-route-link][href="/loan-calculators/mortgage-calculator/"]')
+    ).toHaveCount(1);
+    await expect(homeLoanCard.locator('.card-explore')).toHaveAttribute(
+      'href',
+      '/loan-calculators/mortgage-calculator/'
+    );
+
+    await searchInput.fill('birthday');
+
+    const timeAndDateCard = page.locator('[data-cluster-id="time-and-date"]');
+    await expect(timeAndDateCard).toBeVisible();
+    await expect(page.locator('#homepage-search-suggestions')).toBeVisible();
+    await expect(
+      timeAndDateCard.locator('[data-route-link][href="/time-and-date/birthday-day-of-week/"]')
+    ).toHaveCount(1);
+
+    await page.goto('/');
+    await searchInput.fill('percentage');
+
+    const percentageCard = page.locator('[data-cluster-id="percentage"]');
+    await expect(percentageCard.locator('[data-route-link]')).toHaveCount(4);
+    await expect(
+      percentageCard.locator('[data-route-link][href="/percentage-calculators/reverse-percentage-calculator/"]')
+    ).toHaveCount(0);
+
+    await page
+      .locator('#homepage-search-suggestions')
+      .locator('a.search-suggestion-view-all[href="/calculators/?q=percentage"]')
+      .click();
+
+    await expect(page).toHaveURL('/');
+    await expect(page.locator('#homepage-search-suggestions')).toBeHidden();
+    await expect(page.locator('.categories')).toHaveAttribute('data-results-mode', 'expanded');
+    await expect(page.locator('.categories')).toHaveAttribute('data-expanded-query', 'percentage');
+    await expect(
+      percentageCard.locator('[data-route-link][href="/percentage-calculators/reverse-percentage-calculator/"]')
+    ).toHaveCount(1);
+  });
+
+  test('HOME-SEO-002: /calculators/?q= query contract filters multi-word matches and handles empty matches', async ({
     page,
   }) => {
     await page.goto('/calculators/?q=mortgage');
@@ -154,6 +241,20 @@ test.describe('Official standalone homepage', () => {
       nodes.map((node) => `${node.textContent || ''} ${node.getAttribute('href') || ''}`.toLowerCase())
     );
     expect(visibleMortgageRows.some((value) => value.includes('mortgage'))).toBeTruthy();
+
+    await page.goto('/calculators/?q=home%20loan');
+    await expect(page.locator('#global-calculator-search')).toHaveValue('home loan');
+    await expect(
+      page.locator('section ul li:not([hidden]) a[href="/loan-calculators/mortgage-calculator/"]')
+    ).toHaveCount(1);
+
+    await page.goto('/calculators/?q=credit%20card');
+    await expect(page.locator('#global-calculator-search')).toHaveValue('credit card');
+    await expect(
+      page.locator(
+        'section ul li:not([hidden]) a[href="/credit-card-calculators/credit-card-payment-calculator/"]'
+      )
+    ).toHaveCount(1);
 
     await page.goto('/calculators/?q=zzzzzz');
     await expect(page.locator('#global-calculator-search')).toHaveValue('zzzzzz');

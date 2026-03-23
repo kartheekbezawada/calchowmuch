@@ -1,4 +1,4 @@
-<div id="composition-explanation" class="explanation-pane">
+<div id="composition-explanation" class="explanation-pane pct-explanation">
   <section class="comp-exp-section">
     <h2>What Share of the Total Does Each Item Represent?</h2>
     <p>
@@ -12,7 +12,15 @@
   </section>
 
   <section class="comp-exp-section">
-    <h3>Results Table</h3>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Add each category or item value on its own row.</li>
+      <li>Choose whether the total should come from the item sum or from a known total you enter manually.</li>
+      <li>Click <strong>Calculate composition</strong> to see the largest share and the full breakdown.</li>
+      <li>Use the remainder result in known-total mode to spot unassigned or over-allocated amounts.</li>
+    </ol>
+
+    <h4>Results Table</h4>
     <div class="table-scroll" tabindex="0">
       <table class="pv-results-table">
         <thead>
@@ -58,40 +66,27 @@
         </tfoot>
       </table>
     </div>
-  </section>
 
-  <section class="comp-exp-section">
-    <h3>Explanation</h3>
+    <h4>Worked Example</h4>
     <p>
-      Percentage composition shows how much each item contributes to the overall total as a
-      percentage share.
+      If Item A is 300, Item B is 200, and Item C is 500, the sum of items is
+      <span data-composition="sum-items">1000.00</span>. Item A is 300 / 1000 x 100 = 30%, Item B
+      is 20%, and Item C is 50%.
+    </p>
+    <p>
+      In known-total mode, if the total stays 1000 and listed items add to 700, the remaining 300
+      represents 30% of the full total.
     </p>
 
-    <ul class="pv-explanation-list">
-      <li>
-        <strong>Collect item values:</strong>
-        The calculator reads all rows and counts <span data-composition="items-count">3</span> items.
-      </li>
-      <li>
-        <strong>Choose total source:</strong>
-        Current mode uses <span data-composition="total-used">Sum of items</span> as the denominator.
-      </li>
-      <li>
-        <strong>Compute item share:</strong>
-        Each item share is calculated as item value / total x 100.
-      </li>
-      <li>
-        <strong>Track remainder:</strong>
-        In known total mode, remainder% is
-        <span data-composition="remainder-percent">N/A</span>.
-      </li>
-      <li>
-        <strong>Interpret output:</strong>
-        Shares help compare allocations, category splits, and contribution weight.
-      </li>
-    </ul>
+    <h4>How to Interpret Your Result</h4>
+    <p>
+      The largest percentage identifies the dominant share of the total, while the smaller
+      percentages show how the remaining categories compare against it. In known-total mode, a
+      positive remainder means some of the total is still unassigned, while a negative remainder
+      means the listed items already exceed the total you entered.
+    </p>
 
-    <h4>How the Formula Works</h4>
+    <h4>Formula Breakdown</h4>
     <p>The percentage composition formula is:</p>
     <p class="pv-formula-block">Item Share % = (Item / Total) x 100</p>
     <p>Known-total remainder formula:</p>
@@ -175,10 +170,12 @@
 
   <section class="comp-exp-section">
     <h3>Important Notes</h3>
-    <ul class="pv-explanation-list">
-      <li>If total equals 0, composition percentages are undefined because there is no valid denominator.</li>
-      <li>Known-total mode can show a negative remainder when listed items exceed the supplied total.</li>
-      <li>Rounded shares may not add up to exactly 100% even when the raw values do.</li>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> Shares are calculated with the standard share-of-total formula and rounded for display.</li>
+      <li><strong>Disclaimer:</strong> Use this calculator for planning and analysis only; audited reports may require your own rounding and category rules.</li>
+      <li><strong>Assumptions:</strong> Every item should belong to the same total, and known-total mode assumes the supplied total is the correct full denominator.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>

@@ -6,6 +6,7 @@ const MOBILE_MEDIA_QUERY = '(max-width: 760px)';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 const MOBILE_PLACEHOLDER_CARD_COUNT = 7;
 const DESKTOP_PLACEHOLDER_CARD_COUNT = 8;
+const EXPANDED_RESULTS_ANIMATION_MS = 420;
 
 const ROUTE_PREFIX_ALIASES = {
   '/finance/': ['/finance-calculators/'],
@@ -46,9 +47,16 @@ const CLUSTER_CARD_ROUTE_POLICY = {
 
 const gridNode = document.getElementById('homepage-grid') || document.getElementById('homepage-preview-grid');
 const searchNode = document.getElementById('homepage-search') || document.getElementById('homepage-preview-search');
+const searchButtonNode = document.querySelector('.search button');
+const searchSuggestionsNode = document.getElementById('homepage-search-suggestions');
 const emptyNode = document.getElementById('homepage-empty') || document.getElementById('homepage-preview-empty');
 const categoriesNode =
   document.querySelector('.categories') || document.getElementById('homepage-categories');
+let homepageClusters = [];
+let currentSuggestions = [];
+let activeSuggestionIndex = -1;
+let expandedResultsQuery = '';
+let expandedResultsAnimationTimeout = 0;
 
 function isMobileViewport() {
   return window.matchMedia(MOBILE_MEDIA_QUERY).matches;
@@ -75,6 +83,41 @@ function setLoadingState(isLoading, placeholderCount = 0) {
   categoriesNode.style.setProperty('--loading-card-count', String(Math.max(1, placeholderCount)));
 }
 
+function syncExpandedResultsState(normalizedQuery = '') {
+  if (!categoriesNode) {
+    return;
+  }
+
+  if (expandedResultsQuery && expandedResultsQuery === normalizedQuery) {
+    categoriesNode.dataset.resultsMode = 'expanded';
+    categoriesNode.dataset.expandedQuery = expandedResultsQuery;
+    return;
+  }
+
+  delete categoriesNode.dataset.resultsMode;
+  delete categoriesNode.dataset.expandedQuery;
+}
+
+function triggerExpandedResultsAnimation() {
+  if (!gridNode || !categoriesNode) {
+    return;
+  }
+
+  if (window.matchMedia(REDUCED_MOTION_QUERY).matches) {
+    return;
+  }
+
+  clearTimeout(expandedResultsAnimationTimeout);
+  delete gridNode.dataset.expandMotion;
+  void gridNode.offsetWidth;
+  gridNode.dataset.expandMotion = 'on';
+  categoriesNode.dataset.resultsMode = 'expanded';
+
+  expandedResultsAnimationTimeout = window.setTimeout(() => {
+    delete gridNode.dataset.expandMotion;
+  }, EXPANDED_RESULTS_ANIMATION_MS);
+}
+
 function toArray(value) {
   return Array.isArray(value) ? value : [];
 }
@@ -89,7 +132,32 @@ function escapeHtml(text) {
 }
 
 function normalizeQuery(value) {
-  return String(value || '').trim().toLowerCase();
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+function getQueryTokens(value) {
+  return normalizeQuery(value)
+    .split(/[^a-z0-9]+/g)
+    .filter(Boolean);
+}
+
+function matchesSearch(searchable, query) {
+  const normalizedQuery = normalizeQuery(query);
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  const normalizedSearchable = normalizeQuery(searchable);
+  if (normalizedSearchable.includes(normalizedQuery)) {
+    return true;
+  }
+
+  const queryTokens = getQueryTokens(normalizedQuery);
+  return queryTokens.length > 1 && queryTokens.every((token) => normalizedSearchable.includes(token));
 }
 
 function normalizeRoute(route) {
@@ -277,6 +345,8 @@ function resolveClusterRoutes(cluster, allRoutes) {
         id: route.id,
         name: route.name,
         url: route.url,
+        categoryName: route.categoryName,
+        subcategoryName: route.subcategoryName,
       });
     }
   });
@@ -306,11 +376,22 @@ function normalizeClusters(registry, navigation) {
         routePolicy.routes,
         cluster?.displayName || cluster?.clusterId || 'Cluster'
       );
+      const clusterName = cluster?.displayName || cluster?.clusterId || 'Cluster';
+      const searchableRoutes = resolvedRoutes.map((route) => ({
+        ...route,
+        searchText: normalizeQuery(
+          [clusterName, route.name, route.url, route.categoryName, route.subcategoryName]
+            .filter(Boolean)
+            .join(' ')
+        ),
+      }));
 
       return {
         id: cluster?.clusterId || 'unknown',
-        name: cluster?.displayName || cluster?.clusterId || 'Cluster',
+        name: clusterName,
         routes: selectedRoutes,
+        allRoutes: searchableRoutes,
+        searchText: normalizeQuery(clusterName),
         totalRoutes: resolvedRoutes.length,
         exploreUrl: routePolicy.exploreRoute?.url || selectedRoutes[0]?.url || '/calculators/',
       };
@@ -324,14 +405,55 @@ function getVisibleClusterCount(registry) {
   ).length;
 }
 
-function renderClusterCards(clusters) {
-  const cardsHtml = clusters
-    .map((cluster, index) => {
+function getVisibleRouteSet(cluster, query, expandAll = false) {
+  if (!query) {
+    return {
+      visible: true,
+      routes: cluster.routes,
+      exploreUrl: cluster.exploreUrl,
+    };
+  }
+
+  const matchingRoutes = cluster.allRoutes.filter((route) => matchesSearch(route.searchText, query));
+  const clusterMatch = matchesSearch(cluster.searchText, query);
+
+  if (!clusterMatch && !matchingRoutes.length) {
+    return {
+      visible: false,
+      routes: [],
+      exploreUrl: cluster.exploreUrl,
+    };
+  }
+
+  if (!matchingRoutes.length) {
+    return {
+      visible: true,
+      routes: cluster.routes,
+      exploreUrl: cluster.exploreUrl,
+    };
+  }
+
+  return {
+    visible: true,
+    routes: expandAll ? matchingRoutes : matchingRoutes.slice(0, MAX_CALCULATORS_PER_CARD),
+    exploreUrl: matchingRoutes[0]?.url || cluster.exploreUrl,
+  };
+}
+
+function renderClusterCards(clusters, query = '', expandAll = false) {
+  const visibleClusters = clusters
+    .map((cluster) => ({
+      cluster,
+      visibleRouteSet: getVisibleRouteSet(cluster, query, expandAll),
+    }))
+    .filter(({ visibleRouteSet }) => visibleRouteSet.visible);
+
+  const cardsHtml = visibleClusters
+    .map(({ cluster, visibleRouteSet }, index) => {
       const theme = CLUSTER_THEME[cluster.id] || CLUSTER_THEME.default;
-      const routeItems = cluster.routes
+      const routeItems = visibleRouteSet.routes
         .map((route) => {
-          const combined = `${route.name} ${route.url}`;
-          return `<li data-route-item data-search="${escapeHtml(normalizeQuery(combined))}">
+          return `<li data-route-item data-search="${escapeHtml(route.searchText || normalizeQuery(`${route.name} ${route.url}`))}">
             <a class="route-link" data-route-link href="${escapeHtml(route.url)}">
               <span class="route-name">${escapeHtml(route.name)}</span>
             </a>
@@ -339,7 +461,7 @@ function renderClusterCards(clusters) {
         })
         .join('');
 
-      const exploreHref = cluster.exploreUrl || cluster.routes[0]?.url || '/calculators/';
+      const exploreHref = visibleRouteSet.exploreUrl || cluster.exploreUrl || cluster.routes[0]?.url || '/calculators/';
       const totalCalculators = Math.max(cluster.totalRoutes, cluster.routes.length);
       return `<article
         class="category-card${theme.warm ? ' is-warm' : ''}"
@@ -366,6 +488,7 @@ function renderClusterCards(clusters) {
     .join('');
 
   gridNode.innerHTML = cardsHtml;
+  emptyNode.hidden = visibleClusters.length > 0;
 }
 
 function renderLoadingPlaceholders(countOverride = null) {
@@ -390,43 +513,273 @@ function renderLoadingPlaceholders(countOverride = null) {
   gridNode.innerHTML = placeholders;
 }
 
-function applySearchFilter() {
-  const query = normalizeQuery(searchNode.value);
-  const cards = Array.from(gridNode.querySelectorAll('[data-cluster-card]'));
-  let visibleCardCount = 0;
+function scoreSuggestion(route, clusterName, query) {
+  const normalizedQuery = normalizeQuery(query);
+  const normalizedName = normalizeQuery(route.name);
+  const normalizedClusterName = normalizeQuery(clusterName);
+  let score = 0;
 
-  cards.forEach((card) => {
-    const clusterName = card.getAttribute('data-cluster-name') || '';
-    const routeItems = Array.from(card.querySelectorAll('[data-route-item]'));
+  if (normalizedName.startsWith(normalizedQuery)) {
+    score += 30;
+  }
+  if (normalizedName.includes(normalizedQuery)) {
+    score += 18;
+  }
+  if (normalizeQuery(route.url).includes(normalizedQuery)) {
+    score += 10;
+  }
+  if (normalizedClusterName.includes(normalizedQuery)) {
+    score += 6;
+  }
 
-    if (!query) {
-      routeItems.forEach((item) => {
-        item.hidden = false;
-      });
-      card.hidden = false;
-      visibleCardCount += 1;
-      return;
-    }
+  const queryTokens = getQueryTokens(normalizedQuery);
+  if (queryTokens.length > 1 && queryTokens.every((token) => normalizedName.includes(token))) {
+    score += 12;
+  }
 
-    const clusterMatch = clusterName.includes(query);
-    let hasRouteMatch = false;
+  return score;
+}
 
-    routeItems.forEach((item) => {
-      const routeSearch = item.getAttribute('data-search') || '';
-      const routeMatch = clusterMatch || routeSearch.includes(query);
-      item.hidden = !routeMatch;
-      if (routeMatch) {
-        hasRouteMatch = true;
+function escapeRegExp(value) {
+  return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlightMatch(text, query) {
+  const tokens = Array.from(new Set(getQueryTokens(query))).sort((left, right) => right.length - left.length);
+  if (!tokens.length) {
+    return escapeHtml(text);
+  }
+
+  const matcher = new RegExp(`(${tokens.map((token) => escapeRegExp(token)).join('|')})`, 'gi');
+  return String(text || '')
+    .split(matcher)
+    .filter((part) => part.length > 0)
+    .map((part) => {
+      const isMatch = tokens.some((token) => part.toLowerCase() === token.toLowerCase());
+      const escapedPart = escapeHtml(part);
+      return isMatch
+        ? `<mark class="search-suggestion-match">${escapedPart}</mark>`
+        : escapedPart;
+    })
+    .join('');
+}
+
+function getSuggestionSubtitle(route) {
+  const parts = [route.categoryName, route.subcategoryName]
+    .filter((value, index, values) => value && values.indexOf(value) === index)
+    .slice(0, 2);
+
+  if (!parts.length) {
+    return route.clusterName || '';
+  }
+
+  return parts.join(' • ');
+}
+
+function getSuggestionMatches(query) {
+  const normalizedQuery = normalizeQuery(query);
+  if (!normalizedQuery) {
+    return [];
+  }
+
+  const routeMap = new Map();
+  homepageClusters.forEach((cluster) => {
+    cluster.allRoutes.forEach((route) => {
+      if (!matchesSearch(route.searchText, normalizedQuery)) {
+        return;
+      }
+
+      const existing = routeMap.get(route.url);
+      const suggestion = {
+        kind: 'route',
+        url: route.url,
+        name: route.name,
+        clusterName: cluster.name,
+        categoryName: route.categoryName,
+        subcategoryName: route.subcategoryName,
+        score: scoreSuggestion(route, cluster.name, normalizedQuery),
+      };
+
+      if (!existing || suggestion.score > existing.score) {
+        routeMap.set(route.url, suggestion);
       }
     });
+  });
 
-    card.hidden = !hasRouteMatch;
-    if (hasRouteMatch) {
-      visibleCardCount += 1;
+  const suggestions = Array.from(routeMap.values())
+    .sort((left, right) => {
+      if (right.score !== left.score) {
+        return right.score - left.score;
+      }
+      return left.name.localeCompare(right.name);
+    })
+    .slice(0, 4);
+
+  suggestions.push({
+    kind: 'view-all',
+    url: `/calculators/?q=${encodeURIComponent(query)}`,
+    name: 'View all matching calculators',
+    clusterName: `${routeMap.size} results for "${query}"`,
+  });
+
+  return suggestions;
+}
+
+function setSuggestionsVisibility(isVisible) {
+  if (!searchSuggestionsNode || !searchNode) {
+    return;
+  }
+
+  searchSuggestionsNode.hidden = !isVisible;
+  searchNode.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+  if (!isVisible) {
+    searchNode.removeAttribute('aria-activedescendant');
+  }
+}
+
+function updateActiveSuggestion() {
+  if (!searchSuggestionsNode || !searchNode) {
+    return;
+  }
+
+  const suggestionNodes = Array.from(searchSuggestionsNode.querySelectorAll('[data-suggestion-index]'));
+  suggestionNodes.forEach((node, index) => {
+    const isActive = index === activeSuggestionIndex;
+    node.classList.toggle('is-active', isActive);
+    node.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    if (isActive) {
+      searchNode.setAttribute('aria-activedescendant', node.id);
     }
   });
 
-  emptyNode.hidden = visibleCardCount > 0;
+  if (activeSuggestionIndex < 0) {
+    searchNode.removeAttribute('aria-activedescendant');
+  }
+}
+
+function renderSuggestions(rawQuery) {
+  if (!searchSuggestionsNode) {
+    return;
+  }
+
+  const normalizedQuery = normalizeQuery(rawQuery);
+  if (!normalizedQuery) {
+    currentSuggestions = [];
+    activeSuggestionIndex = -1;
+    searchSuggestionsNode.innerHTML = '';
+    setSuggestionsVisibility(false);
+    return;
+  }
+
+  currentSuggestions = getSuggestionMatches(normalizedQuery);
+  if (!currentSuggestions.length) {
+    activeSuggestionIndex = -1;
+    searchSuggestionsNode.innerHTML =
+      '<div class="search-suggestion-empty">No matching calculators found yet.</div>';
+    setSuggestionsVisibility(true);
+    return;
+  }
+
+  if (activeSuggestionIndex >= currentSuggestions.length) {
+    activeSuggestionIndex = -1;
+  }
+
+  searchSuggestionsNode.innerHTML = currentSuggestions
+    .map((suggestion, index) => {
+      if (suggestion.kind === 'view-all') {
+        return `<a
+        id="homepage-search-suggestion-${index}"
+        class="search-suggestion search-suggestion-view-all"
+        data-suggestion-index="${index}"
+        href="${escapeHtml(suggestion.url)}"
+        role="option"
+        aria-selected="false"
+      >
+        <span class="search-suggestion-label">
+          <span class="search-suggestion-title">${escapeHtml(suggestion.name)}</span>
+          <span class="search-suggestion-meta">${escapeHtml(suggestion.clusterName)}</span>
+        </span>
+        <span class="search-suggestion-arrow" aria-hidden="true">↗</span>
+      </a>`;
+      }
+
+      const subtitle = getSuggestionSubtitle(suggestion);
+
+      return `<a
+        id="homepage-search-suggestion-${index}"
+        class="search-suggestion"
+        data-suggestion-index="${index}"
+        href="${escapeHtml(suggestion.url)}"
+        role="option"
+        aria-selected="false"
+      >
+        <span class="search-suggestion-label">
+          <span class="search-suggestion-title">${highlightMatch(suggestion.name, rawQuery)}</span>
+          <span class="search-suggestion-meta">${escapeHtml(subtitle)}</span>
+        </span>
+        <span class="search-suggestion-arrow" aria-hidden="true">›</span>
+      </a>`;
+    })
+    .join('');
+
+  setSuggestionsVisibility(true);
+  updateActiveSuggestion();
+}
+
+function openActiveSuggestion() {
+  const suggestion = currentSuggestions[activeSuggestionIndex];
+  if (!suggestion) {
+    return false;
+  }
+
+  if (suggestion.kind === 'view-all') {
+    expandAllMatches();
+    return true;
+  }
+
+  window.location.assign(suggestion.url);
+  return true;
+}
+
+function applySearchFilter() {
+  const normalizedQuery = normalizeQuery(searchNode.value);
+  if (expandedResultsQuery && expandedResultsQuery !== normalizedQuery) {
+    expandedResultsQuery = '';
+  }
+
+  syncExpandedResultsState(normalizedQuery);
+  renderClusterCards(homepageClusters, searchNode.value, expandedResultsQuery === normalizedQuery);
+  renderSuggestions(searchNode.value);
+}
+
+function expandAllMatches() {
+  const rawQuery = String(searchNode?.value || '').trim();
+  const normalizedQuery = normalizeQuery(rawQuery);
+  if (!normalizedQuery) {
+    return;
+  }
+
+  expandedResultsQuery = normalizedQuery;
+  activeSuggestionIndex = -1;
+  syncExpandedResultsState(normalizedQuery);
+  renderClusterCards(homepageClusters, rawQuery, true);
+  triggerExpandedResultsAnimation();
+  setSuggestionsVisibility(false);
+  revealFilteredResults();
+}
+
+function revealFilteredResults() {
+  const rawQuery = String(searchNode?.value || '').trim();
+  applySearchFilter();
+
+  if (!rawQuery || !categoriesNode) {
+    return;
+  }
+
+  categoriesNode.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
 }
 
 function initParticles() {
@@ -533,9 +886,11 @@ async function loadHomepage() {
     }
 
     const navigation = await navigationResponse.json();
-    const clusters = normalizeClusters(registry, navigation);
-    renderClusterCards(clusters);
-    applySearchFilter();
+    homepageClusters = normalizeClusters(registry, navigation);
+    const normalizedQuery = normalizeQuery(searchNode.value);
+    syncExpandedResultsState(normalizedQuery);
+    renderClusterCards(homepageClusters, searchNode.value, expandedResultsQuery === normalizedQuery);
+    renderSuggestions(searchNode.value);
   } catch (error) {
     gridNode.innerHTML =
       '<p class="empty-state" role="alert">Unable to load calculator clusters.</p>';
@@ -548,6 +903,81 @@ async function loadHomepage() {
 
 if (gridNode && searchNode && emptyNode) {
   searchNode.addEventListener('input', applySearchFilter);
+  searchNode.addEventListener('focus', () => {
+    renderSuggestions(searchNode.value);
+  });
+  searchNode.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' && currentSuggestions.length) {
+      event.preventDefault();
+      activeSuggestionIndex = Math.min(activeSuggestionIndex + 1, currentSuggestions.length - 1);
+      updateActiveSuggestion();
+      return;
+    }
+
+    if (event.key === 'ArrowUp' && currentSuggestions.length) {
+      event.preventDefault();
+      activeSuggestionIndex = Math.max(activeSuggestionIndex - 1, 0);
+      updateActiveSuggestion();
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      activeSuggestionIndex = -1;
+      setSuggestionsVisibility(false);
+      return;
+    }
+
+    if (event.key !== 'Enter') {
+      return;
+    }
+    event.preventDefault();
+
+    if (openActiveSuggestion()) {
+      return;
+    }
+
+    revealFilteredResults();
+  });
+  searchButtonNode?.addEventListener('click', revealFilteredResults);
+  searchSuggestionsNode?.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+  });
+  searchSuggestionsNode?.addEventListener('mouseover', (event) => {
+    const suggestionNode = event.target.closest('[data-suggestion-index]');
+    if (!suggestionNode) {
+      return;
+    }
+
+    activeSuggestionIndex = Number(suggestionNode.getAttribute('data-suggestion-index'));
+    updateActiveSuggestion();
+  });
+  searchSuggestionsNode?.addEventListener('click', (event) => {
+    const suggestionNode = event.target.closest('[data-suggestion-index]');
+    if (!suggestionNode) {
+      return;
+    }
+
+    const suggestionIndex = Number(suggestionNode.getAttribute('data-suggestion-index'));
+    const suggestion = currentSuggestions[suggestionIndex];
+    if (suggestion?.kind !== 'view-all') {
+      return;
+    }
+
+    event.preventDefault();
+    expandAllMatches();
+  });
+  document.addEventListener('click', (event) => {
+    if (
+      event.target === searchNode ||
+      searchNode.contains(event.target) ||
+      searchSuggestionsNode?.contains(event.target)
+    ) {
+      return;
+    }
+
+    activeSuggestionIndex = -1;
+    setSuggestionsVisibility(false);
+  });
   loadHomepage();
   initParticles();
 }

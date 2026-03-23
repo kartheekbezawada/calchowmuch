@@ -49,16 +49,27 @@
             calculators. Get instant results with simple and accurate tools.
           </p>
           <div class="search" role="search">
-            <label class="sr-only" for="homepage-search">Search calculators</label>
-            <input
-              id="homepage-search"
-              type="search"
-              value=""
-              placeholder="Search calculators…"
-              autocomplete="off"
-              spellcheck="false"
-            />
-            <button type="button">Search</button>
+            <div class="search-bar">
+              <label class="sr-only" for="homepage-search">Search calculators</label>
+              <input
+                id="homepage-search"
+                type="search"
+                value=""
+                placeholder="Search calculators…"
+                autocomplete="off"
+                spellcheck="false"
+                aria-autocomplete="list"
+                aria-controls="homepage-search-suggestions"
+                aria-expanded="false"
+              />
+              <button type="button">Search</button>
+            </div>
+            <div
+              id="homepage-search-suggestions"
+              class="search-suggestions"
+              role="listbox"
+              hidden
+            ></div>
           </div>
         </div>
       </section>

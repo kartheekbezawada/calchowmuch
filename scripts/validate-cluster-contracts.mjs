@@ -140,6 +140,46 @@ function validateOwnership(ownership, clusterIds) {
         `route-ownership.json route ${normalizedRoute} generationMode must be non-empty string`
       );
     }
+
+    if (Object.prototype.hasOwnProperty.call(row, 'homepageSearchExcluded')) {
+      assert(
+        typeof row.homepageSearchExcluded === 'boolean',
+        `route-ownership.json route ${normalizedRoute} homepageSearchExcluded must be boolean`
+      );
+    }
+
+    const hasHomepageSearchReason = Object.prototype.hasOwnProperty.call(
+      row,
+      'homepageSearchExclusionReason'
+    );
+    const hasHomepageSearchEvidence = Object.prototype.hasOwnProperty.call(
+      row,
+      'homepageSearchExclusionEvidence'
+    );
+
+    if (row.homepageSearchExcluded) {
+      assert(
+        hasHomepageSearchReason &&
+          typeof row.homepageSearchExclusionReason === 'string' &&
+          row.homepageSearchExclusionReason.trim(),
+        `route-ownership.json route ${normalizedRoute} homepageSearchExcluded=true requires homepageSearchExclusionReason`
+      );
+      assert(
+        hasHomepageSearchEvidence &&
+          typeof row.homepageSearchExclusionEvidence === 'string' &&
+          row.homepageSearchExclusionEvidence.trim(),
+        `route-ownership.json route ${normalizedRoute} homepageSearchExcluded=true requires homepageSearchExclusionEvidence`
+      );
+    } else {
+      assert(
+        !hasHomepageSearchReason,
+        `route-ownership.json route ${normalizedRoute} homepageSearchExclusionReason requires homepageSearchExcluded=true`
+      );
+      assert(
+        !hasHomepageSearchEvidence,
+        `route-ownership.json route ${normalizedRoute} homepageSearchExclusionEvidence requires homepageSearchExcluded=true`
+      );
+    }
   });
 
   HOMEPAGE_ROUTES.forEach((requiredRoute) => {

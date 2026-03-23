@@ -1,4 +1,4 @@
-<div id="pct-change-explanation" class="explanation-pane">
+<div id="pct-change-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Much Did the Value Increase or Decrease?</h2>
     <p><strong>The short answer:</strong> percent change shows how far a new value moved relative to the original value.</p>
@@ -9,7 +9,15 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>Results Table</h3>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter the original value in A and the new value in B.</li>
+      <li>Click <strong>Calculate percent change</strong> to see the signed result and direction.</li>
+      <li>Check the change amount to understand the raw movement before it is converted to a percent.</li>
+      <li>Use the sign to tell whether the result is an increase, a decrease, or no change.</li>
+    </ol>
+
+    <h4>Results Table</h4>
     <div class="table-scroll" tabindex="0">
       <table class="pv-results-table">
         <thead>
@@ -49,50 +57,32 @@
         <tfoot>
           <tr>
             <td>Percent Change</td>
-          <td><span data-pct-change="percent">+20.00%</span></td>
+            <td><span data-pct-change="percent">+20.00%</span></td>
             <td class="pv-how-col">Final signed percentage result</td>
           </tr>
         </tfoot>
       </table>
     </div>
-  </section>
 
-  <section class="mtg-exp-section">
-    <h3>Explanation</h3>
+    <h4>Worked Example</h4>
     <p>
-      Percent change compares how far a new value moves away from the original value and expresses
-      that movement as a percentage of the original value.
+      With A = <span data-pct-change="a">50.00</span> and B =
+      <span data-pct-change="b">60.00</span>, the raw difference is
+      <span data-pct-change="amount">10.00</span>. Dividing 10.00 by 50.00 gives 0.20, and
+      multiplying by 100 gives <span data-pct-change="percent">+20.00%</span>.
     </p>
 
-    <ul class="pv-explanation-list">
-      <li>
-        <strong>Start with both values:</strong>
-        Original value A is <span data-pct-change="a">50.00</span> and new value B is
-        <span data-pct-change="b">60.00</span>.
-      </li>
-      <li>
-        <strong>Find the change amount:</strong>
-        Subtract A from B to get <span data-pct-change="amount">10.00</span>.
-      </li>
-      <li>
-        <strong>Normalize by original value:</strong>
-        Divide the change amount by A so the result is measured relative to the starting point.
-      </li>
-      <li>
-        <strong>Convert to percent:</strong>
-        Multiply by 100 and apply sign direction, resulting in
-        <span data-pct-change="percent">+20.00%</span>.
-      </li>
-      <li>
-        <strong>Interpret direction:</strong>
-        Current direction is <span data-pct-change="direction">Increase</span>.
-      </li>
-    </ul>
+    <h4>How to Interpret Your Result</h4>
+    <p>
+      A positive result means the new value moved above the original value, a negative result means
+      it moved below the original value, and a zero result means there was no change. Use the
+      percent result when you need a normalized comparison and the change amount when you need the
+      raw difference in the same unit as the inputs.
+    </p>
 
-    <h4>How the Formula Works</h4>
+    <h4>Formula Breakdown</h4>
     <p>The percent change formula is:</p>
     <p class="pv-formula-block">% Change = ((B - A) / A) x 100</p>
-    <p>Substituting your values step by step:</p>
     <ol class="pv-formula-steps">
       <li>
         <strong>Compute difference:</strong>
@@ -112,9 +102,7 @@
         Use the sign to label the result as <span data-pct-change="direction">Increase</span>.
       </li>
     </ol>
-    <p>
-      If A is zero, percent change is undefined because division by zero is not possible.
-    </p>
+    <p>If A is zero, percent change is undefined because division by zero is not possible.</p>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--faq">
@@ -178,11 +166,12 @@
 
   <section class="mtg-exp-section">
     <h3>Important Notes</h3>
-    <ul class="pv-explanation-list">
-      <li><strong>Baseline matters:</strong> percent change always uses the original value as the denominator.</li>
-      <li><strong>Signs matter:</strong> positive results mean increase, negative results mean decrease.</li>
-      <li><strong>Zero baseline is undefined:</strong> if the original value is zero, percent change cannot be calculated.</li>
-      <li><strong>Use percent change, not percentage difference:</strong> percent change is directional, while percentage difference is symmetric.</li>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> This calculator uses the standard percent change formula and rounds displayed values for readability.</li>
+      <li><strong>Disclaimer:</strong> Use percent change as an analysis aid only; official reporting may require your own rounding or accounting policy.</li>
+      <li><strong>Assumptions:</strong> A and B should describe the same unit, category, and measurement period so the comparison is meaningful.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>

@@ -1,13 +1,17 @@
-<div id="calc-percentage-difference">
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="mtg-hero" aria-label="Percentage difference calculator">
-        <div class="mtg-form-panel">
-          <p class="helper">
-            Calculate symmetric percentage difference between Value A and Value B using their
-            average baseline.
-          </p>
+<div id="calc-percentage-difference" class="pct-route pct-route-difference">
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css" />
 
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool" aria-label="Percentage difference calculator">
+      <div class="pct-input-card">
+        <p class="pct-eyebrow">Symmetric Compare</p>
+        <h2 class="pct-input-title">Compare two values without picking a winner</h2>
+        <p class="pct-lead">
+          Enter Value A and Value B to measure the gap between them using their average baseline.
+          Swapping the inputs keeps the same answer.
+        </p>
+
+        <div class="pct-field-grid">
           <div class="input-row">
             <label for="pct-diff-a">Value A</label>
             <input id="pct-diff-a" type="number" value="80" step="0.01" inputmode="decimal" />
@@ -17,49 +21,49 @@
             <label for="pct-diff-b">Value B</label>
             <input id="pct-diff-b" type="number" value="100" step="0.01" inputmode="decimal" />
           </div>
-
-          <div class="input-row action-row mtg-action-row">
-            <button class="calculator-button full-width" type="button" id="pct-diff-calc">
-              Calculate Percentage Difference
-            </button>
-          </div>
         </div>
 
-        <aside class="mtg-preview-panel" aria-label="Percentage difference result snapshot">
-          <div class="mtg-preview-main">
-            <p class="mtg-preview-label">Percentage Difference Result</p>
-            <div class="result mtg-result-card" id="pct-diff-result" aria-live="polite">
-              Percentage Difference: 22.22%
-            </div>
-            <div class="result-detail mtg-summary-card" id="pct-diff-result-detail" aria-live="polite">
-              Absolute Difference: 20.00 | Average Baseline: 90.00 | Formula: (|A - B| / ((|A| + |B|) / 2)) x 100
-            </div>
-          </div>
+        <div class="pct-actions">
+          <p class="pct-stale-note" id="pct-diff-stale-note" hidden aria-hidden="true">
+            Inputs changed. Calculate again to refresh the answer.
+          </p>
+          <button class="calculator-button full-width" type="button" id="pct-diff-calc">
+            Calculate percentage difference
+          </button>
+        </div>
+      </div>
 
-          <div class="mtg-snapshot-list">
-            <div class="mtg-snapshot-row">
-              <span>Value A</span>
-              <strong data-pct-diff-snap="a">80.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Value B</span>
-              <strong data-pct-diff-snap="b">100.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Absolute Difference</span>
-              <strong data-pct-diff-snap="abs-diff">20.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Average Baseline</span>
-              <strong data-pct-diff-snap="avg-baseline">90.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Formula</span>
-              <strong>(|A - B| / ((|A| + |B|) / 2)) x 100</strong>
-            </div>
+      <aside class="pct-answer-card" id="pct-diff-answer-card" aria-label="Percentage difference answer">
+        <p class="pct-eyebrow">Answer</p>
+        <div class="result pct-answer-value" id="pct-diff-result" aria-live="polite">
+          Percentage Difference: 22.22%
+        </div>
+        <p class="pct-answer-sentence" id="pct-diff-result-detail" aria-live="polite">
+          Absolute Difference: 20.00 | Average Baseline: 90.00 | The two values differ by 22.22%.
+        </p>
+        <p class="pct-answer-context" id="pct-diff-result-context" aria-live="polite">
+          Formula: (|A - B| / ((|A| + |B|) / 2)) x 100.
+        </p>
+
+        <div class="pct-support-list" aria-label="Percentage difference details">
+          <div class="pct-support-row">
+            <span>Value A</span>
+            <strong data-pct-diff-snap="a">80.00</strong>
           </div>
-        </aside>
-      </section>
-    </div>
+          <div class="pct-support-row">
+            <span>Value B</span>
+            <strong data-pct-diff-snap="b">100.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Absolute difference</span>
+            <strong data-pct-diff-snap="abs-diff">20.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Average baseline</span>
+            <strong data-pct-diff-snap="avg-baseline">90.00</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>

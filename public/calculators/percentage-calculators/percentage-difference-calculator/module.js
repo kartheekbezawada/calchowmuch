@@ -1,12 +1,19 @@
 import { calculatePercentageDifference } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const valueAInput = document.querySelector('#pct-diff-a');
 const valueBInput = document.querySelector('#pct-diff-b');
 const calculateButton = document.querySelector('#pct-diff-calc');
+const answerCard = document.querySelector('#pct-diff-answer-card');
+const staleNote = document.querySelector('#pct-diff-stale-note');
 const resultOutput = document.querySelector('#pct-diff-result');
 const resultDetail = document.querySelector('#pct-diff-result-detail');
+const resultContext = document.querySelector('#pct-diff-result-context');
 
 const snapshotTargets = {
   a: document.querySelector('[data-pct-diff-snap="a"]'),
@@ -212,18 +219,40 @@ function updateSnapshot(key, value) {
 let hasCalculated = false;
 const liveUpdatesEnabled = false;
 
-function calculate() {
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature: () => `${valueAInput?.value ?? ''}|${valueBInput?.value ?? ''}`,
+});
+
+staleController.watchElements([valueAInput, valueBInput]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function calculate({ reveal = false } = {}) {
   const a = Number.parseFloat(valueAInput?.value ?? '');
   const b = Number.parseFloat(valueBInput?.value ?? '');
 
   if (!Number.isFinite(a)) {
     resultOutput.textContent = 'Enter a valid value for A.';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid number for Value A to compare the two inputs.';
+    resultContext.textContent = 'Percentage difference uses the average of both magnitudes as the baseline.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
   if (!Number.isFinite(b)) {
     resultOutput.textContent = 'Enter a valid value for B.';
-    resultDetail.textContent = '';
+    resultDetail.textContent = 'Add a valid number for Value B to complete the symmetric comparison.';
+    resultContext.textContent = 'The answer updates after you calculate again.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -231,6 +260,8 @@ function calculate() {
   if (!result) {
     resultOutput.textContent = 'Percentage difference is undefined when both values are 0.';
     resultDetail.textContent = 'Provide at least one value that is not 0.';
+    resultContext.textContent = 'Formula: (|A - B| / ((|A| + |B|) / 2)) x 100.';
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -242,7 +273,8 @@ function calculate() {
   const formattedPercent = formatPercent(percent);
 
   resultOutput.textContent = `Percentage Difference: ${formattedPercent}`;
-  resultDetail.textContent = `Absolute Difference: ${formattedAbsDiff} | Average Baseline: ${formattedAvgBaseline} | Formula: ${result.formula}`;
+  resultDetail.textContent = `Absolute Difference: ${formattedAbsDiff} | Average Baseline: ${formattedAvgBaseline} | The two values differ by ${formattedPercent}.`;
+  resultContext.textContent = 'Formula: (|A - B| / ((|A| + |B|) / 2)) x 100.';
 
   updateSnapshot('a', formattedA);
   updateSnapshot('b', formattedB);
@@ -254,12 +286,13 @@ function calculate() {
   updateTargets(valueTargets?.absDiff, formattedAbsDiff);
   updateTargets(valueTargets?.avgBaseline, formattedAvgBaseline);
   updateTargets(valueTargets?.percentDiff, formattedPercent);
-  updateTargets(valueTargets?.formula, result.formula);
+  updateTargets(valueTargets?.formula, '(|A - B| / ((|A| + |B|) / 2)) x 100');
 
   hasCalculated = true;
+  finishCalculation({ reveal, trend: 'neutral' });
 }
 
-calculateButton?.addEventListener('click', calculate);
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 [valueAInput, valueBInput].forEach((input) => {
   input?.addEventListener('input', () => {
@@ -268,3 +301,5 @@ calculateButton?.addEventListener('click', calculate);
     }
   });
 });
+
+calculate();

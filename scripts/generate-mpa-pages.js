@@ -2271,6 +2271,37 @@ TIME_AND_DATE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   }
 });
 
+const PERCENTAGE_CLUSTER_REDESIGN_ORDER = [
+  'percent-change',
+  'percentage-difference',
+  'percentage-increase',
+  'percentage-decrease',
+  'percentage-composition',
+  'reverse-percentage',
+  'percent-to-fraction-decimal',
+  'what-percent-is-x-of-y',
+  'percentage-of-a-number',
+];
+
+// Opt-in list so the percentage cluster can move fully to the new shell one calculator at a time.
+const PERCENTAGE_CLUSTER_REDESIGN_IDS = new Set([
+  'percent-change',
+  'percentage-difference',
+  'percentage-increase',
+  'percentage-decrease',
+  'percentage-composition',
+  'reverse-percentage',
+  'percent-to-fraction-decimal',
+  'what-percent-is-x-of-y',
+  'percentage-of-a-number',
+]);
+
+PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!PERCENTAGE_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Percentage redesign calculator id: ${calculatorId}`);
+  }
+});
+
 function buildCreditCardClusterInlineCss(calculatorRelPath) {
   const sources = [
     path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
@@ -2356,6 +2387,26 @@ function buildTimeAndDateClusterInlineCss(calculatorRelPath) {
     path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
     path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
     path.join(PUBLIC_DIR, 'calculators', 'time-and-date', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildPercentageClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'percentage-calculators', 'shared', 'cluster-light.css'),
   ];
 
   if (calculatorRelPath) {
@@ -2522,6 +2573,38 @@ function buildTimeAndDateClusterFooterHtml() {
       <a href="/contact-us/">Contact</a>
     </nav>
     <span class="td-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildPercentageClusterHeaderHtml() {
+  return `<header class="pct-cluster-site-header">
+  <div class="pct-cluster-wrap pct-cluster-site-header-inner">
+    <a class="pct-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="pct-cluster-brand-mark" aria-hidden="true">%</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="pct-cluster-site-label" aria-label="Cluster label">Percentage Calculators</div>
+    <nav class="pct-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildPercentageClusterFooterHtml() {
+  return `<footer class="pct-cluster-site-footer">
+  <div class="pct-cluster-wrap pct-cluster-site-footer-inner">
+    <nav class="pct-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="pct-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
   </div>
 </footer>`;
 }
@@ -2725,6 +2808,61 @@ function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCal
   };
 }
 
+function buildPercentageRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
+  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+
+  const switcherHtml = calculators.length
+    ? `<section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
+  <div class="pct-cluster-route-switch-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Switch scenario</span>
+      <h2 id="pct-cluster-route-switch-title">Compare another percentage question</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-switch-chips">
+    ${calculators
+      .map((calculator) => {
+        const isActive = calculator.id === activeCalculatorId;
+        return `<a class="pct-cluster-switch-chip${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+          isActive ? ' aria-current="page"' : ''
+        }>${calculator.name}</a>`;
+      })
+      .join('')}
+  </div>
+</section>`
+    : '';
+
+  const relatedHtml = calculators.length
+    ? `<section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
+  <div class="pct-cluster-related-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Keep exploring</span>
+      <h2 id="pct-cluster-related-title">More percentage calculators in the new design</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-related-links">
+    ${calculators
+      .map((calculator) => {
+        const isActive = calculator.id === activeCalculatorId;
+        return `<a class="pct-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+          isActive ? ' aria-current="page"' : ''
+        }>
+      <span class="pct-cluster-related-card-title">${calculator.name}</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a>`;
+      })
+      .join('')}
+  </div>
+</section>`
+    : '';
+
+  return {
+    switcherHtml,
+    relatedHtml,
+  };
+}
+
 function injectBeforeImportantNotes(explanationHtml, injectedHtml) {
   if (!injectedHtml || typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
     return explanationHtml;
@@ -2768,6 +2906,13 @@ function injectBeforeFaq(explanationHtml, injectedHtml) {
 }
 
 function injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) {
+  return injectBeforeImportantNotes(
+    injectBeforeFaq(explanationHtml, routeSwitchHtml),
+    relatedCalculatorsHtml
+  );
+}
+
+function injectPercentageSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) {
   return injectBeforeImportantNotes(
     injectBeforeFaq(explanationHtml, routeSwitchHtml),
     relatedCalculatorsHtml
@@ -3208,6 +3353,8 @@ function buildPageHtml({
 }) {
   const isCreditCardClusterRoute =
     designFamily === 'credit-cards' && canonical.includes('/credit-card-calculators/');
+  const isMigratedPercentageClusterRoute =
+    canonical.includes('/percentage-calculators/') && PERCENTAGE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedFinanceClusterRoute =
     canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedTimeAndDateClusterRoute =
@@ -3224,6 +3371,7 @@ function buildPageHtml({
   const sanitizedCalculatorHtml =
     (assetConfig ||
       isCreditCardClusterRoute ||
+      isMigratedPercentageClusterRoute ||
       isMigratedFinanceClusterRoute ||
       isMigratedTimeAndDateClusterRoute ||
       isMigratedAutoLoanClusterRoute ||
@@ -3291,6 +3439,18 @@ function buildPageHtml({
     ${relatedCalculatorsHtml}
   </div>
         </div>`
+        : isMigratedPercentageClusterRoute
+        ? `<div class="pct-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+  <div class="pct-cluster-page-header">
+    <span class="pct-cluster-page-kicker">Percentage Calculators</span>
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="pct-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single pct-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${injectPercentageSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
+  </div>
+</div>`
         : isMigratedFinanceClusterRoute
         ? `<div class="fi-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="fi-cluster-page-header">
@@ -3357,6 +3517,9 @@ ${explanationTitleHtml}  ${explanationHtml}
 </div>`;
   } else if (routeArchetype === 'calc_only') {
     calcContent = `<div class="${
+      isMigratedPercentageClusterRoute
+        ? 'pct-cluster-panel panel-span-all'
+        :
       isMigratedFinanceClusterRoute
         ? 'fi-cluster-panel'
         : isMigratedTimeAndDateClusterRoute
@@ -3368,14 +3531,35 @@ ${explanationTitleHtml}  ${explanationHtml}
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-  <div class="calculator-page-single${isMigratedTimeAndDateClusterRoute ? ' td-cluster-flow' : ''}">
+  <div class="calculator-page-single${
+    isMigratedTimeAndDateClusterRoute
+      ? ' td-cluster-flow'
+      : isMigratedPercentageClusterRoute
+      ? ' pct-cluster-flow'
+      : ''
+  }">
     ${sanitizedCalculatorHtml}
-    ${isMigratedTimeAndDateClusterRoute ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) : ''}
-    ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? relatedCalculatorsHtml : ''}
+    ${
+      isMigratedTimeAndDateClusterRoute
+        ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)
+        : isMigratedPercentageClusterRoute
+        ? injectPercentageSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)
+        : ''
+    }
+    ${
+      isCreditCardClusterRoute ||
+      isMigratedFinanceClusterRoute ||
+      isMigratedAutoLoanClusterRoute
+        ? relatedCalculatorsHtml
+        : ''
+    }
   </div>
 </div>`;
   } else if (routeArchetype === 'exp_only') {
     calcContent = `<div class="${
+      isMigratedPercentageClusterRoute
+        ? 'pct-cluster-panel panel-span-all'
+        :
       isMigratedFinanceClusterRoute
         ? 'fi-cluster-panel'
         : isMigratedTimeAndDateClusterRoute
@@ -3387,11 +3571,28 @@ ${explanationTitleHtml}  ${explanationHtml}
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
   <h1 id="calculator-title">${calculatorTitle}</h1>
-${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedTimeAndDateClusterRoute || isMigratedAutoLoanClusterRoute ? '' : explanationTitleHtml}  ${isMigratedTimeAndDateClusterRoute ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) : explanationHtml}
+${
+  isCreditCardClusterRoute ||
+  isMigratedPercentageClusterRoute ||
+  isMigratedFinanceClusterRoute ||
+  isMigratedTimeAndDateClusterRoute ||
+  isMigratedAutoLoanClusterRoute
+    ? ''
+    : explanationTitleHtml
+}  ${
+  isMigratedTimeAndDateClusterRoute
+    ? injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)
+    : isMigratedPercentageClusterRoute
+    ? injectPercentageSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)
+    : explanationHtml
+}
 ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoanClusterRoute ? `\n  ${relatedCalculatorsHtml}` : ''}
 </div>`;
   } else if (routeArchetype === 'content_shell') {
     calcContent = `<div class="${
+      isMigratedPercentageClusterRoute
+        ? 'pct-cluster-panel panel-span-all'
+        :
       isMigratedFinanceClusterRoute
         ? 'fi-cluster-panel'
         : isMigratedTimeAndDateClusterRoute
@@ -3415,6 +3616,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   const topNavStaticAttribute =
     topNavStatic &&
     !isMigratedTimeAndDateClusterRoute &&
+    !isMigratedPercentageClusterRoute &&
     !isMigratedFinanceClusterRoute &&
     !isMigratedAutoLoanClusterRoute &&
     !isMigratedHomeLoanClusterRoute
@@ -3425,6 +3627,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   let scriptTagsHtml = '';
   if (
     isCreditCardClusterRoute ||
+    isMigratedPercentageClusterRoute ||
     isMigratedFinanceClusterRoute ||
     isMigratedTimeAndDateClusterRoute ||
     isMigratedAutoLoanClusterRoute ||
@@ -3474,6 +3677,11 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   if (isCreditCardClusterRoute) {
     cssLinksHtml = `    <style data-route-critical="true">\n${indentBlock(
       buildCreditCardClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedPercentageClusterRoute) {
+    cssLinksHtml = `    <style data-percentage-cluster="true">\n${indentBlock(
+      buildPercentageClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
   } else if (isMigratedTimeAndDateClusterRoute) {
@@ -3530,6 +3738,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   const adsColumnHtml =
     suppressAdsColumn ||
     isCreditCardClusterRoute ||
+    isMigratedPercentageClusterRoute ||
     isMigratedFinanceClusterRoute ||
     isMigratedTimeAndDateClusterRoute ||
     isMigratedAutoLoanClusterRoute ||
@@ -3549,6 +3758,16 @@ ${adPanelHtml}
         </section>
       </main>
       ${buildCreditCardClusterFooterHtml()}
+    </div>`
+    : isMigratedPercentageClusterRoute
+    ? `    <div class="page pct-cluster-page-shell">
+      ${buildPercentageClusterHeaderHtml()}
+      <main class="pct-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="pct-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildPercentageClusterFooterHtml()}
     </div>`
     : isMigratedFinanceClusterRoute
     ? `    <div class="page fi-cluster-page-shell">
@@ -3696,7 +3915,27 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           return;
         }
 
-        const normalize = (value) => String(value || '').trim().toLowerCase();
+        const normalize = (value) =>
+          String(value || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim()
+            .replace(/\s+/g, ' ');
+        const getTokens = (value) => normalize(value).split(' ').filter(Boolean);
+        const matchesQuery = (searchable, rawQuery) => {
+          const query = normalize(rawQuery);
+          if (!query) {
+            return true;
+          }
+
+          const normalizedSearchable = normalize(searchable);
+          if (normalizedSearchable.includes(query)) {
+            return true;
+          }
+
+          const queryTokens = getTokens(query);
+          return queryTokens.length > 1 && queryTokens.every((token) => normalizedSearchable.includes(token));
+        };
         const sections = Array.from(panel.querySelectorAll('section')).map((section) => {
           const groups = Array.from(section.querySelectorAll('h3'))
             .map((heading) => {
@@ -3732,7 +3971,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
                 const link = item.querySelector('a');
                 const searchable =
                   (item.textContent || '') + ' ' + (link ? link.getAttribute('href') || '' : '');
-                const isMatch = !query || normalize(searchable).includes(query);
+                const isMatch = matchesQuery(searchable, query);
                 item.hidden = !isMatch;
                 if (isMatch) {
                   groupVisibleCount += 1;
@@ -3814,16 +4053,27 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
             calculators. Get instant results with simple and accurate tools.
           </p>
           <div class="search" role="search">
-            <label class="sr-only" for="homepage-search">Search calculators</label>
-            <input
-              id="homepage-search"
-              type="search"
-              value=""
-              placeholder="Search calculators…"
-              autocomplete="off"
-              spellcheck="false"
-            />
-            <button type="button">Search</button>
+            <div class="search-bar">
+              <label class="sr-only" for="homepage-search">Search calculators</label>
+              <input
+                id="homepage-search"
+                type="search"
+                value=""
+                placeholder="Search calculators…"
+                autocomplete="off"
+                spellcheck="false"
+                aria-autocomplete="list"
+                aria-controls="homepage-search-suggestions"
+                aria-expanded="false"
+              />
+              <button type="button">Search</button>
+            </div>
+            <div
+              id="homepage-search-suggestions"
+              class="search-suggestions"
+              role="listbox"
+              hidden
+            ></div>
           </div>
         </div>
       </section>
@@ -4205,6 +4455,9 @@ function main() {
     const { category, subcategory, calculator, governance, relPath, outputRelPath } = entry;
     const isCreditCardClusterRoute =
       subcategory.id === 'credit-cards' && calculator.url.startsWith('/credit-card-calculators/');
+    const isMigratedPercentageClusterRoute =
+      calculator.url.startsWith('/percentage-calculators/') &&
+      PERCENTAGE_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedFinanceClusterRoute =
       calculator.url.startsWith('/finance-calculators/') &&
       FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
@@ -4222,6 +4475,7 @@ function main() {
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
     if (
       assetConfig?.options?.generationMode === 'manual' &&
+      !isMigratedPercentageClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
@@ -4258,6 +4512,7 @@ function main() {
     const routeBundleEntry =
       !assetConfig &&
       !isCreditCardClusterRoute &&
+      !isMigratedPercentageClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !isMigratedAutoLoanClusterRoute &&
@@ -4268,12 +4523,14 @@ function main() {
     const topNavStatic =
       Boolean(assetConfig?.options?.topNavStatic) ||
       (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+        !isMigratedPercentageClusterRoute &&
         !isMigratedFinanceClusterRoute &&
         !isMigratedTimeAndDateClusterRoute);
 
     if (
       !assetConfig &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+      !isMigratedPercentageClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
       !routeBundleEntry
@@ -4339,6 +4596,9 @@ function main() {
     const timeAndDateRelatedSections = isMigratedTimeAndDateClusterRoute
       ? buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, calculator.id)
       : null;
+    const percentageRelatedSections = isMigratedPercentageClusterRoute
+      ? buildPercentageRelatedCalculatorsHtml(subcategory, calculator.id)
+      : null;
 
     const pageHtml = buildPageHtml({
       title: pageTitle,
@@ -4373,6 +4633,8 @@ function main() {
       layoutMainClass: typeof override?.layoutMainClass === 'string' ? override.layoutMainClass : '',
       relatedCalculatorsHtml: isCreditCardClusterRoute
         ? buildCreditCardRelatedCalculatorsHtml(subcategory, calculator.id)
+        : isMigratedPercentageClusterRoute
+        ? percentageRelatedSections.relatedHtml
         : isMigratedTimeAndDateClusterRoute
         ? timeAndDateRelatedSections.relatedHtml
         : isMigratedFinanceClusterRoute
@@ -4380,7 +4642,9 @@ function main() {
         : isMigratedAutoLoanClusterRoute
         ? buildAutoLoanRelatedCalculatorsHtml(subcategory, calculator.id)
         : '',
-      routeSwitchHtml: isMigratedTimeAndDateClusterRoute
+      routeSwitchHtml: isMigratedPercentageClusterRoute
+        ? percentageRelatedSections.switcherHtml
+        : isMigratedTimeAndDateClusterRoute
         ? timeAndDateRelatedSections.switcherHtml
         : '',
     });

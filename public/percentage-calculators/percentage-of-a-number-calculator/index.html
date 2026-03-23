@@ -17,130 +17,1786 @@
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/#softwareapplication","name":"Find Percentage of a Number Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/","description":"Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Percentage Calculators","item":"https://calchowmuch.com/percentage-calculators/"},{"@type":"ListItem","position":3,"name":"Find Percentage of a Number Calculator","item":"https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/"}]}]}</script>
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-percentage-cluster="true">
+      /* assets/css/base.css */
+      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+         instead of @import, to eliminate sequential CSS waterfall.
+         See known_issues.md KI-007 / KI-010. */
+
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/percentage-calculators/shared/cluster-light.css */
+      .pct-cluster-page-shell,
+      .pct-answer-ui,
+      .pct-explanation {
+        --pct-accent: #1f6c9c;
+        --pct-accent-strong: #164b6d;
+        --pct-accent-soft: #eaf5fb;
+        --pct-ink: #163247;
+        --pct-muted: #64798a;
+        --pct-success: #15795b;
+        --pct-danger: #bf5a4b;
+        --pct-surface: rgba(255, 255, 255, 0.96);
+        --pct-surface-soft: #f8fbfd;
+        --pct-line: rgba(106, 135, 153, 0.22);
+        --pct-line-strong: rgba(74, 110, 128, 0.34);
+        --pct-shadow: 0 20px 44px rgba(18, 44, 65, 0.08);
+        --pct-shadow-soft: 0 10px 26px rgba(18, 44, 65, 0.06);
+        --pct-answer-value-size: clamp(2.8rem, 6vw, 4.4rem);
+        color: var(--pct-ink);
+      }
+
+      .pct-cluster-page-shell *,
+      .pct-answer-ui * {
+        box-sizing: border-box;
+      }
+
+      .pct-cluster-page-shell {
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top left, rgba(31, 108, 156, 0.12), transparent 28%),
+          radial-gradient(circle at 88% 8%, rgba(145, 210, 233, 0.18), transparent 22%),
+          linear-gradient(180deg, #f7fbfd 0%, #eef7fb 100%);
+      }
+
+      .pct-cluster-wrap,
+      .pct-cluster-center-column {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .pct-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(16px);
+        background: rgba(247, 251, 253, 0.82);
+        border-bottom: 1px solid rgba(106, 135, 153, 0.18);
+      }
+
+      .pct-cluster-site-header-inner {
+        min-height: 72px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .pct-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--pct-ink);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .pct-cluster-brand-mark {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--pct-accent), #6eb8d4);
+        color: #fff;
+        font-size: 20px;
+        font-weight: 900;
+      }
+
+      .pct-cluster-site-label {
+        justify-self: center;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--pct-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pct-cluster-site-links,
+      .pct-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+      }
+
+      .pct-cluster-site-links a,
+      .pct-cluster-footer-links a {
+        color: var(--pct-muted);
+      }
+
+      .pct-cluster-site-links a:hover,
+      .pct-cluster-footer-links a:hover {
+        color: var(--pct-accent-strong);
+      }
+
+      .pct-cluster-layout-main {
+        padding: 40px 0 64px;
+      }
+
+      .pct-cluster-panel {
+        display: grid;
+        gap: 28px;
+      }
+
+      .pct-cluster-page-header {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .pct-cluster-page-kicker,
+      .pct-cluster-switch-kicker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        margin: 0 0 14px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--pct-accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pct-cluster-page-shell #calculator-title {
+        margin: 0;
+        color: var(--pct-ink);
+        font-size: clamp(40px, 6vw, 52px);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+
+      .pct-cluster-page-shell #calculator-title::after {
+        display: none;
+      }
+
+      .pct-cluster-page-intro {
+        margin: 14px auto 0;
+        max-width: 700px;
+        color: var(--pct-muted);
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .pct-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      .pct-cluster-route-switch,
+      .pct-cluster-related {
+        border: 1px solid var(--pct-line);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 251, 253, 0.98));
+        box-shadow: var(--pct-shadow-soft);
+        padding: 24px;
+      }
+
+      .pct-cluster-route-switch-head,
+      .pct-cluster-related-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .pct-cluster-route-switch h2,
+      .pct-cluster-related h2 {
+        margin: 0;
+        color: var(--pct-ink);
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .pct-cluster-switch-chips {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .pct-cluster-switch-chip {
+        flex: 0 0 auto;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--pct-ink);
+        font-size: 14px;
+        font-weight: 700;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .pct-cluster-switch-chip:hover,
+      .pct-cluster-switch-chip:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--pct-line-strong);
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-cluster-switch-chip.is-active,
+      .pct-cluster-switch-chip[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(31, 108, 156, 0.12), rgba(110, 184, 212, 0.08));
+        border-color: color-mix(in srgb, var(--pct-accent) 34%, white);
+        color: var(--pct-accent-strong);
+      }
+
+      .pct-cluster-related-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .pct-cluster-related-link {
+        display: grid;
+        gap: 10px;
+        min-height: 156px;
+        padding: 18px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--pct-ink);
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .pct-cluster-related-link:hover,
+      .pct-cluster-related-link:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--pct-line-strong);
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-cluster-related-link.is-active,
+      .pct-cluster-related-link[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(31, 108, 156, 0.08), rgba(234, 245, 251, 0.72));
+        border-color: color-mix(in srgb, var(--pct-accent) 24%, white);
+      }
+
+      .pct-cluster-related-card-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .pct-cluster-related-card-copy,
+      .pct-cluster-related-card-meta {
+        color: var(--pct-muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .pct-cluster-related-card-meta {
+        margin-top: auto;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .pct-cluster-site-footer {
+        padding: 0 0 52px;
+      }
+
+      .pct-cluster-site-footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 28px;
+        border: 1px solid var(--pct-line);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: var(--pct-shadow-soft);
+        text-align: center;
+      }
+
+      .pct-cluster-footer-copy {
+        color: var(--pct-muted);
+        font-size: 14px;
+      }
+
+      .pct-answer-ui {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .pct-tool {
+        display: grid;
+        grid-template-columns: minmax(0, 0.96fr) minmax(320px, 0.9fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .pct-input-card,
+      .pct-answer-card {
+        border: 1px solid var(--pct-line);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), var(--pct-surface-soft));
+        box-shadow: var(--pct-shadow);
+      }
+
+      .pct-input-card {
+        padding: 28px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .pct-answer-card {
+        padding: 28px;
+        display: grid;
+        gap: 18px;
+        position: sticky;
+        top: 84px;
+      }
+
+      .pct-eyebrow {
+        margin: 0;
+        font-size: 0.75rem;
+        line-height: 1.1;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--pct-accent);
+        font-weight: 800;
+      }
+
+      .pct-input-title,
+      .pct-answer-title {
+        margin: 0;
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+        color: var(--pct-ink);
+      }
+
+      .pct-lead,
+      .pct-answer-context,
+      .pct-stale-note,
+      .pct-support-row span,
+      .pct-breakdown-head span,
+      .pct-breakdown-item-name small,
+      .pct-explanation p,
+      .pct-explanation li,
+      .pct-explanation .pv-how-col,
+      .pct-explanation .bor-faq-card p {
+        color: var(--pct-muted);
+      }
+
+      .pct-lead,
+      .pct-answer-context,
+      .pct-stale-note,
+      .pct-explanation p,
+      .pct-explanation li,
+      .pct-explanation .bor-faq-card p {
+        line-height: 1.6;
+      }
+
+      .pct-field-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .pct-answer-ui .input-row {
+        margin: 0;
+      }
+
+      .pct-answer-ui .input-row label,
+      .pct-answer-ui .composition-row-field label {
+        display: block;
+        margin: 0 0 8px;
+        font-size: 0.94rem;
+        font-weight: 700;
+        color: var(--pct-ink);
+      }
+
+      .pct-answer-ui input[type='number'],
+      .pct-answer-ui input[type='text'] {
+        width: 100%;
+        min-height: 54px;
+        padding: 0 16px;
+        border-radius: 18px;
+        border: 1px solid var(--pct-line-strong);
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--pct-ink);
+        font-size: 1rem;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+      }
+
+      .pct-answer-ui input[type='number']:focus,
+      .pct-answer-ui input[type='text']:focus {
+        outline: 2px solid color-mix(in srgb, var(--pct-accent) 24%, white);
+        outline-offset: 2px;
+        border-color: color-mix(in srgb, var(--pct-accent) 40%, white);
+      }
+
+      .pct-inline-input {
+        position: relative;
+      }
+
+      .pct-inline-input input {
+        padding-right: 48px;
+      }
+
+      .pct-inline-suffix {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: var(--pct-accent);
+      }
+
+      .pct-actions {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pct-answer-ui .calculator-button {
+        min-height: 54px;
+        border: 0;
+        border-radius: 999px;
+        font-size: 0.98rem;
+        font-weight: 800;
+      }
+
+      .pct-answer-ui .calculator-button.full-width {
+        width: 100%;
+      }
+
+      .pct-answer-ui .calculator-button:not(.secondary) {
+        background: linear-gradient(135deg, var(--pct-accent), var(--pct-accent-strong));
+        color: #fff;
+        box-shadow: 0 14px 28px color-mix(in srgb, var(--pct-accent) 26%, transparent);
+      }
+
+      .pct-answer-ui .calculator-button.secondary {
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
+        border: 1px solid color-mix(in srgb, var(--pct-accent) 18%, white);
+      }
+
+      .pct-stale-note {
+        margin: 0;
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid color-mix(in srgb, var(--pct-accent) 16%, white);
+        background: color-mix(in srgb, var(--pct-accent-soft) 72%, white);
+        font-size: 0.88rem;
+      }
+
+      .pct-answer-card[data-result-stale='true'] {
+        border-color: color-mix(in srgb, var(--pct-accent) 32%, white);
+        box-shadow: 0 22px 48px color-mix(in srgb, var(--pct-accent) 10%, transparent);
+      }
+
+      .pct-answer-value {
+        margin: 0;
+        font-size: var(--pct-answer-value-size);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        color: var(--pct-accent-strong);
+        font-weight: 900;
+      }
+
+      .pct-answer-value .pct-answer-primary {
+        display: block;
+      }
+
+      .pct-answer-value .pct-answer-legacy {
+        display: grid;
+        gap: 4px;
+        margin-top: 14px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--pct-muted);
+        font-weight: 700;
+      }
+
+      .pct-answer-card[data-trend='increase'] .pct-answer-value {
+        color: var(--pct-success);
+      }
+
+      .pct-answer-card[data-trend='decrease'] .pct-answer-value,
+      .pct-answer-card[data-trend='warning'] .pct-answer-value {
+        color: var(--pct-danger);
+      }
+
+      .pct-answer-sentence {
+        margin: 0;
+        font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+        line-height: 1.35;
+        color: var(--pct-ink);
+        font-weight: 700;
+      }
+
+      .pct-support-list {
+        display: grid;
+        gap: 10px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .pct-support-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .pct-support-row strong,
+      .pct-breakdown-head strong,
+      .pct-breakdown-item-value {
+        color: var(--pct-ink);
+      }
+
+      .pct-support-row strong {
+        text-align: right;
+      }
+
+      .pct-breakdown {
+        display: grid;
+        gap: 10px;
+      }
+
+      .pct-breakdown-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .pct-breakdown-list {
+        display: grid;
+        gap: 10px;
+        max-height: 240px;
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .pct-breakdown-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--pct-line);
+      }
+
+      .pct-breakdown-item-name {
+        display: grid;
+        gap: 3px;
+      }
+
+      .pct-breakdown-item-name strong {
+        color: var(--pct-ink);
+      }
+
+      .pct-breakdown-item-value {
+        font-weight: 800;
+        text-align: right;
+      }
+
+      .composition-mode-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .composition-mode-label {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--pct-muted);
+      }
+
+      .composition-mode-label.is-active {
+        color: var(--pct-accent-strong);
+      }
+
+      .composition-toggle {
+        display: inline-flex;
+      }
+
+      .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .composition-toggle-track {
+        width: 48px;
+        height: 28px;
+        border-radius: 999px;
+        padding: 3px;
+        background: rgba(136, 157, 170, 0.34);
+        border: 1px solid var(--pct-line-strong);
+        transition: background 0.2s ease;
+      }
+
+      .composition-toggle-thumb {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 3px 8px rgba(18, 44, 65, 0.16);
+        transition: transform 0.2s ease;
+      }
+
+      #composition-known-toggle:checked + .composition-toggle-track {
+        background: color-mix(in srgb, var(--pct-accent) 50%, white);
+      }
+
+      #composition-known-toggle:checked + .composition-toggle-track .composition-toggle-thumb {
+        transform: translateX(20px);
+      }
+
+      .composition-rows {
+        display: grid;
+        gap: 12px;
+      }
+
+      .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.8fr) auto;
+        gap: 12px;
+        align-items: end;
+        padding: 14px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.76);
+      }
+
+      .composition-row-field {
+        min-width: 0;
+      }
+
+      .pct-explanation {
+        width: min(100%, 1120px);
+        margin: 32px auto 0;
+        display: grid;
+        gap: 20px;
+      }
+
+      .pct-explanation section {
+        padding: 24px 26px;
+        border-radius: 24px;
+        border: 1px solid var(--pct-line);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), var(--pct-surface-soft));
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-explanation h2,
+      .pct-explanation h3,
+      .pct-explanation h4 {
+        margin: 0 0 12px;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        color: var(--pct-ink);
+      }
+
+      .pct-explanation h2 {
+        font-size: clamp(1.55rem, 3vw, 2.2rem);
+      }
+
+      .pct-explanation h3 {
+        font-size: 1.25rem;
+      }
+
+      .pct-explanation .table-scroll {
+        overflow: auto;
+        border-radius: 18px;
+        border: 1px solid var(--pct-line);
+      }
+
+      .pct-explanation .pv-results-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+      }
+
+      .pct-explanation .pv-results-table thead th,
+      .pct-explanation .pv-results-table td {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--pct-line);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .pct-explanation .pv-results-table thead th {
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pct-explanation .pv-results-table tfoot td {
+        font-weight: 700;
+        color: var(--pct-ink);
+      }
+
+      .pct-explanation .pv-explanation-list,
+      .pct-explanation .pv-formula-steps {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .pct-explanation .pct-important-notes strong {
+        color: rgba(186, 230, 253, 0.98);
+      }
+
+      .pct-explanation .pv-formula-block {
+        margin: 16px 0;
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid color-mix(in srgb, var(--pct-accent) 22%, white);
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .pct-explanation .bor-faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .pct-explanation .bor-faq-card {
+        padding: 18px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .pct-explanation .bor-faq-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 999px;
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
+        font-size: 0.74rem;
+        font-weight: 800;
+      }
+
+      @media (min-width: 861px) {
+        body[data-page='calculator'] .layout-main:has(.pct-answer-ui) > .ads-column {
+          display: none !important;
+        }
+
+        body[data-page='calculator'] .layout-main:has(.pct-answer-ui) > .center-column {
+          grid-column: 2 / -1;
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        body[data-page='calculator']
+          .layout-main:has(.pct-answer-ui)
+          > .center-column
+          > .panel.panel-span-all {
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .pct-cluster-site-header-inner {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          padding: 12px 0;
+        }
+
+        .pct-cluster-related-links {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .pct-tool {
+          grid-template-columns: 1fr;
+        }
+
+        .pct-answer-card {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .pct-cluster-wrap,
+        .pct-cluster-center-column {
+          width: min(100%, calc(100% - 20px));
+        }
+
+        .pct-cluster-route-switch,
+        .pct-cluster-related,
+        .pct-input-card,
+        .pct-answer-card,
+        .pct-explanation section {
+          padding: 22px 18px;
+          border-radius: 22px;
+        }
+
+        .pct-cluster-related-links {
+          grid-template-columns: 1fr;
+        }
+
+        .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        .pct-support-row,
+        .pct-breakdown-item,
+        .pct-breakdown-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .pct-explanation .bor-faq-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css */
+      #calc-percentage-of-a-number,
+      #pon-explanation {
+        --pct-accent: #d88717;
+        --pct-accent-strong: #9d5700;
+        --pct-accent-soft: #fff3df;
+        --pct-ink: #4a3113;
+        --pct-muted: #796651;
+        --pct-success: #1e7b55;
+        --pct-danger: #bb5c47;
+      }
+
+      #calc-percentage-of-a-number {
+        --pct-answer-value-size: clamp(3.1rem, 6vw, 5rem);
+      }
+    </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+    <div class="page pct-cluster-page-shell">
+      <header class="pct-cluster-site-header">
+  <div class="pct-cluster-wrap pct-cluster-site-header-inner">
+    <a class="pct-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="pct-cluster-brand-mark" aria-hidden="true">%</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="pct-cluster-site-label" aria-label="Cluster label">Percentage Calculators</div>
+    <nav class="pct-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link is-active" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
-<div class="fin-nav-group is-expanded" data-fin-subcategory="percentage-core">
-  <button type="button" class="fin-nav-toggle" aria-expanded="true">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">%</span>
-    <span class="fin-nav-toggle-label">Percentage Calculators</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/percentage-calculators/percent-change-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">↔️</span>Percent Change</a><a class="fin-nav-item" href="/percentage-calculators/percentage-difference-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⚖️</span>Percentage Difference</a><a class="fin-nav-item" href="/percentage-calculators/percentage-increase-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⬆️</span>Percentage Increase</a><a class="fin-nav-item" href="/percentage-calculators/percentage-decrease-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⬇️</span>Percentage Decrease</a><a class="fin-nav-item" href="/percentage-calculators/percentage-composition-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🧩</span>Percentage Composition</a><a class="fin-nav-item" href="/percentage-calculators/reverse-percentage-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🔁</span>Reverse Percentage</a><a class="fin-nav-item" href="/percentage-calculators/percent-to-fraction-decimal-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🔢</span>Percent to Fraction/Decimal</a><a class="fin-nav-item" href="/percentage-calculators/percentage-finder-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">❓</span>What Percent Is X of Y</a><a class="fin-nav-item is-active" href="/percentage-calculators/percentage-of-a-number-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🎯</span>Find Percentage of a Number</a>
+      <main class="pct-cluster-layout-main">
+        <section class="pct-cluster-center-column">
+          <div class="pct-cluster-panel panel-span-all">
+  <div class="pct-cluster-page-header">
+    <span class="pct-cluster-page-kicker">Percentage Calculators</span>
+    <h1 id="calculator-title">Find Percentage of a Number Calculator</h1>
+    <p class="pct-cluster-page-intro">Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.</p>
   </div>
-</div>
-<div class="fin-nav-group" data-fin-subcategory="pricing-and-margin">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">💼</span>
-    <span class="fin-nav-toggle-label">Pricing & Margin</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/percentage-calculators/commission-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">💵</span>Commission Calculator</a><a class="fin-nav-item" href="/percentage-calculators/discount-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🏷️</span>Discount Calculator</a><a class="fin-nav-item" href="/percentage-calculators/margin-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📐</span>Margin Calculator</a><a class="fin-nav-item" href="/percentage-calculators/markup-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">➕</span>Markup Calculator</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll panel-span-all">
-  <h1 id="calculator-title">Find Percentage of a Number Calculator</h1>
-  <div class="calculator-page-single">
+  <div class="calculator-page-single pct-cluster-flow">
     <div id="calc-percentage-of-a-number">
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css?v=20260224" />
   <link
     rel="preload"
     href="/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css?v=20260224"
@@ -153,61 +1809,68 @@
       href="/calculators/percentage-calculators/percentage-of-a-number-calculator/calculator.css?v=20260224"
     />
   </noscript>
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="pon-hero" aria-label="Find percentage of a number calculator">
-        <div class="pon-form-panel">
-          <p class="helper">
-            Enter a percentage and a base number to compute the exact amount represented by that
-            percentage.
-          </p>
 
-          <div class="input-row pon-input-row pon-input-row--percent">
-            <label for="pon-percent">Percentage (X)</label>
-            <div class="pon-input-wrap">
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool pon-hero" aria-label="Find percentage of a number calculator">
+      <div class="pct-input-card">
+        <p class="pct-eyebrow">Answer First</p>
+        <h2 class="pct-input-title">See X% of Y instantly</h2>
+        <p class="pct-lead">
+          Enter the percentage and the base number. The main answer stays large, obvious, and easy
+          to read.
+        </p>
+
+        <div class="pct-field-grid">
+          <div class="input-row">
+            <label for="pon-percent">Percentage</label>
+            <div class="pct-inline-input">
               <input id="pon-percent" type="number" value="20" step="any" inputmode="decimal" />
-              <span class="pon-input-suffix" aria-hidden="true">%</span>
+              <span class="pct-inline-suffix" aria-hidden="true">%</span>
             </div>
           </div>
 
-          <div class="input-row pon-input-row">
-            <label for="pon-number">Number (Y)</label>
+          <div class="input-row">
+            <label for="pon-number">Base number</label>
             <input id="pon-number" type="number" value="50" step="any" inputmode="decimal" />
-          </div>
-
-          <div class="input-row action-row pon-action-row">
-            <button class="calculator-button full-width" type="button" id="pon-calc">
-              Calculate Percentage
-            </button>
           </div>
         </div>
 
-        <aside class="pon-insight-panel" aria-label="Result summary">
-          <div class="pon-result-shell">
-            <div class="result" id="pon-result" aria-live="polite"></div>
-            <div class="result-detail" id="pon-result-detail" aria-live="polite"></div>
+        <div class="pct-actions">
+          <p class="pct-stale-note" id="pon-stale-note" hidden aria-hidden="true">
+            Inputs changed. Calculate again to refresh the answer.
+          </p>
+          <button class="calculator-button full-width" type="button" id="pon-calc">
+            Calculate percentage
+          </button>
+        </div>
+      </div>
+
+      <aside class="pct-answer-card" id="pon-answer-card" aria-label="Percentage of a number answer">
+        <p class="pct-eyebrow">Answer</p>
+        <div class="result pct-answer-value" id="pon-result" aria-live="polite">Result: 10.00</div>
+        <p class="pct-answer-sentence" id="pon-result-detail" aria-live="polite">
+          Formula: (20.00 / 100) x 50.00 = 10.00 | 20.00% of 50.00 is 10.00.
+        </p>
+        <p class="pct-answer-context" id="pon-result-context" aria-live="polite">
+          Formula: (X / 100) x Y.
+        </p>
+
+        <div class="pct-support-list" aria-label="Percentage of a number details">
+          <div class="pct-support-row">
+            <span>Percentage</span>
+            <strong data-pon-snap="percent">20.00%</strong>
           </div>
-          <div class="pon-snapshot-list">
-            <div class="pon-snapshot-row">
-              <span>Percentage (X)</span>
-              <strong data-pon-snap="percent">20.00%</strong>
-            </div>
-            <div class="pon-snapshot-row">
-              <span>Number (Y)</span>
-              <strong data-pon-snap="number">50.00</strong>
-            </div>
-            <div class="pon-snapshot-row">
-              <span>Result</span>
-              <strong data-pon-snap="result">10.00</strong>
-            </div>
-            <div class="pon-snapshot-row">
-              <span>Formula</span>
-              <strong data-pon-snap="formula">(X / 100) x Y</strong>
-            </div>
+          <div class="pct-support-row">
+            <span>Base number</span>
+            <strong data-pon-snap="number">50.00</strong>
           </div>
-        </aside>
-      </section>
-    </div>
+          <div class="pct-support-row">
+            <span>Result</span>
+            <strong data-pon-snap="result">10.00</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
@@ -216,8 +1879,18 @@
   src="/calculators/percentage-calculators/percentage-of-a-number-calculator/module.js?v=20260224"
 ></script>
 
-  <h3>Explanation</h3>
-    <div id="pon-explanation" class="explanation-pane">
+    <section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
+  <div class="pct-cluster-route-switch-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Switch scenario</span>
+      <h2 id="pct-cluster-route-switch-title">Compare another percentage question</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-switch-chips">
+    <a class="pct-cluster-switch-chip" href="/percentage-calculators/percent-change-calculator/">Percent Change</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-difference-calculator/">Percentage Difference</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-increase-calculator/">Percentage Increase</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-decrease-calculator/">Percentage Decrease</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-composition-calculator/">Percentage Composition</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/reverse-percentage-calculator/">Reverse Percentage</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percent-to-fraction-decimal-calculator/">Percent to Fraction/Decimal</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-finder-calculator/">What Percent Is X of Y</a><a class="pct-cluster-switch-chip is-active" href="/percentage-calculators/percentage-of-a-number-calculator/" aria-current="page">Find Percentage of a Number</a>
+  </div>
+</section>
+<div id="pon-explanation" class="explanation-pane pct-explanation">
   <section class="pon-exp-section">
     <h2>How Much Is X% of Y?</h2>
     <p><strong>The short answer:</strong> convert the percentage into a decimal, then multiply it by the number.</p>
@@ -228,7 +1901,15 @@
   </section>
 
   <section class="pon-exp-section">
-    <h3>Results Table</h3>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter the percentage in X and the base value in Y.</li>
+      <li>Click <strong>Calculate percentage</strong> to convert the rate into an amount.</li>
+      <li>Check the formula line to see exactly how the percentage was applied to the base number.</li>
+      <li>Reuse the result for discounts, tax estimates, commissions, or simple percentage checks.</li>
+    </ol>
+
+    <h4>Results Table</h4>
     <div class="table-scroll" tabindex="0">
       <table class="pv-results-table">
         <thead>
@@ -264,40 +1945,23 @@
         </tfoot>
       </table>
     </div>
-  </section>
 
-  <section class="pon-exp-section">
-    <h3>Explanation</h3>
+    <h4>Worked Example</h4>
     <p>
-      This calculation answers the question, "What is X% of Y?" by converting percentage into a
-      ratio and applying it to the base value.
+      If X is <span data-pon="percent">20.00%</span> and Y is
+      <span data-pon="number">50.00</span>, divide 20.00 by 100 to get 0.20. Then multiply 0.20
+      by 50.00 to get <span data-pon="result">10.00</span>.
     </p>
 
-    <ul class="pv-explanation-list">
-      <li>
-        <strong>Read your input values:</strong>
-        Percentage is <span data-pon="percent">20.00%</span> and number is
-        <span data-pon="number">50.00</span>.
-      </li>
-      <li>
-        <strong>Convert percent to decimal form:</strong>
-        Divide percentage by 100.
-      </li>
-      <li>
-        <strong>Multiply by the number:</strong>
-        Apply the decimal to Y to get <span data-pon="result">10.00</span>.
-      </li>
-      <li>
-        <strong>Use for real scenarios:</strong>
-        Works for discounts, taxes, commissions, rates, and grade-based calculations.
-      </li>
-      <li>
-        <strong>Edge compatibility:</strong>
-        Handles decimal percentages, values greater than 100%, and negative inputs.
-      </li>
-    </ul>
+    <h4>How to Interpret Your Result</h4>
+    <p>
+      The result is the exact amount represented by the selected percentage of the base number. If
+      the answer is 10.00, that means 10.00 units out of the base value come from the 20.00% rate.
+      Percentages above 100% can produce values larger than the base number, and negative
+      percentages produce negative amounts.
+    </p>
 
-    <h4>How the Formula Works</h4>
+    <h4>Formula Breakdown</h4>
     <p class="pv-formula-block" data-pon="formula">(X / 100) x Y</p>
     <ol class="pv-formula-steps">
       <li>
@@ -376,13 +2040,62 @@
     </div>
   </section>
 
-  <section class="pon-exp-section">
+  <section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
+  <div class="pct-cluster-related-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Keep exploring</span>
+      <h2 id="pct-cluster-related-title">More percentage calculators in the new design</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-related-links">
+    <a class="pct-cluster-related-link" href="/percentage-calculators/percent-change-calculator/">
+      <span class="pct-cluster-related-card-title">Percent Change</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-difference-calculator/">
+      <span class="pct-cluster-related-card-title">Percentage Difference</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-increase-calculator/">
+      <span class="pct-cluster-related-card-title">Percentage Increase</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-decrease-calculator/">
+      <span class="pct-cluster-related-card-title">Percentage Decrease</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-composition-calculator/">
+      <span class="pct-cluster-related-card-title">Percentage Composition</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/reverse-percentage-calculator/">
+      <span class="pct-cluster-related-card-title">Reverse Percentage</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percent-to-fraction-decimal-calculator/">
+      <span class="pct-cluster-related-card-title">Percent to Fraction/Decimal</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-finder-calculator/">
+      <span class="pct-cluster-related-card-title">What Percent Is X of Y</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link is-active" href="/percentage-calculators/percentage-of-a-number-calculator/" aria-current="page">
+      <span class="pct-cluster-related-card-title">Find Percentage of a Number</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a>
+  </div>
+</section>
+
+<section class="pon-exp-section">
     <h3>Important Notes</h3>
-    <ul class="pv-explanation-list">
-      <li><strong>The percentage is the rate:</strong> the number is the base value the rate is applied to.</li>
-      <li><strong>Percent means per hundred:</strong> this is why the formula divides X by 100 before multiplying.</li>
-      <li><strong>Results can exceed the base number:</strong> percentages above 100% produce values larger than Y.</li>
-      <li><strong>Negative values are valid:</strong> the same formula works for signed numbers and signed percentages.</li>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> This calculator applies the standard percentage formula and rounds displayed values to two decimals.</li>
+      <li><strong>Disclaimer:</strong> Use the result as a quick calculation aid; invoices, tax filings, and contracts may require your own validated figures.</li>
+      <li><strong>Assumptions:</strong> X is treated as a percent rate and Y is treated as the full base amount the rate applies to.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>
@@ -390,39 +2103,20 @@
   </div>
 </div>
         </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
-        </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="pct-cluster-site-footer">
+  <div class="pct-cluster-wrap pct-cluster-site-footer-inner">
+    <nav class="pct-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="pct-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
     <script type="module" src="/calculators/percentage-calculators/percentage-of-a-number-calculator/module.js?v=20260224"></script>
   </body>
 </html>

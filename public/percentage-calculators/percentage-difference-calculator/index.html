@@ -17,414 +17,8 @@
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/#softwareapplication","name":"Percentage Difference Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/","description":"Calculate the symmetric percentage difference between two values using their average as the baseline.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Percentage Calculators","item":"https://calchowmuch.com/percentage-calculators/"},{"@type":"ListItem","position":3,"name":"Percentage Difference Calculator","item":"https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/"}]}]}</script>
-    <style data-route-critical="true">
-      /* critical source: /assets/css/core-tokens.css */
-      /* Core shared design tokens for isolated route bundles. */
-      :root {
-        color-scheme: dark;
-        --color-blue-400: #60a5fa;
-        --color-blue-500: #3b82f6;
-        --color-blue-600: #2563eb;
-        --color-cyan-400: #22d3ee;
-        --color-cyan-500: #06b6d4;
-        --color-cyan-600: #0891b2;
-        --color-green-400: #4ade80;
-        --color-green-500: #10b981;
-        --color-emerald-500: #059669;
-        --color-orange-400: #fb923c;
-        --color-orange-500: #f97316;
-        --color-red-500: #dc2626;
-        --color-violet-400: #a78bfa;
-        --color-violet-500: #8b5cf6;
-        --color-indigo-500: #6366f1;
-        --color-yellow-400: #facc15;
-        --color-slate-50: #f8fafc;
-        --color-slate-100: #f1f5f9;
-        --color-slate-200: #e2e8f0;
-        --color-slate-300: #cbd5e1;
-        --color-slate-400: #94a3b8;
-        --color-slate-500: #64748b;
-        --color-slate-600: #475569;
-        --color-slate-700: #334155;
-        --color-slate-800: #1e293b;
-        --color-slate-900: #0f172a;
-        --color-slate-950: #020617;
-        --gradient-bg-main: linear-gradient(
-          to bottom right,
-          var(--color-slate-900),
-          #172554,
-          var(--color-slate-900)
-        );
-        --gradient-bg-card: linear-gradient(
-          to bottom right,
-          rgba(30, 41, 59, 0.85),
-          rgba(15, 23, 42, 0.85)
-        );
-        --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
-        --gradient-brand-text: linear-gradient(
-          to right,
-          var(--color-blue-400),
-          var(--color-cyan-400),
-          var(--color-blue-400)
-        );
-        --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
-        --page-bg: #0b1220;
-        --page-bg-accent: #0f172a;
-        --scrollbar-track: #0b1220;
-        --scrollbar-thumb: #334155;
-        --scrollbar-thumb-hover: #475569;
-        --shell-bg: rgba(15, 23, 42, 0.65);
-        --panel-bg: #0f172a;
-        --header-bg: transparent;
-        --header-text: #e2e8f0;
-        --muted-text: #94a3b8;
-        --border-color: rgba(51, 65, 85, 0.6);
-        --shell-border: rgba(51, 65, 85, 0.6);
-        --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
-        --accent: #3b82f6;
-        --accent-strong: #06b6d4;
-        --pill-bg: rgba(30, 41, 59, 0.8);
-        --pill-border: rgba(51, 65, 85, 0.7);
-      }
-
-      /* critical source: /assets/css/theme-premium-dark.css */
-      :root {
-        color-scheme: dark;
-        --color-blue-400: #60a5fa;
-        --color-blue-500: #3b82f6;
-        --color-blue-600: #2563eb;
-        --color-cyan-400: #22d3ee;
-        --color-cyan-500: #06b6d4;
-        --color-cyan-600: #0891b2;
-        --color-green-400: #4ade80;
-        --color-green-500: #10b981;
-        --color-emerald-500: #059669;
-        --color-orange-400: #fb923c;
-        --color-orange-500: #f97316;
-        --color-red-500: #dc2626;
-        --color-violet-400: #a78bfa;
-        --color-violet-500: #8b5cf6;
-        --color-indigo-500: #6366f1;
-        --color-yellow-400: #facc15;
-        --color-slate-50: #f8fafc;
-        --color-slate-100: #f1f5f9;
-        --color-slate-200: #e2e8f0;
-        --color-slate-300: #cbd5e1;
-        --color-slate-400: #94a3b8;
-        --color-slate-500: #64748b;
-        --color-slate-600: #475569;
-        --color-slate-700: #334155;
-        --color-slate-800: #1e293b;
-        --color-slate-900: #0f172a;
-        --color-slate-950: #020617;
-        --gradient-bg-main: linear-gradient(
-          to bottom right,
-          var(--color-slate-900),
-          #172554,
-          var(--color-slate-900)
-        );
-        --gradient-bg-card: linear-gradient(
-          to bottom right,
-          rgba(30, 41, 59, 0.85),
-          rgba(15, 23, 42, 0.85)
-        );
-        --gradient-brand-primary: linear-gradient(to right, var(--color-blue-600), var(--color-cyan-600));
-        --gradient-brand-text: linear-gradient(
-          to right,
-          var(--color-blue-400),
-          var(--color-cyan-400),
-          var(--color-blue-400)
-        );
-        --shadow-glow-blue: 0 10px 18px -6px rgba(37, 99, 235, 0.55);
-        --page-bg: #0b1220;
-        --page-bg-accent: #0f172a;
-        --scrollbar-track: #0b1220;
-        --scrollbar-thumb: #334155;
-        --scrollbar-thumb-hover: #475569;
-        --shell-bg: rgba(15, 23, 42, 0.65);
-        --panel-bg: #0f172a;
-        --header-bg: transparent;
-        --header-text: #e2e8f0;
-        --muted-text: #94a3b8;
-        --border-color: rgba(51, 65, 85, 0.6);
-        --shell-border: rgba(51, 65, 85, 0.6);
-        --panel-shadow: 0 16px 36px rgba(2, 6, 23, 0.55);
-        --accent: #3b82f6;
-        --accent-strong: #06b6d4;
-        --pill-bg: rgba(30, 41, 59, 0.8);
-        --pill-border: rgba(51, 65, 85, 0.7);
-      }
-
-      body {
-        background-color: var(--page-bg);
-        background-image: var(--gradient-bg-main);
-        color: var(--header-text);
-      }
-
-      body .page {
-        background: var(--shell-bg);
-        border: 1px solid var(--shell-border);
-      }
-
-      body .site-header {
-        color: var(--header-text);
-      }
-
-      body .site-header span {
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      body .top-nav button,
-      body .top-nav .top-nav-link {
-        background: rgba(30, 41, 59, 0.7);
-        border: 1px solid rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-200);
-        box-shadow: none;
-      }
-
-      body .top-nav button:hover,
-      body .top-nav .top-nav-link:hover {
-        background: rgba(51, 65, 85, 0.8);
-        border-color: rgba(59, 130, 246, 0.5);
-      }
-
-      body .top-nav button.is-active,
-      body .top-nav .top-nav-link.is-active {
-        background: var(--gradient-brand-primary);
-        border-color: rgba(59, 130, 246, 0.6);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .nav-category-toggle {
-        color: var(--color-slate-400);
-      }
-
-      body .nav-category-indicator {
-        color: var(--color-slate-200);
-      }
-
-      body .left-nav .nav-item {
-        background: rgba(30, 41, 59, 0.7);
-        border-color: rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-200);
-      }
-
-      body .left-nav .nav-item.is-active {
-        background: var(--gradient-brand-primary);
-        border-color: rgba(59, 130, 246, 0.7);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .panel,
-      body .ads-column {
-        background: var(--gradient-bg-card);
-        border-color: var(--shell-border);
-        box-shadow: var(--panel-shadow);
-      }
-
-      body .ad-panel {
-        background: rgba(15, 23, 42, 0.78);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-      }
-
-      body .panel h1,
-      body .panel h3 {
-        color: var(--header-text);
-      }
-
-      body .panel h1,
-      body .panel h3 {
-        position: relative;
-      }
-
-      body .panel h1::after,
-      body .panel h3::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -6px;
-        height: 2px;
-        background: linear-gradient(to right, rgba(59, 130, 246, 0.6), rgba(6, 182, 212, 0.2));
-      }
-
-      body .calculator-ui label,
-      body .calculator-ui .helper,
-      body .panel .placeholder {
-        color: var(--muted-text);
-      }
-
-      body .calculator-ui input[type='number'],
-      body .calculator-ui input[type='text'],
-      body .calculator-ui input[type='email'],
-      body .calculator-ui input[type='password'],
-      body .calculator-ui input[type='search'],
-      body .calculator-ui input[type='tel'],
-      body .calculator-ui input[type='url'],
-      body .calculator-ui input[type='date'],
-      body .calculator-ui input[type='time'],
-      body .calculator-ui input[type='datetime-local'],
-      body .calculator-ui input[type='month'],
-      body .calculator-ui input[type='week'],
-      body .calculator-ui textarea,
-      body .nav-search-input {
-        background: rgba(15, 23, 42, 0.9);
-        border-color: rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-200);
-      }
-
-      body .calculator-ui input::placeholder,
-      body .calculator-ui textarea::placeholder,
-      body .nav-search-input::placeholder {
-        color: var(--color-slate-500);
-      }
-
-      body .calculator-button {
-        background: var(--gradient-brand-primary);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .calculator-button.secondary {
-        background: rgba(30, 41, 59, 0.85);
-        color: var(--color-slate-200);
-        border: 1px solid rgba(51, 65, 85, 0.7);
-        box-shadow: none;
-      }
-
-      body .calculator-button.is-active,
-      body .calculator-button[aria-pressed='true'] {
-        background: #1d4ed8;
-        color: #fff;
-        box-shadow: 0 10px 18px -6px rgba(29, 78, 216, 0.5);
-      }
-
-      body .calculator-ui .result,
-      body .calculator-ui .result-detail {
-        color: var(--color-slate-200);
-      }
-
-      body .calculator-ui .result-scroll,
-      body .graph-panel {
-        background: rgba(15, 23, 42, 0.85);
-        border-color: rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-table,
-      body .calculator-table th,
-      body .calculator-table td {
-        border-color: rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-table thead th,
-      body .calculator-table tfoot td {
-        background: rgba(30, 41, 59, 0.85);
-        color: var(--color-slate-300);
-      }
-
-      body .graph-title {
-        color: var(--color-slate-200);
-      }
-
-      body .graph-y-axis,
-      body .graph-x-axis,
-      body .graph-legend,
-      body .graph-y-label {
-        color: var(--color-slate-400);
-      }
-
-      body .site-footer {
-        background: rgba(15, 23, 42, 0.9);
-        border-top: 1px solid rgba(51, 65, 85, 0.7);
-        color: var(--color-slate-400);
-      }
-
-      body .site-footer a,
-      body .site-footer .footer-divider,
-      body .site-footer .footer-branding {
-        color: var(--color-slate-400);
-      }
-
-      body .site-footer a:hover {
-        color: var(--color-blue-400);
-      }
-
-      body .calculator-ui input[type='range'] {
-        appearance: none;
-        width: 100%;
-        height: 8px;
-        background: transparent;
-        margin: 6px 0;
-      }
-
-      body .calculator-ui input[type='range']::-webkit-slider-runnable-track {
-        height: 8px;
-        background: rgba(30, 41, 59, 0.9);
-        border-radius: 999px;
-        border: 1px solid rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-ui input[type='range']::-webkit-slider-thumb {
-        appearance: none;
-        height: 20px;
-        width: 20px;
-        border-radius: 999px;
-        background: var(--gradient-brand-primary);
-        border: 2px solid rgba(14, 116, 144, 0.6);
-        box-shadow: var(--shadow-glow-blue);
-        margin-top: -6px;
-      }
-
-      body .calculator-ui input[type='range']:focus-visible {
-        outline: 2px solid rgba(59, 130, 246, 0.7);
-        outline-offset: 4px;
-      }
-
-      body .calculator-ui input[type='range']::-moz-range-track {
-        height: 8px;
-        background: rgba(30, 41, 59, 0.9);
-        border-radius: 999px;
-        border: 1px solid rgba(51, 65, 85, 0.7);
-      }
-
-      body .calculator-ui input[type='range']::-moz-range-thumb {
-        height: 20px;
-        width: 20px;
-        border-radius: 999px;
-        background: var(--gradient-brand-primary);
-        border: 2px solid rgba(14, 116, 144, 0.6);
-        box-shadow: var(--shadow-glow-blue);
-      }
-
-      body .calculator-ui input[type='range']::-moz-range-progress {
-        background: rgba(59, 130, 246, 0.6);
-        height: 8px;
-        border-radius: 999px;
-      }
-
-      body ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-
-      body ::-webkit-scrollbar-track {
-        background: var(--scrollbar-track);
-        border-radius: 4px;
-      }
-
-      body ::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb);
-        border-radius: 4px;
-        border: 2px solid var(--scrollbar-track);
-      }
-
-      body ::-webkit-scrollbar-thumb:hover {
-        background: var(--scrollbar-thumb-hover);
-      }
-
-      /* critical source: /assets/css/base.css */
+    <style data-percentage-cluster="true">
+      /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
          See known_issues.md KI-007 / KI-010. */
@@ -504,1308 +98,7 @@
         background: var(--scrollbar-thumb-hover, #64748b);
       }
 
-      /* critical source: /assets/css/core-shell.css */
-      .page {
-        height: 100vh;
-        max-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-width: none;
-        width: min(1920px, calc(100vw - 48px));
-        margin: 8px auto 0;
-        padding: 14px 14px 0 14px;
-        background: var(--shell-bg);
-        border-radius: 28px;
-      }
-
-      body[data-page='calculator'] .page,
-      body[data-page='home'] .page {
-        width: 100vw;
-        max-width: none;
-        margin: 0;
-        padding: 0;
-        border-radius: 0;
-        gap: 0;
-        overflow: hidden;
-      }
-
-      html,
-      body {
-        height: 100%;
-      }
-
-      body[data-page='calculator'],
-      body[data-page='home'] {
-        overflow: hidden;
-      }
-
-      .site-header {
-        position: relative;
-        z-index: 5;
-        height: 72px !important;
-        min-height: 72px;
-        max-height: 72px;
-        background: rgba(11, 18, 32, 0.7);
-        color: var(--header-text);
-        border-bottom: 1px solid var(--shell-border);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        overflow: hidden;
-      }
-
-      .site-header-inner {
-        height: 72px;
-        min-height: 72px;
-        max-height: 72px;
-        max-width: 1800px;
-        margin: 0 auto;
-        padding: 0 24px;
-        display: grid;
-        grid-template-columns: minmax(220px, 1fr) minmax(240px, 2fr) minmax(220px, 1fr);
-        align-items: center;
-        gap: 16px;
-      }
-
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-      }
-
-      .brand-logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        background: var(--gradient-brand-primary);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        box-shadow: var(--shadow-glow-blue);
-        flex-shrink: 0;
-      }
-
-      .brand-logo-icon svg {
-        width: 22px;
-        height: 22px;
-      }
-
-      .brand-block {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        min-width: 0;
-      }
-
-      .brand-name {
-        font-size: var(--text-xl);
-        font-weight: var(--font-bold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        white-space: nowrap;
-      }
-
-      .brand-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 11px;
-        font-weight: var(--font-semibold);
-        color: var(--color-orange-400, #fb923c);
-        text-transform: none;
-        letter-spacing: 0.02em;
-      }
-
-      .brand-badge:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 6px;
-      }
-
-      .brand-badge-icon {
-        font-size: 12px;
-      }
-
-      body .site-header .brand-logo-icon,
-      body .site-header .brand-badge-icon,
-      body .site-header .brand-badge span {
-        background: none;
-        -webkit-background-clip: border-box;
-        background-clip: border-box;
-        color: inherit;
-      }
-
-      .header-center {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        min-width: 0;
-      }
-
-      .header-title {
-        font-size: var(--text-2xl);
-        font-weight: var(--font-semibold);
-        background: var(--gradient-brand-text);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .header-subtitle {
-        font-size: var(--text-xs);
-        color: var(--muted-text);
-        margin-top: 2px;
-      }
-
-      .header-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        min-width: 0;
-      }
-
-      .header-search {
-        position: relative;
-        width: min(320px, 40vw);
-        min-width: 180px;
-      }
-
-      .header-search-icon {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--muted-text);
-        display: inline-flex;
-      }
-
-      body .site-header .header-search-icon {
-        background: none;
-        -webkit-background-clip: border-box;
-        background-clip: border-box;
-        color: var(--muted-text);
-      }
-
-      .header-search-icon svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      .header-search-input {
-        width: 100%;
-        padding: 10px 12px 10px 38px;
-        border-radius: 999px;
-        border: 1px solid var(--border-color);
-        background: rgba(15, 23, 42, 0.85);
-        color: var(--header-text);
-        font-size: var(--text-sm);
-        outline: none;
-      }
-
-      .header-search-input::placeholder {
-        color: var(--muted-text);
-      }
-
-      .header-search-input:focus-visible {
-        border-color: rgba(59, 130, 246, 0.6);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
-      }
-
-      .top-nav {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 2px 12px 0;
-        flex-wrap: nowrap;
-        min-height: 40px;
-        max-height: 40px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-gutter: stable;
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .top-nav button,
-      .top-nav .top-nav-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-        border: 1px solid var(--accent-strong);
-        color: #ffffff;
-        padding: 8px 18px;
-        border-radius: 10px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        cursor: pointer;
-        white-space: nowrap;
-        flex-shrink: 0;
-        min-height: 38px;
-        line-height: 1.4;
-        text-decoration: none;
-        transition:
-          background 0.15s ease,
-          color 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      .top-nav .nav-icon {
-        font-size: 14px;
-        line-height: 1;
-        vertical-align: middle;
-        display: inline-block;
-        margin-right: 4px;
-      }
-
-      .top-nav .nav-icon-right {
-        margin-right: 0;
-        margin-left: 2px;
-      }
-
-      .top-nav .nav-label {
-        vertical-align: middle;
-        display: inline-block;
-      }
-
-      .top-nav button:hover,
-      .top-nav .top-nav-link:hover {
-        background: var(--accent-strong);
-      }
-
-      .top-nav button:focus-visible,
-      .top-nav .top-nav-link:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
-      .top-nav button.is-active,
-      .top-nav .top-nav-link.is-active {
-        background: var(--accent);
-        color: #ffffff;
-        border-color: var(--accent);
-      }
-
-      .layout-main {
-        display: grid;
-        grid-template-columns: minmax(200px, 230px) minmax(0, 1fr) minmax(180px, 220px);
-        grid-template-rows: minmax(0, 1fr);
-        gap: 16px;
-        padding: 0;
-        min-height: 0;
-        flex: 1 1 auto;
-        margin-top: 12px;
-        margin-bottom: 0.5rem;
-      }
-
-      .left-nav {
-        /* ISS-DESIGN-001: left nav must remain flat (no border/background) */
-        /* to give visual dominance to the calculator area */
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        padding: 14px;
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-        height: 100%;
-        margin-left: -4px;
-        position: relative;
-      }
-
-      /* Edge glow effect */
-      .left-nav::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 2px;
-        height: 100%;
-        background: linear-gradient(
-          180deg,
-          transparent 0%,
-          rgba(102, 126, 234, 0.4) 20%,
-          rgba(102, 126, 234, 0.6) 50%,
-          rgba(102, 126, 234, 0.4) 80%,
-          transparent 100%
-        );
-        opacity: 0.45;
-        pointer-events: none;
-      }
-
-      .left-nav-title {
-        margin: 0 0 14px;
-        font-size: var(--text-xl);
-        font-weight: var(--font-semibold);
-      }
-
-      #left-nav-content {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .nav-search {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        background: var(--panel-bg);
-        padding-bottom: 8px;
-      }
-
-      .nav-search-input {
-        width: 100%;
-        padding: var(--calculator-input-padding);
-        border-radius: var(--calculator-input-radius);
-        border: 1px solid var(--border-color);
-        font-size: var(--text-sm);
-        font-family: inherit;
-        background: var(--panel-bg);
-      }
-
-      .nav-category {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .nav-category-toggle {
-        width: 100%;
-        border: none;
-        background: transparent;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 6px 4px;
-        color: var(--muted-text);
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        cursor: pointer;
-      }
-
-      .nav-category-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 8px;
-      }
-
-      .nav-category-label {
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .nav-category-indicator {
-        font-weight: 600;
-        color: var(--header-text);
-        flex-shrink: 0;
-      }
-
-      .nav-category-items {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      /* ── Finance Premium Nav — glassmorphism accordion ── */
-
-      .fin-nav-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      /* ── Category Group ── */
-      .fin-nav-group {
-        border-radius: 12px;
-        transition:
-          background 0.22s ease,
-          box-shadow 0.22s ease;
-      }
-
-      .fin-nav-group.is-expanded {
-        background: linear-gradient(145deg, rgba(30, 58, 138, 0.18), rgba(15, 23, 42, 0.2));
-        border: 1.5px solid rgba(56, 189, 248, 0.6);
-        box-shadow:
-          0 0 8px rgba(56, 189, 248, 0.3),
-          inset 0 0 5px rgba(56, 189, 248, 0.15),
-          0 8px 24px rgba(0, 0, 0, 0.2);
-      }
-
-      /* ── Toggle Button ── */
-      .fin-nav-toggle {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 14px;
-        border: none;
-        border-radius: 12px;
-        background: transparent;
-        color: #e2e8f0;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        cursor: pointer;
-        transition:
-          background 0.12s ease,
-          box-shadow 0.12s ease,
-          padding-left 0.15s ease;
-      }
-
-      .fin-nav-toggle:hover {
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        background: rgba(59, 130, 246, 0.1);
-        box-shadow:
-          0 0 24px rgba(0, 120, 255, 0.35),
-          0 0 48px rgba(59, 130, 246, 0.12);
-        padding-left: 18px;
-      }
-
-      .fin-nav-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 12px;
-      }
-
-      /* Subcategory icon */
-      .fin-nav-toggle-icon {
-        font-size: 16px;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-
-      /* Label — allow wrapping so full text is always visible */
-      .fin-nav-toggle-label {
-        flex: 1;
-        text-align: left;
-        white-space: normal;
-        overflow: visible;
-        line-height: 1.3;
-      }
-
-      /* ── Chevron Arrow ── */
-      .fin-nav-chevron {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1.5px solid rgba(96, 165, 250, 0.65);
-        color: #7dd3fc;
-        flex-shrink: 0;
-        box-shadow:
-          0 0 10px rgba(56, 189, 248, 0.35),
-          0 0 20px rgba(59, 130, 246, 0.15);
-        transition:
-          transform 0.2s ease,
-          background 0.12s ease,
-          border-color 0.12s ease,
-          box-shadow 0.12s ease;
-      }
-
-      .fin-nav-chevron-svg {
-        width: 15px;
-        height: 15px;
-      }
-
-      .fin-nav-group.is-expanded .fin-nav-chevron {
-        transform: rotate(90deg);
-        background: rgba(37, 99, 235, 0.4);
-        border-color: rgba(125, 211, 252, 1);
-        color: #bae6fd;
-        box-shadow:
-          0 0 16px rgba(56, 189, 248, 0.65),
-          0 0 32px rgba(59, 130, 246, 0.35),
-          0 0 48px rgba(96, 165, 250, 0.15);
-      }
-
-      .fin-nav-toggle:hover .fin-nav-chevron {
-        border-color: rgba(125, 211, 252, 1);
-        color: #bae6fd;
-        box-shadow:
-          0 0 14px rgba(56, 189, 248, 0.55),
-          0 0 30px rgba(59, 130, 246, 0.25);
-      }
-
-      /* ── Items Container — animated expand/collapse ── */
-      .fin-nav-items {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        padding: 0 8px;
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition:
-          max-height 0.22s ease,
-          opacity 0.15s ease,
-          padding 0.22s ease;
-      }
-
-      .fin-nav-group.is-expanded .fin-nav-items {
-        max-height: 600px;
-        opacity: 1;
-        padding: 6px 8px 10px;
-      }
-
-      /* ── Calculator Item (Pill) ── */
-      .fin-nav-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 14px;
-        border-radius: 24px;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        background: rgba(15, 23, 42, 0.35);
-        color: #cbd5e1;
-        font-size: 13px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition:
-          background 0.12s ease,
-          border-color 0.12s ease,
-          box-shadow 0.12s ease,
-          transform 0.12s ease,
-          color 0.12s ease;
-      }
-
-      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item {
-        align-items: flex-start;
-        white-space: normal;
-        line-height: 1.32;
-        overflow: visible;
-        text-overflow: clip;
-      }
-
-      .fin-nav-container[data-fin-nav-cluster='time-and-date'] .fin-nav-item-icon {
-        margin-top: 2px;
-      }
-
-      .fin-nav-item-icon {
-        font-size: 14px;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-
-      .fin-nav-item:hover {
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(59, 130, 246, 0.1));
-        border-color: rgba(96, 165, 250, 0.5);
-        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
-        transform: scale(1.02);
-        color: #e0f2fe;
-      }
-
-      .fin-nav-item.is-active {
-        border: 1px solid rgba(147, 197, 253, 0.8);
-        border-left: 3px solid #f8fafc;
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.85) 0%,
-          rgba(79, 70, 229, 0.9) 50%,
-          rgba(102, 126, 234, 0.85) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        font-weight: 600;
-        box-shadow:
-          0 6px 12px rgba(102, 126, 234, 0.22),
-          0 0 14px rgba(59, 130, 246, 0.25);
-      }
-
-      .fin-nav-item.is-active:hover {
-        transform: none;
-      }
-
-      /* Search integration */
-      .fin-nav-item.is-hidden {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group {
-        background: transparent;
-        box-shadow: none;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group .fin-nav-items {
-        max-height: 600px;
-        opacity: 1;
-        padding: 6px 8px 10px;
-      }
-
-      #left-nav-content.is-searching .fin-nav-group.is-hidden {
-        display: none;
-      }
-
-      .nav-category.is-collapsed .nav-category-items {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .nav-category.is-search-open .nav-category-items {
-        display: flex;
-      }
-
-      #left-nav-content.is-searching .nav-category.is-hidden {
-        display: none;
-      }
-
-      .left-nav .subcategory-title {
-        margin: 16px 0 8px;
-        font-size: var(--text-xs);
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        color: var(--muted-text);
-      }
-
-      .left-nav .nav-item {
-        width: 100%;
-        text-align: left;
-        background: var(--pill-bg);
-        border-radius: 12px;
-        padding: 10px 12px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        color: var(--header-text);
-        display: block;
-        text-decoration: none;
-        margin-bottom: 0;
-        border: 1px solid var(--pill-border);
-        cursor: pointer;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        position: relative;
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      /* Ripple effect structure */
-      .left-nav .nav-item::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(102, 126, 234, 0.3);
-        transform: translate(-50%, -50%);
-        transition:
-          width 0.6s ease,
-          height 0.6s ease,
-          opacity 0.6s ease;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .left-nav .nav-item.ripple::after {
-        width: 300%;
-        height: 300%;
-        opacity: 0;
-      }
-
-      .left-nav .nav-item.is-active {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        border-color: var(--accent-strong);
-        box-shadow:
-          0 8px 14px rgba(102, 126, 234, 0.24),
-          0 0 20px rgba(102, 126, 234, 0.3);
-        position: relative;
-      }
-
-      /* Pulsing glow effect on active item */
-      .left-nav .nav-item.is-active::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(79, 70, 229, 0.5));
-        filter: blur(8px);
-        animation: pulse 2s ease-in-out infinite;
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      .left-nav .nav-item.is-hidden {
-        display: none;
-      }
-
-      /* Enhanced hover with multi-layer shadows */
-      .left-nav .nav-item:hover:not(.is-active) {
-        background: rgba(102, 126, 234, 0.08);
-        border-color: rgba(102, 126, 234, 0.6);
-        box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.05),
-          0 4px 8px rgba(102, 126, 234, 0.15),
-          0 8px 16px rgba(102, 126, 234, 0.1);
-      }
-
-      /* Enhanced styles for Home Loan, Credit Cards, Auto Loans, and Time & Date navigation items */
-      .nav-category[data-id='home-loan'] .nav-item,
-      .nav-category[data-id='credit-cards'] .nav-item,
-      .nav-category[data-id='auto-loans'] .nav-item,
-      .nav-category[data-id='time-and-date'] .nav-item {
-        border: 2px solid rgba(102, 126, 234, 0.3);
-        border-left: 4px solid rgba(102, 126, 234, 0.5);
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease,
-          border-left-color 0.15s ease;
-      }
-
-      .nav-category[data-id='home-loan'] .nav-item:hover,
-      .nav-category[data-id='credit-cards'] .nav-item:hover,
-      .nav-category[data-id='auto-loans'] .nav-item:hover,
-      .nav-category[data-id='time-and-date'] .nav-item:hover {
-        border-left: 4px solid rgba(102, 126, 234, 0.9);
-        border-color: rgba(102, 126, 234, 0.4);
-        background: rgba(102, 126, 234, 0.1);
-      }
-
-      .nav-category[data-id='home-loan'] .nav-item.is-active,
-      .nav-category[data-id='credit-cards'] .nav-item.is-active,
-      .nav-category[data-id='auto-loans'] .nav-item.is-active,
-      .nav-category[data-id='time-and-date'] .nav-item.is-active {
-        border: 2px solid var(--accent-strong);
-        border-left: 4px solid #ffffff;
-      }
-
-      .center-column {
-        display: grid;
-        /* REQ-20260119-004: Pane width distribution - Calculation 37.5%, Explanation 62.5% (3:5 ratio) */
-        grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
-        grid-template-rows: minmax(0, 1fr);
-        gap: 16px;
-        min-height: 0;
-        height: 100%;
-      }
-
-      .panel {
-        background: var(--panel-bg);
-        border: 2px solid var(--shell-border);
-        border-radius: 12px;
-        box-shadow: var(--panel-shadow);
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        min-height: 0;
-        height: 100%;
-      }
-
-      .panel-span-all {
-        grid-column: 1 / -1;
-      }
-
-      .panel-scroll {
-        overflow-y: scroll;
-        scrollbar-gutter: stable;
-        flex: 1;
-        min-height: 0;
-      }
-
-      .panel h1,
-      .panel h3 {
-        margin: 0;
-        font-size: var(--text-2xl);
-        font-weight: var(--font-bold);
-      }
-
-      .panel .placeholder {
-        color: var(--muted-text);
-        font-size: var(--text-sm);
-      }
-
-      .ads-column {
-        display: grid;
-        grid-template-rows: minmax(220px, 1fr);
-        gap: 12px;
-        min-height: 0;
-        background: var(--panel-bg);
-        border: 2px solid var(--shell-border);
-        border-radius: 12px;
-        padding: 12px;
-        height: 100%;
-      }
-
-      .ad-panel {
-        background: #f8f9fa;
-        border: 1px solid #d9e2ef;
-        border-radius: 12px;
-        padding: 10px;
-        min-height: 250px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .ad-panel .adsbygoogle {
-        display: block;
-        width: 100%;
-        min-height: 250px;
-      }
-
-      .site-footer {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
-        background: #ffffff;
-        border: none;
-        border-top: 1px solid #e5e7eb;
-        border-radius: 0;
-        margin-top: 0.5rem;
-        padding: 1rem 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        color: #4b5563;
-        font-size: var(--text-sm);
-        font-weight: 400;
-        flex-wrap: nowrap;
-        white-space: nowrap;
-      }
-
-      .site-footer a {
-        color: #4b5563;
-        text-decoration: none;
-        transition: color 0.15s ease;
-      }
-
-      .site-footer a:hover {
-        color: #4f46e5;
-      }
-
-      .site-footer .footer-divider {
-        color: #4b5563;
-        user-select: none;
-      }
-
-      .site-footer .footer-branding {
-        color: #4b5563;
-      }
-
-      @keyframes shellLift {
-        from {
-          opacity: 0;
-          transform: translateY(14px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes headerSlide {
-        from {
-          opacity: 0;
-          transform: translateY(-8px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes panelReveal {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Keyframe animations for navigation enhancements */
-      @keyframes gradientShift {
-        0% {
-          background-position: 0% 50%;
-        }
-
-        50% {
-          background-position: 100% 50%;
-        }
-
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 0.4;
-          transform: scale(1);
-        }
-
-        50% {
-          opacity: 0.8;
-          transform: scale(1.05);
-        }
-      }
-
-      @keyframes edgeGlow {
-        0%,
-        100% {
-          opacity: 0.3;
-        }
-
-        50% {
-          opacity: 1;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .page,
-        .site-header,
-        .top-nav,
-        .layout-main > * {
-          animation: none;
-        }
-
-        .left-nav::before,
-        .left-nav .nav-item.is-active,
-        .left-nav .nav-item.is-active::before {
-          animation: none;
-        }
-      }
-
-      @media (max-width: 1200px) {
-        .center-column {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 1024px) {
-        .site-header-inner {
-          padding: 0 16px;
-          grid-template-columns: minmax(200px, 1fr) minmax(200px, 2fr) minmax(160px, 1fr);
-        }
-
-        .header-title {
-          font-size: var(--text-xl);
-        }
-
-        .layout-main {
-          grid-template-columns: 200px minmax(0, 1fr);
-          padding: 0;
-        }
-
-        .ads-column {
-          grid-column: 1 / -1;
-          grid-template-columns: minmax(200px, 1fr);
-          grid-template-rows: minmax(220px, 1fr);
-        }
-      }
-
-      @media (max-width: 860px) {
-        .header-subtitle {
-          display: none;
-        }
-
-        .header-search {
-          width: min(240px, 46vw);
-          min-width: 140px;
-        }
-
-        .page {
-          margin: 12px;
-          padding: 16px;
-        }
-
-        .layout-main {
-          grid-template-columns: 1fr;
-        }
-
-        .left-nav {
-          margin-left: 0;
-        }
-
-        .ads-column {
-          display: none;
-        }
-      }
-
-      @media (max-width: 700px) {
-        .brand-name {
-          font-size: var(--text-base);
-        }
-
-        .header-title {
-          font-size: var(--text-base);
-        }
-
-        .header-search {
-          width: 160px;
-        }
-      }
-
-      /* Math Navigation Styles */
-      .math-nav-container {
-        background: var(--shell-bg);
-        border-radius: 12px;
-        box-shadow:
-          0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        padding: 1rem;
-        width: 256px;
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .math-nav-category {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .math-nav-category-toggle {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 12px;
-        border-radius: 8px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        gap: 8px;
-        transition: background-color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover {
-        background: rgba(99, 102, 241, 0.08);
-      }
-
-      .math-nav-category-toggle:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
-      .math-nav-category-left {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .math-nav-category-icon {
-        width: 14px;
-        height: 14px;
-        color: var(--muted-text);
-        flex-shrink: 0;
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-icon {
-        color: var(--accent);
-      }
-
-      .math-nav-category-name {
-        font-size: var(--text-sm);
-        font-weight: var(--font-semibold);
-        color: var(--muted-text);
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-name {
-        color: var(--header-text);
-      }
-
-      .math-nav-category-chevron {
-        width: 14px;
-        height: 14px;
-        color: var(--muted-text);
-        flex-shrink: 0;
-        transition: color 0.15s ease;
-      }
-
-      .math-nav-category-toggle:hover .math-nav-category-chevron {
-        color: var(--accent);
-      }
-
-      .math-nav-category-items {
-        margin-left: 0;
-        margin-top: 4px;
-        padding-left: 0;
-        border-left: none;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .math-nav-category.is-collapsed .math-nav-category-items {
-        display: none;
-      }
-
-      #left-nav-content.is-searching .math-nav-category.is-search-open .math-nav-category-items {
-        display: flex;
-      }
-
-      #left-nav-content.is-searching .math-nav-category.is-hidden {
-        display: none;
-      }
-
-      .math-nav-item {
-        width: 100%;
-        text-align: left;
-        padding: 10px 8px;
-        border-radius: 12px;
-        font-size: var(--text-sm);
-        font-weight: var(--font-medium);
-        color: var(--header-text);
-        background: var(--pill-bg);
-        border: 1px solid var(--pill-border);
-        cursor: pointer;
-        display: block;
-        text-decoration: none;
-        transition:
-          background 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease,
-          color 0.15s ease;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .math-nav-item:hover {
-        background: rgba(102, 126, 234, 0.08);
-        border-color: rgba(102, 126, 234, 0.6);
-        box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.05),
-          0 4px 8px rgba(102, 126, 234, 0.15),
-          0 8px 16px rgba(102, 126, 234, 0.1);
-      }
-
-      .math-nav-item:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: -2px;
-      }
-
-      .math-nav-item.is-active {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        background-size: 200% 200%;
-        animation: gradientShift 4s ease infinite;
-        color: #ffffff;
-        border-color: var(--accent-strong);
-        box-shadow:
-          0 8px 14px rgba(102, 126, 234, 0.24),
-          0 0 20px rgba(102, 126, 234, 0.3);
-      }
-
-      .math-nav-item.is-active:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(102, 126, 234, 0.9) 0%,
-          rgba(79, 70, 229, 0.95) 50%,
-          rgba(102, 126, 234, 0.9) 100%
-        );
-        color: #ffffff;
-      }
-
-      .math-nav-item.is-hidden {
-        display: none;
-      }
-
-      /* Mobile Navigation Drawer */
-      .mobile-menu-toggle {
-        display: none;
-        /* Desktop default */
-        background: transparent;
-        border: none;
-        color: var(--header-text);
-        padding: 8px;
-        margin-right: 8px;
-        cursor: pointer;
-        z-index: 20;
-      }
-
-      @media (max-width: 860px) {
-        .mobile-menu-toggle {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .left-nav {
-          position: fixed;
-          top: 72px;
-          /* Below header */
-          left: 0;
-          bottom: 0;
-          width: 280px;
-          background: var(--shell-bg);
-          z-index: 100;
-          transform: translateX(-100%);
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
-          border-right: 1px solid var(--shell-border);
-          margin-left: 0;
-          padding-bottom: 2rem;
-        }
-
-        .left-nav.is-mobile-open {
-          transform: translateX(0);
-        }
-
-        /* Overlay backdrop */
-        .left-nav.is-mobile-open::after {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 280px;
-          right: -100vw;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.6);
-          backdrop-filter: blur(4px);
-          z-index: -1;
-          pointer-events: auto;
-        }
-      }
-
-      /* critical source: /assets/css/calculator.css */
+      /* assets/css/calculator.css */
       :root {
         --calculator-input-padding: 10px 12px;
         --calculator-input-radius: 10px;
@@ -2588,1727 +881,931 @@
         flex-shrink: 0;
       }
 
-      /* critical source: /assets/css/shared-calculator-ui.css */
-      /* ═══════════════════════════════════════════════════════════════════
-         shared-calculator-ui.css
-         Shared layout + visual rules for the home-loan calculator design family.
-         Used by: home-loan, car-loan, pcp, hire-purchase, leasing,
-                  multiple-car-loan, and all finance calculators.
-
-         DO NOT add @import to this file.
-         ═══════════════════════════════════════════════════════════════════ */
-
-      /* ── Page layout ── */
-
-      .calculator-page-single {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
+      /* calculators/percentage-calculators/shared/cluster-light.css */
+      .pct-cluster-page-shell,
+      .pct-answer-ui,
+      .pct-explanation {
+        --pct-accent: #1f6c9c;
+        --pct-accent-strong: #164b6d;
+        --pct-accent-soft: #eaf5fb;
+        --pct-ink: #163247;
+        --pct-muted: #64798a;
+        --pct-success: #15795b;
+        --pct-danger: #bf5a4b;
+        --pct-surface: rgba(255, 255, 255, 0.96);
+        --pct-surface-soft: #f8fbfd;
+        --pct-line: rgba(106, 135, 153, 0.22);
+        --pct-line-strong: rgba(74, 110, 128, 0.34);
+        --pct-shadow: 0 20px 44px rgba(18, 44, 65, 0.08);
+        --pct-shadow-soft: 0 10px 26px rgba(18, 44, 65, 0.06);
+        --pct-answer-value-size: clamp(2.8rem, 6vw, 4.4rem);
+        color: var(--pct-ink);
       }
 
-      #calc-home-loan .is-hidden {
+      .pct-cluster-page-shell *,
+      .pct-answer-ui * {
+        box-sizing: border-box;
+      }
+
+      .pct-cluster-page-shell {
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top left, rgba(31, 108, 156, 0.12), transparent 28%),
+          radial-gradient(circle at 88% 8%, rgba(145, 210, 233, 0.18), transparent 22%),
+          linear-gradient(180deg, #f7fbfd 0%, #eef7fb 100%);
+      }
+
+      .pct-cluster-wrap,
+      .pct-cluster-center-column {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .pct-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(16px);
+        background: rgba(247, 251, 253, 0.82);
+        border-bottom: 1px solid rgba(106, 135, 153, 0.18);
+      }
+
+      .pct-cluster-site-header-inner {
+        min-height: 72px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .pct-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--pct-ink);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .pct-cluster-brand-mark {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--pct-accent), #6eb8d4);
+        color: #fff;
+        font-size: 20px;
+        font-weight: 900;
+      }
+
+      .pct-cluster-site-label {
+        justify-self: center;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--pct-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pct-cluster-site-links,
+      .pct-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+      }
+
+      .pct-cluster-site-links a,
+      .pct-cluster-footer-links a {
+        color: var(--pct-muted);
+      }
+
+      .pct-cluster-site-links a:hover,
+      .pct-cluster-footer-links a:hover {
+        color: var(--pct-accent-strong);
+      }
+
+      .pct-cluster-layout-main {
+        padding: 40px 0 64px;
+      }
+
+      .pct-cluster-panel {
+        display: grid;
+        gap: 28px;
+      }
+
+      .pct-cluster-page-header {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .pct-cluster-page-kicker,
+      .pct-cluster-switch-kicker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        margin: 0 0 14px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--pct-accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pct-cluster-page-shell #calculator-title {
+        margin: 0;
+        color: var(--pct-ink);
+        font-size: clamp(40px, 6vw, 52px);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+
+      .pct-cluster-page-shell #calculator-title::after {
         display: none;
       }
 
-      #calc-home-loan .home-loan-ui {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+      .pct-cluster-page-intro {
+        margin: 14px auto 0;
+        max-width: 700px;
+        color: var(--pct-muted);
+        font-size: 16px;
+        line-height: 1.65;
       }
 
-      /* ── Finance time-value route overrides (pilot bundle source) ── */
+      .pct-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
 
-      #calc-present-value,
-      #calc-future-value,
-      #calc-present-value-of-annuity,
-      #calc-future-value-of-annuity {
+      .pct-cluster-route-switch,
+      .pct-cluster-related {
+        border: 1px solid var(--pct-line);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 251, 253, 0.98));
+        box-shadow: var(--pct-shadow-soft);
+        padding: 24px;
+      }
+
+      .pct-cluster-route-switch-head,
+      .pct-cluster-related-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .pct-cluster-route-switch h2,
+      .pct-cluster-related h2 {
+        margin: 0;
+        color: var(--pct-ink);
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .pct-cluster-switch-chips {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .pct-cluster-switch-chip {
+        flex: 0 0 auto;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--pct-ink);
+        font-size: 14px;
+        font-weight: 700;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .pct-cluster-switch-chip:hover,
+      .pct-cluster-switch-chip:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--pct-line-strong);
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-cluster-switch-chip.is-active,
+      .pct-cluster-switch-chip[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(31, 108, 156, 0.12), rgba(110, 184, 212, 0.08));
+        border-color: color-mix(in srgb, var(--pct-accent) 34%, white);
+        color: var(--pct-accent-strong);
+      }
+
+      .pct-cluster-related-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .pct-cluster-related-link {
+        display: grid;
+        gap: 10px;
+        min-height: 156px;
+        padding: 18px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--pct-ink);
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .pct-cluster-related-link:hover,
+      .pct-cluster-related-link:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--pct-line-strong);
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-cluster-related-link.is-active,
+      .pct-cluster-related-link[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(31, 108, 156, 0.08), rgba(234, 245, 251, 0.72));
+        border-color: color-mix(in srgb, var(--pct-accent) 24%, white);
+      }
+
+      .pct-cluster-related-card-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .pct-cluster-related-card-copy,
+      .pct-cluster-related-card-meta {
+        color: var(--pct-muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .pct-cluster-related-card-meta {
+        margin-top: auto;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .pct-cluster-site-footer {
+        padding: 0 0 52px;
+      }
+
+      .pct-cluster-site-footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 28px;
+        border: 1px solid var(--pct-line);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: var(--pct-shadow-soft);
+        text-align: center;
+      }
+
+      .pct-cluster-footer-copy {
+        color: var(--pct-muted);
+        font-size: 14px;
+      }
+
+      .pct-answer-ui {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .pct-tool {
+        display: grid;
+        grid-template-columns: minmax(0, 0.96fr) minmax(320px, 0.9fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .pct-input-card,
+      .pct-answer-card {
+        border: 1px solid var(--pct-line);
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), var(--pct-surface-soft));
+        box-shadow: var(--pct-shadow);
+      }
+
+      .pct-input-card {
+        padding: 28px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .pct-answer-card {
+        padding: 28px;
+        display: grid;
+        gap: 18px;
+        position: sticky;
+        top: 84px;
+      }
+
+      .pct-eyebrow {
+        margin: 0;
+        font-size: 0.75rem;
+        line-height: 1.1;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--pct-accent);
+        font-weight: 800;
+      }
+
+      .pct-input-title,
+      .pct-answer-title {
+        margin: 0;
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+        color: var(--pct-ink);
+      }
+
+      .pct-lead,
+      .pct-answer-context,
+      .pct-stale-note,
+      .pct-support-row span,
+      .pct-breakdown-head span,
+      .pct-breakdown-item-name small,
+      .pct-explanation p,
+      .pct-explanation li,
+      .pct-explanation .pv-how-col,
+      .pct-explanation .bor-faq-card p {
+        color: var(--pct-muted);
+      }
+
+      .pct-lead,
+      .pct-answer-context,
+      .pct-stale-note,
+      .pct-explanation p,
+      .pct-explanation li,
+      .pct-explanation .bor-faq-card p {
+        line-height: 1.6;
+      }
+
+      .pct-field-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .pct-answer-ui .input-row {
+        margin: 0;
+      }
+
+      .pct-answer-ui .input-row label,
+      .pct-answer-ui .composition-row-field label {
+        display: block;
+        margin: 0 0 8px;
+        font-size: 0.94rem;
+        font-weight: 700;
+        color: var(--pct-ink);
+      }
+
+      .pct-answer-ui input[type='number'],
+      .pct-answer-ui input[type='text'] {
+        width: 100%;
+        min-height: 54px;
+        padding: 0 16px;
+        border-radius: 18px;
+        border: 1px solid var(--pct-line-strong);
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--pct-ink);
+        font-size: 1rem;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+      }
+
+      .pct-answer-ui input[type='number']:focus,
+      .pct-answer-ui input[type='text']:focus {
+        outline: 2px solid color-mix(in srgb, var(--pct-accent) 24%, white);
+        outline-offset: 2px;
+        border-color: color-mix(in srgb, var(--pct-accent) 40%, white);
+      }
+
+      .pct-inline-input {
+        position: relative;
+      }
+
+      .pct-inline-input input {
+        padding-right: 48px;
+      }
+
+      .pct-inline-suffix {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: var(--pct-accent);
+      }
+
+      .pct-actions {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pct-answer-ui .calculator-button {
+        min-height: 54px;
+        border: 0;
+        border-radius: 999px;
+        font-size: 0.98rem;
+        font-weight: 800;
+      }
+
+      .pct-answer-ui .calculator-button.full-width {
         width: 100%;
       }
 
-      #calc-present-value .home-loan-ui,
-      #calc-future-value .home-loan-ui,
-      #calc-present-value-of-annuity .home-loan-ui,
-      #calc-future-value-of-annuity .home-loan-ui {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+      .pct-answer-ui .calculator-button:not(.secondary) {
+        background: linear-gradient(135deg, var(--pct-accent), var(--pct-accent-strong));
+        color: #fff;
+        box-shadow: 0 14px 28px color-mix(in srgb, var(--pct-accent) 26%, transparent);
       }
 
-      #calc-present-value .mtg-hero,
-      #calc-future-value .mtg-hero,
-      #calc-present-value-of-annuity .mtg-hero,
-      #calc-future-value-of-annuity .mtg-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-        gap: 1.5rem;
-        align-items: start;
+      .pct-answer-ui .calculator-button.secondary {
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
+        border: 1px solid color-mix(in srgb, var(--pct-accent) 18%, white);
       }
 
-      #calc-present-value .mtg-form-panel,
-      #calc-future-value .mtg-form-panel,
-      #calc-present-value-of-annuity .mtg-form-panel,
-      #calc-future-value-of-annuity .mtg-form-panel {
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-      }
-
-      #calc-present-value .mtg-preview-panel,
-      #calc-future-value .mtg-preview-panel,
-      #calc-present-value-of-annuity .mtg-preview-panel,
-      #calc-future-value-of-annuity .mtg-preview-panel {
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-      }
-
-      #calc-present-value .mtg-result-card,
-      #calc-future-value .mtg-result-card,
-      #calc-present-value-of-annuity .mtg-result-card,
-      #calc-future-value-of-annuity .mtg-result-card {
-        min-height: 44px;
-      }
-
-      #calc-present-value .mtg-summary-card,
-      #calc-future-value .mtg-summary-card,
-      #calc-present-value-of-annuity .mtg-summary-card,
-      #calc-future-value-of-annuity .mtg-summary-card {
-        min-height: 96px;
-      }
-
-      /* ── Hero grid (form + preview) ── */
-
-      #calc-home-loan .mtg-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
-        gap: 1.5rem;
-        align-items: start;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        background: none;
-      }
-
-      #calc-home-loan .mtg-form-panel {
-        display: grid;
-        gap: 1.65rem;
-        align-content: start;
-      }
-
-      #calc-home-loan .helper {
+      .pct-stale-note {
         margin: 0;
-        font-size: 0.84rem;
-        line-height: 1.45;
-        color: rgba(226, 232, 240, 0.88);
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid color-mix(in srgb, var(--pct-accent) 16%, white);
+        background: color-mix(in srgb, var(--pct-accent-soft) 72%, white);
+        font-size: 0.88rem;
       }
 
-      /* ── Form inputs ── */
+      .pct-answer-card[data-result-stale='true'] {
+        border-color: color-mix(in srgb, var(--pct-accent) 32%, white);
+        box-shadow: 0 22px 48px color-mix(in srgb, var(--pct-accent) 10%, transparent);
+      }
 
-      #calc-home-loan .input-row {
+      .pct-answer-value {
         margin: 0;
+        font-size: var(--pct-answer-value-size);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        color: var(--pct-accent-strong);
+        font-weight: 900;
+      }
+
+      .pct-answer-value .pct-answer-primary {
+        display: block;
+      }
+
+      .pct-answer-value .pct-answer-legacy {
+        display: grid;
+        gap: 4px;
+        margin-top: 14px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--pct-muted);
+        font-weight: 700;
+      }
+
+      .pct-answer-card[data-trend='increase'] .pct-answer-value {
+        color: var(--pct-success);
+      }
+
+      .pct-answer-card[data-trend='decrease'] .pct-answer-value,
+      .pct-answer-card[data-trend='warning'] .pct-answer-value {
+        color: var(--pct-danger);
+      }
+
+      .pct-answer-sentence {
+        margin: 0;
+        font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+        line-height: 1.35;
+        color: var(--pct-ink);
+        font-weight: 700;
+      }
+
+      .pct-support-list {
+        display: grid;
+        gap: 10px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .pct-support-row {
         display: flex;
-        flex-direction: column;
-        gap: 0.34rem;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .pct-support-row strong,
+      .pct-breakdown-head strong,
+      .pct-breakdown-item-value {
+        color: var(--pct-ink);
+      }
+
+      .pct-support-row strong {
+        text-align: right;
+      }
+
+      .pct-breakdown {
+        display: grid;
+        gap: 10px;
+      }
+
+      .pct-breakdown-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .pct-breakdown-list {
+        display: grid;
+        gap: 10px;
+        max-height: 240px;
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .pct-breakdown-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--pct-line);
+      }
+
+      .pct-breakdown-item-name {
+        display: grid;
+        gap: 3px;
+      }
+
+      .pct-breakdown-item-name strong {
+        color: var(--pct-ink);
+      }
+
+      .pct-breakdown-item-value {
+        font-weight: 800;
+        text-align: right;
+      }
+
+      .composition-mode-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .composition-mode-label {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--pct-muted);
+      }
+
+      .composition-mode-label.is-active {
+        color: var(--pct-accent-strong);
+      }
+
+      .composition-toggle {
+        display: inline-flex;
+      }
+
+      .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .composition-toggle-track {
+        width: 48px;
+        height: 28px;
+        border-radius: 999px;
+        padding: 3px;
+        background: rgba(136, 157, 170, 0.34);
+        border: 1px solid var(--pct-line-strong);
+        transition: background 0.2s ease;
+      }
+
+      .composition-toggle-thumb {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 3px 8px rgba(18, 44, 65, 0.16);
+        transition: transform 0.2s ease;
+      }
+
+      #composition-known-toggle:checked + .composition-toggle-track {
+        background: color-mix(in srgb, var(--pct-accent) 50%, white);
+      }
+
+      #composition-known-toggle:checked + .composition-toggle-track .composition-toggle-thumb {
+        transform: translateX(20px);
+      }
+
+      .composition-rows {
+        display: grid;
+        gap: 12px;
+      }
+
+      .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.8fr) auto;
+        gap: 12px;
+        align-items: end;
+        padding: 14px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.76);
+      }
+
+      .composition-row-field {
         min-width: 0;
       }
 
-      #calc-home-loan label {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: rgba(226, 232, 240, 0.94);
-        line-height: 1.28;
+      .pct-explanation {
+        width: min(100%, 1120px);
+        margin: 32px auto 0;
+        display: grid;
+        gap: 20px;
       }
 
-      #calc-home-loan input[type='number'],
-      #calc-home-loan input[type='month'] {
+      .pct-explanation section {
+        padding: 24px 26px;
+        border-radius: 24px;
+        border: 1px solid var(--pct-line);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), var(--pct-surface-soft));
+        box-shadow: var(--pct-shadow-soft);
+      }
+
+      .pct-explanation h2,
+      .pct-explanation h3,
+      .pct-explanation h4 {
+        margin: 0 0 12px;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        color: var(--pct-ink);
+      }
+
+      .pct-explanation h2 {
+        font-size: clamp(1.55rem, 3vw, 2.2rem);
+      }
+
+      .pct-explanation h3 {
+        font-size: 1.25rem;
+      }
+
+      .pct-explanation .table-scroll {
+        overflow: auto;
+        border-radius: 18px;
+        border: 1px solid var(--pct-line);
+      }
+
+      .pct-explanation .pv-results-table {
         width: 100%;
-        min-height: 38px;
-        border-radius: 0.78rem;
-        border: 1px solid rgba(148, 163, 184, 0.42);
-        background: rgba(15, 23, 42, 0.72);
-        color: #fff;
-        padding: 0.42rem 0.68rem;
-        font-size: 0.84rem;
-        line-height: 1.2;
-        transition:
-          border-color 0.2s ease,
-          box-shadow 0.2s ease;
+        border-collapse: collapse;
+        background: #fff;
       }
 
-      #calc-home-loan input[type='number']:hover,
-      #calc-home-loan input[type='month']:hover {
-        border-color: rgba(148, 163, 184, 0.62);
+      .pct-explanation .pv-results-table thead th,
+      .pct-explanation .pv-results-table td {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--pct-line);
+        text-align: left;
+        vertical-align: top;
       }
 
-      #calc-home-loan input[type='number']:focus-visible,
-      #calc-home-loan input[type='month']:focus-visible {
-        outline: 2px solid rgba(125, 211, 252, 0.64);
-        outline-offset: 1px;
-        border-color: rgba(125, 211, 252, 0.85);
+      .pct-explanation .pv-results-table thead th {
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
-      /* ── Slider inputs ── */
-
-      #calc-home-loan .slider-row {
-        gap: 0.52rem;
-      }
-
-      #calc-home-loan .slider-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.5rem;
-      }
-
-      #calc-home-loan .slider-value {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.24rem 0.72rem;
-        border-radius: 0.52rem;
-        background: rgba(15, 23, 42, 0.92);
-        border: 1px solid rgba(34, 197, 94, 0.45);
-        color: #4ade80;
-        font-size: 0.9rem;
+      .pct-explanation .pv-results-table tfoot td {
         font-weight: 700;
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-        text-shadow:
-          0 0 8px rgba(74, 222, 128, 0.7),
-          0 0 20px rgba(74, 222, 128, 0.4),
-          0 0 40px rgba(34, 197, 94, 0.2);
-        box-shadow:
-          0 0 8px rgba(34, 197, 94, 0.2),
-          0 0 20px rgba(34, 197, 94, 0.08);
-        transition:
-          border-color 0.25s ease,
-          color 0.25s ease,
-          text-shadow 0.25s ease,
-          box-shadow 0.25s ease;
+        color: var(--pct-ink);
       }
 
-      #calc-home-loan .slider-row:hover .slider-value {
-        border-color: rgba(251, 113, 133, 0.55);
-        color: #fb7185;
-        text-shadow:
-          0 0 8px rgba(251, 113, 133, 0.7),
-          0 0 20px rgba(251, 113, 133, 0.45),
-          0 0 40px rgba(251, 113, 133, 0.2);
-        box-shadow:
-          0 0 8px rgba(251, 113, 133, 0.2),
-          0 0 20px rgba(251, 113, 133, 0.08);
+      .pct-explanation .pv-explanation-list,
+      .pct-explanation .pv-formula-steps {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
       }
 
-      #calc-home-loan input[type='range'] {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 100%;
-        height: 5px;
-        border-radius: 9999px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        background: linear-gradient(
-          90deg,
-          #22c55e 0%,
-          #fb7185 var(--fill, 50%),
-          rgba(148, 163, 184, 0.14) var(--fill, 50%)
-        );
-        transition: box-shadow 0.2s ease;
+      .pct-explanation .pct-important-notes strong {
+        color: rgba(186, 230, 253, 0.98);
       }
 
-      #calc-home-loan input[type='range']:hover {
-        box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
+      .pct-explanation .pv-formula-block {
+        margin: 16px 0;
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid color-mix(in srgb, var(--pct-accent) 22%, white);
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
+        font-weight: 800;
+        text-align: center;
       }
 
-      #calc-home-loan input[type='range']:focus-visible {
-        box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.35);
-      }
-
-      #calc-home-loan input[type='range']::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #fff;
-        border: 2px solid rgba(34, 197, 94, 0.5);
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-        cursor: grab;
-        transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      #calc-home-loan input[type='range']::-webkit-slider-thumb:hover {
-        transform: scale(1.18);
-        border-color: rgba(251, 113, 133, 0.7);
-        box-shadow:
-          0 1px 8px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(251, 113, 133, 0.2);
-      }
-
-      #calc-home-loan input[type='range']:active::-webkit-slider-thumb {
-        cursor: grabbing;
-        transform: scale(1.08);
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #fff;
-        border: 2px solid rgba(34, 197, 94, 0.5);
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-        cursor: grab;
-        transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease,
-          border-color 0.15s ease;
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-thumb:hover {
-        transform: scale(1.18);
-        border-color: rgba(251, 113, 133, 0.7);
-        box-shadow:
-          0 1px 8px rgba(0, 0, 0, 0.3),
-          0 0 10px rgba(251, 113, 133, 0.2);
-      }
-
-      #calc-home-loan input[type='range']::-moz-range-track {
-        height: 5px;
-        border-radius: 9999px;
-        background: transparent;
-      }
-
-      /* ── Advanced options ── */
-
-      #calc-home-loan .advanced-pair {
+      .pct-explanation .bor-faq-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.1rem;
-        align-items: end;
+        gap: 14px;
       }
 
-      #calc-home-loan .down-combined-left .button-group {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.2rem;
-        padding: 3px;
-        border-radius: 9999px;
-        border: 1px solid rgba(148, 163, 184, 0.36);
-        background: rgba(15, 23, 42, 0.78);
+      .pct-explanation .bor-faq-card {
+        padding: 18px;
+        border-radius: 20px;
+        border: 1px solid var(--pct-line);
+        background: rgba(255, 255, 255, 0.78);
       }
 
-      #calc-home-loan .down-combined-left .calculator-button {
-        min-height: 32px;
-        padding: 0.36rem 0.72rem;
-        border-radius: 9999px;
-        border: 1px solid transparent;
-        background: transparent;
-        color: rgba(191, 219, 254, 0.92);
-        font-size: 0.76rem;
-        font-weight: 600;
-        transition:
-          background 0.2s ease,
-          border-color 0.2s ease,
-          color 0.2s ease;
-      }
-
-      #calc-home-loan .down-combined-left .calculator-button.is-active {
-        border-color: rgba(56, 189, 248, 0.82);
-        background: linear-gradient(140deg, rgba(37, 99, 235, 0.95), rgba(14, 165, 233, 0.82));
-        color: #fff;
-      }
-
-      #calc-home-loan .down-combined-left .calculator-button:not(.is-active):hover {
-        background: rgba(59, 130, 246, 0.12);
-        color: #e0f2fe;
-      }
-
-      #calc-home-loan .advanced-options {
-        margin-top: 0.18rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.28);
-        padding-top: 0.74rem;
-      }
-
-      #calc-home-loan .advanced-options summary {
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.58rem;
-        padding: 0.48rem 0.58rem;
-        border-radius: 0.78rem;
-        border: 1px solid rgba(56, 189, 248, 0.56);
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.18));
-        color: rgba(224, 242, 254, 0.98);
-        font-size: 0.78rem;
-        font-weight: 700;
-        transition:
-          border-color 0.2s ease,
-          background 0.2s ease;
-      }
-
-      #calc-home-loan .advanced-options summary:hover {
-        border-color: rgba(56, 189, 248, 0.72);
-        background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(14, 165, 233, 0.24));
-      }
-
-      #calc-home-loan .advanced-options summary::-webkit-details-marker {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options summary:focus-visible {
-        outline: 2px solid rgba(125, 211, 252, 0.74);
-        outline-offset: 2px;
-      }
-
-      #calc-home-loan .advanced-summary-pill {
-        min-width: 102px;
-        min-height: 24px;
-        border-radius: 9999px;
-        border: 1px solid rgba(125, 211, 252, 0.58);
-        background: rgba(15, 23, 42, 0.88);
+      .pct-explanation .bor-faq-number {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0 0.5rem;
-        flex-shrink: 0;
-      }
-
-      #calc-home-loan .summary-state {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.26rem;
-        font-size: 0.68rem;
-        font-weight: 700;
-      }
-
-      #calc-home-loan .summary-icon {
-        font-size: 0.86rem;
-        line-height: 1;
-      }
-
-      #calc-home-loan .summary-state-close {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options[open] .summary-state-expand {
-        display: none;
-      }
-
-      #calc-home-loan .advanced-options[open] .summary-state-close {
-        display: inline-flex;
-      }
-
-      #calc-home-loan .advanced-options[open] summary {
-        border-color: rgba(125, 211, 252, 0.86);
-      }
-
-      #calc-home-loan .advanced-stack {
-        margin-top: 0.76rem;
-        display: grid;
-        gap: 0.72rem;
-      }
-
-      #calc-home-loan .advanced-pair label {
-        min-height: 1.2em;
-      }
-
-      /* ── Action row ── */
-
-      #calc-home-loan .mtg-action-row {
-        margin-top: 0.35rem;
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button {
-        min-height: 50px;
-        border-radius: 0.82rem;
-        font-size: 0.88rem;
-        font-weight: 700;
-        transition:
-          box-shadow 0.25s ease,
-          transform 0.15s ease;
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button:hover {
-        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
-        transform: translateY(-1px);
-      }
-
-      #calc-home-loan .mtg-action-row .calculator-button:active {
-        transform: translateY(0);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-      }
-
-      /* ── Preview panel ── */
-
-      #calc-home-loan .mtg-preview-panel {
-        border-radius: 1.15rem;
-        border: 1px solid rgba(125, 211, 252, 0.22);
-        background: linear-gradient(160deg, rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
-        padding: 1.15rem;
-        display: grid;
-        gap: 1rem;
-        align-content: start;
-        box-shadow:
-          0 4px 24px rgba(2, 6, 23, 0.45),
-          0 0 40px rgba(59, 130, 246, 0.06);
-      }
-
-      #calc-home-loan .mtg-preview-main {
-        border-radius: 0.95rem;
-        padding: 1rem;
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 64, 175, 0.1));
-        border: 1px solid rgba(148, 163, 184, 0.15);
-        display: grid;
-        gap: 0.65rem;
-      }
-
-      #calc-home-loan .mtg-preview-label {
-        margin: 0;
-        font-size: 0.73rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(191, 219, 254, 0.94);
-        font-weight: 700;
-      }
-
-      #calc-home-loan .mtg-result-card {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background: transparent;
-      }
-
-      #calc-home-loan .mtg-result-card {
-        color: rgba(239, 246, 255, 0.99);
-        font-size: 0.9rem;
-        line-height: 1.35;
-      }
-
-      #calc-home-loan .mtg-result-card strong {
-        display: block;
-        margin-bottom: 0.45rem;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 999px;
+        background: var(--pct-accent-soft);
+        color: var(--pct-accent-strong);
         font-size: 0.74rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: rgba(148, 163, 184, 0.8);
-      }
-
-      #calc-home-loan .mtg-result-card .mtg-result-value {
-        display: block;
-        font-size: clamp(2.4rem, 4.5vw, 3.4rem);
-        line-height: 1;
         font-weight: 800;
-        color: #e0f2fe;
-        text-shadow:
-          0 0 20px rgba(125, 211, 252, 0.35),
-          0 0 40px rgba(59, 130, 246, 0.15);
-        letter-spacing: -0.02em;
-        transition:
-          opacity 0.3s ease,
-          transform 0.3s ease;
       }
 
-      @keyframes mtg-result-pop {
-        0% {
-          opacity: 0.4;
-          transform: scale(0.92);
+      @media (min-width: 861px) {
+        body[data-page='calculator'] .layout-main:has(.pct-answer-ui) > .ads-column {
+          display: none !important;
         }
-        50% {
-          opacity: 1;
-          transform: scale(1.03);
+
+        body[data-page='calculator'] .layout-main:has(.pct-answer-ui) > .center-column {
+          grid-column: 2 / -1;
+          grid-template-columns: minmax(0, 1fr);
         }
-        100% {
-          opacity: 1;
-          transform: scale(1);
+
+        body[data-page='calculator']
+          .layout-main:has(.pct-answer-ui)
+          > .center-column
+          > .panel.panel-span-all {
+          align-items: center;
         }
       }
 
-      #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
-        animation: mtg-result-pop 0.4s ease-out;
-      }
-
-      /* ── Snapshot rows ── */
-
-      #calc-home-loan .mtg-snapshot-list {
-        margin: 0;
-        padding: 0.35rem 0;
-        display: grid;
-        gap: 0.1rem;
-      }
-
-      #calc-home-loan .mtg-snapshot-row {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 0.72rem;
-        padding: 0.55rem 0;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-      }
-
-      #calc-home-loan .mtg-snapshot-row:last-child {
-        border-bottom: 0;
-      }
-
-      #calc-home-loan .mtg-snapshot-row span {
-        font-size: 0.75rem;
-        color: rgba(148, 163, 184, 0.85);
-      }
-
-      #calc-home-loan .mtg-snapshot-row strong {
-        font-size: 0.88rem;
-        color: rgba(248, 250, 252, 0.99);
-        text-align: right;
-        line-height: 1.28;
-      }
-
-      /* ── Explanation section ── */
-
-      #loan-mtg-explanation {
-        display: grid;
-        gap: 0.95rem;
-      }
-
-      #loan-mtg-explanation h2 {
-        margin: 0;
-        font-size: 1.08rem;
-        font-weight: 700;
-        color: rgba(226, 232, 240, 0.97);
-      }
-
-      #loan-mtg-explanation > p {
-        margin: 0;
-        font-size: 0.84rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.9);
-      }
-
-      #loan-mtg-explanation .mtg-exp-section {
-        display: grid;
-        gap: 0.72rem;
-        padding: 1rem;
-        border-radius: 0.95rem;
-        border: 1px solid rgba(148, 163, 184, 0.16);
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.38), rgba(30, 41, 59, 0.3));
-      }
-
-      #loan-mtg-explanation .mtg-exp-section h3 {
-        margin: 0;
-        font-size: 0.88rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: rgba(191, 219, 254, 0.94);
-        border-bottom: 0;
-        padding-bottom: 0;
-      }
-
-      #loan-mtg-explanation .mtg-exp-section h3::after {
-        content: none;
-      }
-
-      #loan-mtg-explanation .mtg-exp-section h4 {
-        margin: 0.25rem 0 0;
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: rgba(191, 219, 254, 0.96);
-      }
-
-      /* ── Lifetime Totals: 2-column layout (visual | totals) ── */
-
-      #loan-mtg-explanation .mtg-exp-section--lifetime {
-        grid-template-columns: auto 1fr;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-header {
-        grid-column: 1 / -1;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-visual {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.85rem;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-donut {
-        --principal-share: 70%;
-        width: 200px;
-        min-width: 200px;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background: conic-gradient(#22c55e 0 var(--principal-share), #fb7185 var(--principal-share) 100%);
-        position: relative;
-        cursor: pointer;
-        transition:
-          box-shadow 0.35s ease,
-          transform 0.35s ease;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-donut:hover {
-        box-shadow:
-          0 0 32px rgba(34, 197, 94, 0.35),
-          0 0 60px rgba(251, 113, 133, 0.22),
-          0 0 80px rgba(34, 197, 94, 0.1);
-        transform: scale(1.06);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-donut::after {
-        content: '';
-        position: absolute;
-        inset: 26%;
-        border-radius: 50%;
-        background: rgba(15, 23, 42, 0.96);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-        width: 100%;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item {
-        display: flex;
-        align-items: center;
-        gap: 0.42rem;
-        padding: 0.45rem 0.62rem;
-        border-radius: 0.62rem;
-        border: 1px solid transparent;
-        background: none;
-        cursor: default;
-        transition:
-          background 0.25s ease,
-          border-color 0.25s ease,
-          box-shadow 0.25s ease;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(125, 211, 252, 0.18);
-        box-shadow: 0 2px 12px rgba(59, 130, 246, 0.08);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item::before {
-        content: '';
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        flex-shrink: 0;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item--principal::before {
-        background: #22c55e;
-        box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item--interest::before {
-        background: #fb7185;
-        box-shadow: 0 0 6px rgba(251, 113, 133, 0.4);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item span {
-        font-size: 0.74rem;
-        color: rgba(203, 213, 225, 0.9);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-legend-item strong {
-        font-size: 0.82rem;
-        font-weight: 700;
-        color: rgba(248, 250, 252, 0.98);
-        margin-left: 0.2rem;
-      }
-
-      /* ── Totals: single column stacked, right side ── */
-
-      #loan-mtg-explanation .mtg-lifetime-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        align-self: center;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-card {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 0.72rem;
-        padding: 0.72rem 0.8rem;
-        border: 1px solid transparent;
-        border-radius: 0.62rem;
-        background: none;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
-        cursor: default;
-        transition:
-          background 0.25s ease,
-          border-color 0.25s ease,
-          box-shadow 0.25s ease,
-          transform 0.2s ease;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-card:last-child {
-        border-bottom-color: transparent;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-card:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(125, 211, 252, 0.2);
-        box-shadow: 0 4px 18px rgba(59, 130, 246, 0.12);
-        transform: translateX(4px);
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-card span {
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: rgba(148, 163, 184, 0.78);
-        white-space: nowrap;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-card strong {
-        font-size: 1.05rem;
-        font-weight: 800;
-        color: rgba(248, 250, 252, 0.98);
-        font-variant-numeric: tabular-nums;
-      }
-
-      #loan-mtg-explanation .mtg-lifetime-summary {
-        display: none;
-      }
-
-      /* ── Amortization table ── */
-
-      #loan-mtg-explanation .amortization-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.72rem;
-      }
-
-      #loan-mtg-explanation .table-view-toggle {
-        display: inline-flex;
-        gap: 0.2rem;
-        padding: 0.18rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.36);
-        background: rgba(15, 23, 42, 0.7);
-      }
-
-      #loan-mtg-explanation .table-view-toggle .calculator-button {
-        min-height: 30px;
-        padding: 0.3rem 0.66rem;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        background: transparent;
-        color: rgba(191, 219, 254, 0.92);
-        font-size: 0.74rem;
-        font-weight: 600;
-      }
-
-      #loan-mtg-explanation .table-view-toggle .calculator-button.is-active {
-        border-color: rgba(249, 115, 22, 0.58);
-        background: linear-gradient(130deg, rgba(249, 115, 22, 0.95), rgba(2, 132, 199, 0.86));
-        color: #fff;
-      }
-
-      #loan-mtg-explanation .table-scroll {
-        max-height: 318px;
-        overflow-y: scroll;
-        border-radius: 0.8rem;
-        border: 1px solid rgba(148, 163, 184, 0.32);
-        background: rgba(15, 23, 42, 0.62);
-      }
-
-      #loan-mtg-explanation .calculator-table {
-        min-width: 420px;
-        border-collapse: collapse;
-      }
-
-      #loan-mtg-explanation .calculator-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 3;
-        font-size: 0.74rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #fde68a;
-        background: rgba(30, 41, 59, 0.98);
-      }
-
-      #loan-mtg-explanation .calculator-table th,
-      #loan-mtg-explanation .calculator-table td {
-        text-align: center;
-        border: 1px solid rgba(148, 163, 184, 0.24);
-        padding: 0.5rem;
-      }
-
-      #loan-mtg-explanation .calculator-table td {
-        font-size: 0.79rem;
-        color: rgba(226, 232, 240, 0.94);
-        white-space: nowrap;
-      }
-
-      #loan-mtg-explanation .calculator-table tbody tr:nth-child(even) {
-        background: rgba(30, 41, 59, 0.36);
-      }
-
-      /* ── FAQ grid ── */
-
-      #loan-mtg-explanation .bor-faq-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.65rem;
-      }
-
-      #loan-mtg-explanation .bor-faq-card {
-        padding: 0.85rem;
-        border-radius: 0.78rem;
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.45), rgba(30, 41, 59, 0.35));
-        border: 1px solid rgba(148, 163, 184, 0.12);
-        border-top: 2px solid rgba(245, 158, 11, 0.45);
-        display: grid;
-        gap: 0.4rem;
-        transition:
-          transform 0.2s ease,
-          border-color 0.25s ease,
-          box-shadow 0.3s ease;
-      }
-
-      #loan-mtg-explanation .bor-faq-card:hover {
-        transform: translateY(-2px);
-        border-top-color: rgba(245, 158, 11, 0.8);
-        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.1);
-      }
-
-      #loan-mtg-explanation .bor-faq-number {
-        display: inline-flex;
-        width: 26px;
-        height: 26px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background: rgba(139, 92, 246, 0.2);
-        border: 1px solid rgba(139, 92, 246, 0.4);
-        color: #c4b5fd;
-        font-size: 0.68rem;
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-
-      #loan-mtg-explanation .bor-faq-card h4 {
-        margin: 0;
-        font-size: 0.86rem;
-        line-height: 1.3;
-        color: rgba(226, 232, 240, 0.98);
-      }
-
-      #loan-mtg-explanation .bor-faq-card p {
-        margin: 0;
-        font-size: 0.8rem;
-        line-height: 1.5;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation .mtg-exp-section--authority {
-        gap: 0.6rem;
-      }
-
-      #loan-mtg-explanation .mtg-authority-badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-      }
-
-      #loan-mtg-explanation .mtg-authority-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.32rem 0.62rem;
-        border-radius: 999px;
-        border: 1px solid rgba(56, 189, 248, 0.35);
-        background: rgba(15, 23, 42, 0.72);
-        color: rgba(186, 230, 253, 0.92);
-        font-size: 0.72rem;
-        line-height: 1.2;
-      }
-
-      #loan-mtg-explanation .mtg-authority-link {
-        text-decoration: none;
-        transition:
-          border-color 0.2s ease,
-          color 0.2s ease,
-          background 0.2s ease;
-      }
-
-      #loan-mtg-explanation .mtg-authority-link:hover {
-        border-color: rgba(56, 189, 248, 0.78);
-        color: #fff;
-        background: rgba(2, 132, 199, 0.26);
-      }
-
-      #loan-mtg-explanation .mtg-step-list {
-        margin: 0;
-        padding-left: 1.15rem;
-        display: grid;
-        gap: 0.35rem;
-      }
-
-      #loan-mtg-explanation .mtg-step-list li {
-        font-size: 0.82rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation .mtg-guide-list {
-        margin: 0;
-        padding-left: 1.15rem;
-        display: grid;
-        gap: 0.32rem;
-      }
-
-      #loan-mtg-explanation .mtg-guide-list li {
-        font-size: 0.82rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide,
-      #loan-mtg-explanation #mtg-section-how-to-guide {
-        gap: 0.62rem;
-        padding: 0.98rem 1.05rem;
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide {
-        background: linear-gradient(160deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.46));
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide p,
-      #loan-mtg-explanation #mtg-section-how-to-guide p {
-        margin: 0;
-        width: 100%;
-        max-width: none;
-        color: rgba(226, 232, 240, 0.97);
-        font-size: 0.9rem;
-        line-height: 1.6;
-        text-align: justify;
-        text-justify: inter-word;
-        hyphens: auto;
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide h4,
-      #loan-mtg-explanation #mtg-section-how-to-guide h4 {
-        margin: 0.34rem 0 0.02rem;
-        padding: 0;
-        border: 0;
-        background: none;
-        color: rgba(224, 242, 254, 0.99);
-        font-size: 0.88rem;
-        font-weight: 700;
-        letter-spacing: 0;
-        text-transform: none;
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide .mtg-guide-list,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-guide-list,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-step-list {
-        margin: 0.04rem 0 0.14rem;
-        padding-left: 1.28rem;
-        width: 100%;
-        max-width: none;
-        gap: 0.24rem;
-      }
-
-      #loan-mtg-explanation #mtg-section-practical-guide .mtg-guide-list li,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-guide-list li,
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-step-list li {
-        color: rgba(226, 232, 240, 0.96);
-        font-size: 0.88rem;
-        line-height: 1.56;
-        text-align: justify;
-        text-justify: inter-word;
-      }
-
-      #loan-mtg-explanation #mtg-section-how-to-guide .mtg-formula-block {
-        margin: 0.02rem 0 0.14rem;
-        width: 100%;
-        max-width: none;
-        padding: 0.64rem 0.76rem;
-        font-size: 0.95rem;
-      }
-
-      #loan-mtg-explanation .mtg-definition-list {
-        margin: 0;
-        padding-left: 1rem;
-        display: grid;
-        gap: 0.28rem;
-      }
-
-      #loan-mtg-explanation .mtg-definition-list li {
-        font-size: 0.82rem;
-        line-height: 1.5;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      #loan-mtg-explanation .mtg-formula-block {
-        margin: 0;
-        padding: 0.66rem 0.8rem;
-        border-radius: 0.7rem;
-        border: 1px solid rgba(56, 189, 248, 0.3);
-        background: linear-gradient(140deg, rgba(15, 23, 42, 0.88), rgba(2, 132, 199, 0.14));
-        color: #e0f2fe;
-        font-size: 0.95rem;
-        font-weight: 700;
-        letter-spacing: 0.02em;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpis {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.6rem;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.52rem;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.38rem 0.72rem;
-        border-radius: 999px;
-        border: 1px solid rgba(125, 211, 252, 0.32);
-        background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.55));
-        color: rgba(226, 232, 240, 0.98);
-        font-size: 0.74rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item::before {
-        content: '';
-        width: 20px;
-        height: 3px;
-        border-radius: 999px;
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item--baseline::before {
-        background: #f59e0b;
-        box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
-      }
-
-      #loan-mtg-explanation .mtg-graph-legend-item--extra::before {
-        background: #22d3ee;
-        box-shadow: 0 0 10px rgba(34, 211, 238, 0.55);
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpi {
-        display: grid;
-        gap: 0.22rem;
-        padding: 0.62rem 0.72rem;
-        border-radius: 0.8rem;
-        border: 1px solid rgba(125, 211, 252, 0.3);
-        background: linear-gradient(145deg, rgba(15, 23, 42, 0.84), rgba(30, 41, 59, 0.62));
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpi-label {
-        font-size: 0.7rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: rgba(148, 163, 184, 0.88);
-      }
-
-      #loan-mtg-explanation .mtg-graph-kpi-value {
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: rgba(226, 232, 240, 0.98);
-        font-variant-numeric: tabular-nums;
-      }
-
-      #loan-mtg-explanation .mtg-graph-canvas-wrap {
-        position: relative;
-        border: 1px solid rgba(125, 211, 252, 0.32);
-        border-radius: 0.95rem;
-        overflow: hidden;
-        background:
-          radial-gradient(80% 100% at 0% 0%, rgba(14, 116, 144, 0.12), rgba(2, 6, 23, 0) 70%),
-          radial-gradient(80% 100% at 100% 0%, rgba(99, 102, 241, 0.12), rgba(2, 6, 23, 0) 70%),
-          linear-gradient(160deg, rgba(2, 6, 23, 0.94), rgba(15, 23, 42, 0.9));
-        box-shadow:
-          inset 0 0 0 1px rgba(125, 211, 252, 0.08),
-          0 8px 24px rgba(2, 6, 23, 0.32);
-      }
-
-      #loan-mtg-explanation .mtg-balance-canvas {
-        display: block;
-        width: 100%;
-        height: 320px;
-      }
-
-      #loan-mtg-explanation .mtg-balance-status {
-        position: absolute;
-        left: 0.7rem;
-        bottom: 0.6rem;
-        padding: 0.28rem 0.56rem;
-        border-radius: 0.6rem;
-        background: rgba(15, 23, 42, 0.86);
-        border: 1px solid rgba(125, 211, 252, 0.22);
-        color: rgba(186, 230, 253, 0.96);
-        font-size: 0.7rem;
-        line-height: 1.25;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip {
-        position: absolute;
-        z-index: 4;
-        min-width: 230px;
-        max-width: 280px;
-        padding: 0.58rem 0.68rem;
-        border-radius: 0.72rem;
-        border: 1px solid rgba(125, 211, 252, 0.42);
-        background: linear-gradient(150deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.92));
-        box-shadow:
-          0 16px 32px rgba(2, 6, 23, 0.52),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip p {
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        gap: 0.75rem;
-        font-size: 0.74rem;
-        color: rgba(203, 213, 225, 0.94);
-        line-height: 1.45;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip p + p {
-        margin-top: 0.2rem;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip .mtg-tooltip-period {
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: #dbeafe;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-        padding-bottom: 0.2rem;
-        margin-bottom: 0.2rem;
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip span {
-        color: rgba(191, 219, 254, 0.86);
-      }
-
-      #loan-mtg-explanation .mtg-balance-tooltip strong {
-        color: rgba(248, 250, 252, 0.98);
-        font-variant-numeric: tabular-nums;
-      }
-
-      #loan-mtg-explanation .mtg-trust-list {
-        margin: 0;
-        padding-left: 1rem;
-        display: grid;
-        gap: 0.34rem;
-      }
-
-      #loan-mtg-explanation .mtg-trust-list li {
-        font-size: 0.8rem;
-        line-height: 1.55;
-        color: rgba(203, 213, 225, 0.92);
-      }
-
-      /* ── Slider hover effects (from auto-loan family) ── */
-
-      .home-loan-ui .input-row.slider-row {
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease;
-        padding: 8px;
-        border-radius: 8px;
-        margin: -8px 0 16px 0;
-      }
-
-      .home-loan-ui .input-row.slider-row:hover {
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .home-loan-ui .input-row.slider-row:hover .slider-header label {
-        color: #a5f3fc;
-        text-shadow: 0 0 8px rgba(165, 243, 252, 0.4);
-      }
-
-      .home-loan-ui .slider-value {
-        font-weight: 700;
-        color: #e0f2fe;
-        transition: color 0.2s ease;
-      }
-
-      .home-loan-ui .input-row.slider-row:hover .slider-value {
-        color: #38bdf8;
-      }
-
-      /* ── 2-Column Grid Layout ── */
-
-      .home-loan-ui .input-grid-2-col {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        width: 100%;
-        margin-top: 1.5rem;
-      }
-
-      /* ── Accessibility ── */
-
-      @media (prefers-reduced-motion: reduce) {
-        #calc-home-loan .mtg-result-card .mtg-result-value.is-updated {
-          animation: none;
-        }
-        #calc-home-loan .mtg-action-row .calculator-button {
-          transition: none;
-        }
-      }
-
-      /* ── Responsive breakpoints ── */
-
-      @media (max-width: 1220px) {
-        #calc-home-loan .mtg-hero {
+      @media (max-width: 980px) {
+        .pct-cluster-site-header-inner {
           grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 900px) {
-        #calc-home-loan .advanced-pair {
-          grid-template-columns: 1fr;
+          justify-items: center;
+          padding: 12px 0;
         }
 
-        #loan-mtg-explanation .table-scroll {
-          border-radius: 0.7rem;
-        }
-
-        #loan-mtg-explanation .calculator-table {
-          min-width: 360px;
-        }
-
-        #loan-mtg-explanation .amortization-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        #loan-mtg-explanation .mtg-graph-kpis {
+        .pct-cluster-related-links {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-      }
 
-      @media (max-width: 768px) {
-        .home-loan-ui .input-grid-2-col {
+        .pct-tool {
           grid-template-columns: 1fr;
-          gap: 1.25rem;
+        }
+
+        .pct-answer-card {
+          position: static;
         }
       }
 
       @media (max-width: 720px) {
-        #loan-mtg-explanation .mtg-exp-section {
-          padding: 0.85rem;
+        .pct-cluster-wrap,
+        .pct-cluster-center-column {
+          width: min(100%, calc(100% - 20px));
         }
 
-        #loan-mtg-explanation .bor-faq-grid {
+        .pct-cluster-route-switch,
+        .pct-cluster-related,
+        .pct-input-card,
+        .pct-answer-card,
+        .pct-explanation section {
+          padding: 22px 18px;
+          border-radius: 22px;
+        }
+
+        .pct-cluster-related-links {
           grid-template-columns: 1fr;
         }
 
-        #calc-home-loan .down-combined-left .calculator-button,
-        #loan-mtg-explanation .table-view-toggle .calculator-button {
-          flex: 1 1 auto;
-        }
-
-        #loan-mtg-explanation .table-view-toggle {
-          width: 100%;
-        }
-
-        #loan-mtg-explanation .mtg-exp-section--lifetime {
+        .composition-item-row {
           grid-template-columns: 1fr;
         }
 
-        #loan-mtg-explanation .mtg-lifetime-visual {
-          align-items: center;
+        .pct-support-row,
+        .pct-breakdown-item,
+        .pct-breakdown-head {
+          flex-direction: column;
+          align-items: flex-start;
         }
 
-        #loan-mtg-explanation .mtg-lifetime-donut {
-          width: 160px;
-          min-width: 160px;
-        }
-
-        #loan-mtg-explanation .mtg-graph-kpis {
+        .pct-explanation .bor-faq-grid {
           grid-template-columns: 1fr;
         }
-
-        #loan-mtg-explanation .mtg-balance-canvas {
-          height: 280px;
-        }
-
-        #loan-mtg-explanation .mtg-authority-badge {
-          width: 100%;
-        }
-
       }
 
-      /* critical source: /calculators/percentage-calculators/percentage-difference-calculator/calculator.css */
-      /* Percentage Difference calculator route overrides */
-
+      /* calculators/percentage-calculators/percentage-difference-calculator/calculator.css */
       html {
         overflow-y: scroll;
         scrollbar-gutter: stable;
       }
 
-      #calc-percentage-difference #calc-home-loan .mtg-hero {
-        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-      }
-
-      #calc-percentage-difference #calc-home-loan .input-row input[type='number'] {
-        min-height: 46px;
-      }
-
-      #calc-percentage-difference #calc-home-loan .mtg-form-panel {
-        position: relative;
-        z-index: 2;
-      }
-
-      #calc-percentage-difference #calc-home-loan .mtg-preview-main {
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(37, 99, 235, 0.2));
-        border: 1px solid rgba(191, 219, 254, 0.34);
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.18),
-          0 14px 30px rgba(2, 6, 23, 0.34);
-      }
-
-      #calc-percentage-difference #calc-home-loan #pct-diff-result {
-        min-height: 68px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: 1.42rem;
-        font-weight: 800;
-        color: #e0f2fe;
-        text-shadow:
-          0 0 18px rgba(125, 211, 252, 0.42),
-          0 0 36px rgba(56, 189, 248, 0.22);
-      }
-
-      #calc-percentage-difference #calc-home-loan #pct-diff-result-detail {
-        line-height: 1.45;
-      }
-
-      #calc-percentage-difference #calc-home-loan .mtg-snapshot-row strong {
-        color: #7dd3fc;
-      }
-
-      #pct-diff-explanation .pv-results-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      #pct-diff-explanation .pv-results-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 3;
-        font-size: 0.74rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #fde68a;
-        background: rgba(30, 41, 59, 0.98);
-        text-align: left;
-        padding: 0.6rem 0.75rem;
-        border: 1px solid rgba(148, 163, 184, 0.24);
-      }
-
-      #pct-diff-explanation .pv-results-table td {
-        font-size: 0.8rem;
-        color: rgba(226, 232, 240, 0.94);
-        padding: 0.58rem 0.75rem;
-        border: 1px solid rgba(148, 163, 184, 0.18);
-        line-height: 1.4;
-      }
-
-      #pct-diff-explanation .pv-results-table tbody tr:nth-child(even) {
-        background: rgba(30, 41, 59, 0.36);
-      }
-
-      #pct-diff-explanation .pv-results-table tbody tr:hover {
-        background: rgba(59, 130, 246, 0.08);
-      }
-
-      #pct-diff-explanation .pv-results-table tfoot td {
-        font-weight: 700;
-        color: #e0f2fe;
-        background: linear-gradient(160deg, rgba(37, 99, 235, 0.15), rgba(14, 165, 233, 0.1));
-        border-top: 2px solid rgba(56, 189, 248, 0.4);
-        font-size: 0.84rem;
-      }
-
-      #pct-diff-explanation .pv-results-table .pv-how-col {
-        font-size: 0.74rem;
-        color: rgba(148, 163, 184, 0.88);
-        font-style: italic;
-      }
-
-      #pct-diff-explanation .pv-explanation-list {
-        list-style: none;
-        padding: 0;
-        margin: 0.6rem 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.45rem;
-      }
-
-      #pct-diff-explanation .pv-explanation-list li {
-        position: relative;
-        padding-left: 1.3rem;
-        line-height: 1.65;
-        font-size: 0.88rem;
-        color: rgba(226, 232, 240, 0.94);
-      }
-
-      #pct-diff-explanation .pv-explanation-list li::before {
-        content: '▸';
-        position: absolute;
-        left: 0;
-        color: rgba(56, 189, 248, 0.85);
-        font-weight: 700;
-      }
-
-      #pct-diff-explanation .pv-explanation-list li [data-pct-diff] {
-        font-weight: 700;
-        color: #7dd3fc;
-      }
-
-      #pct-diff-explanation .pv-formula-block {
-        text-align: center;
-        font-size: 1.05rem;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-        padding: 0.5rem 0.8rem;
-        margin: 0.35rem auto;
-        border-radius: 10px;
-        max-width: 520px;
-        background: rgba(15, 23, 42, 0.7);
-        border: 1px solid rgba(56, 189, 248, 0.35);
-        color: #e0f2fe;
-        text-shadow: 0 0 12px rgba(125, 211, 252, 0.3);
-      }
-
-      #pct-diff-explanation .pv-formula-steps {
-        padding-left: 1.5rem;
-        margin: 0.35rem 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-      }
-
-      #pct-diff-explanation .pv-formula-steps li {
-        line-height: 1.65;
-        font-size: 0.86rem;
-        color: rgba(226, 232, 240, 0.92);
-      }
-
-      #pct-diff-explanation .pv-formula-steps li [data-pct-diff] {
-        font-weight: 700;
-        color: #7dd3fc;
-      }
-
-      #pct-diff-explanation .bor-faq-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.8rem;
-        margin-top: 0.6rem;
-      }
-
-      #pct-diff-explanation .bor-faq-card {
-        position: relative;
-        border: 1px solid rgba(148, 163, 184, 0.22);
-        border-radius: 12px;
-        background: linear-gradient(160deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.9));
-        box-shadow:
-          inset 0 1px 0 rgba(255, 255, 255, 0.08),
-          0 12px 20px rgba(2, 6, 23, 0.22);
-        padding: 0.8rem 0.85rem 0.85rem;
-      }
-
-      #pct-diff-explanation .bor-faq-number {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 1.8rem;
-        height: 1.8rem;
-        border-radius: 9999px;
-        font-size: 0.74rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        color: #e0f2fe;
-        background: linear-gradient(145deg, rgba(37, 99, 235, 0.9), rgba(14, 165, 233, 0.8));
-        margin-bottom: 0.45rem;
-      }
-
-      #pct-diff-explanation .bor-faq-card h4 {
-        margin: 0;
-        font-size: 0.92rem;
-        color: #f8fafc;
-      }
-
-      #pct-diff-explanation .bor-faq-card p {
-        margin: 0.35rem 0 0;
-        font-size: 0.84rem;
-        line-height: 1.5;
-        color: rgba(226, 232, 240, 0.9);
-      }
-
-      @media (max-width: 1024px) {
-        #calc-percentage-difference #calc-home-loan .mtg-hero {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        #pct-diff-explanation .bor-faq-grid {
-          grid-template-columns: 1fr;
-        }
+      #calc-percentage-difference.pct-route {
+        --pct-accent: #2c6dd5;
+        --pct-accent-strong: #184a9d;
+        --pct-accent-soft: #edf4ff;
+        --pct-answer-value-size: clamp(2.4rem, 5vw, 3.6rem);
       }
     </style>
-    <link rel="stylesheet" href="/assets/css/route-bundles/percentage-calculators-percentage-difference-calculator.2ae51194.css" />
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
-  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral" data-top-nav-static="true">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
+    <div class="page pct-cluster-page-shell">
+      <header class="pct-cluster-site-header">
+  <div class="pct-cluster-wrap pct-cluster-site-header-inner">
+    <a class="pct-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="pct-cluster-brand-mark" aria-hidden="true">%</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="pct-cluster-site-label" aria-label="Cluster label">Percentage Calculators</div>
+    <nav class="pct-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link is-active" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="fin-nav-container" data-fin-nav="true">
-<div class="fin-nav-group is-expanded" data-fin-subcategory="percentage-core">
-  <button type="button" class="fin-nav-toggle" aria-expanded="true">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">%</span>
-    <span class="fin-nav-toggle-label">Percentage Calculators</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/percentage-calculators/percent-change-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">↔️</span>Percent Change</a><a class="fin-nav-item is-active" href="/percentage-calculators/percentage-difference-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⚖️</span>Percentage Difference</a><a class="fin-nav-item" href="/percentage-calculators/percentage-increase-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⬆️</span>Percentage Increase</a><a class="fin-nav-item" href="/percentage-calculators/percentage-decrease-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">⬇️</span>Percentage Decrease</a><a class="fin-nav-item" href="/percentage-calculators/percentage-composition-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🧩</span>Percentage Composition</a><a class="fin-nav-item" href="/percentage-calculators/reverse-percentage-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🔁</span>Reverse Percentage</a><a class="fin-nav-item" href="/percentage-calculators/percent-to-fraction-decimal-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🔢</span>Percent to Fraction/Decimal</a><a class="fin-nav-item" href="/percentage-calculators/percentage-finder-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">❓</span>What Percent Is X of Y</a><a class="fin-nav-item" href="/percentage-calculators/percentage-of-a-number-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🎯</span>Find Percentage of a Number</a>
+      <main class="pct-cluster-layout-main">
+        <section class="pct-cluster-center-column">
+          <div class="pct-cluster-panel panel-span-all">
+  <div class="pct-cluster-page-header">
+    <span class="pct-cluster-page-kicker">Percentage Calculators</span>
+    <h1 id="calculator-title">Percentage Difference Calculator</h1>
+    <p class="pct-cluster-page-intro">Calculate the symmetric percentage difference between two values using their average as the baseline.</p>
   </div>
-</div>
-<div class="fin-nav-group" data-fin-subcategory="pricing-and-margin">
-  <button type="button" class="fin-nav-toggle" aria-expanded="false">
-    <span class="fin-nav-toggle-icon" aria-hidden="true">💼</span>
-    <span class="fin-nav-toggle-label">Pricing & Margin</span>
-    <span class="fin-nav-chevron"><svg class="fin-nav-chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="fin-nav-items">
-    <a class="fin-nav-item" href="/percentage-calculators/commission-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">💵</span>Commission Calculator</a><a class="fin-nav-item" href="/percentage-calculators/discount-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">🏷️</span>Discount Calculator</a><a class="fin-nav-item" href="/percentage-calculators/margin-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">📐</span>Margin Calculator</a><a class="fin-nav-item" href="/percentage-calculators/markup-calculator/"><span class="fin-nav-item-icon" aria-hidden="true">➕</span>Markup Calculator</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll panel-span-all">
-  <h1 id="calculator-title">Percentage Difference Calculator</h1>
-  <div class="calculator-page-single">
-    <div id="calc-percentage-difference">
-  <div id="calc-home-loan">
-    <div class="calculator-ui home-loan-ui">
-      <section class="mtg-hero" aria-label="Percentage difference calculator">
-        <div class="mtg-form-panel">
-          <p class="helper">
-            Calculate symmetric percentage difference between Value A and Value B using their
-            average baseline.
-          </p>
+  <div class="calculator-page-single pct-cluster-flow">
+    <div id="calc-percentage-difference" class="pct-route pct-route-difference">
+  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css?v=20260224" />
 
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool" aria-label="Percentage difference calculator">
+      <div class="pct-input-card">
+        <p class="pct-eyebrow">Symmetric Compare</p>
+        <h2 class="pct-input-title">Compare two values without picking a winner</h2>
+        <p class="pct-lead">
+          Enter Value A and Value B to measure the gap between them using their average baseline.
+          Swapping the inputs keeps the same answer.
+        </p>
+
+        <div class="pct-field-grid">
           <div class="input-row">
             <label for="pct-diff-a">Value A</label>
             <input id="pct-diff-a" type="number" value="80" step="0.01" inputmode="decimal" />
@@ -4318,56 +1815,68 @@
             <label for="pct-diff-b">Value B</label>
             <input id="pct-diff-b" type="number" value="100" step="0.01" inputmode="decimal" />
           </div>
-
-          <div class="input-row action-row mtg-action-row">
-            <button class="calculator-button full-width" type="button" id="pct-diff-calc">
-              Calculate Percentage Difference
-            </button>
-          </div>
         </div>
 
-        <aside class="mtg-preview-panel" aria-label="Percentage difference result snapshot">
-          <div class="mtg-preview-main">
-            <p class="mtg-preview-label">Percentage Difference Result</p>
-            <div class="result mtg-result-card" id="pct-diff-result" aria-live="polite">
-              Percentage Difference: 22.22%
-            </div>
-            <div class="result-detail mtg-summary-card" id="pct-diff-result-detail" aria-live="polite">
-              Absolute Difference: 20.00 | Average Baseline: 90.00 | Formula: (|A - B| / ((|A| + |B|) / 2)) x 100
-            </div>
-          </div>
+        <div class="pct-actions">
+          <p class="pct-stale-note" id="pct-diff-stale-note" hidden aria-hidden="true">
+            Inputs changed. Calculate again to refresh the answer.
+          </p>
+          <button class="calculator-button full-width" type="button" id="pct-diff-calc">
+            Calculate percentage difference
+          </button>
+        </div>
+      </div>
 
-          <div class="mtg-snapshot-list">
-            <div class="mtg-snapshot-row">
-              <span>Value A</span>
-              <strong data-pct-diff-snap="a">80.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Value B</span>
-              <strong data-pct-diff-snap="b">100.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Absolute Difference</span>
-              <strong data-pct-diff-snap="abs-diff">20.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Average Baseline</span>
-              <strong data-pct-diff-snap="avg-baseline">90.00</strong>
-            </div>
-            <div class="mtg-snapshot-row">
-              <span>Formula</span>
-              <strong>(|A - B| / ((|A| + |B|) / 2)) x 100</strong>
-            </div>
+      <aside class="pct-answer-card" id="pct-diff-answer-card" aria-label="Percentage difference answer">
+        <p class="pct-eyebrow">Answer</p>
+        <div class="result pct-answer-value" id="pct-diff-result" aria-live="polite">
+          Percentage Difference: 22.22%
+        </div>
+        <p class="pct-answer-sentence" id="pct-diff-result-detail" aria-live="polite">
+          Absolute Difference: 20.00 | Average Baseline: 90.00 | The two values differ by 22.22%.
+        </p>
+        <p class="pct-answer-context" id="pct-diff-result-context" aria-live="polite">
+          Formula: (|A - B| / ((|A| + |B|) / 2)) x 100.
+        </p>
+
+        <div class="pct-support-list" aria-label="Percentage difference details">
+          <div class="pct-support-row">
+            <span>Value A</span>
+            <strong data-pct-diff-snap="a">80.00</strong>
           </div>
-        </aside>
-      </section>
-    </div>
+          <div class="pct-support-row">
+            <span>Value B</span>
+            <strong data-pct-diff-snap="b">100.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Absolute difference</span>
+            <strong data-pct-diff-snap="abs-diff">20.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Average baseline</span>
+            <strong data-pct-diff-snap="avg-baseline">90.00</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
   </div>
 </div>
 
-    <div id="pct-diff-explanation" class="explanation-pane">
+    <section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
+  <div class="pct-cluster-route-switch-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Switch scenario</span>
+      <h2 id="pct-cluster-route-switch-title">Compare another percentage question</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-switch-chips">
+    <a class="pct-cluster-switch-chip" href="/percentage-calculators/percent-change-calculator/">Percent Change</a><a class="pct-cluster-switch-chip is-active" href="/percentage-calculators/percentage-difference-calculator/" aria-current="page">Percentage Difference</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-increase-calculator/">Percentage Increase</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-decrease-calculator/">Percentage Decrease</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-composition-calculator/">Percentage Composition</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/reverse-percentage-calculator/">Reverse Percentage</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percent-to-fraction-decimal-calculator/">Percent to Fraction/Decimal</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-finder-calculator/">What Percent Is X of Y</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/percentage-of-a-number-calculator/">Find Percentage of a Number</a>
+  </div>
+</section>
+<div id="pct-diff-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Far Apart Are the Two Values?</h2>
+    <p><strong>The short answer:</strong> percentage difference measures the gap between two values using their average baseline.</p>
     <p>
       Use this percentage difference calculator when you want to compare two values without
       treating either one as the starting point. It measures the gap between them against their
@@ -4381,7 +1890,15 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>Results Table</h3>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter Value A and Value B.</li>
+      <li>Click <strong>Calculate percentage difference</strong> to compare the two values symmetrically.</li>
+      <li>Check the absolute difference to see the raw gap before it is normalized.</li>
+      <li>Use the average baseline and percentage result together when neither input should be treated as the original.</li>
+    </ol>
+
+    <h4>Results Table</h4>
     <div class="table-scroll" tabindex="0">
       <table class="pv-results-table">
         <thead>
@@ -4430,41 +1947,25 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>Explanation</h3>
+    <h4>Worked Example</h4>
     <p>
-      Percentage difference compares how far apart two values are using their average baseline, so
-      swapping A and B gives the same result.
+      With Value A = <span data-pct-diff="a">80.00</span> and Value B =
+      <span data-pct-diff="b">100.00</span>, the absolute difference is
+      <span data-pct-diff="abs-diff">20.00</span> and the average baseline is
+      <span data-pct-diff="avg-baseline">90.00</span>. Dividing 20.00 by 90.00 and multiplying
+      by 100 gives <span data-pct-diff="pct-diff">22.22%</span>.
     </p>
 
-    <ul class="pv-explanation-list">
-      <li>
-        <strong>Start with both values:</strong>
-        Value A is <span data-pct-diff="a">80.00</span> and Value B is
-        <span data-pct-diff="b">100.00</span>.
-      </li>
-      <li>
-        <strong>Find absolute difference:</strong>
-        Calculate |A - B| to get <span data-pct-diff="abs-diff">20.00</span>.
-      </li>
-      <li>
-        <strong>Find average baseline:</strong>
-        Compute (|A| + |B|) / 2 to get <span data-pct-diff="avg-baseline">90.00</span>.
-      </li>
-      <li>
-        <strong>Convert to percent:</strong>
-        Divide the absolute difference by the average baseline and multiply by 100 to get
-        <span data-pct-diff="pct-diff">22.22%</span>.
-      </li>
-      <li>
-        <strong>Interpret result:</strong>
-        The result is symmetric and non-negative for this calculator.
-      </li>
-    </ul>
+    <h4>How to Interpret Your Result</h4>
+    <p>
+      The result is always non-negative because the formula uses an absolute difference. Use this
+      metric when neither value is the official starting point; use percent change instead when one
+      value clearly acts as the baseline.
+    </p>
 
-    <h4>How the Formula Works</h4>
+    <h4>Formula Breakdown</h4>
     <p>The percentage difference formula is:</p>
     <p class="pv-formula-block">% Difference = (|A - B| / ((|A| + |B|) / 2)) x 100</p>
-    <p>Substituting your values step by step:</p>
     <ol class="pv-formula-steps">
       <li>
         <strong>Compute absolute difference:</strong>
@@ -4563,12 +2064,62 @@
     </div>
   </section>
 
-  <section class="mtg-exp-section">
+  <section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
+  <div class="pct-cluster-related-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Keep exploring</span>
+      <h2 id="pct-cluster-related-title">More percentage calculators in the new design</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-related-links">
+    <a class="pct-cluster-related-link" href="/percentage-calculators/percent-change-calculator/">
+      <span class="pct-cluster-related-card-title">Percent Change</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link is-active" href="/percentage-calculators/percentage-difference-calculator/" aria-current="page">
+      <span class="pct-cluster-related-card-title">Percentage Difference</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-increase-calculator/">
+      <span class="pct-cluster-related-card-title">Percentage Increase</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-decrease-calculator/">
+      <span class="pct-cluster-related-card-title">Percentage Decrease</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-composition-calculator/">
+      <span class="pct-cluster-related-card-title">Percentage Composition</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/reverse-percentage-calculator/">
+      <span class="pct-cluster-related-card-title">Reverse Percentage</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percent-to-fraction-decimal-calculator/">
+      <span class="pct-cluster-related-card-title">Percent to Fraction/Decimal</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-finder-calculator/">
+      <span class="pct-cluster-related-card-title">What Percent Is X of Y</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a><a class="pct-cluster-related-link" href="/percentage-calculators/percentage-of-a-number-calculator/">
+      <span class="pct-cluster-related-card-title">Find Percentage of a Number</span>
+      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-meta">Percentage Core</span>
+    </a>
+  </div>
+</section>
+
+<section class="mtg-exp-section">
     <h3>Important Notes</h3>
-    <ul class="pv-explanation-list">
-      <li>Percentage difference is always non-negative because the formula uses an absolute difference.</li>
-      <li>Use percent change instead if one value is clearly the original baseline.</li>
-      <li>If both values are 0, the average baseline is 0 so percentage difference is undefined.</li>
+    <ul class="pv-explanation-list pct-important-notes">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Accuracy:</strong> This calculator uses the standard symmetric percentage difference formula and rounds displayed values for readability.</li>
+      <li><strong>Disclaimer:</strong> Use this result as an analysis aid only; domain-specific reporting may require a different comparison method.</li>
+      <li><strong>Assumptions:</strong> Value A and Value B should represent the same unit and context so the average-baseline comparison remains meaningful.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>
@@ -4576,39 +2127,20 @@
   </div>
 </div>
         </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
-        </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="pct-cluster-site-footer">
+  <div class="pct-cluster-wrap pct-cluster-site-footer-inner">
+    <nav class="pct-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="pct-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core-shell.js"></script>
     <script type="module" src="/calculators/percentage-calculators/percentage-difference-calculator/module.js?v=20260224"></script>
   </body>
 </html>
