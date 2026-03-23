@@ -12,12 +12,12 @@
 
         <div class="pct-field-grid">
           <div class="input-row">
-            <label for="discount-original-price">Original price</label>
+            <label for="discount-original-price">Price</label>
             <input id="discount-original-price" type="number" value="80" min="0" step="0.01" />
           </div>
 
           <div class="input-row pct-inline-input">
-            <label for="discount-percent">Discount rate</label>
+            <label for="discount-percent">Discount</label>
             <input id="discount-percent" type="number" value="25" min="0" step="0.01" />
             <span class="pct-inline-suffix" aria-hidden="true">%</span>
           </div>
@@ -25,7 +25,7 @@
 
         <div class="pct-actions">
           <button class="calculator-button full-width" type="button" id="discount-calc">
-            Calculate discount
+            Calculate
           </button>
         </div>
       </div>
@@ -35,25 +35,21 @@
         <p class="pct-answer-sentence" id="discount-result-detail" aria-live="polite">
           You save $20.00 on an $80.00 item.
         </p>
-        <p class="pct-answer-context" id="discount-result-context" aria-live="polite">
-          Formula: Final price = P x (1 - X / 100).
-        </p>
-
         <div class="pct-support-list" aria-label="Discount details">
           <div class="pct-support-row">
-            <span>Original price</span>
+            <span>Price</span>
             <strong id="discount-snap-original-price">$80.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Discount rate</span>
+            <span>Discount</span>
             <strong id="discount-snap-discount-percent">25.00%</strong>
           </div>
           <div class="pct-support-row">
-            <span>Discount amount</span>
+            <span>Saved</span>
             <strong id="discount-snap-discount-amount">$20.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Final price</span>
+            <span>You pay</span>
             <strong id="discount-snap-final-price">$60.00</strong>
           </div>
         </div>

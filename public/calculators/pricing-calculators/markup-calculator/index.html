@@ -12,7 +12,6 @@
 
         <div class="input-stack">
           <div class="input-row">
-            <label>Product scope</label>
             <div class="mode-switch-control" role="group" aria-label="Markup product scope">
               <span class="mode-switch-label is-active" data-markup-product-mode-label="single">
                 Single Product
@@ -35,7 +34,6 @@
           </div>
 
           <div class="input-row">
-            <label>Direction</label>
             <div class="mode-switch-control" role="group" aria-label="Markup direction">
               <span class="mode-switch-label is-active" data-markup-calc-mode-label="cost-to-price">
                 Cost -> Price
@@ -84,9 +82,7 @@
         </div>
 
         <div id="markup-basket-section" class="input-stack is-hidden" aria-hidden="true" hidden>
-          <p class="pct-utility-note">
-            Basket markup is weighted by total cost. Add rows for each product you want to include.
-          </p>
+
           <div id="markup-basket-rows"></div>
           <button class="calculator-button secondary" id="markup-add-row" type="button">
             Add product row
@@ -95,7 +91,7 @@
 
         <div class="pct-actions">
           <button class="calculator-button full-width" type="button" id="markup-calc">
-            Calculate markup
+            Calculate
           </button>
         </div>
       </div>
@@ -105,29 +101,21 @@
         <p class="pct-answer-sentence" id="markup-result-detail" aria-live="polite">
           Markup amount is $20.00 on a $50.00 cost.
         </p>
-        <p class="pct-answer-context" id="markup-result-context" aria-live="polite">
-          Formula: P = C x (1 + M / 100).
-        </p>
-
         <div class="pct-support-list" aria-label="Markup details">
           <div class="pct-support-row">
-            <span>Mode</span>
-            <strong id="markup-snap-mode">Single Product — Cost -> Price</strong>
-          </div>
-          <div class="pct-support-row">
-            <span>Products</span>
+            <span>Items</span>
             <strong id="markup-snap-product-count">1</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total cost</span>
+            <span>Cost</span>
             <strong id="markup-snap-total-cost">$50.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total price</span>
+            <span>Price</span>
             <strong id="markup-snap-total-price">$70.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total markup</span>
+            <span>Markup</span>
             <strong id="markup-snap-total-markup">$20.00</strong>
           </div>
         </div>

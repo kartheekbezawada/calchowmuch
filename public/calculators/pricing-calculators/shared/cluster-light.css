@@ -14,9 +14,49 @@
   --pct-line-strong: rgba(22, 33, 43, 0.2);
   --pct-shadow: 0 12px 30px rgba(16, 24, 40, 0.06);
   --pct-shadow-soft: 0 6px 18px rgba(16, 24, 40, 0.04);
-  --pct-answer-value-size: clamp(2.8rem, 6vw, 4.4rem);
+  --pct-answer-value-size: clamp(3rem, 7vw, 5rem);
   color: var(--pct-ink);
 }
+
+/* ── Simplification overrides ─────────────────────────────── */
+.pct-input-title,
+.pct-lead,
+.pct-answer-context {
+  display: none;
+}
+
+.pct-support-list {
+  border: 0;
+  background: transparent;
+  padding: 8px 0 0;
+}
+
+.pct-input-card {
+  gap: 14px;
+}
+
+.pct-input-card,
+.pct-answer-card {
+  border-color: rgba(22, 33, 43, 0.07);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+}
+
+.pct-answer-card {
+  gap: 14px;
+}
+
+.pct-answer-sentence {
+  font-weight: 600;
+}
+
+.pct-breakdown {
+  gap: 8px;
+}
+
+.pct-answer-ui .calculator-button {
+  min-height: 50px;
+}
+/* ── end simplification ──────────────────────────────────── */
 
 .pct-cluster-page-shell *,
 .pct-answer-ui * {

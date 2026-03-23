@@ -898,9 +898,49 @@
         --pct-line-strong: rgba(22, 33, 43, 0.2);
         --pct-shadow: 0 12px 30px rgba(16, 24, 40, 0.06);
         --pct-shadow-soft: 0 6px 18px rgba(16, 24, 40, 0.04);
-        --pct-answer-value-size: clamp(2.8rem, 6vw, 4.4rem);
+        --pct-answer-value-size: clamp(3rem, 7vw, 5rem);
         color: var(--pct-ink);
       }
+
+      /* ── Simplification overrides ─────────────────────────────── */
+      .pct-input-title,
+      .pct-lead,
+      .pct-answer-context {
+        display: none;
+      }
+
+      .pct-support-list {
+        border: 0;
+        background: transparent;
+        padding: 8px 0 0;
+      }
+
+      .pct-input-card {
+        gap: 14px;
+      }
+
+      .pct-input-card,
+      .pct-answer-card {
+        border-color: rgba(22, 33, 43, 0.07);
+        box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+      }
+
+      .pct-answer-card {
+        gap: 14px;
+      }
+
+      .pct-answer-sentence {
+        font-weight: 600;
+      }
+
+      .pct-breakdown {
+        gap: 8px;
+      }
+
+      .pct-answer-ui .calculator-button {
+        min-height: 50px;
+      }
+      /* ── end simplification ──────────────────────────────────── */
 
       .pct-cluster-page-shell *,
       .pct-answer-ui * {
@@ -1701,6 +1741,7 @@
       #calc-commission-calculator .comm-chart-card {
         display: grid;
         gap: 16px;
+        justify-items: center;
         padding: 18px;
         border-radius: 22px;
         border: 1px solid var(--pct-line);
@@ -1730,9 +1771,12 @@
 
       #calc-commission-calculator .comm-chart-visual {
         display: grid;
-        gap: 16px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
-        min-height: 220px;
+        align-items: center;
+        position: relative;
       }
 
       #calc-commission-calculator .comm-chart-donut {
@@ -1744,6 +1788,12 @@
         border-radius: 50%;
         background: var(--comm-chart-fill);
         position: relative;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          filter 0.18s ease;
+        box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
       }
 
       #calc-commission-calculator .comm-chart-donut::after {
@@ -1753,6 +1803,14 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.96);
         box-shadow: inset 0 0 0 1px var(--pct-line);
+      }
+
+      #calc-commission-calculator .comm-chart-donut.is-hovered {
+        transform: scale(1.04);
+        filter: saturate(1.08);
+        box-shadow:
+          0 22px 38px rgba(15, 23, 42, 0.18),
+          0 0 0 10px var(--comm-chart-hover-shadow, rgba(35, 78, 103, 0.16));
       }
 
       #calc-commission-calculator .comm-chart-donut[hidden],
@@ -1791,17 +1849,18 @@
       }
 
       #calc-commission-calculator .comm-chart-placeholder {
-        max-width: 240px;
         display: grid;
-        gap: 10px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
         text-align: center;
         color: var(--pct-muted);
       }
 
       #calc-commission-calculator .comm-chart-placeholder-icon {
-        width: 72px;
-        height: 72px;
+        width: 188px;
+        height: 188px;
         border-radius: 50%;
         border: 1px dashed var(--pct-line-strong);
         background:
@@ -1814,9 +1873,53 @@
           );
       }
 
+      #calc-commission-calculator .comm-chart-tooltip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 3;
+        display: grid;
+        gap: 4px;
+        max-width: 200px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(22, 33, 43, 0.96);
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.24);
+        pointer-events: none;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip[hidden] {
+        display: none !important;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong,
+      #calc-commission-calculator .comm-chart-tooltip span {
+        margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong {
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip span {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+
       #calc-commission-calculator .comm-chart-placeholder strong,
       #calc-commission-calculator .comm-chart-placeholder p {
         margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-head,
+      #calc-commission-calculator .comm-chart-legend,
+      #calc-commission-calculator .comm-chart-center,
+      #calc-commission-calculator .comm-chart-placeholder strong,
+      #calc-commission-calculator .comm-chart-placeholder p {
+        display: none;
       }
 
       #calc-commission-calculator .comm-chart-legend {
@@ -2173,17 +2276,25 @@
           width: 168px;
         }
 
+        #calc-commission-calculator .comm-chart-visual,
+        #calc-commission-calculator .comm-chart-placeholder,
+        #calc-commission-calculator .comm-chart-placeholder-icon {
+          width: 168px;
+          min-height: 168px;
+          height: 168px;
+        }
+
         .pct-explanation .bor-faq-grid {
           grid-template-columns: 1fr;
         }
       }
     </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page pct-cluster-page-shell">
@@ -2220,7 +2331,6 @@
 
         <div class="input-stack">
           <div class="input-row">
-            <label>Product scope</label>
             <div class="mode-switch-control" role="group" aria-label="Markup product scope">
               <span class="mode-switch-label is-active" data-markup-product-mode-label="single">
                 Single Product
@@ -2243,7 +2353,6 @@
           </div>
 
           <div class="input-row">
-            <label>Direction</label>
             <div class="mode-switch-control" role="group" aria-label="Markup direction">
               <span class="mode-switch-label is-active" data-markup-calc-mode-label="cost-to-price">
                 Cost -> Price
@@ -2292,9 +2401,7 @@
         </div>
 
         <div id="markup-basket-section" class="input-stack is-hidden" aria-hidden="true" hidden>
-          <p class="pct-utility-note">
-            Basket markup is weighted by total cost. Add rows for each product you want to include.
-          </p>
+
           <div id="markup-basket-rows"></div>
           <button class="calculator-button secondary" id="markup-add-row" type="button">
             Add product row
@@ -2303,7 +2410,7 @@
 
         <div class="pct-actions">
           <button class="calculator-button full-width" type="button" id="markup-calc">
-            Calculate markup
+            Calculate
           </button>
         </div>
       </div>
@@ -2313,29 +2420,21 @@
         <p class="pct-answer-sentence" id="markup-result-detail" aria-live="polite">
           Markup amount is $20.00 on a $50.00 cost.
         </p>
-        <p class="pct-answer-context" id="markup-result-context" aria-live="polite">
-          Formula: P = C x (1 + M / 100).
-        </p>
-
         <div class="pct-support-list" aria-label="Markup details">
           <div class="pct-support-row">
-            <span>Mode</span>
-            <strong id="markup-snap-mode">Single Product — Cost -> Price</strong>
-          </div>
-          <div class="pct-support-row">
-            <span>Products</span>
+            <span>Items</span>
             <strong id="markup-snap-product-count">1</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total cost</span>
+            <span>Cost</span>
             <strong id="markup-snap-total-cost">$50.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total price</span>
+            <span>Price</span>
             <strong id="markup-snap-total-price">$70.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total markup</span>
+            <span>Markup</span>
             <strong id="markup-snap-total-markup">$20.00</strong>
           </div>
         </div>
@@ -2398,21 +2497,6 @@
     </p>
   </section>
 
-  <section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
-  <div class="pct-cluster-route-switch-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Switch scenario</span>
-      <h2 id="pct-cluster-route-switch-title">Compare another pricing question</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-switch-chips">
-    <a class="pct-cluster-switch-chip" href="/pricing-calculators/commission-calculator/">Commission Calculator</a>
-    <a class="pct-cluster-switch-chip" href="/pricing-calculators/discount-calculator/">Discount Calculator</a>
-    <a class="pct-cluster-switch-chip" href="/pricing-calculators/margin-calculator/">Margin Calculator</a>
-    <a class="pct-cluster-switch-chip is-active" href="/pricing-calculators/markup-calculator/" aria-current="page">Markup Calculator</a>
-  </div>
-</section>
-
   <section>
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
@@ -2442,34 +2526,6 @@
       </div>
     </div>
   </section>
-
-  <section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
-  <div class="pct-cluster-related-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Keep exploring</span>
-      <h2 id="pct-cluster-related-title">More pricing calculators in the new design</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-related-links">
-    <a class="pct-cluster-related-link" href="/pricing-calculators/commission-calculator/">
-      <span class="pct-cluster-related-card-title">Commission Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
-      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
-    </a><a class="pct-cluster-related-link" href="/pricing-calculators/discount-calculator/">
-      <span class="pct-cluster-related-card-title">Discount Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
-      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
-    </a><a class="pct-cluster-related-link" href="/pricing-calculators/margin-calculator/">
-      <span class="pct-cluster-related-card-title">Margin Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
-      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
-    </a><a class="pct-cluster-related-link is-active" href="/pricing-calculators/markup-calculator/" aria-current="page">
-      <span class="pct-cluster-related-card-title">Markup Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
-      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
-    </a>
-  </div>
-</section>
 
   <section>
     <h3>Important Notes</h3>
