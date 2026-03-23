@@ -1701,6 +1701,7 @@
       #calc-commission-calculator .comm-chart-card {
         display: grid;
         gap: 16px;
+        justify-items: center;
         padding: 18px;
         border-radius: 22px;
         border: 1px solid var(--pct-line);
@@ -1730,9 +1731,12 @@
 
       #calc-commission-calculator .comm-chart-visual {
         display: grid;
-        gap: 16px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
-        min-height: 220px;
+        align-items: center;
+        position: relative;
       }
 
       #calc-commission-calculator .comm-chart-donut {
@@ -1744,6 +1748,12 @@
         border-radius: 50%;
         background: var(--comm-chart-fill);
         position: relative;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          filter 0.18s ease;
+        box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
       }
 
       #calc-commission-calculator .comm-chart-donut::after {
@@ -1753,6 +1763,14 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.96);
         box-shadow: inset 0 0 0 1px var(--pct-line);
+      }
+
+      #calc-commission-calculator .comm-chart-donut.is-hovered {
+        transform: scale(1.04);
+        filter: saturate(1.08);
+        box-shadow:
+          0 22px 38px rgba(15, 23, 42, 0.18),
+          0 0 0 10px var(--comm-chart-hover-shadow, rgba(35, 78, 103, 0.16));
       }
 
       #calc-commission-calculator .comm-chart-donut[hidden],
@@ -1791,17 +1809,18 @@
       }
 
       #calc-commission-calculator .comm-chart-placeholder {
-        max-width: 240px;
         display: grid;
-        gap: 10px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
         text-align: center;
         color: var(--pct-muted);
       }
 
       #calc-commission-calculator .comm-chart-placeholder-icon {
-        width: 72px;
-        height: 72px;
+        width: 188px;
+        height: 188px;
         border-radius: 50%;
         border: 1px dashed var(--pct-line-strong);
         background:
@@ -1814,9 +1833,53 @@
           );
       }
 
+      #calc-commission-calculator .comm-chart-tooltip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 3;
+        display: grid;
+        gap: 4px;
+        max-width: 200px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(22, 33, 43, 0.96);
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.24);
+        pointer-events: none;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip[hidden] {
+        display: none !important;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong,
+      #calc-commission-calculator .comm-chart-tooltip span {
+        margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong {
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip span {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+
       #calc-commission-calculator .comm-chart-placeholder strong,
       #calc-commission-calculator .comm-chart-placeholder p {
         margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-head,
+      #calc-commission-calculator .comm-chart-legend,
+      #calc-commission-calculator .comm-chart-center,
+      #calc-commission-calculator .comm-chart-placeholder strong,
+      #calc-commission-calculator .comm-chart-placeholder p {
+        display: none;
       }
 
       #calc-commission-calculator .comm-chart-legend {
@@ -2173,6 +2236,14 @@
           width: 168px;
         }
 
+        #calc-commission-calculator .comm-chart-visual,
+        #calc-commission-calculator .comm-chart-placeholder,
+        #calc-commission-calculator .comm-chart-placeholder-icon {
+          width: 168px;
+          min-height: 168px;
+          height: 168px;
+        }
+
         .pct-explanation .bor-faq-grid {
           grid-template-columns: 1fr;
         }
@@ -2417,6 +2488,21 @@
     </div>
   </section>
 
+  <section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
+  <div class="pct-cluster-route-switch-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Switch scenario</span>
+      <h2 id="pct-cluster-route-switch-title">Compare another pricing question</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-switch-chips">
+    <a class="pct-cluster-switch-chip is-active" href="/pricing-calculators/commission-calculator/" aria-current="page">Commission Calculator</a>
+    <a class="pct-cluster-switch-chip" href="/pricing-calculators/discount-calculator/">Discount Calculator</a>
+    <a class="pct-cluster-switch-chip" href="/pricing-calculators/margin-calculator/">Margin Calculator</a>
+    <a class="pct-cluster-switch-chip" href="/pricing-calculators/markup-calculator/">Markup Calculator</a>
+  </div>
+</section>
+
   <section>
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
@@ -2446,6 +2532,34 @@
       </div>
     </div>
   </section>
+
+  <section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
+  <div class="pct-cluster-related-head">
+    <div>
+      <span class="pct-cluster-switch-kicker">Keep exploring</span>
+      <h2 id="pct-cluster-related-title">More pricing calculators in the new design</h2>
+    </div>
+  </div>
+  <div class="pct-cluster-related-links">
+    <a class="pct-cluster-related-link is-active" href="/pricing-calculators/commission-calculator/" aria-current="page">
+      <span class="pct-cluster-related-card-title">Commission Calculator</span>
+      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
+      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
+    </a><a class="pct-cluster-related-link" href="/pricing-calculators/discount-calculator/">
+      <span class="pct-cluster-related-card-title">Discount Calculator</span>
+      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
+      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
+    </a><a class="pct-cluster-related-link" href="/pricing-calculators/margin-calculator/">
+      <span class="pct-cluster-related-card-title">Margin Calculator</span>
+      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
+      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
+    </a><a class="pct-cluster-related-link" href="/pricing-calculators/markup-calculator/">
+      <span class="pct-cluster-related-card-title">Markup Calculator</span>
+      <span class="pct-cluster-related-card-copy">Open the shared answer-first shell for this pricing scenario.</span>
+      <span class="pct-cluster-related-card-meta">Pricing &amp; Margin</span>
+    </a>
+  </div>
+</section>
 
   <section>
     <h3>Important Notes</h3>

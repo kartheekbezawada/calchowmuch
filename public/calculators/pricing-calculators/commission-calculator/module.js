@@ -22,6 +22,7 @@ const deckRates = document.querySelector('#comm-deck-rates');
 const deckCommission = document.querySelector('#comm-deck-commission');
 const deckEffectiveRate = document.querySelector('#comm-deck-effective-rate');
 const tierSummary = document.querySelector('#comm-tier-summary');
+const chartVisual = document.querySelector('#comm-chart-visual');
 const chartSubtitle = document.querySelector('#comm-chart-subtitle');
 const chartPlaceholder = document.querySelector('#comm-chart-placeholder');
 const chartDonut = document.querySelector('#comm-chart-donut');
@@ -233,6 +234,122 @@ const CHART_COLORS = [
   '#dc2626',
 ];
 
+let chartTooltip = null;
+let chartSegments = [];
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function hexToRgba(hex, alpha) {
+  const normalized = String(hex || '').replace('#', '');
+  if (normalized.length !== 6) {
+    return `rgba(35, 78, 103, ${alpha})`;
+  }
+
+  const red = Number.parseInt(normalized.slice(0, 2), 16);
+  const green = Number.parseInt(normalized.slice(2, 4), 16);
+  const blue = Number.parseInt(normalized.slice(4, 6), 16);
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+}
+
+function ensureChartTooltip() {
+  if (!chartVisual) {
+    return null;
+  }
+
+  if (!chartTooltip) {
+    chartTooltip = document.createElement('div');
+    chartTooltip.className = 'comm-chart-tooltip';
+    chartTooltip.hidden = true;
+    chartTooltip.setAttribute('aria-hidden', 'true');
+    chartVisual.appendChild(chartTooltip);
+  }
+
+  return chartTooltip;
+}
+
+function hideChartTooltip() {
+  const tooltip = ensureChartTooltip();
+  if (!tooltip) {
+    return;
+  }
+
+  tooltip.hidden = true;
+  tooltip.setAttribute('aria-hidden', 'true');
+}
+
+function clearChartHover() {
+  if (chartDonut) {
+    chartDonut.classList.remove('is-hovered');
+    chartDonut.style.removeProperty('--comm-chart-hover-shadow');
+  }
+  hideChartTooltip();
+}
+
+function updateChartTooltip(segment, clientX, clientY) {
+  const tooltip = ensureChartTooltip();
+  if (!tooltip || !chartVisual) {
+    return;
+  }
+
+  tooltip.innerHTML = `<strong>${segment.label}</strong><span>${segment.rateText} rate • ${segment.valueText}</span>`;
+  tooltip.hidden = false;
+  tooltip.setAttribute('aria-hidden', 'false');
+
+  const visualRect = chartVisual.getBoundingClientRect();
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const maxLeft = Math.max(8, visualRect.width - tooltipRect.width - 8);
+  const maxTop = Math.max(8, visualRect.height - tooltipRect.height - 8);
+  const left = clamp(clientX - visualRect.left + 14, 8, maxLeft);
+  const top = clamp(clientY - visualRect.top - tooltipRect.height - 14, 8, maxTop);
+
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+}
+
+function findHoveredChartSegment(event) {
+  if (!chartDonut || !chartSegments.length) {
+    return null;
+  }
+
+  const rect = chartDonut.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const deltaX = event.clientX - centerX;
+  const deltaY = event.clientY - centerY;
+  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+  const outerRadius = rect.width / 2;
+  const innerRadius = outerRadius * 0.66;
+
+  if (distance < innerRadius || distance > outerRadius) {
+    return null;
+  }
+
+  let angle = (Math.atan2(deltaY, deltaX) * 180) / Math.PI + 90;
+  if (angle < 0) {
+    angle += 360;
+  }
+
+  return (
+    chartSegments.find(
+      (segment) => angle >= segment.startAngle && (angle < segment.endAngle || segment.endAngle >= 359.99)
+    ) ?? null
+  );
+}
+
+function handleChartHover(event) {
+  const segment = findHoveredChartSegment(event);
+  if (!segment || !chartDonut) {
+    clearChartHover();
+    return;
+  }
+
+  chartDonut.classList.add('is-hovered');
+  chartDonut.style.setProperty('--comm-chart-hover-shadow', hexToRgba(segment.color, 0.22));
+  updateChartTooltip(segment, event.clientX, event.clientY);
+}
+
 function getTierColor(index) {
   return CHART_COLORS[index % CHART_COLORS.length];
 }
@@ -249,6 +366,8 @@ function hideChartDonut() {
     chartDonut.setAttribute('aria-hidden', 'true');
     chartDonut.style.removeProperty('--comm-chart-fill');
   }
+  chartSegments = [];
+  clearChartHover();
 }
 
 function renderChartLegend(items = []) {
@@ -365,16 +484,26 @@ function renderTierChart(result) {
 
   let currentAngle = 0;
   const legendItems = [];
+  const interactiveSegments = [];
   const segments = rows.map((row, index) => {
     const share = (row.commission / totalCommission) * 100;
     const start = currentAngle;
     currentAngle += (share / 100) * 360;
     const color = getTierColor(index);
+    const valueText = `${formatCurrency(row.commission)} • ${formatPercent(share)}`;
     legendItems.push({
       color,
       label: getTierLabel(row),
       meta: `${formatPercent(row.rate)} rate`,
-      value: `${formatCurrency(row.commission)} • ${formatPercent(share)}`,
+      value: valueText,
+    });
+    interactiveSegments.push({
+      color,
+      startAngle: start,
+      endAngle: currentAngle,
+      label: getTierLabel(row),
+      rateText: formatPercent(row.rate),
+      valueText,
     });
     return `${color} ${start.toFixed(2)}deg ${currentAngle.toFixed(2)}deg`;
   });
@@ -391,6 +520,8 @@ function renderTierChart(result) {
   chartDonut.hidden = false;
   chartDonut.setAttribute('aria-hidden', 'false');
   chartDonut.style.setProperty('--comm-chart-fill', `conic-gradient(from -90deg, ${segments.join(', ')})`);
+  chartSegments = interactiveSegments;
+  clearChartHover();
   updateNode(
     chartSubtitle,
     `${rows.length} tier${rows.length === 1 ? '' : 's'} contributing to total commission`
@@ -682,5 +813,8 @@ tierRows?.addEventListener('input', () => {
 });
 
 calculateButton?.addEventListener('click', calculate);
+
+chartDonut?.addEventListener('mousemove', handleChartHover);
+chartDonut?.addEventListener('mouseleave', clearChartHover);
 
 calculate();
