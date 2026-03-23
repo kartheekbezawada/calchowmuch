@@ -1,7 +1,6 @@
 <div id="pctdec-explanation" class="explanation-pane pct-explanation">
   <section class="mtg-exp-section">
     <h2>How Much Did the Value Drop?</h2>
-    <p><strong>The short answer:</strong> percentage decrease shows how far a new value moved below or above the original value.</p>
     <p>
       Use this calculator to measure the size of a decrease relative to the original amount. It
       shows both the raw drop and the percentage decrease.
@@ -13,7 +12,7 @@
   </section>
 
   <section class="mtg-exp-section">
-    <h3>How to Guide</h3>
+    <h3>How It Works</h3>
     <ol class="pv-formula-steps">
       <li>Enter the original value in X and the new value in Y.</li>
       <li>Click <strong>Calculate percentage decrease</strong> to see the signed decrease and direction.</li>
@@ -21,52 +20,14 @@
       <li>Use the sign and direction together to distinguish a real decline from an increase reversal.</li>
     </ol>
 
-    <h4>Results Table</h4>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">What It Means</th>
-            <th scope="col">Your Value</th>
-            <th scope="col">How It Works</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Original Value (X)</td>
-            <td><span data-pctdec="original-value">200.00</span></td>
-            <td class="pv-how-col">Starting amount used as the denominator baseline</td>
-          </tr>
-          <tr>
-            <td>New Value (Y)</td>
-            <td><span data-pctdec="new-value">150.00</span></td>
-            <td class="pv-how-col">Updated amount compared against the original value</td>
-          </tr>
-          <tr>
-            <td>Decrease Amount</td>
-            <td><span data-pctdec="decrease-amount">50.00</span></td>
-            <td class="pv-how-col">Computed as X - Y</td>
-          </tr>
-          <tr>
-            <td>Direction</td>
-            <td><span data-pctdec="direction">Decrease</span></td>
-            <td class="pv-how-col">Positive means decrease, negative means increase</td>
-          </tr>
-          <tr>
-            <td>Formula</td>
-            <td>((X - Y) / X) x 100</td>
-            <td class="pv-how-col">Standard percentage decrease formula</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Percentage Decrease</td>
-            <td><span data-pctdec="percent-decrease">25.00%</span></td>
-            <td class="pv-how-col">Final signed percentage result</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+    <h4>At a Glance</h4>
+    <ul class="pv-explanation-list">
+      <li><strong>Original value:</strong> <span data-pctdec="original-value">200.00</span></li>
+      <li><strong>New value:</strong> <span data-pctdec="new-value">150.00</span></li>
+      <li><strong>Decrease amount:</strong> <span data-pctdec="decrease-amount">50.00</span></li>
+      <li><strong>Direction:</strong> <span data-pctdec="direction">Decrease</span></li>
+      <li><strong>Percentage decrease:</strong> <span data-pctdec="percent-decrease">25.00%</span></li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section">
@@ -85,28 +46,13 @@
       the decrease percent for normalized comparison and the decrease amount for the raw unit change.
     </p>
 
-    <h4>Formula Breakdown</h4>
-    <p>The percentage decrease formula is:</p>
+    <h4>Formula</h4>
     <p class="pv-formula-block">% Decrease = ((X - Y) / X) x 100</p>
-    <ol class="pv-formula-steps">
-      <li>
-        <strong>Difference:</strong>
-        X - Y = <span data-pctdec="decrease-amount">50.00</span>.
-      </li>
-      <li>
-        <strong>Relative ratio:</strong>
-        (<span data-pctdec="decrease-amount">50.00</span>) / (<span data-pctdec="original-value">200.00</span>) gives
-        the decline ratio over the original value.
-      </li>
-      <li>
-        <strong>Percentage value:</strong>
-        Multiply by 100 to get <span data-pctdec="percent-decrease">25.00%</span>.
-      </li>
-      <li>
-        <strong>Direction:</strong>
-        Current result direction is <span data-pctdec="direction">Decrease</span>.
-      </li>
-    </ol>
+    <p>
+      Subtract the new value from the original value to get <span data-pctdec="decrease-amount">50.00</span>,
+      divide by <span data-pctdec="original-value">200.00</span>, then multiply by 100 to reach
+      <span data-pctdec="percent-decrease">25.00%</span>.
+    </p>
     <p>If X is 0, percentage decrease is undefined because division by zero is not possible.</p>
   </section>
 
@@ -120,10 +66,6 @@
       <div class="bor-faq-card">
         <h4>How do you calculate percentage decrease from X to Y?</h4>
         <p>Subtract Y from X, divide by X, then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is the percentage decrease formula?</h4>
-        <p>The formula is ((X - Y) / X) x 100.</p>
       </div>
       <div class="bor-faq-card">
         <h4>What is the difference between decrease amount and percentage decrease?</h4>
@@ -142,16 +84,8 @@
         <p>Then the result is negative, which indicates an increase rather than a decrease.</p>
       </div>
       <div class="bor-faq-card">
-        <h4>Can I use decimals for the original and new values?</h4>
-        <p>Yes, the calculation works the same for decimal values.</p>
-      </div>
-      <div class="bor-faq-card">
         <h4>Is percentage decrease the same as percent change?</h4>
         <p>Not always; percent change can be increase or decrease, while percentage decrease focuses on declines.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Where is percentage decrease used in real life?</h4>
-        <p>It is used for discounts, markdowns, cost reductions, and tracking declines over time.</p>
       </div>
     </div>
   </section>
@@ -161,9 +95,9 @@
     <ul class="pv-explanation-list pct-important-notes">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Accuracy:</strong> This calculator uses the standard percentage decrease formula and rounds displayed values for readability.</li>
-      <li><strong>Disclaimer:</strong> Use this result as an analysis aid only; official reporting may require your own rounding or accounting policy.</li>
       <li><strong>Assumptions:</strong> X and Y should describe the same unit, category, and period so the comparison is meaningful.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Use case:</strong> Use percentage decrease for discounts, markdowns, budget cuts, and before-versus-after decline checks.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and are not stored.</li>
     </ul>
   </section>
 </div>
