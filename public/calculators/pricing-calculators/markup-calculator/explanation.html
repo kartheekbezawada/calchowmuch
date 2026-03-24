@@ -1,55 +1,110 @@
 <div id="markup-explanation" class="explanation-pane pct-explanation">
-  <h2>What Selling Price or Markup Percentage Does Your Cost Create?</h2>
-  <h3>How to Guide</h3>
-  <p>
-    Use this calculator to move between cost, selling price, and markup percentage for a single
-    item or a basket of items. In <span data-markup="mode">Single Product — Cost -> Price</span>
-    mode, <span data-markup="product-count">1</span> product with cost of
-    <span data-markup="cost">$50.00</span> and markup of
-    <span data-markup="markup-percent">40.00%</span> produces markup amount of
-    <span data-markup="markup-amount">$20.00</span> and selling price of
-    <span data-markup="price">$70.00</span>.
-  </p>
-  <p>
-    Markup is measured against cost, which is why it is not the same as margin. In basket mode,
-    the combined result is weighted by total cost rather than averaged row by row, so higher-cost
-    items have more influence on the final basket markup.
-  </p>
-  <p>
-    The core price formula is <span data-markup="formula">P = C x (1 + M / 100)</span>. Across the
-    current selection, total cost is <span data-markup="total-cost">$50.00</span>, total price is
-    <span data-markup="total-price">$70.00</span>, total markup is
-    <span data-markup="total-markup">$20.00</span>, and basket markup is
-    <span data-markup="basket-markup-percent">40.00%</span>.
-  </p>
+  <section>
+    <h2>What Selling Price or Markup Percentage Does Your Cost Create?</h2>
 
-  <h3>Frequently Asked Questions</h3>
-  <p>
-    <strong>How do you calculate price from cost and markup?</strong> Multiply cost by one plus the
-    markup rate as a decimal.
-  </p>
-  <p>
-    <strong>How do you calculate markup from cost and price?</strong> Subtract cost from price,
-    divide by cost, then multiply by 100.
-  </p>
-  <p>
-    <strong>Why is basket markup not a simple average?</strong> Because the combined result is
-    weighted by total cost and quantity.
-  </p>
-  <p>
-    <strong>Can markup be negative?</strong> Yes. That means the selling price is below cost.
-  </p>
-  <p>
-    <strong>What is the most common mistake?</strong> Using incomplete cost inputs and overstating
-    the true markup.
-  </p>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter cost and selling price, or switch modes if you want to solve for markup or price.</li>
+      <li>Check the markup amount in currency terms.</li>
+      <li>Check the markup percentage to see how much is being added relative to cost.</li>
+      <li>Use basket totals when the decision involves several products together.</li>
+    </ol>
+  </section>
 
-  <h3>Important Notes</h3>
-  <ul class="pv-explanation-list pct-important-notes">
-    <li><strong>Last updated:</strong> March 2026</li>
-    <li><strong>Accuracy:</strong> Standard markup formulas and weighted basket totals</li>
-    <li><strong>Assumptions:</strong> Same currency basis; markup is measured against cost</li>
-    <li><strong>Disclaimer:</strong> Excludes tax, shipping, overhead, channel fees, and negotiated discounts unless included in cost or price inputs</li>
-    <li><strong>Privacy:</strong> All calculations run locally in your browser</li>
-  </ul>
+  <section>
+    <h3>How Markup Works</h3>
+    <p>
+      This calculator moves between cost, selling price, and markup percentage for a single product
+      or a basket of products. In <span data-markup="mode">Single Product — Cost -&gt; Price</span>
+      mode, <span data-markup="product-count">1</span> product with cost of
+      <span data-markup="cost">$50.00</span> and markup of
+      <span data-markup="markup-percent">40.00%</span> produces markup amount of
+      <span data-markup="markup-amount">$20.00</span> and selling price of
+      <span data-markup="price">$70.00</span>.
+    </p>
+    <p class="pv-formula-block"><span data-markup="formula">P = C x (1 + M / 100)</span></p>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Markup vs margin</h4>
+        <p>Markup is measured against cost, while margin is measured against selling price, so the same sale produces different percentages.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Cost-based pricing</h4>
+        <p>This makes markup a natural tool for quote building, retail merchandising, and any pricing rule that starts from cost.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Basket weighting</h4>
+        <p>Total cost of <span data-markup="total-cost">$50.00</span> and total markup of <span data-markup="total-markup">$20.00</span> create a weighted basket result, so higher-cost lines matter more.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Single Product vs Basket View</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Single product</h4>
+        <p>A single-product result is useful when you are pricing one item or validating one quote using cost of <span data-markup="cost">$50.00</span> and price of <span data-markup="price">$70.00</span>.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Basket view</h4>
+        <p>Basket view is more useful when an order mixes several items, because basket markup of <span data-markup="basket-markup-percent">40.00%</span> reflects the weighted total rather than a simple average.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Example Scenario</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Target markup</h4>
+        <p>If a retailer buys an item for $50 and wants a 40% markup, the selling price becomes $70.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Price pressure</h4>
+        <p>If competition pushes the selling price down to $65, the markup falls materially even though the dollar move looks small.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Takeaway</h4>
+        <p>Markup targets work best as guardrails when you decide how far discounting can go.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>How do you calculate price from cost and markup?</h4>
+        <p>Multiply cost by one plus the markup rate as a decimal.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>How do you calculate markup from cost and price?</h4>
+        <p>Subtract cost from price, divide by cost, then multiply by 100.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Why is basket markup not a simple average?</h4>
+        <p>Because the combined result is weighted by total cost and quantity.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Can markup be negative?</h4>
+        <p>Yes. That means the selling price is below cost.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the most common mistake?</h4>
+        <p>Using incomplete cost inputs and overstating the true markup.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h4>Important Notes</h4>
+    <ul class="pv-explanation-list pct-important-notes" style="gap: 6px; font-size: var(--text-sm); line-height: 1.35;">
+      <li>Updated March 2026.</li>
+      <li>Results use standard markup formulas and weighted basket totals.</li>
+      <li>Markup is measured against cost.</li>
+      <li>Tax, shipping, overhead, and negotiated discounts are not included.</li>
+      <li>Calculations run locally in your browser.</li>
+    </ul>
+  </section>
 </div>

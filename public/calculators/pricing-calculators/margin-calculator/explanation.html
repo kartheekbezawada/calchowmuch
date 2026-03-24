@@ -1,53 +1,106 @@
 <div id="margin-explanation" class="explanation-pane pct-explanation">
-  <h2>What Margin Does Your Price Create?</h2>
-  <h3>How to Guide</h3>
-  <p>
-    Use this calculator to measure gross margin from cost and price or to solve for the selling
-    price needed to reach a target margin. In <span data-margin="mode">Cost + Price -> Margin %</span>
-    mode, a cost of <span data-margin="cost">$60.00</span> and selling price of
-    <span data-margin="price">$100.00</span> produce profit of
-    <span data-margin="profit">$40.00</span> and gross margin of
-    <span data-margin="margin-percent">40.00%</span>.
-  </p>
-  <p>
-    Margin is based on selling price, not cost, which is why margin and markup are not the same
-    percentage. In reverse mode, the calculator works backward from cost and target margin so you
-    can set a minimum price instead of guessing.
-  </p>
-  <p>
-    The core formula is <span data-margin="formula">((P - C) / P) x 100</span>. The output is most
-    useful when your cost base is complete, including freight, packaging, processing fees, and any
-    normal discounting that changes the real selling price.
-  </p>
+  <section>
+    <h2>What Margin Does Your Price Create?</h2>
 
-  <h3>Frequently Asked Questions</h3>
-  <p>
-    <strong>How do you calculate gross margin?</strong> Subtract cost from selling price, divide by
-    selling price, then multiply by 100.
-  </p>
-  <p>
-    <strong>How do you find price from cost and target margin?</strong> Divide cost by one minus the
-    margin rate written as a decimal.
-  </p>
-  <p>
-    <strong>Is margin the same as markup?</strong> No. Margin is based on selling price, while
-    markup is based on cost.
-  </p>
-  <p>
-    <strong>Does the calculator show net profit?</strong> No. It shows gross margin before
-    overhead and other indirect expenses.
-  </p>
-  <p>
-    <strong>What is the most common mistake?</strong> Using markup targets when the business is
-    really managing to a margin target.
-  </p>
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter cost and selling price, or switch modes if you want to solve for another field.</li>
+      <li>Check the profit amount first.</li>
+      <li>Then review the margin percentage to see how much of the sale price is kept.</li>
+      <li>Compare the result with your target margin before changing price.</li>
+    </ol>
+  </section>
 
-  <h3>Important Notes</h3>
-  <ul class="pv-explanation-list pct-important-notes">
-    <li><strong>Last updated:</strong> March 2026</li>
-    <li><strong>Accuracy:</strong> Standard gross-margin formulas with display rounding</li>
-    <li><strong>Assumptions:</strong> Same currency basis; direct cost and selling price are comparable</li>
-    <li><strong>Disclaimer:</strong> Excludes overhead, tax, shipping, financing, and channel fees unless included in cost</li>
-    <li><strong>Privacy:</strong> All calculations run locally in your browser</li>
-  </ul>
+  <section>
+    <h3>How Margin Is Measured</h3>
+    <p>
+      This calculator measures gross margin from cost and price, or works backward when you want to
+      know the selling price required for a target margin. In
+      <span data-margin="mode">Cost + Price -&gt; Margin %</span> mode, a cost of
+      <span data-margin="cost">$60.00</span> and selling price of
+      <span data-margin="price">$100.00</span> produce profit of
+      <span data-margin="profit">$40.00</span> and gross margin of
+      <span data-margin="margin-percent">40.00%</span>.
+    </p>
+    <p class="pv-formula-block"><span data-margin="formula">((P - C) / P) x 100</span></p>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Margin vs markup</h4>
+        <p>Margin is based on selling price, not cost, which is why the same sale produces a different margin percentage than markup.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Reverse pricing</h4>
+        <p>If a business manages price floors by margin, the reverse mode helps you work back to a required selling price instead of guessing.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Cost completeness</h4>
+        <p>The result is only as reliable as the cost base behind it, so freight, packaging, payment fees, and routine discounting should not be ignored.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>How to Read the Result</h3>
+    <ul class="pv-explanation-list">
+      <li><strong>Profit amount:</strong> The money left after cost is removed from the selling price.</li>
+      <li><strong>Margin percentage:</strong> The share of the selling price retained as gross profit.</li>
+      <li><strong>Reverse pricing:</strong> Useful when you know cost and target margin but not the price.</li>
+      <li><strong>Decision use:</strong> Strong for pricing, discount control, and gross-profit planning.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Example Scenario</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Starting case</h4>
+        <p>At cost of $60 and price of $100, gross profit is $40 and margin is 40%.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>After discounting</h4>
+        <p>If price drops to $90, profit falls to $30 and margin falls to 33.33%.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Takeaway</h4>
+        <p>A small price change can move margin much more than many teams expect.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>How do you calculate gross margin?</h4>
+        <p>Subtract cost from selling price, divide by selling price, then multiply by 100.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>How do you find price from cost and target margin?</h4>
+        <p>Divide cost by one minus the margin rate written as a decimal.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Is margin the same as markup?</h4>
+        <p>No. Margin is based on selling price, while markup is based on cost.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Does the calculator show net profit?</h4>
+        <p>No. It shows gross margin before overhead and other indirect expenses.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the most common mistake?</h4>
+        <p>Using markup targets when the business is actually managing to a margin target.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h4>Important Notes</h4>
+    <ul class="pv-explanation-list pct-important-notes" style="gap: 6px; font-size: var(--text-sm); line-height: 1.35;">
+      <li>Updated March 2026.</li>
+      <li>Results use standard gross-margin formulas with rounding.</li>
+      <li>Cost and selling price should use the same basis.</li>
+      <li>Overhead, tax, shipping, and channel fees are not included.</li>
+      <li>Calculations run locally in your browser.</li>
+    </ul>
+  </section>
 </div>
