@@ -1,0 +1,119 @@
+<div id="comm-explanation" class="explanation-pane pct-explanation">
+  <section>
+    <h2>How Much Commission Will This Sale Generate?</h2>
+
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Choose <span data-comm="mode">Flat Commission %</span> or tiered mode.</li>
+      <li>Enter total sales and the matching rate structure.</li>
+      <li>Review total commission and the effective rate.</li>
+      <li>Use the tier table when you want to see exactly how the payout is built.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>How Commission Is Worked Out</h3>
+    <p>
+      This calculator estimates what a sale pays under either one flat percentage or a progressive
+      tier system. In the current example, sales of <span data-comm="sales">$30,000.00</span> at
+      <span data-comm="rates">7.50%</span> produce commission of
+      <span data-comm="commission">$2,250.00</span>, which gives an effective rate of
+      <span data-comm="effective-rate">7.50%</span>.
+    </p>
+    <p class="pv-formula-block"><span data-comm="formula">Commission = Sales x (Rate / 100)</span></p>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Flat commission</h4>
+        <p>Flat commission is direct: the full sale is multiplied by one rate, so the quoted rate and effective rate are the same.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Tiered commission</h4>
+        <p>Each slice of sales earns the rate for that band only, which is why the highest tier is not the same as the overall payout rate.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Effective rate</h4>
+        <p>In tiered mode, the clearest comparison number is the effective commission rate because it reduces the payout to one percentage of total sales.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>What to Check Before You Trust the Result</h3>
+    <ul class="pv-explanation-list">
+      <li><strong>Sales basis:</strong> Confirm whether the plan pays on gross sales, net sales, margin, or collected cash.</li>
+      <li><strong>Split deals:</strong> Shared deals often reduce the personal payout even when total deal value stays the same.</li>
+      <li><strong>Plan rules:</strong> Caps, accelerators, clawbacks, and quota gates can change the real payout.</li>
+      <li><strong>Timing:</strong> Booking-based plans and cash-collected plans can produce the same formula but different pay timing.</li>
+    </ul>
+  </section>
+
+  <div id="comm-breakdown-wrap" hidden>
+    <section>
+      <h3>Tiered Breakdown</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="pv-results-table">
+          <thead>
+            <tr>
+              <th scope="col">Tier</th>
+              <th scope="col">Sales in Tier</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Commission</th>
+            </tr>
+          </thead>
+          <tbody id="comm-breakdown-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <section>
+    <h3>Example Scenario</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Worked setup</h4>
+        <p>A rep closes $90,000 under a plan that pays 5% on the first $25,000, 7% on the next $35,000, and 10% above $60,000.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>How to read it</h4>
+        <p>The commission is built in layers, not with one blended rate from the start, so a 10% top tier can still land at an effective rate closer to the mid-7% range.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Frequently Asked Questions</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>How do flat and tiered commission differ?</h4>
+        <p>Flat commission uses one rate on the full sale, while tiered commission applies different rates to different slices of sales.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the effective commission rate?</h4>
+        <p>It is total commission divided by total sales, expressed as a percentage of the full deal.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Can I use this for brokerage, affiliate, or real estate payouts?</h4>
+        <p>Yes, as long as the payout follows a flat-rate or tiered-rate structure.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Does the calculator include caps or clawbacks?</h4>
+        <p>No. It calculates the base payout from the entered sales and rate inputs only.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the most common mistake?</h4>
+        <p>Treating the highest tier as if it applies to the whole sale instead of only the sales inside that band.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h4>Important Notes</h4>
+    <ul class="pv-explanation-list pct-important-notes" style="gap: 6px; font-size: var(--text-sm); line-height: 1.35;">
+      <li>Updated March 2026.</li>
+      <li>Results follow standard flat and tiered commission math.</li>
+      <li>Tier rates apply only within each band.</li>
+      <li>Caps, clawbacks, splits, and bonuses are not included.</li>
+      <li>Calculations run locally in your browser.</li>
+    </ul>
+  </section>
+</div>

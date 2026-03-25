@@ -5,19 +5,19 @@
     <meta charset="utf-8" />
     <title>Discount Calculator | Sale Price and Savings</title>
     <meta name="description" content="Calculate the sale price after a percentage discount and see exactly how much you save." />
-    <link rel="canonical" href="https://calchowmuch.com/percentage-calculators/discount-calculator/" />
+    <link rel="canonical" href="https://calchowmuch.com/pricing-calculators/discount-calculator/" />
     <meta property="og:title" content="Discount Calculator | Sale Price and Savings" />
     <meta property="og:description" content="Calculate the sale price after a percentage discount and see exactly how much you save." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://calchowmuch.com/percentage-calculators/discount-calculator/" />
+    <meta property="og:url" content="https://calchowmuch.com/pricing-calculators/discount-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Discount Calculator | Sale Price and Savings" />
     <meta name="twitter:description" content="Calculate the sale price after a percentage discount and see exactly how much you save." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/percentage-calculators/discount-calculator/#softwareapplication","name":"Discount Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/percentage-calculators/discount-calculator/","description":"Calculate the sale price after a percentage discount and see exactly how much you save.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/percentage-calculators/discount-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Percentage Calculators","item":"https://calchowmuch.com/percentage-calculators/"},{"@type":"ListItem","position":3,"name":"Discount Calculator","item":"https://calchowmuch.com/percentage-calculators/discount-calculator/"}]}]}</script>
-    <style data-percentage-cluster="true">
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/pricing-calculators/discount-calculator/#softwareapplication","name":"Discount Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/pricing-calculators/discount-calculator/","description":"Calculate the sale price after a percentage discount and see exactly how much you save.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/pricing-calculators/discount-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Pricing Calculators","item":"https://calchowmuch.com/pricing-calculators/"},{"@type":"ListItem","position":3,"name":"Discount Calculator","item":"https://calchowmuch.com/pricing-calculators/discount-calculator/"}]}]}</script>
+    <style data-pricing-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
@@ -881,7 +881,7 @@
         flex-shrink: 0;
       }
 
-      /* calculators/percentage-calculators/shared/cluster-light.css */
+      /* calculators/pricing-calculators/shared/cluster-light.css */
       .pct-cluster-page-shell,
       .pct-answer-ui,
       .pct-explanation {
@@ -898,9 +898,49 @@
         --pct-line-strong: rgba(22, 33, 43, 0.2);
         --pct-shadow: 0 12px 30px rgba(16, 24, 40, 0.06);
         --pct-shadow-soft: 0 6px 18px rgba(16, 24, 40, 0.04);
-        --pct-answer-value-size: clamp(2.8rem, 6vw, 4.4rem);
+        --pct-answer-value-size: clamp(3rem, 7vw, 5rem);
         color: var(--pct-ink);
       }
+
+      /* ── Simplification overrides ─────────────────────────────── */
+      .pct-input-title,
+      .pct-lead,
+      .pct-answer-context {
+        display: none;
+      }
+
+      .pct-support-list {
+        border: 0;
+        background: transparent;
+        padding: 8px 0 0;
+      }
+
+      .pct-input-card {
+        gap: 14px;
+      }
+
+      .pct-input-card,
+      .pct-answer-card {
+        border-color: rgba(22, 33, 43, 0.07);
+        box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+      }
+
+      .pct-answer-card {
+        gap: 14px;
+      }
+
+      .pct-answer-sentence {
+        font-weight: 600;
+      }
+
+      .pct-breakdown {
+        gap: 8px;
+      }
+
+      .pct-answer-ui .calculator-button {
+        min-height: 50px;
+      }
+      /* ── end simplification ──────────────────────────────────── */
 
       .pct-cluster-page-shell *,
       .pct-answer-ui * {
@@ -1027,13 +1067,22 @@
         display: none;
       }
 
+      .pct-calculator-hero {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+
       .pct-cluster-page-shell #calculator-title {
         margin: 0;
         color: var(--pct-ink);
-        max-width: 100%;
+        max-width: 780px;
         font-size: clamp(1.9rem, 4vw, 3.25rem);
         line-height: 1.08;
         letter-spacing: -0.055em;
+        text-align: center;
       }
 
       .pct-cluster-page-shell #calculator-title::after {
@@ -1041,11 +1090,12 @@
       }
 
       .pct-cluster-page-intro {
-        margin: 14px auto 0;
+        margin: 0;
         max-width: 700px;
         color: var(--pct-muted);
         font-size: 16px;
         line-height: 1.65;
+        text-align: center;
       }
 
       .pct-cluster-flow {
@@ -1701,6 +1751,7 @@
       #calc-commission-calculator .comm-chart-card {
         display: grid;
         gap: 16px;
+        justify-items: center;
         padding: 18px;
         border-radius: 22px;
         border: 1px solid var(--pct-line);
@@ -1730,9 +1781,12 @@
 
       #calc-commission-calculator .comm-chart-visual {
         display: grid;
-        gap: 16px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
-        min-height: 220px;
+        align-items: center;
+        position: relative;
       }
 
       #calc-commission-calculator .comm-chart-donut {
@@ -1744,6 +1798,12 @@
         border-radius: 50%;
         background: var(--comm-chart-fill);
         position: relative;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          filter 0.18s ease;
+        box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
       }
 
       #calc-commission-calculator .comm-chart-donut::after {
@@ -1753,6 +1813,14 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.96);
         box-shadow: inset 0 0 0 1px var(--pct-line);
+      }
+
+      #calc-commission-calculator .comm-chart-donut.is-hovered {
+        transform: scale(1.04);
+        filter: saturate(1.08);
+        box-shadow:
+          0 22px 38px rgba(15, 23, 42, 0.18),
+          0 0 0 10px var(--comm-chart-hover-shadow, rgba(35, 78, 103, 0.16));
       }
 
       #calc-commission-calculator .comm-chart-donut[hidden],
@@ -1791,17 +1859,18 @@
       }
 
       #calc-commission-calculator .comm-chart-placeholder {
-        max-width: 240px;
         display: grid;
-        gap: 10px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
         text-align: center;
         color: var(--pct-muted);
       }
 
       #calc-commission-calculator .comm-chart-placeholder-icon {
-        width: 72px;
-        height: 72px;
+        width: 188px;
+        height: 188px;
         border-radius: 50%;
         border: 1px dashed var(--pct-line-strong);
         background:
@@ -1814,9 +1883,53 @@
           );
       }
 
+      #calc-commission-calculator .comm-chart-tooltip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 3;
+        display: grid;
+        gap: 4px;
+        max-width: 200px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(22, 33, 43, 0.96);
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.24);
+        pointer-events: none;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip[hidden] {
+        display: none !important;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong,
+      #calc-commission-calculator .comm-chart-tooltip span {
+        margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong {
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip span {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+
       #calc-commission-calculator .comm-chart-placeholder strong,
       #calc-commission-calculator .comm-chart-placeholder p {
         margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-head,
+      #calc-commission-calculator .comm-chart-legend,
+      #calc-commission-calculator .comm-chart-center,
+      #calc-commission-calculator .comm-chart-placeholder strong,
+      #calc-commission-calculator .comm-chart-placeholder p {
+        display: none;
       }
 
       #calc-commission-calculator .comm-chart-legend {
@@ -2173,8 +2286,32 @@
           width: 168px;
         }
 
+        #calc-commission-calculator .comm-chart-visual,
+        #calc-commission-calculator .comm-chart-placeholder,
+        #calc-commission-calculator .comm-chart-placeholder-icon {
+          width: 168px;
+          min-height: 168px;
+          height: 168px;
+        }
+
         .pct-explanation .bor-faq-grid {
           grid-template-columns: 1fr;
+        }
+
+        .pct-calculator-hero {
+          gap: 10px;
+          margin-bottom: 22px;
+        }
+
+        .pct-cluster-page-shell #calculator-title {
+          max-width: 100%;
+          font-size: clamp(1.75rem, 8vw, 2.35rem);
+        }
+
+        .pct-cluster-page-intro {
+          max-width: 34ch;
+          font-size: 14px;
+          line-height: 1.55;
         }
       }
     </style>
@@ -2190,10 +2327,10 @@
       <header class="pct-cluster-site-header">
   <div class="pct-cluster-wrap pct-cluster-site-header-inner">
     <a class="pct-cluster-brand" href="/" aria-label="CalcHowMuch home">
-      <span class="pct-cluster-brand-mark" aria-hidden="true">%</span>
+      <span class="pct-cluster-brand-mark" aria-hidden="true">$</span>
       <span>CalcHowMuch</span>
     </a>
-    <div class="pct-cluster-site-label" aria-label="Cluster label">Percentage Calculators</div>
+    <div class="pct-cluster-site-label" aria-label="Cluster label">Pricing Calculators</div>
     <nav class="pct-cluster-site-links" aria-label="Site links">
       <a href="/">All Calculators</a>
       <a href="/contact-us/">Contact</a>
@@ -2203,14 +2340,14 @@
 </header>
       <main class="pct-cluster-layout-main">
         <section class="pct-cluster-center-column">
-          <div class="pct-cluster-panel panel-span-all">
-  <div class="pct-cluster-page-header">
+          <div class="panel panel-scroll panel-span-all">
+  <div class="pct-calculator-hero">
     <h1 id="calculator-title">Discount Calculator</h1>
-    <p class="pct-cluster-page-intro">Calculate the sale price after a percentage discount and see exactly how much you save.</p>
+    <p class="pct-cluster-page-intro">Check the final sale price, savings amount, and real value of a discount before you buy.</p>
   </div>
-  <div class="calculator-page-single pct-cluster-flow">
+  <div class="calculator-page-single">
     <div id="calc-discount-calculator">
-  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css?v=20260224" />
+  <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css?v=20260224" />
 
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool" aria-label="Discount calculator">
@@ -2223,12 +2360,12 @@
 
         <div class="pct-field-grid">
           <div class="input-row">
-            <label for="discount-original-price">Original price</label>
+            <label for="discount-original-price">Price</label>
             <input id="discount-original-price" type="number" value="80" min="0" step="0.01" />
           </div>
 
           <div class="input-row pct-inline-input">
-            <label for="discount-percent">Discount rate</label>
+            <label for="discount-percent">Discount</label>
             <input id="discount-percent" type="number" value="25" min="0" step="0.01" />
             <span class="pct-inline-suffix" aria-hidden="true">%</span>
           </div>
@@ -2236,7 +2373,7 @@
 
         <div class="pct-actions">
           <button class="calculator-button full-width" type="button" id="discount-calc">
-            Calculate discount
+            Calculate
           </button>
         </div>
       </div>
@@ -2246,25 +2383,21 @@
         <p class="pct-answer-sentence" id="discount-result-detail" aria-live="polite">
           You save $20.00 on an $80.00 item.
         </p>
-        <p class="pct-answer-context" id="discount-result-context" aria-live="polite">
-          Formula: Final price = P x (1 - X / 100).
-        </p>
-
         <div class="pct-support-list" aria-label="Discount details">
           <div class="pct-support-row">
-            <span>Original price</span>
+            <span>Price</span>
             <strong id="discount-snap-original-price">$80.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Discount rate</span>
+            <span>Discount</span>
             <strong id="discount-snap-discount-percent">25.00%</strong>
           </div>
           <div class="pct-support-row">
-            <span>Discount amount</span>
+            <span>Saved</span>
             <strong id="discount-snap-discount-amount">$20.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Final price</span>
+            <span>You pay</span>
             <strong id="discount-snap-final-price">$60.00</strong>
           </div>
         </div>
@@ -2272,133 +2405,108 @@
     </section>
   </div>
 </div>
-
-
-    <section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
-  <div class="pct-cluster-route-switch-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Switch scenario</span>
-      <h2 id="pct-cluster-route-switch-title">Compare another percentage question</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-switch-chips">
-    <a class="pct-cluster-switch-chip" href="/percentage-calculators/commission-calculator/">Commission Calculator</a><a class="pct-cluster-switch-chip is-active" href="/percentage-calculators/discount-calculator/" aria-current="page">Discount Calculator</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/margin-calculator/">Margin Calculator</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/markup-calculator/">Markup Calculator</a>
-  </div>
-</section>
-<div id="discount-explanation" class="explanation-pane pct-explanation">
+    <div id="discount-explanation" class="explanation-pane pct-explanation">
   <section>
     <h2>What Price Will You Pay After the Discount?</h2>
-    <p>
-      Use this calculator to convert a percentage discount into a final sale price and a clear
-      savings amount.
-    </p>
-    <p>
-      It is useful for shopping, promotions, coupon checks, and comparing offers when you want the
-      answer immediately instead of working it out manually.
-    </p>
-  </section>
 
-  <section>
     <h3>How to Guide</h3>
     <ol class="pv-formula-steps">
       <li>Enter the original price.</li>
       <li>Enter the discount percentage.</li>
-      <li>Click <strong>Calculate discount</strong> to see the final price and savings.</li>
-      <li>Use the summary rows to confirm the amount saved and the amount you will pay.</li>
+      <li>Review the savings amount and final price.</li>
+      <li>Repeat the check for any competing offer you want to compare.</li>
     </ol>
+  </section>
 
-    <h4>At a Glance</h4>
-    <ul class="pv-explanation-list">
-      <li><strong>Original price:</strong> <span data-discount="original-price">$80.00</span></li>
-      <li><strong>Discount rate:</strong> <span data-discount="discount-percent">25.00%</span></li>
-      <li><strong>Discount amount:</strong> <span data-discount="discount-amount">$20.00</span></li>
-      <li><strong>Final price:</strong> <span data-discount="final-price">$60.00</span></li>
-      <li><strong>Savings:</strong> <span data-discount="savings">$20.00</span></li>
-    </ul>
-
-    <h4>Worked Example</h4>
+  <section>
+    <h3>How the Discount Is Applied</h3>
     <p>
-      If an item costs <span data-discount="original-price">$80.00</span> and the discount is
+      This calculator turns a headline percentage into actual checkout math. With an original price
+      of <span data-discount="original-price">$80.00</span> and a discount of
       <span data-discount="discount-percent">25.00%</span>, the discount amount is
-      <span data-discount="discount-amount">$20.00</span>. Subtracting that from the original
-      price gives a final price of <span data-discount="final-price">$60.00</span>.
+      <span data-discount="discount-amount">$20.00</span>, the final price is
+      <span data-discount="final-price">$60.00</span>, and savings are
+      <span data-discount="savings">$20.00</span>.
     </p>
-
-    <h4>Formula</h4>
     <p class="pv-formula-block">Final price = P x (1 - X / 100)</p>
-    <p>
-      The discount amount is found first, then removed from the original price. Savings and discount
-      amount are the same value.
-    </p>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Headline discount</h4>
+        <p>The percentage on the badge matters less than the actual price that remains after the reduction is applied.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Final price</h4>
+        <p>A smaller discount on a lower starting price can still produce the better deal, which is why final price is the best comparison number.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Stacked offers</h4>
+        <p>Use the true pre-discount selling price whenever possible because inflated references and sequential discounts can distort the headline offer.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>What to Compare in Real Shopping</h3>
+    <ul class="pv-explanation-list">
+      <li><strong>Final price:</strong> This is the real decision number.</li>
+      <li><strong>Savings amount:</strong> Useful for context, but not enough by itself.</li>
+      <li><strong>Starting price:</strong> Check that it reflects a real pre-sale price.</li>
+      <li><strong>Extra costs:</strong> Tax, shipping, and fees can erase part of the discount.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Example Scenario</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Store A</h4>
+        <p>$120 with 25% off produces the lower final price.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Store B</h4>
+        <p>$150 with 35% off advertises the larger discount but still costs more at checkout.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Takeaway</h4>
+        <p>Final price is more useful than the percentage headline when you compare competing offers.</p>
+      </article>
+    </div>
   </section>
 
   <section>
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
-      <div class="bor-faq-card">
-        <h4>What does a discount calculator do?</h4>
-        <p>It shows the sale price after a percentage discount and how much money you save.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>How do you calculate price after percent off?</h4>
-        <p>Multiply the original price by <strong>1 minus the discount rate</strong> as a decimal.</p>
-      </div>
-      <div class="bor-faq-card">
+      <article class="bor-faq-card">
         <h4>Is the discount amount the same as savings?</h4>
-        <p>Yes. Both represent the amount removed from the original price.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Can the discount be a decimal like 12.5%?</h4>
-        <p>Yes. Decimal percentages work the same way as whole numbers.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What if the discount is 0%?</h4>
-        <p>The final price stays the same as the original price.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What if the discount is over 100%?</h4>
-        <p>Mathematically the final price becomes negative because the discount exceeds the price.</p>
-      </div>
+        <p>Yes. They are two labels for the same reduction amount.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Do multiple discounts add together?</h4>
+        <p>Usually no. They are normally applied one after another rather than added together.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Does the calculator include sales tax?</h4>
+        <p>No. It shows the discounted price before tax.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Can I use decimal discounts like 12.5%?</h4>
+        <p>Yes. Decimal percentage discounts work normally.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the most common mistake?</h4>
+        <p>Comparing percentage discounts without comparing the final prices.</p>
+      </article>
     </div>
   </section>
 
-  <section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
-  <div class="pct-cluster-related-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Keep exploring</span>
-      <h2 id="pct-cluster-related-title">More percentage calculators in the new design</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-related-links">
-    <a class="pct-cluster-related-link" href="/percentage-calculators/commission-calculator/">
-      <span class="pct-cluster-related-card-title">Commission Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link is-active" href="/percentage-calculators/discount-calculator/" aria-current="page">
-      <span class="pct-cluster-related-card-title">Discount Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link" href="/percentage-calculators/margin-calculator/">
-      <span class="pct-cluster-related-card-title">Margin Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link" href="/percentage-calculators/markup-calculator/">
-      <span class="pct-cluster-related-card-title">Markup Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a>
-  </div>
-</section>
-
-<section>
-    <h3>Important Notes</h3>
-    <ul class="pv-explanation-list pct-important-notes">
-      <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Accuracy:</strong> Results use the standard discount formula and round for display.</li>
-      <li><strong>Assumptions:</strong> The original price and discount rate apply to the same item before any extra taxes, shipping, or fees are added.</li>
-      <li><strong>Use case:</strong> Best for sale prices, coupon checks, and quick deal comparisons.</li>
-      <li><strong>Disclaimer:</strong> This calculator estimates price after one percentage discount and does not include stacked promotions, taxes, shipping, or checkout fees unless you include them in the input price.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  <section>
+    <h4>Important Notes</h4>
+    <ul class="pv-explanation-list pct-important-notes" style="gap: 6px; font-size: var(--text-sm); line-height: 1.35;">
+      <li>Updated March 2026.</li>
+      <li>Results use the standard discount formula with rounding.</li>
+      <li>Each result assumes one discount on one starting price.</li>
+      <li>Tax, shipping, fees, and stacked offers are not included.</li>
+      <li>Calculations run locally in your browser.</li>
     </ul>
   </section>
 </div>
@@ -2419,6 +2527,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/percentage-calculators/discount-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/pricing-calculators/discount-calculator/module.js?v=20260224"></script>
   </body>
 </html>

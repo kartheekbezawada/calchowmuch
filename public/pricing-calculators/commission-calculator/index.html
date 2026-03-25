@@ -5,19 +5,19 @@
     <meta charset="utf-8" />
     <title>Commission Calculator – CalcHowMuch</title>
     <meta name="description" content="Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings." />
-    <link rel="canonical" href="https://calchowmuch.com/percentage-calculators/commission-calculator/" />
+    <link rel="canonical" href="https://calchowmuch.com/pricing-calculators/commission-calculator/" />
     <meta property="og:title" content="Commission Calculator – CalcHowMuch" />
     <meta property="og:description" content="Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://calchowmuch.com/percentage-calculators/commission-calculator/" />
+    <meta property="og:url" content="https://calchowmuch.com/pricing-calculators/commission-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Commission Calculator – CalcHowMuch" />
     <meta name="twitter:description" content="Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/percentage-calculators/commission-calculator/#softwareapplication","name":"Commission Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/percentage-calculators/commission-calculator/","description":"Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/percentage-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Percentage Calculators","item":"https://calchowmuch.com/percentage-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Calculator","item":"https://calchowmuch.com/percentage-calculators/commission-calculator/"}]}]}</script>
-    <style data-percentage-cluster="true">
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/pricing-calculators/commission-calculator/#softwareapplication","name":"Commission Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/pricing-calculators/commission-calculator/","description":"Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/pricing-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Pricing Calculators","item":"https://calchowmuch.com/pricing-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Calculator","item":"https://calchowmuch.com/pricing-calculators/commission-calculator/"}]}]}</script>
+    <style data-pricing-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
@@ -881,7 +881,7 @@
         flex-shrink: 0;
       }
 
-      /* calculators/percentage-calculators/shared/cluster-light.css */
+      /* calculators/pricing-calculators/shared/cluster-light.css */
       .pct-cluster-page-shell,
       .pct-answer-ui,
       .pct-explanation {
@@ -898,9 +898,49 @@
         --pct-line-strong: rgba(22, 33, 43, 0.2);
         --pct-shadow: 0 12px 30px rgba(16, 24, 40, 0.06);
         --pct-shadow-soft: 0 6px 18px rgba(16, 24, 40, 0.04);
-        --pct-answer-value-size: clamp(2.8rem, 6vw, 4.4rem);
+        --pct-answer-value-size: clamp(3rem, 7vw, 5rem);
         color: var(--pct-ink);
       }
+
+      /* ── Simplification overrides ─────────────────────────────── */
+      .pct-input-title,
+      .pct-lead,
+      .pct-answer-context {
+        display: none;
+      }
+
+      .pct-support-list {
+        border: 0;
+        background: transparent;
+        padding: 8px 0 0;
+      }
+
+      .pct-input-card {
+        gap: 14px;
+      }
+
+      .pct-input-card,
+      .pct-answer-card {
+        border-color: rgba(22, 33, 43, 0.07);
+        box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+      }
+
+      .pct-answer-card {
+        gap: 14px;
+      }
+
+      .pct-answer-sentence {
+        font-weight: 600;
+      }
+
+      .pct-breakdown {
+        gap: 8px;
+      }
+
+      .pct-answer-ui .calculator-button {
+        min-height: 50px;
+      }
+      /* ── end simplification ──────────────────────────────────── */
 
       .pct-cluster-page-shell *,
       .pct-answer-ui * {
@@ -1027,13 +1067,22 @@
         display: none;
       }
 
+      .pct-calculator-hero {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+
       .pct-cluster-page-shell #calculator-title {
         margin: 0;
         color: var(--pct-ink);
-        max-width: 100%;
+        max-width: 780px;
         font-size: clamp(1.9rem, 4vw, 3.25rem);
         line-height: 1.08;
         letter-spacing: -0.055em;
+        text-align: center;
       }
 
       .pct-cluster-page-shell #calculator-title::after {
@@ -1041,11 +1090,12 @@
       }
 
       .pct-cluster-page-intro {
-        margin: 14px auto 0;
+        margin: 0;
         max-width: 700px;
         color: var(--pct-muted);
         font-size: 16px;
         line-height: 1.65;
+        text-align: center;
       }
 
       .pct-cluster-flow {
@@ -1701,6 +1751,7 @@
       #calc-commission-calculator .comm-chart-card {
         display: grid;
         gap: 16px;
+        justify-items: center;
         padding: 18px;
         border-radius: 22px;
         border: 1px solid var(--pct-line);
@@ -1730,9 +1781,12 @@
 
       #calc-commission-calculator .comm-chart-visual {
         display: grid;
-        gap: 16px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
-        min-height: 220px;
+        align-items: center;
+        position: relative;
       }
 
       #calc-commission-calculator .comm-chart-donut {
@@ -1744,6 +1798,12 @@
         border-radius: 50%;
         background: var(--comm-chart-fill);
         position: relative;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          filter 0.18s ease;
+        box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
       }
 
       #calc-commission-calculator .comm-chart-donut::after {
@@ -1753,6 +1813,14 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.96);
         box-shadow: inset 0 0 0 1px var(--pct-line);
+      }
+
+      #calc-commission-calculator .comm-chart-donut.is-hovered {
+        transform: scale(1.04);
+        filter: saturate(1.08);
+        box-shadow:
+          0 22px 38px rgba(15, 23, 42, 0.18),
+          0 0 0 10px var(--comm-chart-hover-shadow, rgba(35, 78, 103, 0.16));
       }
 
       #calc-commission-calculator .comm-chart-donut[hidden],
@@ -1791,17 +1859,18 @@
       }
 
       #calc-commission-calculator .comm-chart-placeholder {
-        max-width: 240px;
         display: grid;
-        gap: 10px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
         text-align: center;
         color: var(--pct-muted);
       }
 
       #calc-commission-calculator .comm-chart-placeholder-icon {
-        width: 72px;
-        height: 72px;
+        width: 188px;
+        height: 188px;
         border-radius: 50%;
         border: 1px dashed var(--pct-line-strong);
         background:
@@ -1814,9 +1883,53 @@
           );
       }
 
+      #calc-commission-calculator .comm-chart-tooltip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 3;
+        display: grid;
+        gap: 4px;
+        max-width: 200px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(22, 33, 43, 0.96);
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.24);
+        pointer-events: none;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip[hidden] {
+        display: none !important;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong,
+      #calc-commission-calculator .comm-chart-tooltip span {
+        margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong {
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip span {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+
       #calc-commission-calculator .comm-chart-placeholder strong,
       #calc-commission-calculator .comm-chart-placeholder p {
         margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-head,
+      #calc-commission-calculator .comm-chart-legend,
+      #calc-commission-calculator .comm-chart-center,
+      #calc-commission-calculator .comm-chart-placeholder strong,
+      #calc-commission-calculator .comm-chart-placeholder p {
+        display: none;
       }
 
       #calc-commission-calculator .comm-chart-legend {
@@ -2173,13 +2286,37 @@
           width: 168px;
         }
 
+        #calc-commission-calculator .comm-chart-visual,
+        #calc-commission-calculator .comm-chart-placeholder,
+        #calc-commission-calculator .comm-chart-placeholder-icon {
+          width: 168px;
+          min-height: 168px;
+          height: 168px;
+        }
+
         .pct-explanation .bor-faq-grid {
           grid-template-columns: 1fr;
         }
+
+        .pct-calculator-hero {
+          gap: 10px;
+          margin-bottom: 22px;
+        }
+
+        .pct-cluster-page-shell #calculator-title {
+          max-width: 100%;
+          font-size: clamp(1.75rem, 8vw, 2.35rem);
+        }
+
+        .pct-cluster-page-intro {
+          max-width: 34ch;
+          font-size: 14px;
+          line-height: 1.55;
+        }
       }
 
-      /* calculators/percentage-calculators/commission-calculator/calculator.css */
-      /* Commission calculator route styles are delivered from the percentage cluster shell. */
+      /* calculators/pricing-calculators/commission-calculator/calculator.css */
+      /* Commission calculator route styles are delivered from the pricing cluster shell. */
     </style>
  
     <!-- CHM_ADSENSE_HEAD_START -->
@@ -2188,15 +2325,15 @@
     <!-- CHM_ADSENSE_HEAD_END -->
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
-  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral" data-top-nav-static="true">
     <div class="page pct-cluster-page-shell">
       <header class="pct-cluster-site-header">
   <div class="pct-cluster-wrap pct-cluster-site-header-inner">
     <a class="pct-cluster-brand" href="/" aria-label="CalcHowMuch home">
-      <span class="pct-cluster-brand-mark" aria-hidden="true">%</span>
+      <span class="pct-cluster-brand-mark" aria-hidden="true">$</span>
       <span>CalcHowMuch</span>
     </a>
-    <div class="pct-cluster-site-label" aria-label="Cluster label">Percentage Calculators</div>
+    <div class="pct-cluster-site-label" aria-label="Cluster label">Pricing Calculators</div>
     <nav class="pct-cluster-site-links" aria-label="Site links">
       <a href="/">All Calculators</a>
       <a href="/contact-us/">Contact</a>
@@ -2206,14 +2343,14 @@
 </header>
       <main class="pct-cluster-layout-main layout-main--no-ads">
         <section class="pct-cluster-center-column">
-          <div class="pct-cluster-panel panel-span-all panel--shellless">
-  <div class="pct-cluster-page-header">
+          <div class="panel panel-scroll panel-span-all panel--shellless">
+  <div class="pct-calculator-hero">
     <h1 id="calculator-title">Commission Calculator</h1>
-    <p class="pct-cluster-page-intro">Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.</p>
+    <p class="pct-cluster-page-intro">Estimate flat or tiered commission clearly, then compare total payout and effective rate in one place.</p>
   </div>
-  <div class="calculator-page-single pct-cluster-flow">
+  <div class="calculator-page-single">
     <div id="calc-commission-calculator">
-  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css?v=20260224" />
+  <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css?v=20260224" />
 
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool" aria-label="Commission calculator">
@@ -2226,7 +2363,6 @@
 
         <div class="input-stack">
           <div class="input-row">
-            <label>Mode</label>
             <div class="mode-switch-control" role="group" aria-label="Commission mode">
               <span class="mode-switch-label is-active" data-comm-mode-label="flat">
                 Flat Rate
@@ -2249,23 +2385,20 @@
           </div>
 
           <div class="input-row">
-            <label for="comm-sales">Total sales</label>
+            <label for="comm-sales">Sales</label>
             <input id="comm-sales" type="number" value="30000" min="0" step="0.01" />
           </div>
 
           <div id="comm-flat-section" class="input-stack">
             <div class="input-row pct-inline-input">
-              <label for="comm-rate">Commission rate</label>
+              <label for="comm-rate">Rate</label>
               <input id="comm-rate" type="number" value="7.5" min="0" step="0.01" />
               <span class="pct-inline-suffix" aria-hidden="true">%</span>
             </div>
           </div>
 
           <div id="comm-tiered-section" class="input-stack is-hidden" aria-hidden="true" hidden>
-            <p class="pct-utility-note">
-              Add tiers in ascending order. Leave the final <strong>Up to</strong> field empty to
-              represent everything above the last threshold.
-            </p>
+
             <div id="comm-tier-rows"></div>
             <button class="calculator-button secondary" id="comm-add-tier" type="button">
               Add tier
@@ -2275,7 +2408,7 @@
 
         <div class="pct-actions">
           <button class="calculator-button full-width" type="button" id="comm-calc">
-            Calculate commission
+            Calculate
           </button>
         </div>
       </div>
@@ -2285,29 +2418,21 @@
         <p class="pct-answer-sentence" id="comm-result-detail" aria-live="polite">
           Effective commission rate is 7.50% on $30,000.00 in sales.
         </p>
-        <p class="pct-answer-context" id="comm-result-context" aria-live="polite">
-          Formula: Commission = Sales x (Rate / 100).
-        </p>
-
         <div class="pct-support-list" aria-label="Commission details">
           <div class="pct-support-row">
-            <span>Mode</span>
-            <strong id="comm-deck-mode">Flat Commission %</strong>
-          </div>
-          <div class="pct-support-row">
-            <span>Total sales</span>
+            <span>Sales</span>
             <strong id="comm-deck-sales">$30,000.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Rate(s)</span>
+            <span>Rate</span>
             <strong id="comm-deck-rates">7.50%</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total commission</span>
+            <span>Commission</span>
             <strong id="comm-deck-commission">$2,250.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Effective rate</span>
+            <span>Eff. rate</span>
             <strong id="comm-deck-effective-rate">7.50%</strong>
           </div>
         </div>
@@ -2350,153 +2475,122 @@
     </section>
   </div>
 </div>
-
-
-    <section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
-  <div class="pct-cluster-route-switch-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Switch scenario</span>
-      <h2 id="pct-cluster-route-switch-title">Compare another percentage question</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-switch-chips">
-    <a class="pct-cluster-switch-chip is-active" href="/percentage-calculators/commission-calculator/" aria-current="page">Commission Calculator</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/discount-calculator/">Discount Calculator</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/margin-calculator/">Margin Calculator</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/markup-calculator/">Markup Calculator</a>
-  </div>
-</section>
-<div id="comm-explanation" class="explanation-pane pct-explanation">
+    <div id="comm-explanation" class="explanation-pane pct-explanation">
   <section>
-    <h2>How Much Commission Will the Sale Generate?</h2>
-    <p>
-      Use this calculator to estimate commission earnings from a flat percentage or a tiered plan.
-    </p>
-    <p>
-      It is useful for sales compensation, brokerage, affiliate arrangements, and any payout model
-      where earnings depend on sales volume.
-    </p>
-  </section>
+    <h2>How Much Commission Will This Sale Generate?</h2>
 
-  <section>
     <h3>How to Guide</h3>
     <ol class="pv-formula-steps">
-      <li>Choose flat rate or tiered plan mode.</li>
-      <li>Enter total sales and the rate inputs for the selected mode.</li>
-      <li>Click <strong>Calculate commission</strong> to see total commission and effective rate.</li>
-      <li>In tiered mode, review the summary and breakdown table for each commission band.</li>
+      <li>Choose <span data-comm="mode">Flat Commission %</span> or tiered mode.</li>
+      <li>Enter total sales and the matching rate structure.</li>
+      <li>Review total commission and the effective rate.</li>
+      <li>Use the tier table when you want to see exactly how the payout is built.</li>
     </ol>
-
-    <h4>At a Glance</h4>
-    <ul class="pv-explanation-list">
-      <li><strong>Mode:</strong> <span data-comm="mode">Flat Commission %</span></li>
-      <li><strong>Total sales:</strong> <span data-comm="sales">$30,000.00</span></li>
-      <li><strong>Rate(s):</strong> <span data-comm="rates">7.50%</span></li>
-      <li><strong>Total commission:</strong> <span data-comm="commission">$2,250.00</span></li>
-      <li><strong>Effective rate:</strong> <span data-comm="effective-rate">7.50%</span></li>
-    </ul>
-
-    <h4>Worked Example</h4>
-    <p>
-      In flat-rate mode, if total sales are <span data-comm="sales">$30,000.00</span> and the rate is
-      <span data-comm="rates">7.50%</span>, commission equals 30,000 x 0.075, which gives
-      <span data-comm="commission">$2,250.00</span>. The effective rate is also
-      <span data-comm="effective-rate">7.50%</span> because one flat rate was applied to the whole sale.
-    </p>
-    <p>
-      In tiered mode, each sales band is priced at its own rate, then the tier payouts are added
-      together to reach the final commission total.
-    </p>
-
-    <h4>Formula</h4>
-    <p class="pv-formula-block"><span data-comm="formula">Commission = Sales x (Rate / 100)</span></p>
-    <p>
-      In tiered mode, the calculator applies each rate to the matching sales band and then adds the
-      tier commissions to get the total payout.
-    </p>
   </section>
 
-  <section id="comm-breakdown-wrap" hidden>
-    <h3>Tiered Breakdown</h3>
-    <div class="table-scroll" tabindex="0">
-      <table class="pv-results-table">
-        <thead>
-          <tr>
-            <th scope="col">Tier</th>
-            <th scope="col">Sales in Tier</th>
-            <th scope="col">Rate</th>
-            <th scope="col">Commission</th>
-          </tr>
-        </thead>
-        <tbody id="comm-breakdown-body"></tbody>
-      </table>
+  <section>
+    <h3>How Commission Is Worked Out</h3>
+    <p>
+      This calculator estimates what a sale pays under either one flat percentage or a progressive
+      tier system. In the current example, sales of <span data-comm="sales">$30,000.00</span> at
+      <span data-comm="rates">7.50%</span> produce commission of
+      <span data-comm="commission">$2,250.00</span>, which gives an effective rate of
+      <span data-comm="effective-rate">7.50%</span>.
+    </p>
+    <p class="pv-formula-block"><span data-comm="formula">Commission = Sales x (Rate / 100)</span></p>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Flat commission</h4>
+        <p>Flat commission is direct: the full sale is multiplied by one rate, so the quoted rate and effective rate are the same.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Tiered commission</h4>
+        <p>Each slice of sales earns the rate for that band only, which is why the highest tier is not the same as the overall payout rate.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Effective rate</h4>
+        <p>In tiered mode, the clearest comparison number is the effective commission rate because it reduces the payout to one percentage of total sales.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>What to Check Before You Trust the Result</h3>
+    <ul class="pv-explanation-list">
+      <li><strong>Sales basis:</strong> Confirm whether the plan pays on gross sales, net sales, margin, or collected cash.</li>
+      <li><strong>Split deals:</strong> Shared deals often reduce the personal payout even when total deal value stays the same.</li>
+      <li><strong>Plan rules:</strong> Caps, accelerators, clawbacks, and quota gates can change the real payout.</li>
+      <li><strong>Timing:</strong> Booking-based plans and cash-collected plans can produce the same formula but different pay timing.</li>
+    </ul>
+  </section>
+
+  <div id="comm-breakdown-wrap" hidden>
+    <section>
+      <h3>Tiered Breakdown</h3>
+      <div class="table-scroll" tabindex="0">
+        <table class="pv-results-table">
+          <thead>
+            <tr>
+              <th scope="col">Tier</th>
+              <th scope="col">Sales in Tier</th>
+              <th scope="col">Rate</th>
+              <th scope="col">Commission</th>
+            </tr>
+          </thead>
+          <tbody id="comm-breakdown-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <section>
+    <h3>Example Scenario</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Worked setup</h4>
+        <p>A rep closes $90,000 under a plan that pays 5% on the first $25,000, 7% on the next $35,000, and 10% above $60,000.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>How to read it</h4>
+        <p>The commission is built in layers, not with one blended rate from the start, so a 10% top tier can still land at an effective rate closer to the mid-7% range.</p>
+      </article>
     </div>
   </section>
 
   <section>
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
-      <div class="bor-faq-card">
-        <h4>What is a commission calculator?</h4>
-        <p>It estimates payout from sales using a flat rate or tiered commission structure.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>How do you calculate flat commission?</h4>
-        <p>Multiply total sales by the commission percentage written as a decimal.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>How do tiered commissions work?</h4>
-        <p>Different portions of sales earn different rates based on the tier thresholds.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is effective commission rate?</h4>
-        <p>It is total commission divided by total sales, expressed as a percentage.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Can commission rates use decimals like 7.5%?</h4>
-        <p>Yes. Decimal commission rates are handled the same way as whole numbers.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What happens when sales are zero?</h4>
-        <p>Total commission becomes zero, and the effective rate may be shown as zero.</p>
-      </div>
+      <article class="bor-faq-card">
+        <h4>How do flat and tiered commission differ?</h4>
+        <p>Flat commission uses one rate on the full sale, while tiered commission applies different rates to different slices of sales.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the effective commission rate?</h4>
+        <p>It is total commission divided by total sales, expressed as a percentage of the full deal.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Can I use this for brokerage, affiliate, or real estate payouts?</h4>
+        <p>Yes, as long as the payout follows a flat-rate or tiered-rate structure.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Does the calculator include caps or clawbacks?</h4>
+        <p>No. It calculates the base payout from the entered sales and rate inputs only.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the most common mistake?</h4>
+        <p>Treating the highest tier as if it applies to the whole sale instead of only the sales inside that band.</p>
+      </article>
     </div>
   </section>
 
-  <section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
-  <div class="pct-cluster-related-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Keep exploring</span>
-      <h2 id="pct-cluster-related-title">More percentage calculators in the new design</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-related-links">
-    <a class="pct-cluster-related-link is-active" href="/percentage-calculators/commission-calculator/" aria-current="page">
-      <span class="pct-cluster-related-card-title">Commission Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link" href="/percentage-calculators/discount-calculator/">
-      <span class="pct-cluster-related-card-title">Discount Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link" href="/percentage-calculators/margin-calculator/">
-      <span class="pct-cluster-related-card-title">Margin Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link" href="/percentage-calculators/markup-calculator/">
-      <span class="pct-cluster-related-card-title">Markup Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a>
-  </div>
-</section>
-
-<section>
-    <h3>Important Notes</h3>
-    <ul class="pv-explanation-list pct-important-notes">
-      <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Accuracy:</strong> Results use standard flat and tiered commission formulas.</li>
-      <li><strong>Assumptions:</strong> Sales totals and tier thresholds should use the same currency basis, and tiered mode assumes each rate applies only to its defined sales band.</li>
-      <li><strong>Use case:</strong> Best for sales compensation, affiliate payouts, and brokerage estimates.</li>
-      <li><strong>Disclaimer:</strong> This calculator estimates mathematical commission only and does not include caps, clawbacks, bonuses, draws, overrides, payroll deductions, or contract-specific payout rules unless you model them in the inputs.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  <section>
+    <h4>Important Notes</h4>
+    <ul class="pv-explanation-list pct-important-notes" style="gap: 6px; font-size: var(--text-sm); line-height: 1.35;">
+      <li>Updated March 2026.</li>
+      <li>Results follow standard flat and tiered commission math.</li>
+      <li>Tier rates apply only within each band.</li>
+      <li>Caps, clawbacks, splits, and bonuses are not included.</li>
+      <li>Calculations run locally in your browser.</li>
     </ul>
   </section>
 </div>
@@ -2517,6 +2611,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/percentage-calculators/commission-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/pricing-calculators/commission-calculator/module.js?v=20260224"></script>
   </body>
 </html>

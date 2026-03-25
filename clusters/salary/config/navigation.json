@@ -1,0 +1,64 @@
+{
+  "clusterId": "salary",
+  "displayName": "Salary Calculators",
+  "globalDestinations": [
+    {
+      "clusterId": "math",
+      "label": "Math",
+      "href": "/math/basic/"
+    },
+    {
+      "clusterId": "home-loan",
+      "label": "Home Loan",
+      "href": "/loan-calculators/mortgage-calculator/"
+    },
+    {
+      "clusterId": "credit-cards",
+      "label": "Credit Cards",
+      "href": "/credit-card-calculators/credit-card-payment-calculator/"
+    },
+    {
+      "clusterId": "auto-loans",
+      "label": "Auto Loans",
+      "href": "/car-loan-calculators/car-loan-calculator/"
+    },
+    {
+      "clusterId": "finance",
+      "label": "Finance",
+      "href": "/finance-calculators/present-value-calculator/"
+    },
+    {
+      "clusterId": "time-and-date",
+      "label": "Time & Date",
+      "href": "/time-and-date/sleep-time-calculator/"
+    },
+    {
+      "clusterId": "percentage",
+      "label": "Percentage Calculators",
+      "href": "/percentage-calculators/percent-change-calculator/"
+    },
+    {
+      "clusterId": "pricing",
+      "label": "Pricing Calculators",
+      "href": "/pricing-calculators/"
+    },
+    {
+      "clusterId": "salary",
+      "label": "Salary Calculators",
+      "href": "/salary-calculators/"
+    }
+  ],
+  "sections": [
+    {
+      "id": "salary-core",
+      "name": "Salary Calculators",
+      "calculators": [
+        {
+          "id": "salary-calculators-hub",
+          "name": "Salary Calculators",
+          "url": "/salary-calculators/"
+        }
+      ]
+    }
+  ]
+}

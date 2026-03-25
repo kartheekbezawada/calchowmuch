@@ -146,6 +146,46 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/pricing-calculators/commission-calculator/",
+      "calculatorId": "commission-calculator",
+      "activeOwnerClusterId": "pricing",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-pricing-cluster-initial-20260323",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/pricing-calculators/discount-calculator/",
+      "calculatorId": "discount-calculator",
+      "activeOwnerClusterId": "pricing",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-pricing-cluster-initial-20260323",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/pricing-calculators/margin-calculator/",
+      "calculatorId": "margin-calculator",
+      "activeOwnerClusterId": "pricing",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-pricing-cluster-initial-20260323",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/pricing-calculators/markup-calculator/",
+      "calculatorId": "markup-calculator",
+      "activeOwnerClusterId": "pricing",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-pricing-cluster-initial-20260323",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/",
+      "calculatorId": "salary-calculators-hub",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-cluster-bootstrap-20260325",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/car-loan-calculators/car-loan-calculator/",
       "calculatorId": "car-loan",
       "activeOwnerClusterId": "auto-loans",

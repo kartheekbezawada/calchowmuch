@@ -1,0 +1,127 @@
+<div id="calc-markup-calculator">
+  <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css" />
+
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool" aria-label="Markup calculator">
+      <div class="pct-input-card">
+        <h2 class="pct-input-title">Price one product or an entire basket with the same system</h2>
+        <p class="pct-lead">
+          Switch between single-product and basket mode, then calculate the selling price or markup
+          percentage from the values you already know.
+        </p>
+
+        <div class="input-stack">
+          <div class="input-row">
+            <div class="mode-switch-control" role="group" aria-label="Markup product scope">
+              <span class="mode-switch-label is-active" data-markup-product-mode-label="single">
+                Single Product
+              </span>
+              <label class="mode-switch-toggle" for="markup-product-toggle">
+                <input
+                  id="markup-product-toggle"
+                  type="checkbox"
+                  role="switch"
+                  aria-label="Switch to basket mode"
+                />
+                <span class="mode-switch-track" aria-hidden="true">
+                  <span class="mode-switch-thumb"></span>
+                </span>
+              </label>
+              <span class="mode-switch-label" data-markup-product-mode-label="basket">
+                Basket
+              </span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="mode-switch-control" role="group" aria-label="Markup direction">
+              <span class="mode-switch-label is-active" data-markup-calc-mode-label="cost-to-price">
+                Cost -> Price
+              </span>
+              <label class="mode-switch-toggle" for="markup-calc-toggle">
+                <input
+                  id="markup-calc-toggle"
+                  type="checkbox"
+                  role="switch"
+                  aria-label="Switch to price to markup mode"
+                />
+                <span class="mode-switch-track" aria-hidden="true">
+                  <span class="mode-switch-thumb"></span>
+                </span>
+              </label>
+              <span class="mode-switch-label" data-markup-calc-mode-label="price-to-markup">
+                Price -> Markup %
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div id="markup-single-section" class="input-stack">
+          <div id="markup-single-ctp" class="input-stack">
+            <div class="input-row">
+              <label for="markup-single-cost">Cost</label>
+              <input id="markup-single-cost" type="number" value="50" min="0" step="0.01" />
+            </div>
+            <div class="input-row pct-inline-input">
+              <label for="markup-single-markup">Markup</label>
+              <input id="markup-single-markup" type="number" value="40" min="0" step="0.01" />
+              <span class="pct-inline-suffix" aria-hidden="true">%</span>
+            </div>
+          </div>
+
+          <div id="markup-single-ptm" class="input-stack is-hidden" aria-hidden="true" hidden>
+            <div class="input-row">
+              <label for="markup-single-cost2">Cost</label>
+              <input id="markup-single-cost2" type="number" value="50" min="0" step="0.01" />
+            </div>
+            <div class="input-row">
+              <label for="markup-single-price">Selling price</label>
+              <input id="markup-single-price" type="number" value="70" min="0" step="0.01" />
+            </div>
+          </div>
+        </div>
+
+        <div id="markup-basket-section" class="input-stack is-hidden" aria-hidden="true" hidden>
+
+          <div id="markup-basket-rows"></div>
+          <button class="calculator-button secondary" id="markup-add-row" type="button">
+            Add product row
+          </button>
+        </div>
+
+        <div class="pct-actions">
+          <button class="calculator-button full-width" type="button" id="markup-calc">
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      <aside class="pct-answer-card" id="markup-answer-card" aria-label="Markup answer">
+        <div class="result pct-answer-value" id="markup-result" aria-live="polite">$70.00</div>
+        <p class="pct-answer-sentence" id="markup-result-detail" aria-live="polite">
+          Markup amount is $20.00 on a $50.00 cost.
+        </p>
+        <div class="pct-support-list" aria-label="Markup details">
+          <div class="pct-support-row">
+            <span>Items</span>
+            <strong id="markup-snap-product-count">1</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Cost</span>
+            <strong id="markup-snap-total-cost">$50.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Price</span>
+            <strong id="markup-snap-total-price">$70.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Markup</span>
+            <strong id="markup-snap-total-markup">$20.00</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<script type="module" src="/calculators/pricing-calculators/markup-calculator/module.js"></script>

@@ -5,19 +5,19 @@
     <meta charset="utf-8" />
     <title>Markup Calculator | Cost to Selling Price</title>
     <meta name="description" content="Calculate selling price from cost and markup, or find markup percentage from cost and price." />
-    <link rel="canonical" href="https://calchowmuch.com/percentage-calculators/markup-calculator/" />
+    <link rel="canonical" href="https://calchowmuch.com/pricing-calculators/markup-calculator/" />
     <meta property="og:title" content="Markup Calculator | Cost to Selling Price" />
     <meta property="og:description" content="Calculate selling price from cost and markup, or find markup percentage from cost and price." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://calchowmuch.com/percentage-calculators/markup-calculator/" />
+    <meta property="og:url" content="https://calchowmuch.com/pricing-calculators/markup-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Markup Calculator | Cost to Selling Price" />
     <meta name="twitter:description" content="Calculate selling price from cost and markup, or find markup percentage from cost and price." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/percentage-calculators/markup-calculator/#softwareapplication","name":"Markup Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/percentage-calculators/markup-calculator/","description":"Calculate selling price from cost and markup, or find markup percentage from cost and price.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/percentage-calculators/markup-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Percentage Calculators","item":"https://calchowmuch.com/percentage-calculators/"},{"@type":"ListItem","position":3,"name":"Markup Calculator","item":"https://calchowmuch.com/percentage-calculators/markup-calculator/"}]}]}</script>
-    <style data-percentage-cluster="true">
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/pricing-calculators/markup-calculator/#softwareapplication","name":"Markup Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/pricing-calculators/markup-calculator/","description":"Calculate selling price from cost and markup, or find markup percentage from cost and price.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/pricing-calculators/markup-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Pricing Calculators","item":"https://calchowmuch.com/pricing-calculators/"},{"@type":"ListItem","position":3,"name":"Markup Calculator","item":"https://calchowmuch.com/pricing-calculators/markup-calculator/"}]}]}</script>
+    <style data-pricing-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
@@ -881,7 +881,7 @@
         flex-shrink: 0;
       }
 
-      /* calculators/percentage-calculators/shared/cluster-light.css */
+      /* calculators/pricing-calculators/shared/cluster-light.css */
       .pct-cluster-page-shell,
       .pct-answer-ui,
       .pct-explanation {
@@ -898,9 +898,49 @@
         --pct-line-strong: rgba(22, 33, 43, 0.2);
         --pct-shadow: 0 12px 30px rgba(16, 24, 40, 0.06);
         --pct-shadow-soft: 0 6px 18px rgba(16, 24, 40, 0.04);
-        --pct-answer-value-size: clamp(2.8rem, 6vw, 4.4rem);
+        --pct-answer-value-size: clamp(3rem, 7vw, 5rem);
         color: var(--pct-ink);
       }
+
+      /* ── Simplification overrides ─────────────────────────────── */
+      .pct-input-title,
+      .pct-lead,
+      .pct-answer-context {
+        display: none;
+      }
+
+      .pct-support-list {
+        border: 0;
+        background: transparent;
+        padding: 8px 0 0;
+      }
+
+      .pct-input-card {
+        gap: 14px;
+      }
+
+      .pct-input-card,
+      .pct-answer-card {
+        border-color: rgba(22, 33, 43, 0.07);
+        box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+      }
+
+      .pct-answer-card {
+        gap: 14px;
+      }
+
+      .pct-answer-sentence {
+        font-weight: 600;
+      }
+
+      .pct-breakdown {
+        gap: 8px;
+      }
+
+      .pct-answer-ui .calculator-button {
+        min-height: 50px;
+      }
+      /* ── end simplification ──────────────────────────────────── */
 
       .pct-cluster-page-shell *,
       .pct-answer-ui * {
@@ -1027,13 +1067,22 @@
         display: none;
       }
 
+      .pct-calculator-hero {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+
       .pct-cluster-page-shell #calculator-title {
         margin: 0;
         color: var(--pct-ink);
-        max-width: 100%;
+        max-width: 780px;
         font-size: clamp(1.9rem, 4vw, 3.25rem);
         line-height: 1.08;
         letter-spacing: -0.055em;
+        text-align: center;
       }
 
       .pct-cluster-page-shell #calculator-title::after {
@@ -1041,11 +1090,12 @@
       }
 
       .pct-cluster-page-intro {
-        margin: 14px auto 0;
+        margin: 0;
         max-width: 700px;
         color: var(--pct-muted);
         font-size: 16px;
         line-height: 1.65;
+        text-align: center;
       }
 
       .pct-cluster-flow {
@@ -1701,6 +1751,7 @@
       #calc-commission-calculator .comm-chart-card {
         display: grid;
         gap: 16px;
+        justify-items: center;
         padding: 18px;
         border-radius: 22px;
         border: 1px solid var(--pct-line);
@@ -1730,9 +1781,12 @@
 
       #calc-commission-calculator .comm-chart-visual {
         display: grid;
-        gap: 16px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
-        min-height: 220px;
+        align-items: center;
+        position: relative;
       }
 
       #calc-commission-calculator .comm-chart-donut {
@@ -1744,6 +1798,12 @@
         border-radius: 50%;
         background: var(--comm-chart-fill);
         position: relative;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          filter 0.18s ease;
+        box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
       }
 
       #calc-commission-calculator .comm-chart-donut::after {
@@ -1753,6 +1813,14 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.96);
         box-shadow: inset 0 0 0 1px var(--pct-line);
+      }
+
+      #calc-commission-calculator .comm-chart-donut.is-hovered {
+        transform: scale(1.04);
+        filter: saturate(1.08);
+        box-shadow:
+          0 22px 38px rgba(15, 23, 42, 0.18),
+          0 0 0 10px var(--comm-chart-hover-shadow, rgba(35, 78, 103, 0.16));
       }
 
       #calc-commission-calculator .comm-chart-donut[hidden],
@@ -1791,17 +1859,18 @@
       }
 
       #calc-commission-calculator .comm-chart-placeholder {
-        max-width: 240px;
         display: grid;
-        gap: 10px;
+        gap: 0;
+        width: 188px;
+        min-height: 188px;
         justify-items: center;
         text-align: center;
         color: var(--pct-muted);
       }
 
       #calc-commission-calculator .comm-chart-placeholder-icon {
-        width: 72px;
-        height: 72px;
+        width: 188px;
+        height: 188px;
         border-radius: 50%;
         border: 1px dashed var(--pct-line-strong);
         background:
@@ -1814,9 +1883,53 @@
           );
       }
 
+      #calc-commission-calculator .comm-chart-tooltip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 3;
+        display: grid;
+        gap: 4px;
+        max-width: 200px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(22, 33, 43, 0.96);
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.24);
+        pointer-events: none;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip[hidden] {
+        display: none !important;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong,
+      #calc-commission-calculator .comm-chart-tooltip span {
+        margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip strong {
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+
+      #calc-commission-calculator .comm-chart-tooltip span {
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+
       #calc-commission-calculator .comm-chart-placeholder strong,
       #calc-commission-calculator .comm-chart-placeholder p {
         margin: 0;
+      }
+
+      #calc-commission-calculator .comm-chart-head,
+      #calc-commission-calculator .comm-chart-legend,
+      #calc-commission-calculator .comm-chart-center,
+      #calc-commission-calculator .comm-chart-placeholder strong,
+      #calc-commission-calculator .comm-chart-placeholder p {
+        display: none;
       }
 
       #calc-commission-calculator .comm-chart-legend {
@@ -2173,8 +2286,32 @@
           width: 168px;
         }
 
+        #calc-commission-calculator .comm-chart-visual,
+        #calc-commission-calculator .comm-chart-placeholder,
+        #calc-commission-calculator .comm-chart-placeholder-icon {
+          width: 168px;
+          min-height: 168px;
+          height: 168px;
+        }
+
         .pct-explanation .bor-faq-grid {
           grid-template-columns: 1fr;
+        }
+
+        .pct-calculator-hero {
+          gap: 10px;
+          margin-bottom: 22px;
+        }
+
+        .pct-cluster-page-shell #calculator-title {
+          max-width: 100%;
+          font-size: clamp(1.75rem, 8vw, 2.35rem);
+        }
+
+        .pct-cluster-page-intro {
+          max-width: 34ch;
+          font-size: 14px;
+          line-height: 1.55;
         }
       }
     </style>
@@ -2190,10 +2327,10 @@
       <header class="pct-cluster-site-header">
   <div class="pct-cluster-wrap pct-cluster-site-header-inner">
     <a class="pct-cluster-brand" href="/" aria-label="CalcHowMuch home">
-      <span class="pct-cluster-brand-mark" aria-hidden="true">%</span>
+      <span class="pct-cluster-brand-mark" aria-hidden="true">$</span>
       <span>CalcHowMuch</span>
     </a>
-    <div class="pct-cluster-site-label" aria-label="Cluster label">Percentage Calculators</div>
+    <div class="pct-cluster-site-label" aria-label="Cluster label">Pricing Calculators</div>
     <nav class="pct-cluster-site-links" aria-label="Site links">
       <a href="/">All Calculators</a>
       <a href="/contact-us/">Contact</a>
@@ -2203,14 +2340,14 @@
 </header>
       <main class="pct-cluster-layout-main">
         <section class="pct-cluster-center-column">
-          <div class="pct-cluster-panel panel-span-all">
-  <div class="pct-cluster-page-header">
+          <div class="panel panel-scroll panel-span-all">
+  <div class="pct-calculator-hero">
     <h1 id="calculator-title">Markup Calculator</h1>
-    <p class="pct-cluster-page-intro">Calculate selling price from cost and markup, or find markup percentage from cost and price.</p>
+    <p class="pct-cluster-page-intro">Price a single product or a full basket faster by moving between cost, selling price, and markup percentage.</p>
   </div>
-  <div class="calculator-page-single pct-cluster-flow">
+  <div class="calculator-page-single">
     <div id="calc-markup-calculator">
-  <link rel="stylesheet" href="/calculators/percentage-calculators/shared/cluster-light.css?v=20260224" />
+  <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css?v=20260224" />
 
   <div class="calculator-ui pct-answer-ui">
     <section class="pct-tool" aria-label="Markup calculator">
@@ -2223,7 +2360,6 @@
 
         <div class="input-stack">
           <div class="input-row">
-            <label>Product scope</label>
             <div class="mode-switch-control" role="group" aria-label="Markup product scope">
               <span class="mode-switch-label is-active" data-markup-product-mode-label="single">
                 Single Product
@@ -2246,7 +2382,6 @@
           </div>
 
           <div class="input-row">
-            <label>Direction</label>
             <div class="mode-switch-control" role="group" aria-label="Markup direction">
               <span class="mode-switch-label is-active" data-markup-calc-mode-label="cost-to-price">
                 Cost -> Price
@@ -2295,9 +2430,7 @@
         </div>
 
         <div id="markup-basket-section" class="input-stack is-hidden" aria-hidden="true" hidden>
-          <p class="pct-utility-note">
-            Basket markup is weighted by total cost. Add rows for each product you want to include.
-          </p>
+
           <div id="markup-basket-rows"></div>
           <button class="calculator-button secondary" id="markup-add-row" type="button">
             Add product row
@@ -2306,7 +2439,7 @@
 
         <div class="pct-actions">
           <button class="calculator-button full-width" type="button" id="markup-calc">
-            Calculate markup
+            Calculate
           </button>
         </div>
       </div>
@@ -2316,29 +2449,21 @@
         <p class="pct-answer-sentence" id="markup-result-detail" aria-live="polite">
           Markup amount is $20.00 on a $50.00 cost.
         </p>
-        <p class="pct-answer-context" id="markup-result-context" aria-live="polite">
-          Formula: P = C x (1 + M / 100).
-        </p>
-
         <div class="pct-support-list" aria-label="Markup details">
           <div class="pct-support-row">
-            <span>Mode</span>
-            <strong id="markup-snap-mode">Single Product — Cost -> Price</strong>
-          </div>
-          <div class="pct-support-row">
-            <span>Products</span>
+            <span>Items</span>
             <strong id="markup-snap-product-count">1</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total cost</span>
+            <span>Cost</span>
             <strong id="markup-snap-total-cost">$50.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total price</span>
+            <span>Price</span>
             <strong id="markup-snap-total-price">$70.00</strong>
           </div>
           <div class="pct-support-row">
-            <span>Total markup</span>
+            <span>Markup</span>
             <strong id="markup-snap-total-markup">$20.00</strong>
           </div>
         </div>
@@ -2346,138 +2471,113 @@
     </section>
   </div>
 </div>
-
-
-    <section class="pct-cluster-route-switch" aria-labelledby="pct-cluster-route-switch-title">
-  <div class="pct-cluster-route-switch-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Switch scenario</span>
-      <h2 id="pct-cluster-route-switch-title">Compare another percentage question</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-switch-chips">
-    <a class="pct-cluster-switch-chip" href="/percentage-calculators/commission-calculator/">Commission Calculator</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/discount-calculator/">Discount Calculator</a><a class="pct-cluster-switch-chip" href="/percentage-calculators/margin-calculator/">Margin Calculator</a><a class="pct-cluster-switch-chip is-active" href="/percentage-calculators/markup-calculator/" aria-current="page">Markup Calculator</a>
-  </div>
-</section>
-<div id="markup-explanation" class="explanation-pane pct-explanation">
+    <div id="markup-explanation" class="explanation-pane pct-explanation">
   <section>
     <h2>What Selling Price or Markup Percentage Does Your Cost Create?</h2>
-    <p>
-      Markup adds an amount on top of cost, so it is a useful pricing tool whenever you want to
-      move from cost into price or work backward from price into markup.
-    </p>
-    <p>
-      This calculator supports both single-product pricing and basket-level analysis across multiple
-      products.
-    </p>
+
+    <h3>How to Guide</h3>
+    <ol class="pv-formula-steps">
+      <li>Enter cost and selling price, or switch modes if you want to solve for markup or price.</li>
+      <li>Check the markup amount in currency terms.</li>
+      <li>Check the markup percentage to see how much is being added relative to cost.</li>
+      <li>Use basket totals when the decision involves several products together.</li>
+    </ol>
   </section>
 
   <section>
-    <h3>How to Guide</h3>
-    <ol class="pv-formula-steps">
-      <li>Choose between single-product and basket mode.</li>
-      <li>Select whether you want to calculate price from markup or markup from price.</li>
-      <li>Enter the values for the active mode and click <strong>Calculate markup</strong>.</li>
-      <li>Use the summary rows to review weighted totals when you are in basket mode.</li>
-    </ol>
-
-    <h4>At a Glance</h4>
-    <ul class="pv-explanation-list">
-      <li><strong>Mode:</strong> <span data-markup="mode">Single Product — Cost → Price</span></li>
-      <li><strong>Products:</strong> <span data-markup="product-count">1</span></li>
-      <li><strong>Total cost:</strong> <span data-markup="total-cost">$50.00</span></li>
-      <li><strong>Total price:</strong> <span data-markup="total-price">$70.00</span></li>
-      <li><strong>Total markup:</strong> <span data-markup="total-markup">$20.00</span></li>
-      <li><strong>Basket markup:</strong> <span data-markup="basket-markup-percent">40.00%</span></li>
-    </ul>
-
-    <h4>Worked Example</h4>
+    <h3>How Markup Works</h3>
     <p>
-      If cost is <span data-markup="cost">$50.00</span> and markup is
-      <span data-markup="markup-percent">40.00%</span>, the markup amount is
-      <span data-markup="markup-amount">$20.00</span>. That gives a selling price of
+      This calculator moves between cost, selling price, and markup percentage for a single product
+      or a basket of products. In <span data-markup="mode">Single Product — Cost -&gt; Price</span>
+      mode, <span data-markup="product-count">1</span> product with cost of
+      <span data-markup="cost">$50.00</span> and markup of
+      <span data-markup="markup-percent">40.00%</span> produces markup amount of
+      <span data-markup="markup-amount">$20.00</span> and selling price of
       <span data-markup="price">$70.00</span>.
     </p>
-    <p>
-      In basket mode, the calculator compares total price to total cost so the combined markup is
-      weighted rather than averaged across rows.
-    </p>
-
-    <h4>Formula</h4>
     <p class="pv-formula-block"><span data-markup="formula">P = C x (1 + M / 100)</span></p>
-    <p>
-      When you work backward from selling price, markup percentage is calculated on the cost base,
-      not the selling price.
-    </p>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Markup vs margin</h4>
+        <p>Markup is measured against cost, while margin is measured against selling price, so the same sale produces different percentages.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Cost-based pricing</h4>
+        <p>This makes markup a natural tool for quote building, retail merchandising, and any pricing rule that starts from cost.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Basket weighting</h4>
+        <p>Total cost of <span data-markup="total-cost">$50.00</span> and total markup of <span data-markup="total-markup">$20.00</span> create a weighted basket result, so higher-cost lines matter more.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Single Product vs Basket View</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Single product</h4>
+        <p>A single-product result is useful when you are pricing one item or validating one quote using cost of <span data-markup="cost">$50.00</span> and price of <span data-markup="price">$70.00</span>.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Basket view</h4>
+        <p>Basket view is more useful when an order mixes several items, because basket markup of <span data-markup="basket-markup-percent">40.00%</span> reflects the weighted total rather than a simple average.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Example Scenario</h3>
+    <div class="bor-faq-grid">
+      <article class="bor-faq-card">
+        <h4>Target markup</h4>
+        <p>If a retailer buys an item for $50 and wants a 40% markup, the selling price becomes $70.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Price pressure</h4>
+        <p>If competition pushes the selling price down to $65, the markup falls materially even though the dollar move looks small.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Takeaway</h4>
+        <p>Markup targets work best as guardrails when you decide how far discounting can go.</p>
+      </article>
+    </div>
   </section>
 
   <section>
     <h3>Frequently Asked Questions</h3>
     <div class="bor-faq-grid">
-      <div class="bor-faq-card">
-        <h4>What is markup?</h4>
-        <p>Markup is the amount added to cost to get the selling price.</p>
-      </div>
-      <div class="bor-faq-card">
+      <article class="bor-faq-card">
         <h4>How do you calculate price from cost and markup?</h4>
-        <p>Multiply cost by one plus the markup rate written as a decimal.</p>
-      </div>
-      <div class="bor-faq-card">
+        <p>Multiply cost by one plus the markup rate as a decimal.</p>
+      </article>
+      <article class="bor-faq-card">
         <h4>How do you calculate markup from cost and price?</h4>
-        <p>Divide price minus cost by cost, then multiply by 100.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What is basket markup?</h4>
-        <p>Basket markup compares total price against total cost across multiple products.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>Is markup the same as margin?</h4>
-        <p>No. Markup is based on cost, while margin is based on selling price.</p>
-      </div>
-      <div class="bor-faq-card">
-        <h4>What happens if cost is zero?</h4>
-        <p>Markup percentage becomes undefined because the formula would divide by zero.</p>
-      </div>
+        <p>Subtract cost from price, divide by cost, then multiply by 100.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Why is basket markup not a simple average?</h4>
+        <p>Because the combined result is weighted by total cost and quantity.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>Can markup be negative?</h4>
+        <p>Yes. That means the selling price is below cost.</p>
+      </article>
+      <article class="bor-faq-card">
+        <h4>What is the most common mistake?</h4>
+        <p>Using incomplete cost inputs and overstating the true markup.</p>
+      </article>
     </div>
   </section>
 
-  <section class="pct-cluster-related" aria-labelledby="pct-cluster-related-title">
-  <div class="pct-cluster-related-head">
-    <div>
-      <span class="pct-cluster-switch-kicker">Keep exploring</span>
-      <h2 id="pct-cluster-related-title">More percentage calculators in the new design</h2>
-    </div>
-  </div>
-  <div class="pct-cluster-related-links">
-    <a class="pct-cluster-related-link" href="/percentage-calculators/commission-calculator/">
-      <span class="pct-cluster-related-card-title">Commission Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link" href="/percentage-calculators/discount-calculator/">
-      <span class="pct-cluster-related-card-title">Discount Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link" href="/percentage-calculators/margin-calculator/">
-      <span class="pct-cluster-related-card-title">Margin Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a><a class="pct-cluster-related-link is-active" href="/percentage-calculators/markup-calculator/" aria-current="page">
-      <span class="pct-cluster-related-card-title">Markup Calculator</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
-      <span class="pct-cluster-related-card-meta">Percentage Core</span>
-    </a>
-  </div>
-</section>
-
-<section>
-    <h3>Important Notes</h3>
-    <ul class="pv-explanation-list pct-important-notes">
-      <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Accuracy:</strong> Results use standard markup formulas and weighted basket totals.</li>
-      <li><strong>Assumptions:</strong> Markup is measured against cost, and basket mode assumes every row is entered on the same currency basis before totals are combined.</li>
-      <li><strong>Use case:</strong> Best for retail pricing, quoting, and basket-level pricing reviews.</li>
-      <li><strong>Disclaimer:</strong> This calculator estimates markup from the entered cost and price values only and does not model tax, shipping, overhead, channel fees, or negotiated discounts.</li>
-      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  <section>
+    <h4>Important Notes</h4>
+    <ul class="pv-explanation-list pct-important-notes" style="gap: 6px; font-size: var(--text-sm); line-height: 1.35;">
+      <li>Updated March 2026.</li>
+      <li>Results use standard markup formulas and weighted basket totals.</li>
+      <li>Markup is measured against cost.</li>
+      <li>Tax, shipping, overhead, and negotiated discounts are not included.</li>
+      <li>Calculations run locally in your browser.</li>
     </ul>
   </section>
 </div>
@@ -2498,6 +2598,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/percentage-calculators/markup-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/pricing-calculators/markup-calculator/module.js?v=20260224"></script>
   </body>
 </html>

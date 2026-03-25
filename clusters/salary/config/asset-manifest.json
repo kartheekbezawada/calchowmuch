@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "clusterId": "salary",
+  "routes": {
+    "/salary-calculators/": {
+      "route": "/salary-calculators/",
+      "calculatorId": "salary-calculators-hub",
+      "clusterId": "salary",
+      "buildId": "salary-bootstrap-20260325",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": []
+      }
+    }
+  }
+}

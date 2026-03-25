@@ -1,0 +1,61 @@
+<div id="calc-discount-calculator">
+  <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css" />
+
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool" aria-label="Discount calculator">
+      <div class="pct-input-card">
+        <h2 class="pct-input-title">See the sale price and savings without extra steps</h2>
+        <p class="pct-lead">
+          Enter the starting price and discount rate to calculate the price you will pay and the
+          amount you save in one calm summary.
+        </p>
+
+        <div class="pct-field-grid">
+          <div class="input-row">
+            <label for="discount-original-price">Price</label>
+            <input id="discount-original-price" type="number" value="80" min="0" step="0.01" />
+          </div>
+
+          <div class="input-row pct-inline-input">
+            <label for="discount-percent">Discount</label>
+            <input id="discount-percent" type="number" value="25" min="0" step="0.01" />
+            <span class="pct-inline-suffix" aria-hidden="true">%</span>
+          </div>
+        </div>
+
+        <div class="pct-actions">
+          <button class="calculator-button full-width" type="button" id="discount-calc">
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      <aside class="pct-answer-card" id="discount-answer-card" aria-label="Discount answer">
+        <div class="result pct-answer-value" id="discount-result" aria-live="polite">$60.00</div>
+        <p class="pct-answer-sentence" id="discount-result-detail" aria-live="polite">
+          You save $20.00 on an $80.00 item.
+        </p>
+        <div class="pct-support-list" aria-label="Discount details">
+          <div class="pct-support-row">
+            <span>Price</span>
+            <strong id="discount-snap-original-price">$80.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Discount</span>
+            <strong id="discount-snap-discount-percent">25.00%</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Saved</span>
+            <strong id="discount-snap-discount-amount">$20.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>You pay</span>
+            <strong id="discount-snap-final-price">$60.00</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<script type="module" src="/calculators/pricing-calculators/discount-calculator/module.js"></script>

@@ -36,6 +36,16 @@
       "clusterId": "percentage",
       "label": "Percentage Calculators",
       "href": "/percentage-calculators/percent-change-calculator/"
+    },
+    {
+      "clusterId": "pricing",
+      "label": "Pricing Calculators",
+      "href": "/pricing-calculators/"
+    },
+    {
+      "clusterId": "salary",
+      "label": "Salary Calculators",
+      "href": "/salary-calculators/"
     }
   ],
   "sections": [
@@ -51,11 +61,7 @@
         { "id": "reverse-percentage", "name": "Reverse Percentage", "url": "/percentage-calculators/reverse-percentage-calculator/" },
         { "id": "percent-to-fraction-decimal", "name": "Percent to Fraction/Decimal", "url": "/percentage-calculators/percent-to-fraction-decimal-calculator/" },
         { "id": "what-percent-is-x-of-y", "name": "What Percent Is X of Y", "url": "/percentage-calculators/percentage-finder-calculator/" },
-        { "id": "percentage-of-a-number", "name": "Find Percentage of a Number", "url": "/percentage-calculators/percentage-of-a-number-calculator/" },
-        { "id": "commission-calculator", "name": "Commission Calculator", "url": "/percentage-calculators/commission-calculator/" },
-        { "id": "discount-calculator", "name": "Discount Calculator", "url": "/percentage-calculators/discount-calculator/" },
-        { "id": "margin-calculator", "name": "Margin Calculator", "url": "/percentage-calculators/margin-calculator/" },
-        { "id": "markup-calculator", "name": "Markup Calculator", "url": "/percentage-calculators/markup-calculator/" }
+        { "id": "percentage-of-a-number", "name": "Find Percentage of a Number", "url": "/percentage-calculators/percentage-of-a-number-calculator/" }
       ]
     }
   ]

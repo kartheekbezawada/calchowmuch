@@ -469,10 +469,6 @@
     "percentage": {
       "clusterReleaseDir": "tests_specs/percentage/cluster_release",
       "routes": [
-        "/percentage-calculators/commission-calculator/",
-        "/percentage-calculators/discount-calculator/",
-        "/percentage-calculators/margin-calculator/",
-        "/percentage-calculators/markup-calculator/",
         "/percentage-calculators/percent-change-calculator/",
         "/percentage-calculators/percent-to-fraction-decimal-calculator/",
         "/percentage-calculators/percentage-composition-calculator/",
@@ -519,22 +515,33 @@
         "percentage-of-a-number": {
           "route": "/percentage-calculators/percentage-of-a-number-calculator/",
           "releaseDir": "tests_specs/percentage/percentage-of-a-number_release"
-        },
+        }
+      }
+    },
+    "pricing": {
+      "clusterReleaseDir": "tests_specs/pricing/cluster_release",
+      "routes": [
+        "/pricing-calculators/commission-calculator/",
+        "/pricing-calculators/discount-calculator/",
+        "/pricing-calculators/margin-calculator/",
+        "/pricing-calculators/markup-calculator/"
+      ],
+      "calculators": {
         "commission-calculator": {
-          "route": "/percentage-calculators/commission-calculator/",
-          "releaseDir": "tests_specs/percentage/commission-calculator_release"
+          "route": "/pricing-calculators/commission-calculator/",
+          "releaseDir": "tests_specs/pricing/commission-calculator_release"
         },
         "discount-calculator": {
-          "route": "/percentage-calculators/discount-calculator/",
-          "releaseDir": "tests_specs/percentage/discount-calculator_release"
+          "route": "/pricing-calculators/discount-calculator/",
+          "releaseDir": "tests_specs/pricing/discount-calculator_release"
         },
         "margin-calculator": {
-          "route": "/percentage-calculators/margin-calculator/",
-          "releaseDir": "tests_specs/percentage/margin-calculator_release"
+          "route": "/pricing-calculators/margin-calculator/",
+          "releaseDir": "tests_specs/pricing/margin-calculator_release"
         },
         "markup-calculator": {
-          "route": "/percentage-calculators/markup-calculator/",
-          "releaseDir": "tests_specs/percentage/markup-calculator_release"
+          "route": "/pricing-calculators/markup-calculator/",
+          "releaseDir": "tests_specs/pricing/markup-calculator_release"
         }
       }
     }

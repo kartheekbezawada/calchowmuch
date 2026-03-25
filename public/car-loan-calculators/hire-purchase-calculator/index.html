@@ -986,7 +986,7 @@
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-header {
-        max-width: 720px;
+        max-width: 980px;
         margin: 0 auto;
         text-align: center;
       }
@@ -1007,11 +1007,12 @@
       }
 
       body[data-design-family='auto-loans'] #calculator-title {
-        margin: 18px 0 0;
-        font-size: clamp(42px, 6vw, 58px);
+        margin: 0;
+        font-size: clamp(38px, 4.4vw, 56px);
         line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--al-text);
+        white-space: nowrap;
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-intro {
@@ -2123,36 +2124,28 @@
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
         display: grid;
-        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-columns: 1fr;
         align-items: start;
-        column-gap: 14px;
-        row-gap: 6px;
+        gap: 6px;
         border: 1px solid var(--al-line);
         border-radius: var(--al-radius-lg);
         background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
         box-shadow: none;
-        padding: 18px 20px;
+        padding: 14px 16px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-number {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 38px;
-        min-height: 38px;
-        margin-bottom: 14px;
-        border-radius: 999px;
-        background: rgba(197, 140, 69, 0.14);
-        color: var(--al-warm);
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        grid-row: span 2;
+        display: none;
+      }
+
+      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card h4,
+      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card p {
+        margin: 0;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list {
@@ -2202,6 +2195,15 @@
       @media (max-width: 720px) {
         body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
           min-height: 64px;
+        }
+
+        body[data-design-family='auto-loans'] .al-cluster-page-header {
+          max-width: 100%;
+        }
+
+        body[data-design-family='auto-loans'] #calculator-title {
+          font-size: clamp(34px, 10vw, 44px);
+          white-space: normal;
         }
 
         body[data-design-family='auto-loans'] .al-cluster-site-links {
@@ -2375,7 +2377,6 @@
         <section class="al-cluster-center-column">
           <div class="al-cluster-panel">
   <div class="al-cluster-page-header">
-    <span class="al-cluster-page-kicker">Auto Loan Calculators</span>
     <h1 id="calculator-title">Hire Purchase Calculator</h1>
     <p class="al-cluster-page-intro">Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.</p>
   </div>

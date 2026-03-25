@@ -986,13 +986,13 @@
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-header {
-        max-width: 760px;
+        max-width: 1100px;
         margin: 0 auto;
         text-align: center;
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-kicker {
-        display: inline-flex;
+        display: none;
         align-items: center;
         justify-content: center;
         padding: 9px 14px;
@@ -1007,11 +1007,17 @@
       }
 
       body[data-design-family='home-loan'] #calculator-title {
-        margin: 18px 0 0;
-        font-size: clamp(42px, 6vw, 58px);
-        line-height: 1.02;
+        margin: 0;
+        font-size: clamp(36px, 5vw, 56px);
+        line-height: 1.04;
         letter-spacing: -0.04em;
         color: var(--hl-text);
+        white-space: normal;
+      }
+      @media (min-width: 981px) {
+        body[data-design-family='home-loan'] #calculator-title {
+          white-space: nowrap;
+        }
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-intro {
@@ -1667,12 +1673,21 @@
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
+        gap: 12px;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card,
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
+        display: grid;
+        gap: 8px;
+        border: 1px solid var(--hl-line);
+        border-radius: var(--hl-radius-lg);
+        background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+        box-shadow: var(--hl-shadow-soft);
+        padding: 16px;
+      }
+
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-related-card {
         border: 1px solid var(--hl-line);
         border-radius: var(--hl-radius-lg);
@@ -1682,22 +1697,22 @@
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 38px;
-        min-height: 38px;
-        margin-bottom: 14px;
-        border-radius: 999px;
-        background: var(--hl-accent-soft);
-        color: var(--hl-accent);
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
+      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number,
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-number {
+        display: none;
+      }
+
+      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card h4,
+      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card p,
+      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card h4,
+      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card p,
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card h4,
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card p {
+        margin: 0;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-note-list,
+
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-note-list,
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-note-list {
         display: grid;
@@ -2056,6 +2071,13 @@
         body[data-design-family='home-loan'] .hl-cluster-site-footer-inner {
           padding: 22px;
         }
+
+        body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
+        body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
+        body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
+          padding: 16px;
+        }
+}
 
         body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
         body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
@@ -2503,7 +2525,6 @@
         <section class="hl-cluster-center-column">
           <div class="hl-cluster-panel">
   <div class="hl-cluster-page-header">
-    <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
     <h1 id="calculator-title">Offset Calculator</h1>
     <p class="hl-cluster-page-intro">See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.</p>
   </div>

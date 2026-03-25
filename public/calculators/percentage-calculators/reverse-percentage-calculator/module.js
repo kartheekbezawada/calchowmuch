@@ -1,12 +1,20 @@
 import { calculateReversePercentage } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const percentInput = document.querySelector('#revpct-percent');
 const finalInput = document.querySelector('#revpct-final');
 const calculateButton = document.querySelector('#revpct-calc');
+const answerCard = document.querySelector('#revpct-answer-card');
+const staleNote = document.querySelector('#revpct-stale-note');
 const resultOutput = document.querySelector('#revpct-result');
 const resultDetail = document.querySelector('#revpct-result-detail');
+const resultContext = document.querySelector('#revpct-result-context');
+const breakdownOutput = document.querySelector('#revpct-breakdown');
 const snapshotTargets = {
   percentage: document.querySelector('[data-revpct-snap="percentage"]'),
   finalValue: document.querySelector('[data-revpct-snap="final-value"]'),
@@ -201,59 +209,133 @@ function updateSnapshot(key, value) {
   }
 }
 
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
 
-function calculate() {
+function renderBreakdown(items = []) {
+  if (!breakdownOutput) {
+    return;
+  }
+
+  breakdownOutput.innerHTML = items
+    .map(
+      (item) => `
+        <div class="pct-breakdown-item">
+          <div class="pct-breakdown-item-name">
+            <strong>${escapeHtml(item.label)}</strong>
+            <small>${escapeHtml(item.copy)}</small>
+          </div>
+          <div class="pct-breakdown-item-value">${escapeHtml(item.value)}</div>
+        </div>
+      `
+    )
+    .join('');
+}
+
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature: () => `${percentInput?.value ?? ''}|${finalInput?.value ?? ''}`,
+});
+
+staleController.watchElements([percentInput, finalInput]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function calculate({ reveal = false } = {}) {
   const x = Number.parseFloat(percentInput?.value ?? '');
   const y = Number.parseFloat(finalInput?.value ?? '');
 
   if (!Number.isFinite(x)) {
-    resultOutput.textContent = 'Enter a valid percentage.';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Enter a percentage';
+    resultDetail.textContent = 'Add a valid percentage to recover the original value.';
+    resultContext.textContent = 'The reverse percentage answer uses both the percentage and final value.';
+    renderBreakdown([]);
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   if (!Number.isFinite(y)) {
-    resultOutput.textContent = 'Enter a valid final value.';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Enter a final value';
+    resultDetail.textContent = 'Add a valid final value to calculate the base amount.';
+    resultContext.textContent = 'The answer appears after both inputs are valid.';
+    renderBreakdown([]);
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   const result = calculateReversePercentage(x, y);
 
   if (result === null) {
-    resultOutput.textContent = 'Original value is undefined when the percentage is zero.';
+    resultOutput.textContent = 'Undefined at 0%';
     resultDetail.textContent = 'Use any percentage except 0 to compute a valid original value.';
+    resultContext.textContent = 'Division by zero is not valid in reverse percentage calculations.';
+    renderBreakdown([]);
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
-  resultOutput.textContent = `Original Value: ${fmt(result.original)}`;
-  resultDetail.innerHTML = `<ul class="revpct-detail-list"><li>Question solved: ${fmt(result.finalValue)} is ${fmt(result.percentage)}% of ${fmt(result.original)}.</li><li>Formula: Original = (${fmt(result.finalValue)} × 100) ÷ ${fmt(result.percentage)} = ${fmt(result.original)}.</li><li>Check: ${fmt(result.percentage)}% of ${fmt(result.original)} = ${fmt(result.finalValue)}.</li></ul>`;
+  const percentageText = `${fmt(result.percentage)}%`;
+  const finalValueText = fmt(result.finalValue);
+  const originalText = fmt(result.original);
 
-  updateSnapshot('percentage', `${fmt(result.percentage)}%`);
-  updateSnapshot('finalValue', fmt(result.finalValue));
-  updateSnapshot('original', fmt(result.original));
+  resultOutput.textContent = originalText;
+  resultDetail.textContent = `${finalValueText} is ${percentageText} of ${originalText}.`;
+  resultContext.textContent = `Formula: Original = (${finalValueText} × 100) ÷ ${fmt(result.percentage)}.`;
 
-  updateTargets(valueTargets?.percentage, `${fmt(result.percentage)}%`);
-  updateTargets(valueTargets?.finalValue, fmt(result.finalValue));
-  updateTargets(valueTargets?.original, fmt(result.original));
+  updateSnapshot('percentage', percentageText);
+  updateSnapshot('finalValue', finalValueText);
+  updateSnapshot('original', originalText);
+
+  updateTargets(valueTargets?.percentage, percentageText);
+  updateTargets(valueTargets?.finalValue, finalValueText);
+  updateTargets(valueTargets?.original, originalText);
   updateTargets(
     valueTargets?.check,
-    `${fmt(result.percentage)}% of ${fmt(result.original)} = ${fmt(result.finalValue)}`
+    `${percentageText} of ${originalText} = ${finalValueText}`
   );
 
-  hasCalculated = true;
+  renderBreakdown([
+    {
+      label: 'Known final value',
+      copy: 'The value that already represents a percentage of the base amount.',
+      value: finalValueText,
+    },
+    {
+      label: 'Known percentage',
+      copy: 'The share of the original amount represented by the final value.',
+      value: percentageText,
+    },
+    {
+      label: 'Recovered original',
+      copy: 'The base amount before the percentage was applied.',
+      value: originalText,
+    },
+    {
+      label: 'Verification',
+      copy: 'Multiply the recovered original by the given percentage to confirm the result.',
+      value: `${percentageText} of ${originalText} = ${finalValueText}`,
+    },
+  ]);
+
+  finishCalculation({ reveal });
 }
 
-calculateButton?.addEventListener('click', calculate);
-
-[percentInput, finalInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  });
-});
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 calculate();

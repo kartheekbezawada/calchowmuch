@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:percentage`
-- HTML files scanned: **13**
-- Calculator pages scanned: **13**
+- Scope: `cluster:pricing`
+- HTML files scanned: **4**
+- Calculator pages scanned: **4**
 - Findings: **0**
 - Status: **PASS**
 

@@ -1,11 +1,19 @@
 import { calculatePercentToFractionDecimal } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const percentInput = document.querySelector('#ptfd-percent');
 const calculateButton = document.querySelector('#ptfd-calc');
+const answerCard = document.querySelector('#ptfd-answer-card');
+const staleNote = document.querySelector('#ptfd-stale-note');
 const resultOutput = document.querySelector('#ptfd-result');
 const resultDetail = document.querySelector('#ptfd-result-detail');
+const resultContext = document.querySelector('#ptfd-result-context');
+const breakdownOutput = document.querySelector('#ptfd-breakdown');
 
 const snapshotTargets = {
   percent: document.querySelector('[data-ptfd-snap="percent"]'),
@@ -175,16 +183,74 @@ function updateSnapshot(key, value) {
   }
 }
 
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
 
-function calculate() {
+function renderBreakdown(items = []) {
+  if (!breakdownOutput) {
+    return;
+  }
+
+  breakdownOutput.innerHTML = items
+    .map(
+      (item) => `
+        <div class="pct-breakdown-item">
+          <div class="pct-breakdown-item-name">
+            <strong>${escapeHtml(item.label)}</strong>
+            <small>${escapeHtml(item.copy)}</small>
+          </div>
+          <div class="pct-breakdown-item-value">${escapeHtml(item.value)}</div>
+        </div>
+      `
+    )
+    .join('');
+}
+
+function setResultValue({ decimalValue, fractionValue, mixedValue }) {
+  resultOutput.innerHTML = `
+    <span class="pct-answer-primary">${escapeHtml(decimalValue)}</span>
+    <span class="pct-answer-legacy">
+      <span class="pct-answer-legacy-line">Fraction: ${escapeHtml(fractionValue)}</span>
+      <span class="pct-answer-legacy-line">Mixed: ${escapeHtml(mixedValue)}</span>
+    </span>
+  `;
+}
+
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature: () => String(percentInput?.value ?? '').trim(),
+});
+
+staleController.watchElements([percentInput]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function calculate({ reveal = false } = {}) {
   const inputText = String(percentInput?.value ?? '').trim();
   const result = calculatePercentToFractionDecimal(inputText);
 
   if (!result) {
-    resultOutput.textContent = 'Enter a valid percentage (for example: 12.5 or 12.5%).';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Enter a percent';
+    resultDetail.textContent = 'Use a valid percentage such as 12.5 or 12.5% to see the conversion.';
+    resultContext.textContent = 'The converter shows decimal, fraction, and mixed-number forms.';
+    renderBreakdown([]);
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
@@ -192,10 +258,14 @@ function calculate() {
   const decimalValue = fmt(result.decimal);
   const mixedValue = result.mixedNumber || 'N/A (proper fraction)';
   const stepsText = result.steps.join(' -> ');
-  const stepsList = result.steps.map((step) => `<li>${step}</li>`).join('');
 
-  resultOutput.innerHTML = `<span class="ptfd-result-line">Decimal: ${decimalValue}</span><span class="ptfd-result-line">Fraction: ${result.fraction}</span>`;
-  resultDetail.innerHTML = `<ul class="ptfd-steps-list">${stepsList}</ul>`;
+  setResultValue({
+    decimalValue,
+    fractionValue: result.fraction,
+    mixedValue,
+  });
+  resultDetail.textContent = `${normalizedPercent} equals ${decimalValue} as a decimal and ${result.fraction} as a simplified fraction.`;
+  resultContext.textContent = 'Formula: divide the percent by 100, then simplify X/100.';
 
   updateSnapshot('percent', normalizedPercent);
   updateSnapshot('decimal', decimalValue);
@@ -211,15 +281,17 @@ function calculate() {
   updateTargets(valueTargets?.formulaDecimal, 'Decimal = X / 100');
   updateTargets(valueTargets?.formulaFraction, 'Fraction = X / 100 (simplified)');
 
-  hasCalculated = true;
+  renderBreakdown(
+    result.steps.map((step, index) => ({
+      label: `Step ${index + 1}`,
+      copy: index === 0 ? 'Start from the entered percentage.' : 'Continue the conversion path.',
+      value: step,
+    }))
+  );
+
+  finishCalculation({ reveal });
 }
 
-calculateButton?.addEventListener('click', calculate);
-
-percentInput?.addEventListener('input', () => {
-  if (liveUpdatesEnabled && hasCalculated) {
-    calculate();
-  }
-});
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 calculate();

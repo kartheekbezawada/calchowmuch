@@ -14,13 +14,9 @@ const MIGRATED_PERCENTAGE_ROUTE_DIRS = new Set([
   'percent-to-fraction-decimal-calculator',
   'percentage-finder-calculator',
   'percentage-of-a-number-calculator',
-  'commission-calculator',
-  'discount-calculator',
-  'margin-calculator',
-  'markup-calculator',
 ]);
 
-const requiredTokens = ['class="fin-nav-container"', 'class="fin-nav-group"', 'class="fin-nav-item"'];
+const requiredTokens = ['class="fin-nav-container"', 'class="fin-nav-group', 'class="fin-nav-item"'];
 const forbiddenTokens = ['class="nav-item', 'class="nav-category'];
 const migratedShellRequiredTokens = [
   'pct-cluster-page-shell',
@@ -96,6 +92,7 @@ function main() {
     .readdirSync(PERCENTAGE_DIR, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
+    .filter((dir) => MIGRATED_PERCENTAGE_ROUTE_DIRS.has(dir))
     .sort();
 
   const violations = [];

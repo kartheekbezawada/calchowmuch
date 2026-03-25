@@ -1,0 +1,88 @@
+<div id="calc-margin-calculator">
+  <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css" />
+
+  <div class="calculator-ui pct-answer-ui">
+    <section class="pct-tool" aria-label="Margin calculator">
+      <div class="pct-input-card">
+        <h2 class="pct-input-title">Measure margin or solve for the price you need</h2>
+        <p class="pct-lead">
+          Use cost and selling price to calculate gross margin, or switch modes to find the selling
+          price required for a target margin.
+        </p>
+
+        <div class="input-stack">
+          <div class="input-row">
+            <div class="mode-switch-control" role="group" aria-label="Margin mode">
+              <span class="mode-switch-label is-active" data-margin-mode-label="cost-price">
+                Cost + Price
+              </span>
+              <label class="mode-switch-toggle" for="margin-cost-margin-toggle">
+                <input
+                  id="margin-cost-margin-toggle"
+                  type="checkbox"
+                  role="switch"
+                  aria-label="Switch to target margin mode"
+                />
+                <span class="mode-switch-track" aria-hidden="true">
+                  <span class="mode-switch-thumb"></span>
+                </span>
+              </label>
+              <span class="mode-switch-label" data-margin-mode-label="cost-margin">
+                Cost + Margin %
+              </span>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <label for="margin-cost">Cost</label>
+            <input id="margin-cost" type="number" value="60" min="0" step="0.01" />
+          </div>
+
+          <div id="margin-mode-cost-price" class="input-stack">
+            <div class="input-row">
+              <label for="margin-price">Selling price</label>
+              <input id="margin-price" type="number" value="100" min="0" step="0.01" />
+            </div>
+          </div>
+
+          <div id="margin-mode-cost-margin" class="input-stack is-hidden" aria-hidden="true" hidden>
+            <div class="input-row pct-inline-input">
+              <label for="margin-percent">Margin</label>
+              <input id="margin-percent" type="number" value="40" min="0" step="0.01" />
+              <span class="pct-inline-suffix" aria-hidden="true">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pct-actions">
+          <button class="calculator-button full-width" type="button" id="margin-calc">
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      <aside class="pct-answer-card" id="margin-answer-card" aria-label="Margin answer">
+        <div class="result pct-answer-value" id="margin-result" aria-live="polite">40.00%</div>
+        <p class="pct-answer-sentence" id="margin-result-detail" aria-live="polite">
+          Profit is $40.00 on a $100.00 selling price.
+        </p>
+        <div class="pct-support-list" aria-label="Margin details">
+          <div class="pct-support-row">
+            <span>Cost</span>
+            <strong id="margin-snap-cost">$60.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Price</span>
+            <strong id="margin-snap-price">$100.00</strong>
+          </div>
+          <div class="pct-support-row">
+            <span>Profit</span>
+            <strong id="margin-snap-profit">$40.00</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+</div>
+
+<script type="module" src="/calculators/pricing-calculators/margin-calculator/module.js"></script>

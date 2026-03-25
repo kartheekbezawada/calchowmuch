@@ -1,12 +1,20 @@
 import { calculateWhatPercentIsXOfY } from '/assets/js/core/math.js';
 import { formatNumber } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  createStaleResultController,
+  revealResultPanel,
+} from '/calculators/percentage-calculators/shared/cluster-ux.js';
 
 const partInput = document.querySelector('#wpxy-part');
 const wholeInput = document.querySelector('#wpxy-whole');
 const calculateButton = document.querySelector('#wpxy-calc');
+const answerCard = document.querySelector('#wpxy-answer-card');
+const staleNote = document.querySelector('#wpxy-stale-note');
 const resultOutput = document.querySelector('#wpxy-result');
 const resultDetail = document.querySelector('#wpxy-result-detail');
+const resultContext = document.querySelector('#wpxy-result-context');
+const breakdownOutput = document.querySelector('#wpxy-breakdown');
 const cardTargets = {
   part: document.querySelector('[data-wpxy-card="part"]'),
   whole: document.querySelector('[data-wpxy-card="whole"]'),
@@ -185,6 +193,10 @@ function fmt(value) {
   return formatNumber(value, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+function fmtRatio(value) {
+  return formatNumber(value, { minimumFractionDigits: 0, maximumFractionDigits: 6 });
+}
+
 function updateTargets(nodes, value) {
   if (!nodes) {
     return;
@@ -201,56 +213,126 @@ function updateCardTarget(key, value) {
   }
 }
 
-let hasCalculated = false;
-const liveUpdatesEnabled = false;
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
 
-function calculate() {
+function renderBreakdown(items = []) {
+  if (!breakdownOutput) {
+    return;
+  }
+
+  breakdownOutput.innerHTML = items
+    .map(
+      (item) => `
+        <div class="pct-breakdown-item">
+          <div class="pct-breakdown-item-name">
+            <strong>${escapeHtml(item.label)}</strong>
+            <small>${escapeHtml(item.copy)}</small>
+          </div>
+          <div class="pct-breakdown-item-value">${escapeHtml(item.value)}</div>
+        </div>
+      `
+    )
+    .join('');
+}
+
+const staleController = createStaleResultController({
+  resultPanel: answerCard,
+  staleTargets: [staleNote],
+  getSignature: () => `${partInput?.value ?? ''}|${wholeInput?.value ?? ''}`,
+});
+
+staleController.watchElements([partInput, wholeInput]);
+
+function finishCalculation({ reveal = false, trend = 'neutral' } = {}) {
+  if (answerCard) {
+    answerCard.dataset.trend = trend;
+  }
+
+  staleController.markFresh();
+  if (reveal) {
+    revealResultPanel({ resultPanel: answerCard, focusTarget: resultOutput });
+  }
+}
+
+function calculate({ reveal = false } = {}) {
   const x = Number.parseFloat(partInput?.value ?? '');
   const y = Number.parseFloat(wholeInput?.value ?? '');
 
   if (!Number.isFinite(x)) {
-    resultOutput.textContent = 'Enter a valid part value (X).';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Enter a part value';
+    resultDetail.textContent = 'Add a valid part value to measure its share of the whole.';
+    resultContext.textContent = 'The part is the amount being measured against the total.';
+    renderBreakdown([]);
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   if (!Number.isFinite(y)) {
-    resultOutput.textContent = 'Enter a valid whole value (Y).';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Enter a whole value';
+    resultDetail.textContent = 'Add a valid whole value to calculate the percentage share.';
+    resultContext.textContent = 'The whole is the denominator used in the ratio.';
+    renderBreakdown([]);
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
   const result = calculateWhatPercentIsXOfY(x, y);
 
   if (result === null) {
-    resultOutput.textContent = 'Result is undefined when the whole (Y) is zero.';
-    resultDetail.textContent = '';
+    resultOutput.textContent = 'Undefined at 0';
+    resultDetail.textContent = 'The result is undefined when the whole value is zero.';
+    resultContext.textContent = 'Division by zero is not valid for ratio-to-percent calculations.';
+    renderBreakdown([]);
+    finishCalculation({ reveal, trend: 'warning' });
     return;
   }
 
-  resultOutput.textContent = `${fmt(result.part)} is ${fmt(result.percent)}% of ${fmt(result.whole)}.`;
-  resultDetail.textContent = `Calculation: (${fmt(result.part)} \u00f7 ${fmt(result.whole)}) \u00d7 100 = ${fmt(result.percent)}%. In other words, the part represents ${fmt(result.percent)}% of the whole.`;
+  const partText = fmt(result.part);
+  const wholeText = fmt(result.whole);
+  const percentText = `${fmt(result.percent)}%`;
+  const ratioText = fmtRatio(result.part / result.whole);
 
-  updateCardTarget('part', fmt(result.part));
-  updateCardTarget('whole', fmt(result.whole));
-  updateCardTarget('percent', `${fmt(result.percent)}%`);
-  updateCardTarget('formula', '(X / Y) x 100');
+  resultOutput.textContent = percentText;
+  resultDetail.textContent = `${partText} is ${percentText} of ${wholeText}.`;
+  resultContext.textContent = 'Formula: (X ÷ Y) × 100.';
 
-  updateTargets(valueTargets?.part, fmt(result.part));
-  updateTargets(valueTargets?.whole, fmt(result.whole));
-  updateTargets(valueTargets?.percent, `${fmt(result.percent)}%`);
+  updateCardTarget('part', partText);
+  updateCardTarget('whole', wholeText);
+  updateCardTarget('percent', percentText);
+  updateCardTarget('formula', '(X / Y) × 100');
 
-  hasCalculated = true;
+  updateTargets(valueTargets?.part, partText);
+  updateTargets(valueTargets?.whole, wholeText);
+  updateTargets(valueTargets?.percent, percentText);
+
+  renderBreakdown([
+    {
+      label: 'Create the ratio',
+      copy: 'Divide the part by the whole to see the share before converting to percent.',
+      value: `${partText} ÷ ${wholeText} = ${ratioText}`,
+    },
+    {
+      label: 'Convert to percent',
+      copy: 'Multiply the ratio by 100 to express it as a percentage.',
+      value: `${ratioText} × 100 = ${percentText}`,
+    },
+    {
+      label: 'Read the result',
+      copy: 'The part represents this percentage of the whole.',
+      value: `${partText} is ${percentText} of ${wholeText}`,
+    },
+  ]);
+
+  finishCalculation({ reveal });
 }
 
-calculateButton?.addEventListener('click', calculate);
-
-[partInput, wholeInput].forEach((input) => {
-  input?.addEventListener('input', () => {
-    if (liveUpdatesEnabled && hasCalculated) {
-      calculate();
-    }
-  });
-});
+calculateButton?.addEventListener('click', () => calculate({ reveal: true }));
 
 calculate();
