@@ -200,6 +200,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'salary-calculators-hub': {
+    title: 'Salary Calculators | Pay Conversion, Overtime, Bonus and Raise Tools',
+    description:
+      'Explore salary calculators for hourly to salary conversion, annual and monthly pay, overtime, raises, bonuses, and commission estimates.',
+    h1: 'Salary Calculators',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'fraction-calculator': {
     title: 'Fraction Calculator - Add, Subtract, Multiply, Divide & Simplify | CalcHowMuch',
     description:
@@ -2457,6 +2465,26 @@ function buildPricingClusterInlineCss(calculatorRelPath) {
     .join('\n\n');
 }
 
+function buildSalaryClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'salary-calculators', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
 function buildCreditCardClusterHeaderHtml() {
   return `<header class="cc-cluster-site-header">
   <div class="cc-cluster-wrap cc-cluster-site-header-inner">
@@ -2672,6 +2700,38 @@ function buildPricingClusterFooterHtml() {
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
     <span class="pct-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildSalaryClusterHeaderHtml() {
+  return `<header class="sal-cluster-site-header">
+  <div class="sal-cluster-wrap sal-cluster-site-header-inner">
+    <a class="sal-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="sal-cluster-brand-mark" aria-hidden="true">$</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="sal-cluster-site-label" aria-label="Cluster label">Salary Calculators</div>
+    <nav class="sal-cluster-site-links" aria-label="Site links">
+      <a href="/calculators/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildSalaryClusterFooterHtml() {
+  return `<footer class="sal-cluster-site-footer">
+  <div class="sal-cluster-wrap sal-cluster-site-footer-inner">
+    <nav class="sal-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="sal-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
   </div>
 </footer>`;
 }
@@ -3558,6 +3618,8 @@ function buildPageHtml({
     canonical.includes('/percentage-calculators/') && PERCENTAGE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedPricingClusterRoute =
     canonical.includes('/pricing-calculators/') && PRICING_CLUSTER_REDESIGN_IDS.has(calculatorId);
+  const isMigratedSalaryClusterRoute =
+    canonical.includes('/salary-calculators/') && calculatorId === 'salary-calculators-hub';
   const isMigratedFinanceClusterRoute =
     canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedTimeAndDateClusterRoute =
@@ -3575,6 +3637,7 @@ function buildPageHtml({
     (assetConfig ||
       isCreditCardClusterRoute ||
       isMigratedPercentageClusterRoute ||
+      isMigratedSalaryClusterRoute ||
       isMigratedPricingClusterRoute ||
       isMigratedFinanceClusterRoute ||
       isMigratedTimeAndDateClusterRoute ||
@@ -3802,6 +3865,9 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
       isMigratedPercentageClusterRoute
         ? 'pct-cluster-panel panel-span-all'
         :
+      isMigratedSalaryClusterRoute
+        ? 'sal-cluster-panel panel-span-all'
+        :
       isMigratedFinanceClusterRoute
         ? 'fi-cluster-panel'
         : isMigratedTimeAndDateClusterRoute
@@ -3826,6 +3892,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
     topNavStatic &&
     !isMigratedTimeAndDateClusterRoute &&
     !isMigratedPercentageClusterRoute &&
+    !isMigratedSalaryClusterRoute &&
     !isMigratedFinanceClusterRoute &&
     !isMigratedAutoLoanClusterRoute &&
     !isMigratedHomeLoanClusterRoute
@@ -3837,6 +3904,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   if (
     isCreditCardClusterRoute ||
     isMigratedPercentageClusterRoute ||
+    isMigratedSalaryClusterRoute ||
     isMigratedPricingClusterRoute ||
     isMigratedFinanceClusterRoute ||
     isMigratedTimeAndDateClusterRoute ||
@@ -3892,6 +3960,11 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   } else if (isMigratedPercentageClusterRoute) {
     cssLinksHtml = `    <style data-percentage-cluster="true">\n${indentBlock(
       buildPercentageClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
+  } else if (isMigratedSalaryClusterRoute) {
+    cssLinksHtml = `    <style data-salary-cluster="true">\n${indentBlock(
+      buildSalaryClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
   } else if (isMigratedPricingClusterRoute) {
@@ -3954,6 +4027,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
     suppressAdsColumn ||
     isCreditCardClusterRoute ||
     isMigratedPercentageClusterRoute ||
+    isMigratedSalaryClusterRoute ||
     isMigratedPricingClusterRoute ||
     isMigratedFinanceClusterRoute ||
     isMigratedTimeAndDateClusterRoute ||
@@ -3984,6 +4058,16 @@ ${adPanelHtml}
         </section>
       </main>
       ${buildPercentageClusterFooterHtml()}
+    </div>`
+    : isMigratedSalaryClusterRoute
+    ? `    <div class="page sal-cluster-page-shell">
+      ${buildSalaryClusterHeaderHtml()}
+      <main class="sal-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="sal-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildSalaryClusterFooterHtml()}
     </div>`
     : isMigratedPricingClusterRoute
     ? `    <div class="page pct-cluster-page-shell">
@@ -4694,6 +4778,7 @@ function main() {
     const isMigratedPricingClusterRoute =
       calculator.url.startsWith('/pricing-calculators/') &&
       PRICING_CLUSTER_REDESIGN_IDS.has(calculator.id);
+    const isMigratedSalaryClusterRoute = calculator.url.startsWith('/salary-calculators/');
     const isMigratedFinanceClusterRoute =
       calculator.url.startsWith('/finance-calculators/') &&
       FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
@@ -4712,6 +4797,7 @@ function main() {
     if (
       assetConfig?.options?.generationMode === 'manual' &&
       !isMigratedPercentageClusterRoute &&
+      !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
@@ -4750,6 +4836,7 @@ function main() {
       !assetConfig &&
       !isCreditCardClusterRoute &&
       !isMigratedPercentageClusterRoute &&
+      !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
@@ -4762,6 +4849,7 @@ function main() {
       Boolean(assetConfig?.options?.topNavStatic) ||
       (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
         !isMigratedPercentageClusterRoute &&
+        !isMigratedSalaryClusterRoute &&
         !isMigratedPricingClusterRoute &&
         !isMigratedFinanceClusterRoute &&
         !isMigratedTimeAndDateClusterRoute);
@@ -4770,6 +4858,7 @@ function main() {
       !assetConfig &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
       !isMigratedPercentageClusterRoute &&
+      !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
       !isMigratedTimeAndDateClusterRoute &&
       !isMigratedFinanceClusterRoute &&
@@ -4830,6 +4919,75 @@ function main() {
         faqEntries,
         ...financeSchemaConfig,
       });
+      injectStaticStructuredData = true;
+    }
+    if (calculator.id === 'salary-calculators-hub') {
+      staticStructuredData = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            '@id': `${SITE_URL}/#website`,
+            url: `${SITE_URL}/`,
+            name: 'CalcHowMuch',
+            inLanguage: 'en',
+          },
+          {
+            '@type': 'Organization',
+            '@id': `${SITE_URL}/#organization`,
+            name: 'CalcHowMuch',
+            url: `${SITE_URL}/`,
+            logo: {
+              '@type': 'ImageObject',
+              url: OG_IMAGE,
+            },
+          },
+          {
+            '@type': 'CollectionPage',
+            '@id': `${pageCanonical}#webpage`,
+            name: pageTitle,
+            url: pageCanonical,
+            description: pageDescription,
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            publisher: { '@id': `${SITE_URL}/#organization` },
+            inLanguage: 'en',
+          },
+          {
+            '@type': 'SoftwareApplication',
+            '@id': `${pageCanonical}#softwareapplication`,
+            name: 'Salary Calculators',
+            applicationCategory: 'FinanceApplication',
+            operatingSystem: 'Web',
+            url: pageCanonical,
+            description: pageDescription,
+            inLanguage: 'en',
+            provider: { '@id': `${SITE_URL}/#organization` },
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            '@id': `${pageCanonical}#breadcrumbs`,
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: `${SITE_URL}/`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Salary Calculators',
+                item: pageCanonical,
+              },
+            ],
+          },
+        ],
+      };
       injectStaticStructuredData = true;
     }
 

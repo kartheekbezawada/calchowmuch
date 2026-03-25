@@ -10,7 +10,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
   <url>
     <loc>https://calchowmuch.com/sitemap.xml</loc>
     <changefreq>monthly</changefreq>
@@ -45,7 +44,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.40</priority>
   </url>
-
   <url>
     <loc>https://calchowmuch.com/math/basic/</loc>
     <changefreq>monthly</changefreq>
@@ -477,11 +475,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calchowmuch.com/pricing-calculators/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
     <loc>https://calchowmuch.com/pricing-calculators/commission-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -498,6 +491,11 @@
   </url>
   <url>
     <loc>https://calchowmuch.com/pricing-calculators/markup-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

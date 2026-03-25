@@ -1181,6 +1181,33 @@
           ]
         }
       ]
+    },
+    {
+      "id": "salary",
+      "name": "Salary Calculators",
+      "subcategories": [
+        {
+          "id": "salary-core",
+          "name": "Salary Calculators",
+          "calculators": [
+            {
+              "id": "salary-calculators-hub",
+              "name": "Salary Calculators",
+              "url": "/salary-calculators/",
+              "keywords": [
+                "salary calculators",
+                "salary calculator",
+                "pay calculator",
+                "hourly to salary",
+                "salary to hourly"
+              ],
+              "routeArchetype": "content_shell",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

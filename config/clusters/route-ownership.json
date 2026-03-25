@@ -178,6 +178,14 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/salary-calculators/",
+      "calculatorId": "salary-calculators-hub",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-cluster-bootstrap-20260325",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/car-loan-calculators/car-loan-calculator/",
       "calculatorId": "car-loan",
       "activeOwnerClusterId": "auto-loans",

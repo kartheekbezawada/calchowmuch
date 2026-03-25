@@ -41,6 +41,11 @@
       "clusterId": "pricing",
       "label": "Pricing Calculators",
       "href": "/pricing-calculators/"
+    },
+    {
+      "clusterId": "salary",
+      "label": "Salary Calculators",
+      "href": "/salary-calculators/"
     }
   ],
   "sections": [

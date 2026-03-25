@@ -115,6 +115,19 @@
       ]
     },
     {
+      "clusterId": "salary",
+      "displayName": "Salary Calculators",
+      "status": "migrating",
+      "routePrefixes": [
+        "/salary-calculators/"
+      ],
+      "showOnHomepage": true,
+      "contractsEnabled": true,
+      "owners": [
+        "platform"
+      ]
+    },
+    {
       "clusterId": "homepage",
       "displayName": "Homepage",
       "status": "isolated",

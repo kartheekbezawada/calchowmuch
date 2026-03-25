@@ -1,5 +1,6 @@
 {
-  "version": 1,
+  "clusterId": "salary",
+  "displayName": "Salary Calculators",
   "globalDestinations": [
     {
       "clusterId": "math",
@@ -45,6 +46,19 @@
       "clusterId": "salary",
       "label": "Salary Calculators",
       "href": "/salary-calculators/"
+    }
+  ],
+  "sections": [
+    {
+      "id": "salary-core",
+      "name": "Salary Calculators",
+      "calculators": [
+        {
+          "id": "salary-calculators-hub",
+          "name": "Salary Calculators",
+          "url": "/salary-calculators/"
+        }
+      ]
     }
   ]
 }
