@@ -5,12 +5,13 @@ test.describe('math/slope-distance e2e', () => {
     await page.setViewportSize({ width: 1366, height: 900 });
     await page.goto('/math/algebra/slope-distance/');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.math-cluster-panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
-    await expect(page.locator('.algebra-preview-panel')).toBeVisible();
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.slope-answer-card')).toBeVisible();
 
-    const formBox = await page.locator('.algebra-form-panel').boundingBox();
-    const previewBox = await page.locator('.algebra-preview-panel').boundingBox();
+    const formBox = await page.locator('.slope-input-card').boundingBox();
+    const previewBox = await page.locator('.slope-answer-card').boundingBox();
     expect(formBox).toBeTruthy();
     expect(previewBox).toBeTruthy();
     expect(previewBox.x).toBeGreaterThan(formBox.x);
@@ -25,6 +26,8 @@ test.describe('math/slope-distance e2e', () => {
     await expect(page.locator('#slope-result')).toContainText('Distance: 6.708');
     await expect(page.locator('#slope-result')).toContainText('Midpoint: (2.5, 5)');
     await expect(page.locator('[data-slope-snap="line-type"]')).toHaveText('General line');
+    await expect(page.locator('#slope-detail')).toContainText('Line Equations');
+    await expect(page.locator('#slope-detail')).toContainText('Parallel & Perpendicular');
   });
 
   test('vertical-line edge case updates deterministic snapshot state', async ({ page }) => {

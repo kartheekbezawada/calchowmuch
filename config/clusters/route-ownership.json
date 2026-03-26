@@ -352,6 +352,30 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-math-wave3-20260326",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/slope-distance/",
+      "calculatorId": "slope-distance",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/factoring/",
+      "calculatorId": "factoring",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/polynomial-operations/",
+      "calculatorId": "polynomial-operations",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
     }
   ]
 }

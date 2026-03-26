@@ -1,73 +1,163 @@
-<section>
+<section class="poly-exp-section">
   <h2>Polynomial Operations Calculator Practical Guide</h2>
   <p>
-    Use this calculator to perform core polynomial operations and review clean, structured outputs for
-    each operation mode.
+    Use this polynomial operations calculator to add, subtract, multiply, or divide two expressions in
+    one place. It is built for quick algebra checking, so the result appears first and the detail area
+    explains the selected operation without forcing you through a crowded or academic workflow.
   </p>
-</section>
-
-<section>
-  <h3>How to Guide</h3>
-  <ol>
-    <li>Select an operation: add, subtract, multiply, or divide.</li>
-    <li>Enter Polynomial 1 and Polynomial 2 using standard algebra syntax.</li>
-    <li>Click <strong>Calculate</strong>.</li>
-    <li>Review the answer card, operation summary, and remainder output when dividing.</li>
-  </ol>
-</section>
-
-<section>
-  <h3>Important Notes</h3>
-  <p><strong>Last updated: February 2026</strong></p>
-  <ul>
-    <li>Like terms are combined automatically in resulting expressions.</li>
-    <li>Division output includes both quotient and remainder.</li>
-    <li>Division by zero polynomial is not allowed.</li>
-    <li>Decimal coefficients are supported with valid polynomial syntax.</li>
-    <li>Displayed form is standardized for readability.</li>
+  <ul class="poly-summary-list">
+    <li><strong>Best for:</strong> checking polynomial arithmetic and long-division results.</li>
+    <li><strong>Quick answer flow:</strong> choose the operation, enter two expressions, then calculate.</li>
+    <li><strong>Output includes:</strong> result text, result degree, and remainder output for division.</li>
   </ul>
 </section>
 
-<section>
+<section class="poly-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Select the operation: add, subtract, multiply, or divide.</li>
+    <li>Enter Polynomial 1 and Polynomial 2 using standard algebra syntax.</li>
+    <li>Click <strong>Calculate</strong> to run the selected operation.</li>
+    <li>Read the answer card first, then use the detail panel to review the operation summary and any division remainder.</li>
+  </ol>
+</section>
+
+<section class="poly-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="poly-table-wrap">
+    <table class="poly-summary-table">
+      <thead>
+        <tr>
+          <th>Operation</th>
+          <th>What the route does</th>
+          <th>Key output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Add / Subtract</td>
+          <td>Combines like terms with matching powers.</td>
+          <td>A simplified polynomial in descending-power order.</td>
+        </tr>
+        <tr>
+          <td>Multiply</td>
+          <td>Distributes each term and merges like terms.</td>
+          <td>A product polynomial with the new highest degree.</td>
+        </tr>
+        <tr>
+          <td>Divide</td>
+          <td>Runs polynomial long division.</td>
+          <td>Quotient plus remainder when division is not exact.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="poly-exp-section">
+  <h3>Operation Notes</h3>
+  <p>
+    Addition and subtraction combine coefficients on matching powers. Multiplication distributes each
+    term across the other polynomial and then simplifies like terms. Division uses polynomial long
+    division and reports both quotient and remainder.
+  </p>
+  <p>
+    Division by the zero polynomial is undefined, so the route stops with an error instead of returning
+    a misleading result.
+  </p>
+</section>
+
+<section class="poly-exp-section">
+  <h3>Worked Example</h3>
+  <div class="poly-example-grid">
+    <article class="poly-example-card">
+      <h4>Addition</h4>
+      <p>Use <strong>2x^2 + 3x - 1</strong> and <strong>x^2 - x + 2</strong>.</p>
+      <p>
+        The result is <strong>3x^2 + 2x + 1</strong> because matching powers are combined term by term.
+      </p>
+    </article>
+    <article class="poly-example-card">
+      <h4>Division</h4>
+      <p>Use <strong>x^2 + 3x + 2</strong> divided by <strong>x + 1</strong>.</p>
+      <p>
+        The quotient is <strong>x + 2</strong> and the remainder is <strong>0</strong>, so the division is exact.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="poly-exp-section">
   <h3>FAQ</h3>
-  <div class="faq-card">
-    <h4>Which operations are supported?</h4>
-    <p>The calculator supports polynomial addition, subtraction, multiplication, and division.</p>
+  <div class="poly-faq-grid">
+    <div class="faq-card">
+      <h4>Which operations are supported?</h4>
+      <p>The calculator supports polynomial addition, subtraction, multiplication, and division.</p>
+    </div>
+    <div class="faq-card">
+      <h4>How are like terms handled in addition and subtraction?</h4>
+      <p>Terms with the same power are combined by adding or subtracting their coefficients.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What multiplication method is used?</h4>
+      <p>The calculator distributes each term and then merges like terms into standard polynomial form.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What happens during division by a polynomial?</h4>
+      <p>It performs polynomial long division and returns both quotient and remainder.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I divide by zero polynomial?</h4>
+      <p>No. Division by a zero polynomial is undefined and returns an error message.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Are decimals allowed in coefficients?</h4>
+      <p>Yes. Decimal coefficients are accepted as long as the polynomial syntax is valid.</p>
+    </div>
+    <div class="faq-card">
+      <h4>How is polynomial degree shown in results?</h4>
+      <p>The answer card shows the highest exponent with a non-zero coefficient in the output polynomial.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why might my output order differ from notes?</h4>
+      <p>Equivalent results are shown in standard descending-power form, which may be arranged differently from class notes.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does the calculator validate malformed terms?</h4>
+      <p>Yes. Invalid tokens are detected and reported so you can fix the expression.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can this be used to verify manual long division?</h4>
+      <p>Yes. Quotient and remainder output are useful for checking manual polynomial division steps.</p>
+    </div>
   </div>
-  <div class="faq-card">
-    <h4>How are like terms handled in addition and subtraction?</h4>
-    <p>Terms with the same power are combined by adding or subtracting their coefficients.</p>
+</section>
+
+<section class="poly-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="poly-related-grid">
+    <a class="poly-related-card" href="/math/algebra/factoring/">
+      <strong>Factoring Calculator</strong>
+      <span>Factor a polynomial after expanding or simplifying it with the operation route.</span>
+    </a>
+    <a class="poly-related-card" href="/math/algebra/quadratic-equation/">
+      <strong>Quadratic Equation Solver</strong>
+      <span>Check the roots of a quadratic after you finish polynomial cleanup or expansion.</span>
+    </a>
+    <a class="poly-related-card" href="/math/basic/">
+      <strong>Basic Calculator</strong>
+      <span>Use a simpler arithmetic route for quick coefficient checks and sign verification.</span>
+    </a>
   </div>
-  <div class="faq-card">
-    <h4>What multiplication method is used?</h4>
-    <p>The calculator distributes each term and then merges like terms into standard polynomial form.</p>
-  </div>
-  <div class="faq-card">
-    <h4>What happens during division by a polynomial?</h4>
-    <p>It performs polynomial long division and returns both quotient and remainder.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Can I divide by zero polynomial?</h4>
-    <p>No, division by a zero polynomial is undefined and returns an error message.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Are decimals allowed in coefficients?</h4>
-    <p>Yes, decimal coefficients are accepted as long as term syntax is valid.</p>
-  </div>
-  <div class="faq-card">
-    <h4>How is polynomial degree shown in results?</h4>
-    <p>The answer card shows the highest exponent with a non-zero coefficient in the output polynomial.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Why might my output order differ from notes?</h4>
-    <p>Equivalent results can be displayed in standard descending-power form, which may differ in arrangement.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Does the calculator validate malformed terms?</h4>
-    <p>Yes, invalid tokens are detected and reported so you can correct the expression.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Can this be used to verify manual long division?</h4>
-    <p>Yes, quotient and remainder outputs are useful for checking manual polynomial division steps.</p>
-  </div>
+</section>
+
+<section class="poly-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="poly-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Simplification:</strong> Like terms are combined automatically in the result.</li>
+    <li><strong>Division output:</strong> Quotient and remainder are both shown when the operation mode is divide.</li>
+    <li><strong>Input rule:</strong> Division by a zero polynomial is blocked as an invalid operation.</li>
+    <li><strong>Use case:</strong> This tool is designed for fast algebra checking and learning support, not formal symbolic proof writing.</li>
+  </ul>
 </section>

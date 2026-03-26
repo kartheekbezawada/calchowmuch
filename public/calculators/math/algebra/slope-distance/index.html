@@ -1,0 +1,105 @@
+<div id="calc-slope-distance">
+  <div class="slope-shell">
+    <section class="slope-card slope-hero-card" aria-label="Slope and distance overview">
+      <div class="slope-hero-copy">
+        <p class="slope-eyebrow">Simple Smooth Wow</p>
+        <h2 class="slope-title">Compare two points and keep slope, distance, midpoint, and line forms in one answer-first view.</h2>
+        <p class="slope-subtitle">
+          Enter two coordinate pairs, calculate once, and use the answer card to see the core line
+          properties before you read the equation forms and parallel or perpendicular references.
+        </p>
+      </div>
+      <ul class="slope-hero-points">
+        <li>Best for coordinate geometry homework, graph checks, and line-equation review.</li>
+        <li>The answer card surfaces slope, distance, midpoint, and line type immediately.</li>
+        <li>Equation forms and parallel or perpendicular references stay in the detail panel below the answer.</li>
+      </ul>
+    </section>
+
+    <div class="slope-workbench">
+      <section class="slope-card slope-input-card" aria-label="Coordinate inputs">
+        <div class="slope-card-head">
+          <div>
+            <p class="slope-section-label">Inputs</p>
+            <p class="slope-card-title">Set the two points and calculate the line properties</p>
+          </div>
+          <span class="slope-chip">Answer-first</span>
+        </div>
+
+        <p class="slope-helper">Find slope, distance, midpoint, and line equations from two points.</p>
+
+        <div class="slope-point-grid">
+          <div class="slope-point-card">
+            <h3>Point 1</h3>
+            <div class="slope-field-grid">
+              <label class="slope-field" for="x1">
+                <span>x1</span>
+                <input id="x1" type="number" value="1" step="any" inputmode="decimal" />
+              </label>
+              <label class="slope-field" for="y1">
+                <span>y1</span>
+                <input id="y1" type="number" value="2" step="any" inputmode="decimal" />
+              </label>
+            </div>
+          </div>
+
+          <div class="slope-point-card">
+            <h3>Point 2</h3>
+            <div class="slope-field-grid">
+              <label class="slope-field" for="x2">
+                <span>x2</span>
+                <input id="x2" type="number" value="4" step="any" inputmode="decimal" />
+              </label>
+              <label class="slope-field" for="y2">
+                <span>y2</span>
+                <input id="y2" type="number" value="8" step="any" inputmode="decimal" />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button class="calculator-button slope-calculate-button" type="button" id="calculate-slope">
+          Calculate Properties
+        </button>
+      </section>
+
+      <section class="slope-card slope-answer-card" aria-label="Slope and distance answer summary">
+        <div class="slope-card-head">
+          <div>
+            <p class="slope-section-label">Answer</p>
+            <p class="slope-card-title">Main line properties</p>
+          </div>
+          <span class="slope-chip slope-chip--answer">Coordinate geometry</span>
+        </div>
+
+        <div class="result slope-result-card" id="slope-result" aria-live="polite">
+          Results will appear after you click <strong>Calculate Properties</strong>.
+        </div>
+        <div class="result-detail slope-summary-card" id="slope-detail" aria-live="polite"></div>
+
+        <div class="slope-snapshot-grid" aria-label="Slope snapshot">
+          <article class="slope-snapshot-card">
+            <span>Slope</span>
+            <strong data-slope-snap="slope">-</strong>
+          </article>
+          <article class="slope-snapshot-card">
+            <span>Distance</span>
+            <strong data-slope-snap="distance">-</strong>
+          </article>
+          <article class="slope-snapshot-card">
+            <span>Midpoint</span>
+            <strong data-slope-snap="midpoint">-</strong>
+          </article>
+          <article class="slope-snapshot-card">
+            <span>Line type</span>
+            <strong data-slope-snap="line-type">-</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/algebra/slope-distance/calculator.css');
+</style>

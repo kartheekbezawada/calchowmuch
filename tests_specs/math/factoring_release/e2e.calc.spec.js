@@ -5,12 +5,13 @@ test.describe('math/factoring e2e', () => {
     await page.setViewportSize({ width: 1366, height: 900 });
     await page.goto('/math/algebra/factoring/');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.math-cluster-panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
-    await expect(page.locator('.algebra-preview-panel')).toBeVisible();
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.factor-answer-card')).toBeVisible();
 
-    const formBox = await page.locator('.algebra-form-panel').boundingBox();
-    const previewBox = await page.locator('.algebra-preview-panel').boundingBox();
+    const formBox = await page.locator('.factor-input-card').boundingBox();
+    const previewBox = await page.locator('.factor-answer-card').boundingBox();
     expect(formBox).toBeTruthy();
     expect(previewBox).toBeTruthy();
     expect(previewBox.x).toBeGreaterThan(formBox.x);
@@ -23,6 +24,8 @@ test.describe('math/factoring e2e', () => {
     await expect(page.locator('#factor-result')).toContainText('x + 3');
     await expect(page.locator('[data-factor-snap="method"]')).toHaveText(/Quadratic factoring/);
     await expect(page.locator('[data-factor-snap="factored"]')).toContainText('x + 2');
+    await expect(page.locator('#factor-detail')).toContainText('Original Polynomial');
+    await expect(page.locator('#factor-detail')).toContainText('Quadratic factoring');
   });
 
   test('invalid expression error state clears snapshot values deterministically', async ({ page }) => {

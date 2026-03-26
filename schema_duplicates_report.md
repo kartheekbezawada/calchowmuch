@@ -1,6 +1,6 @@
 # Schema Dedupe Report
 
-- Scope: `calc:math/quadratic-equation`
+- Scope: `calc:math/polynomial-operations`
 - Pages scanned: **1**
 - Pages changed (auto-fix): **0**
 - Parse errors: **0**
@@ -9,5 +9,5 @@
 
 | Path | Blocks | FAQ (pre→post) | Breadcrumb (pre→post) | SoftwareApplication (pre→post) | Blocks by Type | Snippets | Status | Action |
 | :--- | ---: | :---: | :---: | :---: | :--- | :--- | :---: | :---: |
-| `public/math/algebra/quadratic-equation/index.html` | 1 | 1→1 | 1→1 | 1→1 | FAQ [0]<br>Breadcrumb [0]<br>Software [0] | FAQ: What happens if a is zero? | Why do I sometimes get two answers?<br>Breadcrumb: Home > Math > Quadratic Equation Solver<br>Software: Quadratic Equation Solver (EducationalApplication) | OK | UNCHANGED |
+| `public/math/algebra/polynomial-operations/index.html` | 1 | 1→1 | 1→1 | 1→1 | FAQ [0]<br>Breadcrumb [0]<br>Software [0] | FAQ: Which operations are supported? | How are like terms handled in addition and subtraction?<br>Breadcrumb: Home > Math > Polynomial Operations Calculator<br>Software: Polynomial Operations Calculator (EducationalApplication) | OK | UNCHANGED |
 

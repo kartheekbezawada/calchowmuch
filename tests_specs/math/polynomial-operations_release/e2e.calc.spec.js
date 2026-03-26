@@ -5,12 +5,13 @@ test.describe('math/polynomial-operations e2e', () => {
     await page.setViewportSize({ width: 1366, height: 900 });
     await page.goto('/math/algebra/polynomial-operations/');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.math-cluster-panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
-    await expect(page.locator('.algebra-preview-panel')).toBeVisible();
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.poly-answer-card')).toBeVisible();
 
-    const formBox = await page.locator('.algebra-form-panel').boundingBox();
-    const previewBox = await page.locator('.algebra-preview-panel').boundingBox();
+    const formBox = await page.locator('.poly-input-card').boundingBox();
+    const previewBox = await page.locator('.poly-answer-card').boundingBox();
     expect(formBox).toBeTruthy();
     expect(previewBox).toBeTruthy();
     expect(previewBox.x).toBeGreaterThan(formBox.x);
@@ -23,6 +24,7 @@ test.describe('math/polynomial-operations e2e', () => {
     await expect(page.locator('#poly-result')).toContainText('Result: 3x^2 + 2x + 1');
     await expect(page.locator('[data-poly-snap="operation"]')).toHaveText('Add');
     await expect(page.locator('[data-poly-snap="degree"]')).toHaveText('2');
+    await expect(page.locator('#poly-detail')).toContainText('Operation:');
   });
 
   test('division by zero polynomial shows deterministic error snapshot state', async ({ page }) => {

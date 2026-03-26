@@ -81,6 +81,66 @@
           "/calculators/math/algebra/quadratic-equation/module.js"
         ]
       }
+    },
+    "/math/algebra/slope-distance/": {
+      "route": "/math/algebra/slope-distance/",
+      "calculatorId": "slope-distance",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/slope-distance/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/slope-distance/module.js"
+        ]
+      }
+    },
+    "/math/algebra/factoring/": {
+      "route": "/math/algebra/factoring/",
+      "calculatorId": "factoring",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/factoring/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/factoring/module.js"
+        ]
+      }
+    },
+    "/math/algebra/polynomial-operations/": {
+      "route": "/math/algebra/polynomial-operations/",
+      "calculatorId": "polynomial-operations",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/polynomial-operations/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/polynomial-operations/module.js"
+        ]
+      }
     }
   }
 }

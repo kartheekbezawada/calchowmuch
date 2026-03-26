@@ -86,6 +86,9 @@ const MATH_CLUSTER_REDESIGN_IDS = new Set([
   'fraction-calculator',
   'sample-size',
   'quadratic-equation',
+  'slope-distance',
+  'factoring',
+  'polynomial-operations',
 ]);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
