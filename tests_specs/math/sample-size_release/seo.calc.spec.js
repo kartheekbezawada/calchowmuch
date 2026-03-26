@@ -19,7 +19,10 @@ test.describe('Sample Size Calculator SEO', () => {
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Sample Size Calculator');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('link[href*="theme-premium-dark.css"]')).toHaveCount(0);
+    await expect(page.locator('.math-cluster-panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
 
     const canonical = page.locator('link[rel="canonical"]');
@@ -39,6 +42,7 @@ test.describe('Sample Size Calculator SEO', () => {
       'Scenario Analysis',
       'Visual Reference',
       'FAQ',
+      'Related Calculators',
       'Important Notes',
     ]);
 
@@ -46,6 +50,7 @@ test.describe('Sample Size Calculator SEO', () => {
     await expect(explanation.locator('.ss-example-card')).toHaveCount(6);
     await expect(explanation.locator('.ss-faq-card')).toHaveCount(10);
     await expect(explanation.locator('.ss-visual-card')).toHaveCount(3);
+    await expect(explanation.locator('.ss-related-card')).toHaveCount(3);
 
     const structuredDataScript = page.locator('script[data-calculator-ld]').first();
     await expect(structuredDataScript).toHaveCount(1);

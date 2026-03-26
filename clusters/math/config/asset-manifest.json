@@ -41,6 +41,46 @@
           "/calculators/math/fraction-calculator/module.js"
         ]
       }
+    },
+    "/math/sample-size/": {
+      "route": "/math/sample-size/",
+      "calculatorId": "sample-size",
+      "clusterId": "math",
+      "buildId": "wave1-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/sample-size/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/sample-size/module.js"
+        ]
+      }
+    },
+    "/math/algebra/quadratic-equation/": {
+      "route": "/math/algebra/quadratic-equation/",
+      "calculatorId": "quadratic-equation",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/quadratic-equation/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/quadratic-equation/module.js"
+        ]
+      }
     }
   }
 }

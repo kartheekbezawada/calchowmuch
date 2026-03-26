@@ -7,8 +7,9 @@ test.describe('Sample Size Calculator', () => {
     await page.setViewportSize({ width: 1366, height: 900 });
     await page.goto('/math/sample-size/');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.math-cluster-panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
+    await expect(page.locator('.top-nav')).toHaveCount(0);
     await expect(page.locator('[data-button-group="ss-mode"] button')).toHaveCount(2);
     await expect(page.locator('[data-ss-preset]')).toHaveCount(4);
     await expect(page.locator('#ss-preset-state')).toHaveText(
@@ -112,7 +113,7 @@ test.describe('Sample Size Calculator', () => {
     const calculatorRoot = page.locator('#calc-sample-size');
     const explanationRoot = page.locator('#sample-size-explanation');
 
-    await expect(topNav).toBeHidden();
+    await expect(topNav).toHaveCount(0);
     await expect(modeCard).toBeVisible();
     await expect(inputCard).toBeVisible();
     await expect(answerCard).toBeVisible();

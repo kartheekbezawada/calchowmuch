@@ -8,6 +8,7 @@ Use this checklist for every math route. The execution card remains the highest 
 - [ ] If this is route `3`, `6`, `9`, or a wave switch, the execution card was re-read again before continuing.
 - [ ] Definition Of Done was re-validated against Engineering, Design, SEO, and CWV rules.
 - [ ] One-calculator-at-a-time execution is being followed.
+- [ ] Auto-continuation rule is being followed: once the current route passes, move directly to the next approved route without waiting for new permission.
 
 ## Shared Pre-Flight
 
@@ -122,3 +123,4 @@ Only one classification can be selected.
 - [ ] Stop if generated output diverges from source intent in a way that suggests `Type 3`.
 - [ ] Stop if Engineering, Design, SEO, or CWV fails.
 - [ ] Stop before moving to the next route unless the current route fully passes.
+- [ ] Do not stop after a normal route completion; continue automatically unless a real blocker is present.

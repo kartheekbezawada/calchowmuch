@@ -3,194 +3,1938 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Sample Size | Calculate How Much Online Calculator</title>
-    <meta name="description" content="Sample Size calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <title>Sample Size Calculator — Proportion &amp; Mean Study Planner | CalcHowMuch</title>
+    <meta name="description" content="Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance." />
     <link rel="canonical" href="https://calchowmuch.com/math/sample-size/" />
-    <meta property="og:title" content="Sample Size | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="Sample Size calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:title" content="Sample Size Calculator — Proportion &amp; Mean Study Planner | CalcHowMuch" />
+    <meta property="og:description" content="Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/sample-size/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sample Size | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="Sample Size calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:title" content="Sample Size Calculator — Proportion &amp; Mean Study Planner | CalcHowMuch" />
+    <meta name="twitter:description" content="Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-math-cluster="true">
+      /* assets/css/base.css */
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/math/shared/cluster-light.css */
+      :root {
+        --math-shell-bg: linear-gradient(180deg, #f6fbff 0%, #eef6ff 42%, #f9fbff 100%);
+        --math-shell-surface: rgba(255, 255, 255, 0.92);
+        --math-shell-surface-strong: #ffffff;
+        --math-shell-border: rgba(15, 23, 42, 0.1);
+        --math-shell-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        --math-shell-shadow-soft: 0 14px 34px rgba(59, 130, 246, 0.12);
+        --math-shell-text: #132238;
+        --math-shell-muted: #5e7086;
+        --math-shell-accent: #0f766e;
+        --math-shell-accent-strong: #0b5a54;
+        --math-shell-highlight: #effcf8;
+        --math-shell-chip: rgba(15, 118, 110, 0.12);
+        --math-shell-chip-text: #0f5d58;
+        --math-shell-line: rgba(15, 23, 42, 0.08);
+      }
+
+      body {
+        color: var(--math-shell-text);
+        background: var(--math-shell-bg);
+      }
+
+      .math-cluster-wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .math-cluster-site-header,
+      .math-cluster-site-footer {
+        background: rgba(255, 255, 255, 0.74);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--math-shell-line);
+      }
+
+      .math-cluster-site-header-inner,
+      .math-cluster-site-footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 0;
+      }
+
+      .math-cluster-brand,
+      .math-cluster-site-links a,
+      .math-cluster-footer-links a {
+        color: var(--math-shell-text);
+      }
+
+      .math-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .math-cluster-brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #0f766e, #38bdf8);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: var(--math-shell-shadow-soft);
+      }
+
+      .math-cluster-site-label {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--math-shell-chip);
+        color: var(--math-shell-chip-text);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .math-cluster-site-links,
+      .math-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .math-cluster-layout-main {
+        padding: 28px 0 48px;
+      }
+
+      .math-cluster-center-column {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .math-cluster-panel {
+        display: grid;
+        gap: 28px;
+        padding: 28px;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 28px;
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
+        box-shadow: var(--math-shell-shadow);
+      }
+
+      .math-cluster-page-header {
+        display: grid;
+        gap: 12px;
+      }
+
+      .math-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.92rem;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-breadcrumbs a {
+        color: var(--math-shell-accent-strong);
+      }
+
+      .math-cluster-page-kicker {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--math-shell-highlight);
+        color: var(--math-shell-accent-strong);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .math-cluster-page-header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .math-cluster-page-intro {
+        margin: 0;
+        max-width: 68ch;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      .math-cluster-footer-copy {
+        color: var(--math-shell-muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 900px) {
+        .math-cluster-site-header-inner,
+        .math-cluster-site-footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .math-cluster-panel {
+          padding: 22px 18px;
+          border-radius: 22px;
+        }
+      }
+
+      /* calculators/math/sample-size/calculator.css */
+      #calc-sample-size,
+      #sample-size-explanation {
+        --ss-bg: #f6fbff;
+        --ss-surface: #ffffff;
+        --ss-surface-elevated: #f8fbff;
+        --ss-surface-strong: #eef7fb;
+        --ss-ink: #132238;
+        --ss-ink-muted: #5e7086;
+        --ss-ink-faint: #7b8da3;
+        --ss-line: rgba(15, 23, 42, 0.08);
+        --ss-line-strong: rgba(14, 165, 233, 0.22);
+        --ss-accent: #0ea5e9;
+        --ss-accent-strong: #0b5a8a;
+        --ss-accent-soft: rgba(14, 165, 233, 0.12);
+        --ss-accent-soft-2: rgba(14, 165, 233, 0.06);
+        --ss-gold: #f59e0b;
+        --ss-success: #0f766e;
+        --ss-error: #dc2626;
+        --ss-error-soft: rgba(220, 38, 38, 0.08);
+        --ss-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+        --ss-radius: 16px;
+        --ss-radius-lg: 24px;
+        --ss-gap: 18px;
+        --ss-gap-lg: 28px;
+        --ss-transition: 180ms ease;
+      }
+
+      #calc-sample-size,
+      #sample-size-explanation {
+        color: var(--ss-ink);
+        font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      #calc-sample-size .ss-shell {
+        display: grid;
+        gap: var(--ss-gap-lg);
+      }
+
+      #calc-sample-size .ss-shell,
+      #calc-sample-size .ss-workbench-grid,
+      #calc-sample-size .ss-results-stack,
+      #calc-sample-size .ss-study-grid,
+      #calc-sample-size .ss-card,
+      #sample-size-explanation,
+      #sample-size-explanation .ss-exp-intro,
+      #sample-size-explanation .ss-exp-block {
+        min-width: 0;
+      }
+
+      #calc-sample-size h2::after,
+      #calc-sample-size h3::after,
+      #sample-size-explanation h2::after,
+      #sample-size-explanation h3::after {
+        display: none !important;
+        content: none !important;
+      }
+
+      #calc-sample-size .ss-card,
+      #sample-size-explanation .ss-exp-intro,
+      #sample-size-explanation .ss-exp-block {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 251, 255, 0.98));
+        border: 1px solid var(--ss-line);
+        border-radius: var(--ss-radius-lg);
+        box-shadow: var(--ss-shadow);
+      }
+
+      #calc-sample-size .ss-card {
+        padding: 24px;
+      }
+
+      #sample-size-explanation .ss-exp-intro,
+      #sample-size-explanation .ss-exp-block {
+        padding: 24px 28px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      #calc-sample-size .ss-section-label,
+      #calc-sample-size .ss-note-label,
+      #calc-sample-size .ss-metric-label,
+      #sample-size-explanation .ss-example-label {
+        margin: 0;
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ss-ink-faint);
+      }
+
+      #calc-sample-size .ss-card-head {
+        display: grid;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+
+      #calc-sample-size .ss-card-help,
+      #calc-sample-size .ss-mode-copy,
+      #calc-sample-size .ss-result-summary,
+      #calc-sample-size .ss-interpretation,
+      #calc-sample-size .ss-field small,
+      #calc-sample-size .ss-field-help,
+      #sample-size-explanation p,
+      #sample-size-explanation li,
+      #sample-size-explanation td {
+        margin: 0;
+        color: var(--ss-ink-muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      #calc-sample-size .ss-kicker {
+        margin: 0 0 8px;
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ss-accent-strong);
+      }
+
+      #calc-sample-size .ss-intro-band {
+        padding: 20px 24px;
+        background:
+          radial-gradient(circle at top right, rgba(14, 165, 233, 0.14), transparent 28%),
+          linear-gradient(135deg, rgba(248, 253, 255, 0.98), rgba(237, 248, 253, 0.98)),
+          var(--ss-surface);
+      }
+
+      #calc-sample-size .ss-intro-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.72fr);
+        gap: 18px;
+        align-items: center;
+      }
+
+      #calc-sample-size .ss-intro-title {
+        margin: 0 0 8px;
+        max-width: 760px;
+        font-size: clamp(1.45rem, 2.6vw, 2.05rem);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        color: var(--ss-ink);
+      }
+
+      #calc-sample-size .ss-intro-text {
+        max-width: 760px;
+        margin: 0;
+        color: var(--ss-ink-muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      #calc-sample-size .ss-intro-best {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid var(--ss-line-strong);
+        background: rgba(14, 165, 233, 0.05);
+        color: var(--ss-ink-muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      #calc-sample-size .ss-mode-card {
+        display: grid;
+        gap: 16px;
+        padding: 20px 24px;
+      }
+
+      #calc-sample-size .ss-mode-bar {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: start;
+      }
+
+      #calc-sample-size .ss-mode-bar-copy {
+        display: grid;
+        gap: 6px;
+      }
+
+      #calc-sample-size .ss-workbench-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.88fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      #calc-sample-size .ss-results-stack {
+        display: grid;
+        gap: var(--ss-gap);
+        position: sticky;
+        top: 12px;
+      }
+
+      #calc-sample-size .ss-presets-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: end;
+        margin-bottom: 18px;
+      }
+
+      #calc-sample-size .ss-presets-note {
+        margin: 0;
+        max-width: 260px;
+        color: var(--ss-ink-faint);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      #calc-sample-size .ss-presets-head .ss-card-head {
+        margin-bottom: 0;
+      }
+
+      #calc-sample-size .ss-study-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--ss-gap);
+      }
+
+      #calc-sample-size .ss-study-wide {
+        grid-column: 1 / -1;
+      }
+
+      #calc-sample-size .ss-mode-switch,
+      #calc-sample-size .ss-confidence-switch {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-sample-size .ss-mode-switch {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-sample-size .ss-confidence-switch {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #calc-sample-size .ss-mode-button,
+      #calc-sample-size .ss-confidence-button {
+        min-height: 48px;
+        padding: 12px 16px;
+        border-radius: 14px;
+        border: 1px solid var(--ss-line);
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--ss-ink-muted);
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform var(--ss-transition),
+          border-color var(--ss-transition),
+          background var(--ss-transition),
+          color var(--ss-transition),
+          box-shadow var(--ss-transition);
+      }
+
+      #calc-sample-size .ss-mode-button:hover,
+      #calc-sample-size .ss-confidence-button:hover {
+        border-color: var(--ss-line-strong);
+        background: var(--ss-accent-soft);
+        color: var(--ss-ink);
+      }
+
+      #calc-sample-size .ss-mode-button[aria-selected='true'],
+      #calc-sample-size .ss-confidence-button[aria-pressed='true'] {
+        color: #fff;
+        background: linear-gradient(180deg, #0b5a8a, var(--ss-accent));
+        border-color: transparent;
+        box-shadow: 0 12px 28px rgba(14, 161, 183, 0.28);
+      }
+
+      #calc-sample-size .ss-preset-state,
+      #calc-sample-size .ss-answer-state {
+        justify-self: start;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--ss-accent-soft);
+        color: var(--ss-accent-strong);
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #calc-sample-size .ss-preset-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      #calc-sample-size .ss-preset-card {
+        display: grid;
+        gap: 4px;
+        align-content: start;
+        min-height: 140px;
+        padding: 14px;
+        border: 1px solid var(--ss-line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        text-align: left;
+        color: var(--ss-ink);
+        cursor: pointer;
+        transition:
+          transform var(--ss-transition),
+          border-color var(--ss-transition),
+          background var(--ss-transition),
+          opacity var(--ss-transition),
+          box-shadow var(--ss-transition);
+      }
+
+      #calc-sample-size .ss-preset-card strong {
+        font-size: 15px;
+        line-height: 1.2;
+      }
+
+      #calc-sample-size .ss-preset-card span {
+        color: var(--ss-ink-muted);
+        font-size: 13px;
+      }
+
+      #calc-sample-size .ss-preset-kicker,
+      #calc-sample-size .ss-preset-outcome {
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      #calc-sample-size .ss-preset-kicker {
+        color: var(--ss-ink-faint);
+      }
+
+      #calc-sample-size .ss-preset-outcome {
+        color: var(--ss-gold);
+        margin-top: auto;
+      }
+
+      #calc-sample-size .ss-preset-meta {
+        line-height: 1.45;
+      }
+
+      #calc-sample-size .ss-preset-card:hover {
+        transform: translateY(-1px);
+        border-color: var(--ss-line-strong);
+        background: rgba(248, 252, 255, 0.98);
+      }
+
+      #calc-sample-size .ss-preset-card.is-active,
+      #calc-sample-size .ss-preset-card[aria-pressed='true'] {
+        border-color: rgba(14, 161, 183, 0.5);
+        background: linear-gradient(180deg, rgba(14, 161, 183, 0.18), rgba(14, 161, 183, 0.08));
+        box-shadow: 0 16px 30px rgba(14, 161, 183, 0.16);
+      }
+
+      #calc-sample-size .ss-preset-card.is-muted {
+        opacity: 0.54;
+        filter: saturate(0.7);
+      }
+
+      #calc-sample-size .ss-input-card,
+      #calc-sample-size .ss-presets-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(245, 251, 255, 0.98));
+      }
+
+      #calc-sample-size .ss-input-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-sample-size .ss-field-group,
+      #calc-sample-size .ss-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      #calc-sample-size .ss-field > span,
+      #calc-sample-size .ss-field-group > label {
+        color: var(--ss-ink);
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      #calc-sample-size .ss-field input {
+        width: 100%;
+        min-height: 50px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--ss-line);
+        background: #fff;
+        color: var(--ss-ink);
+        font-size: 15px;
+        transition:
+          border-color var(--ss-transition),
+          box-shadow var(--ss-transition),
+          background var(--ss-transition);
+      }
+
+      #calc-sample-size .ss-field input:focus {
+        outline: none;
+        border-color: var(--ss-accent-strong);
+        box-shadow: 0 0 0 4px rgba(14, 161, 183, 0.16);
+      }
+
+      #calc-sample-size .ss-field.has-error input {
+        border-color: rgba(255, 124, 98, 0.8);
+        background: rgba(255, 124, 98, 0.06);
+        box-shadow: 0 0 0 4px rgba(255, 124, 98, 0.08);
+      }
+
+      #calc-sample-size .ss-field-error {
+        color: var(--ss-error);
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #calc-sample-size .is-hidden {
+        display: none !important;
+      }
+
+      #calc-sample-size .ss-calculate-button {
+        width: 100%;
+        min-height: 52px;
+        margin-top: 8px;
+        border: 0;
+        border-radius: 16px;
+        background: linear-gradient(180deg, var(--ss-gold), hsl(39, 86%, 59%));
+        color: #1f2937;
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 18px 32px rgba(209, 146, 43, 0.22);
+        transition:
+          transform var(--ss-transition),
+          filter var(--ss-transition),
+          box-shadow var(--ss-transition);
+      }
+
+      #calc-sample-size .ss-calculate-button:hover {
+        filter: brightness(1.04);
+        box-shadow: 0 20px 34px rgba(209, 146, 43, 0.28);
+      }
+
+      #calc-sample-size .ss-mode-button:focus-visible,
+      #calc-sample-size .ss-confidence-button:focus-visible,
+      #calc-sample-size .ss-preset-card:focus-visible,
+      #calc-sample-size .ss-calculate-button:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 3px rgba(214, 238, 243, 0.95),
+          0 0 0 6px rgba(14, 161, 183, 0.28);
+      }
+
+      #calc-sample-size .ss-answer-card {
+        text-align: left;
+        background:
+          radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 30%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(240, 249, 255, 0.98)),
+          var(--ss-surface-elevated);
+      }
+
+      #calc-sample-size .ss-answer-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: start;
+      }
+
+      #calc-sample-size .ss-result-kicker {
+        margin: 6px 0 0;
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ss-accent-strong);
+      }
+
+      #calc-sample-size .ss-result-value {
+        margin: 14px 0 12px;
+        font-size: clamp(3.4rem, 8vw, 5rem);
+        font-weight: 700;
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        color: var(--ss-success);
+      }
+
+      #calc-sample-size .ss-answer-card.is-dirty {
+        opacity: 0.84;
+      }
+
+      #calc-sample-size .ss-answer-card.is-invalid {
+        border-color: rgba(255, 124, 98, 0.3);
+      }
+
+      #calc-sample-size .ss-answer-card.is-flashed {
+        animation: ssAnswerFlash 260ms ease;
+      }
+
+      @keyframes ssAnswerFlash {
+        0% {
+          transform: translateY(4px);
+          opacity: 0.76;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      #calc-sample-size .ss-metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      #calc-sample-size .ss-metric {
+        display: grid;
+        gap: 4px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid var(--ss-line);
+        background: rgba(248, 252, 255, 0.95);
+      }
+
+      #calc-sample-size .ss-metric-value {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ss-ink);
+      }
+
+      #calc-sample-size .ss-interpretation-panel {
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(14, 161, 183, 0.1), rgba(14, 161, 183, 0.04));
+        border: 1px solid rgba(14, 161, 183, 0.2);
+      }
+
+      #calc-sample-size .ss-assumption-list,
+      #calc-sample-size .ss-step-list,
+      #sample-size-explanation .ss-guide-list,
+      #sample-size-explanation .ss-notes-list {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      #calc-sample-size .ss-assumption-list {
+        margin-top: 16px;
+      }
+
+      #calc-sample-size .ss-assumption-item,
+      #calc-sample-size .ss-step-item {
+        color: var(--ss-ink-muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      #calc-sample-size .ss-step-item + .ss-step-item {
+        margin-top: 12px;
+      }
+
+      #calc-sample-size .ss-step-item strong {
+        color: var(--ss-ink);
+      }
+
+      #calc-sample-size .ss-sensitivity-wrap {
+        overflow-x: auto;
+      }
+
+      #calc-sample-size .ss-sensitivity-table {
+        width: 100%;
+        min-width: 420px;
+        border-collapse: collapse;
+      }
+
+      #calc-sample-size .ss-sensitivity-table th {
+        padding: 10px 12px;
+        text-align: left;
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ss-ink-faint);
+        border-bottom: 1px solid var(--ss-line);
+      }
+
+      #calc-sample-size .ss-sensitivity-table td {
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--ss-line);
+        color: var(--ss-ink-muted);
+        vertical-align: top;
+      }
+
+      #calc-sample-size .ss-sensitivity-table td span {
+        display: block;
+        font-weight: 700;
+        color: var(--ss-ink);
+      }
+
+      #calc-sample-size .ss-sensitivity-table td small {
+        display: block;
+        margin-top: 2px;
+        color: var(--ss-ink-faint);
+      }
+
+      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
+        background: rgba(248, 252, 255, 0.75);
+      }
+
+      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
+        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
+        border-bottom-color: rgba(14, 161, 183, 0.26);
+      }
+
+      #calc-sample-size .ss-table-empty {
+        text-align: center;
+        padding: 18px;
+        color: var(--ss-ink-faint);
+      }
+
+      #sample-size-explanation {
+        display: grid;
+        gap: var(--ss-gap);
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      #sample-size-explanation h2 {
+        margin: 0 0 14px;
+        font-size: clamp(1.7rem, 2.7vw, 2.3rem);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        color: var(--ss-ink);
+      }
+
+      #sample-size-explanation h3 {
+        margin: 0 0 12px;
+        font-size: 1.3rem;
+        color: var(--ss-ink);
+      }
+
+      #sample-size-explanation h4 {
+        margin: 16px 0 8px;
+        font-size: 1.05rem;
+        color: var(--ss-ink);
+      }
+
+      #sample-size-explanation .ss-example-grid,
+      #sample-size-explanation .ss-faq-grid,
+      #sample-size-explanation .ss-scenario-grid,
+      #sample-size-explanation .ss-visual-grid,
+      #sample-size-explanation .ss-related-grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      #sample-size-explanation .ss-example-grid,
+      #sample-size-explanation .ss-faq-grid,
+      #sample-size-explanation .ss-scenario-grid,
+      #sample-size-explanation .ss-related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #sample-size-explanation .ss-visual-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #sample-size-explanation .ss-example-card,
+      #sample-size-explanation .ss-faq-card,
+      #sample-size-explanation .ss-scenario-card,
+      #sample-size-explanation .ss-visual-card,
+      #sample-size-explanation .ss-related-card {
+        padding: 18px;
+        border-radius: 18px;
+        border: 1px solid var(--ss-line);
+        background: rgba(248, 252, 255, 0.92);
+      }
+
+      #sample-size-explanation .ss-related-card {
+        display: grid;
+        gap: 8px;
+        text-decoration: none;
+      }
+
+      #sample-size-explanation .ss-related-card strong {
+        color: var(--ss-accent-strong);
+      }
+
+      #sample-size-explanation .ss-example-label {
+        color: var(--ss-accent-strong);
+      }
+
+      #sample-size-explanation .ss-exp-table-wrap {
+        overflow-x: auto;
+        margin-top: 14px;
+      }
+
+      #sample-size-explanation .ss-exp-table {
+        width: 100%;
+        min-width: 520px;
+        border-collapse: collapse;
+      }
+
+      #sample-size-explanation .ss-exp-table th,
+      #sample-size-explanation .ss-exp-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--ss-line);
+        text-align: left;
+      }
+
+      #sample-size-explanation .ss-exp-table th {
+        font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ss-ink-faint);
+      }
+
+      @media (max-width: 1100px) {
+        #calc-sample-size .ss-workbench-grid,
+        #calc-sample-size .ss-study-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-sample-size .ss-preset-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #calc-sample-size .ss-results-stack {
+          position: static;
+        }
+      }
+
+      @media (max-width: 860px) {
+        #calc-sample-size .ss-intro-layout,
+        #sample-size-explanation .ss-visual-grid,
+        #sample-size-explanation .ss-example-grid,
+        #sample-size-explanation .ss-faq-grid,
+        #sample-size-explanation .ss-scenario-grid,
+        #sample-size-explanation .ss-related-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-sample-size .ss-mode-bar,
+        #calc-sample-size .ss-presets-head {
+          display: grid;
+          align-items: start;
+          grid-template-columns: 1fr;
+        }
+
+        #calc-sample-size .ss-presets-note {
+          max-width: none;
+        }
+      }
+
+      @media (max-width: 760px) {
+        #calc-sample-size .ss-card,
+        #sample-size-explanation .ss-exp-intro,
+        #sample-size-explanation .ss-exp-block {
+          padding: 18px 16px;
+          border-radius: 18px;
+        }
+
+        #calc-sample-size,
+        #sample-size-explanation {
+          width: 100%;
+          overflow-x: clip;
+        }
+
+        #calc-sample-size .ss-workbench-grid,
+        #calc-sample-size .ss-study-grid,
+        #calc-sample-size .ss-preset-grid,
+        #calc-sample-size .ss-metric-grid,
+        #sample-size-explanation .ss-visual-grid,
+        #sample-size-explanation .ss-example-grid,
+        #sample-size-explanation .ss-faq-grid,
+        #sample-size-explanation .ss-scenario-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-sample-size .ss-intro-band,
+        #calc-sample-size .ss-mode-card {
+          padding: 18px 16px;
+        }
+
+        #calc-sample-size .ss-answer-head {
+          flex-direction: column;
+        }
+
+        #calc-sample-size .ss-mode-bar,
+        #calc-sample-size .ss-presets-head {
+          display: grid;
+          gap: 12px;
+        }
+
+        #calc-sample-size .ss-sensitivity-card,
+        #sample-size-explanation .ss-exp-intro,
+        #sample-size-explanation .ss-exp-block {
+          width: 100%;
+        }
+
+        #calc-sample-size .ss-sensitivity-table,
+        #sample-size-explanation .ss-exp-table {
+          min-width: 0;
+        }
+
+        #calc-sample-size .ss-result-value {
+          font-size: 3.1rem;
+        }
+      }
+
+      @media (max-width: 520px) {
+        #calc-sample-size .ss-mode-switch {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #calc-sample-size *,
+        #sample-size-explanation * {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/sample-size/#webpage","name":"Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch","url":"https://calchowmuch.com/math/sample-size/","description":"Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/sample-size/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/sample-size/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/sample-size/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/sample-size/#softwareapplication","name":"Sample Size Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/sample-size/","description":"Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/sample-size/#faq","mainEntity":[{"@type":"Question","name":"When should I use the proportion study mode?","acceptedAnswer":{"@type":"Answer","text":"Use proportion study mode when the outcome is a percentage, response rate, prevalence, share, or other binary proportion."}},{"@type":"Question","name":"When should I use the mean study mode?","acceptedAnswer":{"@type":"Answer","text":"Use mean study mode when the outcome is continuous and the standard deviation is known or can be justified from prior evidence."}},{"@type":"Question","name":"Why does the calculator default to 50% for the estimated proportion?","acceptedAnswer":{"@type":"Answer","text":"A 50% planning proportion maximizes the variance term and therefore produces the most conservative sample-size estimate."}},{"@type":"Question","name":"What does finite-population correction do?","acceptedAnswer":{"@type":"Answer","text":"It reduces the sample requirement when the total population is known and the uncorrected sample would otherwise cover a large share of that population."}},{"@type":"Question","name":"Do I always need to enter a population size?","acceptedAnswer":{"@type":"Answer","text":"No. Leave it blank for large or effectively infinite populations and the calculator will use the standard uncorrected formula."}},{"@type":"Question","name":"Why is the final sample size rounded up?","acceptedAnswer":{"@type":"Answer","text":"Rounding up ensures the planned study always meets or exceeds the requested level of precision."}},{"@type":"Question","name":"What happens when I tighten the margin of error?","acceptedAnswer":{"@type":"Answer","text":"The sample requirement increases, often sharply, because tighter precision is more demanding."}},{"@type":"Question","name":"What happens when I increase the confidence level?","acceptedAnswer":{"@type":"Answer","text":"The z-score increases, which pushes the required sample size higher."}},{"@type":"Question","name":"Can this replace a full power analysis?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator supports estimation planning and does not replace power calculations for effect detection or experimental design."}},{"@type":"Question","name":"Does the calculator store my study inputs?","acceptedAnswer":{"@type":"Answer","text":"No. The calculation runs in your browser and does not save the values you enter."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/sample-size/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Sample Size Calculator","item":"https://calchowmuch.com/math/sample-size/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+    <div class="page math-cluster-page-shell">
+      <header class="math-cluster-site-header">
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a><a class="top-nav-link" href="/pricing-calculators/commission-calculator/"><span class="nav-label">Pricing Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="math-nav-container">
-<div class="math-nav-category is-collapsed" data-id="simple">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
-      <span class="math-nav-category-name">SIMPLE</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/basic/">Basic Calculator</a><a class="math-nav-item" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator/">Fraction Calculator</a>
+      <main class="math-cluster-layout-main">
+        <section class="math-cluster-center-column">
+          <div class="math-cluster-panel panel-span-all">
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Sample Size Calculator</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Sample Size Calculator</h1>
+    <p class="math-cluster-page-intro">Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.</p>
   </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="algebra">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
-      <span class="math-nav-category-name">ALGEBRA</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/algebra/quadratic-equation/">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations/">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations/">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring/">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance/">Slope & Distance Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="trigonometry">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-      <span class="math-nav-category-name">TRIGONOMETRY</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/trigonometry/unit-circle/">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver/">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions/">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig/">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines/">Law of Sines/Cosines Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="calculus">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-      <span class="math-nav-category-name">CALCULUS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/calculus/derivative/">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral/">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit/">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence/">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points/">Critical Points Finder</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="log">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-      <span class="math-nav-category-name">LOG</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/log/natural-log/">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log/">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties/">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations/">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale/">Log Scale Converter</a>
-  </div>
-</div>
-<div class="math-nav-category" data-id="statistics">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
-      <span class="math-nav-category-name">STATISTICS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/mean-median-mode-range/">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation/">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics/">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval/">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score/">Z-Score Calculator</a><a class="math-nav-item is-active" href="/math/sample-size/">Sample Size</a><a class="math-nav-item" href="/math/number-sequence/">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination/">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability/">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis/">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova/">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing/">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation/">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution/">Distribution Calculator</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll panel-span-all">
-  <h1 id="calculator-title">Sample Size</h1>
-  <div class="calculator-page-single">
+  <div class="calculator-page-single math-cluster-flow">
     <div id="calc-sample-size">
   <div class="ss-shell">
     <section class="ss-card ss-intro-band" aria-label="Research planning overview">
@@ -555,160 +2299,18 @@
     </div>
   </div>
 
-  <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "@id": "https://calchowmuch.com/math/sample-size/#webpage",
-          "name": "Sample Size Calculator | Proportion and Mean Study Planner",
-          "url": "https://calchowmuch.com/math/sample-size/",
-          "description": "Plan sample size for proportions or means with optional finite-population correction, worked examples, formulas, and research-ready guidance.",
-          "inLanguage": "en"
-        },
-        {
-          "@type": "SoftwareApplication",
-          "@id": "https://calchowmuch.com/math/sample-size/#softwareapplication",
-          "name": "Sample Size Calculator",
-          "applicationCategory": "EducationalApplication",
-          "operatingSystem": "Web",
-          "url": "https://calchowmuch.com/math/sample-size/",
-          "description": "Study-planning calculator for proportion and mean sample size with optional finite-population correction and sensitivity analysis.",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": "https://calchowmuch.com/math/sample-size/#breadcrumbs",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://calchowmuch.com/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Math",
-              "item": "https://calchowmuch.com/math/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "Sample Size Calculator",
-              "item": "https://calchowmuch.com/math/sample-size/"
-            }
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://calchowmuch.com/math/sample-size/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "When should I use the proportion study mode?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Use proportion study mode when the outcome is a percentage, response rate, prevalence, share, or any other binary proportion."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "When should I use the mean study mode?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Use mean study mode when the outcome is continuous and a justified population standard deviation is available in the same units as the margin of error."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why does the calculator default to 50% for the estimated proportion?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A 50% planning proportion maximizes p times 1 minus p, which produces the largest conservative sample size when prior evidence is limited."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What does finite-population correction do?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Finite-population correction lowers the required sample when the total population is known and small relative to the uncorrected sample size."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I always need to enter a population size?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. Leave population size blank for large or effectively infinite populations and the calculator will keep the standard uncorrected sample size."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why is the final sample size rounded up?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The final answer is rounded up so the planned study always meets or exceeds the precision target."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What happens when I tighten the margin of error?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A tighter margin of error requires a larger sample because the estimate must be more precise."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What happens when I increase the confidence level?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Higher confidence levels use larger z-values, which increases the required sample size."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can this replace a full power analysis?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. This calculator supports estimation planning, not hypothesis-test power analysis, multi-arm trial design, or effect-size planning."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does the calculator store my study inputs?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. The calculator runs in the browser and does not save the values you enter."
-              }
-            }
-          ]
-        }
-      ]
-    }
-  </script>
 </div>
 
-<style>
-  @import url('/calculators/math/sample-size/calculator.css?v=20260224');
-</style>
 
-  <h3>Explanation</h3>
+
     <div id="sample-size-explanation">
   <section class="ss-exp-intro">
     <h2>Sample Size Calculator Complete Practical Guide</h2>
     <p>
-      This page helps you justify how many responses or observations you need before data
-      collection begins. It combines the calculator, formulas, scenario comparisons, and protocol
-      language in one place so the final sample target is easier to defend in coursework, research
-      proposals, and stakeholder reviews.
+      Use this sample size calculator to plan proportion or mean studies with a defensible target
+      before data collection starts. It keeps the required sample, formulas, worked examples, and
+      decision notes in one place so you can brief a survey, coursework project, or research plan
+      without digging through the full guide first.
     </p>
   </section>
 
@@ -963,46 +2565,64 @@
   <section class="ss-exp-block">
     <h3>FAQ</h3>
     <div class="ss-faq-grid">
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>When should I use the proportion study mode?</h4>
         <p>Use proportion study mode when the outcome is a percentage, response rate, prevalence, share, or other binary proportion.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>When should I use the mean study mode?</h4>
         <p>Use mean study mode when the outcome is continuous and the standard deviation is known or can be justified from prior evidence.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>Why does the calculator default to 50% for the estimated proportion?</h4>
         <p>A 50% planning proportion maximizes the variance term and therefore produces the most conservative sample-size estimate.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>What does finite-population correction do?</h4>
         <p>It reduces the sample requirement when the total population is known and the uncorrected sample would otherwise cover a large share of that population.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>Do I always need to enter a population size?</h4>
         <p>No. Leave it blank for large or effectively infinite populations and the calculator will use the standard uncorrected formula.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>Why is the final sample size rounded up?</h4>
         <p>Rounding up ensures the planned study always meets or exceeds the requested level of precision.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>What happens when I tighten the margin of error?</h4>
         <p>The sample requirement increases, often sharply, because tighter precision is more demanding.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>What happens when I increase the confidence level?</h4>
         <p>The z-score increases, which pushes the required sample size higher.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>Can this replace a full power analysis?</h4>
         <p>No. This calculator supports estimation planning and does not replace power calculations for effect detection or experimental design.</p>
       </article>
-      <article class="ss-faq-card">
+      <article class="ss-faq-card faq-card">
         <h4>Does the calculator store my study inputs?</h4>
         <p>No. The calculation runs in your browser and does not save the values you enter.</p>
       </article>
+    </div>
+  </section>
+
+  <section class="ss-exp-block">
+    <h3>Related Calculators</h3>
+    <div class="ss-related-grid">
+      <a class="ss-related-card" href="/math/statistics/">
+        <strong>Statistics Calculator</strong>
+        <span>Move from planning the sample to summarising the data once collection is complete.</span>
+      </a>
+      <a class="ss-related-card" href="/math/confidence-interval/">
+        <strong>Confidence Interval Calculator</strong>
+        <span>Check the interval around your estimate after you have the data and the sample size.</span>
+      </a>
+      <a class="ss-related-card" href="/math/z-score/">
+        <strong>Z-Score Calculator</strong>
+        <span>Use the same z-based logic in a follow-on tool when you need standard-score interpretation.</span>
+      </a>
     </div>
   </section>
 
@@ -1023,39 +2643,20 @@
   </div>
 </div>
         </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
-        </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="math-cluster-site-footer">
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
     <script type="module" src="/calculators/math/sample-size/module.js?v=20260224"></script>
   </body>
 </html>

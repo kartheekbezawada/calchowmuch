@@ -107,6 +107,9 @@ Priority order:
 - Rollback: any regression stops the wave.
 - Active execution is one calculator at a time.
 - Do not begin the next route until the current route fully passes.
+- When the current route fully passes, immediately continue to the next approved route in sequence.
+- Do not pause for HUMAN permission between normal route completions.
+- Only stop for a real blocker: failed gate, scope-breaking conflict, or evidence that the route is actually `Type 3`.
 
 ## Quality Gates
 

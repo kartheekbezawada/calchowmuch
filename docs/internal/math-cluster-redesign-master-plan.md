@@ -35,6 +35,8 @@ Execution pacing rule:
 - Work one calculator at a time inside a wave.
 - Do not start the next calculator until the current calculator fully passes Engineering, Design, SEO, and CWV gates.
 - A wave may list `3-5` routes, but active implementation is strictly sequential.
+- Once the current calculator is fully complete, continue directly to the next approved calculator without waiting for additional HUMAN permission.
+- Only stop the sequence for a real blocker: failed gate, scope-breaking conflict, or evidence that the route must be reclassified as `type-3`.
 
 ## Non-Negotiable Definition Of Done
 

@@ -81,7 +81,12 @@ const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'future-value-of-annuity',
   'present-value-of-annuity',
 ]);
-const MATH_CLUSTER_REDESIGN_IDS = new Set(['basic', 'fraction-calculator']);
+const MATH_CLUSTER_REDESIGN_IDS = new Set([
+  'basic',
+  'fraction-calculator',
+  'sample-size',
+  'quadratic-equation',
+]);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
   'future-value',
@@ -226,9 +231,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'sample-size': {
-    title: 'Sample Size Calculator | Proportion and Mean Study Planner | CalcHowMuch',
+    title: 'Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch',
     description:
-      'Plan defensible sample sizes for proportion and mean studies with confidence, margin of error, finite-population correction, and worked examples.',
+      'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.',
     h1: 'Sample Size Calculator',
     explanationHeading: '',
     paneLayout: 'single',

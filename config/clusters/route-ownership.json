@@ -336,6 +336,22 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-math-wave1-20260326",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/math/sample-size/",
+      "calculatorId": "sample-size",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave1-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/quadratic-equation/",
+      "calculatorId": "quadratic-equation",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
     }
   ]
 }
