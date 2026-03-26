@@ -141,6 +141,46 @@
           "/calculators/math/algebra/polynomial-operations/module.js"
         ]
       }
+    },
+    "/math/algebra/system-of-equations/": {
+      "route": "/math/algebra/system-of-equations/",
+      "calculatorId": "system-of-equations",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/system-of-equations/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/system-of-equations/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/unit-circle/": {
+      "route": "/math/trigonometry/unit-circle/",
+      "calculatorId": "unit-circle",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/unit-circle/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/unit-circle/module.js"
+        ]
+      }
     }
   }
 }

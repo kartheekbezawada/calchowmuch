@@ -1,73 +1,166 @@
-<section>
+<section class="system-exp-section">
   <h2>System of Equations Solver Practical Guide</h2>
   <p>
-    Use this calculator to solve 2x2 and 3x3 linear systems while checking determinant behavior and
-    solution type.
+    Use this system of equations solver to work through 2x2 and 3x3 linear systems with determinant
+    checks and solution-status feedback. It is built for practical algebra review, so the answer appears
+    first and the supporting method detail stays readable for homework, tutoring, or classroom verification.
   </p>
-</section>
-
-<section>
-  <h3>How to Guide</h3>
-  <ol>
-    <li>Select system size: 2x2 or 3x3.</li>
-    <li>Enter coefficients and constants for each equation.</li>
-    <li>Choose a preferred method.</li>
-    <li>Click <strong>Solve System</strong> and review solution status, determinant, and steps.</li>
-  </ol>
-</section>
-
-<section>
-  <h3>Important Notes</h3>
-  <p><strong>Last updated: February 2026</strong></p>
-  <ul>
-    <li>Determinant near zero may indicate no unique solution.</li>
-    <li>2x2 systems support elimination, substitution, and matrix styles.</li>
-    <li>3x3 systems are summarized with determinant-based steps.</li>
-    <li>Decimal coefficients are supported.</li>
-    <li>Method choice should not change the final solution when unique.</li>
+  <ul class="system-summary-list">
+    <li><strong>Best for:</strong> solving linear systems and checking whether a system has a unique solution.</li>
+    <li><strong>Quick answer flow:</strong> choose the system size, enter coefficients, then solve.</li>
+    <li><strong>Output includes:</strong> variable values, determinant, solution status, and method-specific steps.</li>
   </ul>
 </section>
 
-<section>
+<section class="system-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Select the system size: <strong>2x2</strong> or <strong>3x3</strong>.</li>
+    <li>Enter the coefficients and constants for each equation row.</li>
+    <li>Choose the method you want to display.</li>
+    <li>Click <strong>Solve System</strong> and read the answer card before reviewing the worked detail.</li>
+  </ol>
+</section>
+
+<section class="system-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="system-table-wrap">
+    <table class="system-summary-table">
+      <thead>
+        <tr>
+          <th>Case</th>
+          <th>What the determinant means</th>
+          <th>What the route reports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Non-zero determinant</td>
+          <td>The system has one unique solution.</td>
+          <td>Variable values plus a determinant snapshot.</td>
+        </tr>
+        <tr>
+          <td>Zero determinant, dependent</td>
+          <td>The equations collapse into the same relationship.</td>
+          <td>Infinite-solution or no-unique-solution messaging.</td>
+        </tr>
+        <tr>
+          <td>Zero determinant, inconsistent</td>
+          <td>The equations do not intersect in one valid point.</td>
+          <td>No-solution or no-unique-solution messaging.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="system-exp-section">
+  <h3>Method Notes</h3>
+  <p>
+    For <strong>2x2</strong> systems, the route can present elimination, substitution, or matrix-style
+    reasoning while still reaching the same final solution when the determinant is non-zero. For
+    <strong>3x3</strong> systems, the route summarizes the matrix or determinant path because that stays
+    more stable and readable than long symbolic substitution.
+  </p>
+  <p>
+    A determinant near zero can signal numerical sensitivity, so close-call systems should be checked
+    carefully, especially when decimal coefficients are involved.
+  </p>
+</section>
+
+<section class="system-exp-section">
+  <h3>Worked Example</h3>
+  <div class="system-example-grid">
+    <article class="system-example-card">
+      <h4>2x2 unique solution</h4>
+      <p>Use <strong>x + 2y = 5</strong> and <strong>3x + 4y = 11</strong>.</p>
+      <p>
+        The route returns <strong>x = 1</strong> and <strong>y = 2</strong>, so the system has a
+        unique intersection point.
+      </p>
+    </article>
+    <article class="system-example-card">
+      <h4>3x3 no unique solution</h4>
+      <p>Use the default 3x3 example coefficients.</p>
+      <p>
+        The determinant is effectively zero, so the route reports that the system does not have a
+        unique solution.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="system-exp-section">
   <h3>FAQ</h3>
-  <div class="faq-card">
-    <h4>What system sizes are supported?</h4>
-    <p>This solver supports both 2x2 and 3x3 linear systems.</p>
+  <div class="system-faq-grid">
+    <div class="faq-card">
+      <h4>What system sizes are supported?</h4>
+      <p>This solver supports both 2x2 and 3x3 linear systems.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What methods can I choose?</h4>
+      <p>You can choose elimination, substitution, or matrix-based solving approaches.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does determinant indicate?</h4>
+      <p>A non-zero determinant indicates a unique solution for the system.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can the solver detect no-solution cases?</h4>
+      <p>Yes. It identifies inconsistent systems where equations do not share a common solution.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can it detect infinite solutions?</h4>
+      <p>Yes. Dependent systems with overlapping equations are reported as infinite solutions or no unique solution.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Are decimal coefficients allowed?</h4>
+      <p>Yes. Decimal and negative coefficients are supported.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does 3x3 often use matrix logic?</h4>
+      <p>Matrix and determinant methods scale better for three variables and keep the explanation more readable.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does method choice change the final solution?</h4>
+      <p>No. Valid solving methods should produce the same final result when a unique solution exists.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I use this to verify homework?</h4>
+      <p>Yes. The route is useful for checking final answers and intermediate method direction.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What if my system is nearly singular?</h4>
+      <p>Near-zero determinants can indicate numerical sensitivity, so review the inputs and interpret the result with care.</p>
+    </div>
   </div>
-  <div class="faq-card">
-    <h4>What methods can I choose?</h4>
-    <p>You can choose elimination, substitution, or matrix-based solving approaches.</p>
+</section>
+
+<section class="system-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="system-related-grid">
+    <a class="system-related-card" href="/math/algebra/slope-distance/">
+      <strong>Slope and Distance Calculator</strong>
+      <span>Use a line-based route when you want to compare two points instead of solving a full linear system.</span>
+    </a>
+    <a class="system-related-card" href="/math/algebra/polynomial-operations/">
+      <strong>Polynomial Operations Calculator</strong>
+      <span>Clean up algebra expressions before or after you solve a system of linear equations.</span>
+    </a>
+    <a class="system-related-card" href="/math/basic/">
+      <strong>Basic Calculator</strong>
+      <span>Check arithmetic quickly before you return to determinant or elimination work.</span>
+    </a>
   </div>
-  <div class="faq-card">
-    <h4>What does determinant indicate?</h4>
-    <p>A non-zero determinant indicates a unique solution for the system.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Can the solver detect no-solution cases?</h4>
-    <p>Yes, it identifies inconsistent systems where equations have no common intersection.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Can it detect infinite solutions?</h4>
-    <p>Yes, dependent systems with overlapping equations are reported as infinite solutions.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Are decimal coefficients allowed?</h4>
-    <p>Yes, decimal and negative coefficients are supported.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Why does 3x3 often use matrix logic?</h4>
-    <p>Matrix and determinant methods scale well for 3-variable systems and provide consistent solving steps.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Does method choice change the final solution?</h4>
-    <p>No, valid methods should produce the same final solution when a unique solution exists.</p>
-  </div>
-  <div class="faq-card">
-    <h4>Can I use this to verify homework?</h4>
-    <p>Yes, the calculator is useful for checking solutions and intermediate reasoning.</p>
-  </div>
-  <div class="faq-card">
-    <h4>What if my system is nearly singular?</h4>
-    <p>Near-zero determinants can indicate numerical sensitivity; review inputs and interpret results carefully.</p>
-  </div>
+</section>
+
+<section class="system-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="system-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Determinant rule:</strong> A determinant near zero usually means the system does not have one clean unique solution.</li>
+    <li><strong>2x2 methods:</strong> Elimination, substitution, and matrix views are available for the 2x2 workflow.</li>
+    <li><strong>3x3 workflow:</strong> The route summarizes the determinant-based solution path for three-variable systems.</li>
+    <li><strong>Use case:</strong> This tool is designed for fast algebra checking and learning support, not formal proof writing.</li>
+  </ul>
 </section>

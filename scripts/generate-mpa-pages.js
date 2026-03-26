@@ -89,6 +89,8 @@ const MATH_CLUSTER_REDESIGN_IDS = new Set([
   'slope-distance',
   'factoring',
   'polynomial-operations',
+  'system-of-equations',
+  'unit-circle',
 ]);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
@@ -310,6 +312,14 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics.',
     h1: 'System of Equations Solver',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'unit-circle': {
+    title: 'Unit Circle Calculator | Angles, Quadrants and Trig Values | CalcHowMuch',
+    description:
+      'Explore unit circle angles in degrees or radians with quadrant, reference angle, and exact sine, cosine, and tangent values.',
+    h1: 'Unit Circle Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },

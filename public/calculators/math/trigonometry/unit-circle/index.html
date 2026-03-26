@@ -1,46 +1,108 @@
 <div id="calc-unit-circle">
-  <div class="calculator-ui">
-    <p class="helper">
-      Explore angle measures, quadrant signs, and exact trig values on the unit circle.
-    </p>
+  <div class="unit-shell">
+    <section class="unit-card unit-hero-card" aria-label="Unit circle overview">
+      <div class="unit-hero-copy">
+        <p class="unit-eyebrow">Simple Smooth Wow</p>
+        <h2 class="unit-title">Explore special angles, quadrant signs, and exact trig values in one answer-first unit circle view.</h2>
+        <p class="unit-subtitle">
+          Enter an angle in degrees or radians, or snap to a standard point on the circle. The answer
+          card stays visible while the diagram and notes reinforce how sine, cosine, and tangent behave
+          around the full rotation.
+        </p>
+      </div>
+      <ul class="unit-hero-points">
+        <li>Best for memorizing special angles and checking trig values fast.</li>
+        <li>The answer card shows quadrant, reference angle, and trig outputs immediately.</li>
+        <li>The diagram card lets you snap to common unit-circle points without changing the core workflow.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="unit-angle">Angle Value</label>
-        <input id="unit-angle" type="number" value="45" step="any" />
+    <div class="unit-workbench">
+      <div class="unit-left-stack">
+        <section class="unit-card unit-input-card" aria-label="Unit circle inputs">
+          <div class="unit-card-head">
+            <div>
+              <p class="unit-section-label">Inputs</p>
+              <p class="unit-card-title">Set the angle and choose the measurement unit</p>
+            </div>
+            <span class="unit-chip">Answer-first</span>
+          </div>
+
+          <p class="unit-helper">Explore angle measures, quadrant signs, and exact trig values on the unit circle.</p>
+
+          <label class="unit-field" for="unit-angle">
+            <span>Angle value</span>
+            <input id="unit-angle" type="number" value="45" step="any" />
+          </label>
+
+          <div class="unit-toggle-section">
+            <span id="unit-angle-unit">Angle unit</span>
+            <div
+              class="unit-button-group"
+              role="group"
+              aria-labelledby="unit-angle-unit"
+              data-button-group="unit-angle-unit"
+            >
+              <button
+                class="calculator-button unit-mode-button is-active"
+                type="button"
+                data-value="deg"
+                aria-pressed="true"
+              >
+                Degrees
+              </button>
+              <button
+                class="calculator-button unit-mode-button"
+                type="button"
+                data-value="rad"
+                aria-pressed="false"
+              >
+                Radians
+              </button>
+            </div>
+            <span class="unit-inline-note">Click a point on the circle to snap to a standard angle.</span>
+          </div>
+
+          <button class="calculator-button unit-refresh-button" type="button" id="unit-refresh">
+            Refresh Angle
+          </button>
+        </section>
+
+        <section class="unit-card unit-diagram-card" aria-label="Unit circle diagram">
+          <div class="unit-card-head">
+            <div>
+              <p class="unit-section-label">Diagram</p>
+              <p class="unit-card-title">Interactive special-angle circle</p>
+            </div>
+            <span class="unit-chip unit-chip--diagram">Snap points</span>
+          </div>
+
+          <div class="trig-panel unit-diagram-panel">
+            <canvas
+              id="unit-circle-canvas"
+              class="diagram-canvas"
+              width="320"
+              height="320"
+              aria-label="Unit circle diagram"
+            ></canvas>
+            <p id="unit-circle-legend" class="unit-legend">Active angle: 45 degrees (pi/4 rad)</p>
+          </div>
+        </section>
       </div>
 
-      <div class="input-row">
-        <label id="unit-angle-unit">Angle Unit</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="unit-angle-unit"
-          data-button-group="unit-angle-unit"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="deg"
-            aria-pressed="true"
-          >
-            Degrees
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="rad"
-            aria-pressed="false"
-          >
-            Radians
-          </button>
+      <section class="unit-card unit-answer-card" aria-label="Unit circle answer summary">
+        <div class="unit-card-head">
+          <div>
+            <p class="unit-section-label">Answer</p>
+            <p class="unit-card-title">Quadrant, reference angle, and trig values</p>
+          </div>
+          <span class="unit-chip unit-chip--answer">Trig values</span>
         </div>
-        <span class="inline-note">Click a point on the circle to snap to a standard angle.</span>
-      </div>
-    </div>
 
-    <div class="result" id="unit-circle-result" aria-live="polite"></div>
-    <div class="result-detail" id="unit-circle-detail" aria-live="polite"></div>
+        <div class="result unit-result-card" id="unit-circle-result" aria-live="polite"></div>
+        <div class="result-detail unit-summary-card" id="unit-circle-detail" aria-live="polite"></div>
+      </section>
+    </div>
   </div>
 </div>
 

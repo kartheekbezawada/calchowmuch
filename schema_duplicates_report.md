@@ -1,6 +1,6 @@
 # Schema Dedupe Report
 
-- Scope: `calc:math/polynomial-operations`
+- Scope: `calc:math/unit-circle`
 - Pages scanned: **1**
 - Pages changed (auto-fix): **0**
 - Parse errors: **0**
@@ -9,5 +9,5 @@
 
 | Path | Blocks | FAQ (pre→post) | Breadcrumb (pre→post) | SoftwareApplication (pre→post) | Blocks by Type | Snippets | Status | Action |
 | :--- | ---: | :---: | :---: | :---: | :--- | :--- | :---: | :---: |
-| `public/math/algebra/polynomial-operations/index.html` | 1 | 1→1 | 1→1 | 1→1 | FAQ [0]<br>Breadcrumb [0]<br>Software [0] | FAQ: Which operations are supported? | How are like terms handled in addition and subtraction?<br>Breadcrumb: Home > Math > Polynomial Operations Calculator<br>Software: Polynomial Operations Calculator (EducationalApplication) | OK | UNCHANGED |
+| `public/math/trigonometry/unit-circle/index.html` | 1 | 1→1 | 1→1 | 1→1 | FAQ [0]<br>Breadcrumb [0]<br>Software [0] | FAQ: What does the unit circle show? | Why are exact values important?<br>Breadcrumb: Home > Math > Unit Circle Calculator<br>Software: Unit Circle Calculator (EducationalApplication) | OK | UNCHANGED |
 
