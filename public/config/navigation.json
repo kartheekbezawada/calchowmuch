@@ -131,7 +131,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "inverse-trig",
@@ -145,7 +145,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "law-of-sines-cosines",

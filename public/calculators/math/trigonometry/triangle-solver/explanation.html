@@ -1,39 +1,171 @@
-<section>
-  <h3>Triangle Notation</h3>
+<section class="tri-exp-section">
+  <h2>Triangle Solver Practical Guide</h2>
   <p>
-    Sides a, b, and c are opposite angles A, B, and C. Angles always sum to 180 degrees. The solver
-    uses this convention to compute the missing values.
+    Use this triangle solver to work through SSS, SAS, ASA, AAS, or SSA cases with a diagram and
+    answer-first summary in the same view. It is built for fast checking, so you can confirm side
+    lengths, angles, area, and ambiguous-case outcomes without digging through dense trig notes.
+  </p>
+  <ul class="tri-summary-list">
+    <li><strong>Best for:</strong> solving classroom, construction, or surveying-style triangles from partial data.</li>
+    <li><strong>Quick answer flow:</strong> choose the triangle type, enter the required values, then solve.</li>
+    <li><strong>Output includes:</strong> solved sides, solved angles, area, solution count, and method notes.</li>
+  </ul>
+</section>
+
+<section class="tri-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Select the triangle configuration that matches the values you already know.</li>
+    <li>Choose degrees or radians for angle entry.</li>
+    <li>Fill only the active side or angle fields shown for that configuration.</li>
+    <li>Click <strong>Solve Triangle</strong> and read the answer card before checking the diagram and notes.</li>
+  </ol>
+</section>
+
+<section class="tri-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="tri-table-wrap">
+    <table class="tri-summary-table">
+      <thead>
+        <tr>
+          <th>Triangle type</th>
+          <th>Best formula path</th>
+          <th>What the route returns</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SSS</td>
+          <td>Start with the Law of Cosines to find an angle.</td>
+          <td>All three angles plus area from the solved sides.</td>
+        </tr>
+        <tr>
+          <td>SAS</td>
+          <td>Use the included angle with the Law of Cosines first.</td>
+          <td>The missing side, the remaining angles, and area.</td>
+        </tr>
+        <tr>
+          <td>ASA or AAS</td>
+          <td>Finish the missing angle, then use the Law of Sines.</td>
+          <td>The remaining side lengths and total area.</td>
+        </tr>
+        <tr>
+          <td>SSA</td>
+          <td>Use the Law of Sines and check for the ambiguous case.</td>
+          <td>One or two valid triangles, or an invalid-input message.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="tri-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The route switches between the two standard triangle formulas instead of forcing one method for every case.
+    The <strong>Law of Sines</strong> is useful when you know a side-angle pair:
+    <strong>a / sin(A) = b / sin(B) = c / sin(C)</strong>.
+  </p>
+  <p>
+    The <strong>Law of Cosines</strong> is the better fit when you know two sides and the included angle or
+    all three sides:
+    <strong>c^2 = a^2 + b^2 - 2ab cos(C)</strong>.
+    The area card then helps confirm whether the solved triangle size makes sense.
   </p>
 </section>
 
-<section>
-  <h3>Law of Sines</h3>
-  <p>
-    Use the Law of Sines when you know a side-angle pair: a/sin(A) = b/sin(B) = c/sin(C). It is best
-    for ASA, AAS, or SSA inputs.
-  </p>
+<section class="tri-exp-section">
+  <h3>Worked Example</h3>
+  <div class="tri-example-grid">
+    <article class="tri-example-card">
+      <h4>SSS example</h4>
+      <p>Enter <strong>a = 7</strong>, <strong>b = 9</strong>, and <strong>c = 12</strong>.</p>
+      <p>
+        The route solves one triangle with angles close to <strong>35.43°</strong>, <strong>48.19°</strong>,
+        and <strong>96.38°</strong>, then shows the area and the matching diagram.
+      </p>
+    </article>
+    <article class="tri-example-card">
+      <h4>SSA ambiguous example</h4>
+      <p>Enter <strong>a = 7</strong>, <strong>b = 9</strong>, and <strong>A = 35°</strong>.</p>
+      <p>
+        The route reports <strong>two valid triangles</strong>, so you can compare the short and long third-side outcomes.
+      </p>
+    </article>
+  </div>
 </section>
 
-<section>
-  <h3>Law of Cosines</h3>
-  <p>
-    Use the Law of Cosines for SAS or SSS: c^2 = a^2 + b^2 - 2ab cos(C). This finds the missing side
-    or angle directly.
-  </p>
+<section class="tri-exp-section">
+  <h3>FAQ</h3>
+  <div class="tri-faq-grid">
+    <div class="faq-card">
+      <h4>What triangle types does this solver support?</h4>
+      <p>It supports SSS, SAS, ASA, AAS, and SSA triangle setups.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When should I use the Law of Sines?</h4>
+      <p>Use it when you know a matching side-angle pair, especially in ASA, AAS, or SSA cases.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When should I use the Law of Cosines?</h4>
+      <p>Use it for SSS and SAS cases where the included angle or all three sides are known.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is the SSA ambiguous case?</h4>
+      <p>SSA can produce two valid triangles because one side-angle combination may swing into two shapes.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can the route show two solutions?</h4>
+      <p>Yes. When SSA creates two valid triangles, both solutions appear in the answer card.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I enter radians?</h4>
+      <p>Yes. Switch the angle unit control to radians before you solve.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does the route calculate area too?</h4>
+      <p>Yes. The answer card includes area for each valid solved triangle.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What if my inputs do not form a triangle?</h4>
+      <p>The route shows a clear error state when the triangle inequality or angle rules fail.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does the diagram show only one triangle?</h4>
+      <p>The diagram shows the first valid solution so the page stays stable, while the answer card still lists all valid solutions.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Is this useful outside classwork?</h4>
+      <p>Yes. It is also useful for layout checks, surveying estimates, and quick trigonometry verification.</p>
+    </div>
+  </div>
 </section>
 
-<section>
-  <h3>SSA Ambiguous Case</h3>
-  <p>
-    SSA can create two valid triangles because a given side length can swing to two possible angles.
-    The calculator reports both solutions when they exist.
-  </p>
+<section class="tri-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="tri-related-grid">
+    <a class="tri-related-card" href="/math/trigonometry/law-of-sines-cosines/">
+      <strong>Law of Sines and Cosines Calculator</strong>
+      <span>Go deeper into the exact formulas when you want to compare triangle-solving methods directly.</span>
+    </a>
+    <a class="tri-related-card" href="/math/trigonometry/trig-functions/">
+      <strong>Trigonometric Functions</strong>
+      <span>Check sine, cosine, and tangent values separately when you need direct trig-function output.</span>
+    </a>
+    <a class="tri-related-card" href="/math/trigonometry/unit-circle/">
+      <strong>Unit Circle Calculator</strong>
+      <span>Review reference angles and quadrant signs before returning to triangle problems.</span>
+    </a>
+  </div>
 </section>
 
-<section>
-  <h3>Practical Uses</h3>
-  <p>
-    Triangle solving is used in surveying, navigation, architecture, and physics when distances or
-    angles are partially known. The diagram helps confirm proportions.
-  </p>
+<section class="tri-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="tri-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Notation:</strong> Side a is opposite angle A, side b is opposite angle B, and side c is opposite angle C.</li>
+    <li><strong>Angle rule:</strong> Every solved triangle still obeys A + B + C = 180 degrees.</li>
+    <li><strong>Diagram rule:</strong> The diagram is a scaled preview for checking shape, not a drafting-grade measurement tool.</li>
+    <li><strong>Use case:</strong> This tool is built for fast problem checking, not symbolic proof writing.</li>
+  </ul>
 </section>

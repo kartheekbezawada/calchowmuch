@@ -392,6 +392,30 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-math-wave4-20260326",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/triangle-solver/",
+      "calculatorId": "triangle-solver",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/trig-functions/",
+      "calculatorId": "trig-functions",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/inverse-trig/",
+      "calculatorId": "inverse-trig",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
     }
   ]
 }

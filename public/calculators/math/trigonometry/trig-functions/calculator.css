@@ -1,7 +1,456 @@
-#calc-trig-functions .result-grid {
-  margin-top: 12px;
+#calc-trig-functions,
+.trig-exp-section {
+  --trig-surface: rgba(255, 255, 255, 0.97);
+  --trig-surface-soft: rgba(247, 251, 255, 0.98);
+  --trig-border: rgba(15, 23, 42, 0.08);
+  --trig-text: #173148;
+  --trig-muted: #5d7389;
+  --trig-accent: #0e5a8a;
+  --trig-accent-soft: rgba(14, 165, 233, 0.12);
+  --trig-answer-soft: rgba(15, 118, 110, 0.12);
+  --trig-highlight: #ebf7ff;
+  --trig-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+  --trig-shadow-soft: 0 10px 24px rgba(14, 165, 233, 0.08);
 }
 
-#calc-trig-functions .result-card p {
-  margin: 6px 0;
+#calc-trig-functions,
+#calc-trig-functions h2,
+#calc-trig-functions h3,
+#calc-trig-functions h4,
+#calc-trig-functions p,
+#calc-trig-functions span,
+#calc-trig-functions strong,
+#calc-trig-functions label,
+#calc-trig-functions li,
+.trig-exp-section,
+.trig-exp-section h2,
+.trig-exp-section h3,
+.trig-exp-section h4,
+.trig-exp-section p,
+.trig-exp-section li,
+.trig-exp-section td,
+.trig-exp-section th {
+  color: var(--trig-text);
+}
+
+#calc-trig-functions h2::after,
+#calc-trig-functions h3::after,
+.trig-exp-section h2::after,
+.trig-exp-section h3::after {
+  display: none !important;
+  content: none !important;
+}
+
+.trig-shell {
+  display: grid;
+  gap: 24px;
+}
+
+.trig-card,
+.trig-exp-section {
+  border: 1px solid var(--trig-border);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--trig-surface), var(--trig-surface-soft));
+  box-shadow: var(--trig-shadow);
+}
+
+.trig-card {
+  padding: 24px;
+}
+
+.trig-exp-section {
+  padding: 22px;
+  margin-top: 0;
+}
+
+.trig-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.trig-eyebrow,
+.trig-section-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--trig-accent);
+}
+
+.trig-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.trig-subtitle,
+.trig-helper,
+.trig-exp-section p,
+.trig-exp-section li,
+.trig-exp-section td,
+.trig-exp-section th {
+  color: var(--trig-muted);
+  line-height: 1.7;
+}
+
+.trig-subtitle {
+  margin: 12px 0 0;
+}
+
+.trig-hero-points {
+  margin: 0;
+  padding: 18px 18px 18px 34px;
+  border-radius: 20px;
+  background: var(--trig-highlight);
+  display: grid;
+  gap: 12px;
+}
+
+.trig-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.trig-left-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.trig-input-card,
+.trig-answer-card,
+.trig-graph-card {
+  display: grid;
+  gap: 18px;
+}
+
+.trig-answer-card {
+  position: sticky;
+  top: 18px;
+}
+
+.trig-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+
+.trig-card-title {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #203348;
+}
+
+.trig-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--trig-accent-soft);
+  color: var(--trig-accent);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.trig-chip--answer {
+  background: var(--trig-answer-soft);
+  color: #0f766e;
+}
+
+.trig-chip--graph {
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+}
+
+.trig-field {
+  display: grid;
+  gap: 8px;
+}
+
+.trig-field > span,
+.trig-toggle-section > span {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--trig-accent);
+}
+
+.trig-field input,
+.trig-field select {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--trig-border);
+  background: #fff;
+  color: var(--trig-text);
+  font-size: 1rem;
+}
+
+.trig-toggle-section {
+  display: grid;
+  gap: 10px;
+}
+
+.trig-button-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.trig-mode-button {
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid var(--trig-border);
+  background: rgba(248, 252, 255, 0.95);
+  color: var(--trig-text);
+  box-shadow: var(--trig-shadow-soft);
+}
+
+.trig-mode-button.is-active {
+  border-color: rgba(14, 165, 233, 0.32);
+  background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+  color: #fff;
+}
+
+.trig-input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.trig-hint-row {
+  min-height: 24px;
+}
+
+.trig-inline-note {
+  color: var(--trig-muted);
+  font-size: 0.84rem;
+}
+
+.trig-calc-button {
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 18px 28px rgba(14, 165, 233, 0.2);
+}
+
+.trig-graph-panel {
+  display: grid;
+  place-items: center;
+  min-height: 272px;
+  border-radius: 20px;
+  background: rgba(248, 252, 255, 0.95);
+  border: 1px solid var(--trig-border);
+  box-shadow: var(--trig-shadow-soft);
+}
+
+.trig-graph-canvas {
+  width: min(100%, 360px);
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--trig-border);
+  background: #fff;
+}
+
+.trig-graph-note {
+  margin: 0;
+  text-align: center;
+  color: var(--trig-muted);
+}
+
+.trig-result-card,
+.trig-detail-card {
+  display: grid;
+  gap: 14px;
+}
+
+.trig-value-card,
+.trig-method-card,
+.trig-snapshot-card {
+  border-radius: 18px;
+  background: rgba(248, 252, 255, 0.96);
+  border: 1px solid var(--trig-border);
+  box-shadow: var(--trig-shadow-soft);
+}
+
+.trig-value-card,
+.trig-method-card {
+  padding: 18px;
+}
+
+.trig-value-card h4,
+.trig-method-card h4 {
+  margin: 0;
+  color: var(--trig-accent);
+}
+
+.trig-value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.trig-value-cell {
+  padding: 14px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--trig-border);
+}
+
+.trig-value-cell span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--trig-accent);
+}
+
+.trig-value-cell p {
+  margin: 6px 0 0;
+}
+
+.trig-method-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--trig-muted);
+}
+
+.trig-method-note {
+  margin: 12px 0 0;
+  color: var(--trig-accent);
+}
+
+.trig-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.trig-snapshot-card {
+  padding: 14px;
+}
+
+.trig-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--trig-muted);
+}
+
+.trig-snapshot-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1rem;
+}
+
+.trig-summary-list,
+.trig-notes-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.trig-table-wrap {
+  overflow-x: auto;
+}
+
+.trig-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trig-summary-table th,
+.trig-summary-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--trig-border);
+  text-align: left;
+}
+
+.trig-summary-table th {
+  color: var(--trig-accent);
+  font-size: 0.84rem;
+}
+
+.trig-example-grid,
+.trig-related-grid,
+.trig-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.trig-example-card,
+.trig-related-card,
+.trig-faq-grid .faq-card {
+  border-radius: 18px;
+  border: 1px solid var(--trig-border);
+  background: rgba(248, 252, 255, 0.95);
+  box-shadow: var(--trig-shadow-soft);
+}
+
+.trig-example-card,
+.trig-faq-grid .faq-card {
+  padding: 18px;
+}
+
+.trig-related-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  text-decoration: none;
+}
+
+.trig-related-card span {
+  color: var(--trig-muted);
+}
+
+.trig-example-card h4,
+.trig-faq-grid .faq-card h4 {
+  margin: 0 0 8px;
+}
+
+@media (max-width: 1100px) {
+  .trig-workbench,
+  .trig-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .trig-answer-card {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .trig-card,
+  .trig-exp-section {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .trig-title {
+    font-size: 1.55rem;
+  }
+
+  .trig-input-grid,
+  .trig-value-grid,
+  .trig-example-grid,
+  .trig-related-grid,
+  .trig-faq-grid,
+  .trig-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
 }

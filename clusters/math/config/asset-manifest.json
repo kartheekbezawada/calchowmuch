@@ -181,6 +181,66 @@
           "/calculators/math/trigonometry/unit-circle/module.js"
         ]
       }
+    },
+    "/math/trigonometry/triangle-solver/": {
+      "route": "/math/trigonometry/triangle-solver/",
+      "calculatorId": "triangle-solver",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/triangle-solver/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/triangle-solver/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/trig-functions/": {
+      "route": "/math/trigonometry/trig-functions/",
+      "calculatorId": "trig-functions",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/trig-functions/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/trig-functions/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/inverse-trig/": {
+      "route": "/math/trigonometry/inverse-trig/",
+      "calculatorId": "inverse-trig",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/inverse-trig/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/inverse-trig/module.js"
+        ]
+      }
     }
   }
 }

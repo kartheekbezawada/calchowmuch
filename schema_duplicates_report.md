@@ -1,6 +1,6 @@
 # Schema Dedupe Report
 
-- Scope: `calc:math/unit-circle`
+- Scope: `calc:math/trig-functions`
 - Pages scanned: **1**
 - Pages changed (auto-fix): **0**
 - Parse errors: **0**
@@ -9,5 +9,5 @@
 
 | Path | Blocks | FAQ (pre→post) | Breadcrumb (pre→post) | SoftwareApplication (pre→post) | Blocks by Type | Snippets | Status | Action |
 | :--- | ---: | :---: | :---: | :---: | :--- | :--- | :---: | :---: |
-| `public/math/trigonometry/unit-circle/index.html` | 1 | 1→1 | 1→1 | 1→1 | FAQ [0]<br>Breadcrumb [0]<br>Software [0] | FAQ: What does the unit circle show? | Why are exact values important?<br>Breadcrumb: Home > Math > Unit Circle Calculator<br>Software: Unit Circle Calculator (EducationalApplication) | OK | UNCHANGED |
+| `public/math/trigonometry/trig-functions/index.html` | 1 | 1→1 | 1→1 | 1→1 | FAQ [0]<br>Breadcrumb [0]<br>Software [0] | FAQ: What functions does this route calculate? | Can I enter radians instead of degrees?<br>Breadcrumb: Home > Math > Trigonometric Functions Calculator<br>Software: Trigonometric Functions Calculator (EducationalApplication) | OK | UNCHANGED |
 

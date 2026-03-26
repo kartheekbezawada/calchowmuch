@@ -91,6 +91,9 @@ const MATH_CLUSTER_REDESIGN_IDS = new Set([
   'polynomial-operations',
   'system-of-equations',
   'unit-circle',
+  'triangle-solver',
+  'trig-functions',
+  'inverse-trig',
 ]);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
@@ -240,6 +243,30 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.',
     h1: 'Sample Size Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'triangle-solver': {
+    title: 'Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch',
+    description:
+      'Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram.',
+    h1: 'Triangle Solver',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'trig-functions': {
+    title: 'Trigonometric Functions Calculator | sin, cos, tan and Reciprocals | CalcHowMuch',
+    description:
+      'Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.',
+    h1: 'Trigonometric Functions Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'inverse-trig': {
+    title: 'Inverse Trig Functions Calculator | arcsin, arccos and arctan | CalcHowMuch',
+    description:
+      'Find arcsin, arccos, and arctan principal values plus every matching solution in a custom degree or radian interval with a light answer-first trig layout.',
+    h1: 'Inverse Trig Functions Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },

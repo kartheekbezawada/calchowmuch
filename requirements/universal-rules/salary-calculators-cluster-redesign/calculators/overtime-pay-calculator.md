@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Overtime Pay Calculator to estimate extra pay from overtime hours. It should help users quantify additional earnings from overtime work while keeping the multiplier fully editable so the page stays user-input driven instead of implying any fixed labor-law rule.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `earnings` route variant in a fully light, answer-first layout.
+- Keep the hero result focused on overtime pay only.
+- Limit the first supporting result row to total pay when base pay is supplied.
+- Keep multiplier guidance short and calm so the route avoids legal or policy-heavy presentation.
 
 ## SEO Metadata
 

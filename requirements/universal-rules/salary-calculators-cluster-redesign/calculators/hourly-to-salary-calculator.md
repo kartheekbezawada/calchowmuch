@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Hourly to Salary Calculator to estimate annual, monthly, biweekly, and weekly pay from an hourly rate. It is the exact-match route for users who start with an hourly wage and want a clean salary estimate based on their own hours-per-week and weeks-per-year assumptions.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `conversion` route variant in a fully light, answer-first layout.
+- Keep the hero result focused on annual salary only.
+- Limit the first supporting result row to monthly pay, biweekly pay, and weekly pay.
+- Keep work-schedule helper text short and secondary so the route remains scan-first.
 
 ## SEO Metadata
 

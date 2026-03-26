@@ -1,73 +1,153 @@
 <div id="calc-triangle-solver">
-  <div class="calculator-ui">
-    <p class="helper">
-      Solve triangles using SSS, SAS, ASA, AAS, or SSA inputs with diagram support.
-    </p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="triangle-type">Triangle Configuration</label>
-        <select id="triangle-type">
-          <option value="SSS">SSS (three sides)</option>
-          <option value="SAS">SAS (sides a, b and included angle C)</option>
-          <option value="ASA">ASA (angles A, B and side c)</option>
-          <option value="AAS">AAS (angles A, B and side a)</option>
-          <option value="SSA">SSA (sides a, b and angle A)</option>
-        </select>
+  <div class="tri-shell">
+    <section class="tri-card tri-hero-card" aria-label="Triangle solver overview">
+      <div class="tri-hero-copy">
+        <p class="tri-eyebrow">Simple Smooth Wow</p>
+        <h2 class="tri-title">Solve SSS, SAS, ASA, AAS, or SSA triangles in one answer-first view with the diagram and method notes kept close to the result.</h2>
+        <p class="tri-subtitle">
+          Pick the known triangle setup, enter the required sides or angles, and solve once. The
+          answer card stays dominant while the diagram and solver notes help you check whether the
+          triangle is unique, ambiguous, or invalid.
+        </p>
       </div>
+      <ul class="tri-hero-points">
+        <li>Best for homework checks, survey-style triangle solving, and quick Law of Sines or Cosines review.</li>
+        <li>The answer card surfaces solved sides, angles, area, and ambiguous-case status first.</li>
+        <li>The diagram card keeps the triangle shape visible without pushing the result below the fold.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label id="triangle-angle-unit">Angle Unit</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="triangle-angle-unit"
-          data-button-group="triangle-angle-unit"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="deg">
-            Degrees
+    <div class="tri-workbench">
+      <div class="tri-left-stack">
+        <section class="tri-card tri-input-card" aria-label="Triangle solver inputs">
+          <div class="tri-card-head">
+            <div>
+              <p class="tri-section-label">Inputs</p>
+              <p class="tri-card-title">Set the triangle type, angle unit, and known values</p>
+            </div>
+            <span class="tri-chip">Answer-first</span>
+          </div>
+
+          <p class="tri-helper">Choose the triangle configuration, fill only the required fields, and solve once.</p>
+
+          <label class="tri-field" for="triangle-type">
+            <span>Triangle configuration</span>
+            <select id="triangle-type">
+              <option value="SSS">SSS (three sides)</option>
+              <option value="SAS">SAS (sides a, b and included angle C)</option>
+              <option value="ASA">ASA (angles A, B and side c)</option>
+              <option value="AAS">AAS (angles A, B and side a)</option>
+              <option value="SSA">SSA (sides a, b and angle A)</option>
+            </select>
+          </label>
+
+          <div class="tri-toggle-section">
+            <span id="triangle-angle-unit">Angle unit</span>
+            <div
+              class="tri-button-group"
+              role="group"
+              aria-labelledby="triangle-angle-unit"
+              data-button-group="triangle-angle-unit"
+            >
+              <button class="calculator-button tri-mode-button is-active" type="button" data-value="deg">
+                Degrees
+              </button>
+              <button class="calculator-button tri-mode-button" type="button" data-value="rad">
+                Radians
+              </button>
+            </div>
+          </div>
+
+          <div class="tri-input-grid">
+            <label class="tri-field" data-field="a" for="triangle-a">
+              <span>Side a</span>
+              <input id="triangle-a" type="number" value="7" step="any" />
+            </label>
+            <label class="tri-field" data-field="b" for="triangle-b">
+              <span>Side b</span>
+              <input id="triangle-b" type="number" value="9" step="any" />
+            </label>
+            <label class="tri-field" data-field="c" for="triangle-c">
+              <span>Side c</span>
+              <input id="triangle-c" type="number" value="12" step="any" />
+            </label>
+            <label class="tri-field" data-field="A" for="triangle-A">
+              <span>Angle A</span>
+              <input id="triangle-A" type="number" value="35" step="any" />
+            </label>
+            <label class="tri-field" data-field="B" for="triangle-B">
+              <span>Angle B</span>
+              <input id="triangle-B" type="number" value="60" step="any" />
+            </label>
+            <label class="tri-field" data-field="C" for="triangle-C">
+              <span>Angle C</span>
+              <input id="triangle-C" type="number" value="85" step="any" />
+            </label>
+          </div>
+
+          <div class="tri-hint-row">
+            <span class="tri-inline-note" id="triangle-hint"></span>
+          </div>
+
+          <button class="calculator-button tri-solve-button" type="button" id="triangle-solve">
+            Solve Triangle
           </button>
-          <button class="calculator-button secondary" type="button" data-value="rad">
-            Radians
-          </button>
-        </div>
+        </section>
+
+        <section class="tri-card tri-diagram-card" aria-label="Triangle diagram">
+          <div class="tri-card-head">
+            <div>
+              <p class="tri-section-label">Diagram</p>
+              <p class="tri-card-title">Scaled preview of the first valid solution</p>
+            </div>
+            <span class="tri-chip tri-chip--diagram">Shape check</span>
+          </div>
+
+          <div class="tri-diagram-panel">
+            <canvas
+              id="triangle-canvas"
+              class="tri-diagram-canvas"
+              width="320"
+              height="240"
+              aria-label="Triangle diagram"
+            ></canvas>
+          </div>
+          <p id="triangle-diagram-note" class="tri-diagram-note">Diagram updates after the triangle is solved.</p>
+        </section>
       </div>
 
-      <div class="input-grid">
-        <div class="input-row" data-field="a">
-          <label for="triangle-a">Side a</label>
-          <input id="triangle-a" type="number" value="7" step="any" />
+      <section class="tri-card tri-answer-card" aria-label="Triangle answer summary">
+        <div class="tri-card-head">
+          <div>
+            <p class="tri-section-label">Answer</p>
+            <p class="tri-card-title">Solved dimensions, area, and method notes</p>
+          </div>
+          <span class="tri-chip tri-chip--answer">Triangle results</span>
         </div>
-        <div class="input-row" data-field="b">
-          <label for="triangle-b">Side b</label>
-          <input id="triangle-b" type="number" value="9" step="any" />
+
+        <div class="result tri-result-card" id="triangle-result" aria-live="polite"></div>
+        <div class="result-detail tri-detail-card" id="triangle-detail" aria-live="polite"></div>
+
+        <div class="tri-snapshot-grid" aria-label="Triangle snapshot">
+          <article class="tri-snapshot-card">
+            <span>Type</span>
+            <strong data-triangle-snap="type">SSS</strong>
+          </article>
+          <article class="tri-snapshot-card">
+            <span>Angle unit</span>
+            <strong data-triangle-snap="unit">Degrees</strong>
+          </article>
+          <article class="tri-snapshot-card">
+            <span>Solutions</span>
+            <strong data-triangle-snap="solutions">-</strong>
+          </article>
+          <article class="tri-snapshot-card">
+            <span>Status</span>
+            <strong data-triangle-snap="status">-</strong>
+          </article>
         </div>
-        <div class="input-row" data-field="c">
-          <label for="triangle-c">Side c</label>
-          <input id="triangle-c" type="number" value="12" step="any" />
-        </div>
-        <div class="input-row" data-field="A">
-          <label for="triangle-A">Angle A</label>
-          <input id="triangle-A" type="number" value="35" step="any" />
-        </div>
-        <div class="input-row" data-field="B">
-          <label for="triangle-B">Angle B</label>
-          <input id="triangle-B" type="number" value="60" step="any" />
-        </div>
-        <div class="input-row" data-field="C">
-          <label for="triangle-C">Angle C</label>
-          <input id="triangle-C" type="number" value="85" step="any" />
-        </div>
-      </div>
-      <span class="inline-note" id="triangle-hint"></span>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="triangle-solve">
-      Solve Triangle
-    </button>
-
-    <div class="result" id="triangle-result" aria-live="polite"></div>
-    <div class="result-detail" id="triangle-detail" aria-live="polite"></div>
   </div>
 </div>
 

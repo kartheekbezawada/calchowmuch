@@ -1,60 +1,117 @@
 <div id="calc-inverse-trig">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compute arcsin, arccos, or arctan values, plus all solutions in a custom interval.
-    </p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="inv-value">Input Value</label>
-        <input id="inv-value" type="number" value="0.5" step="any" />
+  <div class="inv-shell">
+    <section class="inv-card inv-hero-card" aria-label="Inverse trig overview">
+      <div class="inv-hero-copy">
+        <p class="inv-eyebrow">Simple Smooth Wow</p>
+        <h2 class="inv-title">Find principal inverse-trig angles and every matching solution in one clean answer-first interval view.</h2>
+        <p class="inv-subtitle">
+          Enter the trig value, choose arcsin, arccos, or arctan, then set the interval you care
+          about. The answer card keeps the principal value and interval solutions visible without
+          burying the range rules under legacy chrome.
+        </p>
       </div>
+      <ul class="inv-hero-points">
+        <li>Best for solving angles from ratios and checking which solutions fit a real interval.</li>
+        <li>The answer card surfaces the principal value, domain rule, and solution count first.</li>
+        <li>Interval controls stay in view so you can move from classroom ranges to custom constraints fast.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label for="inv-function">Inverse Function</label>
-        <select id="inv-function">
-          <option value="arcsin">arcsin(x)</option>
-          <option value="arccos">arccos(x)</option>
-          <option value="arctan">arctan(x)</option>
-        </select>
-      </div>
-
-      <div class="input-row">
-        <label id="inv-output-unit">Output Unit</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="inv-output-unit"
-          data-button-group="inv-output-unit"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="deg">
-            Degrees
-          </button>
-          <button class="calculator-button secondary" type="button" data-value="rad">
-            Radians
-          </button>
+    <div class="inv-workbench">
+      <section class="inv-card inv-input-card" aria-label="Inverse trig inputs">
+        <div class="inv-card-head">
+          <div>
+            <p class="inv-section-label">Inputs</p>
+            <p class="inv-card-title">Set the inverse function, output unit, and interval</p>
+          </div>
+          <span class="inv-chip">Answer-first</span>
         </div>
-      </div>
 
-      <div class="input-grid">
-        <div class="input-row">
-          <label for="inv-interval-start">Interval Start</label>
-          <input id="inv-interval-start" type="number" value="-360" step="any" />
+        <p class="inv-helper">Enter the value first, then narrow the interval only if you need all matching angles.</p>
+
+        <label class="inv-field" for="inv-value">
+          <span>Input value</span>
+          <input id="inv-value" type="number" value="0.5" step="any" />
+        </label>
+
+        <label class="inv-field" for="inv-function">
+          <span>Inverse function</span>
+          <select id="inv-function">
+            <option value="arcsin">arcsin(x)</option>
+            <option value="arccos">arccos(x)</option>
+            <option value="arctan">arctan(x)</option>
+          </select>
+        </label>
+
+        <div class="inv-toggle-section">
+          <span id="inv-output-unit">Output unit</span>
+          <div
+            class="inv-button-group"
+            role="group"
+            aria-labelledby="inv-output-unit"
+            data-button-group="inv-output-unit"
+          >
+            <button class="calculator-button inv-mode-button is-active" type="button" data-value="deg">
+              Degrees
+            </button>
+            <button class="calculator-button inv-mode-button" type="button" data-value="rad">
+              Radians
+            </button>
+          </div>
         </div>
-        <div class="input-row">
-          <label for="inv-interval-end">Interval End</label>
-          <input id="inv-interval-end" type="number" value="360" step="any" />
+
+        <div class="inv-input-grid">
+          <label class="inv-field" for="inv-interval-start">
+            <span>Interval start</span>
+            <input id="inv-interval-start" type="number" value="-360" step="any" />
+          </label>
+          <label class="inv-field" for="inv-interval-end">
+            <span>Interval end</span>
+            <input id="inv-interval-end" type="number" value="360" step="any" />
+          </label>
         </div>
-      </div>
-      <span class="inline-note">Intervals follow the same unit as the output.</span>
+
+        <div class="inv-hint-row">
+          <span class="inv-inline-note">Intervals follow the same unit as the output, so degrees stay with degrees and radians stay with radians.</span>
+        </div>
+
+        <button class="calculator-button inv-calc-button" type="button" id="inv-calc">
+          Calculate Inverse Trig
+        </button>
+      </section>
+
+      <section class="inv-card inv-answer-card" aria-label="Inverse trig answer summary">
+        <div class="inv-card-head">
+          <div>
+            <p class="inv-section-label">Answer</p>
+            <p class="inv-card-title">Principal angle, interval solutions, and range notes</p>
+          </div>
+          <span class="inv-chip inv-chip--answer">Angle solutions</span>
+        </div>
+
+        <div class="result inv-result-card" id="inv-result" aria-live="polite"></div>
+        <div class="result-detail inv-detail-card" id="inv-detail" aria-live="polite"></div>
+
+        <div class="inv-snapshot-grid" aria-label="Inverse trig snapshot">
+          <article class="inv-snapshot-card">
+            <span>Function</span>
+            <strong data-inv-snap="function">arcsin</strong>
+          </article>
+          <article class="inv-snapshot-card">
+            <span>Output unit</span>
+            <strong data-inv-snap="unit">Degrees</strong>
+          </article>
+          <article class="inv-snapshot-card">
+            <span>Principal value</span>
+            <strong data-inv-snap="principal">-</strong>
+          </article>
+          <article class="inv-snapshot-card">
+            <span>Solutions in range</span>
+            <strong data-inv-snap="count">-</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="inv-calc">
-      Calculate Inverse Trig
-    </button>
-
-    <div class="result" id="inv-result" aria-live="polite"></div>
-    <div class="result-detail" id="inv-detail" aria-live="polite"></div>
   </div>
 </div>
 

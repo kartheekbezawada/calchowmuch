@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Weekly Pay Calculator to estimate weekly earnings from an hourly rate and hours worked. It should serve users who want a direct weekly-pay answer, with optional support for splitting regular hours and overtime hours when that mode is approved for implementation.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `earnings` route variant in a fully light, answer-first layout.
+- Keep the hero result focused on weekly pay only.
+- Limit the first supporting result row to annualized pay when enabled.
+- If split-hours overtime mode is approved later, keep that mode visually quiet and subordinate to the main weekly-pay answer.
 
 ## SEO Metadata
 

@@ -105,6 +105,7 @@ The cluster should:
 
 - register the new salary cluster in the cluster governance model
 - define route ownership and cluster contracts
+- define the shared salary cluster design system before child-route implementation begins
 - create cluster-local navigation and asset manifest files
 - define homepage discoverability expectations
 - confirm sitemap coverage for every public route
@@ -113,6 +114,7 @@ The cluster should:
 
 - create the cluster hub at `/salary-calculators/`
 - define hub copy, route cards, and salary cluster linking logic
+- lock the answer-first light design baseline in `DESIGN_SYSTEM.md`
 - define page order and related-calculator linking rules
 - define SEO titles, H1s, and answer-first intros for each route
 
@@ -129,6 +131,7 @@ Build the highest-leverage conversion pages first:
 For each route:
 
 - define formula and input contract
+- inherit the salary cluster design system and route-variant rules
 - implement calculator UI and explanation content
 - add cluster navigation links
 - generate the public route output
@@ -147,6 +150,7 @@ Build the supporting earnings calculators:
 For each route:
 
 - keep logic user-input driven
+- inherit the salary cluster design system and route-variant rules
 - avoid region-specific labor-law assumptions
 - define output summaries and worked examples
 - link back to the hub and to 2 to 4 relevant sibling pages

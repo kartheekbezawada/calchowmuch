@@ -134,6 +134,7 @@ Out-of-scope violation rule:
 
 ### Planning and execution docs
 
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ACTION_PAGE.md`
 - `requirements/universal-rules/salary-calculators-cluster-redesign/RELEASE_PLAN.md`
@@ -187,6 +188,7 @@ Out-of-scope violation rule:
 ## Per-Route Checklist
 
 - [ ] Confirm the route brief is complete and implementation-ready.
+- [ ] Confirm the route inherits the salary cluster design system and the correct route variant.
 - [ ] Audit source fragment, generated output target, and required tests.
 - [ ] Confirm the route remains inside the approved salary scope.
 - [ ] Implement route UI and logic using the child route brief as the execution contract.

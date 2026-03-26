@@ -45,7 +45,7 @@ Companion docs:
 | 1 | Pilot | 3 | passed | none | Codex | `basic`, `fraction-calculator`, and `sample-size` are redesign-complete. Pilot shell, schema, and auto-continuation rules are now stable. |
 | 2 | Stabilize | 0 | passed | none | Codex | Pilot findings were folded back into the execution card, checklist, and tracker before scale-out. |
 | 3 | Algebra suite | 5 | passed | none | Codex | `quadratic-equation`, `slope-distance`, `factoring`, `polynomial-operations`, and `system-of-equations` are redesign-complete. Wave 3 exit gates are complete. |
-| 4 | Trigonometry suite | 5 | active | triangle-solver | Codex | `unit-circle` is redesign-complete. Remaining trigonometry routes still require generated-output proof. |
+| 4 | Trigonometry suite | 5 | active | inverse-trig | Codex | `unit-circle`, `triangle-solver`, and `trig-functions` are redesign-complete. Remaining trigonometry routes still require generated-output proof. |
 | 5 | Log cluster | 5 | planned | none | Codex | Similar route family, should stay visually consistent |
 | 6 | Calculus suite | 5 | planned | none | Codex | Expression-heavy layouts and dense outputs |
 | 7 | Statistics core | 4 | planned | none | Codex | Multi-output routes with stronger content demands |
@@ -66,7 +66,9 @@ Companion docs:
 | 3 | `/math/algebra/polynomial-operations/` | `polynomial-operations` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, operation-mode hierarchy, related links, and scoped validations now satisfy the redesign definition. |
 | 3 | `/math/algebra/system-of-equations/` | `system-of-equations` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, system-size hierarchy, related links, and scoped validations now satisfy the redesign definition. |
 | 4 | `/math/trigonometry/unit-circle/` | `unit-circle` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, interactive circle diagram, related links, and scoped validations now satisfy the redesign definition. |
-| 4 | `/math/trigonometry/triangle-solver/` | `triangle-solver` | `legacy-shared` | `legacy-single-dark` | `type-2` | `not-audited` | `planned` | `release-passed-only` | `pending` | `pending` | `pending` | `pending` | `Codex` | historical release only | Next trigonometry route. Prior release evidence does not count as redesign proof. |
+| 4 | `/math/trigonometry/triangle-solver/` | `triangle-solver` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, diagram contract, formula notes, and scoped validations now satisfy the redesign definition. |
+| 4 | `/math/trigonometry/trig-functions/` | `trig-functions` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, graph contract, exact-value notes, and scoped validations now satisfy the redesign definition. |
+| 4 | `/math/trigonometry/inverse-trig/` | `inverse-trig` | `legacy-shared` | `legacy-single-dark` | `type-2` | `not-audited` | `planned` | `release-passed-only` | `pending` | `pending` | `pending` | `pending` | `Codex` | historical release only | Next trigonometry route. Prior release evidence does not count as redesign proof. |
 
 ## Route Audit Template
 
@@ -178,6 +180,26 @@ Companion docs:
 - Logic risk: low; migration preserved the angle input, unit button group, result containers, diagram canvas IDs, legend ID, and shared trigonometry-core calculations
 - Type: `2`
 - Notes: migrated to the light math cluster shell, restored the interactive diagram contract, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — triangle-solver
+- Route: `/math/trigonometry/triangle-solver/`
+- Layout: single
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, and legacy left nav; all removed in redesign output
+- Design issues: previous route buried the solver in the legacy shell, shipped no usable diagram card on first screen, and had no answer-first hierarchy between inputs, solutions, and method notes
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, formula coverage, FAQs, related links, and notes contract; route metadata also depended on generic legacy output rather than generated static proof
+- Logic risk: low; migration preserved the triangle type selector, angle-unit button group, input IDs, solve trigger, result containers, diagram canvas ID, and shared trigonometry-core solver behavior
+- Type: `2`
+- Notes: migrated to the light math cluster shell, rebuilt the answer-first triangle workflow with a stable diagram card, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — trig-functions
+- Route: `/math/trigonometry/trig-functions/`
+- Layout: single
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, and legacy left nav; all removed in redesign output
+- Design issues: previous route buried the six trig outputs inside the legacy shell, lacked a real answer-first relationship between inputs and graph, and failed to render the graph canvas contract in the source fragment
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, formula coverage, FAQs, related links, and notes contract; route metadata also depended on stale runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the angle input, angle-unit button group, graph-function select, amplitude and period IDs, calculate trigger, result containers, graph canvas ID, and shared trigonometry-core calculations
+- Type: `2`
+- Notes: migrated to the light math cluster shell, rebuilt the answer-first trig workflow with a stable graph card, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
 
 ## Update Rules
 

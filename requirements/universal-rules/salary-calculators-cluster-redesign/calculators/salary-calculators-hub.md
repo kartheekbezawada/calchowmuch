@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 The Salary Calculators hub is the cluster landing page for pay-conversion and earnings tools. It should quickly explain what users can calculate, surface the highest-demand salary routes first, and guide visitors into the exact calculator that matches their pay frequency or compensation question.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `hub` route variant in a fully light, discovery-first layout.
+- Keep the intro short and place featured calculators before any long-form explanatory copy.
+- Present the featured set as curated route choices rather than a dense utility grid.
+- Keep unpublished routes out of visible UI and schema at all times.
 
 ## SEO Metadata
 

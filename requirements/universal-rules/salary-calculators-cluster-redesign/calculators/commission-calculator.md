@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Commission Calculator to estimate commission earnings from a sales amount and commission rate. It should support both simple commission-only use cases and an optional base-pay-plus-commission mode if that input is explicitly approved during implementation.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `earnings` route variant in a fully light, answer-first layout.
+- Keep the hero result focused on commission earned only.
+- Limit the first supporting result row to total earnings when base pay is supplied and effective commission rate.
+- Keep optional base-pay logic visually quiet so the route still feels simple rather than payroll-like.
 
 ## SEO Metadata
 
