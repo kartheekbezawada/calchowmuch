@@ -103,6 +103,21 @@ const MATH_CLUSTER_REDESIGN_IDS = new Set([
   'derivative',
   'integral',
   'limit',
+  'series-convergence',
+  'critical-points',
+  'mean-median-mode-range',
+  'standard-deviation',
+  'confidence-interval',
+  'z-score',
+  'number-sequence',
+  'permutation-combination',
+  'probability',
+  'statistics',
+  'correlation',
+  'regression-analysis',
+  'distribution',
+  'anova',
+  'hypothesis-testing',
 ]);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
@@ -124,6 +139,126 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Add, subtract, multiply, or divide everyday numbers in one clean answer-first basic calculator with support for extra inputs and memory tools.',
     h1: 'Basic Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'series-convergence': {
+    title: 'Series Convergence Calculator | Ratio, Root and Comparison Tests | CalcHowMuch',
+    description:
+      'Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.',
+    h1: 'Series Convergence Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'critical-points': {
+    title: 'Critical Points Finder | Maxima, Minima and Inflection Scan | CalcHowMuch',
+    description:
+      'Find critical points, classify local maxima and minima, and surface inflection candidates in a light answer-first calculus layout built for quick curve analysis.',
+    h1: 'Critical Points Finder',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'mean-median-mode-range': {
+    title: 'Mean Median Mode Range Calculator | Dataset Summary Statistics | CalcHowMuch',
+    description:
+      'Turn one dataset into mean, median, mode, minimum, maximum, and range in a light answer-first statistics layout built for quick descriptive checks.',
+    h1: 'Mean Median Mode Range Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'standard-deviation': {
+    title: 'Standard Deviation Calculator | Sample and Population Spread | CalcHowMuch',
+    description:
+      'Measure sample or population spread with standard deviation, variance, and mean outputs in a light answer-first statistics layout.',
+    h1: 'Standard Deviation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'confidence-interval': {
+    title: 'Confidence Interval Calculator | Mean and Proportion Interval Estimator | CalcHowMuch',
+    description:
+      'Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.',
+    h1: 'Confidence Interval Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'z-score': {
+    title: 'Z-Score Calculator | Standard Score and Interpretation | CalcHowMuch',
+    description:
+      'Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.',
+    h1: 'Z-Score Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'number-sequence': {
+    title: 'Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch',
+    description:
+      'Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.',
+    h1: 'Number Sequence Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'permutation-combination': {
+    title: 'Permutation & Combination Calculator | nPr, nCr and Factorial | CalcHowMuch',
+    description:
+      'Calculate permutations, combinations, and factorial values in a light answer-first counting calculator built for quick exact-integer results.',
+    h1: 'Permutation & Combination Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  probability: {
+    title: 'Probability Calculator | Event Odds, Bayes and Binomial Checks | CalcHowMuch',
+    description:
+      'Calculate single-event, combined-event, conditional, Bayes, and binomial probabilities in a light answer-first probability calculator.',
+    h1: 'Probability Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  statistics: {
+    title: 'Statistics Calculator | Full Descriptive Summary | CalcHowMuch',
+    description:
+      'Calculate a full descriptive statistics summary with centre, spread, variance, and standard deviation in a light answer-first layout.',
+    h1: 'Statistics Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  correlation: {
+    title: 'Correlation Calculator | Pearson, Spearman and Kendall | CalcHowMuch',
+    description:
+      'Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout.',
+    h1: 'Correlation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'regression-analysis': {
+    title: 'Regression Analysis | Linear, Polynomial and Exponential Fit | CalcHowMuch',
+    description:
+      'Fit linear, polynomial, exponential, and logarithmic models with goodness-of-fit metrics in a light answer-first statistics layout.',
+    h1: 'Regression Analysis',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  distribution: {
+    title: 'Distribution Calculator | Normal, t, Chi-Square and F Values | CalcHowMuch',
+    description:
+      'Calculate CDF, PDF, and quantile values for normal, Student\'s t, chi-square, and F distributions in a light answer-first statistics layout.',
+    h1: 'Distribution Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  anova: {
+    title: 'ANOVA Calculator | One-Way F-Test and Effect Size | CalcHowMuch',
+    description:
+      'Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.',
+    h1: 'ANOVA Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'hypothesis-testing': {
+    title: 'Hypothesis Testing | t-Tests, Chi-Square and p-Value Checks | CalcHowMuch',
+    description:
+      'Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.',
+    h1: 'Hypothesis Testing',
     explanationHeading: '',
     paneLayout: 'single',
   },

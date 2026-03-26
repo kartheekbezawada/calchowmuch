@@ -153,3 +153,7 @@ export function initCorrelationCalculator() {
   calculateButton.addEventListener('click', calculate);
   calculate();
 }
+
+if (document.querySelector('#calc-correlation')) {
+  initCorrelationCalculator();
+}

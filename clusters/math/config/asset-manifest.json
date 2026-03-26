@@ -421,6 +421,306 @@
           "/calculators/math/calculus/limit/module.js"
         ]
       }
+    },
+    "/math/calculus/series-convergence/": {
+      "route": "/math/calculus/series-convergence/",
+      "calculatorId": "series-convergence",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/series-convergence/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/series-convergence/module.js"
+        ]
+      }
+    },
+    "/math/calculus/critical-points/": {
+      "route": "/math/calculus/critical-points/",
+      "calculatorId": "critical-points",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/critical-points/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/critical-points/module.js"
+        ]
+      }
+    },
+    "/math/mean-median-mode-range/": {
+      "route": "/math/mean-median-mode-range/",
+      "calculatorId": "mean-median-mode-range",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/mean-median-mode-range/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/mean-median-mode-range/module.js"
+        ]
+      }
+    },
+    "/math/standard-deviation/": {
+      "route": "/math/standard-deviation/",
+      "calculatorId": "standard-deviation",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/standard-deviation/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/standard-deviation/module.js"
+        ]
+      }
+    },
+    "/math/confidence-interval/": {
+      "route": "/math/confidence-interval/",
+      "calculatorId": "confidence-interval",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/confidence-interval/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/confidence-interval/module.js"
+        ]
+      }
+    },
+    "/math/z-score/": {
+      "route": "/math/z-score/",
+      "calculatorId": "z-score",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/z-score/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/z-score/module.js"
+        ]
+      }
+    },
+    "/math/number-sequence/": {
+      "route": "/math/number-sequence/",
+      "calculatorId": "number-sequence",
+      "clusterId": "math",
+      "buildId": "wave8-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/number-sequence/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/number-sequence/module.js"
+        ]
+      }
+    },
+    "/math/permutation-combination/": {
+      "route": "/math/permutation-combination/",
+      "calculatorId": "permutation-combination",
+      "clusterId": "math",
+      "buildId": "wave8-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/permutation-combination/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/permutation-combination/module.js"
+        ]
+      }
+    },
+    "/math/probability/": {
+      "route": "/math/probability/",
+      "calculatorId": "probability",
+      "clusterId": "math",
+      "buildId": "wave8-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/probability/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/probability/module.js"
+        ]
+      }
+    },
+    "/math/statistics/": {
+      "route": "/math/statistics/",
+      "calculatorId": "statistics",
+      "clusterId": "math",
+      "buildId": "wave9-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/module.js"
+        ]
+      }
+    },
+    "/math/statistics/correlation/": {
+      "route": "/math/statistics/correlation/",
+      "calculatorId": "correlation",
+      "clusterId": "math",
+      "buildId": "wave9-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/correlation/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/correlation/module.js"
+        ]
+      }
+    },
+    "/math/statistics/regression-analysis/": {
+      "route": "/math/statistics/regression-analysis/",
+      "calculatorId": "regression-analysis",
+      "clusterId": "math",
+      "buildId": "wave9-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/regression-analysis/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/regression-analysis/module.js"
+        ]
+      }
+    },
+    "/math/statistics/distribution/": {
+      "route": "/math/statistics/distribution/",
+      "calculatorId": "distribution",
+      "clusterId": "math",
+      "buildId": "wave10-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/distribution/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/distribution/module.js"
+        ]
+      }
+    },
+    "/math/statistics/anova/": {
+      "route": "/math/statistics/anova/",
+      "calculatorId": "anova",
+      "clusterId": "math",
+      "buildId": "wave10-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/anova/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/anova/module.js"
+        ]
+      }
+    },
+    "/math/statistics/hypothesis-testing/": {
+      "route": "/math/statistics/hypothesis-testing/",
+      "calculatorId": "hypothesis-testing",
+      "clusterId": "math",
+      "buildId": "wave10-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/hypothesis-testing/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/hypothesis-testing/module.js"
+        ]
+      }
     }
   }
 }

@@ -1,1 +1,257 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
+#calc-z-score {
+  --stats-border: #dbe6f1;
+  --stats-surface: #ffffff;
+  --stats-surface-alt: #f4f8fc;
+  --stats-ink: #17324d;
+  --stats-muted: #5b7289;
+  --stats-accent: #1c73d7;
+  --stats-accent-soft: #dcebff;
+}
+
+#calc-z-score .stats-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-z-score .stats-card {
+  background: var(--stats-surface);
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+}
+
+#calc-z-score .stats-hero-card,
+#calc-z-score .stats-input-card,
+#calc-z-score .stats-answer-card {
+  padding: 1.5rem;
+}
+
+#calc-z-score .stats-hero-card {
+  display: grid;
+  gap: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(28, 115, 215, 0.12), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f6faff);
+}
+
+#calc-z-score .stats-eyebrow,
+#calc-z-score .stats-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stats-accent);
+}
+
+#calc-z-score .stats-title,
+#calc-z-score .stats-card-title {
+  margin: 0.35rem 0 0;
+  color: var(--stats-ink);
+}
+
+#calc-z-score .stats-title {
+  font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+  line-height: 1.15;
+}
+
+#calc-z-score .stats-subtitle,
+#calc-z-score .stats-hero-points,
+#calc-z-score .stats-field small {
+  color: var(--stats-muted);
+}
+
+#calc-z-score .stats-hero-points {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#calc-z-score .stats-workbench {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-z-score .stats-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+#calc-z-score .stats-chip {
+  border-radius: 999px;
+  background: var(--stats-accent-soft);
+  color: var(--stats-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+#calc-z-score .stats-chip--answer {
+  background: #fff2d8;
+  color: #8d5b10;
+}
+
+#calc-z-score .stats-field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+#calc-z-score .stats-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+#calc-z-score .stats-field span {
+  font-weight: 600;
+  color: var(--stats-ink);
+}
+
+#calc-z-score .stats-field input {
+  width: 100%;
+  border: 1px solid var(--stats-border);
+  border-radius: 16px;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  color: var(--stats-ink);
+  background: #fff;
+}
+
+#calc-z-score .stats-field input:focus {
+  outline: 2px solid rgba(28, 115, 215, 0.16);
+  border-color: var(--stats-accent);
+}
+
+#calc-z-score .stats-calc-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#calc-z-score .stats-detail-card {
+  margin-top: 1rem;
+}
+
+#calc-z-score .stats-detail-card p {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: var(--stats-surface-alt);
+  margin: 0 0 0.75rem;
+}
+
+#calc-z-score .stats-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+#calc-z-score .stats-snapshot-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fbfdff;
+}
+
+#calc-z-score .stats-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--stats-muted);
+  margin-bottom: 0.25rem;
+}
+
+#zscore-explanation {
+  display: grid;
+  gap: 1.25rem;
+}
+
+#zscore-explanation .stats-exp-section {
+  background: #fff;
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  padding: 1.4rem;
+}
+
+#zscore-explanation .stats-summary-list,
+#zscore-explanation .stats-notes-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#zscore-explanation .stats-table-wrap {
+  overflow-x: auto;
+}
+
+#zscore-explanation .stats-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#zscore-explanation .stats-summary-table th,
+#zscore-explanation .stats-summary-table td {
+  border-bottom: 1px solid var(--stats-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#zscore-explanation .stats-example-grid,
+#zscore-explanation .stats-faq-grid,
+#zscore-explanation .stats-related-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+#zscore-explanation .stats-example-card,
+#zscore-explanation .faq-card,
+#zscore-explanation .stats-related-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #fbfdff;
+}
+
+#zscore-explanation .stats-related-card {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  #calc-z-score .stats-hero-card {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+    align-items: start;
+  }
+
+  #calc-z-score .stats-workbench {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  #zscore-explanation .stats-example-grid,
+  #zscore-explanation .stats-faq-grid,
+  #zscore-explanation .stats-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-z-score .stats-hero-card,
+  #calc-z-score .stats-input-card,
+  #calc-z-score .stats-answer-card,
+  #zscore-explanation .stats-exp-section {
+    padding: 1.1rem;
+  }
+
+  #calc-z-score .stats-field-grid,
+  #calc-z-score .stats-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
+}

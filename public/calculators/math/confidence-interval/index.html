@@ -1,97 +1,144 @@
 <div id="calc-confidence-interval">
-  <div class="calculator-ui">
-    <p class="helper">Calculate confidence intervals for population proportions or means.</p>
+  <div class="stats-shell">
+    <section class="stats-card stats-hero-card" aria-label="Confidence interval overview">
+      <div class="stats-hero-copy">
+        <p class="stats-eyebrow">Simple Smooth Wow</p>
+        <h2 class="stats-title">Estimate a practical interval around a sample proportion or sample mean without leaving the first screen.</h2>
+        <p class="stats-subtitle">
+          Choose the interval type, set the confidence level, and keep the bounds, margin of error,
+          and formula summary together in one answer-first result.
+        </p>
+      </div>
+      <ul class="stats-hero-points">
+        <li>Best for quick interval estimation on proportions or known-sigma means.</li>
+        <li>The answer card surfaces the lower and upper bounds first.</li>
+        <li>The mode and confidence controls stay visible so you can compare intervals quickly.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label id="ci-mode-label">Calculation Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ci-mode-label"
-          data-button-group="ci-mode"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="proportion"
-            aria-pressed="true"
-          >
-            Proportion (p-hat)
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="mean"
-            aria-pressed="false"
-          >
-            Mean (x-bar) with known sigma
-          </button>
+    <div class="stats-workbench">
+      <section class="stats-card stats-input-card" aria-label="Confidence interval inputs">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Inputs</p>
+            <p class="stats-card-title">Set the interval type, confidence level, and sample values</p>
+          </div>
+          <span class="stats-chip">Answer-first</span>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label id="ci-confidence-label">Confidence Level</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="ci-confidence-label"
-          data-button-group="ci-confidence"
-        >
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="1.645"
-            aria-pressed="false"
+        <div class="stats-mode-row">
+          <label id="ci-mode-label">Calculation type</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="ci-mode-label"
+            data-button-group="ci-mode"
           >
-            90%
-          </button>
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="1.96"
-            aria-pressed="true"
-          >
-            95%
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="2.576"
-            aria-pressed="false"
-          >
-            99%
-          </button>
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="proportion"
+              aria-pressed="true"
+            >
+              Proportion (p-hat)
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="mean"
+              aria-pressed="false"
+            >
+              Mean (x-bar)
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row" id="ci-phat-row">
-        <label for="ci-phat">Sample Proportion p-hat (%)</label>
-        <input id="ci-phat" type="number" value="60" min="0" max="100" step="0.1" />
-      </div>
+        <div class="stats-mode-row">
+          <label id="ci-confidence-label">Confidence level</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="ci-confidence-label"
+            data-button-group="ci-confidence"
+          >
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="1.645"
+              aria-pressed="false"
+            >
+              90%
+            </button>
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="1.96"
+              aria-pressed="true"
+            >
+              95%
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="2.576"
+              aria-pressed="false"
+            >
+              99%
+            </button>
+          </div>
+        </div>
 
-      <div class="input-row" id="ci-xbar-row" style="display: none">
-        <label for="ci-xbar">Sample Mean (x-bar)</label>
-        <input id="ci-xbar" type="number" value="50" step="any" />
-      </div>
+        <div class="stats-field-grid">
+          <label class="stats-field" id="ci-phat-row" for="ci-phat">
+            <span>Sample proportion p-hat (%)</span>
+            <input id="ci-phat" type="number" value="60" min="0" max="100" step="0.1" />
+          </label>
 
-      <div class="input-row" id="ci-sigma-row" style="display: none">
-        <label for="ci-sigma">Population Std Dev (σ)</label>
-        <input id="ci-sigma" type="number" value="10" min="0.0001" step="any" />
-      </div>
+          <label class="stats-field" id="ci-xbar-row" for="ci-xbar" style="display: none">
+            <span>Sample mean (x-bar)</span>
+            <input id="ci-xbar" type="number" value="50" step="any" />
+          </label>
 
-      <div class="input-row">
-        <label for="ci-n">Sample Size (n)</label>
-        <input id="ci-n" type="number" value="100" min="1" step="1" />
-      </div>
+          <label class="stats-field" id="ci-sigma-row" for="ci-sigma" style="display: none">
+            <span>Population std dev (sigma)</span>
+            <input id="ci-sigma" type="number" value="10" min="0.0001" step="any" />
+          </label>
+
+          <label class="stats-field" for="ci-n">
+            <span>Sample size (n)</span>
+            <input id="ci-n" type="number" value="100" min="1" step="1" />
+          </label>
+        </div>
+
+        <button class="calculator-button stats-calc-button" type="button" id="ci-calculate">
+          Calculate confidence interval
+        </button>
+      </section>
+
+      <section class="stats-card stats-answer-card" aria-label="Confidence interval answer">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Answer</p>
+            <p class="stats-card-title">Interval bounds, margin of error, and formula summary</p>
+          </div>
+          <span class="stats-chip stats-chip--answer">Interval estimate</span>
+        </div>
+
+        <div class="result stats-result-card" id="ci-result" aria-live="polite"></div>
+        <div class="result-detail stats-detail-card" id="ci-detail" aria-live="polite"></div>
+
+        <div class="stats-snapshot-grid" aria-label="Interval workflow snapshot">
+          <article class="stats-snapshot-card">
+            <span>Modes</span>
+            <strong>Proportion or mean</strong>
+          </article>
+          <article class="stats-snapshot-card">
+            <span>Outputs</span>
+            <strong>Bounds, error, formula</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="ci-calculate">
-      Calculate Confidence Interval
-    </button>
-
-    <div class="result" id="ci-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="ci-detail" aria-live="polite"></div>
   </div>
 </div>
 

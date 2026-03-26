@@ -1,9 +1,281 @@
-#calc-standard-deviation .stats-grid {
+#calc-standard-deviation {
+  --stats-border: #dbe6f1;
+  --stats-surface: #ffffff;
+  --stats-surface-alt: #f4f8fc;
+  --stats-ink: #17324d;
+  --stats-muted: #5b7289;
+  --stats-accent: #1c73d7;
+  --stats-accent-soft: #dcebff;
+}
+
+#calc-standard-deviation .stats-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-standard-deviation .stats-card {
+  background: var(--stats-surface);
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+}
+
+#calc-standard-deviation .stats-hero-card,
+#calc-standard-deviation .stats-input-card,
+#calc-standard-deviation .stats-answer-card {
+  padding: 1.5rem;
+}
+
+#calc-standard-deviation .stats-hero-card {
+  display: grid;
+  gap: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(28, 115, 215, 0.12), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f6faff);
+}
+
+#calc-standard-deviation .stats-eyebrow,
+#calc-standard-deviation .stats-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stats-accent);
+}
+
+#calc-standard-deviation .stats-title,
+#calc-standard-deviation .stats-card-title {
+  margin: 0.35rem 0 0;
+  color: var(--stats-ink);
+}
+
+#calc-standard-deviation .stats-title {
+  font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+  line-height: 1.15;
+}
+
+#calc-standard-deviation .stats-subtitle,
+#calc-standard-deviation .stats-hero-points,
+#calc-standard-deviation .stats-field small {
+  color: var(--stats-muted);
+}
+
+#calc-standard-deviation .stats-hero-points {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#calc-standard-deviation .stats-workbench {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-standard-deviation .stats-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+#calc-standard-deviation .stats-chip {
+  border-radius: 999px;
+  background: var(--stats-accent-soft);
+  color: var(--stats-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+#calc-standard-deviation .stats-chip--answer {
+  background: #fff2d8;
+  color: #8d5b10;
+}
+
+#calc-standard-deviation .stats-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+#calc-standard-deviation .stats-field span {
+  font-weight: 600;
+  color: var(--stats-ink);
+}
+
+#calc-standard-deviation .stats-field textarea {
+  width: 100%;
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  font: inherit;
+  color: var(--stats-ink);
+  background: #fff;
+  resize: vertical;
+}
+
+#calc-standard-deviation .stats-field textarea:focus {
+  outline: 2px solid rgba(28, 115, 215, 0.16);
+  border-color: var(--stats-accent);
+}
+
+#calc-standard-deviation .stats-mode-row {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#calc-standard-deviation .stats-mode-row > label {
+  font-weight: 600;
+  color: var(--stats-ink);
+}
+
+#calc-standard-deviation .button-group {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+#calc-standard-deviation .button-group .calculator-button {
+  border-radius: 16px;
+}
+
+#calc-standard-deviation .stats-calc-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#calc-standard-deviation .stats-result-card strong,
+#calc-standard-deviation .stats-detail-card strong {
+  color: var(--stats-ink);
+}
+
+#calc-standard-deviation .stats-detail-card {
+  margin-top: 1rem;
+}
+
+#calc-standard-deviation .stats-detail-card .stats-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+#calc-standard-deviation .stats-detail-card span {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 0.95rem 1rem;
+  background: var(--stats-surface-alt);
+}
+
+#calc-standard-deviation .stats-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+#calc-standard-deviation .stats-snapshot-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fbfdff;
+}
+
+#calc-standard-deviation .stats-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--stats-muted);
+  margin-bottom: 0.25rem;
+}
+
+#std-explanation {
+  display: grid;
+  gap: 1.25rem;
+}
+
+#std-explanation .stats-exp-section {
+  background: #fff;
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  padding: 1.4rem;
+}
+
+#std-explanation .stats-summary-list,
+#std-explanation .stats-notes-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#std-explanation .stats-table-wrap {
+  overflow-x: auto;
+}
+
+#std-explanation .stats-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#std-explanation .stats-summary-table th,
+#std-explanation .stats-summary-table td {
+  border-bottom: 1px solid var(--stats-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#std-explanation .stats-example-grid,
+#std-explanation .stats-faq-grid,
+#std-explanation .stats-related-grid {
+  display: grid;
   gap: 1rem;
 }
 
-#calc-standard-deviation .stats-grid span {
-  flex: 1 1 150px;
+#std-explanation .stats-example-card,
+#std-explanation .faq-card,
+#std-explanation .stats-related-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #fbfdff;
+}
+
+#std-explanation .stats-related-card {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  #calc-standard-deviation .stats-hero-card {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+    align-items: start;
+  }
+
+  #calc-standard-deviation .stats-workbench {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  #std-explanation .stats-example-grid,
+  #std-explanation .stats-faq-grid,
+  #std-explanation .stats-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-standard-deviation .stats-hero-card,
+  #calc-standard-deviation .stats-input-card,
+  #calc-standard-deviation .stats-answer-card,
+  #std-explanation .stats-exp-section {
+    padding: 1.1rem;
+  }
+
+  #calc-standard-deviation .stats-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
 }

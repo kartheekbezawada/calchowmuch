@@ -3,14 +3,14 @@
 Status:
 
 - Updated on `2026-03-26`
-- Execution approved
+- Execution complete
 - Purpose: govern the end-to-end migration of all 36 math calculators from legacy dark-shell delivery to redesign-complete state
 
 ## Program Summary
 
 - Objective: migrate all 36 `/math/` routes to true redesign-complete state and onboard math from `legacy-shared` to governed math-cluster ownership with low regression risk.
 - Program rule: `release passed` is historical release evidence only. It does not count as redesign completion.
-- Starting truth: 36 math routes, 10 `single` in nav but still legacy dark-shell in generated output, 26 split legacy routes, math cluster still `legacy`, no `/math/` route-ownership entries yet.
+- Completion truth: all 36 math routes are now redesign-complete, all `/math/` routes are cluster-owned by `math`, and the math cluster is ready to move from `migrating` to `isolated`.
 - Program phases: `0A baseline`, `0B audit lock`, `1 pilot`, `2 stabilize`, `3-9 scale`, `10 final cleanup`.
 
 ## Authority And Context Refresh Protocol

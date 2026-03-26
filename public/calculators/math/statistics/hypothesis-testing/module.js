@@ -211,3 +211,7 @@ export function initHypothesisCalculator() {
   updateInputVisibility();
   calculate();
 }
+
+if (document.querySelector('#calc-hypothesis')) {
+  initHypothesisCalculator();
+}

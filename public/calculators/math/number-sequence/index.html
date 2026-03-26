@@ -1,71 +1,119 @@
 <div id="calc-number-sequence">
-  <div class="calculator-ui">
-    <p class="helper">Compute the nth term and preview of an arithmetic or geometric sequence.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="seq-terms">Sequence Terms</label>
-        <textarea
-          id="seq-terms"
-          rows="3"
-          placeholder="Enter at least 3 terms (e.g., 2, 4, 6, 8, 10)"
-        >
-2, 4, 6, 8, 10</textarea
-        >
+  <div class="sequence-shell">
+    <section class="sequence-card sequence-hero-card" aria-label="Number sequence overview">
+      <div class="sequence-hero-copy">
+        <p class="sequence-eyebrow">Simple Smooth Wow</p>
+        <h2 class="sequence-title">Check the pattern, jump to the nth term, and preview the next values without leaving the first screen.</h2>
+        <p class="sequence-subtitle">
+          Paste three or more terms, keep auto-detect on when the pattern is obvious, or force
+          arithmetic versus geometric mode when you want a quick answer card with the rule and sum
+          together.
+        </p>
       </div>
+      <ul class="sequence-hero-points">
+        <li>Shows the sequence type, nth term, and running sum in one answer-first view.</li>
+        <li>Keeps the preview list beside the answer so you can verify the pattern immediately.</li>
+        <li>Stays light, uncluttered, and usable before any explanation scrolling starts.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label id="seq-type-label">Sequence Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="seq-type-label"
-          data-button-group="seq-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="auto"
-            aria-pressed="true"
-          >
-            Auto Detect
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="arithmetic"
-            aria-pressed="false"
-          >
-            Arithmetic
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="geometric"
-            aria-pressed="false"
-          >
-            Geometric
-          </button>
+    <div class="sequence-workbench">
+      <section class="sequence-card sequence-input-card" aria-label="Sequence inputs">
+        <div class="sequence-card-head">
+          <div>
+            <p class="sequence-section-label">Inputs</p>
+            <p class="sequence-card-title">Enter the terms and choose how the rule should be read</p>
+          </div>
+          <span class="sequence-chip">Pattern check</span>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label for="seq-n">Term Index (n)</label>
-        <input id="seq-n" type="number" value="10" min="1" step="1" />
-      </div>
+        <label class="sequence-field" for="seq-terms">
+          <span>Sequence terms</span>
+          <textarea
+            id="seq-terms"
+            rows="5"
+            placeholder="Enter at least 3 terms (for example 2, 4, 6, 8, 10)"
+          >
+2, 4, 6, 8, 10</textarea
+          >
+          <small>Use commas, spaces, or line breaks. The route reads at least three values.</small>
+        </label>
 
-      <div class="input-row">
-        <label for="seq-k">Preview Length (k)</label>
-        <input id="seq-k" type="number" value="10" min="1" max="50" step="1" />
-      </div>
+        <div class="sequence-field">
+          <span id="seq-type-label">Sequence type</span>
+          <div
+            class="button-group sequence-button-group"
+            role="group"
+            aria-labelledby="seq-type-label"
+            data-button-group="seq-type"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="auto"
+              aria-pressed="true"
+            >
+              Auto detect
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="arithmetic"
+              aria-pressed="false"
+            >
+              Arithmetic
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="geometric"
+              aria-pressed="false"
+            >
+              Geometric
+            </button>
+          </div>
+        </div>
+
+        <div class="sequence-two-up">
+          <label class="sequence-field" for="seq-n">
+            <span>Term index (n)</span>
+            <input id="seq-n" type="number" value="10" min="1" step="1" />
+          </label>
+          <label class="sequence-field" for="seq-k">
+            <span>Preview length (k)</span>
+            <input id="seq-k" type="number" value="10" min="1" max="50" step="1" />
+          </label>
+        </div>
+
+        <button class="calculator-button sequence-calc-button" type="button" id="seq-calculate">
+          Calculate sequence
+        </button>
+      </section>
+
+      <section class="sequence-card sequence-answer-card" aria-label="Sequence answer">
+        <div class="sequence-card-head">
+          <div>
+            <p class="sequence-section-label">Answer</p>
+            <p class="sequence-card-title">Pattern verdict, nth term, and preview</p>
+          </div>
+          <span class="sequence-chip sequence-chip--answer">Nth term</span>
+        </div>
+
+        <div class="result sequence-result-card" id="seq-result" aria-live="polite"></div>
+        <div class="result-detail sequence-detail-card" id="seq-detail" aria-live="polite"></div>
+
+        <div class="sequence-snapshot-grid" aria-label="Sequence workflow summary">
+          <article class="sequence-snapshot-card">
+            <span>Primary output</span>
+            <strong>Type and nth term</strong>
+          </article>
+          <article class="sequence-snapshot-card">
+            <span>Verification</span>
+            <strong>Running sum and preview</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="seq-calculate">
-      Calculate Sequence
-    </button>
-
-    <div class="result" id="seq-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="seq-detail" aria-live="polite"></div>
   </div>
 </div>
 

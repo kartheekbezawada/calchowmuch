@@ -3,10 +3,10 @@
  * Finds and classifies critical points using derivative tests
  */
 
-import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+import { expressionParser } from '../../../../assets/js/core/expression-parser.js';
 
 // Simple symbolic differentiator for critical points
-class CriticalPointsFinder {
+export class CriticalPointsFinder {
   constructor(funcExpr, variable = 'x') {
     this.funcExpr = funcExpr;
     this.variable = variable;
@@ -16,9 +16,9 @@ class CriticalPointsFinder {
   // Evaluate function at a point using a safe math-expression evaluator
   evaluateFunction(expr, x) {
     try {
-      return expressionParser.evaluate(expr, x, 'x');
+      return expressionParser.evaluate(expr, x, this.variable);
     } catch (e) {
-      throw new Error(`Cannot evaluate expression at x=${x}: ${e.message}`);
+      throw new Error(`Cannot evaluate expression at ${this.variable}=${x}: ${e.message}`);
     }
   }
 
@@ -306,7 +306,7 @@ export function initCriticalPointsCalculator() {
           html += `<tr class="${rowClass}">`;
           html += `<td>${cp.x.toFixed(4)}</td>`;
           html += `<td>${cp.y.toFixed(4)}</td>`;
-          html += `<td>${cp.secondDeriv ? cp.secondDeriv.toFixed(4) : 'N/A'}</td>`;
+          html += `<td>${Number.isFinite(cp.secondDeriv) ? cp.secondDeriv.toFixed(4) : 'N/A'}</td>`;
           html += `<td><strong>${cp.classification}</strong></td>`;
           html += '</tr>';
         });
@@ -350,4 +350,14 @@ export function initCriticalPointsCalculator() {
 
   // Trigger initial calculation
   calculateBtn.click();
+}
+
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => initCriticalPointsCalculator(), {
+      once: true,
+    });
+  } else {
+    initCriticalPointsCalculator();
+  }
 }

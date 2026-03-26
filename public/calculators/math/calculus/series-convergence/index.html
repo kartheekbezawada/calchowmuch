@@ -1,40 +1,112 @@
 <div id="calc-series">
-  <div class="calculator-ui">
-    <p class="helper">Test series for convergence using various tests</p>
+  <div class="series-shell">
+    <section class="series-card series-hero-card" aria-label="Series convergence overview">
+      <div class="series-hero-copy">
+        <p class="series-eyebrow">Simple Smooth Wow</p>
+        <h2 class="series-title">Check whether an infinite series converges, see which test answered it, and keep the reasoning on the same screen.</h2>
+        <p class="series-subtitle">
+          Enter the general term, pick the preferred convergence test, and calculate once. The
+          answer card keeps the convergence call visible first while the steps card shows the ratio,
+          root, or comparison trail without a split legacy layout.
+        </p>
+      </div>
+      <ul class="series-hero-points">
+        <li>Best for quick ratio, root, and comparison test checks on common calculus series.</li>
+        <li>The answer card surfaces the verdict, chosen test, and limit estimate first.</li>
+        <li>The steps card remains nearby so you can verify the reasoning without scrolling through clutter.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="series-term">General Term a_n (use 'n' as variable)</label>
-        <input id="series-term" type="text" value="1/n^2" placeholder="e.g., 1/n^2, 1/n!, n/2^n" />
+    <div class="series-workbench">
+      <div class="series-left-stack">
+        <section class="series-card series-input-card" aria-label="Series convergence inputs">
+          <div class="series-card-head">
+            <div>
+              <p class="series-section-label">Inputs</p>
+              <p class="series-card-title">Set the term, pick the test, and define the start index</p>
+            </div>
+            <span class="series-chip">Answer-first</span>
+          </div>
+
+          <p class="series-helper">
+            Use <strong>n</strong> as the series variable. Examples such as <strong>1/n^2</strong>,
+            <strong>n/2^n</strong>, and <strong>1/n!</strong> work well in this route.
+          </p>
+
+          <label class="series-field" for="series-term">
+            <span>General term a_n</span>
+            <input
+              id="series-term"
+              type="text"
+              value="1/n^2"
+              placeholder="e.g., 1/n^2, n/2^n, 1/n!"
+            />
+          </label>
+
+          <div class="button-group series-test-grid" aria-label="Convergence test selection">
+            <button class="test-button active" data-test="auto" type="button">Auto-detect</button>
+            <button class="test-button" data-test="ratio" type="button">Ratio test</button>
+            <button class="test-button" data-test="root" type="button">Root test</button>
+            <button class="test-button" data-test="comparison" type="button">Comparison</button>
+          </div>
+
+          <label class="series-field" for="series-start">
+            <span>Starting index</span>
+            <input id="series-start" type="number" value="1" min="0" />
+          </label>
+
+          <button class="calculator-button series-calc-button" type="button" id="series-calculate">
+            Test convergence
+          </button>
+        </section>
+
+        <section class="series-card series-steps-card" aria-label="Series analysis steps">
+          <div class="series-card-head">
+            <div>
+              <p class="series-section-label">Steps</p>
+              <p class="series-card-title">Limit estimates and comparison notes</p>
+            </div>
+            <span class="series-chip series-chip--steps">Convergence logic</span>
+          </div>
+
+          <div class="result-detail series-steps-output" id="series-steps" aria-live="polite"></div>
+        </section>
       </div>
 
-      <div class="button-group">
-        <button class="test-button active" data-test="auto">Auto-Detect</button>
-        <button class="test-button" data-test="ratio">Ratio Test</button>
-        <button class="test-button" data-test="root">Root Test</button>
-        <button class="test-button" data-test="comparison">Comparison</button>
-      </div>
+      <section class="series-card series-answer-card" aria-label="Series convergence answer summary">
+        <div class="series-card-head">
+          <div>
+            <p class="series-section-label">Answer</p>
+            <p class="series-card-title">Verdict, test used, and quick interpretation</p>
+          </div>
+          <span class="series-chip series-chip--answer">Convergence result</span>
+        </div>
 
-      <div class="input-row">
-        <label for="series-start">Starting index (n =)</label>
-        <input id="series-start" type="number" value="1" min="0" />
-      </div>
+        <div class="result series-result-card" id="series-result" aria-live="polite"></div>
+
+        <div class="series-snapshot-grid" aria-label="Series snapshot">
+          <article class="series-snapshot-card">
+            <span>Default term</span>
+            <strong>1 / n^2</strong>
+          </article>
+          <article class="series-snapshot-card">
+            <span>Primary test</span>
+            <strong>Auto-detect</strong>
+          </article>
+          <article class="series-snapshot-card">
+            <span>Typical output</span>
+            <strong>Converges or diverges</strong>
+          </article>
+          <article class="series-snapshot-card">
+            <span>Reasoning</span>
+            <strong>Limit-based steps</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="series-calculate">
-      Test Convergence
-    </button>
-
-    <div class="result" id="series-result" aria-live="polite"></div>
-    <div class="result-detail" id="series-steps" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/calculus/series-convergence/calculator.css');
 </style>
-
-<script type="module">
-  import { initSeriesConvergenceCalculator } from '/calculators/math/calculus/series-convergence/module.js';
-  initSeriesConvergenceCalculator();
-</script>

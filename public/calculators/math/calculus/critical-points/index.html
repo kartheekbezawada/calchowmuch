@@ -1,48 +1,115 @@
 <div id="calc-critical-points">
-  <div class="calculator-ui">
-    <p class="helper">Find and classify critical points using derivative tests</p>
+  <div class="cp-shell">
+    <section class="cp-card cp-hero-card" aria-label="Critical points overview">
+      <div class="cp-hero-copy">
+        <p class="cp-eyebrow">Simple Smooth Wow</p>
+        <h2 class="cp-title">Find turning points, classify maxima and minima, and keep the derivative reasoning visible on the same screen.</h2>
+        <p class="cp-subtitle">
+          Enter a function, choose the variable, and set the scan window. The answer card keeps the
+          turning-point table and inflection summary visible first while the steps card holds the
+          numerical derivative notes nearby instead of burying them in legacy shell chrome.
+        </p>
+      </div>
+      <ul class="cp-hero-points">
+        <li>Best for quick extrema checks, turning-point review, and first-pass curve analysis.</li>
+        <li>The answer card surfaces critical points, classifications, and inflection points first.</li>
+        <li>The steps card stays adjacent so the reasoning is still available without cluttering the first screen.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="cp-function">Function f(x)</label>
-        <input
-          id="cp-function"
-          type="text"
-          value="x^3 - 3*x^2 + 2"
-          placeholder="e.g., x^3 - 3*x + 2"
-        />
+    <div class="cp-workbench">
+      <div class="cp-left-stack">
+        <section class="cp-card cp-input-card" aria-label="Critical points inputs">
+          <div class="cp-card-head">
+            <div>
+              <p class="cp-section-label">Inputs</p>
+              <p class="cp-card-title">Set the function, variable, and scan range</p>
+            </div>
+            <span class="cp-chip">Answer-first</span>
+          </div>
+
+          <p class="cp-helper">
+            Use a polynomial-style function such as <strong>x^3 - 3*x^2 + 2</strong> for the
+            clearest turning-point analysis.
+          </p>
+
+          <label class="cp-field" for="cp-function">
+            <span>Function f(x)</span>
+            <input
+              id="cp-function"
+              type="text"
+              value="x^3 - 3*x^2 + 2"
+              placeholder="e.g., x^3 - 3*x^2 + 2"
+            />
+          </label>
+
+          <div class="cp-field-grid">
+            <label class="cp-field" for="cp-variable">
+              <span>Variable</span>
+              <input id="cp-variable" type="text" value="x" placeholder="x" />
+            </label>
+            <label class="cp-field" for="cp-range-min">
+              <span>Range min</span>
+              <input id="cp-range-min" type="number" value="-3" step="0.5" />
+            </label>
+            <label class="cp-field" for="cp-range-max">
+              <span>Range max</span>
+              <input id="cp-range-max" type="number" value="5" step="0.5" />
+            </label>
+          </div>
+
+          <button class="calculator-button cp-calc-button" type="button" id="cp-calculate">
+            Find critical points
+          </button>
+        </section>
+
+        <section class="cp-card cp-steps-card" aria-label="Critical point analysis steps">
+          <div class="cp-card-head">
+            <div>
+              <p class="cp-section-label">Steps</p>
+              <p class="cp-card-title">Derivative notes and classification logic</p>
+            </div>
+            <span class="cp-chip cp-chip--steps">Derivative test</span>
+          </div>
+
+          <div class="result-detail cp-steps-output" id="cp-steps" aria-live="polite"></div>
+        </section>
       </div>
 
-      <div class="input-row">
-        <label for="cp-variable">Variable</label>
-        <input id="cp-variable" type="text" value="x" placeholder="x" />
-      </div>
+      <section class="cp-card cp-answer-card" aria-label="Critical points answer summary">
+        <div class="cp-card-head">
+          <div>
+            <p class="cp-section-label">Answer</p>
+            <p class="cp-card-title">Critical points, inflection points, and quick interpretation</p>
+          </div>
+          <span class="cp-chip cp-chip--answer">Turning points</span>
+        </div>
 
-      <div class="input-row">
-        <label for="cp-range-min">Graph Range Min</label>
-        <input id="cp-range-min" type="number" value="-3" step="0.5" />
-      </div>
+        <div class="result cp-result-card" id="cp-result" aria-live="polite"></div>
 
-      <div class="input-row">
-        <label for="cp-range-max">Graph Range Max</label>
-        <input id="cp-range-max" type="number" value="5" step="0.5" />
-      </div>
+        <div class="cp-snapshot-grid" aria-label="Critical points snapshot">
+          <article class="cp-snapshot-card">
+            <span>Function</span>
+            <strong>x^3 - 3*x^2 + 2</strong>
+          </article>
+          <article class="cp-snapshot-card">
+            <span>Variable</span>
+            <strong>x</strong>
+          </article>
+          <article class="cp-snapshot-card">
+            <span>Window</span>
+            <strong>-3 to 5</strong>
+          </article>
+          <article class="cp-snapshot-card">
+            <span>Output</span>
+            <strong>Max, min, inflection</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="cp-calculate">
-      Find Critical Points
-    </button>
-
-    <div class="result" id="cp-result" aria-live="polite"></div>
-    <div class="result-detail" id="cp-steps" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/calculus/critical-points/calculator.css');
 </style>
-
-<script type="module">
-  import { initCriticalPointsCalculator } from '/calculators/math/calculus/critical-points/module.js';
-  initCriticalPointsCalculator();
-</script>

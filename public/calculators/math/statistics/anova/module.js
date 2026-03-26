@@ -122,3 +122,7 @@ export function initAnovaCalculator() {
   calculateButton.addEventListener('click', calculate);
   calculate();
 }
+
+if (document.querySelector('#calc-anova')) {
+  initAnovaCalculator();
+}

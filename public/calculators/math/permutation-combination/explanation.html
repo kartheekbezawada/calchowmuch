@@ -1,98 +1,142 @@
-<section>
-  <h3>What Are Permutations and Combinations?</h3>
-  <p>
-    Both permutations and combinations count ways to select items from a set. The key difference is
-    whether the order of selection matters.
-  </p>
-  <ul>
-    <li><strong>Permutation:</strong> Order matters (ABC is different from BAC)</li>
-    <li><strong>Combination:</strong> Order doesn't matter (ABC is the same as BAC)</li>
-  </ul>
-</section>
+<div id="count-explanation">
+  <section class="count-exp-section">
+    <h2>Permutation and Combination Calculator Practical Guide</h2>
+    <p>
+      Use this calculator to decide whether order matters, then compute permutations, combinations,
+      or factorials in one clean answer-first flow. It is designed for quick counting checks in
+      classwork, interview prep, lotteries, ranking scenarios, and basic probability setups without
+      leaving the result behind heavy legacy navigation.
+    </p>
+    <ul class="count-summary-list">
+      <li><strong>Best for:</strong> counting arrangements, selections, and factorial totals from one route.</li>
+      <li><strong>Quick answer flow:</strong> choose the mode first, enter n and r, then read the exact integer answer card.</li>
+      <li><strong>Output includes:</strong> exact total, formula, optional step expansion, and a plain-language use case.</li>
+    </ul>
+  </section>
 
-<section>
-  <h3>When to Use Each</h3>
-  <ul>
-    <li>
-      <strong>Permutations:</strong> Ranking, arranging, passwords, seating arrangements, race
-      placements
-    </li>
-    <li>
-      <strong>Combinations:</strong> Selecting committees, lottery numbers, choosing items from a
-      menu
-    </li>
-  </ul>
-</section>
+  <section class="count-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Choose <strong>Permutation</strong> when order matters, <strong>Combination</strong> when order does not, or <strong>Factorial</strong> for n! only.</li>
+      <li>Enter <strong>n</strong> as the total available items.</li>
+      <li>Enter <strong>r</strong> when you are selecting or arranging fewer than all items.</li>
+      <li>Click <strong>Calculate count</strong> and compare the answer card with the example use line to confirm the mode.</li>
+    </ol>
+  </section>
 
-<section>
-  <h3>Input Definitions</h3>
-  <ul>
-    <li><strong>n:</strong> The total number of items in the set (must be 0-170).</li>
-    <li><strong>r:</strong> The number of items to select or arrange (must be 0 to n).</li>
-    <li><strong>Factorial mode:</strong> Uses only n to compute n!.</li>
-  </ul>
-</section>
+  <section class="count-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="count-table-wrap">
+      <table class="count-summary-table">
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Meaning</th>
+            <th>Typical use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>nPr</td>
+            <td>Order matters</td>
+            <td>Rankings, passwords, seating plans, finish orders</td>
+          </tr>
+          <tr>
+            <td>nCr</td>
+            <td>Order does not matter</td>
+            <td>Committees, lottery picks, unordered selections</td>
+          </tr>
+          <tr>
+            <td>n!</td>
+            <td>Arrange all n items</td>
+            <td>Full arrangement counts and formula building blocks</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-<section>
-  <h3>Formulas</h3>
-  <p><strong>Permutation (nPr):</strong></p>
-  <p style="margin-left: 1rem">nPr = n! / (n-r)!</p>
+  <section class="count-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      Use <strong>nPr = n! / (n - r)!</strong> when order matters and
+      <strong>nCr = n! / (r!(n - r)!)</strong> when order does not. Factorial mode uses
+      <strong>n! = n × (n - 1) × ... × 1</strong> and acts as the base building block for both
+      counting formulas.
+    </p>
+  </section>
 
-  <p><strong>Combination (nCr):</strong></p>
-  <p style="margin-left: 1rem">nCr = n! / (r! × (n-r)!)</p>
+  <section class="count-exp-section">
+    <h3>Worked Example</h3>
+    <div class="count-example-grid">
+      <article class="count-example-card">
+        <h4>Permutation example</h4>
+        <p>With <strong>n = 10</strong> and <strong>r = 3</strong>, the route computes <strong>10P3 = 720</strong>.</p>
+        <p>That matches a ranking problem where first, second, and third place are all distinct positions.</p>
+      </article>
+      <article class="count-example-card">
+        <h4>Combination example</h4>
+        <p>Using the same numbers in combination mode gives <strong>10C3 = 120</strong>.</p>
+        <p>That fits a committee or team selection where the chosen people matter, but their order does not.</p>
+      </article>
+    </div>
+  </section>
 
-  <p><strong>Factorial (n!):</strong></p>
-  <p style="margin-left: 1rem">n! = n × (n-1) × (n-2) × ... × 2 × 1</p>
-</section>
+  <section class="count-exp-section" id="count-faq">
+    <h3>FAQ</h3>
+    <div class="count-faq-grid">
+      <article class="faq-card">
+        <h4>What is the simplest way to tell nPr from nCr?</h4>
+        <p>If swapping positions changes the outcome, use a permutation. If swapping does nothing, use a combination.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why does factorial mode hide r?</h4>
+        <p>Factorial only needs one input because it counts all arrangements of the full set from n down to 1.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why is n limited to 170?</h4>
+        <p>Values above 170 become too large for the current exact-number handling and can overflow practical display limits.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why is nPr larger than nCr?</h4>
+        <p>Permutations count every order separately, while combinations collapse those repeated orderings into one selection.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What does 0! equal?</h4>
+        <p>Zero factorial equals 1 by definition, which keeps many counting formulas consistent.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does the route round the answer?</h4>
+        <p>No. Results stay as exact integers so you can use them directly in later probability or counting work.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (Permutation)</h3>
-  <p>Using defaults: n = 10, r = 3</p>
-  <ol>
-    <li>Formula: 10P3 = 10! / (10-3)! = 10! / 7!</li>
-    <li>Simplify: 10 × 9 × 8 = 720</li>
-    <li>Result: There are 720 ways to arrange 3 items from 10.</li>
-  </ol>
-  <p>Example: Selecting 1st, 2nd, and 3rd place from 10 contestants.</p>
-</section>
+  <section class="count-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="count-related-grid">
+      <a class="count-related-card" href="/math/probability/">
+        <strong>Probability Calculator</strong>
+        <span>Use counting totals as the next step in event and binomial probability questions.</span>
+      </a>
+      <a class="count-related-card" href="/math/number-sequence/">
+        <strong>Number Sequence Calculator</strong>
+        <span>Move from counting arrangements into structured arithmetic and geometric patterns.</span>
+      </a>
+      <a class="count-related-card" href="/math/sample-size/">
+        <strong>Sample Size</strong>
+        <span>Use exact counts as a bridge into survey and experiment planning.</span>
+      </a>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (Combination)</h3>
-  <p>Using: n = 10, r = 3</p>
-  <ol>
-    <li>Formula: 10C3 = 10! / (3! × 7!)</li>
-    <li>Simplify: (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120</li>
-    <li>Result: There are 120 ways to choose 3 items from 10.</li>
-  </ol>
-  <p>Example: Selecting a committee of 3 people from 10 candidates.</p>
-</section>
-
-<section>
-  <h3>Key Relationships</h3>
-  <ul>
-    <li>nPr is always greater than or equal to nCr (since order creates more arrangements)</li>
-    <li>nPr = nCr × r! (permutation counts each combination r! times)</li>
-    <li>nC0 = nCn = 1 (one way to choose nothing or everything)</li>
-    <li>nCr = nC(n-r) (symmetric property)</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Special Cases</h3>
-  <ul>
-    <li><strong>0! = 1:</strong> By definition, zero factorial equals one.</li>
-    <li><strong>nP0 = 1:</strong> One way to arrange zero items (do nothing).</li>
-    <li><strong>nPn = n!:</strong> Arranging all items.</li>
-    <li><strong>nC1 = n:</strong> n ways to choose 1 item.</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Edge Cases and Validation</h3>
-  <ul>
-    <li>n must be between 0 and 170 (larger values cause overflow).</li>
-    <li>r must be between 0 and n.</li>
-    <li>Results are displayed as exact integers (no rounding).</li>
-    <li>Large results are shown without commas.</li>
-  </ul>
-</section>
+  <section class="count-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="count-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Input rule:</strong> n and r must be whole numbers, and r cannot exceed n.</li>
+      <li><strong>Overflow rule:</strong> n is limited to 170 to keep the exact-integer engine within safe bounds.</li>
+      <li><strong>Decision rule:</strong> Always decide whether order matters before trusting the result.</li>
+    </ul>
+  </section>
+</div>

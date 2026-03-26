@@ -1,57 +1,93 @@
 <div id="calc-anova">
-  <div class="calculator-ui">
-    <p class="helper">Compare means across multiple groups using Analysis of Variance (ANOVA).</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="anova-groups">Number of Groups</label>
-        <input id="anova-groups" type="number" value="3" min="2" max="10" step="1" />
+  <div class="analysis-shell">
+    <section class="analysis-card analysis-hero-card" aria-label="ANOVA overview">
+      <div class="analysis-hero-copy">
+        <p class="analysis-eyebrow">Simple Smooth Wow</p>
+        <h2 class="analysis-title">Compare several group means in one answer-first ANOVA panel before you decide whether post-hoc work is worth doing.</h2>
+        <p class="analysis-subtitle">
+          Paste each group, choose the significance level, and keep the F-statistic, p-value,
+          degrees of freedom, and effect sizes together so the decision is visible without scanning
+          a legacy results stack.
+        </p>
       </div>
+      <ul class="analysis-hero-points">
+        <li>Keeps the decision, sums of squares, and group means in one answer card.</li>
+        <li>Lets you expand from two groups to several groups without changing routes.</li>
+        <li>Removes the old split-shell chrome from one-way ANOVA workflow.</li>
+      </ul>
+    </section>
 
-      <div id="anova-group-inputs">
-        <div class="input-row">
-          <label for="anova-group-1">Group 1</label>
-          <textarea id="anova-group-1" rows="2" placeholder="Enter values separated by commas">
-23, 25, 27, 22, 24</textarea
-          >
+    <div class="analysis-workbench">
+      <section class="analysis-card analysis-input-card" aria-label="ANOVA inputs">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Inputs</p>
+            <p class="analysis-card-title">Set the number of groups and paste each group dataset</p>
+          </div>
+          <span class="analysis-chip">Group comparison</span>
         </div>
-        <div class="input-row">
-          <label for="anova-group-2">Group 2</label>
-          <textarea id="anova-group-2" rows="2" placeholder="Enter values separated by commas">
-30, 32, 28, 31, 29</textarea
-          >
-        </div>
-        <div class="input-row">
-          <label for="anova-group-3">Group 3</label>
-          <textarea id="anova-group-3" rows="2" placeholder="Enter values separated by commas">
-18, 20, 22, 19, 21</textarea
-          >
-        </div>
-      </div>
 
-      <div class="input-row">
-        <label for="anova-alpha">Significance Level (alpha)</label>
-        <div class="button-group" role="group" data-button-group="anova-alpha">
-          <button class="calculator-button secondary" data-value="0.01">0.01</button>
-          <button class="calculator-button secondary is-active" data-value="0.05">0.05</button>
-          <button class="calculator-button secondary" data-value="0.10">0.10</button>
+        <label class="analysis-field" for="anova-groups">
+          <span>Number of groups</span>
+          <input id="anova-groups" type="number" value="3" min="2" max="10" step="1" />
+          <small>Use two to ten independent groups. Each group must contain numeric values.</small>
+        </label>
+
+        <div class="analysis-group-grid" id="anova-group-inputs">
+          <label class="analysis-field" for="anova-group-1">
+            <span>Group 1</span>
+            <textarea id="anova-group-1" rows="3" placeholder="Enter values separated by commas">23, 25, 27, 22, 24</textarea>
+          </label>
+          <label class="analysis-field" for="anova-group-2">
+            <span>Group 2</span>
+            <textarea id="anova-group-2" rows="3" placeholder="Enter values separated by commas">30, 32, 28, 31, 29</textarea>
+          </label>
+          <label class="analysis-field" for="anova-group-3">
+            <span>Group 3</span>
+            <textarea id="anova-group-3" rows="3" placeholder="Enter values separated by commas">18, 20, 22, 19, 21</textarea>
+          </label>
         </div>
-      </div>
+
+        <div class="analysis-field">
+          <span>Significance level (alpha)</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="anova-alpha">
+            <button class="calculator-button secondary" type="button" data-value="0.01">0.01</button>
+            <button class="calculator-button secondary is-active" type="button" data-value="0.05">0.05</button>
+            <button class="calculator-button secondary" type="button" data-value="0.10">0.10</button>
+          </div>
+        </div>
+
+        <button class="calculator-button analysis-calc-button" type="button" id="anova-calculate">
+          Run ANOVA
+        </button>
+      </section>
+
+      <section class="analysis-card analysis-answer-card" aria-label="ANOVA answer">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Answer</p>
+            <p class="analysis-card-title">F-statistic, p-value, and variance breakdown</p>
+          </div>
+          <span class="analysis-chip analysis-chip--answer">F-test</span>
+        </div>
+
+        <div class="result analysis-result-card" id="anova-result" aria-live="polite"></div>
+
+        <div class="analysis-snapshot-grid" aria-label="ANOVA workflow summary">
+          <article class="analysis-snapshot-card">
+            <span>Primary output</span>
+            <strong>Significant or not significant</strong>
+          </article>
+          <article class="analysis-snapshot-card">
+            <span>Verification</span>
+            <strong>Effect size and group means</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="anova-calculate">
-      Run ANOVA
-    </button>
-
-    <div class="result" id="anova-result" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/statistics/anova/calculator.css');
 </style>
-
-<script type="module">
-  import { initAnovaCalculator } from '/calculators/math/statistics/anova/module.js';
-  initAnovaCalculator();
-</script>

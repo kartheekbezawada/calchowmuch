@@ -1,30 +1,75 @@
 <div id="calc-z-score">
-  <div class="calculator-ui">
-    <p class="helper">Calculate the z-score for a value given the mean and standard deviation.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="zscore-x">Value (x)</label>
-        <input id="zscore-x" type="number" value="85" step="any" />
+  <div class="stats-shell">
+    <section class="stats-card stats-hero-card" aria-label="Z-score overview">
+      <div class="stats-hero-copy">
+        <p class="stats-eyebrow">Simple Smooth Wow</p>
+        <h2 class="stats-title">See how far one value sits above or below the mean in standard-deviation units.</h2>
+        <p class="stats-subtitle">
+          Enter the value, mean, and standard deviation once. The answer card keeps the z-score,
+          formula, and plain-language interpretation together without extra shell clutter.
+        </p>
       </div>
+      <ul class="stats-hero-points">
+        <li>Best for fast standard-score interpretation.</li>
+        <li>The answer card surfaces the z-score first, then explains whether the value is above or below the mean.</li>
+        <li>The full workflow stays visible on the first screen on desktop and mobile.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label for="zscore-mean">Mean (μ)</label>
-        <input id="zscore-mean" type="number" value="75" step="any" />
-      </div>
+    <div class="stats-workbench">
+      <section class="stats-card stats-input-card" aria-label="Z-score inputs">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Inputs</p>
+            <p class="stats-card-title">Set the value, mean, and standard deviation</p>
+          </div>
+          <span class="stats-chip">Answer-first</span>
+        </div>
 
-      <div class="input-row">
-        <label for="zscore-stddev">Standard Deviation (σ)</label>
-        <input id="zscore-stddev" type="number" value="10" min="0.0001" step="any" />
-      </div>
+        <div class="stats-field-grid">
+          <label class="stats-field" for="zscore-x">
+            <span>Value (x)</span>
+            <input id="zscore-x" type="number" value="85" step="any" />
+          </label>
+          <label class="stats-field" for="zscore-mean">
+            <span>Mean (mu)</span>
+            <input id="zscore-mean" type="number" value="75" step="any" />
+          </label>
+          <label class="stats-field" for="zscore-stddev">
+            <span>Standard deviation (sigma)</span>
+            <input id="zscore-stddev" type="number" value="10" min="0.0001" step="any" />
+          </label>
+        </div>
+
+        <button class="calculator-button stats-calc-button" type="button" id="zscore-calculate">
+          Calculate z-score
+        </button>
+      </section>
+
+      <section class="stats-card stats-answer-card" aria-label="Z-score answer">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Answer</p>
+            <p class="stats-card-title">Standard score, formula, and interpretation</p>
+          </div>
+          <span class="stats-chip stats-chip--answer">Standard score</span>
+        </div>
+
+        <div class="result stats-result-card" id="zscore-result" aria-live="polite"></div>
+        <div class="result-detail stats-detail-card" id="zscore-detail" aria-live="polite"></div>
+
+        <div class="stats-snapshot-grid" aria-label="Z-score workflow snapshot">
+          <article class="stats-snapshot-card">
+            <span>Output</span>
+            <strong>Z-score value</strong>
+          </article>
+          <article class="stats-snapshot-card">
+            <span>Interpretation</span>
+            <strong>Above or below mean</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="zscore-calculate">
-      Calculate Z-score
-    </button>
-
-    <div class="result" id="zscore-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="zscore-detail" aria-live="polite"></div>
   </div>
 </div>
 

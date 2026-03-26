@@ -1,56 +1,98 @@
 <div id="calc-correlation">
-  <div class="calculator-ui">
-    <p class="helper">Calculate correlation coefficients and test their significance.</p>
+  <div class="analysis-shell">
+    <section class="analysis-card analysis-hero-card" aria-label="Correlation overview">
+      <div class="analysis-hero-copy">
+        <p class="analysis-eyebrow">Simple Smooth Wow</p>
+        <h2 class="analysis-title">Check whether two variables move together, how strongly they do it, and whether the signal is statistically credible.</h2>
+        <p class="analysis-subtitle">
+          Paste X and Y values, choose Pearson for linear relationships or rank-based methods for
+          monotonic data, and read the answer card for the coefficient, strength label, and
+          significance test in one place.
+        </p>
+      </div>
+      <ul class="analysis-hero-points">
+        <li>Keeps coefficient, strength, direction, and significance in one answer-first panel.</li>
+        <li>Lets you switch between Pearson, Spearman, and Kendall without moving to separate tools.</li>
+        <li>Removes the old inline-init dependency and legacy shell clutter from the route.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="corr-x-data">X Values</label>
-        <textarea id="corr-x-data" rows="2" placeholder="Enter X values separated by commas">
+    <div class="analysis-workbench">
+      <section class="analysis-card analysis-input-card" aria-label="Correlation inputs">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Inputs</p>
+            <p class="analysis-card-title">Enter paired values and choose the relationship test</p>
+          </div>
+          <span class="analysis-chip">Two-variable check</span>
+        </div>
+
+        <div class="analysis-two-up">
+          <label class="analysis-field" for="corr-x-data">
+            <span>X values</span>
+            <textarea id="corr-x-data" rows="5" placeholder="Enter X values separated by commas">
 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea
-        >
-      </div>
-
-      <div class="input-row">
-        <label for="corr-y-data">Y Values</label>
-        <textarea id="corr-y-data" rows="2" placeholder="Enter Y values separated by commas">
+            >
+          </label>
+          <label class="analysis-field" for="corr-y-data">
+            <span>Y values</span>
+            <textarea id="corr-y-data" rows="5" placeholder="Enter Y values separated by commas">
 2.3, 4.1, 5.9, 7.8, 10.2, 12.1, 13.8, 16.2, 18.1, 19.9</textarea
-        >
-      </div>
-
-      <div class="input-row">
-        <label>Correlation Type</label>
-        <div class="button-group" role="group" data-button-group="corr-type">
-          <button class="calculator-button secondary is-active" data-value="pearson">
-            Pearson
-          </button>
-          <button class="calculator-button secondary" data-value="spearman">Spearman</button>
-          <button class="calculator-button secondary" data-value="kendall">Kendall</button>
+            >
+          </label>
         </div>
-      </div>
 
-      <div class="input-row">
-        <label>Significance Level (alpha)</label>
-        <div class="button-group" role="group" data-button-group="corr-alpha">
-          <button class="calculator-button secondary" data-value="0.01">0.01</button>
-          <button class="calculator-button secondary is-active" data-value="0.05">0.05</button>
-          <button class="calculator-button secondary" data-value="0.10">0.10</button>
+        <div class="analysis-field">
+          <span>Correlation type</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="corr-type">
+            <button class="calculator-button secondary is-active" type="button" data-value="pearson">
+              Pearson
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="spearman">Spearman</button>
+            <button class="calculator-button secondary" type="button" data-value="kendall">Kendall</button>
+          </div>
         </div>
-      </div>
+
+        <div class="analysis-field">
+          <span>Significance level (alpha)</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="corr-alpha">
+            <button class="calculator-button secondary" type="button" data-value="0.01">0.01</button>
+            <button class="calculator-button secondary is-active" type="button" data-value="0.05">0.05</button>
+            <button class="calculator-button secondary" type="button" data-value="0.10">0.10</button>
+          </div>
+        </div>
+
+        <button class="calculator-button analysis-calc-button" type="button" id="corr-calculate">
+          Calculate correlation
+        </button>
+      </section>
+
+      <section class="analysis-card analysis-answer-card" aria-label="Correlation answer">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Answer</p>
+            <p class="analysis-card-title">Coefficient, strength, and significance summary</p>
+          </div>
+          <span class="analysis-chip analysis-chip--answer">r / rho / tau</span>
+        </div>
+
+        <div class="result analysis-result-card" id="corr-result" aria-live="polite"></div>
+
+        <div class="analysis-snapshot-grid" aria-label="Correlation workflow summary">
+          <article class="analysis-snapshot-card">
+            <span>Primary output</span>
+            <strong>Strength and direction</strong>
+          </article>
+          <article class="analysis-snapshot-card">
+            <span>Verification</span>
+            <strong>p-value and interval</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="corr-calculate">
-      Calculate Correlation
-    </button>
-
-    <div class="result" id="corr-result" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/statistics/correlation/calculator.css');
 </style>
-
-<script type="module">
-  import { initCorrelationCalculator } from '/calculators/math/statistics/correlation/module.js';
-  initCorrelationCalculator();
-</script>

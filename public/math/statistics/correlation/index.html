@@ -3,377 +3,1644 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Correlation Calculator | Calculate How Much Online Calculator</title>
-    <meta name="description" content="Correlation Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <title>Correlation Calculator | Pearson, Spearman and Kendall | CalcHowMuch</title>
+    <meta name="description" content="Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout." />
     <link rel="canonical" href="https://calchowmuch.com/math/statistics/correlation/" />
-    <meta property="og:title" content="Correlation Calculator | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="Correlation Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:title" content="Correlation Calculator | Pearson, Spearman and Kendall | CalcHowMuch" />
+    <meta property="og:description" content="Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/statistics/correlation/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Correlation Calculator | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="Correlation Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:title" content="Correlation Calculator | Pearson, Spearman and Kendall | CalcHowMuch" />
+    <meta name="twitter:description" content="Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-math-cluster="true">
+      /* assets/css/base.css */
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/math/shared/cluster-light.css */
+      :root {
+        --math-shell-bg: linear-gradient(180deg, #f6fbff 0%, #eef6ff 42%, #f9fbff 100%);
+        --math-shell-surface: rgba(255, 255, 255, 0.92);
+        --math-shell-surface-strong: #ffffff;
+        --math-shell-border: rgba(15, 23, 42, 0.1);
+        --math-shell-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        --math-shell-shadow-soft: 0 14px 34px rgba(59, 130, 246, 0.12);
+        --math-shell-text: #132238;
+        --math-shell-muted: #5e7086;
+        --math-shell-accent: #0f766e;
+        --math-shell-accent-strong: #0b5a54;
+        --math-shell-highlight: #effcf8;
+        --math-shell-chip: rgba(15, 118, 110, 0.12);
+        --math-shell-chip-text: #0f5d58;
+        --math-shell-line: rgba(15, 23, 42, 0.08);
+      }
+
+      body {
+        color: var(--math-shell-text);
+        background: var(--math-shell-bg);
+      }
+
+      .math-cluster-wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .math-cluster-site-header,
+      .math-cluster-site-footer {
+        background: rgba(255, 255, 255, 0.74);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--math-shell-line);
+      }
+
+      .math-cluster-site-header-inner,
+      .math-cluster-site-footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 0;
+      }
+
+      .math-cluster-brand,
+      .math-cluster-site-links a,
+      .math-cluster-footer-links a {
+        color: var(--math-shell-text);
+      }
+
+      .math-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .math-cluster-brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #0f766e, #38bdf8);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: var(--math-shell-shadow-soft);
+      }
+
+      .math-cluster-site-label {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--math-shell-chip);
+        color: var(--math-shell-chip-text);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .math-cluster-site-links,
+      .math-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .math-cluster-layout-main {
+        padding: 28px 0 48px;
+      }
+
+      .math-cluster-center-column {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .math-cluster-panel {
+        display: grid;
+        gap: 28px;
+        padding: 28px;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 28px;
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
+        box-shadow: var(--math-shell-shadow);
+      }
+
+      .math-cluster-page-header {
+        display: grid;
+        gap: 12px;
+      }
+
+      .math-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.92rem;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-breadcrumbs a {
+        color: var(--math-shell-accent-strong);
+      }
+
+      .math-cluster-page-kicker {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--math-shell-highlight);
+        color: var(--math-shell-accent-strong);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .math-cluster-page-header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .math-cluster-page-intro {
+        margin: 0;
+        max-width: 68ch;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      .math-cluster-footer-copy {
+        color: var(--math-shell-muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 900px) {
+        .math-cluster-site-header-inner,
+        .math-cluster-site-footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .math-cluster-panel {
+          padding: 22px 18px;
+          border-radius: 22px;
+        }
+      }
+
+      /* calculators/math/statistics/correlation/calculator.css */
+      #calc-correlation {
+        --analysis-border: #dbe6f1;
+        --analysis-surface: #ffffff;
+        --analysis-surface-alt: #f4f8fc;
+        --analysis-ink: #17324d;
+        --analysis-muted: #5b7289;
+        --analysis-accent: #1c73d7;
+        --analysis-accent-soft: #dcebff;
+      }
+
+      #calc-correlation .analysis-shell {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      #calc-correlation .analysis-card {
+        background: var(--analysis-surface);
+        border: 1px solid var(--analysis-border);
+        border-radius: 24px;
+        box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+      }
+
+      #calc-correlation .analysis-hero-card,
+      #calc-correlation .analysis-input-card,
+      #calc-correlation .analysis-answer-card {
+        padding: 1.5rem;
+      }
+
+      #calc-correlation .analysis-hero-card {
+        display: grid;
+        gap: 1rem;
+        background:
+          radial-gradient(circle at top right, rgba(28, 115, 215, 0.12), transparent 34%),
+          linear-gradient(135deg, #ffffff, #f6faff);
+      }
+
+      #calc-correlation .analysis-eyebrow,
+      #calc-correlation .analysis-section-label {
+        margin: 0;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--analysis-accent);
+      }
+
+      #calc-correlation .analysis-title,
+      #calc-correlation .analysis-card-title {
+        margin: 0.35rem 0 0;
+        color: var(--analysis-ink);
+      }
+
+      #calc-correlation .analysis-title {
+        font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+        line-height: 1.15;
+      }
+
+      #calc-correlation .analysis-subtitle,
+      #calc-correlation .analysis-hero-points {
+        color: var(--analysis-muted);
+      }
+
+      #calc-correlation .analysis-hero-points {
+        margin: 0;
+        padding-left: 1.15rem;
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      #calc-correlation .analysis-workbench {
+        display: grid;
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      #calc-correlation .analysis-card-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      #calc-correlation .analysis-chip {
+        border-radius: 999px;
+        background: var(--analysis-accent-soft);
+        color: var(--analysis-accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 0.5rem 0.8rem;
+        white-space: nowrap;
+      }
+
+      #calc-correlation .analysis-chip--answer {
+        background: #fff2d8;
+        color: #8d5b10;
+      }
+
+      #calc-correlation .analysis-field {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      #calc-correlation .analysis-field span {
+        font-weight: 600;
+        color: var(--analysis-ink);
+      }
+
+      #calc-correlation .analysis-field textarea {
+        width: 100%;
+        border: 1px solid var(--analysis-border);
+        border-radius: 18px;
+        padding: 1rem;
+        font: inherit;
+        color: var(--analysis-ink);
+        background: #fff;
+        resize: vertical;
+      }
+
+      #calc-correlation .analysis-field textarea:focus {
+        outline: 2px solid rgba(28, 115, 215, 0.16);
+        border-color: var(--analysis-accent);
+      }
+
+      #calc-correlation .analysis-button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      #calc-correlation .analysis-two-up {
+        display: grid;
+        gap: 1rem;
+      }
+
+      #calc-correlation .analysis-calc-button {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      #calc-correlation .analysis-result-card strong {
+        color: var(--analysis-ink);
+      }
+
+      #calc-correlation .stats-table {
+        display: grid;
+        gap: 1rem;
+      }
+
+      #calc-correlation .stats-section {
+        border: 1px solid var(--analysis-border);
+        border-radius: 18px;
+        padding: 1rem;
+        background: var(--analysis-surface-alt);
+      }
+
+      #calc-correlation .stats-section h4 {
+        margin: 0 0 0.6rem;
+        color: var(--analysis-ink);
+      }
+
+      #calc-correlation .stats-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.25rem 0;
+      }
+
+      #calc-correlation .stats-row span:first-child {
+        color: var(--analysis-muted);
+      }
+
+      #calc-correlation .stats-row span:last-child {
+        color: var(--analysis-ink);
+        font-weight: 600;
+        text-align: right;
+      }
+
+      #calc-correlation .significant {
+        color: #15803d;
+        font-weight: 700;
+      }
+
+      #calc-correlation .not-significant {
+        color: #c2410c;
+        font-weight: 700;
+      }
+
+      #calc-correlation .analysis-snapshot-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      #calc-correlation .analysis-snapshot-card {
+        border: 1px solid var(--analysis-border);
+        border-radius: 18px;
+        padding: 0.9rem 1rem;
+        background: #fbfdff;
+      }
+
+      #calc-correlation .analysis-snapshot-card span {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--analysis-muted);
+        margin-bottom: 0.25rem;
+      }
+
+      #correlation-explanation {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      #correlation-explanation .analysis-exp-section {
+        background: #fff;
+        border: 1px solid var(--analysis-border);
+        border-radius: 24px;
+        padding: 1.4rem;
+      }
+
+      #correlation-explanation .analysis-summary-list,
+      #correlation-explanation .analysis-notes-list {
+        margin: 0;
+        padding-left: 1.15rem;
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      #correlation-explanation .analysis-table-wrap {
+        overflow-x: auto;
+      }
+
+      #correlation-explanation .analysis-summary-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      #correlation-explanation .analysis-summary-table th,
+      #correlation-explanation .analysis-summary-table td {
+        border-bottom: 1px solid var(--analysis-border);
+        padding: 0.75rem;
+        text-align: left;
+      }
+
+      #correlation-explanation .analysis-example-grid,
+      #correlation-explanation .analysis-faq-grid,
+      #correlation-explanation .analysis-related-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      #correlation-explanation .analysis-example-card,
+      #correlation-explanation .faq-card,
+      #correlation-explanation .analysis-related-card {
+        border: 1px solid var(--analysis-border);
+        border-radius: 18px;
+        padding: 1rem;
+        background: #fbfdff;
+      }
+
+      #correlation-explanation .analysis-related-card {
+        display: grid;
+        gap: 0.35rem;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      @media (min-width: 980px) {
+        #calc-correlation .analysis-hero-card {
+          grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+          align-items: start;
+        }
+
+        #calc-correlation .analysis-workbench {
+          grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+        }
+
+        #calc-correlation .analysis-two-up,
+        #calc-correlation .stats-table {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #correlation-explanation .analysis-example-grid,
+        #correlation-explanation .analysis-faq-grid,
+        #correlation-explanation .analysis-related-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/statistics/correlation/#webpage","name":"Correlation Calculator | Pearson, Spearman and Kendall | CalcHowMuch","url":"https://calchowmuch.com/math/statistics/correlation/","description":"Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/statistics/correlation/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/statistics/correlation/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/statistics/correlation/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/statistics/correlation/#softwareapplication","name":"Correlation Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/statistics/correlation/","description":"Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/statistics/correlation/#faq","mainEntity":[{"@type":"Question","name":"What does a negative correlation mean?","acceptedAnswer":{"@type":"Answer","text":"It means larger X values tend to come with smaller Y values, so the relationship slopes downward."}},{"@type":"Question","name":"Does correlation prove causation?","acceptedAnswer":{"@type":"Answer","text":"No. Correlation only shows association, not that one variable directly causes the other."}},{"@type":"Question","name":"When should I use Spearman instead of Pearson?","acceptedAnswer":{"@type":"Answer","text":"Use Spearman when the values are better understood by ranks or the relationship is monotonic but not clearly linear."}},{"@type":"Question","name":"Why might Kendall be useful?","acceptedAnswer":{"@type":"Answer","text":"Kendall is often more stable with smaller samples or data that contains many tied ranks."}},{"@type":"Question","name":"What makes a correlation statistically significant?","acceptedAnswer":{"@type":"Answer","text":"A small p-value relative to your chosen alpha suggests the observed association is unlikely to be zero in the source population."}},{"@type":"Question","name":"Why should I still inspect the data visually?","acceptedAnswer":{"@type":"Answer","text":"Outliers or curved patterns can distort a coefficient, so a scatter plot can reveal problems the summary number hides."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/statistics/correlation/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Correlation Calculator","item":"https://calchowmuch.com/math/statistics/correlation/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+    <div class="page math-cluster-page-shell">
+      <header class="math-cluster-site-header">
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a><a class="top-nav-link" href="/pricing-calculators/commission-calculator/"><span class="nav-label">Pricing Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="math-nav-container">
-<div class="math-nav-category is-collapsed" data-id="simple">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
-      <span class="math-nav-category-name">SIMPLE</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/basic/">Basic Calculator</a><a class="math-nav-item" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator/">Fraction Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="algebra">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
-      <span class="math-nav-category-name">ALGEBRA</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/algebra/quadratic-equation/">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations/">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations/">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring/">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance/">Slope & Distance Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="trigonometry">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-      <span class="math-nav-category-name">TRIGONOMETRY</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/trigonometry/unit-circle/">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver/">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions/">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig/">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines/">Law of Sines/Cosines Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="calculus">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-      <span class="math-nav-category-name">CALCULUS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/calculus/derivative/">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral/">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit/">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence/">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points/">Critical Points Finder</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="log">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-      <span class="math-nav-category-name">LOG</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/log/natural-log/">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log/">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties/">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations/">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale/">Log Scale Converter</a>
-  </div>
-</div>
-<div class="math-nav-category" data-id="statistics">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
-      <span class="math-nav-category-name">STATISTICS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/mean-median-mode-range/">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation/">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics/">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval/">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score/">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size/">Sample Size</a><a class="math-nav-item" href="/math/number-sequence/">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination/">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability/">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis/">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova/">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing/">Hypothesis Testing</a><a class="math-nav-item is-active" href="/math/statistics/correlation/">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution/">Distribution Calculator</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Correlation Calculator</h1>
-  <div id="calc-correlation">
-  <div class="calculator-ui">
-    <p class="helper">Calculate correlation coefficients and test their significance.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="corr-x-data">X Values</label>
-        <textarea id="corr-x-data" rows="2" placeholder="Enter X values separated by commas">
-1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea
-        >
-      </div>
-
-      <div class="input-row">
-        <label for="corr-y-data">Y Values</label>
-        <textarea id="corr-y-data" rows="2" placeholder="Enter Y values separated by commas">
-2.3, 4.1, 5.9, 7.8, 10.2, 12.1, 13.8, 16.2, 18.1, 19.9</textarea
-        >
-      </div>
-
-      <div class="input-row">
-        <label>Correlation Type</label>
-        <div class="button-group" role="group" data-button-group="corr-type">
-          <button class="calculator-button secondary is-active" data-value="pearson">
-            Pearson
-          </button>
-          <button class="calculator-button secondary" data-value="spearman">Spearman</button>
-          <button class="calculator-button secondary" data-value="kendall">Kendall</button>
-        </div>
-      </div>
-
-      <div class="input-row">
-        <label>Significance Level (alpha)</label>
-        <div class="button-group" role="group" data-button-group="corr-alpha">
-          <button class="calculator-button secondary" data-value="0.01">0.01</button>
-          <button class="calculator-button secondary is-active" data-value="0.05">0.05</button>
-          <button class="calculator-button secondary" data-value="0.10">0.10</button>
-        </div>
-      </div>
+      <main class="math-cluster-layout-main">
+        <section class="math-cluster-center-column">
+          <div class="math-cluster-panel panel-span-all">
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Correlation Calculator</span>
     </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Correlation Calculator</h1>
+    <p class="math-cluster-page-intro">Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-correlation">
+  <div class="analysis-shell">
+    <section class="analysis-card analysis-hero-card" aria-label="Correlation overview">
+      <div class="analysis-hero-copy">
+        <p class="analysis-eyebrow">Simple Smooth Wow</p>
+        <h2 class="analysis-title">Check whether two variables move together, how strongly they do it, and whether the signal is statistically credible.</h2>
+        <p class="analysis-subtitle">
+          Paste X and Y values, choose Pearson for linear relationships or rank-based methods for
+          monotonic data, and read the answer card for the coefficient, strength label, and
+          significance test in one place.
+        </p>
+      </div>
+      <ul class="analysis-hero-points">
+        <li>Keeps coefficient, strength, direction, and significance in one answer-first panel.</li>
+        <li>Lets you switch between Pearson, Spearman, and Kendall without moving to separate tools.</li>
+        <li>Removes the old inline-init dependency and legacy shell clutter from the route.</li>
+      </ul>
+    </section>
 
-    <button class="calculator-button full-width" type="button" id="corr-calculate">
-      Calculate Correlation
-    </button>
+    <div class="analysis-workbench">
+      <section class="analysis-card analysis-input-card" aria-label="Correlation inputs">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Inputs</p>
+            <p class="analysis-card-title">Enter paired values and choose the relationship test</p>
+          </div>
+          <span class="analysis-chip">Two-variable check</span>
+        </div>
 
-    <div class="result" id="corr-result" aria-live="polite"></div>
+        <div class="analysis-two-up">
+          <label class="analysis-field" for="corr-x-data">
+            <span>X values</span>
+            <textarea id="corr-x-data" rows="5" placeholder="Enter X values separated by commas">
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea
+            >
+          </label>
+          <label class="analysis-field" for="corr-y-data">
+            <span>Y values</span>
+            <textarea id="corr-y-data" rows="5" placeholder="Enter Y values separated by commas">
+2.3, 4.1, 5.9, 7.8, 10.2, 12.1, 13.8, 16.2, 18.1, 19.9</textarea
+            >
+          </label>
+        </div>
+
+        <div class="analysis-field">
+          <span>Correlation type</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="corr-type">
+            <button class="calculator-button secondary is-active" type="button" data-value="pearson">
+              Pearson
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="spearman">Spearman</button>
+            <button class="calculator-button secondary" type="button" data-value="kendall">Kendall</button>
+          </div>
+        </div>
+
+        <div class="analysis-field">
+          <span>Significance level (alpha)</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="corr-alpha">
+            <button class="calculator-button secondary" type="button" data-value="0.01">0.01</button>
+            <button class="calculator-button secondary is-active" type="button" data-value="0.05">0.05</button>
+            <button class="calculator-button secondary" type="button" data-value="0.10">0.10</button>
+          </div>
+        </div>
+
+        <button class="calculator-button analysis-calc-button" type="button" id="corr-calculate">
+          Calculate correlation
+        </button>
+      </section>
+
+      <section class="analysis-card analysis-answer-card" aria-label="Correlation answer">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Answer</p>
+            <p class="analysis-card-title">Coefficient, strength, and significance summary</p>
+          </div>
+          <span class="analysis-chip analysis-chip--answer">r / rho / tau</span>
+        </div>
+
+        <div class="result analysis-result-card" id="corr-result" aria-live="polite"></div>
+
+        <div class="analysis-snapshot-grid" aria-label="Correlation workflow summary">
+          <article class="analysis-snapshot-card">
+            <span>Primary output</span>
+            <strong>Strength and direction</strong>
+          </article>
+          <article class="analysis-snapshot-card">
+            <span>Verification</span>
+            <strong>p-value and interval</strong>
+          </article>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 
-<style>
-  @import url('/calculators/math/statistics/correlation/calculator.css?v=20260224');
-</style>
 
-<script type="module">
-  import { initCorrelationCalculator } from '/calculators/math/statistics/correlation/module.js?v=20260224';
-  initCorrelationCalculator();
-</script>
 
+    <div id="correlation-explanation">
+  <section class="analysis-exp-section">
+    <h2>Correlation Calculator Practical Guide</h2>
+    <p>
+      Use this route to measure whether two variables move together, how strongly they move
+      together, and whether that relationship is statistically meaningful. It keeps the coefficient,
+      strength label, p-value, and confidence interval in one answer-first panel so you can review
+      the relationship before fitting a regression line.
+    </p>
+    <ul class="analysis-summary-list">
+      <li><strong>Best for:</strong> quick relationship checks between paired numeric or ranked variables.</li>
+      <li><strong>Quick answer flow:</strong> paste paired lists, choose the coefficient family, and read the answer card first.</li>
+      <li><strong>Output includes:</strong> coefficient, interpretation, significance test, and confidence interval when available.</li>
+    </ul>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Paste paired X and Y values with the same number of data points.</li>
+      <li>Use <strong>Pearson</strong> for linear continuous relationships and rank-based options for monotonic relationships.</li>
+      <li>Choose an alpha level that matches how strict you want the significance test to be.</li>
+      <li>Click <strong>Calculate correlation</strong> and compare strength, direction, and p-value together.</li>
+    </ol>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="analysis-table-wrap">
+      <table class="analysis-summary-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Best use</th>
+            <th>What it measures</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pearson</td>
+            <td>Continuous linear relationships</td>
+            <td>Linear association strength and direction</td>
+          </tr>
+          <tr>
+            <td>Spearman</td>
+            <td>Ranked or monotonic relationships</td>
+            <td>Association based on value ranks</td>
+          </tr>
+          <tr>
+            <td>Kendall</td>
+            <td>Small samples or ties</td>
+            <td>Ordinal concordance and discordance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      Pearson correlation compares centred X and Y values and scales them by their spread.
+      Spearman and Kendall shift the focus to ranks and ordered pairs. In plain terms, the route is
+      asking whether larger X values tend to come with larger Y values, smaller Y values, or no
+      clear pattern at all.
+    </p>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Worked Example</h3>
+    <div class="analysis-example-grid">
+      <article class="analysis-example-card">
+        <h4>Default paired data</h4>
+        <p>The default lists rise together almost perfectly, so the route returns a very strong positive Pearson correlation.</p>
+        <p>That makes it a good first check before you decide whether a regression line is worth fitting.</p>
+      </article>
+      <article class="analysis-example-card">
+        <h4>Why compare Pearson and Spearman?</h4>
+        <p>If Spearman stays strong while Pearson weakens, the relationship may be monotonic but not perfectly linear.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section" id="correlation-faq">
+    <h3>FAQ</h3>
+    <div class="analysis-faq-grid">
+      <article class="faq-card">
+        <h4>What does a negative correlation mean?</h4>
+        <p>It means larger X values tend to come with smaller Y values, so the relationship slopes downward.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does correlation prove causation?</h4>
+        <p>No. Correlation only shows association, not that one variable directly causes the other.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use Spearman instead of Pearson?</h4>
+        <p>Use Spearman when the values are better understood by ranks or the relationship is monotonic but not clearly linear.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why might Kendall be useful?</h4>
+        <p>Kendall is often more stable with smaller samples or data that contains many tied ranks.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What makes a correlation statistically significant?</h4>
+        <p>A small p-value relative to your chosen alpha suggests the observed association is unlikely to be zero in the source population.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why should I still inspect the data visually?</h4>
+        <p>Outliers or curved patterns can distort a coefficient, so a scatter plot can reveal problems the summary number hides.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="analysis-related-grid">
+      <a class="analysis-related-card" href="/math/statistics/regression-analysis/">
+        <strong>Regression Analysis</strong>
+        <span>Move from relationship strength into fitted equations and goodness-of-fit checks.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/">
+        <strong>Statistics Calculator</strong>
+        <span>Profile each variable on its own before comparing them together.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/distribution/">
+        <strong>Distribution Calculator</strong>
+        <span>Check supporting probability distribution values for significance work.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="analysis-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Input rule:</strong> X and Y must have the same number of valid values.</li>
+      <li><strong>Interpretation rule:</strong> A strong coefficient can still come from data with hidden outliers or non-linear shape.</li>
+      <li><strong>Decision rule:</strong> Treat significance, effect size, and visual pattern as separate checks.</li>
+    </ul>
+  </section>
 </div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div class="explanation-content">
-  <h2>Correlation Analysis</h2>
 
-  <p>
-    Correlation measures the strength and direction of the linear relationship between two
-    variables. The correlation coefficient ranges from -1 to +1.
-  </p>
-
-  <h3>Types of Correlation</h3>
-
-  <h4>Pearson Correlation (r)</h4>
-  <p>Measures the linear relationship between two continuous variables.</p>
-  <p>
-    <strong>r = sum((x - x-bar)(y - y-bar)) / sqrt(sum((x - x-bar)2) x sum((y - y-bar)2))</strong>
-  </p>
-  <p>Assumes both variables are normally distributed and the relationship is linear.</p>
-
-  <h4>Spearman Rank Correlation (rho)</h4>
-  <p>A non-parametric measure based on ranks rather than actual values.</p>
-  <p>Appropriate when data are ordinal or when the relationship is monotonic but not linear.</p>
-
-  <h4>Kendall's Tau (tau)</h4>
-  <p>Another rank-based correlation that measures ordinal association.</p>
-  <p>More robust than Spearman's for small samples and handles ties better.</p>
-
-  <h3>Interpreting Correlation Strength</h3>
-  <table>
-    <tr>
-      <th>|r| Value</th>
-      <th>Interpretation</th>
-    </tr>
-    <tr>
-      <td>0.9 - 1.0</td>
-      <td>Very Strong</td>
-    </tr>
-    <tr>
-      <td>0.7 - 0.9</td>
-      <td>Strong</td>
-    </tr>
-    <tr>
-      <td>0.5 - 0.7</td>
-      <td>Moderate</td>
-    </tr>
-    <tr>
-      <td>0.3 - 0.5</td>
-      <td>Weak</td>
-    </tr>
-    <tr>
-      <td>0.0 - 0.3</td>
-      <td>Very Weak / No correlation</td>
-    </tr>
-  </table>
-
-  <h3>Direction</h3>
-  <ul>
-    <li><strong>Positive correlation (r > 0):</strong> As X increases, Y tends to increase</li>
-    <li><strong>Negative correlation (r < 0):</strong> As X increases, Y tends to decrease</li>
-    <li><strong>Zero correlation (r = 0):</strong> No linear relationship</li>
-  </ul>
-
-  <h3>Coefficient of Determination (r2)</h3>
-  <p>
-    The square of the correlation coefficient represents the proportion of variance in Y that can be
-    explained by X.
-  </p>
-  <p>For example, r = 0.8 means r2 = 0.64, so 64% of the variance in Y is explained by X.</p>
-
-  <h3>Significance Testing</h3>
-  <p>The t-test for correlation tests whether r significantly differs from zero.</p>
-  <p><strong>t = r x sqrt((n-2) / (1-r2))</strong></p>
-  <p>A small p-value indicates the correlation is statistically significant.</p>
-
-  <h3>Confidence Interval</h3>
-  <p>
-    Uses Fisher's z-transformation to construct confidence intervals for the correlation
-    coefficient.
-  </p>
-
-  <h3>Important Notes</h3>
-  <ul>
-    <li>Correlation does not imply causation</li>
-    <li>Outliers can strongly influence correlation</li>
-    <li>Always visualize data with scatter plots</li>
-    <li>
-      Sample size affects significance - large samples may show significant but weak correlations
-    </li>
-  </ul>
+  </div>
 </div>
-
-</div>
-        </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
         </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="math-cluster-site-footer">
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
     <script type="module" src="/calculators/math/statistics/correlation/module.js?v=20260224"></script>
   </body>
 </html>

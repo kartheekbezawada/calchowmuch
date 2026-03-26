@@ -3,402 +3,1637 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Number Sequence Calculator | Calculate How Much Online Calculator</title>
-    <meta name="description" content="Number Sequence Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <title>Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch</title>
+    <meta name="description" content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator." />
     <link rel="canonical" href="https://calchowmuch.com/math/number-sequence/" />
-    <meta property="og:title" content="Number Sequence Calculator | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="Number Sequence Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:title" content="Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch" />
+    <meta property="og:description" content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/number-sequence/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Number Sequence Calculator | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="Number Sequence Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:title" content="Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch" />
+    <meta name="twitter:description" content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-math-cluster="true">
+      /* assets/css/base.css */
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/math/shared/cluster-light.css */
+      :root {
+        --math-shell-bg: linear-gradient(180deg, #f6fbff 0%, #eef6ff 42%, #f9fbff 100%);
+        --math-shell-surface: rgba(255, 255, 255, 0.92);
+        --math-shell-surface-strong: #ffffff;
+        --math-shell-border: rgba(15, 23, 42, 0.1);
+        --math-shell-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        --math-shell-shadow-soft: 0 14px 34px rgba(59, 130, 246, 0.12);
+        --math-shell-text: #132238;
+        --math-shell-muted: #5e7086;
+        --math-shell-accent: #0f766e;
+        --math-shell-accent-strong: #0b5a54;
+        --math-shell-highlight: #effcf8;
+        --math-shell-chip: rgba(15, 118, 110, 0.12);
+        --math-shell-chip-text: #0f5d58;
+        --math-shell-line: rgba(15, 23, 42, 0.08);
+      }
+
+      body {
+        color: var(--math-shell-text);
+        background: var(--math-shell-bg);
+      }
+
+      .math-cluster-wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .math-cluster-site-header,
+      .math-cluster-site-footer {
+        background: rgba(255, 255, 255, 0.74);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--math-shell-line);
+      }
+
+      .math-cluster-site-header-inner,
+      .math-cluster-site-footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 0;
+      }
+
+      .math-cluster-brand,
+      .math-cluster-site-links a,
+      .math-cluster-footer-links a {
+        color: var(--math-shell-text);
+      }
+
+      .math-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .math-cluster-brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #0f766e, #38bdf8);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: var(--math-shell-shadow-soft);
+      }
+
+      .math-cluster-site-label {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--math-shell-chip);
+        color: var(--math-shell-chip-text);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .math-cluster-site-links,
+      .math-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .math-cluster-layout-main {
+        padding: 28px 0 48px;
+      }
+
+      .math-cluster-center-column {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .math-cluster-panel {
+        display: grid;
+        gap: 28px;
+        padding: 28px;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 28px;
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
+        box-shadow: var(--math-shell-shadow);
+      }
+
+      .math-cluster-page-header {
+        display: grid;
+        gap: 12px;
+      }
+
+      .math-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.92rem;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-breadcrumbs a {
+        color: var(--math-shell-accent-strong);
+      }
+
+      .math-cluster-page-kicker {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--math-shell-highlight);
+        color: var(--math-shell-accent-strong);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .math-cluster-page-header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .math-cluster-page-intro {
+        margin: 0;
+        max-width: 68ch;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      .math-cluster-footer-copy {
+        color: var(--math-shell-muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 900px) {
+        .math-cluster-site-header-inner,
+        .math-cluster-site-footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .math-cluster-panel {
+          padding: 22px 18px;
+          border-radius: 22px;
+        }
+      }
+
+      /* calculators/math/number-sequence/calculator.css */
+      #calc-number-sequence {
+        --sequence-border: #d8e4f0;
+        --sequence-surface: #ffffff;
+        --sequence-surface-alt: #f5f9fd;
+        --sequence-ink: #17324d;
+        --sequence-muted: #60768c;
+        --sequence-accent: #1f76d2;
+        --sequence-accent-soft: #dcebff;
+      }
+
+      #calc-number-sequence .sequence-shell {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      #calc-number-sequence .sequence-card {
+        background: var(--sequence-surface);
+        border: 1px solid var(--sequence-border);
+        border-radius: 24px;
+        box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+      }
+
+      #calc-number-sequence .sequence-hero-card,
+      #calc-number-sequence .sequence-input-card,
+      #calc-number-sequence .sequence-answer-card {
+        padding: 1.5rem;
+      }
+
+      #calc-number-sequence .sequence-hero-card {
+        display: grid;
+        gap: 1rem;
+        background:
+          radial-gradient(circle at top right, rgba(31, 118, 210, 0.14), transparent 34%),
+          linear-gradient(135deg, #ffffff, #f6fbff);
+      }
+
+      #calc-number-sequence .sequence-eyebrow,
+      #calc-number-sequence .sequence-section-label {
+        margin: 0;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--sequence-accent);
+      }
+
+      #calc-number-sequence .sequence-title,
+      #calc-number-sequence .sequence-card-title {
+        margin: 0.35rem 0 0;
+        color: var(--sequence-ink);
+      }
+
+      #calc-number-sequence .sequence-title {
+        font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+        line-height: 1.14;
+      }
+
+      #calc-number-sequence .sequence-subtitle,
+      #calc-number-sequence .sequence-hero-points,
+      #calc-number-sequence .sequence-field small {
+        color: var(--sequence-muted);
+      }
+
+      #calc-number-sequence .sequence-hero-points {
+        margin: 0;
+        padding-left: 1.15rem;
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      #calc-number-sequence .sequence-workbench {
+        display: grid;
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      #calc-number-sequence .sequence-card-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      #calc-number-sequence .sequence-chip {
+        border-radius: 999px;
+        background: var(--sequence-accent-soft);
+        color: var(--sequence-accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 0.5rem 0.8rem;
+        white-space: nowrap;
+      }
+
+      #calc-number-sequence .sequence-chip--answer {
+        background: #fff3da;
+        color: #8b5f14;
+      }
+
+      #calc-number-sequence .sequence-field {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      #calc-number-sequence .sequence-field span {
+        font-weight: 600;
+        color: var(--sequence-ink);
+      }
+
+      #calc-number-sequence .sequence-field textarea,
+      #calc-number-sequence .sequence-field input {
+        width: 100%;
+        border: 1px solid var(--sequence-border);
+        border-radius: 18px;
+        padding: 0.95rem 1rem;
+        font: inherit;
+        color: var(--sequence-ink);
+        background: #fff;
+      }
+
+      #calc-number-sequence .sequence-field textarea {
+        resize: vertical;
+      }
+
+      #calc-number-sequence .sequence-field textarea:focus,
+      #calc-number-sequence .sequence-field input:focus {
+        outline: 2px solid rgba(31, 118, 210, 0.16);
+        border-color: var(--sequence-accent);
+      }
+
+      #calc-number-sequence .sequence-button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      #calc-number-sequence .sequence-two-up {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      #calc-number-sequence .sequence-calc-button {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      #calc-number-sequence .sequence-detail-card {
+        margin-top: 1rem;
+      }
+
+      #calc-number-sequence .sequence-result-card strong,
+      #calc-number-sequence .sequence-detail-card strong {
+        color: var(--sequence-ink);
+      }
+
+      #calc-number-sequence .sequence-snapshot-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      #calc-number-sequence .sequence-snapshot-card {
+        border: 1px solid var(--sequence-border);
+        border-radius: 18px;
+        padding: 0.9rem 1rem;
+        background: #fbfdff;
+      }
+
+      #calc-number-sequence .sequence-snapshot-card span {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--sequence-muted);
+        margin-bottom: 0.25rem;
+      }
+
+      #sequence-explanation {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      #sequence-explanation .sequence-exp-section {
+        background: #fff;
+        border: 1px solid var(--sequence-border);
+        border-radius: 24px;
+        padding: 1.4rem;
+      }
+
+      #sequence-explanation .sequence-summary-list,
+      #sequence-explanation .sequence-notes-list {
+        margin: 0;
+        padding-left: 1.15rem;
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      #sequence-explanation .sequence-table-wrap {
+        overflow-x: auto;
+      }
+
+      #sequence-explanation .sequence-summary-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      #sequence-explanation .sequence-summary-table th,
+      #sequence-explanation .sequence-summary-table td {
+        border-bottom: 1px solid var(--sequence-border);
+        padding: 0.75rem;
+        text-align: left;
+      }
+
+      #sequence-explanation .sequence-example-grid,
+      #sequence-explanation .sequence-faq-grid,
+      #sequence-explanation .sequence-related-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      #sequence-explanation .sequence-example-card,
+      #sequence-explanation .faq-card,
+      #sequence-explanation .sequence-related-card {
+        border: 1px solid var(--sequence-border);
+        border-radius: 18px;
+        padding: 1rem;
+        background: #fbfdff;
+      }
+
+      #sequence-explanation .sequence-related-card {
+        display: grid;
+        gap: 0.35rem;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      @media (min-width: 980px) {
+        #calc-number-sequence .sequence-hero-card {
+          grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+          align-items: start;
+        }
+
+        #calc-number-sequence .sequence-workbench {
+          grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+        }
+
+        #calc-number-sequence .sequence-two-up {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #sequence-explanation .sequence-example-grid,
+        #sequence-explanation .sequence-faq-grid,
+        #sequence-explanation .sequence-related-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/number-sequence/#webpage","name":"Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch","url":"https://calchowmuch.com/math/number-sequence/","description":"Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/number-sequence/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/number-sequence/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/number-sequence/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/number-sequence/#softwareapplication","name":"Number Sequence Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/number-sequence/","description":"Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/number-sequence/#faq","mainEntity":[{"@type":"Question","name":"How many terms do I need?","acceptedAnswer":{"@type":"Answer","text":"You need at least three terms so the route can test whether the difference or ratio stays consistent."}},{"@type":"Question","name":"When should I force arithmetic mode?","acceptedAnswer":{"@type":"Answer","text":"Force arithmetic mode when you already know the list should increase or decrease by one fixed difference."}},{"@type":"Question","name":"What if the route says neither?","acceptedAnswer":{"@type":"Answer","text":"That means the list does not keep one common difference or one common ratio across the supplied terms."}},{"@type":"Question","name":"Can the ratio be negative?","acceptedAnswer":{"@type":"Answer","text":"Yes. A negative ratio produces alternating positive and negative terms if the input terms support that pattern."}},{"@type":"Question","name":"Why does the route limit preview length?","acceptedAnswer":{"@type":"Answer","text":"The preview is capped at fifty terms so the answer card stays readable and avoids oversized result blocks."}},{"@type":"Question","name":"Does it show a series sum too?","acceptedAnswer":{"@type":"Answer","text":"Yes. The answer card reports the sum of the first n terms alongside the nth-term output."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/number-sequence/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Number Sequence Calculator","item":"https://calchowmuch.com/math/number-sequence/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+    <div class="page math-cluster-page-shell">
+      <header class="math-cluster-site-header">
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a><a class="top-nav-link" href="/pricing-calculators/commission-calculator/"><span class="nav-label">Pricing Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="math-nav-container">
-<div class="math-nav-category is-collapsed" data-id="simple">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
-      <span class="math-nav-category-name">SIMPLE</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/basic/">Basic Calculator</a><a class="math-nav-item" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator/">Fraction Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="algebra">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
-      <span class="math-nav-category-name">ALGEBRA</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/algebra/quadratic-equation/">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations/">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations/">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring/">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance/">Slope & Distance Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="trigonometry">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-      <span class="math-nav-category-name">TRIGONOMETRY</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/trigonometry/unit-circle/">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver/">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions/">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig/">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines/">Law of Sines/Cosines Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="calculus">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-      <span class="math-nav-category-name">CALCULUS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/calculus/derivative/">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral/">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit/">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence/">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points/">Critical Points Finder</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="log">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-      <span class="math-nav-category-name">LOG</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/log/natural-log/">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log/">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties/">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations/">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale/">Log Scale Converter</a>
-  </div>
-</div>
-<div class="math-nav-category" data-id="statistics">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
-      <span class="math-nav-category-name">STATISTICS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/mean-median-mode-range/">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation/">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics/">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval/">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score/">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size/">Sample Size</a><a class="math-nav-item is-active" href="/math/number-sequence/">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination/">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability/">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis/">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova/">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing/">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation/">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution/">Distribution Calculator</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Number Sequence Calculator</h1>
-  <div id="calc-number-sequence">
-  <div class="calculator-ui">
-    <p class="helper">Compute the nth term and preview of an arithmetic or geometric sequence.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="seq-terms">Sequence Terms</label>
-        <textarea
-          id="seq-terms"
-          rows="3"
-          placeholder="Enter at least 3 terms (e.g., 2, 4, 6, 8, 10)"
-        >
-2, 4, 6, 8, 10</textarea
-        >
-      </div>
-
-      <div class="input-row">
-        <label id="seq-type-label">Sequence Type</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="seq-type-label"
-          data-button-group="seq-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="auto"
-            aria-pressed="true"
-          >
-            Auto Detect
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="arithmetic"
-            aria-pressed="false"
-          >
-            Arithmetic
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="geometric"
-            aria-pressed="false"
-          >
-            Geometric
-          </button>
-        </div>
-      </div>
-
-      <div class="input-row">
-        <label for="seq-n">Term Index (n)</label>
-        <input id="seq-n" type="number" value="10" min="1" step="1" />
-      </div>
-
-      <div class="input-row">
-        <label for="seq-k">Preview Length (k)</label>
-        <input id="seq-k" type="number" value="10" min="1" max="50" step="1" />
-      </div>
+      <main class="math-cluster-layout-main">
+        <section class="math-cluster-center-column">
+          <div class="math-cluster-panel panel-span-all">
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Number Sequence Calculator</span>
     </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Number Sequence Calculator</h1>
+    <p class="math-cluster-page-intro">Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-number-sequence">
+  <div class="sequence-shell">
+    <section class="sequence-card sequence-hero-card" aria-label="Number sequence overview">
+      <div class="sequence-hero-copy">
+        <p class="sequence-eyebrow">Simple Smooth Wow</p>
+        <h2 class="sequence-title">Check the pattern, jump to the nth term, and preview the next values without leaving the first screen.</h2>
+        <p class="sequence-subtitle">
+          Paste three or more terms, keep auto-detect on when the pattern is obvious, or force
+          arithmetic versus geometric mode when you want a quick answer card with the rule and sum
+          together.
+        </p>
+      </div>
+      <ul class="sequence-hero-points">
+        <li>Shows the sequence type, nth term, and running sum in one answer-first view.</li>
+        <li>Keeps the preview list beside the answer so you can verify the pattern immediately.</li>
+        <li>Stays light, uncluttered, and usable before any explanation scrolling starts.</li>
+      </ul>
+    </section>
 
-    <button class="calculator-button full-width" type="button" id="seq-calculate">
-      Calculate Sequence
-    </button>
+    <div class="sequence-workbench">
+      <section class="sequence-card sequence-input-card" aria-label="Sequence inputs">
+        <div class="sequence-card-head">
+          <div>
+            <p class="sequence-section-label">Inputs</p>
+            <p class="sequence-card-title">Enter the terms and choose how the rule should be read</p>
+          </div>
+          <span class="sequence-chip">Pattern check</span>
+        </div>
 
-    <div class="result" id="seq-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="seq-detail" aria-live="polite"></div>
+        <label class="sequence-field" for="seq-terms">
+          <span>Sequence terms</span>
+          <textarea
+            id="seq-terms"
+            rows="5"
+            placeholder="Enter at least 3 terms (for example 2, 4, 6, 8, 10)"
+          >
+2, 4, 6, 8, 10</textarea
+          >
+          <small>Use commas, spaces, or line breaks. The route reads at least three values.</small>
+        </label>
+
+        <div class="sequence-field">
+          <span id="seq-type-label">Sequence type</span>
+          <div
+            class="button-group sequence-button-group"
+            role="group"
+            aria-labelledby="seq-type-label"
+            data-button-group="seq-type"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="auto"
+              aria-pressed="true"
+            >
+              Auto detect
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="arithmetic"
+              aria-pressed="false"
+            >
+              Arithmetic
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="geometric"
+              aria-pressed="false"
+            >
+              Geometric
+            </button>
+          </div>
+        </div>
+
+        <div class="sequence-two-up">
+          <label class="sequence-field" for="seq-n">
+            <span>Term index (n)</span>
+            <input id="seq-n" type="number" value="10" min="1" step="1" />
+          </label>
+          <label class="sequence-field" for="seq-k">
+            <span>Preview length (k)</span>
+            <input id="seq-k" type="number" value="10" min="1" max="50" step="1" />
+          </label>
+        </div>
+
+        <button class="calculator-button sequence-calc-button" type="button" id="seq-calculate">
+          Calculate sequence
+        </button>
+      </section>
+
+      <section class="sequence-card sequence-answer-card" aria-label="Sequence answer">
+        <div class="sequence-card-head">
+          <div>
+            <p class="sequence-section-label">Answer</p>
+            <p class="sequence-card-title">Pattern verdict, nth term, and preview</p>
+          </div>
+          <span class="sequence-chip sequence-chip--answer">Nth term</span>
+        </div>
+
+        <div class="result sequence-result-card" id="seq-result" aria-live="polite"></div>
+        <div class="result-detail sequence-detail-card" id="seq-detail" aria-live="polite"></div>
+
+        <div class="sequence-snapshot-grid" aria-label="Sequence workflow summary">
+          <article class="sequence-snapshot-card">
+            <span>Primary output</span>
+            <strong>Type and nth term</strong>
+          </article>
+          <article class="sequence-snapshot-card">
+            <span>Verification</span>
+            <strong>Running sum and preview</strong>
+          </article>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 
-<style>
-  @import url('/calculators/math/number-sequence/calculator.css?v=20260224');
-</style>
 
+
+    <div id="sequence-explanation">
+  <section class="sequence-exp-section">
+    <h2>Number Sequence Calculator Practical Guide</h2>
+    <p>
+      Use this calculator to identify whether a list behaves like an arithmetic or geometric
+      sequence, then read the nth term, first-k preview, and running sum in one answer-first view.
+      It is built for quick classwork checks, growth-pattern reviews, and simple recurrence
+      verification without legacy shell clutter.
+    </p>
+    <ul class="sequence-summary-list">
+      <li><strong>Best for:</strong> arithmetic and geometric pattern checks from a short list of terms.</li>
+      <li><strong>Quick answer flow:</strong> paste the terms, keep auto-detect on, and read the answer card first.</li>
+      <li><strong>Output includes:</strong> sequence type, nth term, pattern rule, running sum, and preview list.</li>
+    </ul>
+  </section>
+
+  <section class="sequence-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Paste at least three terms using commas, spaces, or line breaks.</li>
+      <li>Leave <strong>Auto detect</strong> on unless you already know the route should be arithmetic or geometric.</li>
+      <li>Set <strong>n</strong> for the target term and <strong>k</strong> for the preview length.</li>
+      <li>Click <strong>Calculate sequence</strong> and read the pattern verdict before trusting the nth term.</li>
+    </ol>
+  </section>
+
+  <section class="sequence-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="sequence-table-wrap">
+      <table class="sequence-summary-table">
+        <thead>
+          <tr>
+            <th>Pattern</th>
+            <th>Rule</th>
+            <th>Best use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Arithmetic</td>
+            <td>Add the same difference each step</td>
+            <td>Linear growth, steady payment steps, equal spacing</td>
+          </tr>
+          <tr>
+            <td>Geometric</td>
+            <td>Multiply by the same ratio each step</td>
+            <td>Compound growth, repeated scaling, exponential change</td>
+          </tr>
+          <tr>
+            <td>Neither</td>
+            <td>No stable common difference or ratio</td>
+            <td>Signals that the input list needs a different model</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sequence-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      Arithmetic sequences use <strong>a<sub>n</sub> = a<sub>1</sub> + (n - 1)d</strong> and
+      <strong>S<sub>n</sub> = n / 2 × (2a<sub>1</sub> + (n - 1)d)</strong>. Geometric sequences
+      use <strong>a<sub>n</sub> = a<sub>1</sub> × r<sup>n-1</sup></strong> and
+      <strong>S<sub>n</sub> = a<sub>1</sub>(1 - r<sup>n</sup>) / (1 - r)</strong> when
+      <strong>r ≠ 1</strong>.
+    </p>
+  </section>
+
+  <section class="sequence-exp-section">
+    <h3>Worked Example</h3>
+    <div class="sequence-example-grid">
+      <article class="sequence-example-card">
+        <h4>Default arithmetic list</h4>
+        <p>The default list <strong>2, 4, 6, 8, 10</strong> has a common difference of <strong>2</strong>.</p>
+        <p>For <strong>n = 10</strong>, the nth term is <strong>20</strong> and the sum of the first ten terms is <strong>110</strong>.</p>
+      </article>
+      <article class="sequence-example-card">
+        <h4>Quick geometric check</h4>
+        <p>With <strong>2, 6, 18, 54</strong>, the common ratio is <strong>3</strong>.</p>
+        <p>That makes the fifth term <strong>162</strong>, which is a fast way to project repeated growth.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sequence-exp-section" id="sequence-faq">
+    <h3>FAQ</h3>
+    <div class="sequence-faq-grid">
+      <article class="faq-card">
+        <h4>How many terms do I need?</h4>
+        <p>You need at least three terms so the route can test whether the difference or ratio stays consistent.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I force arithmetic mode?</h4>
+        <p>Force arithmetic mode when you already know the list should increase or decrease by one fixed difference.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if the route says neither?</h4>
+        <p>That means the list does not keep one common difference or one common ratio across the supplied terms.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can the ratio be negative?</h4>
+        <p>Yes. A negative ratio produces alternating positive and negative terms if the input terms support that pattern.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why does the route limit preview length?</h4>
+        <p>The preview is capped at fifty terms so the answer card stays readable and avoids oversized result blocks.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does it show a series sum too?</h4>
+        <p>Yes. The answer card reports the sum of the first n terms alongside the nth-term output.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sequence-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="sequence-related-grid">
+      <a class="sequence-related-card" href="/math/permutation-combination/">
+        <strong>Permutation &amp; Combination Calculator</strong>
+        <span>Move from ordered patterns into counting arrangements and selections.</span>
+      </a>
+      <a class="sequence-related-card" href="/math/probability/">
+        <strong>Probability Calculator</strong>
+        <span>Use counting results as the next step in event and binomial probability checks.</span>
+      </a>
+      <a class="sequence-related-card" href="/math/mean-median-mode-range/">
+        <strong>Mean Median Mode Range Calculator</strong>
+        <span>Switch from sequence rules to a quick summary of raw dataset behaviour.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sequence-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="sequence-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Input rule:</strong> Enter only numeric terms and use at least three values.</li>
+      <li><strong>Preview rule:</strong> Preview length is capped at fifty terms to keep the result readable.</li>
+      <li><strong>Overflow rule:</strong> Large geometric ratios can exceed safe number ranges and trigger an error.</li>
+    </ul>
+  </section>
 </div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <section>
-  <h3>What is a Number Sequence?</h3>
-  <p>
-    A number sequence is an ordered list of numbers following a specific pattern. This calculator
-    supports two common types: arithmetic and geometric sequences.
-  </p>
-</section>
 
-<section>
-  <h3>When to Use This Calculator</h3>
-  <ul>
-    <li>Finding the nth term of a predictable pattern</li>
-    <li>Calculating compound growth scenarios (geometric)</li>
-    <li>Solving math problems involving sequences and series</li>
-    <li>Predicting future values based on a constant rate of change</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Input Definitions</h3>
-  <ul>
-    <li>
-      <strong>Sequence Terms:</strong> Enter at least three terms separated by commas, spaces, or
-      newlines.
-    </li>
-    <li>
-      <strong>Sequence Type:</strong> Auto-detect uses your terms to identify the pattern, or you
-      can force Arithmetic or Geometric.
-    </li>
-    <li>
-      <strong>Term Index (n):</strong> Which term to calculate (must be at least 1). The calculator
-      also shows the sum of the first n terms.
-    </li>
-    <li><strong>Preview Length (k):</strong> How many terms to display (1-50).</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Formulas</h3>
-  <p><strong>Arithmetic Sequence:</strong></p>
-  <p style="margin-left: 1rem">a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d</p>
-  <p style="margin-left: 1rem">S<sub>n</sub> = n/2 × (2a<sub>1</sub> + (n - 1)d)</p>
-
-  <p><strong>Geometric Sequence:</strong></p>
-  <p style="margin-left: 1rem">a<sub>n</sub> = a<sub>1</sub> * r<sup>(n-1)</sup></p>
-  <p style="margin-left: 1rem">S<sub>n</sub> = a<sub>1</sub> × (1 - r<sup>n</sup>) / (1 - r)</p>
-</section>
-
-<section>
-  <h3>Worked Example (Arithmetic)</h3>
-  <p>Using the defaults: a1 = 2, d = 3, n = 10</p>
-  <ol>
-    <li>Formula: a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d</li>
-    <li>Substitute: a<sub>10</sub> = 2 + (10 - 1) * 3</li>
-    <li>Calculate: a<sub>10</sub> = 2 + 9 * 3 = 2 + 27 = 29</li>
-  </ol>
-  <p>First 10 terms: 2, 5, 8, 11, 14, 17, 20, 23, 26, 29</p>
-</section>
-
-<section>
-  <h3>Worked Example (Geometric)</h3>
-  <p>Using: a1 = 2, r = 2, n = 10</p>
-  <ol>
-    <li>Formula: a<sub>n</sub> = a<sub>1</sub> * r<sup>(n-1)</sup></li>
-    <li>Substitute: a<sub>10</sub> = 2 * 2<sup>9</sup></li>
-    <li>Calculate: a<sub>10</sub> = 2 * 512 = 1024</li>
-  </ol>
-  <p>First 10 terms: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024</p>
-</section>
-
-<section>
-  <h3>Special Cases</h3>
-  <ul>
-    <li>
-      <strong>Negative d or r:</strong> Both negative differences and ratios are allowed, creating
-      alternating or decreasing sequences.
-    </li>
-    <li><strong>r = 1:</strong> A geometric sequence with ratio 1 produces constant terms.</li>
-    <li><strong>r = 0:</strong> All terms after the first will be 0.</li>
-    <li>
-      <strong>Large n with r > 1:</strong> Results grow very quickly and may exceed JavaScript
-      number limits.
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Edge Cases and Validation</h3>
-  <ul>
-    <li>n must be a positive integer (at least 1).</li>
-    <li>Preview length k is clamped to a maximum of 50.</li>
-    <li>Very large results will show an error message.</li>
-    <li>Results are formatted to 4 decimal places.</li>
-  </ul>
-</section>
-
+  </div>
 </div>
-        </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
         </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="math-cluster-site-footer">
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
     <script type="module" src="/calculators/math/number-sequence/module.js?v=20260224"></script>
   </body>
 </html>

@@ -1,85 +1,144 @@
-<section>
-  <h3>What is Standard Deviation?</h3>
-  <p>
-    Standard deviation measures the amount of variation or dispersion in a dataset. A low standard
-    deviation indicates values are close to the mean, while a high standard deviation indicates
-    values are spread out over a wider range.
-  </p>
-</section>
+<div id="std-explanation">
+  <section class="stats-exp-section">
+    <h2>Standard Deviation Calculator Practical Guide</h2>
+    <p>
+      Use this calculator to measure how tightly or loosely values sit around the mean. It keeps
+      the standard deviation, variance, and mean summary in one answer-first result so you can
+      judge spread quickly before moving on to z-scores or interval work.
+    </p>
+    <ul class="stats-summary-list">
+      <li><strong>Best for:</strong> comparing spread in a single dataset.</li>
+      <li><strong>Quick answer flow:</strong> paste the values, pick sample or population mode, and calculate once.</li>
+      <li><strong>Output includes:</strong> standard deviation, variance, mean, and count.</li>
+    </ul>
+  </section>
 
-<section>
-  <h3>When to Use This Calculator</h3>
-  <ul>
-    <li>Analyzing the spread of test scores, measurements, or survey responses</li>
-    <li>Comparing variability between two datasets</li>
-    <li>Quality control to identify outliers</li>
-    <li>Financial analysis to measure investment volatility</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Paste the dataset into the input box.</li>
+      <li>Use <strong>Sample</strong> when your list represents a sample from a larger population.</li>
+      <li>Use <strong>Population</strong> when the list already contains the full population.</li>
+      <li>Click <strong>Calculate standard deviation</strong> and read the spread result first.</li>
+    </ol>
+  </section>
 
-<section>
-  <h3>Input Definitions</h3>
-  <ul>
-    <li>
-      <strong>Dataset:</strong> A list of numbers separated by commas, spaces, or newlines. Negative
-      numbers and decimals are allowed.
-    </li>
-    <li>
-      <strong>Mode:</strong> Choose between Sample (n-1) for a sample from a larger population, or
-      Population (n) when your data represents the entire population.
-    </li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="stats-table-wrap">
+      <table class="stats-summary-table">
+        <thead>
+          <tr>
+            <th>Measure</th>
+            <th>What it tells you</th>
+            <th>Quick interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Standard deviation</td>
+            <td>The typical distance from the mean</td>
+            <td>A larger value means the dataset is more spread out.</td>
+          </tr>
+          <tr>
+            <td>Variance</td>
+            <td>The squared spread around the mean</td>
+            <td>Useful in formulas, but less intuitive than standard deviation.</td>
+          </tr>
+          <tr>
+            <td>Sample mode</td>
+            <td>Uses n - 1 in the denominator</td>
+            <td>Best when the data is only a sample.</td>
+          </tr>
+          <tr>
+            <td>Population mode</td>
+            <td>Uses n in the denominator</td>
+            <td>Best when the data already covers the whole group.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-<section>
-  <h3>Formulas</h3>
-  <p><strong>Mean:</strong></p>
-  <p style="margin-left: 1rem">Mean = Sum of all values / Count of values</p>
+  <section class="stats-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      Standard deviation is the square root of variance. Population variance divides the squared
+      deviations by <strong>n</strong>, while sample variance divides by <strong>n - 1</strong> to
+      correct for estimating spread from a sample.
+    </p>
+  </section>
 
-  <p><strong>Variance:</strong></p>
-  <p style="margin-left: 1rem">Sample Variance = Sum of (each value - mean)² / (n - 1)</p>
-  <p style="margin-left: 1rem">Population Variance = Sum of (each value - mean)² / n</p>
+  <section class="stats-exp-section">
+    <h3>Worked Example</h3>
+    <div class="stats-example-grid">
+      <article class="stats-example-card">
+        <h4>Default dataset</h4>
+        <p>The default list has a mean of <strong>18</strong> and a sample standard deviation a little above <strong>5.23</strong>.</p>
+        <p>That tells you the values typically sit around five units away from the mean.</p>
+      </article>
+      <article class="stats-example-card">
+        <h4>Why compare sample and population?</h4>
+        <p>Sample mode is slightly larger because it adjusts for estimating a wider population from limited data.</p>
+      </article>
+    </div>
+  </section>
 
-  <p><strong>Standard Deviation:</strong></p>
-  <p style="margin-left: 1rem">Standard Deviation = Square root of Variance</p>
-</section>
+  <section class="stats-exp-section" id="std-faq">
+    <h3>FAQ</h3>
+    <div class="stats-faq-grid">
+      <article class="faq-card">
+        <h4>What does a larger standard deviation mean?</h4>
+        <p>It means the values are spread further from the mean on average.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use sample mode?</h4>
+        <p>Use sample mode when the dataset is only one sample from a bigger population.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use population mode?</h4>
+        <p>Use population mode when the dataset already covers the whole population you care about.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can standard deviation be zero?</h4>
+        <p>Yes. If every value is the same, there is no spread, so the standard deviation is zero.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does standard deviation show skew?</h4>
+        <p>No. It shows spread, not shape, so a skewed dataset can still share the same standard deviation as another list.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can I use decimals and negative values?</h4>
+        <p>Yes. The route accepts decimals and negative numbers as long as the input is numeric.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example</h3>
-  <p>Using the default dataset: 10, 12, 23, 23, 16, 23, 21, 16</p>
-  <ol>
-    <li><strong>Count:</strong> n = 8</li>
-    <li><strong>Sum:</strong> 10 + 12 + 23 + 23 + 16 + 23 + 21 + 16 = 144</li>
-    <li><strong>Mean:</strong> 144 / 8 = 18</li>
-    <li>
-      <strong>Squared differences:</strong> (10-18)² + (12-18)² + ... = 64 + 36 + 25 + 25 + 4 + 25 +
-      9 + 4 = 192
-    </li>
-    <li><strong>Sample Variance:</strong> 192 / (8-1) = 192 / 7 = 27.4286</li>
-    <li><strong>Sample Standard Deviation:</strong> sqrt(27.4286) = 5.2372</li>
-  </ol>
-</section>
+  <section class="stats-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="stats-related-grid">
+      <a class="stats-related-card" href="/math/mean-median-mode-range/">
+        <strong>Mean Median Mode Range Calculator</strong>
+        <span>Start with simpler summary statistics before checking spread.</span>
+      </a>
+      <a class="stats-related-card" href="/math/z-score/">
+        <strong>Z-Score Calculator</strong>
+        <span>Use the mean and spread to standardize one value.</span>
+      </a>
+      <a class="stats-related-card" href="/math/confidence-interval/">
+        <strong>Confidence Interval Calculator</strong>
+        <span>Move from raw spread into interval estimation for means and proportions.</span>
+      </a>
+    </div>
+  </section>
 
-<section>
-  <h3>Sample vs. Population</h3>
-  <ul>
-    <li>
-      <strong>Sample (n-1):</strong> Use this when your data is a subset of a larger population. The
-      (n-1) divisor (Bessel's correction) provides an unbiased estimate.
-    </li>
-    <li>
-      <strong>Population (n):</strong> Use this when your data represents the entire population
-      you're studying.
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Edge Cases and Validation</h3>
-  <ul>
-    <li>Sample mode requires at least 2 values (division by n-1 = 0 is undefined for n = 1).</li>
-    <li>Population mode works with a single value (standard deviation will be 0).</li>
-    <li>Non-numeric values are rejected and listed as errors.</li>
-    <li>Results are rounded to 4 decimal places.</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="stats-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Mode rule:</strong> Sample mode needs at least two values.</li>
+      <li><strong>Interpretation rule:</strong> Standard deviation measures spread around the mean, not the shape of the distribution.</li>
+      <li><strong>Use case:</strong> This route is built for quick descriptive spread checks, not full inference.</li>
+    </ul>
+  </section>
+</div>

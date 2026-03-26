@@ -1,1 +1,249 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
+#calc-permutation-combination {
+  --count-border: #d9e5f0;
+  --count-surface: #ffffff;
+  --count-surface-alt: #f5f9fd;
+  --count-ink: #18324b;
+  --count-muted: #60768c;
+  --count-accent: #1f76d2;
+  --count-accent-soft: #dcebff;
+}
+
+#calc-permutation-combination .count-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-permutation-combination .count-card {
+  background: var(--count-surface);
+  border: 1px solid var(--count-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(24, 50, 75, 0.08);
+}
+
+#calc-permutation-combination .count-hero-card,
+#calc-permutation-combination .count-input-card,
+#calc-permutation-combination .count-answer-card {
+  padding: 1.5rem;
+}
+
+#calc-permutation-combination .count-hero-card {
+  display: grid;
+  gap: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(31, 118, 210, 0.14), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f6fbff);
+}
+
+#calc-permutation-combination .count-eyebrow,
+#calc-permutation-combination .count-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--count-accent);
+}
+
+#calc-permutation-combination .count-title,
+#calc-permutation-combination .count-card-title {
+  margin: 0.35rem 0 0;
+  color: var(--count-ink);
+}
+
+#calc-permutation-combination .count-title {
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  line-height: 1.14;
+}
+
+#calc-permutation-combination .count-subtitle,
+#calc-permutation-combination .count-hero-points {
+  color: var(--count-muted);
+}
+
+#calc-permutation-combination .count-hero-points {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#calc-permutation-combination .count-workbench {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-permutation-combination .count-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+#calc-permutation-combination .count-chip {
+  border-radius: 999px;
+  background: var(--count-accent-soft);
+  color: var(--count-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+#calc-permutation-combination .count-chip--answer {
+  background: #fff3da;
+  color: #8b5f14;
+}
+
+#calc-permutation-combination .count-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+#calc-permutation-combination .count-field span {
+  font-weight: 600;
+  color: var(--count-ink);
+}
+
+#calc-permutation-combination .count-field input {
+  width: 100%;
+  border: 1px solid var(--count-border);
+  border-radius: 18px;
+  padding: 0.95rem 1rem;
+  font: inherit;
+  color: var(--count-ink);
+  background: #fff;
+}
+
+#calc-permutation-combination .count-field input:focus {
+  outline: 2px solid rgba(31, 118, 210, 0.16);
+  border-color: var(--count-accent);
+}
+
+#calc-permutation-combination .count-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+#calc-permutation-combination .count-two-up {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+#calc-permutation-combination .count-calc-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#calc-permutation-combination .count-detail-card {
+  margin-top: 1rem;
+}
+
+#calc-permutation-combination .count-result-card strong,
+#calc-permutation-combination .count-detail-card strong {
+  color: var(--count-ink);
+}
+
+#calc-permutation-combination .count-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+#calc-permutation-combination .count-snapshot-card {
+  border: 1px solid var(--count-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fbfdff;
+}
+
+#calc-permutation-combination .count-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--count-muted);
+  margin-bottom: 0.25rem;
+}
+
+#count-explanation {
+  display: grid;
+  gap: 1.25rem;
+}
+
+#count-explanation .count-exp-section {
+  background: #fff;
+  border: 1px solid var(--count-border);
+  border-radius: 24px;
+  padding: 1.4rem;
+}
+
+#count-explanation .count-summary-list,
+#count-explanation .count-notes-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#count-explanation .count-table-wrap {
+  overflow-x: auto;
+}
+
+#count-explanation .count-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#count-explanation .count-summary-table th,
+#count-explanation .count-summary-table td {
+  border-bottom: 1px solid var(--count-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#count-explanation .count-example-grid,
+#count-explanation .count-faq-grid,
+#count-explanation .count-related-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+#count-explanation .count-example-card,
+#count-explanation .faq-card,
+#count-explanation .count-related-card {
+  border: 1px solid var(--count-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #fbfdff;
+}
+
+#count-explanation .count-related-card {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  #calc-permutation-combination .count-hero-card {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+    align-items: start;
+  }
+
+  #calc-permutation-combination .count-workbench {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  #calc-permutation-combination .count-two-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #count-explanation .count-example-grid,
+  #count-explanation .count-faq-grid,
+  #count-explanation .count-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

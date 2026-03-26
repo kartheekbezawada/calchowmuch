@@ -1,45 +1,296 @@
-#calc-regression .stats-table {
+#calc-regression {
+  --analysis-border: #dbe6f1;
+  --analysis-surface: #ffffff;
+  --analysis-surface-alt: #f4f8fc;
+  --analysis-ink: #17324d;
+  --analysis-muted: #5b7289;
+  --analysis-accent: #1c73d7;
+  --analysis-accent-soft: #dcebff;
+}
+
+#calc-regression .analysis-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-regression .analysis-card {
+  background: var(--analysis-surface);
+  border: 1px solid var(--analysis-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+}
+
+#calc-regression .analysis-hero-card,
+#calc-regression .analysis-input-card,
+#calc-regression .analysis-answer-card {
+  padding: 1.5rem;
+}
+
+#calc-regression .analysis-hero-card {
+  display: grid;
+  gap: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(28, 115, 215, 0.12), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f6faff);
+}
+
+#calc-regression .analysis-eyebrow,
+#calc-regression .analysis-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--analysis-accent);
+}
+
+#calc-regression .analysis-title,
+#calc-regression .analysis-card-title {
+  margin: 0.35rem 0 0;
+  color: var(--analysis-ink);
+}
+
+#calc-regression .analysis-title {
+  font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+  line-height: 1.15;
+}
+
+#calc-regression .analysis-subtitle,
+#calc-regression .analysis-hero-points {
+  color: var(--analysis-muted);
+}
+
+#calc-regression .analysis-hero-points {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#calc-regression .analysis-workbench {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-regression .analysis-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+#calc-regression .analysis-chip {
+  border-radius: 999px;
+  background: var(--analysis-accent-soft);
+  color: var(--analysis-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+#calc-regression .analysis-chip--answer {
+  background: #fff2d8;
+  color: #8d5b10;
+}
+
+#calc-regression .analysis-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+#calc-regression .analysis-field span {
+  font-weight: 600;
+  color: var(--analysis-ink);
+}
+
+#calc-regression .analysis-field textarea,
+#calc-regression .analysis-field input {
+  width: 100%;
+  border: 1px solid var(--analysis-border);
+  border-radius: 18px;
+  padding: 1rem;
+  font: inherit;
+  color: var(--analysis-ink);
+  background: #fff;
+}
+
+#calc-regression .analysis-field textarea {
+  resize: vertical;
+}
+
+#calc-regression .analysis-field textarea:focus,
+#calc-regression .analysis-field input:focus {
+  outline: 2px solid rgba(28, 115, 215, 0.16);
+  border-color: var(--analysis-accent);
+}
+
+#calc-regression .analysis-button-group {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+#calc-regression .analysis-two-up {
+  display: grid;
+  gap: 1rem;
+}
+
+#calc-regression .analysis-calc-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#calc-regression .analysis-result-card strong {
+  color: var(--analysis-ink);
+}
+
+#calc-regression .stats-table {
+  display: grid;
   gap: 1rem;
 }
 
 #calc-regression .stats-section {
-  flex: 1 1 200px;
-  min-width: 200px;
+  border: 1px solid var(--analysis-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: var(--analysis-surface-alt);
 }
 
 #calc-regression .stats-section h4 {
-  margin: 0 0 0.5rem 0;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.9rem;
-  color: var(--header-text);
+  margin: 0 0 0.6rem;
+  color: var(--analysis-ink);
 }
 
 #calc-regression .stats-row {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.25rem 0;
-  font-size: 0.9rem;
 }
 
 #calc-regression .stats-row span:first-child {
-  color: var(--muted-text);
+  color: var(--analysis-muted);
 }
 
 #calc-regression .stats-row span:last-child {
-  font-weight: 500;
+  color: var(--analysis-ink);
+  font-weight: 600;
+  text-align: right;
 }
 
 #calc-regression .equation-row {
-  font-family: monospace;
-  background: var(--bg-secondary);
-  padding: 0.5rem;
-  border-radius: 4px;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  background: #eef5ff;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
 }
 
 #calc-regression .equation-row span {
-  color: var(--text-primary) !important;
-  font-weight: 500;
+  color: var(--analysis-ink) !important;
+  font-weight: 600;
+}
+
+#calc-regression .analysis-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+#calc-regression .analysis-snapshot-card {
+  border: 1px solid var(--analysis-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fbfdff;
+}
+
+#calc-regression .analysis-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--analysis-muted);
+  margin-bottom: 0.25rem;
+}
+
+#regression-explanation {
+  display: grid;
+  gap: 1.25rem;
+}
+
+#regression-explanation .analysis-exp-section {
+  background: #fff;
+  border: 1px solid var(--analysis-border);
+  border-radius: 24px;
+  padding: 1.4rem;
+}
+
+#regression-explanation .analysis-summary-list,
+#regression-explanation .analysis-notes-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#regression-explanation .analysis-table-wrap {
+  overflow-x: auto;
+}
+
+#regression-explanation .analysis-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#regression-explanation .analysis-summary-table th,
+#regression-explanation .analysis-summary-table td {
+  border-bottom: 1px solid var(--analysis-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#regression-explanation .analysis-example-grid,
+#regression-explanation .analysis-faq-grid,
+#regression-explanation .analysis-related-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+#regression-explanation .analysis-example-card,
+#regression-explanation .faq-card,
+#regression-explanation .analysis-related-card {
+  border: 1px solid var(--analysis-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #fbfdff;
+}
+
+#regression-explanation .analysis-related-card {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  #calc-regression .analysis-hero-card {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+    align-items: start;
+  }
+
+  #calc-regression .analysis-workbench {
+    grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  }
+
+  #calc-regression .analysis-two-up,
+  #calc-regression .stats-table {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #regression-explanation .analysis-example-grid,
+  #regression-explanation .analysis-faq-grid,
+  #regression-explanation .analysis-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

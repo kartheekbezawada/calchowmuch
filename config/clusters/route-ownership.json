@@ -568,6 +568,126 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-math-wave6-20260326",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/series-convergence/",
+      "calculatorId": "series-convergence",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/critical-points/",
+      "calculatorId": "critical-points",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/mean-median-mode-range/",
+      "calculatorId": "mean-median-mode-range",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/standard-deviation/",
+      "calculatorId": "standard-deviation",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/confidence-interval/",
+      "calculatorId": "confidence-interval",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/z-score/",
+      "calculatorId": "z-score",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/number-sequence/",
+      "calculatorId": "number-sequence",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave8-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/permutation-combination/",
+      "calculatorId": "permutation-combination",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave8-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/probability/",
+      "calculatorId": "probability",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave8-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/",
+      "calculatorId": "statistics",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave9-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/correlation/",
+      "calculatorId": "correlation",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave9-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/regression-analysis/",
+      "calculatorId": "regression-analysis",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave9-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/distribution/",
+      "calculatorId": "distribution",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave10-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/anova/",
+      "calculatorId": "anova",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave10-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/hypothesis-testing/",
+      "calculatorId": "hypothesis-testing",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave10-20260326",
+      "generationMode": "cluster"
     }
   ]
 }

@@ -135,3 +135,7 @@ export function initRegressionCalculator() {
   calculateButton.addEventListener('click', calculate);
   calculate();
 }
+
+if (document.querySelector('#calc-regression')) {
+  initRegressionCalculator();
+}

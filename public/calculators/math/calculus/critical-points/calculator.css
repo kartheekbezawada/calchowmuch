@@ -1,119 +1,355 @@
-/* Critical Points Calculator Styles */
-
-#calc-critical-points .result-box {
-  background-color: #f8f9fa;
-  border-left: 4px solid #3498db;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 4px;
+#calc-critical-points {
+  --cp-border: #dbe6f3;
+  --cp-surface: #ffffff;
+  --cp-surface-alt: #f4f8fc;
+  --cp-ink: #17324d;
+  --cp-muted: #5a7188;
+  --cp-accent: #1d74d8;
+  --cp-accent-soft: #dbeafe;
+  --cp-success: #1d8f5f;
+  --cp-success-bg: #eaf8f1;
+  --cp-danger: #a13b2d;
+  --cp-danger-bg: #fdeeed;
+  --cp-warn: #a06a12;
+  --cp-warn-bg: #fff7e3;
 }
 
-#calc-critical-points .result-box h5 {
-  margin: 0 0 12px 0;
-  color: #2c3e50;
-  font-size: 1.1em;
+#calc-critical-points .cp-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-critical-points .cp-card {
+  background: var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+}
+
+#calc-critical-points .cp-hero-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at top right, rgba(29, 116, 216, 0.12), transparent 32%),
+    linear-gradient(135deg, #ffffff, #f5f9ff);
+}
+
+#calc-critical-points .cp-eyebrow,
+#calc-critical-points .cp-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cp-accent);
+}
+
+#calc-critical-points .cp-title,
+#calc-critical-points .cp-card-title {
+  margin: 0.35rem 0 0;
+  color: var(--cp-ink);
+}
+
+#calc-critical-points .cp-title {
+  font-size: clamp(1.65rem, 2.4vw, 2.25rem);
+  line-height: 1.15;
+}
+
+#calc-critical-points .cp-subtitle,
+#calc-critical-points .cp-helper,
+#calc-critical-points .cp-hero-points {
+  color: var(--cp-muted);
+}
+
+#calc-critical-points .cp-hero-points {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#calc-critical-points .cp-workbench {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-critical-points .cp-left-stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-critical-points .cp-input-card,
+#calc-critical-points .cp-answer-card,
+#calc-critical-points .cp-steps-card {
+  padding: 1.5rem;
+}
+
+#calc-critical-points .cp-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+#calc-critical-points .cp-chip {
+  border-radius: 999px;
+  background: var(--cp-accent-soft);
+  color: var(--cp-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+#calc-critical-points .cp-chip--steps {
+  background: #eef6ed;
+  color: #267348;
+}
+
+#calc-critical-points .cp-chip--answer {
+  background: #fff3db;
+  color: #8d5a09;
+}
+
+#calc-critical-points .cp-field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+#calc-critical-points .cp-field {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+#calc-critical-points .cp-field span {
+  font-weight: 600;
+  color: var(--cp-ink);
+}
+
+#calc-critical-points .cp-field input {
+  width: 100%;
+  border: 1px solid var(--cp-border);
+  border-radius: 16px;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  color: var(--cp-ink);
+  background: #fff;
+}
+
+#calc-critical-points .cp-field input:focus {
+  outline: 2px solid rgba(29, 116, 216, 0.16);
+  border-color: var(--cp-accent);
+}
+
+#calc-critical-points .cp-calc-button {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+#calc-critical-points .cp-result-card h4,
+#calc-critical-points .cp-steps-output h4 {
+  margin-top: 0;
+  color: var(--cp-ink);
+}
+
+#calc-critical-points .result-box {
+  background: var(--cp-surface-alt);
+  border: 1px solid var(--cp-border);
+  border-left: 4px solid var(--cp-accent);
+  border-radius: 18px;
+  padding: 1rem;
+  margin: 0 0 1rem;
 }
 
 #calc-critical-points .critical-points {
-  border-left-color: #3498db;
+  border-left-color: var(--cp-accent);
 }
 
 #calc-critical-points .inflection-points {
-  border-left-color: #9b59b6;
-  background-color: #f4f0f8;
+  border-left-color: #8b62d8;
+  background: #f6f1ff;
+}
+
+#calc-critical-points .result-box h5 {
+  margin: 0 0 0.75rem;
+  color: var(--cp-ink);
 }
 
 #calc-critical-points .points-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+}
+
+#calc-critical-points .points-table th,
+#calc-critical-points .points-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--cp-border);
+  text-align: left;
 }
 
 #calc-critical-points .points-table th {
-  background-color: #ecf0f1;
-  padding: 10px;
-  text-align: left;
-  font-weight: 600;
-  border-bottom: 2px solid #bdc3c7;
-}
-
-#calc-critical-points .points-table td {
-  padding: 10px;
-  border-bottom: 1px solid #dee2e6;
+  color: var(--cp-ink);
+  background: rgba(219, 230, 243, 0.45);
 }
 
 #calc-critical-points .points-table tr.maximum td {
-  background-color: #fadbd8;
-  color: #721c24;
+  background: var(--cp-danger-bg);
+  color: var(--cp-danger);
 }
 
 #calc-critical-points .points-table tr.minimum td {
-  background-color: #d4edda;
-  color: #155724;
+  background: var(--cp-success-bg);
+  color: var(--cp-success);
 }
 
 #calc-critical-points .points-table tr.inconclusive td {
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-#calc-critical-points .points-table tr:hover td {
-  opacity: 0.9;
+  background: var(--cp-warn-bg);
+  color: var(--cp-warn);
 }
 
 #calc-critical-points .steps-box {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 4px;
-  max-height: 500px;
-  overflow-y: auto;
+  border: 1px solid var(--cp-border);
+  border-radius: 18px;
+  background: #f9fbfe;
+  padding: 1rem;
+  max-height: 26rem;
+  overflow: auto;
 }
 
 #calc-critical-points .steps-box pre {
-  font-family: 'Courier New', monospace;
-  font-size: 0.9em;
-  white-space: pre-wrap;
   margin: 0;
-  line-height: 1.6;
+  white-space: pre-wrap;
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--cp-ink);
 }
 
 #calc-critical-points .error {
-  color: #e74c3c;
-  font-weight: bold;
-  padding: 10px;
-  background-color: #fadbd8;
-  border-radius: 4px;
+  color: var(--cp-danger);
+  background: var(--cp-danger-bg);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  font-weight: 600;
 }
 
-#cp-explanation-pane {
-  padding: 0;
+#calc-critical-points .cp-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
 }
 
-#cp-explanation-pane section {
-  margin-bottom: 25px;
+#calc-critical-points .cp-snapshot-card {
+  border: 1px solid var(--cp-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fbfdff;
 }
 
-#cp-explanation-pane h3 {
-  color: #2c3e50;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 8px;
-  margin-bottom: 15px;
+#calc-critical-points .cp-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--cp-muted);
+  margin-bottom: 0.3rem;
 }
 
-#cp-explanation-pane h4 {
-  color: #34495e;
-  margin-top: 15px;
-  margin-bottom: 8px;
+#calc-critical-points .cp-snapshot-card strong {
+  color: var(--cp-ink);
 }
 
-#cp-explanation-pane ul,
-#cp-explanation-pane ol {
-  padding-left: 25px;
+#cp-explanation {
+  display: grid;
+  gap: 1.25rem;
 }
 
-#cp-explanation-pane li {
-  margin-bottom: 8px;
-  line-height: 1.6;
+#cp-explanation .cp-exp-section {
+  background: #fff;
+  border: 1px solid var(--cp-border);
+  border-radius: 24px;
+  padding: 1.4rem;
+}
+
+#cp-explanation .cp-summary-list,
+#cp-explanation .cp-notes-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#cp-explanation .cp-table-wrap {
+  overflow-x: auto;
+}
+
+#cp-explanation .cp-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cp-explanation .cp-summary-table th,
+#cp-explanation .cp-summary-table td {
+  border-bottom: 1px solid var(--cp-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#cp-explanation .cp-example-grid,
+#cp-explanation .cp-related-grid,
+#cp-explanation .cp-faq-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+#cp-explanation .cp-example-card,
+#cp-explanation .faq-card,
+#cp-explanation .cp-related-card {
+  border: 1px solid var(--cp-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #fbfdff;
+}
+
+#cp-explanation .cp-related-card {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  #calc-critical-points .cp-hero-card {
+    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.9fr);
+    align-items: start;
+  }
+
+  #calc-critical-points .cp-workbench {
+    grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  }
+
+  #cp-explanation .cp-example-grid,
+  #cp-explanation .cp-related-grid,
+  #cp-explanation .cp-faq-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-critical-points .cp-input-card,
+  #calc-critical-points .cp-answer-card,
+  #calc-critical-points .cp-steps-card,
+  #calc-critical-points .cp-hero-card,
+  #cp-explanation .cp-exp-section {
+    padding: 1.1rem;
+  }
+
+  #calc-critical-points .cp-field-grid,
+  #calc-critical-points .cp-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
 }

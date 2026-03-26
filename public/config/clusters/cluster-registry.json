@@ -4,11 +4,11 @@
     {
       "clusterId": "math",
       "displayName": "Math",
-      "status": "migrating",
+      "status": "isolated",
       "routePrefixes": [
         "/math/"
       ],
-      "contractsEnabled": false,
+      "contractsEnabled": true,
       "owners": [
         "platform"
       ]
