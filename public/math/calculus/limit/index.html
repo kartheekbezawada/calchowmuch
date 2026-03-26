@@ -3,442 +3,1785 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Limit Calculator | Calculate How Much Online Calculator</title>
-    <meta name="description" content="Limit Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <title>Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch</title>
+    <meta name="description" content="Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks." />
     <link rel="canonical" href="https://calchowmuch.com/math/calculus/limit/" />
-    <meta property="og:title" content="Limit Calculator | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="Limit Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:title" content="Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch" />
+    <meta property="og:description" content="Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/calculus/limit/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Limit Calculator | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="Limit Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:title" content="Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch" />
+    <meta name="twitter:description" content="Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-math-cluster="true">
+      /* assets/css/base.css */
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/math/shared/cluster-light.css */
+      :root {
+        --math-shell-bg: linear-gradient(180deg, #f6fbff 0%, #eef6ff 42%, #f9fbff 100%);
+        --math-shell-surface: rgba(255, 255, 255, 0.92);
+        --math-shell-surface-strong: #ffffff;
+        --math-shell-border: rgba(15, 23, 42, 0.1);
+        --math-shell-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        --math-shell-shadow-soft: 0 14px 34px rgba(59, 130, 246, 0.12);
+        --math-shell-text: #132238;
+        --math-shell-muted: #5e7086;
+        --math-shell-accent: #0f766e;
+        --math-shell-accent-strong: #0b5a54;
+        --math-shell-highlight: #effcf8;
+        --math-shell-chip: rgba(15, 118, 110, 0.12);
+        --math-shell-chip-text: #0f5d58;
+        --math-shell-line: rgba(15, 23, 42, 0.08);
+      }
+
+      body {
+        color: var(--math-shell-text);
+        background: var(--math-shell-bg);
+      }
+
+      .math-cluster-wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .math-cluster-site-header,
+      .math-cluster-site-footer {
+        background: rgba(255, 255, 255, 0.74);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--math-shell-line);
+      }
+
+      .math-cluster-site-header-inner,
+      .math-cluster-site-footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 0;
+      }
+
+      .math-cluster-brand,
+      .math-cluster-site-links a,
+      .math-cluster-footer-links a {
+        color: var(--math-shell-text);
+      }
+
+      .math-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .math-cluster-brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #0f766e, #38bdf8);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: var(--math-shell-shadow-soft);
+      }
+
+      .math-cluster-site-label {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--math-shell-chip);
+        color: var(--math-shell-chip-text);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .math-cluster-site-links,
+      .math-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .math-cluster-layout-main {
+        padding: 28px 0 48px;
+      }
+
+      .math-cluster-center-column {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .math-cluster-panel {
+        display: grid;
+        gap: 28px;
+        padding: 28px;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 28px;
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
+        box-shadow: var(--math-shell-shadow);
+      }
+
+      .math-cluster-page-header {
+        display: grid;
+        gap: 12px;
+      }
+
+      .math-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.92rem;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-breadcrumbs a {
+        color: var(--math-shell-accent-strong);
+      }
+
+      .math-cluster-page-kicker {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--math-shell-highlight);
+        color: var(--math-shell-accent-strong);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .math-cluster-page-header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .math-cluster-page-intro {
+        margin: 0;
+        max-width: 68ch;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      .math-cluster-footer-copy {
+        color: var(--math-shell-muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 900px) {
+        .math-cluster-site-header-inner,
+        .math-cluster-site-footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .math-cluster-panel {
+          padding: 22px 18px;
+          border-radius: 22px;
+        }
+      }
+
+      /* calculators/math/calculus/limit/calculator.css */
+      #calc-limit,
+      .limq-exp-section {
+        --limq-surface: rgba(255, 255, 255, 0.97);
+        --limq-surface-soft: rgba(249, 252, 255, 0.98);
+        --limq-border: rgba(15, 23, 42, 0.08);
+        --limq-text: #193148;
+        --limq-muted: #607388;
+        --limq-accent: #0d5c92;
+        --limq-accent-soft: rgba(14, 165, 233, 0.12);
+        --limq-answer-soft: rgba(20, 184, 166, 0.12);
+        --limq-step-soft: rgba(37, 99, 235, 0.12);
+        --limq-highlight: #eef7ff;
+        --limq-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+      }
+
+      #calc-limit,
+      #calc-limit h2,
+      #calc-limit h3,
+      #calc-limit h4,
+      #calc-limit p,
+      #calc-limit span,
+      #calc-limit strong,
+      #calc-limit label,
+      #calc-limit li,
+      .limq-exp-section,
+      .limq-exp-section h2,
+      .limq-exp-section h3,
+      .limq-exp-section h4,
+      .limq-exp-section p,
+      .limq-exp-section li,
+      .limq-exp-section td,
+      .limq-exp-section th {
+        color: var(--limq-text);
+      }
+
+      #calc-limit h2::after,
+      #calc-limit h3::after,
+      .limq-exp-section h2::after,
+      .limq-exp-section h3::after {
+        display: none !important;
+        content: none !important;
+      }
+
+      .limq-shell {
+        display: grid;
+        gap: 24px;
+      }
+
+      .limq-card,
+      .limq-exp-section {
+        border: 1px solid var(--limq-border);
+        border-radius: 24px;
+        background: linear-gradient(180deg, var(--limq-surface), var(--limq-surface-soft));
+        box-shadow: var(--limq-shadow);
+      }
+
+      .limq-card {
+        padding: 24px;
+      }
+
+      .limq-exp-section {
+        padding: 22px;
+        margin-top: 0;
+      }
+
+      .limq-hero-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, 1fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      .limq-eyebrow,
+      .limq-section-label {
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--limq-accent);
+      }
+
+      .limq-title {
+        margin: 0;
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .limq-subtitle,
+      .limq-helper,
+      .limq-exp-section p,
+      .limq-exp-section li,
+      .limq-exp-section td,
+      .limq-exp-section th {
+        color: var(--limq-muted);
+        line-height: 1.7;
+      }
+
+      .limq-subtitle {
+        margin: 12px 0 0;
+      }
+
+      .limq-hero-points {
+        margin: 0;
+        padding: 18px 18px 18px 34px;
+        border-radius: 20px;
+        background: var(--limq-highlight);
+        display: grid;
+        gap: 12px;
+      }
+
+      .limq-workbench {
+        display: grid;
+        grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .limq-left-stack {
+        display: grid;
+        gap: 24px;
+      }
+
+      .limq-input-card,
+      .limq-steps-card,
+      .limq-answer-card {
+        display: grid;
+        gap: 18px;
+      }
+
+      .limq-answer-card {
+        position: sticky;
+        top: 18px;
+      }
+
+      .limq-card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 16px;
+      }
+
+      .limq-card-title {
+        margin: 4px 0 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #203348;
+      }
+
+      .limq-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--limq-accent-soft);
+        color: var(--limq-accent);
+        font-size: 0.84rem;
+        font-weight: 600;
+      }
+
+      .limq-chip--answer {
+        background: var(--limq-answer-soft);
+        color: #0f766e;
+      }
+
+      .limq-chip--steps {
+        background: var(--limq-step-soft);
+        color: #1d4ed8;
+      }
+
+      .limq-field,
+      .limq-field-grid {
+        display: grid;
+        gap: 8px;
+      }
+
+      .limq-field-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .limq-field > span {
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--limq-accent);
+      }
+
+      .limq-field input {
+        width: 100%;
+        min-height: 52px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--limq-border);
+        background: #fff;
+        color: var(--limq-text);
+        font-size: 1rem;
+      }
+
+      .limq-direction-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .limq-direction-button {
+        min-height: 48px;
+        border-radius: 14px;
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        background: rgba(255, 255, 255, 0.88);
+        color: var(--limq-text);
+        font-weight: 600;
+      }
+
+      .limq-direction-button.active {
+        background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+        border-color: transparent;
+        color: #fff;
+      }
+
+      .limq-calc-button {
+        width: 100%;
+        min-height: 54px;
+        border: 0;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+        color: #fff;
+        box-shadow: 0 18px 28px rgba(14, 165, 233, 0.2);
+      }
+
+      .limq-summary-card,
+      .limq-result-box,
+      .limq-step-panel,
+      .limq-snapshot-card,
+      .limq-example-card,
+      .limq-related-card,
+      .faq-card {
+        border: 1px solid var(--limq-border);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .limq-summary-card,
+      .limq-result-box,
+      .limq-step-panel,
+      .limq-snapshot-card,
+      .limq-example-card,
+      .faq-card {
+        padding: 16px;
+      }
+
+      .limq-summary-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(238, 248, 255, 0.96));
+      }
+
+      .limq-result-card,
+      .limq-steps-output,
+      .limq-example-grid,
+      .limq-faq-grid,
+      .limq-related-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .limq-summary-card h4,
+      .limq-result-box h4,
+      .limq-step-panel h4,
+      .limq-example-card h4,
+      .faq-card h4 {
+        margin: 0 0 10px;
+      }
+
+      .limq-summary-grid,
+      .limq-snapshot-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .limq-stat,
+      .limq-snapshot-card {
+        display: grid;
+        gap: 6px;
+      }
+
+      .limq-stat span,
+      .limq-snapshot-card span {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--limq-muted);
+      }
+
+      .limq-step-panel pre {
+        margin: 0;
+        white-space: pre-wrap;
+        font-family: 'Courier New', monospace;
+        line-height: 1.6;
+        font-size: 0.92rem;
+      }
+
+      .limq-table-wrap {
+        overflow-x: auto;
+      }
+
+      .limq-summary-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .limq-summary-table th,
+      .limq-summary-table td {
+        padding: 14px 12px;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        text-align: left;
+      }
+
+      .limq-example-grid,
+      .limq-faq-grid,
+      .limq-related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .limq-related-card {
+        display: grid;
+        gap: 8px;
+        padding: 16px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .limq-notes-list,
+      .limq-summary-list {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .limq-error {
+        color: #b42318;
+        background: rgba(254, 242, 242, 0.96);
+      }
+
+      @media (max-width: 980px) {
+        .limq-hero-card,
+        .limq-workbench,
+        .limq-example-grid,
+        .limq-faq-grid,
+        .limq-related-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .limq-answer-card {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .limq-card,
+        .limq-exp-section {
+          padding: 18px;
+          border-radius: 20px;
+        }
+
+        .limq-field-grid,
+        .limq-direction-row,
+        .limq-summary-grid,
+        .limq-snapshot-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .limq-title {
+          font-size: 1.7rem;
+        }
+      }
+    </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/calculus/limit/#webpage","name":"Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch","url":"https://calchowmuch.com/math/calculus/limit/","description":"Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/calculus/limit/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/calculus/limit/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/calculus/limit/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/calculus/limit/#softwareapplication","name":"Limit Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/calculus/limit/","description":"Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/calculus/limit/#faq","mainEntity":[{"@type":"Question","name":"What is a limit?","acceptedAnswer":{"@type":"Answer","text":"It is the value a function approaches as the input approaches a chosen point."}},{"@type":"Question","name":"What is a two-sided limit?","acceptedAnswer":{"@type":"Answer","text":"It checks whether the left-hand and right-hand values approach the same result."}},{"@type":"Question","name":"What is a one-sided limit?","acceptedAnswer":{"@type":"Answer","text":"It checks the behavior from only one side of the approach point."}},{"@type":"Question","name":"Why can a two-sided limit fail?","acceptedAnswer":{"@type":"Answer","text":"The most common reason is that the left-hand and right-hand values approach different results."}},{"@type":"Question","name":"What does direct substitution mean?","acceptedAnswer":{"@type":"Answer","text":"It means you can plug in the approach value directly and get a valid finite result."}},{"@type":"Question","name":"What is an indeterminate form?","acceptedAnswer":{"@type":"Answer","text":"It is a substitution result such as 0/0 that needs more analysis before the limit can be judged."}},{"@type":"Question","name":"Can I use infinity here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter inf or -inf to estimate a limit at infinity."}},{"@type":"Question","name":"Does the variable field matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. The route evaluates the expression using the variable name you enter."}},{"@type":"Question","name":"Does this route prove limits symbolically?","acceptedAnswer":{"@type":"Answer","text":"No. It focuses on practical direct substitution and numeric approximation rather than formal proof steps."}},{"@type":"Question","name":"When is this route useful?","acceptedAnswer":{"@type":"Answer","text":"It is useful for continuity checks, approach-value comparisons, and quick calculus practice."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/calculus/limit/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Limit Calculator","item":"https://calchowmuch.com/math/calculus/limit/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+    <div class="page math-cluster-page-shell">
+      <header class="math-cluster-site-header">
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a><a class="top-nav-link" href="/pricing-calculators/commission-calculator/"><span class="nav-label">Pricing Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="math-nav-container">
-<div class="math-nav-category is-collapsed" data-id="simple">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
-      <span class="math-nav-category-name">SIMPLE</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/basic/">Basic Calculator</a><a class="math-nav-item" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator/">Fraction Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="algebra">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
-      <span class="math-nav-category-name">ALGEBRA</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/algebra/quadratic-equation/">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations/">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations/">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring/">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance/">Slope & Distance Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="trigonometry">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-      <span class="math-nav-category-name">TRIGONOMETRY</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/trigonometry/unit-circle/">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver/">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions/">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig/">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines/">Law of Sines/Cosines Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category" data-id="calculus">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-      <span class="math-nav-category-name">CALCULUS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/calculus/derivative/">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral/">Integral Calculator</a><a class="math-nav-item is-active" href="/math/calculus/limit/">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence/">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points/">Critical Points Finder</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="log">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-      <span class="math-nav-category-name">LOG</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/log/natural-log/">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log/">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties/">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations/">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale/">Log Scale Converter</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="statistics">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
-      <span class="math-nav-category-name">STATISTICS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/mean-median-mode-range/">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation/">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics/">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval/">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score/">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size/">Sample Size</a><a class="math-nav-item" href="/math/number-sequence/">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination/">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability/">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis/">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova/">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing/">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation/">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution/">Distribution Calculator</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Limit Calculator</h1>
-  <div id="calc-limit">
-  <div class="calculator-ui">
-    <p class="helper">Calculate limits including indeterminate forms</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="limit-function">Function f(x)</label>
-        <input
-          id="limit-function"
-          type="text"
-          value="(x^2-1)/(x-1)"
-          placeholder="e.g., (x^2-1)/(x-1)"
-        />
-      </div>
-
-      <div class="input-row">
-        <label for="limit-variable">Variable</label>
-        <input id="limit-variable" type="text" value="x" placeholder="x" />
-      </div>
-
-      <div class="input-row">
-        <label for="limit-approaches">Limit as x approaches</label>
-        <input
-          id="limit-approaches"
-          type="text"
-          value="1"
-          placeholder="Enter number or 'inf' for infinity"
-        />
-      </div>
-
-      <div class="button-group">
-        <button class="direction-button active" data-direction="both">Two-Sided</button>
-        <button class="direction-button" data-direction="left">Left (−)</button>
-        <button class="direction-button" data-direction="right">Right (+)</button>
-      </div>
+      <main class="math-cluster-layout-main">
+        <section class="math-cluster-center-column">
+          <div class="math-cluster-panel panel-span-all">
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Limit Calculator</span>
     </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Limit Calculator</h1>
+    <p class="math-cluster-page-intro">Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-limit">
+  <div class="limq-shell">
+    <section class="limq-card limq-hero-card" aria-label="Limit overview">
+      <div class="limq-hero-copy">
+        <p class="limq-eyebrow">Simple Smooth Wow</p>
+        <h2 class="limq-title">Check direct, one-sided, and infinity limits in one answer-first calculus workspace.</h2>
+        <p class="limq-subtitle">
+          Enter the function, choose the approach value and direction, then calculate once. The
+          answer card keeps the limit result and continuity status visible while the analysis card
+          shows the numeric approximation steps without legacy shell clutter.
+        </p>
+      </div>
+      <ul class="limq-hero-points">
+        <li>Best for direct-substitution checks, one-sided limits, and simple infinity behavior.</li>
+        <li>The answer card surfaces the limit value, direction, and existence result first.</li>
+        <li>The analysis card stays nearby so the direct or numerical approximation path is easy to follow.</li>
+      </ul>
+    </section>
 
-    <button class="calculator-button full-width" type="button" id="limit-calculate">
-      Calculate Limit
-    </button>
+    <div class="limq-workbench">
+      <div class="limq-left-stack">
+        <section class="limq-card limq-input-card" aria-label="Limit inputs">
+          <div class="limq-card-head">
+            <div>
+              <p class="limq-section-label">Inputs</p>
+              <p class="limq-card-title">Set the function, variable, approach value, and direction</p>
+            </div>
+            <span class="limq-chip">Answer-first</span>
+          </div>
 
-    <div class="result" id="limit-result" aria-live="polite"></div>
-    <div class="result-detail" id="limit-steps" aria-live="polite"></div>
+          <p class="limq-helper">
+            Use a number for ordinary limits or <strong>inf</strong> / <strong>-inf</strong> for
+            limits at infinity. Switch direction when you want only the left-hand or right-hand view.
+          </p>
+
+          <label class="limq-field" for="limit-function">
+            <span>Function f(x)</span>
+            <input
+              id="limit-function"
+              type="text"
+              value="(x^2-1)/(x-1)"
+              placeholder="e.g., (x^2-1)/(x-1)"
+            />
+          </label>
+
+          <div class="limq-field-grid">
+            <label class="limq-field" for="limit-variable">
+              <span>Variable</span>
+              <input id="limit-variable" type="text" value="x" placeholder="x" />
+            </label>
+
+            <label class="limq-field" for="limit-approaches">
+              <span>Approach value</span>
+              <input
+                id="limit-approaches"
+                type="text"
+                value="1"
+                placeholder="Enter number or inf"
+              />
+            </label>
+          </div>
+
+          <div class="limq-direction-row">
+            <button class="direction-button limq-direction-button active" type="button" data-direction="both">Two-Sided</button>
+            <button class="direction-button limq-direction-button" type="button" data-direction="left">Left (−)</button>
+            <button class="direction-button limq-direction-button" type="button" data-direction="right">Right (+)</button>
+          </div>
+
+          <button class="calculator-button limq-calc-button" type="button" id="limit-calculate">
+            Calculate limit
+          </button>
+        </section>
+
+        <section class="limq-card limq-steps-card" aria-label="Limit analysis">
+          <div class="limq-card-head">
+            <div>
+              <p class="limq-section-label">Analysis</p>
+              <p class="limq-card-title">Direct substitution or numerical approximation notes</p>
+            </div>
+            <span class="limq-chip limq-chip--steps">Limit path</span>
+          </div>
+
+          <div class="result-detail limq-steps-output" id="limit-steps" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <section class="limq-card limq-answer-card" aria-label="Limit answer summary">
+        <div class="limq-card-head">
+          <div>
+            <p class="limq-section-label">Answer</p>
+            <p class="limq-card-title">Limit result, direction, and existence summary</p>
+          </div>
+          <span class="limq-chip limq-chip--answer">Limit result</span>
+        </div>
+
+        <div class="result limq-result-card" id="limit-result" aria-live="polite"></div>
+
+        <div class="limq-snapshot-grid" aria-label="Limit snapshot">
+          <article class="limq-snapshot-card">
+            <span>Direction</span>
+            <strong data-limit-snap="direction">Two-Sided</strong>
+          </article>
+          <article class="limq-snapshot-card">
+            <span>Approach</span>
+            <strong data-limit-snap="approach">1</strong>
+          </article>
+          <article class="limq-snapshot-card">
+            <span>Result</span>
+            <strong data-limit-snap="result">-</strong>
+          </article>
+          <article class="limq-snapshot-card">
+            <span>Status</span>
+            <strong data-limit-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 
-<style>
-  @import url('/calculators/math/calculus/limit/calculator.css?v=20260224');
-</style>
 
-<script type="module">
-  import { initLimitCalculator } from '/calculators/math/calculus/limit/module.js?v=20260224';
-  initLimitCalculator();
-</script>
 
+    <section class="limq-exp-section">
+  <h2>Limit Calculator Practical Guide</h2>
+  <p>
+    Use this limit calculator to check direct, one-sided, and infinity limits in a clean answer-first
+    layout. It is built for fast interpretation, so the route keeps the limit result, existence
+    status, and analysis steps together instead of burying them in a legacy shell.
+  </p>
+  <ul class="limq-summary-list">
+    <li><strong>Best for:</strong> direct-substitution checks, one-sided limits, and simple infinity behavior.</li>
+    <li><strong>Quick answer flow:</strong> enter the function, set the approach value and direction, then calculate once.</li>
+    <li><strong>Output includes:</strong> the limit result, continuity or existence status, and step-by-step numeric analysis.</li>
+  </ul>
+</section>
+
+<section class="limq-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter the function and choose the variable you want to approach.</li>
+    <li>Enter a number, <strong>inf</strong>, or <strong>-inf</strong> as the approach value.</li>
+    <li>Select whether you want a two-sided, left-hand, or right-hand limit.</li>
+    <li>Click <strong>Calculate limit</strong> and read the answer card before reviewing the analysis panel.</li>
+  </ol>
+</section>
+
+<section class="limq-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="limq-table-wrap">
+    <table class="limq-summary-table">
+      <thead>
+        <tr>
+          <th>Direction</th>
+          <th>What the route checks</th>
+          <th>Quick interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Two-Sided</td>
+          <td>Both left-hand and right-hand behavior</td>
+          <td>The limit exists only if the two one-sided values agree.</td>
+        </tr>
+        <tr>
+          <td>Left</td>
+          <td>Approach from values below the point</td>
+          <td>Useful when the function behaves differently on the left side.</td>
+        </tr>
+        <tr>
+          <td>Right</td>
+          <td>Approach from values above the point</td>
+          <td>Useful when the function behaves differently on the right side.</td>
+        </tr>
+        <tr>
+          <td>Infinity</td>
+          <td>Behavior as the input grows very large in magnitude</td>
+          <td>Shows whether the function appears to settle, diverge, or grow without bound.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="limq-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    A limit asks what value a function approaches as the input approaches a target point. When direct
+    substitution works, the route reports that value immediately. When direct substitution fails, the
+    route compares nearby values numerically to estimate the left-hand and right-hand behavior.
+  </p>
+  <p>
+    For limits at infinity, the route evaluates the function at increasingly large magnitudes to
+    check whether the outputs appear to converge, diverge, or grow without bound.
+  </p>
+</section>
+
+<section class="limq-exp-section">
+  <h3>Worked Example</h3>
+  <div class="limq-example-grid">
+    <article class="limq-example-card">
+      <h4>Direct substitution example</h4>
+      <p>Enter <strong>x^2 + 2*x - 1</strong> and let x approach <strong>3</strong>.</p>
+      <p>
+        The route returns <strong>14</strong> because the function is continuous there, so direct
+        substitution works immediately.
+      </p>
+    </article>
+    <article class="limq-example-card">
+      <h4>Indeterminate example</h4>
+      <p>Enter <strong>(x^2 - 1)/(x - 1)</strong> and let x approach <strong>1</strong>.</p>
+      <p>
+        Direct substitution fails, but the nearby values settle near <strong>2</strong>, so the route
+        reports a two-sided limit of about 2.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="limq-exp-section">
+  <h3>FAQ</h3>
+  <div class="limq-faq-grid">
+    <div class="faq-card">
+      <h4>What is a limit?</h4>
+      <p>It is the value a function approaches as the input approaches a chosen point.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is a two-sided limit?</h4>
+      <p>It checks whether the left-hand and right-hand values approach the same result.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is a one-sided limit?</h4>
+      <p>It checks the behavior from only one side of the approach point.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why can a two-sided limit fail?</h4>
+      <p>The most common reason is that the left-hand and right-hand values approach different results.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does direct substitution mean?</h4>
+      <p>It means you can plug in the approach value directly and get a valid finite result.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is an indeterminate form?</h4>
+      <p>It is a substitution result such as 0/0 that needs more analysis before the limit can be judged.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I use infinity here?</h4>
+      <p>Yes. Enter <strong>inf</strong> or <strong>-inf</strong> to estimate a limit at infinity.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does the variable field matter?</h4>
+      <p>Yes. The route evaluates the expression using the variable name you enter.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does this route prove limits symbolically?</h4>
+      <p>No. It focuses on practical direct substitution and numeric approximation rather than formal proof steps.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is this route useful?</h4>
+      <p>It is useful for continuity checks, approach-value comparisons, and quick calculus practice.</p>
+    </div>
+  </div>
+</section>
+
+<section class="limq-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="limq-related-grid">
+    <a class="limq-related-card" href="/math/calculus/derivative/">
+      <strong>Derivative Calculator</strong>
+      <span>Move from approach behavior into rates of change when you need the derivative itself.</span>
+    </a>
+    <a class="limq-related-card" href="/math/calculus/integral/">
+      <strong>Integral Calculator</strong>
+      <span>Switch from local approach behavior into accumulated change and antiderivatives.</span>
+    </a>
+    <a class="limq-related-card" href="/math/calculus/critical-points/">
+      <strong>Critical Points Finder</strong>
+      <span>Use derivative-based turning-point analysis once continuity and local behavior are clear.</span>
+    </a>
+  </div>
+</section>
+
+<section class="limq-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="limq-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Direct rule:</strong> If substitution gives a finite value, the route treats the function as continuous at that point.</li>
+    <li><strong>Approximation rule:</strong> If substitution fails, the route samples nearby values to estimate one-sided and two-sided behavior.</li>
+    <li><strong>Infinity rule:</strong> Enter <strong>inf</strong> or <strong>-inf</strong> for limits at infinity.</li>
+    <li><strong>Use case:</strong> This tool is built for quick numeric verification, not full symbolic limit proofs.</li>
+  </ul>
+</section>
+
+  </div>
 </div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div id="limit-explanation-pane">
-  <section>
-    <h3>What Is a Limit?</h3>
-    <p>
-      A limit describes the value that a function approaches as the input approaches some value.
-      Limits are fundamental to calculus and are used to define derivatives, integrals, and
-      continuity.
-    </p>
-    <p>
-      <strong>Notation:</strong> lim[x→a] f(x) = L means "the limit of f(x) as x approaches a is L"
-    </p>
-  </section>
-
-  <section>
-    <h3>Types of Limits</h3>
-    <h4>Two-Sided Limits</h4>
-    <p>
-      The function approaches the same value from both left and right: lim[x→a] f(x) exists if
-      lim[x→a⁻] f(x) = lim[x→a⁺] f(x)
-    </p>
-
-    <h4>One-Sided Limits</h4>
-    <p><strong>Left-hand limit:</strong> lim[x→a⁻] f(x) (approaching from values less than a)</p>
-    <p>
-      <strong>Right-hand limit:</strong> lim[x→a⁺] f(x) (approaching from values greater than a)
-    </p>
-
-    <h4>Limits at Infinity</h4>
-    <p>Describes function behavior as x gets arbitrarily large: lim[x→∞] f(x) or lim[x→−∞] f(x)</p>
-  </section>
-
-  <section>
-    <h3>Indeterminate Forms</h3>
-    <p>Situations where direct substitution yields an undefined expression:</p>
-    <ul>
-      <li>
-        <strong>0/0:</strong> Most common; often requires algebraic manipulation or L'Hôpital's rule
-      </li>
-      <li><strong>∞/∞:</strong> Can use L'Hôpital's rule</li>
-      <li><strong>0 × ∞:</strong> Rewrite as 0/0 or ∞/∞</li>
-      <li><strong>∞ − ∞:</strong> Combine fractions or rationalize</li>
-      <li><strong>0⁰, 1^∞, ∞⁰:</strong> Use logarithms</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>L'Hôpital's Rule</h3>
-    <p>If lim[x→a] f(x)/g(x) yields 0/0 or ∞/∞, then:</p>
-    <p style="margin-left: 1.5rem">lim[x→a] f(x)/g(x) = lim[x→a] f'(x)/g'(x)</p>
-    <p>
-      <strong>Conditions:</strong>
-    </p>
-    <ul>
-      <li>The limit must be in indeterminate form 0/0 or ∞/∞</li>
-      <li>Both f'(x) and g'(x) must exist near a</li>
-      <li>Can be applied repeatedly if the form persists</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Algebraic Techniques</h3>
-    <h4>Factoring</h4>
-    <p>Cancel common factors to resolve 0/0 forms</p>
-    <p>
-      <strong>Example:</strong> lim[x→2] (x²−4)/(x−2) = lim[x→2] (x+2)(x−2)/(x−2) = lim[x→2] (x+2) =
-      4
-    </p>
-
-    <h4>Rationalization</h4>
-    <p>Multiply by conjugate to eliminate radicals</p>
-    <p><strong>Example:</strong> lim[x→0] (√(x+1)−1)/x</p>
-
-    <h4>Common Denominators</h4>
-    <p>Combine fractions before taking the limit</p>
-
-    <h4>Dominant Terms</h4>
-    <p>For limits at infinity, factor out highest power</p>
-    <p><strong>Example:</strong> lim[x→∞] (3x²+2x)/(x²−5) = lim[x→∞] (3+2/x)/(1−5/x²) = 3</p>
-  </section>
-
-  <section>
-    <h3>Limit Laws</h3>
-    <p>If lim[x→a] f(x) = L and lim[x→a] g(x) = M, then:</p>
-    <ul>
-      <li><strong>Sum:</strong> lim[x→a] [f(x) + g(x)] = L + M</li>
-      <li><strong>Difference:</strong> lim[x→a] [f(x) − g(x)] = L − M</li>
-      <li><strong>Product:</strong> lim[x→a] [f(x) · g(x)] = L · M</li>
-      <li><strong>Quotient:</strong> lim[x→a] [f(x) / g(x)] = L / M (if M ≠ 0)</li>
-      <li><strong>Power:</strong> lim[x→a] [f(x)]^n = L^n</li>
-      <li><strong>Constant:</strong> lim[x→a] k = k</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Continuity and Limits</h3>
-    <p>A function f is continuous at x = a if:</p>
-    <ol>
-      <li>f(a) is defined</li>
-      <li>lim[x→a] f(x) exists</li>
-      <li>lim[x→a] f(x) = f(a)</li>
-    </ol>
-    <p>If any condition fails, the function has a discontinuity at x = a.</p>
-  </section>
-
-  <section>
-    <h3>Worked Examples</h3>
-    <h4>Example 1: Direct Substitution</h4>
-    <p><strong>Find lim[x→3] (x² + 2x − 1)</strong></p>
-    <ol>
-      <li>Function is continuous at x = 3</li>
-      <li>Substitute directly: (3)² + 2(3) − 1 = 9 + 6 − 1 = 14</li>
-      <li>Answer: 14</li>
-    </ol>
-
-    <h4>Example 2: Factoring</h4>
-    <p><strong>Find lim[x→2] (x² − 4)/(x − 2)</strong></p>
-    <ol>
-      <li>Direct substitution gives 0/0 (indeterminate)</li>
-      <li>Factor numerator: (x + 2)(x − 2)/(x − 2)</li>
-      <li>Cancel common factor: x + 2</li>
-      <li>Substitute: 2 + 2 = 4</li>
-      <li>Answer: 4</li>
-    </ol>
-
-    <h4>Example 3: L'Hôpital's Rule</h4>
-    <p><strong>Find lim[x→0] (sin x)/x</strong></p>
-    <ol>
-      <li>Direct substitution gives 0/0</li>
-      <li>Apply L'Hôpital's: lim[x→0] (cos x)/1</li>
-      <li>Substitute: cos(0) = 1</li>
-      <li>Answer: 1</li>
-    </ol>
-  </section>
-
-  <section>
-    <h3>Common Limits to Know</h3>
-    <ul>
-      <li>lim[x→0] (sin x)/x = 1</li>
-      <li>lim[x→0] (1 − cos x)/x = 0</li>
-      <li>lim[x→∞] (1 + 1/x)^x = e</li>
-      <li>lim[x→0] (e^x − 1)/x = 1</li>
-      <li>lim[x→0] (ln(1 + x))/x = 1</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Common Mistakes</h3>
-    <ul>
-      <li>Applying L'Hôpital's rule when the form is not indeterminate</li>
-      <li>Confusing lim[x→a] f(x) with f(a) when function is discontinuous</li>
-      <li>Not checking if one-sided limits agree before claiming two-sided limit exists</li>
-      <li>Incorrectly manipulating infinity in algebraic expressions</li>
-    </ul>
-  </section>
-</div>
-
-</div>
-        </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
         </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="math-cluster-site-footer">
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
     <script type="module" src="/calculators/math/calculus/limit/module.js?v=20260224"></script>
   </body>
 </html>

@@ -45,9 +45,9 @@ Companion docs:
 | 1 | Pilot | 3 | passed | none | Codex | `basic`, `fraction-calculator`, and `sample-size` are redesign-complete. Pilot shell, schema, and auto-continuation rules are now stable. |
 | 2 | Stabilize | 0 | passed | none | Codex | Pilot findings were folded back into the execution card, checklist, and tracker before scale-out. |
 | 3 | Algebra suite | 5 | passed | none | Codex | `quadratic-equation`, `slope-distance`, `factoring`, `polynomial-operations`, and `system-of-equations` are redesign-complete. Wave 3 exit gates are complete. |
-| 4 | Trigonometry suite | 5 | active | inverse-trig | Codex | `unit-circle`, `triangle-solver`, and `trig-functions` are redesign-complete. Remaining trigonometry routes still require generated-output proof. |
-| 5 | Log cluster | 5 | planned | none | Codex | Similar route family, should stay visually consistent |
-| 6 | Calculus suite | 5 | planned | none | Codex | Expression-heavy layouts and dense outputs |
+| 4 | Trigonometry suite | 5 | passed | none | Codex | `unit-circle`, `triangle-solver`, `trig-functions`, `inverse-trig`, and `law-of-sines-cosines` are redesign-complete. Wave 4 exit gates are complete. |
+| 5 | Log cluster | 5 | passed | none | Codex | `natural-log`, `common-log`, `log-properties`, `exponential-equations`, and `log-scale` are redesign-complete. Wave 5 exit gates are complete. |
+| 6 | Calculus suite | 5 | active | critical-points | Codex | Expression-heavy layouts and dense outputs |
 | 7 | Statistics core | 4 | planned | none | Codex | Multi-output routes with stronger content demands |
 | 8 | Counting and probability | 3 | planned | none | Codex | Smaller but mixed interaction models |
 | 9 | Statistics advanced | 3 | planned | none | Codex | Chart and interpretation-heavy routes |
@@ -68,7 +68,16 @@ Companion docs:
 | 4 | `/math/trigonometry/unit-circle/` | `unit-circle` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, interactive circle diagram, related links, and scoped validations now satisfy the redesign definition. |
 | 4 | `/math/trigonometry/triangle-solver/` | `triangle-solver` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, diagram contract, formula notes, and scoped validations now satisfy the redesign definition. |
 | 4 | `/math/trigonometry/trig-functions/` | `trig-functions` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, graph contract, exact-value notes, and scoped validations now satisfy the redesign definition. |
-| 4 | `/math/trigonometry/inverse-trig/` | `inverse-trig` | `legacy-shared` | `legacy-single-dark` | `type-2` | `not-audited` | `planned` | `release-passed-only` | `pending` | `pending` | `pending` | `pending` | `Codex` | historical release only | Next trigonometry route. Prior release evidence does not count as redesign proof. |
+| 4 | `/math/trigonometry/inverse-trig/` | `inverse-trig` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, inverse-solution hierarchy, related links, and scoped validations now satisfy the redesign definition. |
+| 4 | `/math/trigonometry/law-of-sines-cosines/` | `law-of-sines-cosines` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, triangle-law hierarchy, diagram contract, and scoped validations now satisfy the redesign definition. |
+| 5 | `/math/log/natural-log/` | `natural-log` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, graph contract, ln hierarchy, and scoped validations now satisfy the redesign definition. |
+| 5 | `/math/log/common-log/` | `common-log` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, selected-base graph contract, change-of-base hierarchy, and scoped validations now satisfy the redesign definition. |
+| 5 | `/math/log/log-properties/` | `log-properties` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, rule-explorer hierarchy, and scoped validations now satisfy the redesign definition. |
+| 5 | `/math/log/exponential-equations/` | `exponential-equations` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, solve-flow hierarchy, graph checkpoint contract, and scoped validations now satisfy the redesign definition. |
+| 5 | `/math/log/log-scale/` | `log-scale` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | none | Light math shell shipped in generated output. Static schema, interpretation guide hierarchy, and scoped validations now satisfy the redesign definition. |
+| 6 | `/math/calculus/derivative/` | `derivative` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | parser defect resolved | Light math shell shipped in generated output. Static schema, derivative-step hierarchy, and scoped validations now satisfy the redesign definition. |
+| 6 | `/math/calculus/integral/` | `integral` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | parser defect resolved | Light math shell shipped in generated output. Static schema, integration-mode hierarchy, and scoped validations now satisfy the redesign definition. |
+| 6 | `/math/calculus/limit/` | `limit` | `cluster-owned:math` | `redesign-complete` | `type-2` | `audited` | `redesign-complete` | `release-passed-only` | `pass` | `pass` | `pass` | `pass` | `Codex` | variable binding defect resolved | Light math shell shipped in generated output. Static schema, direction-analysis hierarchy, and scoped validations now satisfy the redesign definition. |
 
 ## Route Audit Template
 
@@ -200,6 +209,106 @@ Companion docs:
 - Logic risk: low; migration preserved the angle input, angle-unit button group, graph-function select, amplitude and period IDs, calculate trigger, result containers, graph canvas ID, and shared trigonometry-core calculations
 - Type: `2`
 - Notes: migrated to the light math cluster shell, rebuilt the answer-first trig workflow with a stable graph card, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — inverse-trig
+- Route: `/math/trigonometry/inverse-trig/`
+- Layout: single
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, and legacy left nav; all removed in redesign output
+- Design issues: previous route depended on the legacy shell, mixed interval controls and answer details into one dark stack, and did not give the principal value or interval solutions a clear first-screen hierarchy
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, formula coverage, FAQs, related links, and notes contract; route metadata also depended on stale runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the inverse-function select, interval inputs, output-unit button group, calculate trigger, snapshot IDs, and shared trigonometry-core solution engine
+- Type: `2`
+- Notes: migrated to the light math cluster shell, rebuilt the route around the principal-value answer card and interval solution list, removed runtime metadata injection, aligned the scoped E2E with the stable decimal-radian rendering contract, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — law-of-sines-cosines
+- Route: `/math/trigonometry/law-of-sines-cosines/`
+- Layout: split
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, legacy left nav, and split-shell chrome; all removed in redesign output
+- Design issues: previous route buried the triangle-law workflow in the legacy split shell, lacked a first-screen answer hierarchy, and referenced a triangle canvas ID that the source fragment did not actually render
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, worked examples, FAQs, related links, and notes contract; route metadata also depended on runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the method select, angle-unit button group, side and angle input IDs, solve trigger, result containers, diagram IDs, and the shared trigonometry-core solving logic
+- Type: `2`
+- Notes: migrated to the light math cluster shell, converted the route from split to single-pane output, restored the missing diagram canvas contract, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — natural-log
+- Route: `/math/log/natural-log/`
+- Layout: split
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, legacy left nav, and split-shell chrome; all removed in redesign output
+- Design issues: previous route buried the ln result in the legacy split shell, lacked a first-screen answer and graph hierarchy, and promised visualization without rendering a dedicated answer-first graph workflow
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, worked examples, FAQs, related links, and notes contract; route metadata also depended on runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the ln input ID, precision selector, calculate trigger, result containers, and shared logarithm-core calculation logic
+- Type: `2`
+- Notes: migrated to the light math cluster shell, converted the route from split to single-pane output, added the graph card and snapshot contract around the existing ln logic, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — common-log
+- Route: `/math/log/common-log/`
+- Layout: split
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, legacy left nav, and split-shell chrome; all removed in redesign output
+- Design issues: previous route buried the selected-base result in the legacy split shell, lacked a first-screen graph and answer hierarchy, and treated custom-base comparison as a flat form instead of an answer-first workflow
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, worked examples, FAQs, related links, and notes contract; route metadata also depended on runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the argument ID, base selector, custom-base row and input IDs, calculate trigger, result containers, and shared logarithm-core calculation logic
+- Type: `2`
+- Notes: migrated to the light math cluster shell, converted the route from split to single-pane output, added the selected-base graph and snapshot contract around the existing log logic, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — log-properties
+- Route: `/math/log/log-properties/`
+- Layout: split
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, legacy left nav, and split-shell chrome; all removed in redesign output
+- Design issues: previous route buried the three rule checks in the legacy split shell, lacked a first-screen answer hierarchy, and did not keep the symbolic identities visible beside the numeric outputs
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, worked examples, FAQs, related links, and notes contract; route metadata also depended on runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the base input ID, product, quotient, and power rule input IDs, calculate trigger, result containers, and shared logarithm-core rule logic
+- Type: `2`
+- Notes: migrated to the light math cluster shell, converted the route from split to single-pane output, rebuilt it as an answer-first rule explorer, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — exponential-equations
+- Route: `/math/log/exponential-equations/`
+- Layout: split
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, legacy left nav, and split-shell chrome; all removed in redesign output
+- Design issues: previous route buried the solved x value inside the legacy split shell, lacked a first-screen graph and answer hierarchy, and did not keep the logarithmic rearrangement close to the result
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, worked examples, FAQs, related links, and notes contract; route metadata also depended on runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the base, target, multiplier, and shift input IDs, solve trigger, result containers, and shared logarithm-core solve logic
+- Type: `2`
+- Notes: migrated to the light math cluster shell, converted the route from split to single-pane output, rebuilt it as an answer-first exponential-equation solver, added the graph checkpoint contract around the existing solve logic, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — log-scale
+- Route: `/math/log/log-scale/`
+- Layout: split
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, legacy left nav, and split-shell chrome; all removed in redesign output
+- Design issues: previous route buried the scale conversion inside the legacy split shell, lacked a first-screen answer hierarchy, and treated the three modes as a flat form with no interpretation guidance
+- SEO issues: explanation was thin, lacked a snippet intro, quick-answer structure, worked examples, FAQs, related links, and notes contract; route metadata also depended on runtime injection rather than generated static proof
+- Logic risk: low; migration preserved the scale selector, all input IDs, convert trigger, result containers, and shared logarithm-core conversion logic
+- Type: `2`
+- Notes: migrated to the light math cluster shell, converted the route from split to single-pane output, rebuilt it as an answer-first scale converter with an interpretation guide, removed runtime metadata injection, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — derivative
+- Route: `/math/calculus/derivative/`
+- Layout: single
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, and legacy left nav; all removed in redesign output
+- Design issues: previous route stacked inputs, output, and steps in a generic shell with no answer-first hierarchy and no clear boundary between symbolic result and walkthrough
+- SEO issues: explanation was broad but not structured to the migration contract; it lacked a snippet intro, quick-answer table, visible FAQ card grid, related calculators, and notes contract aligned to static schema output
+- Logic risk: medium; the route preserved all existing input IDs and the polynomial differentiation flow, but the original term parser contained a zero-length regex defect that could exhaust memory instead of terminating
+- Type: `2`
+- Notes: migrated to the light math cluster shell, rebuilt the route around an answer card plus dedicated steps card, moved the pure differentiation logic into a route-local helper for stable unit coverage, fixed the parser termination defect, removed inline bootstrap assumptions, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — integral
+- Route: `/math/calculus/integral/`
+- Layout: single
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, and legacy left nav; all removed in redesign output
+- Design issues: previous route stacked mode controls, output, and steps in a generic shell with no answer-first hierarchy and no clear boundary between antiderivative and definite-value modes
+- SEO issues: explanation was broad but not structured to the migration contract; it lacked a snippet intro, quick-answer table, visible FAQ card grid, related calculators, and notes contract aligned to static schema output
+- Logic risk: medium; the route preserved all existing input IDs and the indefinite/definite integration flow, but the original term parser contained the same zero-length regex defect that could exhaust memory instead of terminating
+- Type: `2`
+- Notes: migrated to the light math cluster shell, rebuilt the route around an answer card plus dedicated steps card, moved the pure integration logic into a route-local helper for stable unit coverage, fixed the parser termination defect, removed inline bootstrap assumptions, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
+
+### Route Audit — limit
+- Route: `/math/calculus/limit/`
+- Layout: single
+- Legacy markers: generated output previously shipped `theme-premium-dark.css`, legacy top nav, and legacy left nav; all removed in redesign output
+- Design issues: previous route stacked direction controls, output, and step text in a generic shell with no answer-first hierarchy and no stable summary of whether the limit existed
+- SEO issues: explanation was broad but not structured to the migration contract; it lacked a snippet intro, quick-answer table, visible FAQ card grid, related calculators, and notes contract aligned to static schema output
+- Logic risk: medium; the route preserved all existing input IDs and the direct/one-sided/infinity limit flow, but the evaluator incorrectly hardcoded `x` instead of honoring the selected variable field
+- Type: `2`
+- Notes: migrated to the light math cluster shell, rebuilt the route around an answer card plus dedicated analysis card, moved the pure limit logic into a route-local helper for stable unit coverage, fixed the variable-binding defect, removed inline bootstrap assumptions, replaced placeholder tests, and restored generated `WebPage`, `SoftwareApplication`, `FAQPage`, and `BreadcrumbList` proof
 
 ## Update Rules
 

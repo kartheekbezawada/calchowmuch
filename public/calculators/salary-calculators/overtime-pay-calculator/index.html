@@ -1,0 +1,51 @@
+<div id="calc-overtime-pay" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Overtime pay inputs">
+    <p class="sal-calc-kicker">Extra earnings</p>
+    <h2 class="sal-calc-form-title">Estimate overtime pay with your own multiplier</h2>
+    <p class="sal-calc-lead">
+      Keep the overtime logic editable and simple. Base pay stays optional and only affects the
+      total-pay support value.
+    </p>
+
+    <div class="sal-input-grid">
+      <div class="sal-input-row">
+        <label for="overtime-hourly-rate">Hourly rate</label>
+        <input id="overtime-hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+      </div>
+      <div class="sal-input-row">
+        <label for="overtime-hours">Overtime hours</label>
+        <input id="overtime-hours" type="number" min="0" step="0.1" />
+      </div>
+    </div>
+
+    <div class="sal-input-grid">
+      <div class="sal-input-row">
+        <label for="overtime-multiplier">Overtime multiplier</label>
+        <input id="overtime-multiplier" type="number" min="0" step="0.01" value="1.5" />
+      </div>
+      <div class="sal-input-row">
+        <label for="overtime-base-pay">Base pay for the same period</label>
+        <input id="overtime-base-pay" type="number" min="0" step="0.01" inputmode="decimal" />
+      </div>
+    </div>
+
+    <p class="sal-calc-helper">Base pay is optional. Leave it blank if you only want overtime pay.</p>
+    <p class="sal-calc-error" id="overtime-pay-error" hidden></p>
+    <button class="sal-primary-action" id="overtime-pay-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Overtime pay results">
+    <p class="sal-answer-title">Overtime pay</p>
+    <p class="sal-answer-hero" id="overtime-pay-result">—</p>
+    <p class="sal-answer-note" id="overtime-pay-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card">
+        <span>Total pay</span>
+        <strong id="overtime-total-pay">—</strong>
+      </div>
+    </div>
+    <p class="sal-results-disclaimer">
+      Gross-pay estimate only. The multiplier is user-controlled and does not imply a legal rule.
+    </p>
+  </aside>
+</div>

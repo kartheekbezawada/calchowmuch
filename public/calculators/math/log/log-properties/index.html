@@ -1,86 +1,150 @@
-<div class="log-calculator" id="log-properties-calculator">
-  <div class="calculator-ui">
-    <p class="helper">
-      Demonstrate the product, quotient, and power rules for logarithms before simplifying
-      expressions.
-    </p>
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="properties-base">Base</label>
-        <input id="properties-base" type="number" step="any" min="0.1" value="10" />
+<div id="log-properties-calculator">
+  <div class="lprop-shell">
+    <section class="lprop-card lprop-hero-card" aria-label="Logarithm properties overview">
+      <div class="lprop-hero-copy">
+        <p class="lprop-eyebrow">Simple Smooth Wow</p>
+        <h2 class="lprop-title">Check the product, quotient, and power log rules in one answer-first property workspace.</h2>
+        <p class="lprop-subtitle">
+          Enter the base and the values for each rule once, then compare the numeric result and the
+          symbolic rewrite side by side. The answer card stays dominant so you can verify the
+          algebraic identities without digging through a legacy split-shell layout.
+        </p>
       </div>
-      <div class="input-row">
-        <label>Product Rule Inputs</label>
-        <div class="input-stack">
-          <input
-            id="properties-product-x"
-            type="number"
-            step="any"
-            min="0.1"
-            value="2"
-            placeholder="x"
-          />
-          <input
-            id="properties-product-y"
-            type="number"
-            step="any"
-            min="0.1"
-            value="5"
-            placeholder="y"
-          />
+      <ul class="lprop-hero-points">
+        <li>Best for quick algebra review before simplifying logarithmic expressions by hand.</li>
+        <li>The answer card surfaces the three rule results and the matching rewrites first.</li>
+        <li>The reference card keeps the rule formulas visible without adding duplicate UI chrome.</li>
+      </ul>
+    </section>
+
+    <div class="lprop-workbench">
+      <div class="lprop-left-stack">
+        <section class="lprop-card lprop-input-card" aria-label="Logarithm property inputs">
+          <div class="lprop-card-head">
+            <div>
+              <p class="lprop-section-label">Inputs</p>
+              <p class="lprop-card-title">Set the base and the values for each log rule</p>
+            </div>
+            <span class="lprop-chip">Answer-first</span>
+          </div>
+
+          <p class="lprop-helper">Use positive values for each argument and keep the base positive and different from 1.</p>
+
+          <label class="lprop-field" for="properties-base">
+            <span>Base</span>
+            <input id="properties-base" type="number" step="any" min="0.1" value="10" />
+          </label>
+
+          <div class="lprop-rule-grid">
+            <section class="lprop-rule-input">
+              <p class="lprop-rule-label">Product Rule Inputs</p>
+              <div class="lprop-two-up">
+                <label class="lprop-field" for="properties-product-x">
+                  <span>x</span>
+                  <input id="properties-product-x" type="number" step="any" min="0.1" value="2" />
+                </label>
+                <label class="lprop-field" for="properties-product-y">
+                  <span>y</span>
+                  <input id="properties-product-y" type="number" step="any" min="0.1" value="5" />
+                </label>
+              </div>
+            </section>
+
+            <section class="lprop-rule-input">
+              <p class="lprop-rule-label">Quotient Rule Inputs</p>
+              <div class="lprop-two-up">
+                <label class="lprop-field" for="properties-quot-n">
+                  <span>Numerator</span>
+                  <input id="properties-quot-n" type="number" step="any" min="0.1" value="20" />
+                </label>
+                <label class="lprop-field" for="properties-quot-d">
+                  <span>Denominator</span>
+                  <input id="properties-quot-d" type="number" step="any" min="0.1" value="4" />
+                </label>
+              </div>
+            </section>
+
+            <section class="lprop-rule-input">
+              <p class="lprop-rule-label">Power Rule Inputs</p>
+              <div class="lprop-two-up">
+                <label class="lprop-field" for="properties-power-value">
+                  <span>Value</span>
+                  <input id="properties-power-value" type="number" step="any" min="0.1" value="3" />
+                </label>
+                <label class="lprop-field" for="properties-power-exp">
+                  <span>Exponent</span>
+                  <input id="properties-power-exp" type="number" step="any" value="2" />
+                </label>
+              </div>
+            </section>
+          </div>
+
+          <button id="properties-calculate" class="calculator-button lprop-calc-button" type="button">
+            Apply log rules
+          </button>
+        </section>
+
+        <section class="lprop-card lprop-reference-card" aria-label="Logarithm rules reference">
+          <div class="lprop-card-head">
+            <div>
+              <p class="lprop-section-label">Reference</p>
+              <p class="lprop-card-title">Core logarithm identities</p>
+            </div>
+            <span class="lprop-chip lprop-chip--reference">Rule map</span>
+          </div>
+          <div class="lprop-reference-grid">
+            <article class="lprop-reference-item">
+              <h4>Product</h4>
+              <p>log_b(xy) = log_b(x) + log_b(y)</p>
+            </article>
+            <article class="lprop-reference-item">
+              <h4>Quotient</h4>
+              <p>log_b(x / y) = log_b(x) - log_b(y)</p>
+            </article>
+            <article class="lprop-reference-item">
+              <h4>Power</h4>
+              <p>log_b(x^n) = n · log_b(x)</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <section class="lprop-card lprop-answer-card" aria-label="Logarithm rule answer summary">
+        <div class="lprop-card-head">
+          <div>
+            <p class="lprop-section-label">Answer</p>
+            <p class="lprop-card-title">Rule outputs, rewritten forms, and quick algebra checks</p>
+          </div>
+          <span class="lprop-chip lprop-chip--answer">Rule results</span>
         </div>
-      </div>
-      <div class="input-row">
-        <label>Quotient Rule Inputs</label>
-        <div class="input-stack">
-          <input
-            id="properties-quot-n"
-            type="number"
-            step="any"
-            min="0.1"
-            value="20"
-            placeholder="numerator"
-          />
-          <input
-            id="properties-quot-d"
-            type="number"
-            step="any"
-            min="0.1"
-            value="4"
-            placeholder="denominator"
-          />
+
+        <div class="result lprop-result-card" id="properties-result" aria-live="polite"></div>
+        <div class="result-detail lprop-detail-card" id="properties-detail" aria-live="polite"></div>
+
+        <div class="lprop-snapshot-grid" aria-label="Log property snapshot">
+          <article class="lprop-snapshot-card">
+            <span>Base</span>
+            <strong data-properties-snap="base">10</strong>
+          </article>
+          <article class="lprop-snapshot-card">
+            <span>Product rule</span>
+            <strong data-properties-snap="product">-</strong>
+          </article>
+          <article class="lprop-snapshot-card">
+            <span>Quotient rule</span>
+            <strong data-properties-snap="quotient">-</strong>
+          </article>
+          <article class="lprop-snapshot-card">
+            <span>Power rule</span>
+            <strong data-properties-snap="power">-</strong>
+          </article>
         </div>
-      </div>
-      <div class="input-row">
-        <label>Power Rule Inputs</label>
-        <div class="input-stack">
-          <input
-            id="properties-power-value"
-            type="number"
-            step="any"
-            min="0.1"
-            value="3"
-            placeholder="value"
-          />
-          <input
-            id="properties-power-exp"
-            type="number"
-            step="any"
-            value="2"
-            placeholder="exponent"
-          />
-        </div>
-      </div>
+      </section>
     </div>
-    <button id="properties-calculate" class="calculator-button primary" type="button">
-      Apply log rules
-    </button>
-    <div class="result" id="properties-result" aria-live="polite"></div>
-    <div class="result-detail" id="properties-detail"></div>
   </div>
 </div>
 
 <style>
-  @import url('/assets/css/calculator.css?v=20260127');
   @import url('/calculators/math/log/shared.css');
+  @import url('/calculators/math/log/log-properties/calculator.css');
 </style>

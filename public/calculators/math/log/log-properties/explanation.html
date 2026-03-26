@@ -1,16 +1,166 @@
-<div class="explanation">
-  <h3>Logarithm Property Explorer</h3>
+<section class="lprop-exp-section">
+  <h2>Logarithm Properties Practical Guide</h2>
   <p>
-    Confirm the foundational log rules using positive inputs. Each section displays the numerical
-    result and the equivalent symbolic rewrite.
+    Use this logarithm properties calculator to check the product, quotient, and power rules with a
+    chosen base before simplifying expressions by hand. It is built for quick verification, so the
+    answer card shows the three rule outputs and the matching rewrites together instead of hiding
+    them inside a legacy split-shell layout.
   </p>
-  <ul>
-    <li>Product rule: log_b(xy) = log_b(x) + log_b(y).</li>
-    <li>Quotient rule: log_b(x/y) = log_b(x) - log_b(y).</li>
-    <li>Power rule: log_b(x^n) = n · log_b(x).</li>
-    <li>
-      Each result box includes both the numeric output and the formula to reinforce the algebraic
-      identity.
-    </li>
+  <ul class="lprop-summary-list">
+    <li><strong>Best for:</strong> checking foundational log identities before doing algebra by hand.</li>
+    <li><strong>Quick answer flow:</strong> enter the base and the values for each rule, then apply the rules once.</li>
+    <li><strong>Output includes:</strong> product, quotient, and power rule values plus the symbolic rewrites.</li>
   </ul>
-</div>
+</section>
+
+<section class="lprop-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter a valid logarithm base that is positive and not equal to 1.</li>
+    <li>Fill the product, quotient, and power rule inputs with positive values.</li>
+    <li>Click <strong>Apply log rules</strong> to calculate all three properties together.</li>
+    <li>Read the answer card to compare the numeric outputs with the symbolic rewrites.</li>
+  </ol>
+</section>
+
+<section class="lprop-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="lprop-table-wrap">
+    <table class="lprop-summary-table">
+      <thead>
+        <tr>
+          <th>Rule</th>
+          <th>Identity</th>
+          <th>What the route confirms</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Product</td>
+          <td>log_b(xy) = log_b(x) + log_b(y)</td>
+          <td>The log of a product becomes a sum of logs.</td>
+        </tr>
+        <tr>
+          <td>Quotient</td>
+          <td>log_b(x / y) = log_b(x) - log_b(y)</td>
+          <td>The log of a quotient becomes a difference of logs.</td>
+        </tr>
+        <tr>
+          <td>Power</td>
+          <td>log_b(x^n) = n · log_b(x)</td>
+          <td>The exponent moves out front as a multiplier.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="lprop-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The product, quotient, and power rules all come from the same base idea: logarithms turn
+    multiplication into addition, division into subtraction, and exponents into multipliers.
+  </p>
+  <p>
+    These identities only work cleanly when the base is valid and the log arguments stay positive.
+    The route enforces those domain rules first, then shows the numeric output and the symbolic form
+    together so the algebra stays easy to verify.
+  </p>
+</section>
+
+<section class="lprop-exp-section">
+  <h3>Worked Example</h3>
+  <div class="lprop-example-grid">
+    <article class="lprop-example-card">
+      <h4>Product rule example</h4>
+      <p>With base <strong>10</strong>, enter <strong>x = 2</strong> and <strong>y = 5</strong>.</p>
+      <p>
+        The route confirms <strong>log_10(10) = 1</strong>, which matches the sum
+        <strong>log_10(2) + log_10(5)</strong>.
+      </p>
+    </article>
+    <article class="lprop-example-card">
+      <h4>Power rule example</h4>
+      <p>With base <strong>10</strong>, enter <strong>value = 3</strong> and <strong>exponent = 2</strong>.</p>
+      <p>
+        The route confirms <strong>log_10(3^2)</strong> equals <strong>2 · log_10(3)</strong>, which is
+        the exact exponent pull-down rule.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="lprop-exp-section">
+  <h3>FAQ</h3>
+  <div class="lprop-faq-grid">
+    <div class="faq-card">
+      <h4>What does the product rule do?</h4>
+      <p>It turns the log of a product into the sum of two logs with the same base.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does the quotient rule do?</h4>
+      <p>It turns the log of a quotient into the difference of two logs with the same base.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does the power rule do?</h4>
+      <p>It moves the exponent in front of the logarithm as a multiplier.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Do these rules work for any base?</h4>
+      <p>Yes, as long as the base is positive and not equal to 1.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Do the arguments need to be positive?</h4>
+      <p>Yes. For real-number logs, the argument values must stay positive.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does the base matter?</h4>
+      <p>The base changes the numeric output even though the algebraic identities stay the same.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I use decimals?</h4>
+      <p>Yes. Positive decimal inputs work for the rule explorer too.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What if the base is 1?</h4>
+      <p>The route rejects it because base 1 does not define a valid logarithm.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Is this solving symbolic expressions?</h4>
+      <p>No. It numerically verifies the core identities so you can check your algebra faster.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is this route useful?</h4>
+      <p>It is useful for algebra review, precalculus homework checks, and quick log-rule verification.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lprop-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="lprop-related-grid">
+    <a class="lprop-related-card" href="/math/log/common-log/">
+      <strong>Common Log Calculator</strong>
+      <span>Use a selected base directly when you want a single log value instead of the rule identities.</span>
+    </a>
+    <a class="lprop-related-card" href="/math/log/natural-log/">
+      <strong>Natural Log Calculator</strong>
+      <span>Switch to ln(x) when you want the base-e version of the same log behavior.</span>
+    </a>
+    <a class="lprop-related-card" href="/math/log/exponential-equations/">
+      <strong>Exponential Equations Solver</strong>
+      <span>Move from property review into solving exponential equations directly.</span>
+    </a>
+  </div>
+</section>
+
+<section class="lprop-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="lprop-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Base rule:</strong> The base must be positive and cannot equal 1.</li>
+    <li><strong>Argument rule:</strong> Every log argument in the product, quotient, and power checks must stay positive.</li>
+    <li><strong>Identity rule:</strong> The algebraic rewrites only hold when the base stays the same across both sides.</li>
+    <li><strong>Use case:</strong> This tool is built for quick numeric verification, not symbolic proof writing.</li>
+  </ul>
+</section>

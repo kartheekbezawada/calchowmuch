@@ -1,54 +1,123 @@
 <div id="calc-limit">
-  <div class="calculator-ui">
-    <p class="helper">Calculate limits including indeterminate forms</p>
+  <div class="limq-shell">
+    <section class="limq-card limq-hero-card" aria-label="Limit overview">
+      <div class="limq-hero-copy">
+        <p class="limq-eyebrow">Simple Smooth Wow</p>
+        <h2 class="limq-title">Check direct, one-sided, and infinity limits in one answer-first calculus workspace.</h2>
+        <p class="limq-subtitle">
+          Enter the function, choose the approach value and direction, then calculate once. The
+          answer card keeps the limit result and continuity status visible while the analysis card
+          shows the numeric approximation steps without legacy shell clutter.
+        </p>
+      </div>
+      <ul class="limq-hero-points">
+        <li>Best for direct-substitution checks, one-sided limits, and simple infinity behavior.</li>
+        <li>The answer card surfaces the limit value, direction, and existence result first.</li>
+        <li>The analysis card stays nearby so the direct or numerical approximation path is easy to follow.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="limit-function">Function f(x)</label>
-        <input
-          id="limit-function"
-          type="text"
-          value="(x^2-1)/(x-1)"
-          placeholder="e.g., (x^2-1)/(x-1)"
-        />
+    <div class="limq-workbench">
+      <div class="limq-left-stack">
+        <section class="limq-card limq-input-card" aria-label="Limit inputs">
+          <div class="limq-card-head">
+            <div>
+              <p class="limq-section-label">Inputs</p>
+              <p class="limq-card-title">Set the function, variable, approach value, and direction</p>
+            </div>
+            <span class="limq-chip">Answer-first</span>
+          </div>
+
+          <p class="limq-helper">
+            Use a number for ordinary limits or <strong>inf</strong> / <strong>-inf</strong> for
+            limits at infinity. Switch direction when you want only the left-hand or right-hand view.
+          </p>
+
+          <label class="limq-field" for="limit-function">
+            <span>Function f(x)</span>
+            <input
+              id="limit-function"
+              type="text"
+              value="(x^2-1)/(x-1)"
+              placeholder="e.g., (x^2-1)/(x-1)"
+            />
+          </label>
+
+          <div class="limq-field-grid">
+            <label class="limq-field" for="limit-variable">
+              <span>Variable</span>
+              <input id="limit-variable" type="text" value="x" placeholder="x" />
+            </label>
+
+            <label class="limq-field" for="limit-approaches">
+              <span>Approach value</span>
+              <input
+                id="limit-approaches"
+                type="text"
+                value="1"
+                placeholder="Enter number or inf"
+              />
+            </label>
+          </div>
+
+          <div class="limq-direction-row">
+            <button class="direction-button limq-direction-button active" type="button" data-direction="both">Two-Sided</button>
+            <button class="direction-button limq-direction-button" type="button" data-direction="left">Left (−)</button>
+            <button class="direction-button limq-direction-button" type="button" data-direction="right">Right (+)</button>
+          </div>
+
+          <button class="calculator-button limq-calc-button" type="button" id="limit-calculate">
+            Calculate limit
+          </button>
+        </section>
+
+        <section class="limq-card limq-steps-card" aria-label="Limit analysis">
+          <div class="limq-card-head">
+            <div>
+              <p class="limq-section-label">Analysis</p>
+              <p class="limq-card-title">Direct substitution or numerical approximation notes</p>
+            </div>
+            <span class="limq-chip limq-chip--steps">Limit path</span>
+          </div>
+
+          <div class="result-detail limq-steps-output" id="limit-steps" aria-live="polite"></div>
+        </section>
       </div>
 
-      <div class="input-row">
-        <label for="limit-variable">Variable</label>
-        <input id="limit-variable" type="text" value="x" placeholder="x" />
-      </div>
+      <section class="limq-card limq-answer-card" aria-label="Limit answer summary">
+        <div class="limq-card-head">
+          <div>
+            <p class="limq-section-label">Answer</p>
+            <p class="limq-card-title">Limit result, direction, and existence summary</p>
+          </div>
+          <span class="limq-chip limq-chip--answer">Limit result</span>
+        </div>
 
-      <div class="input-row">
-        <label for="limit-approaches">Limit as x approaches</label>
-        <input
-          id="limit-approaches"
-          type="text"
-          value="1"
-          placeholder="Enter number or 'inf' for infinity"
-        />
-      </div>
+        <div class="result limq-result-card" id="limit-result" aria-live="polite"></div>
 
-      <div class="button-group">
-        <button class="direction-button active" data-direction="both">Two-Sided</button>
-        <button class="direction-button" data-direction="left">Left (−)</button>
-        <button class="direction-button" data-direction="right">Right (+)</button>
-      </div>
+        <div class="limq-snapshot-grid" aria-label="Limit snapshot">
+          <article class="limq-snapshot-card">
+            <span>Direction</span>
+            <strong data-limit-snap="direction">Two-Sided</strong>
+          </article>
+          <article class="limq-snapshot-card">
+            <span>Approach</span>
+            <strong data-limit-snap="approach">1</strong>
+          </article>
+          <article class="limq-snapshot-card">
+            <span>Result</span>
+            <strong data-limit-snap="result">-</strong>
+          </article>
+          <article class="limq-snapshot-card">
+            <span>Status</span>
+            <strong data-limit-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="limit-calculate">
-      Calculate Limit
-    </button>
-
-    <div class="result" id="limit-result" aria-live="polite"></div>
-    <div class="result-detail" id="limit-steps" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/calculus/limit/calculator.css');
 </style>
-
-<script type="module">
-  import { initLimitCalculator } from '/calculators/math/calculus/limit/module.js';
-  initLimitCalculator();
-</script>

@@ -1,0 +1,1591 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Overtime Pay Calculator | Calculate How Much Online Calculator</title>
+    <meta name="description" content="Overtime Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <link rel="canonical" href="https://calchowmuch.com/salary-calculators/overtime-pay-calculator/" />
+    <meta property="og:title" content="Overtime Pay Calculator | Calculate How Much Online Calculator" />
+    <meta property="og:description" content="Overtime Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/salary-calculators/overtime-pay-calculator/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Overtime Pay Calculator | Calculate How Much Online Calculator" />
+    <meta name="twitter:description" content="Overtime Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#softwareapplication","name":"Overtime Pay Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/","description":"Overtime Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Overtime Pay Calculator","item":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/"}]}]}</script>
+    <style data-salary-cluster="true">
+      /* assets/css/base.css */
+      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+         instead of @import, to eliminate sequential CSS waterfall.
+         See known_issues.md KI-007 / KI-010. */
+
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/salary-calculators/shared/cluster-light.css */
+      .sal-cluster-page-shell {
+        min-height: 100vh;
+        color: #13222f;
+        background:
+          radial-gradient(circle at top left, rgba(22, 163, 74, 0.08), transparent 28%),
+          linear-gradient(180deg, #f6fbf7 0%, #edf5ef 100%);
+      }
+
+      .sal-cluster-page-shell *,
+      .sal-cluster-page-shell *::before,
+      .sal-cluster-page-shell *::after {
+        box-sizing: border-box;
+      }
+
+      .sal-cluster-wrap,
+      .sal-cluster-center-column {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .sal-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(12px);
+        background: rgba(246, 251, 247, 0.9);
+        border-bottom: 1px solid rgba(19, 34, 47, 0.08);
+      }
+
+      .sal-cluster-site-header-inner,
+      .sal-cluster-site-footer-inner {
+        min-height: 72px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .sal-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: #13222f;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .sal-cluster-brand-mark {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #15803d, #22c55e);
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 900;
+      }
+
+      .sal-cluster-site-label {
+        justify-self: center;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(19, 34, 47, 0.12);
+        background: rgba(255, 255, 255, 0.72);
+        color: #4f6a61;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .sal-cluster-site-links,
+      .sal-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+      }
+
+      .sal-cluster-site-links a,
+      .sal-cluster-footer-links a {
+        color: #587061;
+      }
+
+      .sal-cluster-site-links a:hover,
+      .sal-cluster-footer-links a:hover {
+        color: #166534;
+      }
+
+      .sal-cluster-layout-main {
+        padding: 40px 0 64px;
+      }
+
+      .sal-cluster-panel {
+        display: grid;
+        gap: 28px;
+      }
+
+      .sal-cluster-page-shell #calculator-title {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.06;
+        letter-spacing: -0.055em;
+        color: #13222f;
+      }
+
+      .sal-cluster-page-shell #calculator-title::after {
+        display: none;
+      }
+
+      .sal-cluster-page-header {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .sal-cluster-page-intro {
+        margin: 0 auto;
+        color: #5d6f67;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .sal-cluster-flow {
+        display: grid;
+        gap: 24px;
+      }
+
+      .sal-cluster-section {
+        border: 1px solid rgba(19, 34, 47, 0.09);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 12px 30px rgba(16, 24, 40, 0.05);
+        padding: 24px;
+      }
+
+      .sal-cluster-section-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .sal-cluster-section h2 {
+        margin: 0;
+        color: #13222f;
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .sal-cluster-kicker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        margin: 0 0 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(19, 34, 47, 0.12);
+        background: rgba(255, 255, 255, 0.78);
+        color: #15803d;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .sal-cluster-status-grid,
+      .sal-cluster-copy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+      }
+
+      .sal-cluster-status-card,
+      .sal-cluster-copy-card {
+        border-radius: 22px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f9fcfa;
+        padding: 18px;
+      }
+
+      .sal-cluster-status-card strong,
+      .sal-cluster-copy-card h3 {
+        display: block;
+        margin: 0 0 10px;
+        color: #13222f;
+      }
+
+      .sal-cluster-status-card p,
+      .sal-cluster-copy-card p,
+      .sal-cluster-roadmap-note {
+        margin: 0;
+        color: #5d6f67;
+        line-height: 1.65;
+      }
+
+      .sal-cluster-roadmap-list,
+      .sal-cluster-rule-list {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
+        color: #22353f;
+      }
+
+      .sal-cluster-action-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .sal-cluster-site-footer {
+        border-top: 1px solid rgba(19, 34, 47, 0.08);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .sal-cluster-calc-flow {
+        gap: 20px;
+      }
+
+      .sal-calc-shell,
+      .sal-explanation,
+      .sal-related-grid,
+      .sal-faq-grid,
+      .sal-support-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .sal-calc-shell {
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        align-items: start;
+      }
+
+      .sal-calc-card,
+      .sal-explanation-card,
+      .sal-related-card {
+        border-radius: 28px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+      }
+
+      .sal-calc-card {
+        padding: 24px;
+      }
+
+      .sal-calc-form-card {
+        display: grid;
+        gap: 18px;
+      }
+
+      .sal-calc-kicker,
+      .sal-explanation-kicker {
+        margin: 0;
+        color: #6a7c75;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .sal-calc-form-title,
+      .sal-answer-title,
+      .sal-explanation-card h2,
+      .sal-explanation-card h3,
+      .sal-related-card h3 {
+        margin: 0;
+        color: #13222f;
+      }
+
+      .sal-calc-form-title {
+        font-size: clamp(1.35rem, 2.3vw, 1.9rem);
+        line-height: 1.18;
+      }
+
+      .sal-calc-lead,
+      .sal-answer-note,
+      .sal-explanation-card p,
+      .sal-related-card p,
+      .sal-related-card li,
+      .sal-explanation-list li {
+        margin: 0;
+        color: #5d6f67;
+        line-height: 1.65;
+      }
+
+      .sal-input-stack,
+      .sal-input-row,
+      .sal-mode-fields,
+      .sal-optional-stack,
+      .sal-inline-fields {
+        display: grid;
+        gap: 12px;
+      }
+
+      .sal-input-grid,
+      .sal-inline-fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sal-calc-shell label {
+        color: #22353f;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .sal-calc-shell input[type='number'],
+      .sal-calc-shell input[type='text'],
+      .sal-calc-shell input[type='email'],
+      .sal-calc-shell input[type='search'],
+      .sal-calc-shell input[type='tel'],
+      .sal-calc-shell input[type='url'] {
+        width: 100%;
+        min-height: 48px;
+        padding: 0 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(19, 34, 47, 0.12);
+        background: #fbfdfb;
+        color: #13222f;
+        font-size: 16px;
+      }
+
+      .sal-calc-shell input:focus-visible {
+        outline: 2px solid rgba(38, 93, 144, 0.24);
+        outline-offset: 1px;
+        border-color: rgba(38, 93, 144, 0.36);
+      }
+
+      .sal-helper-text,
+      .sal-calc-helper,
+      .sal-answer-context,
+      .sal-results-disclaimer {
+        margin: 0;
+        color: #6b7e77;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .sal-chip-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .sal-chip-button {
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(19, 34, 47, 0.1);
+        background: rgba(246, 251, 247, 0.88);
+        color: #465a52;
+        font-weight: 600;
+      }
+
+      .sal-chip-button.is-active,
+      .sal-chip-button[aria-pressed='true'] {
+        border-color: rgba(28, 103, 88, 0.18);
+        background: #163b55;
+        color: #ffffff;
+      }
+
+      .sal-primary-action {
+        width: 100%;
+        min-height: 50px;
+        border: 0;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #163b55, #2f5d7c);
+        color: #ffffff;
+        font-weight: 700;
+      }
+
+      .sal-calc-error {
+        margin: 0;
+        color: #b85d49;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .sal-calc-error[hidden] {
+        display: none;
+      }
+
+      .sal-answer-card {
+        display: grid;
+        gap: 18px;
+        position: sticky;
+        top: 92px;
+      }
+
+      .sal-answer-title {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .sal-answer-hero {
+        margin: 0;
+        color: #13222f;
+        font-size: clamp(2.4rem, 6vw, 4.6rem);
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+        font-weight: 800;
+      }
+
+      .sal-answer-note {
+        padding-top: 4px;
+      }
+
+      .sal-support-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sal-support-card {
+        display: grid;
+        gap: 8px;
+        padding: 14px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f9fcfa;
+      }
+
+      .sal-support-card span {
+        color: #6b7e77;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .sal-support-card strong {
+        color: #13222f;
+        font-size: 1.15rem;
+        line-height: 1.2;
+      }
+
+      .sal-explanation-card,
+      .sal-related-card {
+        padding: 24px;
+      }
+
+      .sal-explanation-list,
+      .sal-related-list {
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .sal-related-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .sal-related-card a,
+      .sal-explanation-card a {
+        color: #163b55;
+      }
+
+      .sal-explanation-card a:hover,
+      .sal-related-card a:hover {
+        color: #0f2c41;
+      }
+
+      .sal-form-inline-toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #465a52;
+        font-size: 14px;
+      }
+
+      .sal-form-inline-toggle input {
+        accent-color: #163b55;
+      }
+
+      @media (max-width: 900px) {
+        .sal-calc-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .sal-answer-card {
+          position: static;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .sal-input-grid,
+        .sal-inline-fields,
+        .sal-support-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sal-calc-card,
+        .sal-explanation-card,
+        .sal-related-card {
+          padding: 20px;
+        }
+      }
+
+      .sal-cluster-footer-copy {
+        justify-self: end;
+        color: #5d6f67;
+        font-size: 14px;
+      }
+
+      @media (max-width: 760px) {
+        .sal-cluster-site-header-inner,
+        .sal-cluster-site-footer-inner {
+          grid-template-columns: 1fr;
+          justify-items: start;
+          padding: 16px 0;
+        }
+
+        .sal-cluster-site-label,
+        .sal-cluster-footer-copy {
+          justify-self: start;
+        }
+
+        .sal-cluster-layout-main {
+          padding: 28px 0 48px;
+        }
+
+        .sal-cluster-section {
+          border-radius: 22px;
+          padding: 18px;
+        }
+      }
+    </style>
+ 
+    <!-- CHM_ADSENSE_HEAD_START -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
+         crossorigin="anonymous"></script>
+    <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
+    <div class="page sal-cluster-page-shell">
+      <header class="sal-cluster-site-header">
+  <div class="sal-cluster-wrap sal-cluster-site-header-inner">
+    <a class="sal-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="sal-cluster-brand-mark" aria-hidden="true">$</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="sal-cluster-site-label" aria-label="Cluster label">Salary Calculators</div>
+    <nav class="sal-cluster-site-links" aria-label="Site links">
+      <a href="/calculators/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
+      <main class="sal-cluster-layout-main">
+        <section class="sal-cluster-center-column">
+          <div class="sal-cluster-panel panel-span-all">
+  <div class="sal-cluster-page-header">
+    <h1 id="calculator-title">Overtime Pay Calculator</h1>
+    <p class="sal-cluster-page-intro">Overtime Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.</p>
+  </div>
+  <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
+    <div id="calc-overtime-pay" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Overtime pay inputs">
+    <p class="sal-calc-kicker">Extra earnings</p>
+    <h2 class="sal-calc-form-title">Estimate overtime pay with your own multiplier</h2>
+    <p class="sal-calc-lead">
+      Keep the overtime logic editable and simple. Base pay stays optional and only affects the
+      total-pay support value.
+    </p>
+
+    <div class="sal-input-grid">
+      <div class="sal-input-row">
+        <label for="overtime-hourly-rate">Hourly rate</label>
+        <input id="overtime-hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+      </div>
+      <div class="sal-input-row">
+        <label for="overtime-hours">Overtime hours</label>
+        <input id="overtime-hours" type="number" min="0" step="0.1" />
+      </div>
+    </div>
+
+    <div class="sal-input-grid">
+      <div class="sal-input-row">
+        <label for="overtime-multiplier">Overtime multiplier</label>
+        <input id="overtime-multiplier" type="number" min="0" step="0.01" value="1.5" />
+      </div>
+      <div class="sal-input-row">
+        <label for="overtime-base-pay">Base pay for the same period</label>
+        <input id="overtime-base-pay" type="number" min="0" step="0.01" inputmode="decimal" />
+      </div>
+    </div>
+
+    <p class="sal-calc-helper">Base pay is optional. Leave it blank if you only want overtime pay.</p>
+    <p class="sal-calc-error" id="overtime-pay-error" hidden></p>
+    <button class="sal-primary-action" id="overtime-pay-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Overtime pay results">
+    <p class="sal-answer-title">Overtime pay</p>
+    <p class="sal-answer-hero" id="overtime-pay-result">—</p>
+    <p class="sal-answer-note" id="overtime-pay-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card">
+        <span>Total pay</span>
+        <strong id="overtime-total-pay">—</strong>
+      </div>
+    </div>
+    <p class="sal-results-disclaimer">
+      Gross-pay estimate only. The multiplier is user-controlled and does not imply a legal rule.
+    </p>
+  </aside>
+</div>
+
+    <div id="overtime-pay-calculator-explanation" class="sal-explanation">
+  <section class="sal-explanation-card">
+    <p class="sal-explanation-kicker">How it works</p>
+    <h2>What this overtime calculator does</h2>
+    <p>
+      This route isolates the extra pay from overtime hours. You supply the hourly rate, overtime
+      hours, and multiplier instead of relying on a fixed policy assumption.
+    </p>
+    <ul class="sal-explanation-list">
+      <li>Overtime pay: hourly rate × overtime hours × overtime multiplier</li>
+      <li>Total pay: base pay + overtime pay</li>
+      <li>Base pay is optional and only affects the secondary total-pay output</li>
+    </ul>
+  </section>
+
+  <section class="sal-explanation-card">
+    <h3>Worked example</h3>
+    <p>
+      At <strong>$25.00 per hour</strong> with <strong>10 overtime hours</strong> and a
+      <strong>1.5 multiplier</strong>, overtime pay is <strong>$375.00</strong>. If base pay is
+      <strong>$1,000.00</strong>, total pay becomes <strong>$1,375.00</strong>.
+    </p>
+  </section>
+
+  <section class="sal-explanation-card">
+    <h3>Related salary routes</h3>
+    <div class="sal-related-grid">
+      <article class="sal-related-card">
+        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
+        <p>Estimate full weekly earnings when you want the standard and overtime hours combined.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/salary-calculators/hourly-to-salary-calculator/">Hourly to Salary Calculator</a></h3>
+        <p>Turn an hourly rate into annual, monthly, biweekly, and weekly pay views.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
+        <p>Convert one pay figure into every major pay frequency with editable assumptions.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
+        <p>Compare current pay and a new salary after a raise using percent or amount mode.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sal-explanation-card">
+    <h3>Frequently asked questions</h3>
+    <div class="sal-faq-grid">
+      <article class="sal-related-card">
+        <h3>How do you calculate overtime pay?</h3>
+        <p>Multiply the hourly rate by overtime hours and the multiplier you enter.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Why is the overtime multiplier editable?</h3>
+        <p>Because overtime treatment can vary, so the route keeps the multiplier user-controlled.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Can I include total pay with overtime?</h3>
+        <p>Yes. Enter base pay to see total pay alongside the overtime portion.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Does this route assume a legal overtime rule?</h3>
+        <p>No. It is a user-input calculator and does not claim a universal overtime policy.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Does the result include tax deductions?</h3>
+        <p>No. This route estimates gross overtime pay only.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+    
+  </div>
+</div>
+        </section>
+      </main>
+      <footer class="sal-cluster-site-footer">
+  <div class="sal-cluster-wrap sal-cluster-site-footer-inner">
+    <nav class="sal-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="sal-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
+    </div>
+    <script type="module" src="/calculators/salary-calculators/overtime-pay-calculator/module.js?v=20260224"></script>
+  </body>
+</html>

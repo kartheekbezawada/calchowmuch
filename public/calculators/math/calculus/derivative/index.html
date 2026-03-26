@@ -1,48 +1,116 @@
 <div id="calc-derivative">
-  <div class="calculator-ui">
-    <p class="helper">Calculate derivatives using symbolic differentiation</p>
+  <div class="deriv-shell">
+    <section class="deriv-card deriv-hero-card" aria-label="Derivative overview">
+      <div class="deriv-hero-copy">
+        <p class="deriv-eyebrow">Simple Smooth Wow</p>
+        <h2 class="deriv-title">Differentiate a polynomial-style expression, inspect the rule steps, and optionally evaluate the derivative at one point.</h2>
+        <p class="deriv-subtitle">
+          Enter the function, choose the variable and derivative order, then calculate once. The
+          answer card keeps the symbolic derivative and optional evaluated value visible while the
+          steps card shows the power-rule walk-through without burying it in a legacy shell.
+        </p>
+      </div>
+      <ul class="deriv-hero-points">
+        <li>Best for polynomial-style expressions, repeated derivatives, and quick slope checks at a point.</li>
+        <li>The answer card surfaces the derivative, order, and evaluated value first.</li>
+        <li>The steps card stays nearby so the rule application remains visible without cluttering the first screen.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="deriv-function">Function f(x)</label>
-        <input id="deriv-function" type="text" value="x^2" placeholder="e.g., x^2 + 3*x + 5" />
+    <div class="deriv-workbench">
+      <div class="deriv-left-stack">
+        <section class="deriv-card deriv-input-card" aria-label="Derivative inputs">
+          <div class="deriv-card-head">
+            <div>
+              <p class="deriv-section-label">Inputs</p>
+              <p class="deriv-card-title">Set the expression, variable, and derivative order</p>
+            </div>
+            <span class="deriv-chip">Answer-first</span>
+          </div>
+
+          <p class="deriv-helper">
+            This route is tuned for polynomial-style expressions such as <strong>x^2 + 3*x + 5</strong>. You can also evaluate the resulting derivative at one numeric point.
+          </p>
+
+          <label class="deriv-field" for="deriv-function">
+            <span>Function f(x)</span>
+            <input id="deriv-function" type="text" value="x^2" placeholder="e.g., x^2 + 3*x + 5" />
+          </label>
+
+          <div class="deriv-field-grid">
+            <label class="deriv-field" for="deriv-variable">
+              <span>Variable</span>
+              <input id="deriv-variable" type="text" value="x" placeholder="x" />
+            </label>
+
+            <label class="deriv-field" for="deriv-order">
+              <span>Derivative order</span>
+              <input id="deriv-order" type="number" value="1" min="1" max="5" />
+            </label>
+          </div>
+
+          <label class="deriv-field" for="deriv-eval-point">
+            <span>Evaluate at (optional)</span>
+            <input
+              id="deriv-eval-point"
+              type="number"
+              step="any"
+              placeholder="Leave empty for symbolic only"
+            />
+          </label>
+
+          <button class="calculator-button deriv-calc-button" type="button" id="deriv-calculate">
+            Calculate derivative
+          </button>
+        </section>
+
+        <section class="deriv-card deriv-steps-card" aria-label="Derivative steps">
+          <div class="deriv-card-head">
+            <div>
+              <p class="deriv-section-label">Steps</p>
+              <p class="deriv-card-title">Rule-by-rule differentiation notes</p>
+            </div>
+            <span class="deriv-chip deriv-chip--steps">Power rule</span>
+          </div>
+
+          <div class="result-detail deriv-steps-output" id="deriv-steps" aria-live="polite"></div>
+        </section>
       </div>
 
-      <div class="input-row">
-        <label for="deriv-variable">Variable</label>
-        <input id="deriv-variable" type="text" value="x" placeholder="x" />
-      </div>
+      <section class="deriv-card deriv-answer-card" aria-label="Derivative answer summary">
+        <div class="deriv-card-head">
+          <div>
+            <p class="deriv-section-label">Answer</p>
+            <p class="deriv-card-title">Symbolic derivative, evaluated value, and quick interpretation</p>
+          </div>
+          <span class="deriv-chip deriv-chip--answer">Derivative result</span>
+        </div>
 
-      <div class="input-row">
-        <label for="deriv-order">Derivative Order</label>
-        <input id="deriv-order" type="number" value="1" min="1" max="5" />
-      </div>
+        <div class="result deriv-result-card" id="deriv-result" aria-live="polite"></div>
 
-      <div class="input-row">
-        <label for="deriv-eval-point">Evaluate at (optional)</label>
-        <input
-          id="deriv-eval-point"
-          type="number"
-          step="any"
-          placeholder="Leave empty for symbolic only"
-        />
-      </div>
+        <div class="deriv-snapshot-grid" aria-label="Derivative snapshot">
+          <article class="deriv-snapshot-card">
+            <span>Function</span>
+            <strong data-deriv-snap="function">x^2</strong>
+          </article>
+          <article class="deriv-snapshot-card">
+            <span>Order</span>
+            <strong data-deriv-snap="order">1</strong>
+          </article>
+          <article class="deriv-snapshot-card">
+            <span>Derivative</span>
+            <strong data-deriv-snap="derivative">-</strong>
+          </article>
+          <article class="deriv-snapshot-card">
+            <span>Status</span>
+            <strong data-deriv-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="deriv-calculate">
-      Calculate Derivative
-    </button>
-
-    <div class="result" id="deriv-result" aria-live="polite"></div>
-    <div class="result-detail" id="deriv-steps" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/calculus/derivative/calculator.css');
 </style>
-
-<script type="module">
-  import { initDerivativeCalculator } from '/calculators/math/calculus/derivative/module.js';
-  initDerivativeCalculator();
-</script>

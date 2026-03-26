@@ -3,287 +3,1786 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Natural Log Calculator | Calculate How Much Online Calculator</title>
-    <meta name="description" content="Natural Log Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <title>Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch</title>
+    <meta name="description" content="Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout." />
     <link rel="canonical" href="https://calchowmuch.com/math/log/natural-log/" />
-    <meta property="og:title" content="Natural Log Calculator | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="Natural Log Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:title" content="Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch" />
+    <meta property="og:description" content="Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/log/natural-log/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Natural Log Calculator | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="Natural Log Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:title" content="Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch" />
+    <meta name="twitter:description" content="Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/base.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/layout.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/calculator.css?v=20260127" />
-    <link rel="stylesheet" href="/assets/css/shared-calculator-ui.css?v=20260127" />
+    <style data-math-cluster="true">
+      /* assets/css/base.css */
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/math/shared/cluster-light.css */
+      :root {
+        --math-shell-bg: linear-gradient(180deg, #f6fbff 0%, #eef6ff 42%, #f9fbff 100%);
+        --math-shell-surface: rgba(255, 255, 255, 0.92);
+        --math-shell-surface-strong: #ffffff;
+        --math-shell-border: rgba(15, 23, 42, 0.1);
+        --math-shell-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        --math-shell-shadow-soft: 0 14px 34px rgba(59, 130, 246, 0.12);
+        --math-shell-text: #132238;
+        --math-shell-muted: #5e7086;
+        --math-shell-accent: #0f766e;
+        --math-shell-accent-strong: #0b5a54;
+        --math-shell-highlight: #effcf8;
+        --math-shell-chip: rgba(15, 118, 110, 0.12);
+        --math-shell-chip-text: #0f5d58;
+        --math-shell-line: rgba(15, 23, 42, 0.08);
+      }
+
+      body {
+        color: var(--math-shell-text);
+        background: var(--math-shell-bg);
+      }
+
+      .math-cluster-wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .math-cluster-site-header,
+      .math-cluster-site-footer {
+        background: rgba(255, 255, 255, 0.74);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--math-shell-line);
+      }
+
+      .math-cluster-site-header-inner,
+      .math-cluster-site-footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px 0;
+      }
+
+      .math-cluster-brand,
+      .math-cluster-site-links a,
+      .math-cluster-footer-links a {
+        color: var(--math-shell-text);
+      }
+
+      .math-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .math-cluster-brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #0f766e, #38bdf8);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: var(--math-shell-shadow-soft);
+      }
+
+      .math-cluster-site-label {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--math-shell-chip);
+        color: var(--math-shell-chip-text);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .math-cluster-site-links,
+      .math-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .math-cluster-layout-main {
+        padding: 28px 0 48px;
+      }
+
+      .math-cluster-center-column {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .math-cluster-panel {
+        display: grid;
+        gap: 28px;
+        padding: 28px;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 28px;
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
+        box-shadow: var(--math-shell-shadow);
+      }
+
+      .math-cluster-page-header {
+        display: grid;
+        gap: 12px;
+      }
+
+      .math-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.92rem;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-breadcrumbs a {
+        color: var(--math-shell-accent-strong);
+      }
+
+      .math-cluster-page-kicker {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--math-shell-highlight);
+        color: var(--math-shell-accent-strong);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .math-cluster-page-header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.35rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .math-cluster-page-intro {
+        margin: 0;
+        max-width: 68ch;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--math-shell-muted);
+      }
+
+      .math-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      .math-cluster-footer-copy {
+        color: var(--math-shell-muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 900px) {
+        .math-cluster-site-header-inner,
+        .math-cluster-site-footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .math-cluster-panel {
+          padding: 22px 18px;
+          border-radius: 22px;
+        }
+      }
+
+      /* calculators/math/log/natural-log/calculator.css */
+      #natural-log-calculator,
+      .ln-exp-section {
+        --ln-surface: rgba(255, 255, 255, 0.97);
+        --ln-surface-soft: rgba(249, 252, 255, 0.98);
+        --ln-border: rgba(15, 23, 42, 0.08);
+        --ln-text: #193148;
+        --ln-muted: #607388;
+        --ln-accent: #0d5c92;
+        --ln-accent-soft: rgba(14, 165, 233, 0.12);
+        --ln-answer-soft: rgba(14, 116, 144, 0.12);
+        --ln-highlight: #eef7ff;
+        --ln-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+        --ln-shadow-soft: 0 10px 24px rgba(14, 165, 233, 0.08);
+      }
+
+      #natural-log-calculator,
+      #natural-log-calculator h2,
+      #natural-log-calculator h3,
+      #natural-log-calculator h4,
+      #natural-log-calculator p,
+      #natural-log-calculator span,
+      #natural-log-calculator strong,
+      #natural-log-calculator label,
+      #natural-log-calculator li,
+      .ln-exp-section,
+      .ln-exp-section h2,
+      .ln-exp-section h3,
+      .ln-exp-section h4,
+      .ln-exp-section p,
+      .ln-exp-section li,
+      .ln-exp-section td,
+      .ln-exp-section th {
+        color: var(--ln-text);
+      }
+
+      #natural-log-calculator h2::after,
+      #natural-log-calculator h3::after,
+      .ln-exp-section h2::after,
+      .ln-exp-section h3::after {
+        display: none !important;
+        content: none !important;
+      }
+
+      .ln-shell {
+        display: grid;
+        gap: 24px;
+      }
+
+      .ln-card,
+      .ln-exp-section {
+        border: 1px solid var(--ln-border);
+        border-radius: 24px;
+        background: linear-gradient(180deg, var(--ln-surface), var(--ln-surface-soft));
+        box-shadow: var(--ln-shadow);
+      }
+
+      .ln-card {
+        padding: 24px;
+      }
+
+      .ln-exp-section {
+        padding: 22px;
+        margin-top: 0;
+      }
+
+      .ln-hero-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, 1fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      .ln-eyebrow,
+      .ln-section-label {
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--ln-accent);
+      }
+
+      .ln-title {
+        margin: 0;
+        font-size: clamp(1.7rem, 3vw, 2.35rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .ln-subtitle,
+      .ln-helper,
+      .ln-exp-section p,
+      .ln-exp-section li,
+      .ln-exp-section td,
+      .ln-exp-section th {
+        color: var(--ln-muted);
+        line-height: 1.7;
+      }
+
+      .ln-subtitle {
+        margin: 12px 0 0;
+      }
+
+      .ln-hero-points {
+        margin: 0;
+        padding: 18px 18px 18px 34px;
+        border-radius: 20px;
+        background: var(--ln-highlight);
+        display: grid;
+        gap: 12px;
+      }
+
+      .ln-workbench {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .ln-left-stack {
+        display: grid;
+        gap: 24px;
+      }
+
+      .ln-input-card,
+      .ln-answer-card,
+      .ln-graph-card {
+        display: grid;
+        gap: 18px;
+      }
+
+      .ln-answer-card {
+        position: sticky;
+        top: 18px;
+      }
+
+      .ln-card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 16px;
+      }
+
+      .ln-card-title {
+        margin: 4px 0 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #203348;
+      }
+
+      .ln-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--ln-accent-soft);
+        color: var(--ln-accent);
+        font-size: 0.84rem;
+        font-weight: 600;
+      }
+
+      .ln-chip--answer {
+        background: var(--ln-answer-soft);
+        color: #0f766e;
+      }
+
+      .ln-chip--graph {
+        background: rgba(37, 99, 235, 0.12);
+        color: #1d4ed8;
+      }
+
+      .ln-field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .ln-field > span {
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--ln-accent);
+      }
+
+      .ln-field input,
+      .ln-field select {
+        width: 100%;
+        min-height: 52px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--ln-border);
+        background: #fff;
+        color: var(--ln-text);
+        font-size: 1rem;
+      }
+
+      .ln-hint-row {
+        min-height: 24px;
+      }
+
+      .ln-inline-note {
+        color: var(--ln-muted);
+        font-size: 0.84rem;
+      }
+
+      .ln-calc-button {
+        width: 100%;
+        min-height: 54px;
+        border: 0;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+        color: #fff;
+        box-shadow: 0 18px 28px rgba(14, 165, 233, 0.2);
+      }
+
+      .ln-graph-panel {
+        display: grid;
+        place-items: center;
+        min-height: 272px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(236, 246, 255, 0.92), rgba(255, 255, 255, 0.98));
+        border: 1px solid rgba(14, 165, 233, 0.16);
+      }
+
+      .ln-graph-canvas {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+      }
+
+      .ln-graph-note {
+        margin: 0;
+        text-align: center;
+        color: var(--ln-muted);
+      }
+
+      .ln-result-card,
+      .ln-detail-card {
+        display: grid;
+        gap: 16px;
+      }
+
+      .ln-summary-card,
+      .ln-detail-panel,
+      .ln-snapshot-card {
+        border: 1px solid var(--ln-border);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 16px;
+      }
+
+      .ln-summary-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(238, 248, 255, 0.96));
+      }
+
+      .ln-summary-card h4,
+      .ln-detail-panel h4 {
+        margin: 0 0 10px;
+      }
+
+      .ln-summary-grid,
+      .ln-snapshot-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+
+      .ln-stat {
+        border-radius: 16px;
+        background: rgba(238, 247, 255, 0.92);
+        padding: 12px;
+      }
+
+      .ln-stat span,
+      .ln-snapshot-card span {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ln-accent);
+      }
+
+      .ln-stat strong,
+      .ln-snapshot-card strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+
+      .ln-detail-panel p,
+      .ln-summary-card p {
+        margin: 0;
+      }
+
+      .ln-summary-list,
+      .ln-notes-list {
+        margin: 14px 0 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .ln-table-wrap {
+        overflow-x: auto;
+      }
+
+      .ln-summary-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .ln-summary-table th,
+      .ln-summary-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--ln-border);
+        text-align: left;
+      }
+
+      .ln-summary-table th {
+        color: var(--ln-accent);
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .ln-example-grid,
+      .ln-related-grid,
+      .ln-faq-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .ln-example-grid,
+      .ln-related-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .ln-faq-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .ln-example-card,
+      .ln-related-card,
+      .faq-card {
+        border: 1px solid var(--ln-border);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 16px;
+      }
+
+      .ln-related-card {
+        display: grid;
+        gap: 8px;
+        text-decoration: none;
+      }
+
+      .ln-related-card span {
+        color: var(--ln-muted);
+      }
+
+      @media (max-width: 980px) {
+        .ln-hero-card,
+        .ln-workbench {
+          grid-template-columns: 1fr;
+        }
+
+        .ln-answer-card {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .ln-card,
+        .ln-exp-section {
+          padding: 18px;
+          border-radius: 20px;
+        }
+
+        .ln-title {
+          font-size: clamp(1.45rem, 8vw, 2rem);
+        }
+
+        .ln-summary-grid,
+        .ln-snapshot-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/log/natural-log/#webpage","name":"Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch","url":"https://calchowmuch.com/math/log/natural-log/","description":"Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/log/natural-log/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/log/natural-log/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/log/natural-log/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/log/natural-log/#softwareapplication","name":"Natural Log Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/log/natural-log/","description":"Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/log/natural-log/#faq","mainEntity":[{"@type":"Question","name":"What is a natural logarithm?","acceptedAnswer":{"@type":"Answer","text":"It is the logarithm with base e, where e is about 2.718281828."}},{"@type":"Question","name":"Why does ln(e) equal 1?","acceptedAnswer":{"@type":"Answer","text":"Because e raised to the power of 1 is exactly e."}},{"@type":"Question","name":"Why does ln(1) equal 0?","acceptedAnswer":{"@type":"Answer","text":"Any positive base raised to the power of 0 equals 1."}},{"@type":"Question","name":"Can x be negative?","acceptedAnswer":{"@type":"Answer","text":"No. For real-number output, natural logs only accept positive inputs."}},{"@type":"Question","name":"Why is ln(x) negative for values below 1?","acceptedAnswer":{"@type":"Answer","text":"Because e must be raised to a negative power to produce numbers between 0 and 1."}},{"@type":"Question","name":"Why does the graph rise slowly?","acceptedAnswer":{"@type":"Answer","text":"The natural log keeps increasing, but it grows much more slowly than a straight line."}},{"@type":"Question","name":"What does the exponential check mean?","acceptedAnswer":{"@type":"Answer","text":"It shows the inverse relationship by rewriting ln(x) as e raised to the solved value."}},{"@type":"Question","name":"Should I increase decimal places?","acceptedAnswer":{"@type":"Answer","text":"Use more decimals when you need a tighter numeric check or a more exact rounded answer."}},{"@type":"Question","name":"Is this the same as log base 10?","acceptedAnswer":{"@type":"Answer","text":"No. Natural logs use base e, while common logs use base 10."}},{"@type":"Question","name":"When is ln(x) useful?","acceptedAnswer":{"@type":"Answer","text":"It is useful in growth models, continuous compounding, decay problems, and algebraic solving."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/log/natural-log/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Natural Log Calculator","item":"https://calchowmuch.com/math/log/natural-log/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
     <!-- CHM_ADSENSE_HEAD_END -->
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
-    <div class="page">
-      <header class="site-header">
-  <div class="site-header-inner">
-    <div class="header-left">
-      <a class="brand-logo" href="/" aria-label="Home">
-        <span class="brand-logo-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="4" y="2.5" width="16" height="19" rx="3" />
-            <line x1="8" y1="6.5" x2="16" y2="6.5" />
-            <line x1="9" y1="10" x2="9" y2="10.01" />
-            <line x1="12" y1="10" x2="12" y2="10.01" />
-            <line x1="15" y1="10" x2="15" y2="10.01" />
-            <line x1="9" y1="13.5" x2="9" y2="13.51" />
-            <line x1="12" y1="13.5" x2="12" y2="13.51" />
-            <line x1="15" y1="13.5" x2="15" y2="13.51" />
-            <line x1="9" y1="17" x2="9" y2="17.01" />
-            <line x1="12" y1="17" x2="12" y2="17.01" />
-            <line x1="15" y1="17" x2="15" y2="17.01" />
-          </svg>
-        </span>
-      </a>
-      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M3 12h18M3 6h18M3 18h18" />
-        </svg>
-      </button>
-      <div class="brand-block">
-        <a class="brand-name" href="/" aria-label="CalcHowMuch home">CalcHowMuch</a>
-        <a class="brand-badge" href="/loan-calculators/mortgage-calculator/">
-          <span class="brand-badge-icon" aria-hidden="true">✦</span>
-          <span>Premium Calculator Suite</span>
-        </a>
-      </div>
-    </div>
-    <div class="header-center">
-      <div class="header-title">Calculate How Much</div>
-      <div class="header-subtitle">Quick calculations for everyday numbers</div>
-    </div>
-    <div class="header-right" role="search">
-      <label class="sr-only" for="global-calculator-search">Search calculators</label>
-      <div class="header-search">
-        <span class="header-search-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <line x1="16.5" y1="16.5" x2="21" y2="21" />
-          </svg>
-        </span>
-        <input
-          id="global-calculator-search"
-          class="header-search-input"
-          type="search"
-          placeholder="Search calculators…"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-    </div>
+    <div class="page math-cluster-page-shell">
+      <header class="math-cluster-site-header">
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
   </div>
 </header>
-
-      <nav class="top-nav" aria-label="Category navigation"><a class="top-nav-link is-active" href="/math/basic/"><span class="nav-label">Math</span></a><a class="top-nav-link" href="/loan-calculators/mortgage-calculator/"><span class="nav-icon" aria-hidden="true">🏠</span><span class="nav-label">Home Loan</span></a><a class="top-nav-link" href="/credit-card-calculators/credit-card-payment-calculator/"><span class="nav-icon" aria-hidden="true">💳</span><span class="nav-label">Credit Cards</span></a><a class="top-nav-link" href="/car-loan-calculators/car-loan-calculator/"><span class="nav-icon" aria-hidden="true">🚗</span><span class="nav-label">Auto Loans</span></a><a class="top-nav-link" href="/finance-calculators/present-value-calculator/"><span class="nav-label">Finance</span></a><a class="top-nav-link" href="/time-and-date/sleep-time-calculator/"><span class="nav-icon" aria-hidden="true">🕒</span><span class="nav-label">Time & Date</span></a><a class="top-nav-link" href="/percentage-calculators/percent-change-calculator/"><span class="nav-label">Percentage Calculators</span></a><a class="top-nav-link" href="/pricing-calculators/commission-calculator/"><span class="nav-label">Pricing Calculators</span></a></nav>
-      <main class="layout-main">
-        <aside class="left-nav" aria-label="Left navigation">
-          <div id="left-nav-content"><div class="math-nav-container">
-<div class="math-nav-category is-collapsed" data-id="simple">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="8" y1="18" x2="8" y2="18.01"/></svg></span>
-      <span class="math-nav-category-name">SIMPLE</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/basic/">Basic Calculator</a><a class="math-nav-item" href="/percentage-calculators/percentage-increase-calculator/">Percentage Calculator</a><a class="math-nav-item" href="/math/fraction-calculator/">Fraction Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="algebra">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
-      <span class="math-nav-category-name">ALGEBRA</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/algebra/quadratic-equation/">Quadratic Equation Solver</a><a class="math-nav-item" href="/math/algebra/system-of-equations/">System of Linear Equations</a><a class="math-nav-item" href="/math/algebra/polynomial-operations/">Polynomial Operations</a><a class="math-nav-item" href="/math/algebra/factoring/">Factoring Calculator</a><a class="math-nav-item" href="/math/algebra/slope-distance/">Slope & Distance Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="trigonometry">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-      <span class="math-nav-category-name">TRIGONOMETRY</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/trigonometry/unit-circle/">Unit Circle Calculator</a><a class="math-nav-item" href="/math/trigonometry/triangle-solver/">Triangle Solver</a><a class="math-nav-item" href="/math/trigonometry/trig-functions/">Trigonometric Functions</a><a class="math-nav-item" href="/math/trigonometry/inverse-trig/">Inverse Trig Functions</a><a class="math-nav-item" href="/math/trigonometry/law-of-sines-cosines/">Law of Sines/Cosines Calculator</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="calculus">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-      <span class="math-nav-category-name">CALCULUS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/calculus/derivative/">Derivative Calculator</a><a class="math-nav-item" href="/math/calculus/integral/">Integral Calculator</a><a class="math-nav-item" href="/math/calculus/limit/">Limit Calculator</a><a class="math-nav-item" href="/math/calculus/series-convergence/">Series Convergence Calculator</a><a class="math-nav-item" href="/math/calculus/critical-points/">Critical Points Finder</a>
-  </div>
-</div>
-<div class="math-nav-category" data-id="log">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="true">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-      <span class="math-nav-category-name">LOG</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item is-active" href="/math/log/natural-log/">Natural Log Calculator</a><a class="math-nav-item" href="/math/log/common-log/">Common Log Calculator</a><a class="math-nav-item" href="/math/log/log-properties/">Logarithm Properties</a><a class="math-nav-item" href="/math/log/exponential-equations/">Exponential Equations Solver</a><a class="math-nav-item" href="/math/log/log-scale/">Log Scale Converter</a>
-  </div>
-</div>
-<div class="math-nav-category is-collapsed" data-id="statistics">
-  <button type="button" class="math-nav-category-toggle" aria-expanded="false">
-    <span class="math-nav-category-left">
-      <span class="math-nav-category-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
-      <span class="math-nav-category-name">STATISTICS</span>
-    </span>
-    <span class="math-nav-category-chevron" data-chevron-open='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' data-chevron-closed='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-  </button>
-  <div class="math-nav-category-items">
-    <a class="math-nav-item" href="/math/mean-median-mode-range/">Mean Median Mode Range Calculator</a><a class="math-nav-item" href="/math/standard-deviation/">Standard Deviation Calculator</a><a class="math-nav-item" href="/math/statistics/">Statistics Calculator</a><a class="math-nav-item" href="/math/confidence-interval/">Confidence Interval Calculator</a><a class="math-nav-item" href="/math/z-score/">Z-Score Calculator</a><a class="math-nav-item" href="/math/sample-size/">Sample Size</a><a class="math-nav-item" href="/math/number-sequence/">Number Sequence Calculator</a><a class="math-nav-item" href="/math/permutation-combination/">Permutation & Combination Calculator</a><a class="math-nav-item" href="/math/probability/">Probability Calculator</a><a class="math-nav-item" href="/math/statistics/regression-analysis/">Regression Analysis</a><a class="math-nav-item" href="/math/statistics/anova/">ANOVA Calculator</a><a class="math-nav-item" href="/math/statistics/hypothesis-testing/">Hypothesis Testing</a><a class="math-nav-item" href="/math/statistics/correlation/">Correlation Calculator</a><a class="math-nav-item" href="/math/statistics/distribution/">Distribution Calculator</a>
-  </div>
-</div></div></div>
-        </aside>
-        <section class="center-column">
-          <div class="panel panel-scroll">
-  <h1 id="calculator-title">Natural Log Calculator</h1>
-  <div class="log-calculator" id="natural-log-calculator">
-  <div class="calculator-ui">
-    <p class="helper">
-      Calculate the natural logarithm (ln) of any positive number and visualize how the function
-      behaves.
-    </p>
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="ln-value">Value (x)</label>
-        <input id="ln-value" type="number" step="any" min="0.0001" value="2.71828" />
-      </div>
-      <div class="input-row">
-        <label for="ln-decimals">Decimal Places</label>
-        <select id="ln-decimals">
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4" selected>4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-        <span class="inline-note">Higher precision helps when visualizing symbolic reasoning.</span>
-      </div>
+      <main class="math-cluster-layout-main">
+        <section class="math-cluster-center-column">
+          <div class="math-cluster-panel panel-span-all">
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Natural Log Calculator</span>
     </div>
-    <button id="ln-calculate" class="calculator-button primary" type="button">Compute ln(x)</button>
-    <div class="result" id="ln-result" aria-live="polite"></div>
-    <div class="result-detail" id="ln-detail"></div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Natural Log Calculator</h1>
+    <p class="math-cluster-page-intro">Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="natural-log-calculator">
+  <div class="ln-shell">
+    <section class="ln-card ln-hero-card" aria-label="Natural log overview">
+      <div class="ln-hero-copy">
+        <p class="ln-eyebrow">Simple Smooth Wow</p>
+        <h2 class="ln-title">Find ln(x), check the matching exponential form, and see the log curve in one answer-first view.</h2>
+        <p class="ln-subtitle">
+          Enter any positive value, choose the precision you need, and calculate once. The answer
+          card keeps the ln value, sign, and exponential check visible while the graph card shows
+          where your input sits on the natural log curve.
+        </p>
+      </div>
+      <ul class="ln-hero-points">
+        <li>Best for quick ln(x) checks, exponential inversion, and interpreting values below or above 1.</li>
+        <li>The answer card surfaces ln(x), the equivalent exponential statement, and a sign summary first.</li>
+        <li>The graph card stays nearby so the curve behavior stays visible without leaving the first screen.</li>
+      </ul>
+    </section>
+
+    <div class="ln-workbench">
+      <div class="ln-left-stack">
+        <section class="ln-card ln-input-card" aria-label="Natural log inputs">
+          <div class="ln-card-head">
+            <div>
+              <p class="ln-section-label">Inputs</p>
+              <p class="ln-card-title">Set the value and precision</p>
+            </div>
+            <span class="ln-chip">Answer-first</span>
+          </div>
+
+          <p class="ln-helper">Natural logs only work for positive values, so enter x greater than zero before you calculate.</p>
+
+          <label class="ln-field" for="ln-value">
+            <span>Value (x)</span>
+            <input id="ln-value" type="number" step="any" min="0.0001" value="2.71828" />
+          </label>
+
+          <label class="ln-field" for="ln-decimals">
+            <span>Decimal places</span>
+            <select id="ln-decimals">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </label>
+
+          <div class="ln-hint-row">
+            <span class="ln-inline-note">Higher precision helps when you want a tighter exponential check or cleaner graph readout.</span>
+          </div>
+
+          <button id="ln-calculate" class="calculator-button ln-calc-button" type="button">Compute ln(x)</button>
+        </section>
+
+        <section class="ln-card ln-graph-card" aria-label="Natural log graph">
+          <div class="ln-card-head">
+            <div>
+              <p class="ln-section-label">Graph</p>
+              <p class="ln-card-title">Natural log curve with your input highlighted</p>
+            </div>
+            <span class="ln-chip ln-chip--graph">Curve view</span>
+          </div>
+
+          <div class="ln-graph-panel">
+            <canvas id="ln-graph" class="ln-graph-canvas" width="360" height="240" aria-label="Natural log graph"></canvas>
+          </div>
+          <p id="ln-graph-note" class="ln-graph-note">Graph updates after you compute ln(x).</p>
+        </section>
+      </div>
+
+      <section class="ln-card ln-answer-card" aria-label="Natural log answer summary">
+        <div class="ln-card-head">
+          <div>
+            <p class="ln-section-label">Answer</p>
+            <p class="ln-card-title">Natural log value, exponential check, and quick interpretation</p>
+          </div>
+          <span class="ln-chip ln-chip--answer">ln(x) result</span>
+        </div>
+
+        <div class="result ln-result-card" id="ln-result" aria-live="polite"></div>
+        <div class="result-detail ln-detail-card" id="ln-detail" aria-live="polite"></div>
+
+        <div class="ln-snapshot-grid" aria-label="Natural log snapshot">
+          <article class="ln-snapshot-card">
+            <span>Input</span>
+            <strong data-ln-snap="value">-</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>ln(x)</span>
+            <strong data-ln-snap="result">-</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>Decimals</span>
+            <strong data-ln-snap="decimals">4</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>Sign</span>
+            <strong data-ln-snap="sign">-</strong>
+          </article>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 
 <style>
-  @import url('/assets/css/calculator.css?v=20260127');
   @import url('/calculators/math/log/shared.css?v=20260224');
+  @import url('/calculators/math/log/natural-log/calculator.css?v=20260224');
 </style>
 
-</div>
-<div class="panel panel-scroll">
-  <h3>Explanation</h3>
-  <div class="explanation">
-  <h3>Natural Logarithm Deep Dive</h3>
+    <section class="ln-exp-section">
+  <h2>Natural Log Calculator Practical Guide</h2>
   <p>
-    The natural logarithm is the inverse of the exponential function with base e (~2.718). Use this
-    tool to calculate ln(x) for any positive x, observe how the calculation changes with more
-    precision, and watch the red highlight trace climb along the log curve.
+    Use this natural log calculator to find <strong>ln(x)</strong>, confirm the matching
+    exponential statement, and see where your input sits on the log curve. It is built for quick
+    interpretation, so the answer card shows the ln value, sign, and graph context without burying
+    the basics under dense notation.
   </p>
-  <ul>
-    <li>
-      ln(x) satisfies e^{ln(x)} = x, illustrating how exponentials and logarithms undo each other.
-    </li>
-    <li>
-      The curve grows slowly and has a vertical asymptote at x = 0; the graph pane places the
-      current value in context.
-    </li>
-    <li>
-      You can enter values less than 1 to see negative outputs, and the helper text enforces the x >
-      0 constraint.
-    </li>
+  <ul class="ln-summary-list">
+    <li><strong>Best for:</strong> checking ln(x), interpreting values below or above 1, and verifying exponential inverses.</li>
+    <li><strong>Quick answer flow:</strong> enter a positive x value, choose precision, then calculate once.</li>
+    <li><strong>Output includes:</strong> ln(x), the equivalent <strong>e^y = x</strong> form, sign summary, and a graph highlight.</li>
   </ul>
-</div>
+</section>
 
+<section class="ln-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter a positive number for <strong>x</strong>.</li>
+    <li>Choose the number of decimal places you want in the result.</li>
+    <li>Click <strong>Compute ln(x)</strong> to calculate the natural log.</li>
+    <li>Read the answer card first, then use the graph to see where the input sits on the ln curve.</li>
+  </ol>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="ln-table-wrap">
+    <table class="ln-summary-table">
+      <thead>
+        <tr>
+          <th>Input pattern</th>
+          <th>What ln(x) looks like</th>
+          <th>Quick interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>x = 1</td>
+          <td>ln(1) = 0</td>
+          <td>The natural log crosses zero at 1.</td>
+        </tr>
+        <tr>
+          <td>0 &lt; x &lt; 1</td>
+          <td>Negative output</td>
+          <td>The curve sits below the x-axis for inputs smaller than 1.</td>
+        </tr>
+        <tr>
+          <td>x = e</td>
+          <td>ln(e) = 1</td>
+          <td>The natural log and the exponential base align cleanly here.</td>
+        </tr>
+        <tr>
+          <td>x &gt; 1</td>
+          <td>Positive output</td>
+          <td>The curve grows slowly as x increases.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The natural logarithm answers the question, <strong>what power of e gives x?</strong> That means
+    <strong>y = ln(x)</strong> is equivalent to <strong>e^y = x</strong>.
+  </p>
+  <p>
+    Because <strong>e^x</strong> and <strong>ln(x)</strong> are inverse functions, the route also
+    shows the exponential check directly in the answer card. That makes it easy to see whether the
+    rounded ln result still maps back to the original x value.
+  </p>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Worked Example</h3>
+  <div class="ln-example-grid">
+    <article class="ln-example-card">
+      <h4>ln(e) example</h4>
+      <p>Enter <strong>2.718281828</strong> and keep the default precision.</p>
+      <p>
+        The route returns a value close to <strong>1</strong>, then confirms it with the equivalent
+        exponential statement <strong>e^1 = 2.718282</strong>.
+      </p>
+    </article>
+    <article class="ln-example-card">
+      <h4>ln(0.5) example</h4>
+      <p>Enter <strong>0.5</strong> to see a number below 1.</p>
+      <p>
+        The route returns a negative result close to <strong>-0.6931</strong>, which matches the fact
+        that the natural log curve sits below zero between 0 and 1.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>FAQ</h3>
+  <div class="ln-faq-grid">
+    <div class="faq-card">
+      <h4>What is a natural logarithm?</h4>
+      <p>It is the logarithm with base e, where e is about 2.718281828.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does ln(e) equal 1?</h4>
+      <p>Because e raised to the power of 1 is exactly e.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does ln(1) equal 0?</h4>
+      <p>Any positive base raised to the power of 0 equals 1.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can x be negative?</h4>
+      <p>No. For real-number output, natural logs only accept positive inputs.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why is ln(x) negative for values below 1?</h4>
+      <p>Because e must be raised to a negative power to produce numbers between 0 and 1.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does the graph rise slowly?</h4>
+      <p>The natural log keeps increasing, but it grows much more slowly than a straight line.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does the exponential check mean?</h4>
+      <p>It shows the inverse relationship by rewriting ln(x) as e raised to the solved value.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Should I increase decimal places?</h4>
+      <p>Use more decimals when you need a tighter numeric check or a more exact rounded answer.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Is this the same as log base 10?</h4>
+      <p>No. Natural logs use base e, while common logs use base 10.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is ln(x) useful?</h4>
+      <p>It is useful in growth models, continuous compounding, decay problems, and algebraic solving.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="ln-related-grid">
+    <a class="ln-related-card" href="/math/log/common-log/">
+      <strong>Common Log Calculator</strong>
+      <span>Switch to base-10 logs when you want scientific notation and decibel-style reasoning.</span>
+    </a>
+    <a class="ln-related-card" href="/math/log/exponential-equations/">
+      <strong>Exponential Equations Solver</strong>
+      <span>Move from ln(x) values into solving exponential equations directly.</span>
+    </a>
+    <a class="ln-related-card" href="/math/log/log-properties/">
+      <strong>Logarithm Properties</strong>
+      <span>Review product, quotient, and power rules when you need symbolic log manipulation.</span>
+    </a>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="ln-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Domain:</strong> Natural logs only accept positive inputs for real-number output.</li>
+    <li><strong>Key anchor points:</strong> ln(1) = 0 and ln(e) = 1.</li>
+    <li><strong>Graph rule:</strong> The curve has a vertical asymptote at x = 0 and rises slowly for larger x.</li>
+    <li><strong>Use case:</strong> This tool is built for quick numeric interpretation, not symbolic proof writing.</li>
+  </ul>
+</section>
+
+  </div>
 </div>
-        </section>
-        <section class="ads-column" aria-label="Ad placeholders">
-          <div class="ad-panel">
-            <!-- CHM_AD_SLOT_START -->
-            <!-- Right_Pane_Responsive -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1063975431106361"
-                 data-ad-slot="3901083802"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            <!-- CHM_AD_SLOT_END -->
-          </div>
         </section>
       </main>
-      <footer class="site-footer">
-  <a href="/privacy/">Privacy</a>
-  <span class="footer-divider">|</span>
-  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-  <span class="footer-divider">|</span>
-  <a href="/contact-us/">Contact</a>
-  <span class="footer-divider">|</span>
-  <a href="/faq/">FAQs</a>
-  <span class="footer-divider">|</span>
-  <a href="/sitemap.xml">Sitemap</a>
-  <span class="footer-divider">|</span>
-  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>
+      <footer class="math-cluster-site-footer">
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
 </footer>
-
     </div>
-    <script type="module" src="/assets/js/core/mpa-nav.js"></script>
     <script type="module" src="/calculators/math/log/natural-log/module.js?v=20260224"></script>
   </body>
 </html>

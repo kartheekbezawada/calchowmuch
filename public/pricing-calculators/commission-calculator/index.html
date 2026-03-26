@@ -1067,22 +1067,13 @@
         display: none;
       }
 
-      .pct-calculator-hero {
-        display: grid;
-        justify-items: center;
-        gap: 14px;
-        margin: 0 auto 28px;
-        text-align: center;
-      }
-
       .pct-cluster-page-shell #calculator-title {
         margin: 0;
         color: var(--pct-ink);
-        max-width: 780px;
+        max-width: 100%;
         font-size: clamp(1.9rem, 4vw, 3.25rem);
         line-height: 1.08;
         letter-spacing: -0.055em;
-        text-align: center;
       }
 
       .pct-cluster-page-shell #calculator-title::after {
@@ -1090,12 +1081,11 @@
       }
 
       .pct-cluster-page-intro {
-        margin: 0;
+        margin: 14px auto 0;
         max-width: 700px;
         color: var(--pct-muted);
         font-size: 16px;
         line-height: 1.65;
-        text-align: center;
       }
 
       .pct-cluster-flow {
@@ -2297,22 +2287,6 @@
         .pct-explanation .bor-faq-grid {
           grid-template-columns: 1fr;
         }
-
-        .pct-calculator-hero {
-          gap: 10px;
-          margin-bottom: 22px;
-        }
-
-        .pct-cluster-page-shell #calculator-title {
-          max-width: 100%;
-          font-size: clamp(1.75rem, 8vw, 2.35rem);
-        }
-
-        .pct-cluster-page-intro {
-          max-width: 34ch;
-          font-size: 14px;
-          line-height: 1.55;
-        }
       }
 
       /* calculators/pricing-calculators/commission-calculator/calculator.css */
@@ -2344,10 +2318,7 @@
       <main class="pct-cluster-layout-main layout-main--no-ads">
         <section class="pct-cluster-center-column">
           <div class="panel panel-scroll panel-span-all panel--shellless">
-  <div class="pct-calculator-hero">
-    <h1 id="calculator-title">Commission Calculator</h1>
-    <p class="pct-cluster-page-intro">Estimate flat or tiered commission clearly, then compare total payout and effective rate in one place.</p>
-  </div>
+  <h1 id="calculator-title">Commission Calculator</h1>
   <div class="calculator-page-single">
     <div id="calc-commission-calculator">
   <link rel="stylesheet" href="/calculators/pricing-calculators/shared/cluster-light.css?v=20260224" />
@@ -2475,6 +2446,9 @@
     </section>
   </div>
 </div>
+
+
+  <h3>Explanation</h3>
     <div id="comm-explanation" class="explanation-pane pct-explanation">
   <section>
     <h2>How Much Commission Will This Sale Generate?</h2>

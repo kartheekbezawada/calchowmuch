@@ -1,0 +1,77 @@
+<div id="calc-weekly-pay" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Weekly pay inputs">
+    <p class="sal-calc-kicker">Weekly earnings</p>
+    <h2 class="sal-calc-form-title">Estimate weekly pay from your hourly rate and workweek</h2>
+    <p class="sal-calc-lead">
+      Stay in a simple total-hours flow by default, or switch to split hours when you want to
+      model overtime separately.
+    </p>
+
+    <div class="sal-input-row">
+      <label for="weekly-hourly-rate">Hourly rate</label>
+      <input id="weekly-hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row">
+      <label id="weekly-mode-label">Input mode</label>
+      <div
+        class="sal-chip-group"
+        role="group"
+        aria-labelledby="weekly-mode-label"
+        data-button-group="weekly-mode"
+      >
+        <button class="sal-chip-button is-active" type="button" data-value="standard" aria-pressed="true">
+          Total hours
+        </button>
+        <button class="sal-chip-button" type="button" data-value="split" aria-pressed="false">
+          Split hours
+        </button>
+      </div>
+    </div>
+
+    <div class="sal-input-row" id="weekly-total-hours-row">
+      <label for="weekly-total-hours">Total weekly hours</label>
+      <input id="weekly-total-hours" type="number" min="0" step="0.1" />
+    </div>
+
+    <div class="sal-input-stack" id="weekly-split-hours-group" hidden aria-hidden="true">
+      <div class="sal-input-grid">
+        <div class="sal-input-row">
+          <label for="weekly-regular-hours">Regular hours</label>
+          <input id="weekly-regular-hours" type="number" min="0" step="0.1" />
+        </div>
+        <div class="sal-input-row">
+          <label for="weekly-overtime-hours">Overtime hours</label>
+          <input id="weekly-overtime-hours" type="number" min="0" step="0.1" />
+        </div>
+      </div>
+      <div class="sal-input-row">
+        <label for="weekly-overtime-multiplier">Overtime multiplier</label>
+        <input id="weekly-overtime-multiplier" type="number" min="0" step="0.01" value="1.5" />
+      </div>
+    </div>
+
+    <div class="sal-input-row">
+      <label for="weekly-weeks-per-year">Weeks per year</label>
+      <input id="weekly-weeks-per-year" type="number" min="0" step="0.1" value="52" />
+    </div>
+
+    <p class="sal-calc-error" id="weekly-pay-error" hidden></p>
+    <button class="sal-primary-action" id="weekly-pay-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Weekly pay results">
+    <p class="sal-answer-title">Weekly pay</p>
+    <p class="sal-answer-hero" id="weekly-pay-result">—</p>
+    <p class="sal-answer-note" id="weekly-pay-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card">
+        <span>Annualized pay</span>
+        <strong id="weekly-annualized-pay">—</strong>
+      </div>
+    </div>
+    <p class="sal-results-disclaimer">
+      Gross-pay estimate only. Split-hours mode is optional and uses the multiplier you enter.
+    </p>
+  </aside>
+</div>

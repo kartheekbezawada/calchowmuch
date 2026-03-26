@@ -1,0 +1,82 @@
+<div id="calc-salary-calculator" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Salary calculator inputs">
+    <p class="sal-calc-kicker">Answer-first pay conversion</p>
+    <h2 class="sal-calc-form-title">Convert one pay figure into every major pay frequency</h2>
+    <p class="sal-calc-lead">
+      Enter one pay amount, choose the source frequency, then keep the work schedule assumptions
+      explicit and editable.
+    </p>
+
+    <div class="sal-input-row">
+      <label for="salary-pay-amount">Pay amount</label>
+      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row">
+      <label id="salary-pay-frequency-label">Pay frequency</label>
+      <div
+        class="sal-chip-group"
+        role="group"
+        aria-labelledby="salary-pay-frequency-label"
+        data-button-group="salary-pay-frequency"
+      >
+        <button class="sal-chip-button" type="button" data-value="hourly" aria-pressed="false">Hourly</button>
+        <button class="sal-chip-button" type="button" data-value="daily" aria-pressed="false">Daily</button>
+        <button class="sal-chip-button" type="button" data-value="weekly" aria-pressed="false">Weekly</button>
+        <button class="sal-chip-button" type="button" data-value="biweekly" aria-pressed="false">Biweekly</button>
+        <button class="sal-chip-button" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
+        <button class="sal-chip-button is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
+      </div>
+    </div>
+
+    <div class="sal-input-stack">
+      <p class="sal-helper-text">Work schedule assumptions keep the reverse conversions transparent.</p>
+      <div class="sal-input-grid">
+        <div class="sal-input-row">
+          <label for="salary-hours-per-week">Hours per week</label>
+          <input id="salary-hours-per-week" type="number" min="0" step="0.1" value="40" />
+        </div>
+        <div class="sal-input-row">
+          <label for="salary-weeks-per-year">Weeks per year</label>
+          <input id="salary-weeks-per-year" type="number" min="0" step="0.1" value="52" />
+        </div>
+      </div>
+      <div class="sal-input-row">
+        <label for="salary-days-per-week">Days per week</label>
+        <input id="salary-days-per-week" type="number" min="1" max="7" step="1" value="5" />
+      </div>
+    </div>
+
+    <p class="sal-calc-error" id="salary-calc-error" hidden></p>
+    <button class="sal-primary-action" id="salary-calc-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
+    <p class="sal-answer-title">Annual pay</p>
+    <p class="sal-answer-hero" id="salary-annual-pay">—</p>
+    <p class="sal-answer-note" id="salary-answer-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card">
+        <span>Monthly pay</span>
+        <strong id="salary-monthly-pay">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Biweekly pay</span>
+        <strong id="salary-biweekly-pay">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Weekly pay</span>
+        <strong id="salary-weekly-pay">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Daily pay</span>
+        <strong id="salary-daily-pay">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Hourly pay</span>
+        <strong id="salary-hourly-pay">—</strong>
+      </div>
+    </div>
+    <p class="sal-results-disclaimer">Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.</p>
+  </aside>
+</div>

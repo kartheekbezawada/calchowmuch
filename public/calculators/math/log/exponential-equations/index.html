@@ -1,34 +1,107 @@
-<div class="log-calculator" id="exponential-equations-calculator">
-  <div class="calculator-ui">
-    <p class="helper">
-      Solve equations of the form base^(m·x + c) = target using logarithms and visualize the
-      associated exponential curve.
-    </p>
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="exp-base">Base</label>
-        <input id="exp-base" type="number" step="any" min="0.1" value="2" />
+<div id="exponential-equations-calculator">
+  <div class="expq-shell">
+    <section class="expq-card expq-hero-card" aria-label="Exponential equation overview">
+      <div class="expq-hero-copy">
+        <p class="expq-eyebrow">Simple Smooth Wow</p>
+        <h2 class="expq-title">Solve exponential equations and check the matching curve in one answer-first workspace.</h2>
+        <p class="expq-subtitle">
+          Enter the base, target, multiplier, and shift for equations of the form
+          <strong>base^(m·x + c) = target</strong>. The answer card keeps the solved x value and log
+          rearrangement visible while the graph card shows where the exponential curve reaches the target height.
+        </p>
       </div>
-      <div class="input-row">
-        <label for="exp-target">Target value (RHS)</label>
-        <input id="exp-target" type="number" step="any" min="0.01" value="16" />
+      <ul class="expq-hero-points">
+        <li>Best for solving exponential equations with shifts or scaled exponents.</li>
+        <li>The answer card surfaces x, the rewritten log form, and the curve checkpoint first.</li>
+        <li>The graph card stays nearby so the solution can be checked visually without extra shell noise.</li>
+      </ul>
+    </section>
+
+    <div class="expq-workbench">
+      <div class="expq-left-stack">
+        <section class="expq-card expq-input-card" aria-label="Exponential equation inputs">
+          <div class="expq-card-head">
+            <div>
+              <p class="expq-section-label">Inputs</p>
+              <p class="expq-card-title">Set the equation coefficients and target value</p>
+            </div>
+            <span class="expq-chip">Answer-first</span>
+          </div>
+
+          <p class="expq-helper">Keep the base positive and not equal to 1, keep the target positive, and avoid a zero multiplier.</p>
+
+          <label class="expq-field" for="exp-base">
+            <span>Base</span>
+            <input id="exp-base" type="number" step="any" min="0.1" value="2" />
+          </label>
+          <label class="expq-field" for="exp-target">
+            <span>Target value (RHS)</span>
+            <input id="exp-target" type="number" step="any" min="0.01" value="16" />
+          </label>
+          <label class="expq-field" for="exp-mult">
+            <span>Multiplier (m)</span>
+            <input id="exp-mult" type="number" step="any" value="1" />
+          </label>
+          <label class="expq-field" for="exp-shift">
+            <span>Shift (c)</span>
+            <input id="exp-shift" type="number" step="any" value="0" />
+          </label>
+
+          <button id="exp-calculate" class="calculator-button expq-calc-button" type="button">Solve for x</button>
+        </section>
+
+        <section class="expq-card expq-graph-card" aria-label="Exponential curve graph">
+          <div class="expq-card-head">
+            <div>
+              <p class="expq-section-label">Graph</p>
+              <p class="expq-card-title">Exponential curve with the solved checkpoint highlighted</p>
+            </div>
+            <span class="expq-chip expq-chip--graph">Curve view</span>
+          </div>
+
+          <div class="expq-graph-panel">
+            <canvas id="exp-graph" class="expq-graph-canvas" width="360" height="240" aria-label="Exponential equation graph"></canvas>
+          </div>
+          <p id="exp-graph-note" class="expq-graph-note">Graph updates after the equation is solved.</p>
+        </section>
       </div>
-      <div class="input-row">
-        <label for="exp-mult">Multiplier (m)</label>
-        <input id="exp-mult" type="number" step="any" value="1" />
-      </div>
-      <div class="input-row">
-        <label for="exp-shift">Shift (c)</label>
-        <input id="exp-shift" type="number" step="any" value="0" />
-      </div>
+
+      <section class="expq-card expq-answer-card" aria-label="Exponential equation answer summary">
+        <div class="expq-card-head">
+          <div>
+            <p class="expq-section-label">Answer</p>
+            <p class="expq-card-title">Solved x value, log rearrangement, and quick check</p>
+          </div>
+          <span class="expq-chip expq-chip--answer">Equation result</span>
+        </div>
+
+        <div class="result expq-result-card" id="exp-result" aria-live="polite"></div>
+        <div class="result-detail expq-detail-card" id="exp-detail" aria-live="polite"></div>
+
+        <div class="expq-snapshot-grid" aria-label="Exponential equation snapshot">
+          <article class="expq-snapshot-card">
+            <span>Base</span>
+            <strong data-exp-snap="base">2</strong>
+          </article>
+          <article class="expq-snapshot-card">
+            <span>Target</span>
+            <strong data-exp-snap="target">16</strong>
+          </article>
+          <article class="expq-snapshot-card">
+            <span>Solution x</span>
+            <strong data-exp-snap="solution">-</strong>
+          </article>
+          <article class="expq-snapshot-card">
+            <span>Status</span>
+            <strong data-exp-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
     </div>
-    <button id="exp-calculate" class="calculator-button primary" type="button">Solve for x</button>
-    <div class="result" id="exp-result" aria-live="polite"></div>
-    <div class="result-detail" id="exp-detail"></div>
   </div>
 </div>
 
 <style>
-  @import url('/assets/css/calculator.css?v=20260127');
   @import url('/calculators/math/log/shared.css');
+  @import url('/calculators/math/log/exponential-equations/calculator.css');
 </style>

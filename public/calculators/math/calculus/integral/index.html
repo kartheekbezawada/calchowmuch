@@ -1,50 +1,118 @@
 <div id="calc-integral">
-  <div class="calculator-ui">
-    <p class="helper">Calculate definite and indefinite integrals</p>
+  <div class="intg-shell">
+    <section class="intg-card intg-hero-card" aria-label="Integral overview">
+      <div class="intg-hero-copy">
+        <p class="intg-eyebrow">Simple Smooth Wow</p>
+        <h2 class="intg-title">Find an antiderivative or a definite integral value in one answer-first calculus workspace.</h2>
+        <p class="intg-subtitle">
+          Enter the function, choose indefinite or definite mode, and calculate once. The answer
+          card keeps the antiderivative or numeric area value visible while the steps card walks
+          through the power-rule integration path without legacy shell clutter.
+        </p>
+      </div>
+      <ul class="intg-hero-points">
+        <li>Best for polynomial-style antiderivatives and quick definite-area checks.</li>
+        <li>The answer card surfaces the active mode, integrated result, and bound evaluation first.</li>
+        <li>The steps card stays nearby so the integration rule flow remains visible on the first screen.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="int-function">Function f(x)</label>
-        <input id="int-function" type="text" value="x^2" placeholder="e.g., x^2 + 3*x + 5" />
+    <div class="intg-workbench">
+      <div class="intg-left-stack">
+        <section class="intg-card intg-input-card" aria-label="Integral inputs">
+          <div class="intg-card-head">
+            <div>
+              <p class="intg-section-label">Inputs</p>
+              <p class="intg-card-title">Set the function, variable, and integration mode</p>
+            </div>
+            <span class="intg-chip">Answer-first</span>
+          </div>
+
+          <p class="intg-helper">
+            This route is tuned for polynomial-style expressions. Switch to definite mode when you
+            want the numeric value between two bounds instead of the antiderivative family.
+          </p>
+
+          <label class="intg-field" for="int-function">
+            <span>Function f(x)</span>
+            <input id="int-function" type="text" value="x^2" placeholder="e.g., x^2 + 3*x + 5" />
+          </label>
+
+          <label class="intg-field" for="int-variable">
+            <span>Variable</span>
+            <input id="int-variable" type="text" value="x" placeholder="x" />
+          </label>
+
+          <div class="intg-mode-row">
+            <button class="mode-button intg-mode-button active" type="button" data-mode="indefinite">Indefinite</button>
+            <button class="mode-button intg-mode-button" type="button" data-mode="definite">Definite</button>
+          </div>
+
+          <div id="definite-bounds" class="intg-bounds-card" hidden>
+            <div class="intg-field-grid">
+              <label class="intg-field" for="int-lower">
+                <span>Lower bound (a)</span>
+                <input id="int-lower" type="number" step="any" value="0" />
+              </label>
+              <label class="intg-field" for="int-upper">
+                <span>Upper bound (b)</span>
+                <input id="int-upper" type="number" step="any" value="1" />
+              </label>
+            </div>
+          </div>
+
+          <button class="calculator-button intg-calc-button" type="button" id="int-calculate">
+            Calculate integral
+          </button>
+        </section>
+
+        <section class="intg-card intg-steps-card" aria-label="Integral steps">
+          <div class="intg-card-head">
+            <div>
+              <p class="intg-section-label">Steps</p>
+              <p class="intg-card-title">Power-rule integration notes</p>
+            </div>
+            <span class="intg-chip intg-chip--steps">Antiderivative flow</span>
+          </div>
+
+          <div class="result-detail intg-steps-output" id="int-steps" aria-live="polite"></div>
+        </section>
       </div>
 
-      <div class="input-row">
-        <label for="int-variable">Variable</label>
-        <input id="int-variable" type="text" value="x" placeholder="x" />
-      </div>
-
-      <div class="button-group">
-        <button class="mode-button active" data-mode="indefinite">Indefinite</button>
-        <button class="mode-button" data-mode="definite">Definite</button>
-      </div>
-
-      <div id="definite-bounds" style="display: none">
-        <div class="input-row">
-          <label for="int-lower">Lower Bound (a)</label>
-          <input id="int-lower" type="number" step="any" value="0" />
+      <section class="intg-card intg-answer-card" aria-label="Integral answer summary">
+        <div class="intg-card-head">
+          <div>
+            <p class="intg-section-label">Answer</p>
+            <p class="intg-card-title">Antiderivative, definite value, and quick interpretation</p>
+          </div>
+          <span class="intg-chip intg-chip--answer">Integral result</span>
         </div>
 
-        <div class="input-row">
-          <label for="int-upper">Upper Bound (b)</label>
-          <input id="int-upper" type="number" step="any" value="1" />
+        <div class="result intg-result-card" id="int-result" aria-live="polite"></div>
+
+        <div class="intg-snapshot-grid" aria-label="Integral snapshot">
+          <article class="intg-snapshot-card">
+            <span>Mode</span>
+            <strong data-int-snap="mode">Indefinite</strong>
+          </article>
+          <article class="intg-snapshot-card">
+            <span>Function</span>
+            <strong data-int-snap="function">x^2</strong>
+          </article>
+          <article class="intg-snapshot-card">
+            <span>Result</span>
+            <strong data-int-snap="result">-</strong>
+          </article>
+          <article class="intg-snapshot-card">
+            <span>Status</span>
+            <strong data-int-snap="status">-</strong>
+          </article>
         </div>
-      </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="int-calculate">
-      Calculate Integral
-    </button>
-
-    <div class="result" id="int-result" aria-live="polite"></div>
-    <div class="result-detail" id="int-steps" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/calculus/integral/calculator.css');
 </style>
-
-<script type="module">
-  import { initIntegralCalculator } from '/calculators/math/calculus/integral/module.js';
-  initIntegralCalculator();
-</script>

@@ -171,17 +171,17 @@ Out-of-scope violation rule:
 
 ## Calculator Work Order
 
-1. [ ] cluster bootstrap and hub
-2. [ ] `salary-calculator`
-3. [ ] `hourly-to-salary-calculator`
-4. [ ] `salary-to-hourly-calculator`
-5. [ ] `annual-to-monthly-salary-calculator`
-6. [ ] `monthly-to-annual-salary-calculator`
-7. [ ] `weekly-pay-calculator`
-8. [ ] `overtime-pay-calculator`
-9. [ ] `raise-calculator`
-10. [ ] `bonus-calculator`
-11. [ ] `commission-calculator`
+1. [x] cluster bootstrap and hub
+2. [x] `salary-calculator`
+3. [x] `hourly-to-salary-calculator`
+4. [x] `salary-to-hourly-calculator`
+5. [x] `annual-to-monthly-salary-calculator`
+6. [x] `monthly-to-annual-salary-calculator`
+7. [x] `weekly-pay-calculator`
+8. [x] `overtime-pay-calculator`
+9. [x] `raise-calculator`
+10. [x] `bonus-calculator`
+11. [x] `commission-calculator`
 
 ---
 
@@ -206,28 +206,46 @@ Out-of-scope violation rule:
 
 | Route | Status | Build | Unit | E2E | SEO | CWV | Schema | Design QA |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `cluster-bootstrap-and-hub` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `salary-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `hourly-to-salary-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `salary-to-hourly-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `annual-to-monthly-salary-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `monthly-to-annual-salary-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `weekly-pay-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `overtime-pay-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `raise-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `bonus-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
-| `commission-calculator` | Planned | Pending | Pending | Pending | Pending | Pending | Pending | Pending |
+| `cluster-bootstrap-and-hub` | Completed | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
+| `salary-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `hourly-to-salary-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `salary-to-hourly-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `annual-to-monthly-salary-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `monthly-to-annual-salary-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `weekly-pay-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `overtime-pay-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `raise-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `bonus-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `commission-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
 
 ---
 
 ## Cluster Final Checklist
 
-- [ ] Cluster contracts are in place.
-- [ ] Hub route is live and discoverable.
-- [ ] All 10 calculator routes are implemented in the approved order.
-- [ ] Internal linking matches the route briefs and hub plan.
-- [ ] Homepage search discoverability contract passes.
-- [ ] Sitemap coverage is complete.
-- [ ] All required release gates pass.
-- [ ] Release sign-off is created.
-- [ ] Cluster is ready to merge.
+- [x] Cluster contracts are in place.
+- [x] Hub route is live and discoverable.
+- [x] All 10 calculator routes are implemented in the approved order.
+- [x] Internal linking matches the route briefs and hub plan.
+- [x] Homepage search discoverability contract passes.
+- [x] Sitemap coverage is complete.
+- [x] All required release gates pass.
+- [x] Release sign-off is created.
+- [x] Cluster is ready to merge.
+
+---
+
+## Latest Delta
+
+- 2026-03-26: Salary cluster rollout completed as a cluster-scope shared-contract release.
+- Generated outputs now exist for `/salary-calculators/` plus all 10 child routes under `public/salary-calculators/**`.
+- Salary cluster release tests now exist under `tests_specs/salary/**` for future single-calculator releases, while this rollout was verified with the cluster gate set.
+- Passed gates:
+  - `npm run lint`
+  - `CLUSTER=salary npm run test:cluster:unit`
+  - `CLUSTER=salary npm run test:cluster:e2e`
+  - `CLUSTER=salary npm run test:cluster:seo`
+  - `CLUSTER=salary npm run test:cluster:cwv`
+  - `CLUSTER=salary npm run test:schema:dedupe -- --scope=cluster`
+  - `CLUSTER=salary npm run test:cluster:contracts`
+  - `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope`
+- Release sign-off: `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_REL-20260326-SALARY-CLUSTER-ROLLOUT.md`

@@ -218,6 +218,287 @@
   background: rgba(255, 255, 255, 0.78);
 }
 
+.sal-cluster-calc-flow {
+  gap: 20px;
+}
+
+.sal-calc-shell,
+.sal-explanation,
+.sal-related-grid,
+.sal-faq-grid,
+.sal-support-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.sal-calc-shell {
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  align-items: start;
+}
+
+.sal-calc-card,
+.sal-explanation-card,
+.sal-related-card {
+  border-radius: 28px;
+  border: 1px solid rgba(19, 34, 47, 0.08);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+}
+
+.sal-calc-card {
+  padding: 24px;
+}
+
+.sal-calc-form-card {
+  display: grid;
+  gap: 18px;
+}
+
+.sal-calc-kicker,
+.sal-explanation-kicker {
+  margin: 0;
+  color: #6a7c75;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sal-calc-form-title,
+.sal-answer-title,
+.sal-explanation-card h2,
+.sal-explanation-card h3,
+.sal-related-card h3 {
+  margin: 0;
+  color: #13222f;
+}
+
+.sal-calc-form-title {
+  font-size: clamp(1.35rem, 2.3vw, 1.9rem);
+  line-height: 1.18;
+}
+
+.sal-calc-lead,
+.sal-answer-note,
+.sal-explanation-card p,
+.sal-related-card p,
+.sal-related-card li,
+.sal-explanation-list li {
+  margin: 0;
+  color: #5d6f67;
+  line-height: 1.65;
+}
+
+.sal-input-stack,
+.sal-input-row,
+.sal-mode-fields,
+.sal-optional-stack,
+.sal-inline-fields {
+  display: grid;
+  gap: 12px;
+}
+
+.sal-input-grid,
+.sal-inline-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sal-calc-shell label {
+  color: #22353f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sal-calc-shell input[type='number'],
+.sal-calc-shell input[type='text'],
+.sal-calc-shell input[type='email'],
+.sal-calc-shell input[type='search'],
+.sal-calc-shell input[type='tel'],
+.sal-calc-shell input[type='url'] {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(19, 34, 47, 0.12);
+  background: #fbfdfb;
+  color: #13222f;
+  font-size: 16px;
+}
+
+.sal-calc-shell input:focus-visible {
+  outline: 2px solid rgba(38, 93, 144, 0.24);
+  outline-offset: 1px;
+  border-color: rgba(38, 93, 144, 0.36);
+}
+
+.sal-helper-text,
+.sal-calc-helper,
+.sal-answer-context,
+.sal-results-disclaimer {
+  margin: 0;
+  color: #6b7e77;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.sal-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sal-chip-button {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(19, 34, 47, 0.1);
+  background: rgba(246, 251, 247, 0.88);
+  color: #465a52;
+  font-weight: 600;
+}
+
+.sal-chip-button.is-active,
+.sal-chip-button[aria-pressed='true'] {
+  border-color: rgba(28, 103, 88, 0.18);
+  background: #163b55;
+  color: #ffffff;
+}
+
+.sal-primary-action {
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #163b55, #2f5d7c);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.sal-calc-error {
+  margin: 0;
+  color: #b85d49;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sal-calc-error[hidden] {
+  display: none;
+}
+
+.sal-answer-card {
+  display: grid;
+  gap: 18px;
+  position: sticky;
+  top: 92px;
+}
+
+.sal-answer-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.sal-answer-hero {
+  margin: 0;
+  color: #13222f;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+  font-weight: 800;
+}
+
+.sal-answer-note {
+  padding-top: 4px;
+}
+
+.sal-support-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sal-support-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(19, 34, 47, 0.08);
+  background: #f9fcfa;
+}
+
+.sal-support-card span {
+  color: #6b7e77;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sal-support-card strong {
+  color: #13222f;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.sal-explanation-card,
+.sal-related-card {
+  padding: 24px;
+}
+
+.sal-explanation-list,
+.sal-related-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.sal-related-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.sal-related-card a,
+.sal-explanation-card a {
+  color: #163b55;
+}
+
+.sal-explanation-card a:hover,
+.sal-related-card a:hover {
+  color: #0f2c41;
+}
+
+.sal-form-inline-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #465a52;
+  font-size: 14px;
+}
+
+.sal-form-inline-toggle input {
+  accent-color: #163b55;
+}
+
+@media (max-width: 900px) {
+  .sal-calc-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sal-answer-card {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .sal-input-grid,
+  .sal-inline-fields,
+  .sal-support-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sal-calc-card,
+  .sal-explanation-card,
+  .sal-related-card {
+    padding: 20px;
+  }
+}
+
 .sal-cluster-footer-copy {
   justify-self: end;
   color: #5d6f67;

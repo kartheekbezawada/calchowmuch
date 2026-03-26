@@ -1,37 +1,117 @@
-<div class="log-calculator" id="common-log-calculator">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compute common logarithms, arbitrary bases, and see how change-of-base converts between bases.
-    </p>
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="log-value">Argument (x)</label>
-        <input id="log-value" type="number" step="any" min="0.01" value="100" />
+<div id="common-log-calculator">
+  <div class="clog-shell">
+    <section class="clog-card clog-hero-card" aria-label="Common log overview">
+      <div class="clog-hero-copy">
+        <p class="clog-eyebrow">Simple Smooth Wow</p>
+        <h2 class="clog-title">Switch between base 10, base 2, base e, or a custom base in one answer-first log workspace.</h2>
+        <p class="clog-subtitle">
+          Enter the argument value, choose the base you care about, and calculate once. The answer
+          card keeps the selected log value, base label, and change-of-base comparison visible while
+          the graph card shows how the current argument lands on the chosen logarithmic curve.
+        </p>
       </div>
-      <div class="input-row">
-        <label for="log-base">Base</label>
-        <select id="log-base">
-          <option value="10">Base 10</option>
-          <option value="2">Base 2</option>
-          <option value="Math.E">Base e</option>
-          <option value="custom">Custom base</option>
-        </select>
+      <ul class="clog-hero-points">
+        <li>Best for base-10 logs, binary logs, natural-log comparisons, and custom-base checks.</li>
+        <li>The answer card surfaces log_b(x), the selected base, and base-10 comparison first.</li>
+        <li>The graph card stays close so the curve shape changes stay visible without leaving the first screen.</li>
+      </ul>
+    </section>
+
+    <div class="clog-workbench">
+      <div class="clog-left-stack">
+        <section class="clog-card clog-input-card" aria-label="Common log inputs">
+          <div class="clog-card-head">
+            <div>
+              <p class="clog-section-label">Inputs</p>
+              <p class="clog-card-title">Set the argument and choose the log base</p>
+            </div>
+            <span class="clog-chip">Answer-first</span>
+          </div>
+
+          <p class="clog-helper">Logarithms need a positive argument, and the base must stay positive and different from 1.</p>
+
+          <label class="clog-field" for="log-value">
+            <span>Argument (x)</span>
+            <input id="log-value" type="number" step="any" min="0.01" value="100" />
+          </label>
+
+          <label class="clog-field" for="log-base">
+            <span>Base</span>
+            <select id="log-base">
+              <option value="10">Base 10</option>
+              <option value="2">Base 2</option>
+              <option value="Math.E">Base e</option>
+              <option value="custom">Custom base</option>
+            </select>
+          </label>
+
+          <label class="clog-field" id="log-custom-row" hidden for="log-custom-base">
+            <span>Custom base</span>
+            <input id="log-custom-base" type="number" step="any" min="0.1" value="5" />
+          </label>
+
+          <div class="clog-hint-row">
+            <span class="clog-inline-note">Use custom base mode when you want to compare non-standard logarithms like base 5.</span>
+          </div>
+
+          <button id="log-calculate" class="calculator-button clog-calc-button" type="button">
+            Calculate log
+          </button>
+        </section>
+
+        <section class="clog-card clog-graph-card" aria-label="Logarithm graph">
+          <div class="clog-card-head">
+            <div>
+              <p class="clog-section-label">Graph</p>
+              <p class="clog-card-title">Selected log curve with the current argument highlighted</p>
+            </div>
+            <span class="clog-chip clog-chip--graph">Curve view</span>
+          </div>
+
+          <div class="clog-graph-panel">
+            <canvas id="log-graph" class="clog-graph-canvas" width="360" height="240" aria-label="Logarithm graph"></canvas>
+          </div>
+          <p id="log-graph-note" class="clog-graph-note">Graph updates after you calculate the logarithm.</p>
+        </section>
       </div>
-      <div class="input-row" id="log-custom-row" hidden>
-        <label for="log-custom-base">Custom Base</label>
-        <input id="log-custom-base" type="number" step="any" min="0.1" value="5" />
-      </div>
+
+      <section class="clog-card clog-answer-card" aria-label="Common log answer summary">
+        <div class="clog-card-head">
+          <div>
+            <p class="clog-section-label">Answer</p>
+            <p class="clog-card-title">Selected-base result, change-of-base summary, and quick interpretation</p>
+          </div>
+          <span class="clog-chip clog-chip--answer">log result</span>
+        </div>
+
+        <div class="result clog-result-card" id="log-result" aria-live="polite"></div>
+        <div class="result-detail clog-detail-card" id="log-detail" aria-live="polite"></div>
+        <div class="result-detail clog-detail-card" id="log-change" aria-live="polite"></div>
+
+        <div class="clog-snapshot-grid" aria-label="Common log snapshot">
+          <article class="clog-snapshot-card">
+            <span>Argument</span>
+            <strong data-log-snap="value">-</strong>
+          </article>
+          <article class="clog-snapshot-card">
+            <span>Base</span>
+            <strong data-log-snap="base">10</strong>
+          </article>
+          <article class="clog-snapshot-card">
+            <span>log_b(x)</span>
+            <strong data-log-snap="result">-</strong>
+          </article>
+          <article class="clog-snapshot-card">
+            <span>Status</span>
+            <strong data-log-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
     </div>
-    <button id="log-calculate" class="calculator-button primary" type="button">
-      Calculate log
-    </button>
-    <div class="result" id="log-result" aria-live="polite"></div>
-    <div class="result-detail" id="log-detail"></div>
-    <div class="result-detail" id="log-change"></div>
   </div>
 </div>
 
 <style>
-  @import url('/assets/css/calculator.css?v=20260127');
   @import url('/calculators/math/log/shared.css');
+  @import url('/calculators/math/log/common-log/calculator.css');
 </style>

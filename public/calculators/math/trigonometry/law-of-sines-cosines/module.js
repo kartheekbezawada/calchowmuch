@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
+import { setupButtonGroup } from '/assets/js/core/ui.js';
 import {
   detectTriangleType,
   formatAnglePair,
@@ -16,36 +16,10 @@ const detailDiv = document.querySelector('#law-detail');
 const hint = document.querySelector('#law-hint');
 const canvas = document.querySelector('#law-triangle');
 const diagramNote = document.querySelector('#law-diagram-note');
-
-const lawTrigMetadata = {
-  title: 'Law of Sines and Cosines Calculator | Calculate How Much',
-  description:
-    'Auto-detect and apply the Law of Sines or Cosines to solve triangles, compute unknown sides, and show area with a diagram.',
-  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/law-of-sines-cosines/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'Use the Law of Sines and Cosines',
-    description:
-      'Provide known sides or angles and apply the appropriate trig law to find the rest.',
-    step: [
-      {
-        '@type': 'HowToStep',
-        text: 'Enter three valid values, including at least one side.',
-      },
-      {
-        '@type': 'HowToStep',
-        text: 'Let auto detection choose the Law of Sines or Cosines, or override the method.',
-      },
-      {
-        '@type': 'HowToStep',
-        text: 'Review the solved sides, angles, area, and the diagram.',
-      },
-    ],
-  },
-};
-
-setPageMetadata(lawTrigMetadata);
+const snapshotType = document.querySelector('[data-law-snap="type"]');
+const snapshotLaw = document.querySelector('[data-law-snap="law"]');
+const snapshotUnit = document.querySelector('[data-law-snap="unit"]');
+const snapshotSolutions = document.querySelector('[data-law-snap="solutions"]');
 
 const inputs = {
   a: document.querySelector('#law-a'),
@@ -141,13 +115,32 @@ function getLawLabel(type) {
   return 'Unknown';
 }
 
+function updateSnapshots({ type = '-', law = '-', solutions = '-', unit = null } = {}) {
+  if (snapshotType) {
+    snapshotType.textContent = type;
+  }
+  if (snapshotLaw) {
+    snapshotLaw.textContent = law;
+  }
+  if (snapshotUnit) {
+    snapshotUnit.textContent = unit ?? (getAngleUnit() === 'deg' ? 'Degrees' : 'Radians');
+  }
+  if (snapshotSolutions) {
+    snapshotSolutions.textContent = String(solutions);
+  }
+}
+
 function calculate() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
+  updateSnapshots();
 
   const invalid = Object.values(inputs).find((input) => !hasMaxDigits(input.value, 12));
   if (invalid) {
     resultDiv.textContent = 'Inputs are limited to 12 digits.';
+    hint.textContent = 'Reduce the number of digits, then solve again.';
+    drawTriangle(null);
+    diagramNote.textContent = 'Diagram updates after the triangle is solved.';
     return;
   }
 
@@ -163,77 +156,123 @@ function calculate() {
   const detectedType = detectTriangleType(values);
   if (!detectedType) {
     resultDiv.textContent = 'Enter at least three valid values (including one side) to solve.';
+    hint.textContent = 'You need a valid three-value triangle pattern that includes at least one side.';
     drawTriangle(null);
-    diagramNote.textContent = '';
+    diagramNote.textContent = 'Diagram updates after the triangle is solved.';
     return;
   }
 
   const method = methodSelect.value;
   const requiredLaw = getLawLabel(detectedType);
+  hint.textContent = `Detected pattern: ${detectedType}. Recommended method: ${requiredLaw}.`;
 
   if (method === 'sine' && requiredLaw !== 'Law of Sines') {
     resultDiv.textContent = 'Law of Sines requires at least one angle-side pair.';
+    updateSnapshots({ type: detectedType, law: requiredLaw, solutions: '-', unit: getAngleUnit() === 'deg' ? 'Degrees' : 'Radians' });
+    drawTriangle(null);
+    diagramNote.textContent = 'Diagram updates after the triangle is solved.';
     return;
   }
   if (method === 'cosine' && requiredLaw !== 'Law of Cosines') {
     resultDiv.textContent = 'Law of Cosines requires SAS or SSS inputs.';
+    updateSnapshots({ type: detectedType, law: requiredLaw, solutions: '-', unit: getAngleUnit() === 'deg' ? 'Degrees' : 'Radians' });
+    drawTriangle(null);
+    diagramNote.textContent = 'Diagram updates after the triangle is solved.';
     return;
   }
-
-  hint.textContent = `Auto detection suggests ${requiredLaw}.`;
 
   const solved = solveTriangle(detectedType, values);
   if (solved.error) {
     resultDiv.textContent = solved.error;
+    updateSnapshots({ type: detectedType, law: requiredLaw, solutions: '-', unit: getAngleUnit() === 'deg' ? 'Degrees' : 'Radians' });
     drawTriangle(null);
-    diagramNote.textContent = '';
+    diagramNote.textContent = 'Diagram updates after the triangle is solved.';
     return;
   }
 
-  const solution = solved.solutions[0];
+  const solutions = solved.solutions;
+  const solution = solutions[0];
+  updateSnapshots({
+    type: detectedType,
+    law: requiredLaw,
+    solutions: solutions.length,
+  });
 
-  const resultHtml = `
-    <div class="result-grid">
-      <div class="result-card">
-        <div class="result-title">Sides</div>
-        <p>a = ${formatNumber(solution.a, { maximumFractionDigits: 4 })}</p>
-        <p>b = ${formatNumber(solution.b, { maximumFractionDigits: 4 })}</p>
-        <p>c = ${formatNumber(solution.c, { maximumFractionDigits: 4 })}</p>
+  const summaryHtml = `
+    <article class="law-summary-card">
+      <h4>Solved Triangle</h4>
+      <div class="law-summary-grid">
+        <div class="law-stat">
+          <span>Pattern</span>
+          <strong>${detectedType}</strong>
+        </div>
+        <div class="law-stat">
+          <span>Recommended law</span>
+          <strong>${requiredLaw}</strong>
+        </div>
+        <div class="law-stat">
+          <span>Method mode</span>
+          <strong>${method === 'auto' ? 'Auto detect' : method === 'sine' ? 'Forced Law of Sines' : 'Forced Law of Cosines'}</strong>
+        </div>
+        <div class="law-stat">
+          <span>Area</span>
+          <strong>${formatNumber(solution.area, { maximumFractionDigits: 4 })} sq units</strong>
+        </div>
       </div>
-      <div class="result-card">
-        <div class="result-title">Angles</div>
-        <p>A = ${formatAnglePair(solution.A)}</p>
-        <p>B = ${formatAnglePair(solution.B)}</p>
-        <p>C = ${formatAnglePair(solution.C)}</p>
-      </div>
-      <div class="result-card">
-        <div class="result-title">Area</div>
-        <p>${formatNumber(solution.area, { maximumFractionDigits: 4 })} sq units</p>
-      </div>
-      <div class="result-card">
-        <div class="result-title">Law Used</div>
-        <p>${requiredLaw}</p>
-      </div>
-    </div>
+    </article>
   `;
+
+  const solutionCards = solutions
+    .map(
+      (item, index) => `
+        <article class="law-solution-card">
+          <h4>${solutions.length > 1 ? `Solution ${index + 1}` : 'Primary solution'}</h4>
+          <div class="law-solution-grid">
+            <div class="law-stat">
+              <span>Sides</span>
+              <strong>a = ${formatNumber(item.a, { maximumFractionDigits: 4 })}<br />b = ${formatNumber(item.b, { maximumFractionDigits: 4 })}<br />c = ${formatNumber(item.c, { maximumFractionDigits: 4 })}</strong>
+            </div>
+            <div class="law-stat">
+              <span>Angles</span>
+              <strong>A = ${formatAnglePair(item.A, { normalize: false })}<br />B = ${formatAnglePair(item.B, { normalize: false })}<br />C = ${formatAnglePair(item.C, { normalize: false })}</strong>
+            </div>
+            <div class="law-stat">
+              <span>Area</span>
+              <strong>${formatNumber(item.area, { maximumFractionDigits: 4 })} sq units</strong>
+            </div>
+            <div class="law-stat">
+              <span>Method</span>
+              <strong>${item.method}</strong>
+            </div>
+          </div>
+        </article>
+      `
+    )
+    .join('');
 
   const detailHtml = `
-    <div class="solution-steps">
-      <strong>Step Outline</strong>
-      <ol>
-        <li>Identify the triangle type (${detectedType}).</li>
-        <li>Apply ${requiredLaw} to compute the missing side or angle.</li>
-        <li>Finish remaining angles using A + B + C = 180 degrees.</li>
-        <li>Compute area via Heron's formula or 1/2 ab sin(C).</li>
+    <article class="law-method-card">
+      <h4>Method Notes</h4>
+      <ol class="law-step-list">
+        <li>Identify the triangle pattern from the known inputs: <strong>${detectedType}</strong>.</li>
+        <li>Apply <strong>${requiredLaw}</strong> to compute the first missing side or angle.</li>
+        <li>Finish the remaining angles using <strong>A + B + C = 180 degrees</strong>.</li>
+        <li>Compute area from the solved triangle and confirm the shape with the diagram.</li>
       </ol>
-    </div>
+      <p class="law-method-note">
+        ${solved.notes || (solutions.length > 1
+          ? 'Multiple valid triangles were found, so the diagram shows the first valid solution while the answer card lists every solution.'
+          : 'The first-screen answer card shows the full solved triangle, so you can confirm the method and the geometry quickly.')}
+      </p>
+    </article>
   `;
 
-  resultDiv.innerHTML = resultHtml;
+  resultDiv.innerHTML = `${summaryHtml}${solutionCards}`;
   detailDiv.innerHTML = detailHtml;
 
   drawTriangle(solution);
-  diagramNote.textContent = 'Diagram matches the solved triangle.';
+  diagramNote.textContent =
+    solutions.length > 1 ? 'Diagram shows solution 1 of multiple valid triangles.' : 'Diagram matches the solved triangle.';
 }
 
 calcButton.addEventListener('click', calculate);

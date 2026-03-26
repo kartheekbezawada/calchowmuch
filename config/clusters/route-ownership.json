@@ -186,6 +186,86 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/salary-calculators/salary-calculator/",
+      "calculatorId": "salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/hourly-to-salary-calculator/",
+      "calculatorId": "hourly-to-salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/salary-to-hourly-calculator/",
+      "calculatorId": "salary-to-hourly-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
+      "calculatorId": "annual-to-monthly-salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/monthly-to-annual-salary-calculator/",
+      "calculatorId": "monthly-to-annual-salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/weekly-pay-calculator/",
+      "calculatorId": "weekly-pay-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/overtime-pay-calculator/",
+      "calculatorId": "overtime-pay-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/raise-calculator/",
+      "calculatorId": "raise-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/bonus-calculator/",
+      "calculatorId": "bonus-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/commission-calculator/",
+      "calculatorId": "commission-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/car-loan-calculators/car-loan-calculator/",
       "calculatorId": "car-loan",
       "activeOwnerClusterId": "auto-loans",
@@ -415,6 +495,78 @@
       "activeOwnerClusterId": "math",
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/law-of-sines-cosines/",
+      "calculatorId": "law-of-sines-cosines",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/natural-log/",
+      "calculatorId": "natural-log",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/common-log/",
+      "calculatorId": "common-log",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/log-properties/",
+      "calculatorId": "log-properties",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/exponential-equations/",
+      "calculatorId": "exponential-equations",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/log-scale/",
+      "calculatorId": "log-scale",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/derivative/",
+      "calculatorId": "derivative",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/integral/",
+      "calculatorId": "integral",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/limit/",
+      "calculatorId": "limit",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
       "generationMode": "cluster"
     }
   ]

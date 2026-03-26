@@ -20,8 +20,8 @@ test.describe('math/inverse-trig e2e', () => {
     await page.fill('#inv-value', '0.5');
     await page.click('#inv-calc');
 
-    await expect(page.locator('#inv-result')).toContainText('30 deg (pi/6 rad)');
-    await expect(page.locator('#inv-detail')).toContainText('150 deg (5pi/6 rad)');
+    await expect(page.locator('#inv-result')).toContainText('30 deg (0.523599 rad)');
+    await expect(page.locator('#inv-detail')).toContainText('150 deg (2.617994 rad)');
     await expect(page.locator('[data-inv-snap="count"]')).toHaveText('4');
   });
 

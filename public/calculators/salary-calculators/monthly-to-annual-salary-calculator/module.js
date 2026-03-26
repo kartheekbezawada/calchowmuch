@@ -1,0 +1,72 @@
+import { setPageMetadata } from '/assets/js/core/ui.js';
+import {
+  buildSalaryMetadata,
+  calculateMonthlyToAnnual,
+  formatCurrency,
+  getInputNumber,
+  setText,
+} from '/calculators/salary-calculators/shared/salary-utils.js';
+
+const FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How do you convert monthly salary to annual pay?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply the monthly salary by 12 to estimate annual pay.' } },
+    { '@type': 'Question', name: 'Is yearly salary just monthly pay times 12?', acceptedAnswer: { '@type': 'Answer', text: 'For a simple gross-pay estimate, yes. That is the standard monthly-to-annual conversion.' } },
+    { '@type': 'Question', name: 'Can this show weekly or biweekly pay too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Weekly and biweekly views can be shown as supporting outputs.' } },
+    { '@type': 'Question', name: 'Does this include bonuses or overtime?', acceptedAnswer: { '@type': 'Answer', text: 'No. The route converts the monthly pay figure you enter and does not automatically include bonus or overtime assumptions.' } },
+    { '@type': 'Question', name: 'Does it show net income?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross annual salary before taxes and deductions.' } },
+  ],
+};
+
+setPageMetadata(
+  buildSalaryMetadata({
+    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
+    description:
+      'Convert monthly salary into annual pay, with optional biweekly and weekly estimates based on your monthly income.',
+    canonical: 'https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/',
+    name: 'Monthly to Annual Salary Calculator',
+    appDescription: 'Convert monthly pay into yearly salary and related pay-period views.',
+    featureList: ['Annual salary estimate', 'Biweekly pay estimate', 'Weekly pay estimate'],
+    keywords: 'monthly to annual salary calculator, monthly pay to yearly salary, annual salary from monthly income',
+    faqSchema: FAQ_SCHEMA,
+  })
+);
+
+const monthlyInput = document.querySelector('#monthly-salary-input');
+const weeksInput = document.querySelector('#monthly-weeks-input');
+const errorNode = document.querySelector('#monthly-to-annual-error');
+
+function renderError(message) {
+  if (!errorNode) return;
+  errorNode.hidden = false;
+  errorNode.textContent = message;
+}
+
+function clearError() {
+  if (!errorNode) return;
+  errorNode.hidden = true;
+  errorNode.textContent = '';
+}
+
+function calculate() {
+  const result = calculateMonthlyToAnnual({
+    monthlySalary: getInputNumber(monthlyInput),
+    weeksPerYear: getInputNumber(weeksInput),
+  });
+
+  if (!result) {
+    renderError('Enter a valid monthly salary and weeks per year.');
+    return;
+  }
+
+  clearError();
+  setText(document.querySelector('#monthly-annual-result'), formatCurrency(result.annualSalary));
+  setText(document.querySelector('#monthly-biweekly-result'), formatCurrency(result.biweeklyPay));
+  setText(document.querySelector('#monthly-weekly-result'), formatCurrency(result.weeklyPay));
+  setText(
+    document.querySelector('#monthly-annual-note'),
+    `Weekly pay is shown using ${weeksInput.value || '52'} weeks per year.`
+  );
+}
+
+document.querySelector('#monthly-to-annual-button')?.addEventListener('click', calculate);

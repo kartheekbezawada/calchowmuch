@@ -158,7 +158,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             }
           ]
         },
@@ -180,7 +180,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "integral",
@@ -196,7 +196,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "limit",
@@ -211,7 +211,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "series-convergence",
@@ -227,7 +227,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "critical-points",
@@ -263,7 +263,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "common-log",
@@ -277,7 +277,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "log-properties",
@@ -291,7 +291,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "exponential-equations",
@@ -304,7 +304,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             },
             {
               "id": "log-scale",
@@ -318,7 +318,7 @@
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
-              "paneLayout": "split"
+              "paneLayout": "single"
             }
           ]
         },
@@ -1202,6 +1202,136 @@
                 "salary to hourly"
               ],
               "routeArchetype": "content_shell",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "salary-calculator",
+              "name": "Salary Calculator",
+              "url": "/salary-calculators/salary-calculator/",
+              "keywords": [
+                "salary calculator",
+                "pay calculator",
+                "salary conversion calculator"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "hourly-to-salary-calculator",
+              "name": "Hourly to Salary Calculator",
+              "url": "/salary-calculators/hourly-to-salary-calculator/",
+              "keywords": [
+                "hourly to salary calculator",
+                "hourly wage to salary",
+                "hourly pay to annual salary"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "salary-to-hourly-calculator",
+              "name": "Salary to Hourly Calculator",
+              "url": "/salary-calculators/salary-to-hourly-calculator/",
+              "keywords": [
+                "salary to hourly calculator",
+                "annual salary to hourly pay",
+                "hourly rate from salary"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "annual-to-monthly-salary-calculator",
+              "name": "Annual to Monthly Salary Calculator",
+              "url": "/salary-calculators/annual-to-monthly-salary-calculator/",
+              "keywords": [
+                "annual to monthly salary calculator",
+                "yearly to monthly salary",
+                "annual salary to monthly pay"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "monthly-to-annual-salary-calculator",
+              "name": "Monthly to Annual Salary Calculator",
+              "url": "/salary-calculators/monthly-to-annual-salary-calculator/",
+              "keywords": [
+                "monthly to annual salary calculator",
+                "monthly pay to yearly salary",
+                "annual salary from monthly pay"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "weekly-pay-calculator",
+              "name": "Weekly Pay Calculator",
+              "url": "/salary-calculators/weekly-pay-calculator/",
+              "keywords": [
+                "weekly pay calculator",
+                "weekly salary calculator",
+                "hourly to weekly pay"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "overtime-pay-calculator",
+              "name": "Overtime Pay Calculator",
+              "url": "/salary-calculators/overtime-pay-calculator/",
+              "keywords": [
+                "overtime pay calculator",
+                "overtime calculator",
+                "overtime earnings calculator"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "raise-calculator",
+              "name": "Raise Calculator",
+              "url": "/salary-calculators/raise-calculator/",
+              "keywords": [
+                "raise calculator",
+                "salary raise calculator",
+                "pay raise calculator"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "bonus-calculator",
+              "name": "Bonus Calculator",
+              "url": "/salary-calculators/bonus-calculator/",
+              "keywords": [
+                "bonus calculator",
+                "salary bonus calculator",
+                "annual bonus calculator"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
+              "id": "commission-calculator",
+              "name": "Commission Calculator",
+              "url": "/salary-calculators/commission-calculator/",
+              "keywords": [
+                "commission calculator",
+                "sales commission calculator",
+                "commission earnings calculator"
+              ],
+              "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
             }

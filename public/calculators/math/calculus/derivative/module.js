@@ -2,225 +2,136 @@
  * Derivative Calculator Module
  * Provides symbolic differentiation capabilities
  */
+import { SymbolicDifferentiator } from './logic.js';
 
-import { expressionParser } from '../../../assets/js/core/expression-parser.js';
-
-// Simple expression parser and differentiator
-class SymbolicDifferentiator {
-  constructor(variable = 'x') {
-    this.variable = variable;
-    this.steps = [];
-  }
-
-  // Parse simple polynomial expressions
-  parsePolynomial(expr) {
-    expr = expr.replace(/\s/g, '');
-    const terms = [];
-    const regex = /([+-]?\d*\.?\d*)\*?([a-z])?\^?(\d*\.?\d*)/g;
-    let match;
-
-    while ((match = regex.exec(expr)) !== null) {
-      const coef = match[1]
-        ? match[1] === '+' || match[1] === ''
-          ? 1
-          : match[1] === '-'
-            ? -1
-            : parseFloat(match[1])
-        : 1;
-      const variable = match[2] || '';
-      const exponent = match[3] ? parseFloat(match[3]) : variable ? 1 : 0;
-
-      if (coef !== 0) {
-        terms.push({ coef, variable, exponent });
-      }
-    }
-
-    return terms;
-  }
-
-  // Differentiate using power rule
-  differentiatePowerRule(coef, exponent) {
-    if (exponent === 0) return { coef: 0, exponent: 0 };
-    return {
-      coef: coef * exponent,
-      exponent: exponent - 1,
-    };
-  }
-
-  // Main differentiation function for polynomial
-  differentiatePolynomial(expr) {
-    this.steps = [];
-    this.steps.push(`Original function: f(x) = ${expr}`);
-
-    const terms = this.parsePolynomial(expr);
-    const derivatives = [];
-
-    this.steps.push('\nApplying power rule to each term:');
-
-    for (const term of terms) {
-      if (term.variable !== this.variable && term.variable !== '') continue;
-
-      const original = this.formatTerm(term);
-      const deriv = this.differentiatePowerRule(term.coef, term.exponent);
-
-      if (deriv.coef !== 0) {
-        derivatives.push(deriv);
-        const derivStr = this.formatDerivative(term, deriv);
-        this.steps.push(`  d/dx(${original}) = ${derivStr}`);
-      } else {
-        this.steps.push(`  d/dx(${original}) = 0 (constant rule)`);
-      }
-    }
-
-    return derivatives;
-  }
-
-  // Format a term for display
-  formatTerm(term) {
-    let str = '';
-
-    if (term.coef === 0) return '0';
-
-    if (Math.abs(term.coef) !== 1 || term.exponent === 0) {
-      str += Math.abs(term.coef);
-    }
-
-    if (term.variable && term.exponent !== 0) {
-      str += term.variable;
-      if (term.exponent !== 1) {
-        str += '^' + term.exponent;
-      }
-    }
-
-    return str || '1';
-  }
-
-  // Format derivative step
-  formatDerivative(original, deriv) {
-    if (deriv.exponent === 0) {
-      return deriv.coef.toString();
-    }
-
-    let str = deriv.coef !== 1 ? deriv.coef.toString() : '';
-    str += this.variable;
-    if (deriv.exponent !== 1) {
-      str += '^' + deriv.exponent;
-    }
-
-    return str;
-  }
-
-  // Format full derivative expression
-  formatExpression(terms) {
-    if (terms.length === 0) return '0';
-
-    let expr = '';
-    for (let i = 0; i < terms.length; i++) {
-      const term = terms[i];
-      const termStr = this.formatTerm(term);
-
-      if (i === 0) {
-        expr += term.coef < 0 ? '-' : '';
-        expr += termStr;
-      } else {
-        expr += term.coef < 0 ? ' - ' : ' + ';
-        expr += termStr;
-      }
-    }
-
-    return expr;
-  }
-
-  // Enhanced differentiation supporting more functions
-  differentiate(expr, order = 1) {
-    let currentExpr = expr;
-    let allSteps = [];
-
-    for (let i = 0; i < order; i++) {
-      const derivatives = this.differentiatePolynomial(currentExpr);
-      allSteps.push(...this.steps);
-
-      if (i < order - 1) {
-        currentExpr = this.formatExpression(derivatives);
-        allSteps.push(`\n--- Computing derivative ${i + 2} ---`);
-      } else {
-        const result = this.formatExpression(derivatives);
-        allSteps.push(`\nFinal derivative: f${"'".repeat(order)}(x) = ${result}`);
-        return {
-          derivative: result,
-          steps: allSteps,
-          terms: derivatives,
-        };
-      }
-    }
-  }
-
-  // Evaluate derivative at a point
-  evaluateAt(terms, point) {
-    let sum = 0;
-    for (const term of terms) {
-      sum += term.coef * Math.pow(point, term.exponent);
-    }
-    return sum;
-  }
-}
+export { SymbolicDifferentiator } from './logic.js';
 
 // Initialize calculator
 export function initDerivativeCalculator() {
   const calculateBtn = document.getElementById('deriv-calculate');
   const resultDiv = document.getElementById('deriv-result');
   const stepsDiv = document.getElementById('deriv-steps');
+  const functionInput = document.getElementById('deriv-function');
+  const variableInput = document.getElementById('deriv-variable');
+  const orderInput = document.getElementById('deriv-order');
+  const evalPointInput = document.getElementById('deriv-eval-point');
+  const snapshotFunction = document.querySelector('[data-deriv-snap="function"]');
+  const snapshotOrder = document.querySelector('[data-deriv-snap="order"]');
+  const snapshotDerivative = document.querySelector('[data-deriv-snap="derivative"]');
+  const snapshotStatus = document.querySelector('[data-deriv-snap="status"]');
 
   if (!calculateBtn) return;
 
-  calculateBtn.addEventListener('click', () => {
-    const funcInput = document.getElementById('deriv-function').value.trim();
-    const variableInput = document.getElementById('deriv-variable').value.trim() || 'x';
-    const orderInput = parseInt(document.getElementById('deriv-order').value) || 1;
-    const evalPointInput = document.getElementById('deriv-eval-point').value.trim();
+  function updateSnapshots({
+    fn = functionInput?.value?.trim() || 'x^2',
+    order = orderInput?.value || '1',
+    derivative = '-',
+    status = '-',
+  } = {}) {
+    if (snapshotFunction) {
+      snapshotFunction.textContent = fn;
+    }
+    if (snapshotOrder) {
+      snapshotOrder.textContent = String(order);
+    }
+    if (snapshotDerivative) {
+      snapshotDerivative.textContent = derivative;
+    }
+    if (snapshotStatus) {
+      snapshotStatus.textContent = status;
+    }
+  }
+
+  function showError(message) {
+    resultDiv.innerHTML = `
+      <article class="deriv-result-box deriv-error">
+        <h4>Input issue</h4>
+        <p>${message}</p>
+      </article>
+    `;
+    stepsDiv.innerHTML = `
+      <article class="deriv-step-panel">
+        <h4>What to do next</h4>
+        <p>Use a polynomial-style expression such as <strong>x^2 + 3*x + 5</strong>, keep the variable short, and choose an order between 1 and 5.</p>
+      </article>
+    `;
+    updateSnapshots({ status: 'Invalid input' });
+  }
+
+  function calculateDerivative() {
+    const funcInput = functionInput.value.trim();
+    const variableName = variableInput.value.trim() || 'x';
+    const derivativeOrder = parseInt(orderInput.value, 10) || 1;
+    const evaluationInput = evalPointInput.value.trim();
 
     if (!funcInput) {
-      resultDiv.innerHTML = '<p class="error">Please enter a function.</p>';
-      stepsDiv.innerHTML = '';
+      showError('Please enter a function before calculating.');
       return;
     }
 
     try {
-      const differentiator = new SymbolicDifferentiator(variableInput);
-      const result = differentiator.differentiate(funcInput, orderInput);
+      const differentiator = new SymbolicDifferentiator(variableName);
+      const result = differentiator.differentiate(funcInput, derivativeOrder);
+      const evaluatedValue =
+        evaluationInput === '' ? null : differentiator.evaluateAt(result.terms, parseFloat(evaluationInput));
+      const orderMark = "'".repeat(derivativeOrder);
+      const evaluatedDisplay =
+        evaluatedValue === null ? 'Not requested' : Number.isFinite(evaluatedValue) ? evaluatedValue.toFixed(6) : 'Undefined';
 
       resultDiv.innerHTML = `
-        <h4>Result:</h4>
-        <div class="result-box">
-          <strong>f${"'".repeat(orderInput)}(${variableInput}) = ${result.derivative}</strong>
-        </div>
-      `;
-
-      // If evaluation point provided
-      if (evalPointInput) {
-        const evalPoint = parseFloat(evalPointInput);
-        const value = differentiator.evaluateAt(result.terms, evalPoint);
-        resultDiv.innerHTML += `
-          <div class="result-box" style="margin-top: 10px;">
-            <strong>At ${variableInput} = ${evalPoint}:</strong><br>
-            f${"'".repeat(orderInput)}(${evalPoint}) = ${value.toFixed(6)}
+        <article class="deriv-summary-card">
+          <h4>Derivative summary</h4>
+          <div class="deriv-summary-grid">
+            <div class="deriv-stat">
+              <span>Function</span>
+              <strong>f(${variableName}) = ${funcInput}</strong>
+            </div>
+            <div class="deriv-stat">
+              <span>Derivative</span>
+              <strong>f${orderMark}(${variableName}) = ${result.derivative}</strong>
+            </div>
+            <div class="deriv-stat">
+              <span>Order</span>
+              <strong>${derivativeOrder}</strong>
+            </div>
+            <div class="deriv-stat">
+              <span>Scope</span>
+              <strong>${evaluationInput ? `Evaluated at ${variableName} = ${evaluationInput}` : 'Symbolic derivative only'}</strong>
+            </div>
           </div>
-        `;
-      }
-
-      // Show steps
-      stepsDiv.innerHTML = `
-        <h4>Step-by-Step Solution:</h4>
-        <div class="steps-box">
-          <pre>${result.steps.join('\n')}</pre>
-        </div>
+        </article>
+        <article class="deriv-result-box">
+          <h4>Quick interpretation</h4>
+          <p>The derivative tells you how the function changes with respect to <strong>${variableName}</strong>.</p>
+          <p><strong>Computed derivative:</strong> ${result.derivative}</p>
+          <p><strong>Evaluated value:</strong> ${evaluatedDisplay}</p>
+        </article>
       `;
+
+      stepsDiv.innerHTML = `
+        <article class="deriv-step-panel">
+          <h4>Step-by-step solution</h4>
+          <pre>${result.steps.join('\n')}</pre>
+        </article>
+      `;
+
+      updateSnapshots({
+        fn: funcInput,
+        order: derivativeOrder,
+        derivative: result.derivative,
+        status: 'Solved',
+      });
     } catch (error) {
-      resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
-      stepsDiv.innerHTML = '';
+      showError(`Unable to differentiate the current expression. ${error.message}`);
     }
-  });
+  }
+
+  calculateBtn.addEventListener('click', calculateDerivative);
 
   // Trigger initial calculation
-  calculateBtn.click();
+  calculateDerivative();
+}
+
+if (typeof document !== 'undefined') {
+  initDerivativeCalculator();
 }

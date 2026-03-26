@@ -1,33 +1,110 @@
-<div class="log-calculator" id="natural-log-calculator">
-  <div class="calculator-ui">
-    <p class="helper">
-      Calculate the natural logarithm (ln) of any positive number and visualize how the function
-      behaves.
-    </p>
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="ln-value">Value (x)</label>
-        <input id="ln-value" type="number" step="any" min="0.0001" value="2.71828" />
+<div id="natural-log-calculator">
+  <div class="ln-shell">
+    <section class="ln-card ln-hero-card" aria-label="Natural log overview">
+      <div class="ln-hero-copy">
+        <p class="ln-eyebrow">Simple Smooth Wow</p>
+        <h2 class="ln-title">Find ln(x), check the matching exponential form, and see the log curve in one answer-first view.</h2>
+        <p class="ln-subtitle">
+          Enter any positive value, choose the precision you need, and calculate once. The answer
+          card keeps the ln value, sign, and exponential check visible while the graph card shows
+          where your input sits on the natural log curve.
+        </p>
       </div>
-      <div class="input-row">
-        <label for="ln-decimals">Decimal Places</label>
-        <select id="ln-decimals">
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4" selected>4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-        <span class="inline-note">Higher precision helps when visualizing symbolic reasoning.</span>
+      <ul class="ln-hero-points">
+        <li>Best for quick ln(x) checks, exponential inversion, and interpreting values below or above 1.</li>
+        <li>The answer card surfaces ln(x), the equivalent exponential statement, and a sign summary first.</li>
+        <li>The graph card stays nearby so the curve behavior stays visible without leaving the first screen.</li>
+      </ul>
+    </section>
+
+    <div class="ln-workbench">
+      <div class="ln-left-stack">
+        <section class="ln-card ln-input-card" aria-label="Natural log inputs">
+          <div class="ln-card-head">
+            <div>
+              <p class="ln-section-label">Inputs</p>
+              <p class="ln-card-title">Set the value and precision</p>
+            </div>
+            <span class="ln-chip">Answer-first</span>
+          </div>
+
+          <p class="ln-helper">Natural logs only work for positive values, so enter x greater than zero before you calculate.</p>
+
+          <label class="ln-field" for="ln-value">
+            <span>Value (x)</span>
+            <input id="ln-value" type="number" step="any" min="0.0001" value="2.71828" />
+          </label>
+
+          <label class="ln-field" for="ln-decimals">
+            <span>Decimal places</span>
+            <select id="ln-decimals">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </label>
+
+          <div class="ln-hint-row">
+            <span class="ln-inline-note">Higher precision helps when you want a tighter exponential check or cleaner graph readout.</span>
+          </div>
+
+          <button id="ln-calculate" class="calculator-button ln-calc-button" type="button">Compute ln(x)</button>
+        </section>
+
+        <section class="ln-card ln-graph-card" aria-label="Natural log graph">
+          <div class="ln-card-head">
+            <div>
+              <p class="ln-section-label">Graph</p>
+              <p class="ln-card-title">Natural log curve with your input highlighted</p>
+            </div>
+            <span class="ln-chip ln-chip--graph">Curve view</span>
+          </div>
+
+          <div class="ln-graph-panel">
+            <canvas id="ln-graph" class="ln-graph-canvas" width="360" height="240" aria-label="Natural log graph"></canvas>
+          </div>
+          <p id="ln-graph-note" class="ln-graph-note">Graph updates after you compute ln(x).</p>
+        </section>
       </div>
+
+      <section class="ln-card ln-answer-card" aria-label="Natural log answer summary">
+        <div class="ln-card-head">
+          <div>
+            <p class="ln-section-label">Answer</p>
+            <p class="ln-card-title">Natural log value, exponential check, and quick interpretation</p>
+          </div>
+          <span class="ln-chip ln-chip--answer">ln(x) result</span>
+        </div>
+
+        <div class="result ln-result-card" id="ln-result" aria-live="polite"></div>
+        <div class="result-detail ln-detail-card" id="ln-detail" aria-live="polite"></div>
+
+        <div class="ln-snapshot-grid" aria-label="Natural log snapshot">
+          <article class="ln-snapshot-card">
+            <span>Input</span>
+            <strong data-ln-snap="value">-</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>ln(x)</span>
+            <strong data-ln-snap="result">-</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>Decimals</span>
+            <strong data-ln-snap="decimals">4</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>Sign</span>
+            <strong data-ln-snap="sign">-</strong>
+          </article>
+        </div>
+      </section>
     </div>
-    <button id="ln-calculate" class="calculator-button primary" type="button">Compute ln(x)</button>
-    <div class="result" id="ln-result" aria-live="polite"></div>
-    <div class="result-detail" id="ln-detail"></div>
   </div>
 </div>
 
 <style>
-  @import url('/assets/css/calculator.css?v=20260127');
   @import url('/calculators/math/log/shared.css');
+  @import url('/calculators/math/log/natural-log/calculator.css');
 </style>

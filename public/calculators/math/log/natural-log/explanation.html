@@ -1,21 +1,171 @@
-<div class="explanation">
-  <h3>Natural Logarithm Deep Dive</h3>
+<section class="ln-exp-section">
+  <h2>Natural Log Calculator Practical Guide</h2>
   <p>
-    The natural logarithm is the inverse of the exponential function with base e (~2.718). Use this
-    tool to calculate ln(x) for any positive x, observe how the calculation changes with more
-    precision, and watch the red highlight trace climb along the log curve.
+    Use this natural log calculator to find <strong>ln(x)</strong>, confirm the matching
+    exponential statement, and see where your input sits on the log curve. It is built for quick
+    interpretation, so the answer card shows the ln value, sign, and graph context without burying
+    the basics under dense notation.
   </p>
-  <ul>
-    <li>
-      ln(x) satisfies e^{ln(x)} = x, illustrating how exponentials and logarithms undo each other.
-    </li>
-    <li>
-      The curve grows slowly and has a vertical asymptote at x = 0; the graph pane places the
-      current value in context.
-    </li>
-    <li>
-      You can enter values less than 1 to see negative outputs, and the helper text enforces the x >
-      0 constraint.
-    </li>
+  <ul class="ln-summary-list">
+    <li><strong>Best for:</strong> checking ln(x), interpreting values below or above 1, and verifying exponential inverses.</li>
+    <li><strong>Quick answer flow:</strong> enter a positive x value, choose precision, then calculate once.</li>
+    <li><strong>Output includes:</strong> ln(x), the equivalent <strong>e^y = x</strong> form, sign summary, and a graph highlight.</li>
   </ul>
-</div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter a positive number for <strong>x</strong>.</li>
+    <li>Choose the number of decimal places you want in the result.</li>
+    <li>Click <strong>Compute ln(x)</strong> to calculate the natural log.</li>
+    <li>Read the answer card first, then use the graph to see where the input sits on the ln curve.</li>
+  </ol>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="ln-table-wrap">
+    <table class="ln-summary-table">
+      <thead>
+        <tr>
+          <th>Input pattern</th>
+          <th>What ln(x) looks like</th>
+          <th>Quick interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>x = 1</td>
+          <td>ln(1) = 0</td>
+          <td>The natural log crosses zero at 1.</td>
+        </tr>
+        <tr>
+          <td>0 &lt; x &lt; 1</td>
+          <td>Negative output</td>
+          <td>The curve sits below the x-axis for inputs smaller than 1.</td>
+        </tr>
+        <tr>
+          <td>x = e</td>
+          <td>ln(e) = 1</td>
+          <td>The natural log and the exponential base align cleanly here.</td>
+        </tr>
+        <tr>
+          <td>x &gt; 1</td>
+          <td>Positive output</td>
+          <td>The curve grows slowly as x increases.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The natural logarithm answers the question, <strong>what power of e gives x?</strong> That means
+    <strong>y = ln(x)</strong> is equivalent to <strong>e^y = x</strong>.
+  </p>
+  <p>
+    Because <strong>e^x</strong> and <strong>ln(x)</strong> are inverse functions, the route also
+    shows the exponential check directly in the answer card. That makes it easy to see whether the
+    rounded ln result still maps back to the original x value.
+  </p>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Worked Example</h3>
+  <div class="ln-example-grid">
+    <article class="ln-example-card">
+      <h4>ln(e) example</h4>
+      <p>Enter <strong>2.718281828</strong> and keep the default precision.</p>
+      <p>
+        The route returns a value close to <strong>1</strong>, then confirms it with the equivalent
+        exponential statement <strong>e^1 = 2.718282</strong>.
+      </p>
+    </article>
+    <article class="ln-example-card">
+      <h4>ln(0.5) example</h4>
+      <p>Enter <strong>0.5</strong> to see a number below 1.</p>
+      <p>
+        The route returns a negative result close to <strong>-0.6931</strong>, which matches the fact
+        that the natural log curve sits below zero between 0 and 1.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>FAQ</h3>
+  <div class="ln-faq-grid">
+    <div class="faq-card">
+      <h4>What is a natural logarithm?</h4>
+      <p>It is the logarithm with base e, where e is about 2.718281828.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does ln(e) equal 1?</h4>
+      <p>Because e raised to the power of 1 is exactly e.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does ln(1) equal 0?</h4>
+      <p>Any positive base raised to the power of 0 equals 1.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can x be negative?</h4>
+      <p>No. For real-number output, natural logs only accept positive inputs.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why is ln(x) negative for values below 1?</h4>
+      <p>Because e must be raised to a negative power to produce numbers between 0 and 1.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does the graph rise slowly?</h4>
+      <p>The natural log keeps increasing, but it grows much more slowly than a straight line.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does the exponential check mean?</h4>
+      <p>It shows the inverse relationship by rewriting ln(x) as e raised to the solved value.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Should I increase decimal places?</h4>
+      <p>Use more decimals when you need a tighter numeric check or a more exact rounded answer.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Is this the same as log base 10?</h4>
+      <p>No. Natural logs use base e, while common logs use base 10.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is ln(x) useful?</h4>
+      <p>It is useful in growth models, continuous compounding, decay problems, and algebraic solving.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="ln-related-grid">
+    <a class="ln-related-card" href="/math/log/common-log/">
+      <strong>Common Log Calculator</strong>
+      <span>Switch to base-10 logs when you want scientific notation and decibel-style reasoning.</span>
+    </a>
+    <a class="ln-related-card" href="/math/log/exponential-equations/">
+      <strong>Exponential Equations Solver</strong>
+      <span>Move from ln(x) values into solving exponential equations directly.</span>
+    </a>
+    <a class="ln-related-card" href="/math/log/log-properties/">
+      <strong>Logarithm Properties</strong>
+      <span>Review product, quotient, and power rules when you need symbolic log manipulation.</span>
+    </a>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="ln-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Domain:</strong> Natural logs only accept positive inputs for real-number output.</li>
+    <li><strong>Key anchor points:</strong> ln(1) = 0 and ln(e) = 1.</li>
+    <li><strong>Graph rule:</strong> The curve has a vertical asymptote at x = 0 and rises slowly for larger x.</li>
+    <li><strong>Use case:</strong> This tool is built for quick numeric interpretation, not symbolic proof writing.</li>
+  </ul>
+</section>

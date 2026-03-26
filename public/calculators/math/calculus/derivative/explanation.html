@@ -1,115 +1,172 @@
-<div id="deriv-explanation-pane">
-  <section>
-    <h3>What Is a Derivative?</h3>
-    <p>
-      The derivative of a function measures the rate at which the function's value changes with
-      respect to changes in its input. Geometrically, the derivative at a point is the slope of the
-      tangent line to the function's graph at that point.
-    </p>
-    <p>The derivative of f(x) with respect to x is denoted as f'(x), df/dx, or dy/dx.</p>
-  </section>
+<section class="deriv-exp-section">
+  <h2>Derivative Calculator Practical Guide</h2>
+  <p>
+    Use this derivative calculator to find a symbolic derivative and optionally evaluate it at one
+    point in a clean answer-first layout. It is built for polynomial-style expressions, so the
+    route keeps the derivative, order, and rule-by-rule steps together instead of spreading them
+    across a legacy shell.
+  </p>
+  <ul class="deriv-summary-list">
+    <li><strong>Best for:</strong> quick power-rule differentiation, repeated derivatives, and slope checks at a point.</li>
+    <li><strong>Quick answer flow:</strong> enter the expression, set the order, then calculate once.</li>
+    <li><strong>Output includes:</strong> the symbolic derivative, optional evaluated value, and step-by-step notes.</li>
+  </ul>
+</section>
 
-  <section>
-    <h3>Differentiation Rules</h3>
-    <h4>Power Rule</h4>
-    <p>For f(x) = x^n: f'(x) = n·x^(n-1)</p>
-    <p><strong>Example:</strong> If f(x) = x³, then f'(x) = 3x²</p>
+<section class="deriv-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter a polynomial-style expression such as <strong>x^2 + 3*x + 5</strong>.</li>
+    <li>Set the variable and choose a derivative order between <strong>1</strong> and <strong>5</strong>.</li>
+    <li>Optionally enter a numeric point where you want to evaluate the derivative.</li>
+    <li>Click <strong>Calculate derivative</strong> and read the answer card before reviewing the steps panel.</li>
+  </ol>
+</section>
 
-    <h4>Constant Rule</h4>
-    <p>If f(x) = c (constant): f'(x) = 0</p>
+<section class="deriv-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="deriv-table-wrap">
+    <table class="deriv-summary-table">
+      <thead>
+        <tr>
+          <th>Input part</th>
+          <th>What it controls</th>
+          <th>Quick interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Function f(x)</td>
+          <td>The polynomial-style expression to differentiate</td>
+          <td>Sets the symbolic derivative you see in the answer card.</td>
+        </tr>
+        <tr>
+          <td>Variable</td>
+          <td>The symbol treated as the changing input</td>
+          <td>Keeps the result aligned with the intended variable name.</td>
+        </tr>
+        <tr>
+          <td>Derivative order</td>
+          <td>How many times the route differentiates</td>
+          <td>Higher orders repeat the same process on the new expression.</td>
+        </tr>
+        <tr>
+          <td>Evaluate at</td>
+          <td>The point used after the derivative is found</td>
+          <td>Returns a numeric slope value at that specific point.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    <h4>Constant Multiple Rule</h4>
-    <p>If f(x) = c·g(x): f'(x) = c·g'(x)</p>
+<section class="deriv-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The core rule for this route is the <strong>power rule</strong>:
+    <strong>d/dx(x^n) = n·x^(n-1)</strong>. Constant terms become <strong>0</strong>, and the route
+    applies the rule term by term to polynomial-style expressions.
+  </p>
+  <p>
+    If you request a higher-order derivative, the route differentiates the new expression again.
+    If you enter an evaluation point, it substitutes that value into the derivative after the
+    symbolic result is built.
+  </p>
+</section>
 
-    <h4>Sum/Difference Rule</h4>
-    <p>If f(x) = g(x) ± h(x): f'(x) = g'(x) ± h'(x)</p>
+<section class="deriv-exp-section">
+  <h3>Worked Example</h3>
+  <div class="deriv-example-grid">
+    <article class="deriv-example-card">
+      <h4>First derivative example</h4>
+      <p>Enter <strong>x^2 + 3*x + 5</strong>, keep the order at <strong>1</strong>, and leave the point empty.</p>
+      <p>
+        The route returns <strong>2x + 3</strong> because the derivative of x² is 2x, the derivative
+        of 3x is 3, and the constant 5 becomes 0.
+      </p>
+    </article>
+    <article class="deriv-example-card">
+      <h4>Evaluation example</h4>
+      <p>Use the same expression and enter <strong>2</strong> in the evaluation field.</p>
+      <p>
+        The route keeps the symbolic derivative <strong>2x + 3</strong>, then evaluates it at x = 2
+        to return <strong>7</strong>.
+      </p>
+    </article>
+  </div>
+</section>
 
-    <h4>Product Rule</h4>
-    <p>If f(x) = g(x)·h(x): f'(x) = g'(x)·h(x) + g(x)·h'(x)</p>
-    <p><strong>Mnemonic:</strong> (first)' · second + first · (second)'</p>
+<section class="deriv-exp-section">
+  <h3>FAQ</h3>
+  <div class="deriv-faq-grid">
+    <div class="faq-card">
+      <h4>What does a derivative measure?</h4>
+      <p>It measures how quickly a function changes as the input changes.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What kind of expressions work best here?</h4>
+      <p>Polynomial-style expressions with powers of a single variable work best in this route.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does derivative order mean?</h4>
+      <p>It means how many times the route differentiates the function in sequence.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is a first derivative?</h4>
+      <p>It is the immediate rate of change of the original function.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is a second derivative?</h4>
+      <p>It is the derivative of the derivative and helps describe how the slope itself changes.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why do constants disappear?</h4>
+      <p>The derivative of any constant is 0 because constants do not change with the variable.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What happens when I enter an evaluation point?</h4>
+      <p>The route substitutes that point into the derivative after the symbolic result is found.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I change the variable name?</h4>
+      <p>Yes. You can replace x with another short variable label such as t or y.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does this route handle full symbolic calculus?</h4>
+      <p>No. It is designed for quick polynomial-style differentiation rather than a full CAS engine.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is this route useful?</h4>
+      <p>It is useful for algebra review, slope checks, and quick calculus practice.</p>
+    </div>
+  </div>
+</section>
 
-    <h4>Quotient Rule</h4>
-    <p>If f(x) = g(x)/h(x): f'(x) = [g'(x)·h(x) - g(x)·h'(x)] / [h(x)]²</p>
-    <p><strong>Mnemonic:</strong> (low d-high - high d-low) / (low)²</p>
+<section class="deriv-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="deriv-related-grid">
+    <a class="deriv-related-card" href="/math/calculus/integral/">
+      <strong>Integral Calculator</strong>
+      <span>Move from rates of change into reverse accumulation once you have the derivative.</span>
+    </a>
+    <a class="deriv-related-card" href="/math/calculus/critical-points/">
+      <strong>Critical Points Finder</strong>
+      <span>Use derivative ideas to look for turning points and stationary values.</span>
+    </a>
+    <a class="deriv-related-card" href="/math/calculus/limit/">
+      <strong>Limit Calculator</strong>
+      <span>Check the limiting behavior that often appears before differentiation rules are introduced.</span>
+    </a>
+  </div>
+</section>
 
-    <h4>Chain Rule</h4>
-    <p>If f(x) = g(h(x)): f'(x) = g'(h(x))·h'(x)</p>
-    <p><strong>Concept:</strong> Derivative of outer function × derivative of inner function</p>
-  </section>
-
-  <section>
-    <h3>Common Derivatives</h3>
-    <ul>
-      <li>d/dx(sin x) = cos x</li>
-      <li>d/dx(cos x) = -sin x</li>
-      <li>d/dx(tan x) = sec² x</li>
-      <li>d/dx(e^x) = e^x</li>
-      <li>d/dx(ln x) = 1/x</li>
-      <li>d/dx(a^x) = a^x · ln a</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Higher-Order Derivatives</h3>
-    <p>
-      The second derivative f''(x) is the derivative of the first derivative. It measures the rate
-      of change of the rate of change, indicating how the slope is changing. This is useful for
-      determining concavity and inflection points.
-    </p>
-    <p>Higher-order derivatives (f''', f⁽⁴⁾, etc.) continue this pattern.</p>
-  </section>
-
-  <section>
-    <h3>Step-by-Step Differentiation</h3>
-    <ol>
-      <li>Identify the form of the function (power, product, quotient, composition)</li>
-      <li>Select the appropriate differentiation rule</li>
-      <li>Apply the rule systematically</li>
-      <li>Simplify the resulting expression</li>
-      <li>Repeat for higher-order derivatives if needed</li>
-    </ol>
-  </section>
-
-  <section>
-    <h3>Real-World Applications</h3>
-    <ul>
-      <li>
-        <strong>Physics:</strong> Velocity is the derivative of position; acceleration is the
-        derivative of velocity
-      </li>
-      <li>
-        <strong>Economics:</strong> Marginal cost/revenue represents the derivative of total
-        cost/revenue
-      </li>
-      <li><strong>Optimization:</strong> Finding maxima and minima by setting f'(x) = 0</li>
-      <li><strong>Engineering:</strong> Analyzing rates of change in systems and signals</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Worked Example</h3>
-    <p><strong>Find the derivative of f(x) = 3x⁴ - 2x² + 5x - 1</strong></p>
-    <ol>
-      <li>
-        Apply power rule to each term:
-        <ul>
-          <li>d/dx(3x⁴) = 3·4x³ = 12x³</li>
-          <li>d/dx(-2x²) = -2·2x = -4x</li>
-          <li>d/dx(5x) = 5</li>
-          <li>d/dx(-1) = 0</li>
-        </ul>
-      </li>
-      <li>Combine using sum rule: f'(x) = 12x³ - 4x + 5</li>
-    </ol>
-  </section>
-
-  <section>
-    <h3>Common Mistakes to Avoid</h3>
-    <ul>
-      <li>Forgetting to apply the chain rule for composite functions</li>
-      <li>Incorrectly applying the product rule (must use both terms)</li>
-      <li>Sign errors in the quotient rule</li>
-      <li>Treating constants as variables or vice versa</li>
-    </ul>
-  </section>
-</div>
+<section class="deriv-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="deriv-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Scope rule:</strong> This route is designed for polynomial-style expressions and repeated power-rule differentiation.</li>
+    <li><strong>Order rule:</strong> The derivative order should stay between 1 and 5 for a readable output.</li>
+    <li><strong>Evaluation rule:</strong> The point is applied after the symbolic derivative is calculated.</li>
+    <li><strong>Use case:</strong> This tool is built for quick numeric and symbolic verification, not full symbolic theorem proving.</li>
+  </ul>
+</section>

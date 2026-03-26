@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `calc:math/basic`
-- HTML files scanned: **1**
-- Calculator pages scanned: **0**
+- Scope: `cluster:salary`
+- HTML files scanned: **11**
+- Calculator pages scanned: **11**
 - Findings: **0**
 - Status: **PASS**
 

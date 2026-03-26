@@ -1,0 +1,35 @@
+<div id="calc-salary-to-hourly" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Salary to hourly inputs">
+    <p class="sal-calc-kicker">Reverse conversion</p>
+    <h2 class="sal-calc-form-title">Turn annual salary into an hourly rate and supporting pay views</h2>
+    <p class="sal-calc-lead">The hourly rate depends on your schedule assumptions, so keep both hours and weeks editable.</p>
+    <div class="sal-input-grid">
+      <div class="sal-input-row">
+        <label for="salary-annual-input">Annual salary</label>
+        <input id="salary-annual-input" type="number" min="0" step="0.01" inputmode="decimal" />
+      </div>
+      <div class="sal-input-row">
+        <label for="salary-hours-input">Hours per week</label>
+        <input id="salary-hours-input" type="number" min="0" step="0.1" value="40" />
+      </div>
+    </div>
+    <div class="sal-input-row">
+      <label for="salary-weeks-input">Weeks per year</label>
+      <input id="salary-weeks-input" type="number" min="0" step="0.1" value="52" />
+    </div>
+    <p class="sal-calc-error" id="salary-to-hourly-error" hidden></p>
+    <button class="sal-primary-action" id="salary-to-hourly-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Salary to hourly results">
+    <p class="sal-answer-title">Hourly rate</p>
+    <p class="sal-answer-hero" id="salary-hourly-result">—</p>
+    <p class="sal-answer-note" id="salary-hourly-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card"><span>Weekly pay</span><strong id="salary-weekly-result">—</strong></div>
+      <div class="sal-support-card"><span>Biweekly pay</span><strong id="salary-biweekly-result">—</strong></div>
+      <div class="sal-support-card"><span>Monthly pay</span><strong id="salary-monthly-result">—</strong></div>
+    </div>
+    <p class="sal-results-disclaimer">Gross-pay estimate only. Taxes and deductions are excluded.</p>
+  </aside>
+</div>

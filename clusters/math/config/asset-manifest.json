@@ -241,6 +241,186 @@
           "/calculators/math/trigonometry/inverse-trig/module.js"
         ]
       }
+    },
+    "/math/trigonometry/law-of-sines-cosines/": {
+      "route": "/math/trigonometry/law-of-sines-cosines/",
+      "calculatorId": "law-of-sines-cosines",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/law-of-sines-cosines/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/law-of-sines-cosines/module.js"
+        ]
+      }
+    },
+    "/math/log/natural-log/": {
+      "route": "/math/log/natural-log/",
+      "calculatorId": "natural-log",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/natural-log/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/natural-log/module.js"
+        ]
+      }
+    },
+    "/math/log/common-log/": {
+      "route": "/math/log/common-log/",
+      "calculatorId": "common-log",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/common-log/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/common-log/module.js"
+        ]
+      }
+    },
+    "/math/log/log-properties/": {
+      "route": "/math/log/log-properties/",
+      "calculatorId": "log-properties",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-properties/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-properties/module.js"
+        ]
+      }
+    },
+    "/math/log/exponential-equations/": {
+      "route": "/math/log/exponential-equations/",
+      "calculatorId": "exponential-equations",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/exponential-equations/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/exponential-equations/module.js"
+        ]
+      }
+    },
+    "/math/log/log-scale/": {
+      "route": "/math/log/log-scale/",
+      "calculatorId": "log-scale",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-scale/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-scale/module.js"
+        ]
+      }
+    },
+    "/math/calculus/derivative/": {
+      "route": "/math/calculus/derivative/",
+      "calculatorId": "derivative",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/derivative/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/derivative/module.js"
+        ]
+      }
+    },
+    "/math/calculus/integral/": {
+      "route": "/math/calculus/integral/",
+      "calculatorId": "integral",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/integral/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/integral/module.js"
+        ]
+      }
+    },
+    "/math/calculus/limit/": {
+      "route": "/math/calculus/limit/",
+      "calculatorId": "limit",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/limit/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/limit/module.js"
+        ]
+      }
     }
   }
 }

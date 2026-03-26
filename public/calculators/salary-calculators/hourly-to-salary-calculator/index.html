@@ -1,0 +1,35 @@
+<div id="calc-hourly-to-salary" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Hourly to salary inputs">
+    <p class="sal-calc-kicker">Direct conversion</p>
+    <h2 class="sal-calc-form-title">Turn an hourly wage into annual, monthly, and weekly pay</h2>
+    <p class="sal-calc-lead">Keep the work schedule assumptions visible so the salary estimate stays easy to trust.</p>
+    <div class="sal-input-grid">
+      <div class="sal-input-row">
+        <label for="hourly-rate">Hourly rate</label>
+        <input id="hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+      </div>
+      <div class="sal-input-row">
+        <label for="hourly-hours-per-week">Hours per week</label>
+        <input id="hourly-hours-per-week" type="number" min="0" step="0.1" value="40" />
+      </div>
+    </div>
+    <div class="sal-input-row">
+      <label for="hourly-weeks-per-year">Weeks per year</label>
+      <input id="hourly-weeks-per-year" type="number" min="0" step="0.1" value="52" />
+    </div>
+    <p class="sal-calc-error" id="hourly-error" hidden></p>
+    <button class="sal-primary-action" id="hourly-calc-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Hourly to salary results">
+    <p class="sal-answer-title">Annual salary</p>
+    <p class="sal-answer-hero" id="hourly-annual-result">—</p>
+    <p class="sal-answer-note" id="hourly-result-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card"><span>Monthly pay</span><strong id="hourly-monthly-result">—</strong></div>
+      <div class="sal-support-card"><span>Biweekly pay</span><strong id="hourly-biweekly-result">—</strong></div>
+      <div class="sal-support-card"><span>Weekly pay</span><strong id="hourly-weekly-result">—</strong></div>
+    </div>
+    <p class="sal-results-disclaimer">Gross-pay estimate only. Overtime is not included in this route.</p>
+  </aside>
+</div>

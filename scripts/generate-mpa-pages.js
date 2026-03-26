@@ -94,6 +94,15 @@ const MATH_CLUSTER_REDESIGN_IDS = new Set([
   'triangle-solver',
   'trig-functions',
   'inverse-trig',
+  'law-of-sines-cosines',
+  'natural-log',
+  'common-log',
+  'log-properties',
+  'exponential-equations',
+  'log-scale',
+  'derivative',
+  'integral',
+  'limit',
 ]);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
@@ -267,6 +276,78 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Find arcsin, arccos, and arctan principal values plus every matching solution in a custom degree or radian interval with a light answer-first trig layout.',
     h1: 'Inverse Trig Functions Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'law-of-sines-cosines': {
+    title: 'Law of Sines and Cosines Calculator | Triangle Solver | CalcHowMuch',
+    description:
+      'Solve missing triangle sides, angles, and area with an answer-first Law of Sines and Cosines calculator that recommends the correct trig law and shows a live diagram.',
+    h1: 'Law of Sines and Cosines Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'natural-log': {
+    title: 'Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch',
+    description:
+      'Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.',
+    h1: 'Natural Log Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'common-log': {
+    title: 'Common Log Calculator | Base 10, Base 2 and Custom Logs | CalcHowMuch',
+    description:
+      'Compute base-10, base-2, base-e, or custom logarithms with an answer-first layout that compares change-of-base results and shows the selected log curve.',
+    h1: 'Common Log Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'log-properties': {
+    title: 'Logarithm Properties Calculator | Product, Quotient and Power Rules | CalcHowMuch',
+    description:
+      'Check the product, quotient, and power log rules in an answer-first layout that pairs each numeric result with the matching symbolic rewrite.',
+    h1: 'Logarithm Properties Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'exponential-equations': {
+    title: 'Exponential Equation Solver | Solve base^(m·x + c) = target | CalcHowMuch',
+    description:
+      'Solve exponential equations in an answer-first layout that shows the logarithmic rearrangement, solved x value, and a graph checkpoint on the curve.',
+    h1: 'Exponential Equation Solver',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'log-scale': {
+    title: 'Log Scale Converter | Decibel, pH and Richter Inputs | CalcHowMuch',
+    description:
+      'Convert decibel, pH, and Richter-scale inputs in an answer-first layout that keeps the result, formula, and plain-language interpretation together.',
+    h1: 'Log Scale Converter',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  derivative: {
+    title: 'Derivative Calculator | Symbolic Derivative and Point Evaluation | CalcHowMuch',
+    description:
+      'Find a symbolic derivative, repeat the derivative order, and evaluate the result at one point in a light answer-first calculus layout.',
+    h1: 'Derivative Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  integral: {
+    title: 'Integral Calculator | Antiderivative and Definite Value | CalcHowMuch',
+    description:
+      'Find an antiderivative or a definite integral value in a light answer-first calculus layout built for quick power-rule checks.',
+    h1: 'Integral Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  limit: {
+    title: 'Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch',
+    description:
+      'Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks.',
+    h1: 'Limit Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -618,6 +699,16 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.',
     h1: 'Find Percentage of a Number Calculator',
+  },
+};
+
+const ROUTE_SPECIFIC_OVERRIDES = {
+  '/salary-calculators/commission-calculator/': {
+    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    description:
+      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
+    h1: 'Commission Calculator',
+    paneLayout: 'single',
   },
 };
 
@@ -1251,6 +1342,14 @@ function buildCanonical(pathname) {
   const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
   const withSlash = normalized.endsWith('/') ? normalized : `${normalized}/`;
   return `${SITE_URL}${withSlash}`;
+}
+
+function resolveCalculatorOverride(calculator) {
+  const routeKey = normalizeRoutePath(calculator?.url || '');
+  if (routeKey && ROUTE_SPECIFIC_OVERRIDES[routeKey]) {
+    return ROUTE_SPECIFIC_OVERRIDES[routeKey];
+  }
+  return CALCULATOR_OVERRIDES[calculator?.id];
 }
 
 function isCalculatorPath(pathname) {
@@ -2468,6 +2567,20 @@ const PRICING_CLUSTER_REDESIGN_ORDER = [
   'markup-calculator',
 ];
 
+const SALARY_CLUSTER_REDESIGN_ORDER = [
+  'salary-calculators-hub',
+  'salary-calculator',
+  'hourly-to-salary-calculator',
+  'salary-to-hourly-calculator',
+  'annual-to-monthly-salary-calculator',
+  'monthly-to-annual-salary-calculator',
+  'weekly-pay-calculator',
+  'overtime-pay-calculator',
+  'raise-calculator',
+  'bonus-calculator',
+  'commission-calculator',
+];
+
 PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   if (!PERCENTAGE_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
     throw new Error(`Unknown Percentage redesign calculator id: ${calculatorId}`);
@@ -2475,10 +2588,17 @@ PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
 });
 
 const PRICING_CLUSTER_REDESIGN_IDS = new Set(PRICING_CLUSTER_REDESIGN_ORDER);
+const SALARY_CLUSTER_REDESIGN_IDS = new Set(SALARY_CLUSTER_REDESIGN_ORDER);
 
 PRICING_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   if (!PRICING_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
     throw new Error(`Unknown Pricing redesign calculator id: ${calculatorId}`);
+  }
+});
+
+SALARY_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!SALARY_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Salary redesign calculator id: ${calculatorId}`);
   }
 });
 
@@ -3845,7 +3965,7 @@ function buildPageHtml({
   const isMigratedMathClusterRoute =
     canonical.includes('/math/') && MATH_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedSalaryClusterRoute =
-    canonical.includes('/salary-calculators/') && calculatorId === 'salary-calculators-hub';
+    canonical.includes('/salary-calculators/') && SALARY_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedFinanceClusterRoute =
     canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedTimeAndDateClusterRoute =
@@ -3985,6 +4105,18 @@ function buildPageHtml({
   <div class="calculator-page-single td-cluster-flow">
     ${sanitizedCalculatorHtml}
     ${injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
+  </div>
+</div>`
+        : isMigratedSalaryClusterRoute
+        ? `<div class="sal-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+  <div class="sal-cluster-page-header">
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="sal-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+    ${relatedCalculatorsHtml}
   </div>
 </div>`
         : isMigratedAutoLoanClusterRoute
@@ -4985,7 +5117,7 @@ function main() {
         if (!relPath) {
           throw new Error(`Unable to locate calculator folder for ${calculator.id}`);
         }
-        const override = CALCULATOR_OVERRIDES[calculator.id];
+        const override = resolveCalculatorOverride(calculator);
         const governance = resolveCalculatorGovernance({
           category,
           subcategory,
@@ -5044,7 +5176,9 @@ function main() {
       PRICING_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedMathClusterRoute =
       calculator.url.startsWith('/math/') && MATH_CLUSTER_REDESIGN_IDS.has(calculator.id);
-    const isMigratedSalaryClusterRoute = calculator.url.startsWith('/salary-calculators/');
+    const isMigratedSalaryClusterRoute =
+      calculator.url.startsWith('/salary-calculators/') &&
+      SALARY_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedFinanceClusterRoute =
       calculator.url.startsWith('/finance-calculators/') &&
       FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
@@ -5075,7 +5209,7 @@ function main() {
       return;
     }
     const fragmentDir = resolveCalculatorFragmentDir(relPath);
-    const override = CALCULATOR_OVERRIDES[calculator.id];
+    const override = resolveCalculatorOverride(calculator);
     const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
     const topNavHtml = buildTopNavHtml(
       navigation.categories,

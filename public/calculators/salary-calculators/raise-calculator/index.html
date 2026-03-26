@@ -1,0 +1,61 @@
+<div id="calc-raise" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Raise calculator inputs">
+    <p class="sal-calc-kicker">Pay change</p>
+    <h2 class="sal-calc-form-title">Estimate a new salary after a raise</h2>
+    <p class="sal-calc-lead">
+      Switch between percent and flat-amount raise modes without adding dashboard-style complexity.
+    </p>
+
+    <div class="sal-input-row">
+      <label for="raise-current-salary">Current salary</label>
+      <input id="raise-current-salary" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row">
+      <label id="raise-mode-label">Raise mode</label>
+      <div
+        class="sal-chip-group"
+        role="group"
+        aria-labelledby="raise-mode-label"
+        data-button-group="raise-mode"
+      >
+        <button class="sal-chip-button is-active" type="button" data-value="percent" aria-pressed="true">
+          Percent
+        </button>
+        <button class="sal-chip-button" type="button" data-value="amount" aria-pressed="false">
+          Amount
+        </button>
+      </div>
+    </div>
+
+    <div class="sal-input-row" id="raise-percent-row">
+      <label for="raise-percent">Raise percent</label>
+      <input id="raise-percent" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row" id="raise-amount-row" hidden aria-hidden="true">
+      <label for="raise-amount">Raise amount</label>
+      <input id="raise-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <p class="sal-calc-error" id="raise-error" hidden></p>
+    <button class="sal-primary-action" id="raise-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Raise calculator results">
+    <p class="sal-answer-title">New salary</p>
+    <p class="sal-answer-hero" id="raise-new-salary">—</p>
+    <p class="sal-answer-note" id="raise-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card">
+        <span>Raise amount</span>
+        <strong id="raise-amount-output">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Percent increase</span>
+        <strong id="raise-percent-output">—</strong>
+      </div>
+    </div>
+    <p class="sal-results-disclaimer">Gross-pay estimate only. Taxes and deductions are not included.</p>
+  </aside>
+</div>
