@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "clusterId": "math",
+  "routes": {
+    "/math/basic/": {
+      "route": "/math/basic/",
+      "calculatorId": "basic",
+      "clusterId": "math",
+      "buildId": "wave1-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/basic/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/basic/module.js"
+        ]
+      }
+    },
+    "/math/fraction-calculator/": {
+      "route": "/math/fraction-calculator/",
+      "calculatorId": "fraction-calculator",
+      "clusterId": "math",
+      "buildId": "wave1-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/fraction-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/fraction-calculator/module.js"
+        ]
+      }
+    }
+  }
+}

@@ -36,6 +36,14 @@ const operations = {
   },
 };
 
+function updateOperationButtons(operationKey) {
+  buttons.forEach((button) => {
+    const isActive = button.dataset.operation === operationKey;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+}
+
 function getInputValues() {
   return Array.from(inputContainer.querySelectorAll('[data-basic-input]')).map((input) =>
     toNumber(input.value)
@@ -75,6 +83,7 @@ function updateResult(operationKey) {
   const operation = operations[operationKey];
   const values = getInputValues();
   const output = calculateMultiple(operationKey, values);
+  updateOperationButtons(operationKey);
 
   if (output === null) {
     result.textContent = "Result: Division by zero isn't possible.";

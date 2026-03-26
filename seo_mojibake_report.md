@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:finance`
-- HTML files scanned: **12**
-- Calculator pages scanned: **12**
+- Scope: `calc:math/basic`
+- HTML files scanned: **1**
+- Calculator pages scanned: **0**
 - Findings: **0**
 - Status: **PASS**
 

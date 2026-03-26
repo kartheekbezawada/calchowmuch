@@ -4,7 +4,7 @@
     {
       "clusterId": "math",
       "displayName": "Math",
-      "status": "legacy",
+      "status": "migrating",
       "routePrefixes": [
         "/math/"
       ],

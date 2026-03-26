@@ -1,0 +1,269 @@
+{
+  "clusterId": "math",
+  "displayName": "Math",
+  "globalDestinations": [
+    {
+      "clusterId": "math",
+      "label": "Math",
+      "href": "/math/basic/"
+    },
+    {
+      "clusterId": "home-loan",
+      "label": "Home Loan",
+      "href": "/loan-calculators/mortgage-calculator/"
+    },
+    {
+      "clusterId": "credit-cards",
+      "label": "Credit Cards",
+      "href": "/credit-card-calculators/credit-card-payment-calculator/"
+    },
+    {
+      "clusterId": "auto-loans",
+      "label": "Auto Loans",
+      "href": "/car-loan-calculators/car-loan-calculator/"
+    },
+    {
+      "clusterId": "finance",
+      "label": "Finance",
+      "href": "/finance-calculators/present-value-calculator/"
+    },
+    {
+      "clusterId": "time-and-date",
+      "label": "Time & Date",
+      "href": "/time-and-date/sleep-time-calculator/"
+    },
+    {
+      "clusterId": "percentage",
+      "label": "Percentage Calculators",
+      "href": "/percentage-calculators/percent-change-calculator/"
+    },
+    {
+      "clusterId": "pricing",
+      "label": "Pricing Calculators",
+      "href": "/pricing-calculators/"
+    },
+    {
+      "clusterId": "salary",
+      "label": "Salary Calculators",
+      "href": "/salary-calculators/"
+    }
+  ],
+  "sections": [
+    {
+      "id": "simple",
+      "name": "Simple",
+      "calculators": [
+        {
+          "id": "basic",
+          "name": "Basic Calculator",
+          "url": "/math/basic/"
+        },
+        {
+          "id": "fraction-calculator",
+          "name": "Fraction Calculator",
+          "url": "/math/fraction-calculator/"
+        }
+      ]
+    },
+    {
+      "id": "algebra",
+      "name": "Algebra",
+      "calculators": [
+        {
+          "id": "quadratic-equation",
+          "name": "Quadratic Equation Solver",
+          "url": "/math/algebra/quadratic-equation/"
+        },
+        {
+          "id": "system-of-equations",
+          "name": "System of Linear Equations",
+          "url": "/math/algebra/system-of-equations/"
+        },
+        {
+          "id": "polynomial-operations",
+          "name": "Polynomial Operations",
+          "url": "/math/algebra/polynomial-operations/"
+        },
+        {
+          "id": "factoring",
+          "name": "Factoring Calculator",
+          "url": "/math/algebra/factoring/"
+        },
+        {
+          "id": "slope-distance",
+          "name": "Slope & Distance Calculator",
+          "url": "/math/algebra/slope-distance/"
+        }
+      ]
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry",
+      "calculators": [
+        {
+          "id": "unit-circle",
+          "name": "Unit Circle Calculator",
+          "url": "/math/trigonometry/unit-circle/"
+        },
+        {
+          "id": "triangle-solver",
+          "name": "Triangle Solver",
+          "url": "/math/trigonometry/triangle-solver/"
+        },
+        {
+          "id": "trig-functions",
+          "name": "Trigonometric Functions",
+          "url": "/math/trigonometry/trig-functions/"
+        },
+        {
+          "id": "inverse-trig",
+          "name": "Inverse Trig Functions",
+          "url": "/math/trigonometry/inverse-trig/"
+        },
+        {
+          "id": "law-of-sines-cosines",
+          "name": "Law of Sines/Cosines Calculator",
+          "url": "/math/trigonometry/law-of-sines-cosines/"
+        }
+      ]
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus",
+      "calculators": [
+        {
+          "id": "derivative",
+          "name": "Derivative Calculator",
+          "url": "/math/calculus/derivative/"
+        },
+        {
+          "id": "integral",
+          "name": "Integral Calculator",
+          "url": "/math/calculus/integral/"
+        },
+        {
+          "id": "limit",
+          "name": "Limit Calculator",
+          "url": "/math/calculus/limit/"
+        },
+        {
+          "id": "series-convergence",
+          "name": "Series Convergence Calculator",
+          "url": "/math/calculus/series-convergence/"
+        },
+        {
+          "id": "critical-points",
+          "name": "Critical Points Finder",
+          "url": "/math/calculus/critical-points/"
+        }
+      ]
+    },
+    {
+      "id": "log",
+      "name": "Log",
+      "calculators": [
+        {
+          "id": "natural-log",
+          "name": "Natural Log Calculator",
+          "url": "/math/log/natural-log/"
+        },
+        {
+          "id": "common-log",
+          "name": "Common Log Calculator",
+          "url": "/math/log/common-log/"
+        },
+        {
+          "id": "log-properties",
+          "name": "Logarithm Properties",
+          "url": "/math/log/log-properties/"
+        },
+        {
+          "id": "exponential-equations",
+          "name": "Exponential Equations Solver",
+          "url": "/math/log/exponential-equations/"
+        },
+        {
+          "id": "log-scale",
+          "name": "Log Scale Converter",
+          "url": "/math/log/log-scale/"
+        }
+      ]
+    },
+    {
+      "id": "statistics",
+      "name": "Statistics",
+      "calculators": [
+        {
+          "id": "mean-median-mode-range",
+          "name": "Mean Median Mode Range Calculator",
+          "url": "/math/mean-median-mode-range/"
+        },
+        {
+          "id": "standard-deviation",
+          "name": "Standard Deviation Calculator",
+          "url": "/math/standard-deviation/"
+        },
+        {
+          "id": "statistics",
+          "name": "Statistics Calculator",
+          "url": "/math/statistics/"
+        },
+        {
+          "id": "confidence-interval",
+          "name": "Confidence Interval Calculator",
+          "url": "/math/confidence-interval/"
+        },
+        {
+          "id": "z-score",
+          "name": "Z-Score Calculator",
+          "url": "/math/z-score/"
+        },
+        {
+          "id": "sample-size",
+          "name": "Sample Size Calculator",
+          "url": "/math/sample-size/"
+        },
+        {
+          "id": "number-sequence",
+          "name": "Number Sequence Calculator",
+          "url": "/math/number-sequence/"
+        },
+        {
+          "id": "permutation-combination",
+          "name": "Permutation & Combination Calculator",
+          "url": "/math/permutation-combination/"
+        },
+        {
+          "id": "probability",
+          "name": "Probability Calculator",
+          "url": "/math/probability/"
+        },
+        {
+          "id": "regression-analysis",
+          "name": "Regression Analysis",
+          "url": "/math/statistics/regression-analysis/"
+        },
+        {
+          "id": "anova",
+          "name": "ANOVA Calculator",
+          "url": "/math/statistics/anova/"
+        },
+        {
+          "id": "hypothesis-testing",
+          "name": "Hypothesis Testing",
+          "url": "/math/statistics/hypothesis-testing/"
+        },
+        {
+          "id": "correlation",
+          "name": "Correlation Calculator",
+          "url": "/math/statistics/correlation/"
+        },
+        {
+          "id": "distribution",
+          "name": "Distribution Calculator",
+          "url": "/math/statistics/distribution/"
+        }
+      ]
+    }
+  ]
+}

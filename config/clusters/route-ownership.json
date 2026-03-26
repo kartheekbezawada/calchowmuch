@@ -320,6 +320,22 @@
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-finance-redesign-20260320",
       "generationMode": "cluster"
+    },
+    {
+      "route": "/math/basic/",
+      "calculatorId": "basic",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave1-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/fraction-calculator/",
+      "calculatorId": "fraction-calculator",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave1-20260326",
+      "generationMode": "cluster"
     }
   ]
 }

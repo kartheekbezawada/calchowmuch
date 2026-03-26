@@ -779,6 +779,10 @@ function initFractionCalculator() {
   const solveButton = root.querySelector('#fc-solve-btn');
   const resultMain = root.querySelector('#fc-result-main');
   const resultSub = root.querySelector('#fc-result-sub');
+  const metricPrimaryLabel = root.querySelector('#fc-metric-primary-label');
+  const metricPrimaryValue = root.querySelector('#fc-metric-primary-value');
+  const metricSecondaryLabel = root.querySelector('#fc-metric-secondary-label');
+  const metricSecondaryValue = root.querySelector('#fc-metric-secondary-value');
   const stepsList = root.querySelector('#fc-steps');
   const teacherNote = root.querySelector('#fc-teacher-note');
   const modeLabel = root.querySelector('#fc-mode-label');
@@ -894,6 +898,18 @@ function initFractionCalculator() {
   function renderState(state) {
     resultMain.innerHTML = state.primaryHtml;
     resultSub.textContent = state.secondaryText;
+    if (metricPrimaryLabel) {
+      metricPrimaryLabel.textContent = state.metrics.primaryLabel;
+    }
+    if (metricPrimaryValue) {
+      metricPrimaryValue.textContent = state.metrics.primaryValue;
+    }
+    if (metricSecondaryLabel) {
+      metricSecondaryLabel.textContent = state.metrics.secondaryLabel;
+    }
+    if (metricSecondaryValue) {
+      metricSecondaryValue.textContent = state.metrics.secondaryValue;
+    }
     renderSteps(state.steps);
     teacherNote.textContent = state.teacherNote;
   }

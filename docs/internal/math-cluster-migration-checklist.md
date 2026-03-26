@@ -1,185 +1,124 @@
 # Math Cluster Migration Checklist
 
-Use this checklist for every future math calculator migration wave. Copy the relevant sections into the active working note for the route or wave, then mark each item explicitly.
+Use this checklist for every math route. The execution card remains the highest authority.
 
-## Shared Pre-Flight Checklist
+## Mandatory Context Refresh
 
-- [ ] Scope is approved and lists exact allowed files.
-- [ ] Target route URL, calculator ID, and route classification type are logged.
-- [ ] Existing math routes in the same subdomain were reviewed, along with approved non-math redesign references if math has no valid migrated reference route yet.
-- [ ] Terminal scope vars were cleared or reset before running any scoped command.
-- [ ] Shared-file changes, if any, were declared before editing.
-- [ ] The target route was manually opened once before design work starts.
-- [ ] Module bindings, IDs, chart hooks, table hooks, and share/export hooks were inspected.
-- [ ] Route stylesheet was checked for duplicated, concatenated, or obviously corrupted CSS blocks.
-- [ ] Existing explanation structure and FAQ/schema parity were reviewed.
+- [ ] `requirements/math-migration/MATH_MIGRATION_EXECUTION_CARD.md` was re-read before work started.
+- [ ] If this is route `3`, `6`, `9`, or a wave switch, the execution card was re-read again before continuing.
+- [ ] Definition Of Done was re-validated against Engineering, Design, SEO, and CWV rules.
+- [ ] One-calculator-at-a-time execution is being followed.
 
-## Route Classification Checklist
+## Shared Pre-Flight
 
-- [ ] Classified as `Type 1: straight shell migration`.
-- [ ] Classified as `Type 2: shell migration plus content/test cleanup`.
-- [ ] Classified as `Type 3: reconstruction route`.
-- [ ] Classification reason was logged.
+- [ ] Target route URL and calculator ID are logged.
+- [ ] Current wave is logged.
+- [ ] Route classification is logged or confirmed.
+- [ ] Generated HTML was inspected before edits.
+- [ ] Logic, hooks, IDs, and schema were inspected before edits.
+- [ ] Layout and CSS were inspected for legacy markers.
+- [ ] Design quality was inspected for clutter, hierarchy, first-screen usability, and duplicate UI.
+- [ ] SEO/content was inspected for thin content, missing structure, and missing static schema.
+- [ ] Scope vars were cleared or reset before generation/tests.
 
-Only one route classification should be selected.
+## Route Classification
 
-## Design Migration Checklist
+- [ ] `Type 1` selected for shell-only migration.
+- [ ] `Type 2` selected for shell plus cleanup.
+- [ ] `Type 3` selected for rebuild.
+- [ ] Classification reason logged.
 
-- [ ] The `Math Design Contract` section in the master plan was reviewed before design work started.
-- [ ] Legacy shell state identified correctly as either `single-pane legacy` or `split legacy`.
-- [ ] The route was not treated as migrated solely because `paneLayout=single`.
-- [ ] `paneLayout=single` target confirmed for the route.
-- [ ] Legacy dark shell markers to remove were identified explicitly.
-- [ ] Main result is answer-first and visually stronger than supporting detail.
-- [ ] No dark-era shell styling remains.
-- [ ] No top-nav/left-nav/ad-column carryover remains if the route previously depended on shell chrome.
-- [ ] Controls use the migrated visual language and do not fight the shared shell.
-- [ ] Route-specific graphs, tables, derivations, and secondary actions were placed under a clear result hierarchy.
-- [ ] Desktop layout preserves hierarchy without becoming visually heavy.
-- [ ] Mobile layout collapses to a clean single-column flow.
-- [ ] Small-screen result behavior is usable and not awkwardly sticky.
-- [ ] Tables, graphs, and secondary detail do not overshadow the main answer.
-- [ ] No horizontal overflow occurs on narrow screens.
-- [ ] Long formulas, notation, and dense labels remain readable.
+Only one classification can be selected.
 
-## CSS Integrity Checklist
+## Engineering Gate
+
+- [ ] Route is single-pane `calc_exp` in generated output.
+- [ ] Light answer-first shell is present.
+- [ ] `theme-premium-dark.css` is absent from generated output.
+- [ ] Legacy top nav is absent from generated output.
+- [ ] Legacy left nav is absent from generated output.
+- [ ] MPA `<a href>` navigation is preserved.
+- [ ] Logic remains unchanged.
+- [ ] Hooks remain unchanged.
+- [ ] IDs remain unchanged.
+- [ ] Schema intent remains unchanged.
+
+## Design Gate
+
+- [ ] `Simple Smooth Wow` standard is met.
+- [ ] Primary answer is visually dominant.
+- [ ] Secondary guidance follows the primary answer.
+- [ ] Advanced detail is demoted below core action and answer.
+- [ ] No duplicate controls remain.
+- [ ] No competing result blocks remain.
+- [ ] Advanced options are collapsed where density would clutter the first screen.
+- [ ] First screen is usable on desktop.
+- [ ] First screen is usable on mobile.
+- [ ] No CLS-prone card expansion or awkward sticky-result behavior remains.
+- [ ] No horizontal overflow remains on narrow screens.
+
+## SEO / Content Gate
+
+- [ ] 40-60 word snippet intro exists in static HTML.
+- [ ] A quick-answer bullet list or table exists near the top.
+- [ ] Formula section exists when applicable.
+- [ ] Worked example exists.
+- [ ] FAQ section is visible in HTML.
+- [ ] Internal links to related calculators exist.
+- [ ] JSON-LD is present in static HTML.
+- [ ] JSON-LD includes `WebPage`.
+- [ ] JSON-LD includes `SoftwareApplication`.
+- [ ] JSON-LD includes `FAQPage`.
+- [ ] JSON-LD includes `BreadcrumbList`.
+- [ ] Content is simple, human-readable, and route-specific.
+
+## CSS Integrity
 
 - [ ] Route CSS was inspected before editing.
 - [ ] No duplicated CSS blocks remain.
-- [ ] No concatenated legacy route blocks remain.
-- [ ] If CSS was already corrupted, the stylesheet was rebuilt cleanly instead of incrementally patched.
-- [ ] Route-specific CSS only covers functional differences, not legacy shell chrome.
+- [ ] No concatenated legacy CSS remains.
+- [ ] Corrupted stylesheets were normalized instead of patched blindly.
+- [ ] Legacy shell chrome was not reintroduced via route CSS.
 
-## Module Safety Checklist
+## Module Safety
 
-- [ ] All required IDs were preserved.
-- [ ] All required classes/data hooks were preserved.
-- [ ] Chart/table/render targets still exist.
-- [ ] Share/export actions still bind correctly.
-- [ ] Layout moves were checked against actual module queries.
-- [ ] Manual smoke test confirms no runtime break after layout changes.
-- [ ] Any blocking runtime issue was fixed before polishing work continued.
+- [ ] DOM moves were checked against actual module selectors.
+- [ ] Chart or table targets still exist when applicable.
+- [ ] Runtime smoke test passed after layout work.
+- [ ] No binding breakage remains.
 
-## Content And Writing Checklist
+## Generation And Verification
 
-- [ ] Writing follows the math design contract, not only the content contract.
-- [ ] The route keeps an intent-led `H2`.
-- [ ] `How to Guide` section exists.
-- [ ] `FAQ` section exists.
-- [ ] `Important Notes` is the last section.
-- [ ] `Last updated: <Month YYYY>` exists.
-- [ ] `Accuracy` note exists.
-- [ ] `Disclaimer` or approved domain-specific disclaimer label exists.
-- [ ] `Assumptions` note exists.
-- [ ] Exact privacy sentence exists: `All calculations run locally in your browser - no data is stored.`
-- [ ] Writing is direct, technical, and route-specific.
-- [ ] Writing avoids filler and generic product copy.
-- [ ] Explanation does not over-teach unrelated theory.
-- [ ] FAQ meaning matches visible content and schema intent.
-- [ ] Worked examples, if present, use route-relevant numbers.
-
-## Anti-Repeat Issue Checklist
-
-- [ ] No stale env var risk remains for generation/tests.
-- [ ] No generator/config registration step was skipped.
-- [ ] No silent scope widening occurred.
-- [ ] No route was classified as migrated using config alone; generated output and shell markers were checked.
-- [ ] No legacy split layout artifact remains.
-- [ ] No legacy single-pane dark-shell artifact remains.
-- [ ] No duplicated or corrupted CSS block remains.
-- [ ] No route-specific shell override reintroduced legacy styling.
-- [ ] No module binding was broken by markup movement.
-- [ ] No route-source mismatch was ignored; reconstruction was chosen if needed.
-- [ ] No explanation contract drift remains.
-- [ ] No note-key inconsistency remains.
-- [ ] No visible/schema FAQ mismatch remains.
-- [ ] No route was treated as finished before regenerated output was checked.
-
-## Generation And Verification Checklist
-
-- [ ] Only the approved route was regenerated.
+- [ ] Only the current route was regenerated.
 - [ ] Generated public output was reviewed after regeneration.
-- [ ] Generated route still renders single-pane as intended.
-- [ ] Generated explanation/order matches source intent.
+- [ ] Generated output proves redesign state.
 - [ ] Generated output does not reintroduce legacy shell markup.
+- [ ] Generated output contains the required static HTML schema.
 
-## Testing Checklist
+## Validation
 
-- [ ] Lint completed.
-- [ ] Scoped unit tests completed.
-- [ ] Scoped e2e tests completed.
-- [ ] Scoped SEO tests completed.
-- [ ] Scoped CWV tests completed.
-- [ ] Schema dedupe validation completed where applicable.
-- [ ] Isolation/contracts checks completed when shared files changed.
-- [ ] Any failure was classified as in-scope, shared-scope, or unrelated baseline.
-- [ ] In-scope failures were fixed and re-run.
+- [ ] `npm run lint`
+- [ ] scoped unit tests
+- [ ] scoped e2e tests
+- [ ] scoped SEO tests
+- [ ] scoped CWV tests
+- [ ] schema dedupe validation where applicable
+- [ ] isolation/contracts checks when shared files changed
+- [ ] any failing gate was fixed and re-run before route completion
 
-## Design QA Checklist
+## Logging
 
-- [ ] Desktop screenshot/review completed.
-- [ ] Mobile screenshot/review completed.
-- [ ] Baseline and final visual evidence were captured or logged.
-- [ ] Main answer is visible and clear without visual hunting.
-- [ ] Math notation/expressions remain legible.
-- [ ] Tables and graphs remain readable.
-- [ ] Legacy shell markers are absent in the generated route output.
-- [ ] Control labels and helper text remain clear.
-- [ ] Related/explanation/supporting sections do not crowd the hero/result zone.
+- [ ] Route audit captured.
+- [ ] Files changed captured.
+- [ ] Validation commands captured.
+- [ ] Evidence paths captured.
+- [ ] Tracker updated.
+- [ ] Release sign-off reference added when implementation occurs.
 
-## Logging Checklist
+## Stop Rules
 
-- [ ] Route scope was logged.
-- [ ] Files changed were logged.
-- [ ] Route classification was logged.
-- [ ] Issues found were logged.
-- [ ] Fixes applied were logged.
-- [ ] Validation commands were logged.
-- [ ] Artifact paths were logged.
-- [ ] Follow-up items were logged.
-- [ ] Wave status tracker was updated when implementation happens.
-- [ ] Release sign-off reference was added when implementation happens.
-
-## Stop-And-Ask Conditions
-
-- [ ] Stop if the fix requires forbidden files.
-- [ ] Stop if tests fail outside approved scope and need extra edits.
-- [ ] Stop if the route is clearly a reconstruction case but scope assumed a simple shell migration.
-- [ ] Stop if generator/shared-shell changes are required but were not pre-approved.
-- [ ] Stop if module behavior depends on markup structure that cannot be safely preserved within scope.
-
-## Route Sign-Off Template
-
-Use this compact template in the active wave log:
-
-### Scope
-
-- Route:
-- URL:
-- Classification:
-- Allowed files:
-- Approved shared files:
-
-### Issues Found
-
-- Design:
-- Writing/content:
-- Runtime/module:
-- CSS/layout:
-
-### Fixes Applied
-
--
-
-### Validation
-
-- Commands run:
-- Result:
-
-### Artifacts
-
--
-
-### Follow-Ups
-
--
+- [ ] Stop if a fix requires forbidden files not yet in scope.
+- [ ] Stop if a failure needs cross-route edits that would widen scope unexpectedly.
+- [ ] Stop if generated output diverges from source intent in a way that suggests `Type 3`.
+- [ ] Stop if Engineering, Design, SEO, or CWV fails.
+- [ ] Stop before moving to the next route unless the current route fully passes.

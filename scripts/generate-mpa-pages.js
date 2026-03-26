@@ -81,6 +81,7 @@ const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'future-value-of-annuity',
   'present-value-of-annuity',
 ]);
+const MATH_CLUSTER_REDESIGN_IDS = new Set(['basic', 'fraction-calculator']);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
   'future-value',
@@ -96,6 +97,14 @@ const FINANCE_CALCULATOR_IDS = new Set([
   'monthly-savings-needed',
 ]);
 const CALCULATOR_OVERRIDES = {
+  basic: {
+    title: 'Basic Calculator | Add, Subtract, Multiply and Divide | CalcHowMuch',
+    description:
+      'Add, subtract, multiply, or divide everyday numbers in one clean answer-first basic calculator with support for extra inputs and memory tools.',
+    h1: 'Basic Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'home-loan': {
     title: 'Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch',
     description:
@@ -213,6 +222,14 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.',
     h1: 'Fraction Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'sample-size': {
+    title: 'Sample Size Calculator | Proportion and Mean Study Planner | CalcHowMuch',
+    description:
+      'Plan defensible sample sizes for proportion and mean studies with confidence, margin of error, finite-population correction, and worked examples.',
+    h1: 'Sample Size Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -1614,6 +1631,101 @@ function buildFinanceStructuredData({
   };
 }
 
+function buildMathStructuredData({
+  title,
+  description,
+  canonical,
+  faqEntries,
+  breadcrumbLabel,
+  softwareName,
+  softwareDescription,
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+        about: { '@id': `${canonical}#softwareapplication` },
+        mainEntity: { '@id': `${canonical}#softwareapplication` },
+        breadcrumb: { '@id': `${canonical}#breadcrumbs` },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description: softwareDescription || description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Math',
+            item: `${SITE_URL}/math/basic/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
+      },
+    ],
+  };
+}
+
 function buildHomepageStructuredData({ title, description, canonical }) {
   const faqEntries = [
     {
@@ -2340,7 +2452,14 @@ function buildCreditCardClusterInlineCss(calculatorRelPath) {
     .filter((filePath) => fs.existsSync(filePath))
     .map((filePath) => {
       const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
-      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+      const fileContents = readFile(filePath)
+        .trim()
+        .replace(
+          /\/\*\s*theme-premium-dark\.css[\s\S]*?\*\//gi,
+          ''
+        )
+        .trim();
+      return `/* ${relPath} */\n${fileContents}`;
     })
     .join('\n\n');
 }
@@ -2360,7 +2479,11 @@ function buildHomeLoanInlineCss(calculatorRelPath) {
     .filter((filePath) => fs.existsSync(filePath))
     .map((filePath) => {
       const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
-      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+      const fileContents = readFile(filePath)
+        .trim()
+        .replace(/\/\*\s*theme-premium-dark\.css[\s\S]*?\*\//gi, '')
+        .trim();
+      return `/* ${relPath} */\n${fileContents}`;
     })
     .join('\n\n');
 }
@@ -2401,6 +2524,30 @@ function buildFinanceClusterInlineCss(calculatorRelPath) {
     .map((filePath) => {
       const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
       return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildMathClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'math', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      const fileContents = readFile(filePath)
+        .trim()
+        .replace(/\/\*\s*theme-premium-dark\.css[\s\S]*?\*\//gi, '')
+        .trim();
+      return `/* ${relPath} */\n${fileContents}`;
     })
     .join('\n\n');
 }
@@ -2605,6 +2752,38 @@ function buildFinanceClusterFooterHtml() {
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
     <span class="fi-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildMathClusterHeaderHtml() {
+  return `<header class="math-cluster-site-header">
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildMathClusterFooterHtml() {
+  return `<footer class="math-cluster-site-footer">
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
   </div>
 </footer>`;
 }
@@ -3618,6 +3797,8 @@ function buildPageHtml({
     canonical.includes('/percentage-calculators/') && PERCENTAGE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedPricingClusterRoute =
     canonical.includes('/pricing-calculators/') && PRICING_CLUSTER_REDESIGN_IDS.has(calculatorId);
+  const isMigratedMathClusterRoute =
+    canonical.includes('/math/') && MATH_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedSalaryClusterRoute =
     canonical.includes('/salary-calculators/') && calculatorId === 'salary-calculators-hub';
   const isMigratedFinanceClusterRoute =
@@ -3636,6 +3817,7 @@ function buildPageHtml({
   const sanitizedCalculatorHtml =
     (assetConfig ||
       isCreditCardClusterRoute ||
+      isMigratedMathClusterRoute ||
       isMigratedPercentageClusterRoute ||
       isMigratedSalaryClusterRoute ||
       isMigratedPricingClusterRoute ||
@@ -3728,6 +3910,25 @@ function buildPageHtml({
     ${sanitizedCalculatorHtml}
     ${explanationHtml}
     ${relatedCalculatorsHtml}
+  </div>
+</div>`
+        : isMigratedMathClusterRoute
+        ? `<div class="math-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="math-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
   </div>
 </div>`
         : isMigratedTimeAndDateClusterRoute
@@ -3891,6 +4092,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   const topNavStaticAttribute =
     topNavStatic &&
     !isMigratedTimeAndDateClusterRoute &&
+    !isMigratedMathClusterRoute &&
     !isMigratedPercentageClusterRoute &&
     !isMigratedSalaryClusterRoute &&
     !isMigratedFinanceClusterRoute &&
@@ -3903,6 +4105,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   let scriptTagsHtml = '';
   if (
     isCreditCardClusterRoute ||
+    isMigratedMathClusterRoute ||
     isMigratedPercentageClusterRoute ||
     isMigratedSalaryClusterRoute ||
     isMigratedPricingClusterRoute ||
@@ -3972,6 +4175,11 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
       buildPricingClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
+  } else if (isMigratedMathClusterRoute) {
+    cssLinksHtml = `    <style data-math-cluster="true">\n${indentBlock(
+      buildMathClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
   } else if (isMigratedTimeAndDateClusterRoute) {
     cssLinksHtml = `    <style data-time-and-date-cluster="true">\n${indentBlock(
       buildTimeAndDateClusterInlineCss(calculatorRelPath),
@@ -4026,6 +4234,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   const adsColumnHtml =
     suppressAdsColumn ||
     isCreditCardClusterRoute ||
+    isMigratedMathClusterRoute ||
     isMigratedPercentageClusterRoute ||
     isMigratedSalaryClusterRoute ||
     isMigratedPricingClusterRoute ||
@@ -4068,6 +4277,16 @@ ${adPanelHtml}
         </section>
       </main>
       ${buildSalaryClusterFooterHtml()}
+    </div>`
+    : isMigratedMathClusterRoute
+    ? `    <div class="page math-cluster-page-shell">
+      ${buildMathClusterHeaderHtml()}
+      <main class="math-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="math-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildMathClusterFooterHtml()}
     </div>`
     : isMigratedPricingClusterRoute
     ? `    <div class="page pct-cluster-page-shell">
@@ -4778,6 +4997,8 @@ function main() {
     const isMigratedPricingClusterRoute =
       calculator.url.startsWith('/pricing-calculators/') &&
       PRICING_CLUSTER_REDESIGN_IDS.has(calculator.id);
+    const isMigratedMathClusterRoute =
+      calculator.url.startsWith('/math/') && MATH_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedSalaryClusterRoute = calculator.url.startsWith('/salary-calculators/');
     const isMigratedFinanceClusterRoute =
       calculator.url.startsWith('/finance-calculators/') &&
@@ -4796,6 +5017,7 @@ function main() {
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
     if (
       assetConfig?.options?.generationMode === 'manual' &&
+      !isMigratedMathClusterRoute &&
       !isMigratedPercentageClusterRoute &&
       !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
@@ -4835,6 +5057,7 @@ function main() {
     const routeBundleEntry =
       !assetConfig &&
       !isCreditCardClusterRoute &&
+      !isMigratedMathClusterRoute &&
       !isMigratedPercentageClusterRoute &&
       !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
@@ -4848,6 +5071,7 @@ function main() {
     const topNavStatic =
       Boolean(assetConfig?.options?.topNavStatic) ||
       (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+        !isMigratedMathClusterRoute &&
         !isMigratedPercentageClusterRoute &&
         !isMigratedSalaryClusterRoute &&
         !isMigratedPricingClusterRoute &&
@@ -4857,6 +5081,7 @@ function main() {
     if (
       !assetConfig &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+      !isMigratedMathClusterRoute &&
       !isMigratedPercentageClusterRoute &&
       !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
@@ -4896,6 +5121,19 @@ function main() {
 
     let staticStructuredData = null;
     let injectStaticStructuredData = false;
+    if (isMigratedMathClusterRoute) {
+      const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildMathStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        breadcrumbLabel: override?.h1 ?? calculator.name,
+        softwareName: override?.h1 ?? calculator.name,
+        softwareDescription: pageDescription,
+      });
+      injectStaticStructuredData = true;
+    }
     const homeLoanSchemaConfig = HOME_LOAN_SCHEMA_CONFIG[calculator.id];
     if (homeLoanSchemaConfig) {
       const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);

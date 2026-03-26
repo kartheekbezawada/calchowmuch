@@ -17,11 +17,19 @@ test.describe('Fraction Calculator SEO', () => {
     await expect(canonical).toHaveCount(1);
     expect(await canonical.getAttribute('href')).toBe('https://calchowmuch.com/math/fraction-calculator/');
 
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('link[href*="theme-premium-dark.css"]')).toHaveCount(0);
+
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.locator('h1')).toHaveText('Fraction Calculator');
-    await expect(page.locator('#fraction-explanation h2')).toHaveText(
-      'Fraction Calculator Complete Practical Guide'
-    );
+    await expect(page.locator('#fraction-explanation h2')).toHaveText('Fraction Calculator Quick Guide');
+    await expect(page.locator('#fraction-explanation .fc-summary-table tbody tr')).toHaveCount(6);
+    await expect(page.locator('#fc-faq .faq-card')).toHaveCount(10);
+    await expect(page.locator('#fraction-explanation .fc-link-card[href="/math/basic/"]')).toBeVisible();
+    await expect(
+      page.locator('#fraction-explanation .fc-link-card[href="/math/sample-size/"]')
+    ).toBeVisible();
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
