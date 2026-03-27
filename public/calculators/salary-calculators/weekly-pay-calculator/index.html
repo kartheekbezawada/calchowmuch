@@ -24,7 +24,7 @@
           Total hours
         </button>
         <button class="sal-chip-button" type="button" data-value="split" aria-pressed="false">
-          Split hours
+          Regular + overtime hours
         </button>
       </div>
     </div>
@@ -63,12 +63,21 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Weekly pay results">
     <p class="sal-answer-title">Weekly pay</p>
     <p class="sal-answer-hero" id="weekly-pay-result">—</p>
-    <p class="sal-answer-note" id="weekly-pay-note">Enter values and click Calculate.</p>
+    <p class="sal-answer-note" id="weekly-pay-note">Calculate to see the weekly answer first, then annualized pay if you entered weeks per year.</p>
+    <p class="sal-answer-context" id="weekly-pay-context">The route will show whether it used total hours or regular plus overtime hours.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Annualized pay</span>
         <strong id="weekly-annualized-pay">—</strong>
       </div>
+    </div>
+    <div class="sal-breakdown-card">
+      <h3>Calculation basis</h3>
+      <p id="weekly-pay-breakdown">Standard mode uses hourly rate × total weekly hours. Split mode adds regular hours and overtime hours using your multiplier.</p>
+    </div>
+    <div class="sal-method-card">
+      <h3>How we calculate this</h3>
+      <p>Gross pay only. The overtime multiplier is user-controlled and annualized pay is only a simple weekly-to-yearly projection.</p>
     </div>
     <p class="sal-results-disclaimer">
       Gross-pay estimate only. Split-hours mode is optional and uses the multiplier you enter.

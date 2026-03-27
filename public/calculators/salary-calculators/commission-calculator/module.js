@@ -46,6 +46,8 @@ const outputs = {
   totalEarnings: document.querySelector('#commission-total-earnings'),
   effectiveRate: document.querySelector('#commission-effective-rate'),
   note: document.querySelector('#commission-note'),
+  context: document.querySelector('#commission-context'),
+  breakdown: document.querySelector('#commission-breakdown'),
 };
 
 function renderMode(mode) {
@@ -95,9 +97,21 @@ function calculate() {
   setText(outputs.effectiveRate, formatPercent(result.effectiveCommissionRate));
   setText(
     outputs.note,
+    result.totalEarnings === null
+      ? 'The route is showing commission only, before taxes.'
+      : `That commission brings total earnings to ${formatCurrency(result.totalEarnings)} before taxes.`
+  );
+  setText(
+    outputs.context,
     mode === 'amount'
-      ? 'Amount mode uses the commission value you entered directly.'
-      : 'Rate mode calculates commission from the sales amount.'
+      ? 'Used flat-amount mode to carry your entered commission directly into the result.'
+      : 'Used commission-rate mode to calculate commission from the sales amount.'
+  );
+  setText(
+    outputs.breakdown,
+    mode === 'amount'
+      ? 'Effective commission rate = commission amount ÷ sales amount × 100. Total earnings = base pay + commission when base pay is provided.'
+      : 'Commission = sales amount × commission rate. Total earnings = base pay + commission when base pay is provided.'
   );
 }
 

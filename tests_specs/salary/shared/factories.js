@@ -41,6 +41,14 @@ export function registerSalaryE2ETest(config) {
 export function registerSalarySeoTest(config) {
   test.describe(`${config.h1} SEO`, () => {
     test(`${config.h1} route emits expected metadata and sitemap entry`, async ({ page }) => {
+      const sourceResponse = await page.request.get(config.route);
+      expect(sourceResponse.ok()).toBeTruthy();
+      const sourceHtml = await sourceResponse.text();
+      expect(sourceHtml).toContain(`<title>${config.title}</title>`);
+      expect(sourceHtml).toContain(`meta name="description" content="${config.description}"`);
+      expect(sourceHtml).toContain('FAQPage');
+      expect(sourceHtml).toContain('BreadcrumbList');
+
       await page.goto(config.route);
 
       await expect(page).toHaveTitle(config.title);

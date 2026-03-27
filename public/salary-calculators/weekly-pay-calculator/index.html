@@ -3,20 +3,19 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Weekly Pay Calculator | Calculate How Much Online Calculator</title>
-    <meta name="description" content="Weekly Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <title>Weekly Pay Calculator | Estimate Weekly Earnings From Hours and Rate</title>
+    <meta name="description" content="Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/weekly-pay-calculator/" />
-    <meta property="og:title" content="Weekly Pay Calculator | Calculate How Much Online Calculator" />
-    <meta property="og:description" content="Weekly Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta property="og:title" content="Weekly Pay Calculator | Estimate Weekly Earnings From Hours and Rate" />
+    <meta property="og:description" content="Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/weekly-pay-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Weekly Pay Calculator | Calculate How Much Online Calculator" />
-    <meta name="twitter:description" content="Weekly Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently." />
+    <meta name="twitter:title" content="Weekly Pay Calculator | Estimate Weekly Earnings From Hours and Rate" />
+    <meta name="twitter:description" content="Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#softwareapplication","name":"Weekly Pay Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/","description":"Weekly Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Weekly Pay Calculator","item":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/"}]}]}</script>
     <style data-salary-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
@@ -1053,14 +1052,16 @@
       }
 
       .sal-cluster-status-grid,
-      .sal-cluster-copy-grid {
+      .sal-cluster-copy-grid,
+      .sal-intent-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 16px;
       }
 
       .sal-cluster-status-card,
-      .sal-cluster-copy-card {
+      .sal-cluster-copy-card,
+      .sal-intent-card {
         border-radius: 22px;
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
@@ -1068,7 +1069,8 @@
       }
 
       .sal-cluster-status-card strong,
-      .sal-cluster-copy-card h3 {
+      .sal-cluster-copy-card h3,
+      .sal-intent-card h3 {
         display: block;
         margin: 0 0 10px;
         color: #13222f;
@@ -1076,10 +1078,20 @@
 
       .sal-cluster-status-card p,
       .sal-cluster-copy-card p,
+      .sal-intent-card p,
       .sal-cluster-roadmap-note {
         margin: 0;
         color: #5d6f67;
         line-height: 1.65;
+      }
+
+      .sal-intent-card a {
+        color: inherit;
+      }
+
+      .sal-intent-card:hover {
+        border-color: rgba(22, 101, 52, 0.16);
+        box-shadow: 0 12px 28px rgba(19, 34, 47, 0.07);
       }
 
       .sal-cluster-roadmap-list,
@@ -1177,7 +1189,8 @@
       .sal-input-row,
       .sal-mode-fields,
       .sal-optional-stack,
-      .sal-inline-fields {
+      .sal-inline-fields,
+      .sal-input-details {
         display: grid;
         gap: 12px;
       }
@@ -1218,9 +1231,47 @@
       .sal-helper-text,
       .sal-calc-helper,
       .sal-answer-context,
-      .sal-results-disclaimer {
+      .sal-results-disclaimer,
+      .sal-breakdown-card p,
+      .sal-method-card p {
         margin: 0;
         color: #6b7e77;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .sal-input-details {
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f7fbf8;
+      }
+
+      .sal-input-details summary {
+        cursor: pointer;
+        color: #22353f;
+        font-size: 14px;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      .sal-input-details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .sal-input-details summary::after {
+        content: '+';
+        float: right;
+        color: #5d6f67;
+      }
+
+      .sal-input-details[open] summary::after {
+        content: '−';
+      }
+
+      .sal-input-details-copy {
+        margin: 0;
+        color: #5d6f67;
         font-size: 14px;
         line-height: 1.55;
       }
@@ -1295,6 +1346,13 @@
         padding-top: 4px;
       }
 
+      .sal-answer-context {
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: #f7fbf8;
+        border: 1px solid rgba(19, 34, 47, 0.06);
+      }
+
       .sal-support-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -1320,6 +1378,24 @@
         line-height: 1.2;
       }
 
+      .sal-breakdown-card,
+      .sal-method-card {
+        display: grid;
+        gap: 8px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f9fcfa;
+      }
+
+      .sal-breakdown-card h3,
+      .sal-method-card h3 {
+        margin: 0;
+        color: #13222f;
+        font-size: 15px;
+        line-height: 1.3;
+      }
+
       .sal-explanation-card,
       .sal-related-card {
         padding: 24px;
@@ -1335,6 +1411,22 @@
 
       .sal-related-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .sal-faq-grid {
+        gap: 12px;
+      }
+
+      .sal-faq-grid .sal-related-card {
+        padding: 18px;
+        border-radius: 22px;
+        background: #fcfdfc;
+        box-shadow: none;
+      }
+
+      .sal-faq-grid .sal-related-card h3 {
+        margin-bottom: 6px;
+        font-size: 1rem;
       }
 
       .sal-related-card a,
@@ -1413,6 +1505,7 @@
       }
     </style>
  
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#webpage","name":"Weekly Pay Calculator | Estimate Weekly Earnings From Hours and Rate","url":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/","description":"Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#softwareapplication","name":"Weekly Pay Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/","description":"Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate weekly pay?","acceptedAnswer":{"@type":"Answer","text":"Multiply the hourly rate by total weekly hours, or use split regular and overtime hours."}},{"@type":"Question","name":"Can this include overtime hours?","acceptedAnswer":{"@type":"Answer","text":"Yes. Split-hours mode adds an editable overtime multiplier without making it the default."}},{"@type":"Question","name":"Can I annualize the weekly result?","acceptedAnswer":{"@type":"Answer","text":"Yes. The annualized estimate multiplies weekly pay by the weeks-per-year value you enter."}},{"@type":"Question","name":"Does this work for part-time schedules?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the hours that match your own workweek."}},{"@type":"Question","name":"Does the result include tax deductions?","acceptedAnswer":{"@type":"Answer","text":"No. This route estimates gross weekly pay only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Weekly Pay Calculator","item":"https://calchowmuch.com/salary-calculators/weekly-pay-calculator/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
@@ -1440,7 +1533,7 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Weekly Pay Calculator</h1>
-    <p class="sal-cluster-page-intro">Weekly Pay Calculator calculator with fast inputs and clear results. Calculate How Much provides explanations, examples, and assumptions to help you plan confidently.</p>
+    <p class="sal-cluster-page-intro">Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-weekly-pay" class="sal-calc-shell">
@@ -1469,7 +1562,7 @@
           Total hours
         </button>
         <button class="sal-chip-button" type="button" data-value="split" aria-pressed="false">
-          Split hours
+          Regular + overtime hours
         </button>
       </div>
     </div>
@@ -1508,12 +1601,21 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Weekly pay results">
     <p class="sal-answer-title">Weekly pay</p>
     <p class="sal-answer-hero" id="weekly-pay-result">—</p>
-    <p class="sal-answer-note" id="weekly-pay-note">Enter values and click Calculate.</p>
+    <p class="sal-answer-note" id="weekly-pay-note">Calculate to see the weekly answer first, then annualized pay if you entered weeks per year.</p>
+    <p class="sal-answer-context" id="weekly-pay-context">The route will show whether it used total hours or regular plus overtime hours.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Annualized pay</span>
         <strong id="weekly-annualized-pay">—</strong>
       </div>
+    </div>
+    <div class="sal-breakdown-card">
+      <h3>Calculation basis</h3>
+      <p id="weekly-pay-breakdown">Standard mode uses hourly rate × total weekly hours. Split mode adds regular hours and overtime hours using your multiplier.</p>
+    </div>
+    <div class="sal-method-card">
+      <h3>How we calculate this</h3>
+      <p>Gross pay only. The overtime multiplier is user-controlled and annualized pay is only a simple weekly-to-yearly projection.</p>
     </div>
     <p class="sal-results-disclaimer">
       Gross-pay estimate only. Split-hours mode is optional and uses the multiplier you enter.
@@ -1543,6 +1645,15 @@
       At <strong>$25.00 per hour</strong> for <strong>40 weekly hours</strong>, weekly pay is
       <strong>$1,000.00</strong>. If that same result is annualized over
       <strong>52 weeks</strong>, the annualized pay is <strong>$52,000.00</strong>.
+    </p>
+  </section>
+
+  <section class="sal-explanation-card">
+    <h3>What changes the result</h3>
+    <p>
+      Weekly pay changes with the selected mode, total hours, overtime hours, and multiplier. If
+      you annualize the weekly result, the weeks-per-year input becomes another important
+      assumption.
     </p>
   </section>
 

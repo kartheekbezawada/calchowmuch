@@ -45,6 +45,8 @@ const outputs = {
   totalCompensation: document.querySelector('#bonus-total-compensation'),
   bonusPercent: document.querySelector('#bonus-percent-output'),
   note: document.querySelector('#bonus-note'),
+  context: document.querySelector('#bonus-context'),
+  breakdown: document.querySelector('#bonus-breakdown'),
 };
 
 function renderMode(mode) {
@@ -92,9 +94,19 @@ function calculate() {
   setText(outputs.bonusPercent, formatPercent(result.bonusPercent));
   setText(
     outputs.note,
+    `That bonus lifts total compensation to ${formatCurrency(result.totalCompensation)} before taxes.`
+  );
+  setText(
+    outputs.context,
     mode === 'amount'
-      ? 'Amount mode uses the bonus value you entered directly.'
-      : 'Percent mode calculates the bonus from the salary amount.'
+      ? 'Used flat-amount mode to carry your entered bonus directly into total compensation.'
+      : 'Used percent-of-salary mode to calculate the bonus from base salary.'
+  );
+  setText(
+    outputs.breakdown,
+    mode === 'amount'
+      ? 'Total compensation = salary + flat bonus amount. Effective bonus percent = bonus amount ÷ salary × 100.'
+      : 'Bonus amount = salary × bonus percent. Total compensation = salary + bonus amount.'
   );
 }
 

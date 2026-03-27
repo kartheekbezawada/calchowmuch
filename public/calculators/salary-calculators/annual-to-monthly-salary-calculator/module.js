@@ -35,6 +35,9 @@ setPageMetadata(
 const annualInput = document.querySelector('#annual-salary-input');
 const weeksInput = document.querySelector('#annual-weeks-input');
 const errorNode = document.querySelector('#annual-to-monthly-error');
+const noteNode = document.querySelector('#annual-monthly-note');
+const contextNode = document.querySelector('#annual-monthly-context');
+const breakdownNode = document.querySelector('#annual-monthly-breakdown');
 
 function renderError(message) {
   if (!errorNode) return;
@@ -64,8 +67,13 @@ function calculate() {
   setText(document.querySelector('#annual-biweekly-result'), formatCurrency(result.biweeklyPay));
   setText(document.querySelector('#annual-weekly-result'), formatCurrency(result.weeklyPay));
   setText(
-    document.querySelector('#annual-monthly-note'),
-    `Weekly pay is shown using ${weeksInput.value || '52'} weeks per year.`
+    noteNode,
+    `That equals about ${formatCurrency(result.weeklyPay)} per week before taxes.`
+  );
+  setText(contextNode, `Based on ${weeksInput.value || '52'} weeks/year for the weekly view.`);
+  setText(
+    breakdownNode,
+    'Monthly salary = annual salary ÷ 12. Biweekly = annual ÷ 26, and weekly = annual ÷ weeks per year.'
   );
 }
 

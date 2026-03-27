@@ -3,8 +3,8 @@
     <p class="sal-calc-kicker">Answer-first pay conversion</p>
     <h2 class="sal-calc-form-title">Convert one pay figure into every major pay frequency</h2>
     <p class="sal-calc-lead">
-      Enter one pay amount, choose the source frequency, then keep the work schedule assumptions
-      explicit and editable.
+      Enter one pay amount, choose the source frequency, then open schedule assumptions only when
+      you need them for reverse conversions.
     </p>
 
     <div class="sal-input-row">
@@ -29,8 +29,9 @@
       </div>
     </div>
 
-    <div class="sal-input-stack">
-      <p class="sal-helper-text">Work schedule assumptions keep the reverse conversions transparent.</p>
+    <details class="sal-input-details" id="salary-assumptions">
+      <summary>Work schedule assumptions</summary>
+      <p class="sal-input-details-copy">Defaults use 40 hours per week, 52 weeks per year, and 5 workdays per week.</p>
       <div class="sal-input-grid">
         <div class="sal-input-row">
           <label for="salary-hours-per-week">Hours per week</label>
@@ -45,7 +46,7 @@
         <label for="salary-days-per-week">Days per week</label>
         <input id="salary-days-per-week" type="number" min="1" max="7" step="1" value="5" />
       </div>
-    </div>
+    </details>
 
     <p class="sal-calc-error" id="salary-calc-error" hidden></p>
     <button class="sal-primary-action" id="salary-calc-button" type="button">Calculate</button>
@@ -54,7 +55,8 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
     <p class="sal-answer-title">Annual pay</p>
     <p class="sal-answer-hero" id="salary-annual-pay">—</p>
-    <p class="sal-answer-note" id="salary-answer-note">Enter values and click Calculate.</p>
+    <p class="sal-answer-note" id="salary-answer-note">Calculate to see annual, monthly, biweekly, weekly, daily, and hourly pay together.</p>
+    <p class="sal-answer-context" id="salary-answer-context">When assumptions matter, the route will show the exact hours, weeks, and days used.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Monthly pay</span>
@@ -76,6 +78,14 @@
         <span>Hourly pay</span>
         <strong id="salary-hourly-pay">—</strong>
       </div>
+    </div>
+    <div class="sal-breakdown-card">
+      <h3>Calculation basis</h3>
+      <p id="salary-breakdown">Start with one pay amount, convert it into an annual figure, then map the annual pay into the other pay periods.</p>
+    </div>
+    <div class="sal-method-card">
+      <h3>How we calculate this</h3>
+      <p>Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.</p>
     </div>
     <p class="sal-results-disclaimer">Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.</p>
   </aside>

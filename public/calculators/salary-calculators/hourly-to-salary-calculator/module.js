@@ -36,6 +36,9 @@ const hourlyRateInput = document.querySelector('#hourly-rate');
 const hoursInput = document.querySelector('#hourly-hours-per-week');
 const weeksInput = document.querySelector('#hourly-weeks-per-year');
 const errorNode = document.querySelector('#hourly-error');
+const noteNode = document.querySelector('#hourly-result-note');
+const contextNode = document.querySelector('#hourly-result-context');
+const breakdownNode = document.querySelector('#hourly-result-breakdown');
 
 function renderError(message) {
   if (!errorNode) return;
@@ -67,8 +70,16 @@ function calculate() {
   setText(document.querySelector('#hourly-biweekly-result'), formatCurrency(result.biweeklyPay));
   setText(document.querySelector('#hourly-weekly-result'), formatCurrency(result.weeklyPay));
   setText(
-    document.querySelector('#hourly-result-note'),
-    `Based on ${hoursInput.value || '40'} hours per week over ${weeksInput.value || '52'} weeks per year.`
+    noteNode,
+    `That works out to about ${formatCurrency(result.weeklyPay)} per week before taxes.`
+  );
+  setText(
+    contextNode,
+    `Based on ${hoursInput.value || '40'} hrs/week and ${weeksInput.value || '52'} weeks/year.`
+  );
+  setText(
+    breakdownNode,
+    'Annual salary = hourly rate × hours per week × weeks per year. Monthly = annual ÷ 12 and biweekly = annual ÷ 26.'
   );
 }
 
