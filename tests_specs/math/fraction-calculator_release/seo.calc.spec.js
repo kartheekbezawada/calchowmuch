@@ -5,7 +5,7 @@ test.describe('Fraction Calculator SEO', () => {
     await page.goto('/math/fraction-calculator/');
 
     await expect(page).toHaveTitle(
-      'Fraction Calculator - Add, Subtract, Multiply, Divide & Simplify | CalcHowMuch'
+      'Fraction Calculator | Math Operations & Simplify'
     );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');

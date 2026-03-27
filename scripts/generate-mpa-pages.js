@@ -135,7 +135,7 @@ const FINANCE_CALCULATOR_IDS = new Set([
 ]);
 const CALCULATOR_OVERRIDES = {
   basic: {
-    title: 'Basic Calculator | Add, Subtract, Multiply and Divide | CalcHowMuch',
+    title: 'Basic Calculator | Add, Subtract, Multiply, Divide',
     description:
       'Add, subtract, multiply, or divide everyday numbers in one clean answer-first basic calculator with support for extra inputs and memory tools.',
     h1: 'Basic Calculator',
@@ -159,7 +159,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'mean-median-mode-range': {
-    title: 'Mean Median Mode Range Calculator | Dataset Summary Statistics | CalcHowMuch',
+    title: 'Mean Median Mode Range Calculator | Data Summary',
     description:
       'Turn one dataset into mean, median, mode, minimum, maximum, and range in a light answer-first statistics layout built for quick descriptive checks.',
     h1: 'Mean Median Mode Range Calculator',
@@ -167,7 +167,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'standard-deviation': {
-    title: 'Standard Deviation Calculator | Sample and Population Spread | CalcHowMuch',
+    title: 'Standard Deviation Calculator | Sample & Population',
     description:
       'Measure sample or population spread with standard deviation, variance, and mean outputs in a light answer-first statistics layout.',
     h1: 'Standard Deviation Calculator',
@@ -175,7 +175,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'confidence-interval': {
-    title: 'Confidence Interval Calculator | Mean and Proportion Interval Estimator | CalcHowMuch',
+    title: 'Confidence Interval Calculator | Mean & Proportion',
     description:
       'Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.',
     h1: 'Confidence Interval Calculator',
@@ -183,7 +183,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'z-score': {
-    title: 'Z-Score Calculator | Standard Score and Interpretation | CalcHowMuch',
+    title: 'Z-Score Calculator | Standard Score Interpretation',
     description:
       'Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.',
     h1: 'Z-Score Calculator',
@@ -191,7 +191,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'number-sequence': {
-    title: 'Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch',
+    title: 'Number Sequence Calculator | Arithmetic & Geometric',
     description:
       'Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.',
     h1: 'Number Sequence Calculator',
@@ -199,7 +199,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'permutation-combination': {
-    title: 'Permutation & Combination Calculator | nPr, nCr and Factorial | CalcHowMuch',
+    title: 'Permutation & Combination Calculator | nPr, nCr',
     description:
       'Calculate permutations, combinations, and factorial values in a light answer-first counting calculator built for quick exact-integer results.',
     h1: 'Permutation & Combination Calculator',
@@ -207,7 +207,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   probability: {
-    title: 'Probability Calculator | Event Odds, Bayes and Binomial Checks | CalcHowMuch',
+    title: 'Probability Calculator | Odds, Bayes & Binomial',
     description:
       'Calculate single-event, combined-event, conditional, Bayes, and binomial probabilities in a light answer-first probability calculator.',
     h1: 'Probability Calculator',
@@ -215,7 +215,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   statistics: {
-    title: 'Statistics Calculator | Full Descriptive Summary | CalcHowMuch',
+    title: 'Statistics Calculator | Descriptive Stats Summary',
     description:
       'Calculate a full descriptive statistics summary with centre, spread, variance, and standard deviation in a light answer-first layout.',
     h1: 'Statistics Calculator',
@@ -231,7 +231,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'regression-analysis': {
-    title: 'Regression Analysis | Linear, Polynomial and Exponential Fit | CalcHowMuch',
+    title: 'Regression Analysis | Linear & Polynomial Models',
     description:
       'Fit linear, polynomial, exponential, and logarithmic models with goodness-of-fit metrics in a light answer-first statistics layout.',
     h1: 'Regression Analysis',
@@ -239,7 +239,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   distribution: {
-    title: 'Distribution Calculator | Normal, t, Chi-Square and F Values | CalcHowMuch',
+    title: 'Distribution Calculator | Normal, t, Chi-Square',
     description:
       'Calculate CDF, PDF, and quantile values for normal, Student\'s t, chi-square, and F distributions in a light answer-first statistics layout.',
     h1: 'Distribution Calculator',
@@ -247,7 +247,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   anova: {
-    title: 'ANOVA Calculator | One-Way F-Test and Effect Size | CalcHowMuch',
+    title: 'ANOVA Calculator | One-Way F-Test & Effect Size',
     description:
       'Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.',
     h1: 'ANOVA Calculator',
@@ -255,7 +255,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'hypothesis-testing': {
-    title: 'Hypothesis Testing | t-Tests, Chi-Square and p-Value Checks | CalcHowMuch',
+    title: 'Hypothesis Testing | t-Tests, Chi-Square & p-Value',
     description:
       'Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.',
     h1: 'Hypothesis Testing',
@@ -263,7 +263,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'home-loan': {
-    title: 'Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch',
+    title: 'Home Loan Calculator | Payment & Amortization',
     description:
       'Estimate monthly mortgage payments, amortization, payoff timeline, and interest savings from extra payments with our free Home Loan Calculator.',
     h1: 'Home Loan Calculator',
@@ -351,7 +351,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'personal-loan': {
-    title: 'Personal Loan Calculator - Monthly Payment, Interest & Total Cost | CalcHowMuch',
+    title: 'Personal Loan Calculator | Payments & Interest',
     description:
       'Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.',
     h1: 'Personal Loan Calculator',
@@ -455,7 +455,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'fraction-calculator': {
-    title: 'Fraction Calculator - Add, Subtract, Multiply, Divide & Simplify | CalcHowMuch',
+    title: 'Fraction Calculator | Math Operations & Simplify',
     description:
       'Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.',
     h1: 'Fraction Calculator',
@@ -479,7 +479,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'trig-functions': {
-    title: 'Trigonometric Functions Calculator | sin, cos, tan and Reciprocals | CalcHowMuch',
+    title: 'Trigonometric Functions Calculator | sin, cos, tan',
     description:
       'Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.',
     h1: 'Trigonometric Functions Calculator',
@@ -487,7 +487,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'inverse-trig': {
-    title: 'Inverse Trig Functions Calculator | arcsin, arccos and arctan | CalcHowMuch',
+    title: 'Inverse Trig Functions Calculator | arcsin to arctan',
     description:
       'Find arcsin, arccos, and arctan principal values plus every matching solution in a custom degree or radian interval with a light answer-first trig layout.',
     h1: 'Inverse Trig Functions Calculator',
@@ -511,7 +511,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'common-log': {
-    title: 'Common Log Calculator | Base 10, Base 2 and Custom Logs | CalcHowMuch',
+    title: 'Common Log Calculator | Base 10, 2 & Custom Logs',
     description:
       'Compute base-10, base-2, base-e, or custom logarithms with an answer-first layout that compares change-of-base results and shows the selected log curve.',
     h1: 'Common Log Calculator',
@@ -519,7 +519,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'log-properties': {
-    title: 'Logarithm Properties Calculator | Product, Quotient and Power Rules | CalcHowMuch',
+    title: 'Logarithm Properties Calculator | Log Rules Tool',
     description:
       'Check the product, quotient, and power log rules in an answer-first layout that pairs each numeric result with the matching symbolic rewrite.',
     h1: 'Logarithm Properties Calculator',
@@ -527,7 +527,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'exponential-equations': {
-    title: 'Exponential Equation Solver | Solve base^(m·x + c) = target | CalcHowMuch',
+    title: 'Exponential Equation Solver | Solve Using Logs',
     description:
       'Solve exponential equations in an answer-first layout that shows the logarithmic rearrangement, solved x value, and a graph checkpoint on the curve.',
     h1: 'Exponential Equation Solver',
@@ -535,7 +535,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'log-scale': {
-    title: 'Log Scale Converter | Decibel, pH and Richter Inputs | CalcHowMuch',
+    title: 'Log Scale Converter | Decibel, pH and Richter',
     description:
       'Convert decibel, pH, and Richter-scale inputs in an answer-first layout that keeps the result, formula, and plain-language interpretation together.',
     h1: 'Log Scale Converter',
@@ -543,7 +543,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   derivative: {
-    title: 'Derivative Calculator | Symbolic Derivative and Point Evaluation | CalcHowMuch',
+    title: 'Derivative Calculator | Symbolic & Point Values',
     description:
       'Find a symbolic derivative, repeat the derivative order, and evaluate the result at one point in a light answer-first calculus layout.',
     h1: 'Derivative Calculator',
@@ -551,7 +551,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   integral: {
-    title: 'Integral Calculator | Antiderivative and Definite Value | CalcHowMuch',
+    title: 'Integral Calculator | Definite and Indefinite',
     description:
       'Find an antiderivative or a definite integral value in a light answer-first calculus layout built for quick power-rule checks.',
     h1: 'Integral Calculator',
@@ -559,7 +559,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   limit: {
-    title: 'Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch',
+    title: 'Limit Calculator | One-Sided, Direct & Infinity',
     description:
       'Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks.',
     h1: 'Limit Calculator',
@@ -615,7 +615,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   factoring: {
-    title: 'Factoring Calculator | Polynomial Factoring Steps | CalcHowMuch',
+    title: 'Factoring Calculator | Polynomial Factoring Tool',
     description:
       'Factor algebraic expressions using GCF, quadratic factoring, difference of squares, cubes, and grouping with readable result steps.',
     h1: 'Factoring Calculator',
@@ -623,7 +623,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'polynomial-operations': {
-    title: 'Polynomial Operations Calculator | Add Subtract Multiply Divide',
+    title: 'Polynomial Operations Calculator | Algebra Tool',
     description:
       'Perform polynomial addition, subtraction, multiplication, and division with quotient and remainder outputs and clear operation summaries.',
     h1: 'Polynomial Operations Calculator',
@@ -639,7 +639,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'unit-circle': {
-    title: 'Unit Circle Calculator | Angles, Quadrants and Trig Values | CalcHowMuch',
+    title: 'Unit Circle Calculator | Angles & Trig Values',
     description:
       'Explore unit circle angles in degrees or radians with quadrant, reference angle, and exact sine, cosine, and tangent values.',
     h1: 'Unit Circle Calculator',
@@ -5434,23 +5434,23 @@ function buildGtepSitemap(categories) {
 }
 
 function buildSitemapXml(categories) {
+  const lastmod = '2026-03-27';
   const staticUrls = [
-    { path: '/pricing-calculators/', changefreq: 'monthly', priority: '0.75' },
-    { path: '/sitemap.xml', changefreq: 'monthly', priority: '0.4' },
-    { path: '/privacy/', changefreq: 'monthly', priority: '0.4' },
+    { path: '/pricing-calculators/', changefreq: 'monthly', priority: '0.75', lastmod },
+    { path: '/privacy/', changefreq: 'monthly', priority: '0.4', lastmod },
     {
       path: '/terms-and-conditions/',
-      lastmod: '2026-02-09',
+      lastmod,
       changefreq: 'yearly',
       priority: '0.30',
     },
     {
       path: '/contact-us/',
-      lastmod: '2026-02-09',
+      lastmod,
       changefreq: 'yearly',
       priority: '0.30',
     },
-    { path: '/faq/', lastmod: '2026-02-09', changefreq: 'monthly', priority: '0.40' },
+    { path: '/faq/', lastmod, changefreq: 'monthly', priority: '0.40' },
   ];
   const urls = [];
   const seen = new Set();
@@ -5482,6 +5482,7 @@ ${entry.lastmod ? `    <lastmod>${entry.lastmod}</lastmod>\n` : ''}    <changefr
       (url) => `
   <url>
     <loc>https://calchowmuch.com${url}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`
@@ -5492,11 +5493,13 @@ ${entry.lastmod ? `    <lastmod>${entry.lastmod}</lastmod>\n` : ''}    <changefr
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://calchowmuch.com/</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://calchowmuch.com/calculators/</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -5924,7 +5927,7 @@ function main() {
     writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
 
-  const homeTitle = 'All Calculators — Mortgage, Loan, Finance & Math Tools (Free & Easy)';
+  const homeTitle = 'All Calculators | Finance, Loan, Mortgage & Math';
   const homeDescription =
     'Quick calculations for everyday numbers. Explore calculator clusters and launch focused tools for math, finance, loans, time, and percentage planning.';
 

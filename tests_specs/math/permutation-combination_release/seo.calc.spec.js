@@ -30,7 +30,7 @@ test.describe('math/permutation-combination seo', () => {
     await page.goto('/math/permutation-combination/');
 
     await expect(page).toHaveTitle(
-      'Permutation & Combination Calculator | nPr, nCr and Factorial | CalcHowMuch'
+      'Permutation & Combination Calculator | nPr, nCr'
     );
     await expect(page.locator('h1')).toHaveText('Permutation & Combination Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

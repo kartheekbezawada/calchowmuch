@@ -30,7 +30,7 @@ test.describe('math/hypothesis-testing seo', () => {
     await page.goto('/math/statistics/hypothesis-testing/');
 
     await expect(page).toHaveTitle(
-      'Hypothesis Testing | t-Tests, Chi-Square and p-Value Checks | CalcHowMuch'
+      'Hypothesis Testing | t-Tests, Chi-Square & p-Value'
     );
     await expect(page.locator('h1')).toHaveText('Hypothesis Testing');
     await expect(page.locator('.top-nav')).toHaveCount(0);

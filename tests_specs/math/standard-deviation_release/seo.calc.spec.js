@@ -30,7 +30,7 @@ test.describe('math/standard-deviation seo', () => {
     await page.goto('/math/standard-deviation/');
 
     await expect(page).toHaveTitle(
-      'Standard Deviation Calculator | Sample and Population Spread | CalcHowMuch'
+      'Standard Deviation Calculator | Sample & Population'
     );
     await expect(page.locator('h1')).toHaveText('Standard Deviation Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

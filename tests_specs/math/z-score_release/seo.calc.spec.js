@@ -30,7 +30,7 @@ test.describe('math/z-score seo', () => {
     await page.goto('/math/z-score/');
 
     await expect(page).toHaveTitle(
-      'Z-Score Calculator | Standard Score and Interpretation | CalcHowMuch'
+      'Z-Score Calculator | Standard Score Interpretation'
     );
     await expect(page.locator('h1')).toHaveText('Z-Score Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);
