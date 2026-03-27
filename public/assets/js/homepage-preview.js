@@ -56,6 +56,7 @@ let homepageClusters = [];
 let currentSuggestions = [];
 let activeSuggestionIndex = -1;
 let expandedResultsQuery = '';
+let expandedClusterId = '';
 let expandedResultsAnimationTimeout = 0;
 
 function isMobileViewport() {
@@ -96,6 +97,10 @@ function syncExpandedResultsState(normalizedQuery = '') {
 
   delete categoriesNode.dataset.resultsMode;
   delete categoriesNode.dataset.expandedQuery;
+}
+
+function isExpandedResultsActive(normalizedQuery = '') {
+  return Boolean(expandedResultsQuery && expandedResultsQuery === normalizedQuery);
 }
 
 function triggerExpandedResultsAnimation() {
@@ -372,25 +377,25 @@ function normalizeClusters(registry, navigation) {
     .map((cluster) => {
       const resolvedRoutes = resolveClusterRoutes(cluster, allRoutes);
       const routePolicy = applyClusterCardRoutePolicy(cluster?.clusterId, resolvedRoutes);
-      const selectedRoutes = chooseEntryPointRoutes(
-        routePolicy.routes,
-        cluster?.displayName || cluster?.clusterId || 'Cluster'
-      );
       const clusterName = cluster?.displayName || cluster?.clusterId || 'Cluster';
-      const searchableRoutes = resolvedRoutes.map((route) => ({
+      const annotateRoute = (route) => ({
         ...route,
         searchText: normalizeQuery(
           [clusterName, route.name, route.url, route.categoryName, route.subcategoryName]
             .filter(Boolean)
             .join(' ')
         ),
-      }));
+      });
+      const fullRoutes = routePolicy.routes.map(annotateRoute);
+      const selectedRoutes = chooseEntryPointRoutes(fullRoutes, clusterName);
+      const searchableRoutes = resolvedRoutes.map(annotateRoute);
 
       return {
         id: cluster?.clusterId || 'unknown',
         name: clusterName,
         routes: selectedRoutes,
-        allRoutes: searchableRoutes,
+        fullRoutes,
+        searchableRoutes,
         searchText: normalizeQuery(clusterName),
         totalRoutes: resolvedRoutes.length,
         exploreUrl: routePolicy.exploreRoute?.url || selectedRoutes[0]?.url || '/calculators/',
@@ -405,38 +410,49 @@ function getVisibleClusterCount(registry) {
   ).length;
 }
 
-function getVisibleRouteSet(cluster, query, expandAll = false) {
-  if (!query) {
-    return {
-      visible: true,
-      routes: cluster.routes,
-      exploreUrl: cluster.exploreUrl,
-    };
+function getMatchingRoutesForCluster(cluster, query) {
+  const normalizedQuery = normalizeQuery(query);
+  if (!normalizedQuery) {
+    return cluster.fullRoutes;
   }
 
-  const matchingRoutes = cluster.allRoutes.filter((route) => matchesSearch(route.searchText, query));
-  const clusterMatch = matchesSearch(cluster.searchText, query);
+  const matchingRoutes = cluster.searchableRoutes.filter((route) =>
+    matchesSearch(route.searchText, normalizedQuery)
+  );
+  if (matchingRoutes.length) {
+    return matchingRoutes;
+  }
 
-  if (!clusterMatch && !matchingRoutes.length) {
+  return matchesSearch(cluster.searchText, normalizedQuery) ? cluster.fullRoutes : [];
+}
+
+function getVisibleRouteSet(cluster, query, expandAll = false) {
+  const normalizedQuery = normalizeQuery(query);
+  const isManuallyExpanded = expandedClusterId === cluster.id;
+  const expandedRoutes = getMatchingRoutesForCluster(cluster, normalizedQuery);
+
+  if (!expandedRoutes.length) {
     return {
       visible: false,
       routes: [],
-      exploreUrl: cluster.exploreUrl,
+      isExpanded: false,
+      isManuallyExpanded: false,
+      canToggle: false,
     };
   }
 
-  if (!matchingRoutes.length) {
-    return {
-      visible: true,
-      routes: cluster.routes,
-      exploreUrl: cluster.exploreUrl,
-    };
-  }
+  const collapsedRoutes = normalizedQuery
+    ? expandedRoutes.slice(0, MAX_CALCULATORS_PER_CARD)
+    : cluster.routes;
+  const canExpand = expandedRoutes.length > collapsedRoutes.length;
+  const isExpanded = Boolean(expandAll || isManuallyExpanded);
 
   return {
     visible: true,
-    routes: expandAll ? matchingRoutes : matchingRoutes.slice(0, MAX_CALCULATORS_PER_CARD),
-    exploreUrl: matchingRoutes[0]?.url || cluster.exploreUrl,
+    routes: isExpanded ? expandedRoutes : collapsedRoutes,
+    isExpanded,
+    isManuallyExpanded,
+    canToggle: canExpand || isManuallyExpanded,
   };
 }
 
@@ -461,15 +477,18 @@ function renderClusterCards(clusters, query = '', expandAll = false) {
         })
         .join('');
 
-      const exploreHref = visibleRouteSet.exploreUrl || cluster.exploreUrl || cluster.routes[0]?.url || '/calculators/';
       const totalCalculators = Math.max(cluster.totalRoutes, cluster.routes.length);
+      const routeListId = `homepage-cluster-routes-${escapeHtml(cluster.id)}`;
+      const expandLabel = visibleRouteSet.isManuallyExpanded ? 'Collapse' : 'Explore';
       return `<article
-        class="category-card${theme.warm ? ' is-warm' : ''}"
+        class="category-card${theme.warm ? ' is-warm' : ''}${visibleRouteSet.isExpanded ? ' is-expanded' : ''}"
         data-cluster-card
         data-cluster-id="${escapeHtml(cluster.id)}"
         data-cluster-name="${escapeHtml(normalizeQuery(cluster.name))}"
         data-total-calculators="${totalCalculators}"
         data-total-routes="${totalCalculators}"
+        data-expanded="${visibleRouteSet.isExpanded ? 'true' : 'false'}"
+        data-manually-expanded="${visibleRouteSet.isManuallyExpanded ? 'true' : 'false'}"
         style="--card-accent: ${theme.accent}; --card-flare: ${theme.flare || theme.accent}; --float-delay: ${index * 0.3}s"
       >
         <div class="card-head">
@@ -479,10 +498,18 @@ function renderClusterCards(clusters, query = '', expandAll = false) {
           </div>
           <span class="count-pill">${totalCalculators} calculators</span>
         </div>
-        <ul class="route-list">${routeItems}</ul>
-        <a class="card-explore" href="${escapeHtml(exploreHref)}">
-          <span>Explore</span><span class="card-explore-arrow" aria-hidden="true">›</span>
-        </a>
+        <ul id="${routeListId}" class="route-list">${routeItems}</ul>
+        <button
+          class="card-explore"
+          type="button"
+          data-cluster-toggle
+          data-cluster-target="${escapeHtml(cluster.id)}"
+          aria-controls="${routeListId}"
+          aria-expanded="${visibleRouteSet.isManuallyExpanded ? 'true' : 'false'}"
+          ${visibleRouteSet.canToggle ? '' : 'disabled'}
+        >
+          <span>${expandLabel}</span><span class="card-explore-arrow" aria-hidden="true">›</span>
+        </button>
       </article>`;
     })
     .join('');
@@ -584,7 +611,7 @@ function getSuggestionMatches(query) {
 
   const routeMap = new Map();
   homepageClusters.forEach((cluster) => {
-    cluster.allRoutes.forEach((route) => {
+    cluster.searchableRoutes.forEach((route) => {
       if (!matchesSearch(route.searchText, normalizedQuery)) {
         return;
       }
@@ -747,8 +774,15 @@ function applySearchFilter() {
     expandedResultsQuery = '';
   }
 
+  if (expandedClusterId) {
+    const expandedCluster = homepageClusters.find((cluster) => cluster.id === expandedClusterId);
+    if (!expandedCluster || !getMatchingRoutesForCluster(expandedCluster, normalizedQuery).length) {
+      expandedClusterId = '';
+    }
+  }
+
   syncExpandedResultsState(normalizedQuery);
-  renderClusterCards(homepageClusters, searchNode.value, expandedResultsQuery === normalizedQuery);
+  renderClusterCards(homepageClusters, searchNode.value, isExpandedResultsActive(normalizedQuery));
   renderSuggestions(searchNode.value);
 }
 
@@ -766,6 +800,32 @@ function expandAllMatches() {
   triggerExpandedResultsAnimation();
   setSuggestionsVisibility(false);
   revealFilteredResults();
+}
+
+function toggleClusterExpansion(clusterId) {
+  if (!clusterId) {
+    return;
+  }
+
+  const rawQuery = String(searchNode?.value || '').trim();
+  const normalizedQuery = normalizeQuery(rawQuery);
+  const expandAllActive = expandedResultsQuery && expandedResultsQuery === normalizedQuery;
+  const cluster = homepageClusters.find((entry) => entry.id === clusterId);
+  const routeSet = cluster ? getVisibleRouteSet(cluster, rawQuery, false) : null;
+
+  if (!routeSet?.canToggle && expandedClusterId !== clusterId) {
+    return;
+  }
+
+  if (expandAllActive) {
+    expandedResultsQuery = '';
+  }
+
+  expandedClusterId = expandedClusterId === clusterId && !expandAllActive ? '' : clusterId;
+  syncExpandedResultsState(normalizedQuery);
+  renderClusterCards(homepageClusters, rawQuery, isExpandedResultsActive(normalizedQuery));
+  setSuggestionsVisibility(false);
+  triggerExpandedResultsAnimation();
 }
 
 function revealFilteredResults() {
@@ -889,7 +949,7 @@ async function loadHomepage() {
     homepageClusters = normalizeClusters(registry, navigation);
     const normalizedQuery = normalizeQuery(searchNode.value);
     syncExpandedResultsState(normalizedQuery);
-    renderClusterCards(homepageClusters, searchNode.value, expandedResultsQuery === normalizedQuery);
+    renderClusterCards(homepageClusters, searchNode.value, isExpandedResultsActive(normalizedQuery));
     renderSuggestions(searchNode.value);
   } catch (error) {
     gridNode.innerHTML =
@@ -965,6 +1025,14 @@ if (gridNode && searchNode && emptyNode) {
 
     event.preventDefault();
     expandAllMatches();
+  });
+  gridNode.addEventListener('click', (event) => {
+    const toggle = event.target.closest('[data-cluster-toggle]');
+    if (!toggle || !(toggle instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    toggleClusterExpansion(toggle.dataset.clusterTarget || '');
   });
   document.addEventListener('click', (event) => {
     if (

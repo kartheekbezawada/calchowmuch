@@ -86,10 +86,7 @@ test.describe('Official standalone homepage', () => {
     await expect(homeLoanCard).toHaveCount(1);
     await expect(homeLoanCard.locator('[data-route-link]')).toHaveCount(4);
     await expect(homeLoanCard.locator('[data-route-link]', { hasText: 'Home Loan' })).toHaveCount(0);
-    await expect(homeLoanCard.locator('.card-explore')).toHaveAttribute(
-      'href',
-      '/loan-calculators/how-much-can-i-borrow/'
-    );
+    await expect(homeLoanCard.locator('[data-cluster-toggle]')).toHaveAttribute('aria-expanded', 'false');
 
     await expect(page.getByText('Create Your Own')).toHaveCount(0);
 
@@ -191,10 +188,7 @@ test.describe('Official standalone homepage', () => {
     await expect(
       homeLoanCard.locator('[data-route-link][href="/loan-calculators/mortgage-calculator/"]')
     ).toHaveCount(1);
-    await expect(homeLoanCard.locator('.card-explore')).toHaveAttribute(
-      'href',
-      '/loan-calculators/mortgage-calculator/'
-    );
+    await expect(homeLoanCard.locator('[data-cluster-toggle]')).toHaveAttribute('aria-expanded', 'false');
 
     await searchInput.fill('birthday');
 
@@ -226,6 +220,65 @@ test.describe('Official standalone homepage', () => {
     await expect(
       percentageCard.locator('[data-route-link][href="/percentage-calculators/reverse-percentage-calculator/"]')
     ).toHaveCount(1);
+  });
+
+  test('HOME-CARD-001: cluster explore toggles inline expansion and preserves route navigation', async ({
+    page,
+  }) => {
+    await page.goto('/');
+
+    const salaryCard = page.locator('[data-cluster-id="salary"]');
+    const homeLoanCard = page.locator('[data-cluster-id="home-loan"]');
+    const salaryToggle = salaryCard.locator('[data-cluster-toggle]');
+    const homeLoanToggle = homeLoanCard.locator('[data-cluster-toggle]');
+
+    await expect(salaryCard.locator('[data-route-link]')).toHaveCount(4);
+    await expect(salaryToggle).toHaveAttribute('aria-expanded', 'false');
+
+    await salaryToggle.press('Enter');
+
+    await expect(salaryToggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(salaryToggle).toContainText('Collapse');
+    expect(await salaryCard.locator('[data-route-link]').count()).toBeGreaterThan(4);
+    await expect(
+      salaryCard.locator('[data-route-link][href="/salary-calculators/commission-calculator/"]')
+    ).toHaveCount(1);
+
+    await homeLoanToggle.click();
+
+    await expect(salaryToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(salaryCard.locator('[data-route-link]')).toHaveCount(4);
+    await expect(homeLoanToggle).toHaveAttribute('aria-expanded', 'true');
+    expect(await homeLoanCard.locator('[data-route-link]').count()).toBeGreaterThan(4);
+
+    await homeLoanToggle.press('Space');
+
+    await expect(homeLoanToggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(homeLoanCard.locator('[data-route-link]')).toHaveCount(4);
+
+    await page.goto('/');
+    const searchInput = page.locator('#homepage-search');
+    await searchInput.fill('percentage');
+
+    const percentageCard = page.locator('[data-cluster-id="percentage"]');
+    const percentageToggle = percentageCard.locator('[data-cluster-toggle]');
+    await expect(percentageCard.locator('[data-route-link]')).toHaveCount(4);
+    await expect(
+      percentageCard.locator('[data-route-link][href="/percentage-calculators/reverse-percentage-calculator/"]')
+    ).toHaveCount(0);
+
+    await percentageToggle.click();
+
+    await expect(percentageToggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(
+      percentageCard.locator('[data-route-link][href="/percentage-calculators/reverse-percentage-calculator/"]')
+    ).toHaveCount(1);
+
+    await percentageCard
+      .locator('[data-route-link][href="/percentage-calculators/reverse-percentage-calculator/"]')
+      .click();
+
+    await expect(page).toHaveURL('/percentage-calculators/reverse-percentage-calculator/');
   });
 
   test('HOME-SEO-002: /calculators/?q= query contract filters multi-word matches and handles empty matches', async ({
