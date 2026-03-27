@@ -143,7 +143,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'series-convergence': {
-    title: 'Series Convergence Calculator | Ratio, Root and Comparison Tests | CalcHowMuch',
+    title: 'Series Convergence Calculator – Tests & Analysis',
     description:
       'Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.',
     h1: 'Series Convergence Calculator',
@@ -151,7 +151,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'critical-points': {
-    title: 'Critical Points Finder | Maxima, Minima and Inflection Scan | CalcHowMuch',
+    title: 'Critical Points Finder – Maxima, Minima & Inflection',
     description:
       'Find critical points, classify local maxima and minima, and surface inflection candidates in a light answer-first calculus layout built for quick curve analysis.',
     h1: 'Critical Points Finder',
@@ -223,7 +223,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   correlation: {
-    title: 'Correlation Calculator | Pearson, Spearman and Kendall | CalcHowMuch',
+    title: 'Correlation Calculator – Pearson, Spearman & Kendall',
     description:
       'Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout.',
     h1: 'Correlation Calculator',
@@ -367,7 +367,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-calculators-hub': {
-    title: 'Salary Calculators | Pay Conversion, Overtime, Bonus and Raise Tools',
+    title: 'Salary Calculators – Pay Conversion & Raise Tools',
     description:
       'Explore salary calculators for hourly to salary conversion, annual and monthly pay, overtime, raises, bonuses, and commission estimates.',
     h1: 'Salary Calculators',
@@ -375,7 +375,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-calculator': {
-    title: 'Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay',
+    title: 'Salary Calculator – Convert Pay Across Time Periods',
     description:
       'Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.',
     h1: 'Salary Calculator',
@@ -383,7 +383,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'hourly-to-salary-calculator': {
-    title: 'Hourly to Salary Calculator | Convert Hourly Pay to Annual Salary',
+    title: 'Hourly to Salary Calculator – Annual Pay Converter',
     description:
       'Convert an hourly wage into annual salary, monthly pay, biweekly pay, and weekly pay using your hours worked and weeks per year.',
     h1: 'Hourly to Salary Calculator',
@@ -391,7 +391,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-to-hourly-calculator': {
-    title: 'Salary to Hourly Calculator | Convert Annual Salary to Hourly Pay',
+    title: 'Salary to Hourly Calculator – Annual to Hourly Pay',
     description:
       'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly pay using your hours worked and weeks per year.',
     h1: 'Salary to Hourly Calculator',
@@ -399,7 +399,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'annual-to-monthly-salary-calculator': {
-    title: 'Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly',
+    title: 'Annual to Monthly Salary Calculator – Pay Converter',
     description:
       'Convert annual salary into monthly pay, with optional biweekly and weekly estimates based on your yearly income.',
     h1: 'Annual to Monthly Salary Calculator',
@@ -407,7 +407,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'monthly-to-annual-salary-calculator': {
-    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
+    title: 'Monthly to Annual Salary Calculator – Pay Converter',
     description:
       'Convert monthly salary into annual pay, with optional biweekly and weekly estimates based on your monthly income.',
     h1: 'Monthly to Annual Salary Calculator',
@@ -415,7 +415,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'weekly-pay-calculator': {
-    title: 'Weekly Pay Calculator | Estimate Weekly Earnings From Hours and Rate',
+    title: 'Weekly Pay Calculator – Estimate Earnings from Hours',
     description:
       'Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.',
     h1: 'Weekly Pay Calculator',
@@ -423,7 +423,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'overtime-pay-calculator': {
-    title: 'Overtime Pay Calculator | Estimate Extra Pay From Overtime Hours',
+    title: 'Overtime Pay Calculator – Estimate Extra Earnings',
     description:
       'Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.',
     h1: 'Overtime Pay Calculator',
@@ -439,7 +439,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'bonus-calculator': {
-    title: 'Bonus Calculator | Calculate Bonus as Amount or Percentage of Salary',
+    title: 'Bonus Calculator – Salary Bonus Amount or Percent',
     description:
       'Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.',
     h1: 'Bonus Calculator',
@@ -447,7 +447,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'commission-calculator': {
-    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    title: 'Commission Calculator – Calculate Sales Earnings',
     description:
       'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
     h1: 'Commission Calculator',
@@ -463,7 +463,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'sample-size': {
-    title: 'Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch',
+    title: 'Sample Size Calculator – Mean & Proportion Planner',
     description:
       'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.',
     h1: 'Sample Size Calculator',
@@ -495,7 +495,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'law-of-sines-cosines': {
-    title: 'Law of Sines and Cosines Calculator | Triangle Solver | CalcHowMuch',
+    title: 'Sine & Cosine Law Calculator – Triangle Solver',
     description:
       'Solve missing triangle sides, angles, and area with an answer-first Law of Sines and Cosines calculator that recommends the correct trig law and shows a live diagram.',
     h1: 'Law of Sines and Cosines Calculator',
@@ -659,7 +659,7 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Work Hours Calculator',
   },
   'time-between-two-dates-calculator': {
-    title: 'Time Between Two Dates Calculator | Days, Months & Business Days',
+    title: 'Time Between Dates Calculator – Days & Business Days',
     description:
       'Find days, weeks, months, business days, and exact hours between two dates. Use date-only or date-time mode, inclusive counting, and copy-ready summaries.',
     h1: 'Time Between Two Dates Calculator',
@@ -731,7 +731,7 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Markup Calculator',
   },
   'percentage-finder-calculator': {
-    title: 'What Percent Is X of Y Calculator | Ratio to Percent',
+    title: 'What Percent Is X of Y – Percentage Calculator',
     description:
       'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
     h1: 'What Percent Is X of Y',
@@ -743,9 +743,9 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Find Percentage of a Number Calculator',
   },
   'reverse-percentage-calculator': {
-    title: 'Reverse Percentage Calculator | Find the Original Value',
+    title: 'Reverse Percentage Calculator – Find Original Value',
     description:
-      'Find the original number when a known value represents a given percentage of it.',
+      'Calculate reverse percentages instantly. Find the original value from a percentage with clear results, examples, and step-by-step explanations.',
     h1: 'Reverse Percentage',
   },
   'present-value': {
@@ -797,7 +797,7 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   inflation: {
-    title: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
+    title: 'Inflation Calculator – CPI Value & Purchasing Power',
     description:
       'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
     h1: 'Inflation Calculator',
@@ -1602,6 +1602,7 @@ function buildCalculatorFallbackStructuredData({ canonical, title, description, 
   const softwareName =
     normalizeSeoText(h1) || normalizeSeoText(title).split('|')[0].trim() || 'Calculator';
   const breadcrumbLabel = toTitleCaseLabel(clusterSegment);
+  const clusterItem = clusterSegment ? `${SITE_URL}/${clusterSegment}/` : '';
 
   const breadcrumbItems = [
     {
@@ -1612,12 +1613,12 @@ function buildCalculatorFallbackStructuredData({ canonical, title, description, 
     },
   ];
 
-  if (breadcrumbLabel) {
+  if (breadcrumbLabel && clusterItem && clusterItem !== canonical) {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
       name: breadcrumbLabel,
-      item: `${SITE_URL}/${clusterSegment}/`,
+      item: clusterItem,
     });
   }
 
@@ -1649,6 +1650,84 @@ function buildCalculatorFallbackStructuredData({ canonical, title, description, 
         '@type': 'BreadcrumbList',
         '@id': `${canonical}#breadcrumbs`,
         itemListElement: breadcrumbItems,
+      },
+    ],
+  };
+}
+
+function buildCollectionPageStructuredData({
+  canonical,
+  title,
+  description,
+  collectionName,
+  breadcrumbName,
+}) {
+  const name = normalizeSeoText(collectionName) || normalizeSeoText(title) || 'Calculators';
+  const breadcrumbLabel = normalizeSeoText(breadcrumbName) || name;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'CollectionPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
       },
     ],
   };
@@ -3398,7 +3477,7 @@ function buildSalaryClusterHeaderHtml() {
     </a>
     <div class="sal-cluster-site-label" aria-label="Cluster label">Salary Calculators</div>
     <nav class="sal-cluster-site-links" aria-label="Site links">
-      <a href="/calculators/">All Calculators</a>
+      <a href="/">All Calculators</a>
       <a href="/contact-us/">Contact</a>
       <a href="/faq/">FAQs</a>
     </nav>
@@ -3734,7 +3813,7 @@ function buildPricingClusterLandingPage(category) {
   const calculators = Array.isArray(category?.subcategories)
     ? category.subcategories.flatMap((subcategory) => subcategory.calculators || [])
     : [];
-  const title = 'Pricing Calculators | Discount, Margin, Markup and Commission';
+  const title = 'Pricing Calculators – Discount, Margin & Markup Tools';
   const description =
     'Browse pricing calculators for discount, markup, margin, and commission with the shared answer-first shell.';
   const canonical = buildCanonical('/pricing-calculators/');
@@ -4914,6 +4993,13 @@ function buildCalculatorIndex(categories) {
     'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.';
   const canonical = buildCanonical('/calculators/');
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
+  const staticStructuredData = buildCollectionPageStructuredData({
+    canonical,
+    title,
+    description,
+    collectionName: 'All Calculators',
+    breadcrumbName: 'All Calculators',
+  });
   const headMetaHtml = generateHeadMeta({
     canonicalUrl: canonical,
     seoTitle: title,
@@ -4932,6 +5018,9 @@ ${headMetaHtml}
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">${stringifyStructuredData(
+      staticStructuredData
+    )}</script>
 ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body>
@@ -4944,6 +5033,18 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
             <p class="helper">
               Browse calculators by category. Select a calculator to launch it in the main
               calculator shell.
+            </p>
+            <p class="helper">
+              This directory groups every public calculator route in one place so you can move from
+              quick everyday percentage checks to deeper mortgage, loan, finance, salary, and time
+              planning tools without hunting through separate menus. If you already know the type of
+              problem you want to solve, jump straight into the matching category below.
+            </p>
+            <p class="helper">
+              Each calculator is designed to give a direct result first, then support that answer
+              with explanations, examples, formulas, and related tools where useful. Use this page
+              as a hub when you want to compare calculators, discover adjacent routes, or find the
+              right starting point before running a more detailed scenario.
             </p>
             <p id="all-calculators-no-results" class="helper" hidden>
               No calculator matches your search.
@@ -5334,14 +5435,9 @@ function buildGtepSitemap(categories) {
 
 function buildSitemapXml(categories) {
   const staticUrls = [
+    { path: '/pricing-calculators/', changefreq: 'monthly', priority: '0.75' },
     { path: '/sitemap.xml', changefreq: 'monthly', priority: '0.4' },
     { path: '/privacy/', changefreq: 'monthly', priority: '0.4' },
-    {
-      path: '/privacy-policy/',
-      lastmod: '2026-02-09',
-      changefreq: 'yearly',
-      priority: '0.30',
-    },
     {
       path: '/terms-and-conditions/',
       lastmod: '2026-02-09',

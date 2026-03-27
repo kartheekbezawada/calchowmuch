@@ -20,7 +20,7 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay',
+    title: 'Salary Calculator – Convert Pay Across Time Periods',
     description:
       'Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.',
     canonical: 'https://calchowmuch.com/salary-calculators/salary-calculator/',

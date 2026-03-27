@@ -64,9 +64,9 @@ const CALCULATOR_FAQ_ENTRIES = [
 ];
 
 const metadata = {
-  title: 'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch',
+  title: 'Inflation Calculator – CPI Value & Purchasing Power',
   description:
-    'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+    'Calculate inflation-adjusted value with U.S. CPI data. Compare purchasing power across years with equivalent value and inflation rates.',
   canonical: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
   structuredData: {
     '@context': 'https://schema.org',

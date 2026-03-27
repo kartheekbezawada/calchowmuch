@@ -9,9 +9,9 @@ import {
 } from './engine.js';
 
 const metadata = {
-  title: 'Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch',
+  title: 'Sample Size Calculator – Mean & Proportion Planner',
   description:
-    'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.',
+    'Estimate sample size for proportion or mean studies using confidence levels, margins of error, finite population correction, and examples.',
   canonical: 'https://calchowmuch.com/math/sample-size/',
 };
 

@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:salary`
-- HTML files scanned: **11**
-- Calculator pages scanned: **11**
+- Scope: `full`
+- HTML files scanned: **215**
+- Calculator pages scanned: **133**
 - Findings: **0**
 - Status: **PASS**
 
