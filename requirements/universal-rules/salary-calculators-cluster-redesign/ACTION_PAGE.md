@@ -238,6 +238,7 @@ Out-of-scope violation rule:
 
 - 2026-03-26: Salary cluster rollout completed as a cluster-scope shared-contract release.
 - Generated outputs now exist for `/salary-calculators/` plus all 10 child routes under `public/salary-calculators/**`.
+- 2026-03-27: Salary cluster fix wave 1 approved for UX, SEO, result-context, FAQ-density, and hub intent-routing improvements within the existing salary scope.
 - Salary cluster release tests now exist under `tests_specs/salary/**` for future single-calculator releases, while this rollout was verified with the cluster gate set.
 - Passed gates:
   - `npm run lint`

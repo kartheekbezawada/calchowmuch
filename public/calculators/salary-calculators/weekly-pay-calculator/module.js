@@ -48,6 +48,8 @@ const outputs = {
   weeklyPay: document.querySelector('#weekly-pay-result'),
   annualizedPay: document.querySelector('#weekly-annualized-pay'),
   note: document.querySelector('#weekly-pay-note'),
+  context: document.querySelector('#weekly-pay-context'),
+  breakdown: document.querySelector('#weekly-pay-breakdown'),
 };
 
 function renderMode(mode) {
@@ -105,9 +107,23 @@ function calculate() {
   setText(outputs.annualizedPay, result.annualizedPay === null ? '—' : formatCurrency(result.annualizedPay));
   setText(
     outputs.note,
+    result.annualizedPay === null
+      ? 'The weekly result is ready. Add weeks per year when you also want a simple annualized estimate.'
+      : `At this pace, that projects to about ${formatCurrency(result.annualizedPay)} per year before taxes.`
+  );
+  setText(
+    outputs.context,
     mode === 'split'
-      ? `Split-hours mode used ${regularHoursInput.value || '0'} regular hours and ${overtimeHoursInput.value || '0'} overtime hours.`
-      : `Standard mode used ${totalHoursInput.value || '0'} total weekly hours.`
+      ? `Used ${regularHoursInput.value || '0'} regular hours, ${overtimeHoursInput.value || '0'} overtime hours, and a ${overtimeMultiplierInput.value || '1.5'}x multiplier.`
+      : result.annualizedPay === null
+      ? `Used ${totalHoursInput.value || '0'} total weekly hours.`
+      : `Used ${totalHoursInput.value || '0'} total weekly hours and ${weeksInput.value || '52'} weeks/year for the annualized view.`
+  );
+  setText(
+    outputs.breakdown,
+    mode === 'split'
+      ? 'Weekly pay = regular hours × hourly rate + overtime hours × hourly rate × overtime multiplier. Annualized pay = weekly pay × weeks per year.'
+      : 'Weekly pay = hourly rate × total weekly hours. Annualized pay = weekly pay × weeks per year.'
   );
 }
 

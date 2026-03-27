@@ -169,14 +169,16 @@
 }
 
 .sal-cluster-status-grid,
-.sal-cluster-copy-grid {
+.sal-cluster-copy-grid,
+.sal-intent-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
 
 .sal-cluster-status-card,
-.sal-cluster-copy-card {
+.sal-cluster-copy-card,
+.sal-intent-card {
   border-radius: 22px;
   border: 1px solid rgba(19, 34, 47, 0.08);
   background: #f9fcfa;
@@ -184,7 +186,8 @@
 }
 
 .sal-cluster-status-card strong,
-.sal-cluster-copy-card h3 {
+.sal-cluster-copy-card h3,
+.sal-intent-card h3 {
   display: block;
   margin: 0 0 10px;
   color: #13222f;
@@ -192,10 +195,20 @@
 
 .sal-cluster-status-card p,
 .sal-cluster-copy-card p,
+.sal-intent-card p,
 .sal-cluster-roadmap-note {
   margin: 0;
   color: #5d6f67;
   line-height: 1.65;
+}
+
+.sal-intent-card a {
+  color: inherit;
+}
+
+.sal-intent-card:hover {
+  border-color: rgba(22, 101, 52, 0.16);
+  box-shadow: 0 12px 28px rgba(19, 34, 47, 0.07);
 }
 
 .sal-cluster-roadmap-list,
@@ -293,7 +306,8 @@
 .sal-input-row,
 .sal-mode-fields,
 .sal-optional-stack,
-.sal-inline-fields {
+.sal-inline-fields,
+.sal-input-details {
   display: grid;
   gap: 12px;
 }
@@ -334,9 +348,47 @@
 .sal-helper-text,
 .sal-calc-helper,
 .sal-answer-context,
-.sal-results-disclaimer {
+.sal-results-disclaimer,
+.sal-breakdown-card p,
+.sal-method-card p {
   margin: 0;
   color: #6b7e77;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.sal-input-details {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(19, 34, 47, 0.08);
+  background: #f7fbf8;
+}
+
+.sal-input-details summary {
+  cursor: pointer;
+  color: #22353f;
+  font-size: 14px;
+  font-weight: 700;
+  list-style: none;
+}
+
+.sal-input-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.sal-input-details summary::after {
+  content: '+';
+  float: right;
+  color: #5d6f67;
+}
+
+.sal-input-details[open] summary::after {
+  content: '−';
+}
+
+.sal-input-details-copy {
+  margin: 0;
+  color: #5d6f67;
   font-size: 14px;
   line-height: 1.55;
 }
@@ -411,6 +463,13 @@
   padding-top: 4px;
 }
 
+.sal-answer-context {
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #f7fbf8;
+  border: 1px solid rgba(19, 34, 47, 0.06);
+}
+
 .sal-support-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -436,6 +495,24 @@
   line-height: 1.2;
 }
 
+.sal-breakdown-card,
+.sal-method-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(19, 34, 47, 0.08);
+  background: #f9fcfa;
+}
+
+.sal-breakdown-card h3,
+.sal-method-card h3 {
+  margin: 0;
+  color: #13222f;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
 .sal-explanation-card,
 .sal-related-card {
   padding: 24px;
@@ -451,6 +528,22 @@
 
 .sal-related-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.sal-faq-grid {
+  gap: 12px;
+}
+
+.sal-faq-grid .sal-related-card {
+  padding: 18px;
+  border-radius: 22px;
+  background: #fcfdfc;
+  box-shadow: none;
+}
+
+.sal-faq-grid .sal-related-card h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
 }
 
 .sal-related-card a,

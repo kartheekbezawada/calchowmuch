@@ -24,11 +24,20 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary to hourly results">
     <p class="sal-answer-title">Hourly rate</p>
     <p class="sal-answer-hero" id="salary-hourly-result">—</p>
-    <p class="sal-answer-note" id="salary-hourly-note">Enter values and click Calculate.</p>
+    <p class="sal-answer-note" id="salary-hourly-note">Calculate to see the hourly rate first, then weekly, biweekly, and monthly pay.</p>
+    <p class="sal-answer-context" id="salary-hourly-context">The result will show the exact schedule assumptions used to convert annual salary into hourly pay.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card"><span>Weekly pay</span><strong id="salary-weekly-result">—</strong></div>
       <div class="sal-support-card"><span>Biweekly pay</span><strong id="salary-biweekly-result">—</strong></div>
       <div class="sal-support-card"><span>Monthly pay</span><strong id="salary-monthly-result">—</strong></div>
+    </div>
+    <div class="sal-breakdown-card">
+      <h3>Calculation basis</h3>
+      <p id="salary-hourly-breakdown">Hourly rate = annual salary ÷ weeks per year ÷ hours per week. Weekly, biweekly, and monthly views come from the same annual salary input.</p>
+    </div>
+    <div class="sal-method-card">
+      <h3>How we calculate this</h3>
+      <p>Gross pay only. This route relies on your own hours-per-week and weeks-per-year assumptions instead of fixed payroll rules.</p>
     </div>
     <p class="sal-results-disclaimer">Gross-pay estimate only. Taxes and deductions are excluded.</p>
   </aside>

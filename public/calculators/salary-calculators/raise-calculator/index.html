@@ -20,10 +20,10 @@
         data-button-group="raise-mode"
       >
         <button class="sal-chip-button is-active" type="button" data-value="percent" aria-pressed="true">
-          Percent
+          Percent of salary
         </button>
         <button class="sal-chip-button" type="button" data-value="amount" aria-pressed="false">
-          Amount
+          Flat amount
         </button>
       </div>
     </div>
@@ -45,7 +45,8 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Raise calculator results">
     <p class="sal-answer-title">New salary</p>
     <p class="sal-answer-hero" id="raise-new-salary">—</p>
-    <p class="sal-answer-note" id="raise-note">Enter values and click Calculate.</p>
+    <p class="sal-answer-note" id="raise-note">Calculate to see the new salary first, then the raise amount and percent increase.</p>
+    <p class="sal-answer-context" id="raise-context">The route will show whether the result came from a percent-based raise or a flat dollar increase.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Raise amount</span>
@@ -55,6 +56,14 @@
         <span>Percent increase</span>
         <strong id="raise-percent-output">—</strong>
       </div>
+    </div>
+    <div class="sal-breakdown-card">
+      <h3>Calculation basis</h3>
+      <p id="raise-breakdown">Percent mode multiplies current salary by the raise percent. Flat-amount mode uses the raise amount directly.</p>
+    </div>
+    <div class="sal-method-card">
+      <h3>How we calculate this</h3>
+      <p>Gross pay only. This route estimates the salary change itself and does not include tax withholding or benefits adjustments.</p>
     </div>
     <p class="sal-results-disclaimer">Gross-pay estimate only. Taxes and deductions are not included.</p>
   </aside>

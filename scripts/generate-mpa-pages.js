@@ -374,6 +374,86 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'salary-calculator': {
+    title: 'Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay',
+    description:
+      'Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.',
+    h1: 'Salary Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'hourly-to-salary-calculator': {
+    title: 'Hourly to Salary Calculator | Convert Hourly Pay to Annual Salary',
+    description:
+      'Convert an hourly wage into annual salary, monthly pay, biweekly pay, and weekly pay using your hours worked and weeks per year.',
+    h1: 'Hourly to Salary Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'salary-to-hourly-calculator': {
+    title: 'Salary to Hourly Calculator | Convert Annual Salary to Hourly Pay',
+    description:
+      'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly pay using your hours worked and weeks per year.',
+    h1: 'Salary to Hourly Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'annual-to-monthly-salary-calculator': {
+    title: 'Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly',
+    description:
+      'Convert annual salary into monthly pay, with optional biweekly and weekly estimates based on your yearly income.',
+    h1: 'Annual to Monthly Salary Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'monthly-to-annual-salary-calculator': {
+    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
+    description:
+      'Convert monthly salary into annual pay, with optional biweekly and weekly estimates based on your monthly income.',
+    h1: 'Monthly to Annual Salary Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'weekly-pay-calculator': {
+    title: 'Weekly Pay Calculator | Estimate Weekly Earnings From Hours and Rate',
+    description:
+      'Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.',
+    h1: 'Weekly Pay Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'overtime-pay-calculator': {
+    title: 'Overtime Pay Calculator | Estimate Extra Pay From Overtime Hours',
+    description:
+      'Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.',
+    h1: 'Overtime Pay Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'raise-calculator': {
+    title: 'Raise Calculator | Calculate New Salary After a Pay Raise',
+    description:
+      'Calculate a new salary after a raise using either a percentage increase or a flat raise amount.',
+    h1: 'Raise Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'bonus-calculator': {
+    title: 'Bonus Calculator | Calculate Bonus as Amount or Percentage of Salary',
+    description:
+      'Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.',
+    h1: 'Bonus Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'commission-calculator': {
+    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    description:
+      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
+    h1: 'Commission Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'fraction-calculator': {
     title: 'Fraction Calculator - Add, Subtract, Multiply, Divide & Simplify | CalcHowMuch',
     description:
@@ -1644,6 +1724,34 @@ function extractTagText(html, tagName) {
 }
 
 function extractCalculatorFaqEntries(explanationHtml, calculatorId) {
+  const salaryFaqGridMatch = explanationHtml.match(
+    /<div[^>]*class="[^"]*\bsal-faq-grid\b[^"]*"[^>]*>([\s\S]*?)<\/div>/i
+  );
+  if (salaryFaqGridMatch) {
+    const entries = [];
+    const cardRegex = /<article[^>]*class="[^"]*\bsal-related-card\b[^"]*"[^>]*>([\s\S]*?)<\/article>/gi;
+
+    for (const [, cardHtml] of salaryFaqGridMatch[1].matchAll(cardRegex)) {
+      const question = extractTagText(cardHtml, 'h3');
+      const answer = extractTagText(cardHtml, 'p');
+      if (!question || !answer) {
+        continue;
+      }
+      entries.push({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: answer,
+        },
+      });
+    }
+
+    if (entries.length >= 4) {
+      return entries;
+    }
+  }
+
   const faqSectionMatch = explanationHtml.match(
     /<section[^>]*id="[^"]*faq[^"]*"[^>]*>([\s\S]*?)<\/section>/i
   );
@@ -1902,6 +2010,104 @@ function buildFinanceStructuredData({
             '@type': 'ListItem',
             position: 3,
             name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function buildSalaryStructuredData({
+  title,
+  description,
+  canonical,
+  faqEntries,
+  softwareName,
+  softwareDescription,
+  featureList = [],
+  keywords = [],
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+        about: { '@id': `${canonical}#softwareapplication` },
+        mainEntity: { '@id': `${canonical}#softwareapplication` },
+        breadcrumb: { '@id': `${canonical}#breadcrumbs` },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description: softwareDescription || description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        ...(featureList.length ? { featureList } : {}),
+        ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Salary Calculators',
+            item: `${SITE_URL}/salary-calculators/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: softwareName,
             item: canonical,
           },
         ],
@@ -5470,6 +5676,18 @@ function main() {
         canonical: pageCanonical,
         faqEntries,
         ...financeSchemaConfig,
+      });
+      injectStaticStructuredData = true;
+    }
+    if (isMigratedSalaryClusterRoute && calculator.id !== 'salary-calculators-hub') {
+      const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildSalaryStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        softwareName: override?.h1 ?? calculator.name,
+        softwareDescription: pageDescription,
       });
       injectStaticStructuredData = true;
     }

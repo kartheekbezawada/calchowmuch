@@ -45,6 +45,8 @@ const outputs = {
   raiseAmount: document.querySelector('#raise-amount-output'),
   percentIncrease: document.querySelector('#raise-percent-output'),
   note: document.querySelector('#raise-note'),
+  context: document.querySelector('#raise-context'),
+  breakdown: document.querySelector('#raise-breakdown'),
 };
 
 function renderMode(mode) {
@@ -93,8 +95,20 @@ function calculate() {
   setText(
     outputs.note,
     mode === 'amount'
-      ? 'Amount mode added the flat raise value to the current salary.'
-      : 'Percent mode calculated the raise from the current salary.'
+      ? `That adds ${formatCurrency(result.raiseAmount)} to the current salary before taxes.`
+      : `That increases salary by ${formatPercent(result.percentIncrease)} before taxes.`
+  );
+  setText(
+    outputs.context,
+    mode === 'amount'
+      ? 'Used flat-amount mode to add the raise directly to current salary.'
+      : 'Used percent-of-salary mode to calculate the raise amount from current salary.'
+  );
+  setText(
+    outputs.breakdown,
+    mode === 'amount'
+      ? 'New salary = current salary + flat raise amount. Percent increase = raise amount ÷ current salary × 100.'
+      : 'Raise amount = current salary × raise percent. New salary = current salary + raise amount.'
   );
 }
 

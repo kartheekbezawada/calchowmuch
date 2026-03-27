@@ -13,6 +13,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
       'Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       await page.click('button[data-value="hourly"]');
+      await page.click('#salary-assumptions summary');
       await page.fill('#salary-pay-amount', '25');
       await page.fill('#salary-hours-per-week', '40');
       await page.fill('#salary-weeks-per-year', '52');
@@ -21,7 +22,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
 
       expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(52000, 2);
       expect(parseNumericText(await page.locator('#salary-daily-pay').textContent())).toBeCloseTo(200, 2);
-      await expect(page.locator('#salary-answer-note')).toContainText('hourly pay');
+      await expect(page.locator('#salary-answer-context')).toContainText('from hourly pay');
     },
   },
   'hourly-to-salary-calculator': {
@@ -103,7 +104,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
 
       expect(parseNumericText(await page.locator('#weekly-pay-result').textContent())).toBeCloseTo(1187.5, 2);
       expect(parseNumericText(await page.locator('#weekly-annualized-pay').textContent())).toBeCloseTo(61750, 2);
-      await expect(page.locator('#weekly-pay-note')).toContainText('Split-hours mode');
+      await expect(page.locator('#weekly-pay-context')).toContainText('regular hours');
     },
   },
   'overtime-pay-calculator': {

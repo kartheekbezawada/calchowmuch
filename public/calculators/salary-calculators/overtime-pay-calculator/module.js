@@ -41,6 +41,8 @@ const outputs = {
   overtimePay: document.querySelector('#overtime-pay-result'),
   totalPay: document.querySelector('#overtime-total-pay'),
   note: document.querySelector('#overtime-pay-note'),
+  context: document.querySelector('#overtime-pay-context'),
+  breakdown: document.querySelector('#overtime-pay-breakdown'),
 };
 
 function renderError(message) {
@@ -75,8 +77,18 @@ function calculate() {
   setText(
     outputs.note,
     rawBasePay
-      ? `Total pay combines the base pay and overtime pay for the same period.`
-      : `Base pay is optional, so the route is showing the overtime portion only.`
+      ? `The overtime portion adds ${formatCurrency(result.overtimePay)} before taxes.`
+      : `The route is showing the overtime portion only, before taxes.`
+  );
+  setText(
+    outputs.context,
+    `Based on ${overtimeHoursInput.value || '0'} overtime hours at ${overtimeMultiplierInput.value || '1.5'}x.`
+  );
+  setText(
+    outputs.breakdown,
+    rawBasePay
+      ? 'Overtime pay = hourly rate × overtime hours × overtime multiplier, then total pay = base pay + overtime pay.'
+      : 'Overtime pay = hourly rate × overtime hours × overtime multiplier.'
   );
 }
 

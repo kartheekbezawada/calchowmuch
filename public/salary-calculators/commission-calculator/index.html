@@ -16,7 +16,6 @@
     <meta name="twitter:description" content="Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication","name":"Commission Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Calculator","item":"https://calchowmuch.com/salary-calculators/commission-calculator/"}]}]}</script>
     <style data-salary-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
@@ -1053,14 +1052,16 @@
       }
 
       .sal-cluster-status-grid,
-      .sal-cluster-copy-grid {
+      .sal-cluster-copy-grid,
+      .sal-intent-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 16px;
       }
 
       .sal-cluster-status-card,
-      .sal-cluster-copy-card {
+      .sal-cluster-copy-card,
+      .sal-intent-card {
         border-radius: 22px;
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
@@ -1068,7 +1069,8 @@
       }
 
       .sal-cluster-status-card strong,
-      .sal-cluster-copy-card h3 {
+      .sal-cluster-copy-card h3,
+      .sal-intent-card h3 {
         display: block;
         margin: 0 0 10px;
         color: #13222f;
@@ -1076,10 +1078,20 @@
 
       .sal-cluster-status-card p,
       .sal-cluster-copy-card p,
+      .sal-intent-card p,
       .sal-cluster-roadmap-note {
         margin: 0;
         color: #5d6f67;
         line-height: 1.65;
+      }
+
+      .sal-intent-card a {
+        color: inherit;
+      }
+
+      .sal-intent-card:hover {
+        border-color: rgba(22, 101, 52, 0.16);
+        box-shadow: 0 12px 28px rgba(19, 34, 47, 0.07);
       }
 
       .sal-cluster-roadmap-list,
@@ -1177,7 +1189,8 @@
       .sal-input-row,
       .sal-mode-fields,
       .sal-optional-stack,
-      .sal-inline-fields {
+      .sal-inline-fields,
+      .sal-input-details {
         display: grid;
         gap: 12px;
       }
@@ -1218,9 +1231,47 @@
       .sal-helper-text,
       .sal-calc-helper,
       .sal-answer-context,
-      .sal-results-disclaimer {
+      .sal-results-disclaimer,
+      .sal-breakdown-card p,
+      .sal-method-card p {
         margin: 0;
         color: #6b7e77;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .sal-input-details {
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f7fbf8;
+      }
+
+      .sal-input-details summary {
+        cursor: pointer;
+        color: #22353f;
+        font-size: 14px;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      .sal-input-details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .sal-input-details summary::after {
+        content: '+';
+        float: right;
+        color: #5d6f67;
+      }
+
+      .sal-input-details[open] summary::after {
+        content: '−';
+      }
+
+      .sal-input-details-copy {
+        margin: 0;
+        color: #5d6f67;
         font-size: 14px;
         line-height: 1.55;
       }
@@ -1295,6 +1346,13 @@
         padding-top: 4px;
       }
 
+      .sal-answer-context {
+        padding: 10px 12px;
+        border-radius: 16px;
+        background: #f7fbf8;
+        border: 1px solid rgba(19, 34, 47, 0.06);
+      }
+
       .sal-support-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -1320,6 +1378,24 @@
         line-height: 1.2;
       }
 
+      .sal-breakdown-card,
+      .sal-method-card {
+        display: grid;
+        gap: 8px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f9fcfa;
+      }
+
+      .sal-breakdown-card h3,
+      .sal-method-card h3 {
+        margin: 0;
+        color: #13222f;
+        font-size: 15px;
+        line-height: 1.3;
+      }
+
       .sal-explanation-card,
       .sal-related-card {
         padding: 24px;
@@ -1335,6 +1411,22 @@
 
       .sal-related-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .sal-faq-grid {
+        gap: 12px;
+      }
+
+      .sal-faq-grid .sal-related-card {
+        padding: 18px;
+        border-radius: 22px;
+        background: #fcfdfc;
+        box-shadow: none;
+      }
+
+      .sal-faq-grid .sal-related-card h3 {
+        margin-bottom: 6px;
+        font-size: 1rem;
       }
 
       .sal-related-card a,
@@ -1413,6 +1505,7 @@
       }
     </style>
  
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#webpage","name":"Commission Calculator | Calculate Earnings From Sales Commission","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication","name":"Commission Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate commission?","acceptedAnswer":{"@type":"Answer","text":"Multiply the sales amount by the commission rate, or enter a known commission amount directly."}},{"@type":"Question","name":"Can I use a commission rate or a known commission amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. This route supports both rate-based and amount-based commission inputs."}},{"@type":"Question","name":"Can I include base pay?","acceptedAnswer":{"@type":"Answer","text":"Yes. Base pay is optional and only affects the total-earnings support value."}},{"@type":"Question","name":"Does this show effective commission rate?","acceptedAnswer":{"@type":"Answer","text":"Yes. The route can show the effective commission percentage when sales and commission are known."}},{"@type":"Question","name":"Does this include tax deductions?","acceptedAnswer":{"@type":"Answer","text":"No. This route estimates gross commission earnings only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Calculator","item":"https://calchowmuch.com/salary-calculators/commission-calculator/"}]}]}</script>
     <!-- CHM_ADSENSE_HEAD_START -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063975431106361"
          crossorigin="anonymous"></script>
@@ -1466,10 +1559,10 @@
         data-button-group="commission-mode"
       >
         <button class="sal-chip-button is-active" type="button" data-value="rate" aria-pressed="true">
-          Rate
+          Commission rate %
         </button>
         <button class="sal-chip-button" type="button" data-value="amount" aria-pressed="false">
-          Amount
+          Flat amount
         </button>
       </div>
     </div>
@@ -1497,7 +1590,8 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Commission calculator results">
     <p class="sal-answer-title">Commission earned</p>
     <p class="sal-answer-hero" id="commission-earned-output">—</p>
-    <p class="sal-answer-note" id="commission-note">Enter values and click Calculate.</p>
+    <p class="sal-answer-note" id="commission-note">Calculate to see commission earned first, then total earnings and effective commission rate.</p>
+    <p class="sal-answer-context" id="commission-context">The route will show whether commission came from a commission-rate input or a flat commission amount.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Total earnings</span>
@@ -1507,6 +1601,14 @@
         <span>Effective rate</span>
         <strong id="commission-effective-rate">—</strong>
       </div>
+    </div>
+    <div class="sal-breakdown-card">
+      <h3>Calculation basis</h3>
+      <p id="commission-breakdown">Rate mode multiplies sales by the commission rate. Flat-amount mode uses the commission amount directly.</p>
+    </div>
+    <div class="sal-method-card">
+      <h3>How we calculate this</h3>
+      <p>Gross pay only. Base pay is optional and industry-specific commission plans are not assumed by this route.</p>
     </div>
     <p class="sal-results-disclaimer">Gross-pay estimate only. Industry-specific commission rules are not assumed.</p>
   </aside>
@@ -1535,6 +1637,15 @@
       With <strong>$50,000.00</strong> in sales and an <strong>8%</strong> commission rate, the
       commission earned is <strong>$4,000.00</strong>. If base pay is <strong>$3,000.00</strong>,
       total earnings become <strong>$7,000.00</strong>.
+    </p>
+  </section>
+
+  <section class="sal-explanation-card">
+    <h3>What changes the result most</h3>
+    <p>
+      Sales amount and commission rate drive the commission figure, while base pay only changes the
+      total-earnings support value. Flat-amount mode is useful when the commission amount is already
+      known and you only need to back into the effective rate.
     </p>
   </section>
 

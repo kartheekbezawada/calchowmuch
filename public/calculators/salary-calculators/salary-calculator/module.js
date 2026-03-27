@@ -56,6 +56,8 @@ const outputs = {
   dailyPay: document.querySelector('#salary-daily-pay'),
   hourlyPay: document.querySelector('#salary-hourly-pay'),
   note: document.querySelector('#salary-answer-note'),
+  context: document.querySelector('#salary-answer-context'),
+  breakdown: document.querySelector('#salary-breakdown'),
 };
 
 const frequencyButtons = setupButtonGroup(frequencyGroup, { defaultValue: 'annual' });
@@ -85,10 +87,30 @@ function clearError() {
   errorNode.textContent = '';
 }
 
+function buildSalaryBreakdown(frequency) {
+  if (frequency === 'hourly') {
+    return 'Annual pay = pay amount × hours per week × weeks per year. Monthly = annual ÷ 12, biweekly = annual ÷ 26, daily = weekly ÷ days per week.';
+  }
+  if (frequency === 'daily') {
+    return 'Annual pay = pay amount × days per week × weeks per year. Weekly pay comes from annual ÷ weeks per year, then hourly uses weekly ÷ hours per week.';
+  }
+  if (frequency === 'weekly') {
+    return 'Annual pay = pay amount × weeks per year. Monthly = annual ÷ 12, biweekly = annual ÷ 26, daily = weekly ÷ days per week.';
+  }
+  if (frequency === 'biweekly') {
+    return 'Annual pay = pay amount × 26. Monthly = annual ÷ 12, weekly = annual ÷ weeks per year, and hourly uses weekly ÷ hours per week.';
+  }
+  if (frequency === 'monthly') {
+    return 'Annual pay = pay amount × 12. Weekly = annual ÷ weeks per year, biweekly = annual ÷ 26, and daily uses weekly ÷ days per week.';
+  }
+  return 'Annual pay starts from the amount you entered. Monthly = annual ÷ 12, biweekly = annual ÷ 26, weekly = annual ÷ weeks per year, and hourly uses weekly ÷ hours per week.';
+}
+
 function calculate() {
+  const frequency = frequencyButtons?.getValue() ?? 'annual';
   const result = calculateSalaryConversion({
     amount: getInputNumber(amountInput),
-    frequency: frequencyButtons?.getValue() ?? 'annual',
+    frequency,
     hoursPerWeek: getInputNumber(hoursInput),
     weeksPerYear: getInputNumber(weeksInput),
     daysPerWeek: getInputNumber(daysInput),
@@ -108,8 +130,13 @@ function calculate() {
   setText(outputs.hourlyPay, formatCurrency(result.hourlyPay));
   setText(
     outputs.note,
-    `Started from ${FREQUENCY_LABELS[frequencyButtons?.getValue() ?? 'annual']} and converted using ${weeksInput.value || '52'} weeks, ${hoursInput.value || '40'} hours, and ${daysInput.value || '5'} workdays.`
+    `That equals about ${formatCurrency(result.weeklyPay)} per week before taxes.`
   );
+  setText(
+    outputs.context,
+    `Based on ${hoursInput.value || '40'} hrs/week, ${weeksInput.value || '52'} weeks/year, and ${daysInput.value || '5'} workdays/week from ${FREQUENCY_LABELS[frequency]}.`
+  );
+  setText(outputs.breakdown, buildSalaryBreakdown(frequency));
 }
 
 calculateButton?.addEventListener('click', calculate);
