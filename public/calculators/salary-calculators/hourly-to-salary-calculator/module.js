@@ -20,7 +20,7 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Hourly to Salary Calculator | Convert Hourly Pay to Annual Salary',
+    title: 'Hourly to Salary Calculator – Annual Pay Converter',
     description:
       'Convert an hourly wage into annual salary, monthly pay, biweekly pay, and weekly pay using your hours worked and weeks per year.',
     canonical: 'https://calchowmuch.com/salary-calculators/hourly-to-salary-calculator/',

@@ -20,7 +20,7 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Overtime Pay Calculator | Estimate Extra Pay From Overtime Hours',
+    title: 'Overtime Pay Calculator – Estimate Extra Earnings',
     description:
       'Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.',
     canonical: 'https://calchowmuch.com/salary-calculators/overtime-pay-calculator/',

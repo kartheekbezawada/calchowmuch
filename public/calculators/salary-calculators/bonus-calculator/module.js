@@ -22,7 +22,7 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Bonus Calculator | Calculate Bonus as Amount or Percentage of Salary',
+    title: 'Bonus Calculator – Salary Bonus Amount or Percent',
     description:
       'Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.',
     canonical: 'https://calchowmuch.com/salary-calculators/bonus-calculator/',

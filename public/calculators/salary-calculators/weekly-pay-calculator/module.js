@@ -21,7 +21,7 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Weekly Pay Calculator | Estimate Weekly Earnings From Hours and Rate',
+    title: 'Weekly Pay Calculator – Estimate Earnings from Hours',
     description:
       'Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.',
     canonical: 'https://calchowmuch.com/salary-calculators/weekly-pay-calculator/',

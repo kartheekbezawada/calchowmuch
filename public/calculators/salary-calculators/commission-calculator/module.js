@@ -22,7 +22,7 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    title: 'Commission Calculator – Calculate Sales Earnings',
     description:
       'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
     canonical: 'https://calchowmuch.com/salary-calculators/commission-calculator/',
