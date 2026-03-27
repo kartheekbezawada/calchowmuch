@@ -28,7 +28,7 @@ test.describe('math/integral seo', () => {
     await page.goto('/math/calculus/integral/');
 
     await expect(page).toHaveTitle(
-      'Integral Calculator | Antiderivative and Definite Value | CalcHowMuch'
+      'Integral Calculator | Definite and Indefinite'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

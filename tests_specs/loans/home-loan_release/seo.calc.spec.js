@@ -5,7 +5,7 @@ test.describe('Home Loan calculator SEO', () => {
     await page.goto('/loan-calculators/mortgage-calculator/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#calculator-title')).toHaveText('Home Loan Calculator');
 
-    await expect(page).toHaveTitle('Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch');
+    await expect(page).toHaveTitle('Home Loan Calculator | Payment & Amortization');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(

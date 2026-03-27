@@ -30,7 +30,7 @@ test.describe('math/distribution seo', () => {
     await page.goto('/math/statistics/distribution/');
 
     await expect(page).toHaveTitle(
-      'Distribution Calculator | Normal, t, Chi-Square and F Values | CalcHowMuch'
+      'Distribution Calculator | Normal, t, Chi-Square'
     );
     await expect(page.locator('h1')).toHaveText('Distribution Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

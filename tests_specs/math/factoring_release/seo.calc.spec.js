@@ -27,7 +27,7 @@ test.describe('math/factoring seo', () => {
   test('metadata, explanation contract, FAQ depth, schema parity, and sitemap', async ({ page }) => {
     await page.goto('/math/algebra/factoring/');
 
-    await expect(page).toHaveTitle('Factoring Calculator | Polynomial Factoring Steps | CalcHowMuch');
+    await expect(page).toHaveTitle('Factoring Calculator | Polynomial Factoring Tool');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);

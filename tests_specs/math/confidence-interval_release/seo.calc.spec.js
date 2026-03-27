@@ -30,7 +30,7 @@ test.describe('math/confidence-interval seo', () => {
     await page.goto('/math/confidence-interval/');
 
     await expect(page).toHaveTitle(
-      'Confidence Interval Calculator | Mean and Proportion Interval Estimator | CalcHowMuch'
+      'Confidence Interval Calculator | Mean & Proportion'
     );
     await expect(page.locator('h1')).toHaveText('Confidence Interval Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

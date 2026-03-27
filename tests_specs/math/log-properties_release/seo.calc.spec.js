@@ -28,7 +28,7 @@ test.describe('math/log-properties seo', () => {
     await page.goto('/math/log/log-properties/');
 
     await expect(page).toHaveTitle(
-      'Logarithm Properties Calculator | Product, Quotient and Power Rules | CalcHowMuch'
+      'Logarithm Properties Calculator | Log Rules Tool'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

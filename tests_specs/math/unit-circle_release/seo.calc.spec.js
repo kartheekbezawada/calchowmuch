@@ -28,7 +28,7 @@ test.describe('math/unit-circle seo', () => {
     await page.goto('/math/trigonometry/unit-circle/');
 
     await expect(page).toHaveTitle(
-      'Unit Circle Calculator | Angles, Quadrants and Trig Values | CalcHowMuch'
+      'Unit Circle Calculator | Angles & Trig Values'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

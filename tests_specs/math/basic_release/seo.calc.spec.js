@@ -4,7 +4,7 @@ test.describe('math/basic SEO migration guard', () => {
   test('ships static SEO, FAQ, and schema in generated HTML', async ({ page }) => {
     await page.goto('/math/basic/');
 
-    await expect(page).toHaveTitle(/Basic Calculator \| Add, Subtract, Multiply and Divide \| CalcHowMuch/i);
+    await expect(page).toHaveTitle('Basic Calculator | Add, Subtract, Multiply, Divide');
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       'content',
       /add, subtract, multiply, or divide everyday numbers/i

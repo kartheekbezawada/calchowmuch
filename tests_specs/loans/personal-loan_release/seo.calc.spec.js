@@ -6,7 +6,7 @@ test.describe('Personal Loan calculator SEO', () => {
     await expect(page.locator('.hl-cluster-panel')).toBeVisible();
 
     await expect(page).toHaveTitle(
-      'Personal Loan Calculator - Monthly Payment, Interest & Total Cost | CalcHowMuch'
+      'Personal Loan Calculator | Payments & Interest'
     );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');

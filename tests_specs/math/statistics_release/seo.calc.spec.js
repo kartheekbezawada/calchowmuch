@@ -30,7 +30,7 @@ test.describe('math/statistics seo', () => {
     await page.goto('/math/statistics/');
 
     await expect(page).toHaveTitle(
-      'Statistics Calculator | Full Descriptive Summary | CalcHowMuch'
+      'Statistics Calculator | Descriptive Stats Summary'
     );
     await expect(page.locator('h1')).toHaveText('Statistics Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

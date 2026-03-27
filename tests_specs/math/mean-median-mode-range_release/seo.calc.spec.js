@@ -30,7 +30,7 @@ test.describe('math/mean-median-mode-range seo', () => {
     await page.goto('/math/mean-median-mode-range/');
 
     await expect(page).toHaveTitle(
-      'Mean Median Mode Range Calculator | Dataset Summary Statistics | CalcHowMuch'
+      'Mean Median Mode Range Calculator | Data Summary'
     );
     await expect(page.locator('h1')).toHaveText('Mean Median Mode Range Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

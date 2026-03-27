@@ -30,7 +30,7 @@ test.describe('math/probability seo', () => {
     await page.goto('/math/probability/');
 
     await expect(page).toHaveTitle(
-      'Probability Calculator | Event Odds, Bayes and Binomial Checks | CalcHowMuch'
+      'Probability Calculator | Odds, Bayes & Binomial'
     );
     await expect(page.locator('h1')).toHaveText('Probability Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

@@ -28,7 +28,7 @@ test.describe('math/exponential-equations seo', () => {
     await page.goto('/math/log/exponential-equations/');
 
     await expect(page).toHaveTitle(
-      'Exponential Equation Solver | Solve base^(m·x + c) = target | CalcHowMuch'
+      'Exponential Equation Solver | Solve Using Logs'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

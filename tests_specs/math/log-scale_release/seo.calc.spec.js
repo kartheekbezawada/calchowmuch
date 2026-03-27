@@ -28,7 +28,7 @@ test.describe('math/log-scale seo', () => {
     await page.goto('/math/log/log-scale/');
 
     await expect(page).toHaveTitle(
-      'Log Scale Converter | Decibel, pH and Richter Inputs | CalcHowMuch'
+      'Log Scale Converter | Decibel, pH and Richter'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

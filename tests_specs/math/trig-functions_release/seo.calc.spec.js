@@ -28,7 +28,7 @@ test.describe('math/trig-functions seo', () => {
     await page.goto('/math/trigonometry/trig-functions/');
 
     await expect(page).toHaveTitle(
-      'Trigonometric Functions Calculator | sin, cos, tan and Reciprocals | CalcHowMuch'
+      'Trigonometric Functions Calculator | sin, cos, tan'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

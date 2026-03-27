@@ -28,7 +28,7 @@ test.describe('math/inverse-trig seo', () => {
     await page.goto('/math/trigonometry/inverse-trig/');
 
     await expect(page).toHaveTitle(
-      'Inverse Trig Functions Calculator | arcsin, arccos and arctan | CalcHowMuch'
+      'Inverse Trig Functions Calculator | arcsin to arctan'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

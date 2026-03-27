@@ -28,7 +28,7 @@ test.describe('math/number-sequence seo', () => {
     await page.goto('/math/number-sequence/');
 
     await expect(page).toHaveTitle(
-      'Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch'
+      'Number Sequence Calculator | Arithmetic & Geometric'
     );
     await expect(page.locator('h1')).toHaveText('Number Sequence Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);

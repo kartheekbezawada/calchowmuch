@@ -28,7 +28,7 @@ test.describe('math/common-log seo', () => {
     await page.goto('/math/log/common-log/');
 
     await expect(page).toHaveTitle(
-      'Common Log Calculator | Base 10, Base 2 and Custom Logs | CalcHowMuch'
+      'Common Log Calculator | Base 10, 2 & Custom Logs'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

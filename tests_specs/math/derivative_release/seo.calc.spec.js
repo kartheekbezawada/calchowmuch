@@ -28,7 +28,7 @@ test.describe('math/derivative seo', () => {
     await page.goto('/math/calculus/derivative/');
 
     await expect(page).toHaveTitle(
-      'Derivative Calculator | Symbolic Derivative and Point Evaluation | CalcHowMuch'
+      'Derivative Calculator | Symbolic & Point Values'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

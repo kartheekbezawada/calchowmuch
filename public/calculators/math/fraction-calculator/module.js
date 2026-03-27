@@ -61,7 +61,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Fraction Calculator - Add, Subtract, Multiply, Divide & Simplify | CalcHowMuch',
+  title: 'Fraction Calculator | Math Operations & Simplify',
   description:
     'Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.',
   canonical: 'https://calchowmuch.com/math/fraction-calculator/',

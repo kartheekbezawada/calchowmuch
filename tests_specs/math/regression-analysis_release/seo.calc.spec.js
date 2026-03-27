@@ -30,7 +30,7 @@ test.describe('math/regression-analysis seo', () => {
     await page.goto('/math/statistics/regression-analysis/');
 
     await expect(page).toHaveTitle(
-      'Regression Analysis | Linear, Polynomial and Exponential Fit | CalcHowMuch'
+      'Regression Analysis | Linear & Polynomial Models'
     );
     await expect(page.locator('h1')).toHaveText('Regression Analysis');
     await expect(page.locator('.top-nav')).toHaveCount(0);

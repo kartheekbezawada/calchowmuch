@@ -28,7 +28,7 @@ test.describe('math/limit seo', () => {
     await page.goto('/math/calculus/limit/');
 
     await expect(page).toHaveTitle(
-      'Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch'
+      'Limit Calculator | One-Sided, Direct & Infinity'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

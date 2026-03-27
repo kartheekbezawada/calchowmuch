@@ -30,7 +30,7 @@ test.describe('math/anova seo', () => {
     await page.goto('/math/statistics/anova/');
 
     await expect(page).toHaveTitle(
-      'ANOVA Calculator | One-Way F-Test and Effect Size | CalcHowMuch'
+      'ANOVA Calculator | One-Way F-Test & Effect Size'
     );
     await expect(page.locator('h1')).toHaveText('ANOVA Calculator');
     await expect(page.locator('.top-nav')).toHaveCount(0);
