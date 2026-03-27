@@ -13,9 +13,9 @@ const NAVIGATION_PATH = path.join(PUBLIC_DIR, 'config', 'navigation.json');
 const STATIC_URLS = [
     { loc: 'https://calchowmuch.com/', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://calchowmuch.com/calculators/', changefreq: 'monthly', priority: '0.85' },
+    { loc: 'https://calchowmuch.com/pricing-calculators/', changefreq: 'monthly', priority: '0.75' },
     { loc: 'https://calchowmuch.com/sitemap.xml', changefreq: 'monthly', priority: '0.4' },
     { loc: 'https://calchowmuch.com/privacy/', changefreq: 'monthly', priority: '0.4' },
-    { loc: 'https://calchowmuch.com/privacy-policy/', changefreq: 'yearly', priority: '0.30', lastmod: '2026-02-09' },
     { loc: 'https://calchowmuch.com/terms-and-conditions/', changefreq: 'yearly', priority: '0.30', lastmod: '2026-02-09' },
     { loc: 'https://calchowmuch.com/contact-us/', changefreq: 'yearly', priority: '0.30', lastmod: '2026-02-09' },
     { loc: 'https://calchowmuch.com/faq/', changefreq: 'monthly', priority: '0.40', lastmod: '2026-02-09' },

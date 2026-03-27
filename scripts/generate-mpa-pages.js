@@ -1602,6 +1602,7 @@ function buildCalculatorFallbackStructuredData({ canonical, title, description, 
   const softwareName =
     normalizeSeoText(h1) || normalizeSeoText(title).split('|')[0].trim() || 'Calculator';
   const breadcrumbLabel = toTitleCaseLabel(clusterSegment);
+  const clusterItem = clusterSegment ? `${SITE_URL}/${clusterSegment}/` : '';
 
   const breadcrumbItems = [
     {
@@ -1612,12 +1613,12 @@ function buildCalculatorFallbackStructuredData({ canonical, title, description, 
     },
   ];
 
-  if (breadcrumbLabel) {
+  if (breadcrumbLabel && clusterItem && clusterItem !== canonical) {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
       name: breadcrumbLabel,
-      item: `${SITE_URL}/${clusterSegment}/`,
+      item: clusterItem,
     });
   }
 
@@ -1649,6 +1650,84 @@ function buildCalculatorFallbackStructuredData({ canonical, title, description, 
         '@type': 'BreadcrumbList',
         '@id': `${canonical}#breadcrumbs`,
         itemListElement: breadcrumbItems,
+      },
+    ],
+  };
+}
+
+function buildCollectionPageStructuredData({
+  canonical,
+  title,
+  description,
+  collectionName,
+  breadcrumbName,
+}) {
+  const name = normalizeSeoText(collectionName) || normalizeSeoText(title) || 'Calculators';
+  const breadcrumbLabel = normalizeSeoText(breadcrumbName) || name;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'CollectionPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
       },
     ],
   };
@@ -3398,7 +3477,7 @@ function buildSalaryClusterHeaderHtml() {
     </a>
     <div class="sal-cluster-site-label" aria-label="Cluster label">Salary Calculators</div>
     <nav class="sal-cluster-site-links" aria-label="Site links">
-      <a href="/calculators/">All Calculators</a>
+      <a href="/">All Calculators</a>
       <a href="/contact-us/">Contact</a>
       <a href="/faq/">FAQs</a>
     </nav>
@@ -4914,6 +4993,13 @@ function buildCalculatorIndex(categories) {
     'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.';
   const canonical = buildCanonical('/calculators/');
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
+  const staticStructuredData = buildCollectionPageStructuredData({
+    canonical,
+    title,
+    description,
+    collectionName: 'All Calculators',
+    breadcrumbName: 'All Calculators',
+  });
   const headMetaHtml = generateHeadMeta({
     canonicalUrl: canonical,
     seoTitle: title,
@@ -4932,6 +5018,9 @@ ${headMetaHtml}
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/layout.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/calculator.css?v=${CSS_VERSION}" />
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">${stringifyStructuredData(
+      staticStructuredData
+    )}</script>
 ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body>
@@ -4944,6 +5033,18 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
             <p class="helper">
               Browse calculators by category. Select a calculator to launch it in the main
               calculator shell.
+            </p>
+            <p class="helper">
+              This directory groups every public calculator route in one place so you can move from
+              quick everyday percentage checks to deeper mortgage, loan, finance, salary, and time
+              planning tools without hunting through separate menus. If you already know the type of
+              problem you want to solve, jump straight into the matching category below.
+            </p>
+            <p class="helper">
+              Each calculator is designed to give a direct result first, then support that answer
+              with explanations, examples, formulas, and related tools where useful. Use this page
+              as a hub when you want to compare calculators, discover adjacent routes, or find the
+              right starting point before running a more detailed scenario.
             </p>
             <p id="all-calculators-no-results" class="helper" hidden>
               No calculator matches your search.
@@ -5334,14 +5435,9 @@ function buildGtepSitemap(categories) {
 
 function buildSitemapXml(categories) {
   const staticUrls = [
+    { path: '/pricing-calculators/', changefreq: 'monthly', priority: '0.75' },
     { path: '/sitemap.xml', changefreq: 'monthly', priority: '0.4' },
     { path: '/privacy/', changefreq: 'monthly', priority: '0.4' },
-    {
-      path: '/privacy-policy/',
-      lastmod: '2026-02-09',
-      changefreq: 'yearly',
-      priority: '0.30',
-    },
     {
       path: '/terms-and-conditions/',
       lastmod: '2026-02-09',

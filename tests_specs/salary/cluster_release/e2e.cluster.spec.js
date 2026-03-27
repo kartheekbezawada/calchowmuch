@@ -24,6 +24,10 @@ test.describe('salary cluster e2e smoke', () => {
     for (const route of ROUTES) {
       await page.goto(route);
       await expect(page.locator('h1').first()).toBeVisible();
+      await expect(page.locator('.sal-cluster-site-links a', { hasText: 'All Calculators' })).toHaveAttribute(
+        'href',
+        '/'
+      );
     }
 
     const filtered = runtimeErrors.filter((message) => !isIgnorableRuntimeError(message || ''));
