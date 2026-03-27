@@ -1,86 +1,140 @@
 <div id="calc-basic">
-  <div class="calculator-ui">
-    <p class="helper">Pick an operation to see the result instantly.</p>
-    <div class="calculator-toolbar">
-      <button class="calculator-button secondary" type="button" id="basic-reset">Reset</button>
-      <div class="toolbar-actions">
-        <button class="calculator-button secondary" type="button" id="basic-add-input">
-          Add Number
-        </button>
-        <button class="calculator-button secondary" type="button" id="basic-remove-input">
-          Remove Number
-        </button>
+  <div class="basic-shell">
+    <section class="basic-card basic-intro-card" aria-label="Basic calculator overview">
+      <div class="basic-intro-copy">
+        <p class="basic-eyebrow">Simple Smooth Wow</p>
+        <h2 class="basic-title">Solve the everyday four operations without hunting for the answer.</h2>
+        <p class="basic-helper">
+          Enter two or more numbers, choose the operation, and keep the answer card visible while
+          you adjust the list.
+        </p>
       </div>
-    </div>
-    <div class="input-stack" id="basic-inputs">
-      <div class="input-row">
-        <label for="basic-value-1">Number 1</label>
-        <input id="basic-value-1" type="number" value="12" data-basic-input="true" />
-      </div>
-      <div class="input-row">
-        <label for="basic-value-2">Number 2</label>
-        <input id="basic-value-2" type="number" value="20" data-basic-input="true" />
-      </div>
-    </div>
-    <div class="button-row" role="group" aria-label="Operations">
-      <button class="calculator-button" type="button" data-operation="add">Add</button>
-      <button class="calculator-button" type="button" data-operation="subtract">Subtract</button>
-      <button class="calculator-button" type="button" data-operation="multiply">Multiply</button>
-      <button class="calculator-button" type="button" data-operation="divide">Divide</button>
-    </div>
-    <div class="result" id="basic-result" aria-live="polite"></div>
-    <div class="memory-section">
-      <div
-        class="memory-indicator"
-        id="basic-memory-indicator"
-        aria-live="polite"
-        style="visibility: hidden"
-      >
-        M
-      </div>
-      <div class="button-row memory-buttons" role="group" aria-label="Memory Operations">
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-memory="mc"
-          title="Memory Clear"
-        >
-          MC
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-memory="mr"
-          title="Memory Recall"
-        >
-          MR
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-memory="ms"
-          title="Memory Store"
-        >
-          MS
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-memory="m-plus"
-          title="Memory Add"
-        >
-          M+
-        </button>
-        <button
-          class="calculator-button secondary"
-          type="button"
-          data-memory="m-minus"
-          title="Memory Subtract"
-        >
-          M-
-        </button>
-      </div>
-      <div class="memory-value" id="basic-memory-value" aria-live="polite"></div>
+      <ul class="basic-hero-points">
+        <li>Supports addition, subtraction, multiplication, and division.</li>
+        <li>Add extra numbers when you need a running total or product.</li>
+        <li>Memory tools stay available, but they stay collapsed until needed.</li>
+      </ul>
+    </section>
+
+    <div class="basic-workbench">
+      <section class="basic-card basic-input-card">
+        <div class="basic-card-head">
+          <div>
+            <p class="basic-section-label">Inputs</p>
+            <p class="basic-card-title">Set the numbers and choose the operation</p>
+          </div>
+          <button class="calculator-button secondary" type="button" id="basic-reset">Reset</button>
+        </div>
+
+        <div class="calculator-toolbar basic-toolbar">
+          <div class="toolbar-actions">
+            <button class="calculator-button secondary" type="button" id="basic-add-input">
+              Add Number
+            </button>
+            <button class="calculator-button secondary" type="button" id="basic-remove-input">
+              Remove Number
+            </button>
+          </div>
+        </div>
+
+        <div class="input-stack basic-inputs" id="basic-inputs">
+          <div class="input-row basic-input-row">
+            <label for="basic-value-1">Number 1</label>
+            <input id="basic-value-1" type="number" value="12" data-basic-input="true" />
+          </div>
+          <div class="input-row basic-input-row">
+            <label for="basic-value-2">Number 2</label>
+            <input id="basic-value-2" type="number" value="20" data-basic-input="true" />
+          </div>
+        </div>
+
+        <div class="button-row basic-operation-row" role="group" aria-label="Operations">
+          <button class="calculator-button is-active" type="button" data-operation="add" aria-pressed="true">
+            Add
+          </button>
+          <button class="calculator-button" type="button" data-operation="subtract" aria-pressed="false">
+            Subtract
+          </button>
+          <button class="calculator-button" type="button" data-operation="multiply" aria-pressed="false">
+            Multiply
+          </button>
+          <button class="calculator-button" type="button" data-operation="divide" aria-pressed="false">
+            Divide
+          </button>
+        </div>
+      </section>
+
+      <section class="basic-card basic-answer-card" aria-label="Answer summary">
+        <div class="basic-answer-head">
+          <div>
+            <p class="basic-section-label">Answer</p>
+            <p class="basic-card-title">Current result</p>
+          </div>
+          <span class="basic-answer-chip">First-screen ready</span>
+        </div>
+
+        <div class="result basic-result" id="basic-result" aria-live="polite"></div>
+
+        <div class="basic-answer-notes">
+          <p>Use <strong>Add Number</strong> to keep extending a sum or product.</p>
+          <p>Division shows a clear warning instead of forcing an invalid answer.</p>
+        </div>
+
+        <details class="memory-section basic-memory-details">
+          <summary>Advanced memory tools</summary>
+          <div
+            class="memory-indicator"
+            id="basic-memory-indicator"
+            aria-live="polite"
+            style="visibility: hidden"
+          >
+            M
+          </div>
+          <div class="button-row memory-buttons" role="group" aria-label="Memory Operations">
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-memory="mc"
+              title="Memory Clear"
+            >
+              MC
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-memory="mr"
+              title="Memory Recall"
+            >
+              MR
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-memory="ms"
+              title="Memory Store"
+            >
+              MS
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-memory="m-plus"
+              title="Memory Add"
+            >
+              M+
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-memory="m-minus"
+              title="Memory Subtract"
+            >
+              M-
+            </button>
+          </div>
+          <div class="memory-value" id="basic-memory-value" aria-live="polite"></div>
+        </details>
+      </section>
     </div>
   </div>
 </div>

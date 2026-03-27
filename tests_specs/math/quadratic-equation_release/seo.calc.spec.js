@@ -35,25 +35,40 @@ test.describe('math/quadratic-equation seo', () => {
       'href',
       'https://calchowmuch.com/math/algebra/quadratic-equation/'
     );
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('link[href*="theme-premium-dark.css"]')).toHaveCount(0);
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
     await expect(h1).toHaveText('Quadratic Equation Solver');
 
     const root = page.locator('.calculator-page-single');
-    await expect(root.locator('h2')).toHaveCount(1);
+    await expect(root.locator('.quad-exp-section h2')).toHaveCount(1);
+    await expect(root.locator('.quad-exp-section h2')).toHaveText(
+      'Quadratic Equation Solver Practical Guide'
+    );
 
     const h3Texts = (await root.locator('h3').allTextContents()).map((text) => text.trim());
     const howToIndex = h3Texts.indexOf('How to Guide');
-    const notesIndex = h3Texts.indexOf('Important Notes');
+    const tableIndex = h3Texts.indexOf('Quick Answer Table');
+    const formulaIndex = h3Texts.indexOf('Formula Notes');
+    const workedIndex = h3Texts.indexOf('Worked Example');
     const faqIndex = h3Texts.indexOf('FAQ');
+    const relatedIndex = h3Texts.indexOf('Related Calculators');
+    const notesIndex = h3Texts.indexOf('Important Notes');
 
     expect(howToIndex).toBeGreaterThan(-1);
+    expect(tableIndex).toBeGreaterThan(-1);
+    expect(formulaIndex).toBeGreaterThan(-1);
+    expect(workedIndex).toBeGreaterThan(-1);
     expect(notesIndex).toBeGreaterThan(-1);
     expect(faqIndex).toBeGreaterThan(-1);
+    expect(relatedIndex).toBeGreaterThan(-1);
 
-    await expect(root).toContainText('Last updated: February 2026');
+    await expect(root).toContainText('Last updated: March 2026');
     await expect(root.locator('.faq-card')).toHaveCount(10);
+    await expect(root.locator('.quad-related-card')).toHaveCount(3);
 
     const firstVisibleQuestion = (await root.locator('.faq-card h4').first().textContent())?.trim();
     const jsonLdObjects = await page.evaluate(collectStructuredData);

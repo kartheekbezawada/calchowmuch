@@ -1,99 +1,141 @@
-<div class="explanation-content">
-  <h2>Probability Distributions</h2>
+<div id="distribution-explanation">
+  <section class="analysis-exp-section">
+    <h2>Distribution Calculator Practical Guide</h2>
+    <p>
+      Use this route when you need a probability, density, or cutoff from a named distribution
+      without switching between separate normal, t, chi-square, and F tools. It keeps the family,
+      parameters, and answer together so you can validate significance thresholds and distribution
+      lookups quickly.
+    </p>
+    <ul class="analysis-summary-list">
+      <li><strong>Best for:</strong> fast probability and critical-value checks across the main continuous distributions.</li>
+      <li><strong>Quick answer flow:</strong> choose the family, choose CDF, PDF, or quantile, then read the answer card first.</li>
+      <li><strong>Output includes:</strong> requested value, complementary probability, and common critical values where relevant.</li>
+    </ul>
+  </section>
 
-  <p>
-    Probability distributions describe how probabilities are distributed over the values of a random
-    variable. Understanding these distributions is fundamental to statistical inference.
-  </p>
+  <section class="analysis-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Choose the distribution family that matches your problem.</li>
+      <li>Enter the required parameters such as mean and standard deviation or degrees of freedom.</li>
+      <li>Use <strong>P(X &le; x)</strong> for cumulative probability, <strong>PDF</strong> for curve height, or <strong>Quantile</strong> for a cutoff value.</li>
+      <li>Click <strong>Calculate distribution</strong> and read the requested answer plus the complementary checks underneath.</li>
+    </ol>
+  </section>
 
-  <h3>Normal Distribution</h3>
-  <p>
-    The bell-shaped curve, also called Gaussian distribution, is the most important continuous
-    distribution in statistics.
-  </p>
-  <ul>
-    <li><strong>Parameters:</strong> Mean (mu) and Standard Deviation (sigma)</li>
-    <li><strong>Properties:</strong> Symmetric, mean = median = mode</li>
-    <li>
-      <strong>68-95-99.7 Rule:</strong> 68% within 1 std, 95% within 2 std, 99.7% within 3 std
-    </li>
-  </ul>
+  <section class="analysis-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="analysis-table-wrap">
+      <table class="analysis-summary-table">
+        <thead>
+          <tr>
+            <th>Distribution</th>
+            <th>Best use</th>
+            <th>Parameter focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Normal</td>
+            <td>Symmetric continuous data and z-based checks</td>
+            <td>Mean and standard deviation</td>
+          </tr>
+          <tr>
+            <td>Student&apos;s t</td>
+            <td>Mean inference with smaller samples</td>
+            <td>Degrees of freedom</td>
+          </tr>
+          <tr>
+            <td>Chi-Square / F</td>
+            <td>Variance, fit, and ANOVA-related checks</td>
+            <td>Degrees of freedom pairs</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <h3>Student's t-Distribution</h3>
-  <p>
-    Similar to normal but with heavier tails, used when sample size is small or population variance
-    is unknown.
-  </p>
-  <ul>
-    <li><strong>Parameter:</strong> Degrees of freedom (df)</li>
-    <li><strong>Properties:</strong> Symmetric, approaches normal as df increases</li>
-    <li><strong>Use:</strong> t-tests, confidence intervals for means</li>
-  </ul>
+  <section class="analysis-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      The route uses the cumulative distribution function for <strong>P(X &le; x)</strong>, the
+      probability density function for curve height at a point, and the inverse cumulative function
+      for quantiles. In plain language, you are asking for area to the left of a cutoff, the curve
+      height at a cutoff, or the cutoff that matches a chosen probability.
+    </p>
+  </section>
 
-  <h3>Chi-Square Distribution</h3>
-  <p>A right-skewed distribution used for categorical data analysis and variance testing.</p>
-  <ul>
-    <li><strong>Parameter:</strong> Degrees of freedom (df)</li>
-    <li>
-      <strong>Properties:</strong> Always non-negative, skewed right (approaches normal for large
-      df)
-    </li>
-    <li><strong>Uses:</strong> Goodness of fit tests, tests of independence, variance tests</li>
-  </ul>
+  <section class="analysis-exp-section">
+    <h3>Worked Example</h3>
+    <div class="analysis-example-grid">
+      <article class="analysis-example-card">
+        <h4>Default normal example</h4>
+        <p>With a normal distribution centred at <strong>0</strong> and standard deviation <strong>1</strong>, the default value <strong>x = 1.96</strong> produces a cumulative probability close to <strong>0.975</strong>.</p>
+        <p>That is why <strong>1.96</strong> is the familiar two-sided 95% z critical value.</p>
+      </article>
+      <article class="analysis-example-card">
+        <h4>When should I switch to a t distribution?</h4>
+        <p>If the sample is small and population spread is being estimated rather than known, Student&apos;s t is usually the safer cutoff family.</p>
+      </article>
+    </div>
+  </section>
 
-  <h3>F-Distribution</h3>
-  <p>The ratio of two chi-square distributions, used to compare variances.</p>
-  <ul>
-    <li><strong>Parameters:</strong> Numerator df (d1) and Denominator df (d2)</li>
-    <li><strong>Properties:</strong> Always non-negative, right-skewed</li>
-    <li><strong>Uses:</strong> ANOVA, comparing variances, regression significance</li>
-  </ul>
+  <section class="analysis-exp-section" id="distribution-faq">
+    <h3>FAQ</h3>
+    <div class="analysis-faq-grid">
+      <article class="faq-card">
+        <h4>What is the difference between CDF and PDF?</h4>
+        <p>CDF gives accumulated probability up to a cutoff, while PDF gives the height of the curve at that cutoff.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why is a PDF value not the same as probability?</h4>
+        <p>For continuous distributions, probability comes from area under the curve, not the curve height at one exact point.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use a quantile calculation?</h4>
+        <p>Use quantiles when you know the probability and need the matching cutoff or critical value.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why can chi-square and F values never be negative?</h4>
+        <p>Those distributions are built from squared terms and variance ratios, so their support starts at zero.</p>
+      </article>
+      <article class="faq-card">
+        <h4>How do degrees of freedom affect the answer?</h4>
+        <p>Lower degrees of freedom usually widen tails or shift the curve shape, which changes both probabilities and critical values.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Should I still check the context of the distribution?</h4>
+        <p>Yes. A clean calculation does not guarantee the chosen family is appropriate for the real statistical problem.</p>
+      </article>
+    </div>
+  </section>
 
-  <h3>Calculation Types</h3>
+  <section class="analysis-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="analysis-related-grid">
+      <a class="analysis-related-card" href="/math/confidence-interval/">
+        <strong>Confidence Interval Calculator</strong>
+        <span>Use interval estimation when you need bounds instead of a single probability lookup.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/hypothesis-testing/">
+        <strong>Hypothesis Testing</strong>
+        <span>Move from cutoff values into full test statistics and decisions.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/anova/">
+        <strong>ANOVA Calculator</strong>
+        <span>Use F-distribution context inside a full multi-group mean comparison workflow.</span>
+      </a>
+    </div>
+  </section>
 
-  <h4>CDF (Cumulative Distribution Function)</h4>
-  <p>P(X <= x) - The probability that a random variable is less than or equal to x.</p>
-
-  <h4>PDF (Probability Density Function)</h4>
-  <p>
-    f(x) - The height of the distribution curve at x. For continuous distributions, probabilities
-    are areas, not heights.
-  </p>
-
-  <h4>Quantile (Inverse CDF)</h4>
-  <p>
-    Given a probability p, find the value x such that P(X <= x) = p. Used to find critical values.
-  </p>
-
-  <h3>Common Critical Values</h3>
-  <table>
-    <tr>
-      <th>Confidence Level</th>
-      <th>alpha</th>
-      <th>Z-critical (two-tailed)</th>
-    </tr>
-    <tr>
-      <td>90%</td>
-      <td>0.10</td>
-      <td>1.645</td>
-    </tr>
-    <tr>
-      <td>95%</td>
-      <td>0.05</td>
-      <td>1.960</td>
-    </tr>
-    <tr>
-      <td>99%</td>
-      <td>0.01</td>
-      <td>2.576</td>
-    </tr>
-  </table>
-
-  <h3>Applications</h3>
-  <ul>
-    <li><strong>Normal:</strong> Natural phenomena, measurement errors, CLT applications</li>
-    <li><strong>t:</strong> Small sample means, paired comparisons</li>
-    <li><strong>Chi-square:</strong> Categorical data, contingency tables</li>
-    <li><strong>F:</strong> ANOVA, regression analysis, variance comparisons</li>
-  </ul>
+  <section class="analysis-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="analysis-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Parameter rule:</strong> Standard deviation and all degrees of freedom inputs must stay positive.</li>
+      <li><strong>Quantile rule:</strong> Probability inputs should stay between 0 and 1, excluding extreme impossible values.</li>
+      <li><strong>Interpretation rule:</strong> Critical values only help if the selected distribution matches the data-generating process.</li>
+    </ul>
+  </section>
 </div>

@@ -5,12 +5,13 @@ test.describe('math/quadratic-equation e2e', () => {
     await page.setViewportSize({ width: 1366, height: 900 });
     await page.goto('/math/algebra/quadratic-equation/');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.math-cluster-panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
-    await expect(page.locator('.algebra-preview-panel')).toBeVisible();
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.quad-answer-card')).toBeVisible();
 
-    const formBox = await page.locator('.algebra-form-panel').boundingBox();
-    const previewBox = await page.locator('.algebra-preview-panel').boundingBox();
+    const formBox = await page.locator('.quad-input-card').boundingBox();
+    const previewBox = await page.locator('.quad-answer-card').boundingBox();
     expect(formBox).toBeTruthy();
     expect(previewBox).toBeTruthy();
     expect(previewBox.x).toBeGreaterThan(formBox.x);
@@ -23,6 +24,7 @@ test.describe('math/quadratic-equation e2e', () => {
     await expect(page.locator('#quad-result')).toContainText('Two Real Solutions');
     await expect(page.locator('#quad-result')).toContainText('x1 = 3');
     await expect(page.locator('#quad-result')).toContainText('x2 = 2');
+    await expect(page.locator('#quad-detail')).toContainText('Step-by-Step Solution');
     await expect(page.locator('[data-quad-snap="root-type"]')).toHaveText(/Two real roots/);
     await expect(page.locator('[data-quad-snap="discriminant"]')).toHaveText('1');
   });

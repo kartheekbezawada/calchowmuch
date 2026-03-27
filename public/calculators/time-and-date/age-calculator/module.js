@@ -1,5 +1,5 @@
-import { setPageMetadata } from '/assets/js/core/ui.js';
-import { buildAgeViewModel } from '/calculators/time-and-date/age-calculator/engine.js';
+import { setPageMetadata } from '../../assets/js/core/ui.js';
+import { buildAgeViewModel } from './engine.js';
 
 const FAQ_ITEMS = [
   {
@@ -184,7 +184,8 @@ function parseDate(value) {
     return null;
   }
 
-  return new Date(year, month - 1, day);
+  // Use UTC date-only to avoid local timezone rollovers at midnight
+  return new Date(Date.UTC(year, month - 1, day));
 }
 
 function clearError() {

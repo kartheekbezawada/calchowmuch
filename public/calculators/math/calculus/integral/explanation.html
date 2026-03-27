@@ -1,125 +1,165 @@
-<div id="int-explanation-pane">
-  <section>
-    <h3>What Is an Integral?</h3>
-    <p>
-      Integration is the reverse process of differentiation. An integral represents the accumulation
-      of quantities, such as the area under a curve, total distance traveled, or accumulated change.
-    </p>
-    <p>
-      There are two types of integrals: indefinite integrals (antiderivatives) and definite
-      integrals (numerical values).
-    </p>
-  </section>
+<section class="intg-exp-section">
+  <h2>Integral Calculator Practical Guide</h2>
+  <p>
+    Use this integral calculator to switch between antiderivatives and definite integral values in a
+    clean answer-first layout. It is built for polynomial-style expressions, so the route keeps the
+    integrated result, bounds summary, and rule-by-rule steps together instead of hiding them in a
+    legacy shell.
+  </p>
+  <ul class="intg-summary-list">
+    <li><strong>Best for:</strong> quick antiderivatives, definite-area checks, and power-rule practice.</li>
+    <li><strong>Quick answer flow:</strong> enter the function, choose the mode, then calculate once.</li>
+    <li><strong>Output includes:</strong> the antiderivative, definite value when requested, and step-by-step notes.</li>
+  </ul>
+</section>
 
-  <section>
-    <h3>Indefinite Integrals (Antiderivatives)</h3>
-    <p>
-      An indefinite integral ∫f(x)dx represents the family of all functions whose derivative is
-      f(x). The result includes an arbitrary constant C because differentiation of a constant is
-      zero.
-    </p>
-    <p><strong>Notation:</strong> ∫f(x)dx = F(x) + C, where F'(x) = f(x)</p>
-  </section>
+<section class="intg-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter a polynomial-style expression such as <strong>x^2 + 3*x + 5</strong>.</li>
+    <li>Choose <strong>Indefinite</strong> when you want the antiderivative family.</li>
+    <li>Choose <strong>Definite</strong> and enter lower and upper bounds when you want a numeric value.</li>
+    <li>Click <strong>Calculate integral</strong> and read the answer card before reviewing the steps panel.</li>
+  </ol>
+</section>
 
-  <section>
-    <h3>Definite Integrals</h3>
-    <p>
-      A definite integral ∫[a to b]f(x)dx calculates the net signed area between the curve f(x) and
-      the x-axis from x=a to x=b. It produces a numerical value rather than a function.
-    </p>
-    <p><strong>Fundamental Theorem of Calculus:</strong> ∫[a to b]f(x)dx = F(b) - F(a)</p>
-  </section>
+<section class="intg-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="intg-table-wrap">
+    <table class="intg-summary-table">
+      <thead>
+        <tr>
+          <th>Mode</th>
+          <th>What the route returns</th>
+          <th>Quick interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Indefinite</td>
+          <td>An antiderivative plus <strong>C</strong></td>
+          <td>Shows the family of functions whose derivative matches the input.</td>
+        </tr>
+        <tr>
+          <td>Definite</td>
+          <td>A numeric value between two bounds</td>
+          <td>Applies the Fundamental Theorem of Calculus to evaluate the antiderivative at the bounds.</td>
+        </tr>
+        <tr>
+          <td>Bounds</td>
+          <td>The lower and upper x-values for definite mode</td>
+          <td>Control the interval where the accumulated change is measured.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-  <section>
-    <h3>Integration Rules</h3>
-    <h4>Power Rule for Integration</h4>
-    <p>∫x^n dx = x^(n+1)/(n+1) + C, where n ≠ -1</p>
-    <p><strong>Example:</strong> ∫x³ dx = x⁴/4 + C</p>
+<section class="intg-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The main rule in this route is the <strong>power rule for integration</strong>:
+    <strong>∫x^n dx = x^(n+1)/(n+1) + C</strong> when <strong>n ≠ -1</strong>. Constant terms turn
+    into linear terms, and polynomial-style expressions integrate term by term.
+  </p>
+  <p>
+    In definite mode, the route uses the <strong>Fundamental Theorem of Calculus</strong>:
+    <strong>∫[a to b]f(x)dx = F(b) - F(a)</strong>. That is why the answer card shows both the
+    numeric value and the antiderivative used to evaluate it.
+  </p>
+</section>
 
-    <h4>Constant Rule</h4>
-    <p>∫k dx = kx + C (constant k)</p>
+<section class="intg-exp-section">
+  <h3>Worked Example</h3>
+  <div class="intg-example-grid">
+    <article class="intg-example-card">
+      <h4>Indefinite example</h4>
+      <p>Enter <strong>x^2</strong> and keep the mode on <strong>Indefinite</strong>.</p>
+      <p>
+        The route returns <strong>0.3333x^3 + C</strong>, which is the decimal form of x³/3 + C.
+      </p>
+    </article>
+    <article class="intg-example-card">
+      <h4>Definite example</h4>
+      <p>Use the same function, switch to <strong>Definite</strong>, and keep the bounds at <strong>0</strong> and <strong>1</strong>.</p>
+      <p>
+        The route returns about <strong>0.333333</strong> because F(1) - F(0) = 1/3.
+      </p>
+    </article>
+  </div>
+</section>
 
-    <h4>Constant Multiple Rule</h4>
-    <p>∫k·f(x)dx = k·∫f(x)dx</p>
+<section class="intg-exp-section">
+  <h3>FAQ</h3>
+  <div class="intg-faq-grid">
+    <div class="faq-card">
+      <h4>What is an indefinite integral?</h4>
+      <p>It is the family of antiderivatives of the input function, so the answer includes + C.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is a definite integral?</h4>
+      <p>It is the numeric accumulated change between two bounds.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does the indefinite answer include C?</h4>
+      <p>Different constants disappear under differentiation, so every antiderivative differs by a constant.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What kind of expressions work best here?</h4>
+      <p>Polynomial-style expressions with one main variable work best in this route.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What do the bounds mean?</h4>
+      <p>They define the interval where the definite integral is evaluated.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does definite mode still show the antiderivative?</h4>
+      <p>The numeric answer comes from evaluating the antiderivative at the upper and lower bounds.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can the definite result be negative?</h4>
+      <p>Yes. If the net signed area is negative over the chosen interval, the result can be negative.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does this route handle full symbolic integration?</h4>
+      <p>No. It is designed for quick polynomial-style integration rather than a full CAS engine.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What happens if I switch modes?</h4>
+      <p>The answer card updates to either the antiderivative family or the bound-based numeric value.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is this route useful?</h4>
+      <p>It is useful for calculus practice, quick antiderivative checks, and estimating accumulated change.</p>
+    </div>
+  </div>
+</section>
 
-    <h4>Sum/Difference Rule</h4>
-    <p>∫[f(x) ± g(x)]dx = ∫f(x)dx ± ∫g(x)dx</p>
-  </section>
+<section class="intg-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="intg-related-grid">
+    <a class="intg-related-card" href="/math/calculus/derivative/">
+      <strong>Derivative Calculator</strong>
+      <span>Move back to rates of change when you want to differentiate instead of integrate.</span>
+    </a>
+    <a class="intg-related-card" href="/math/calculus/limit/">
+      <strong>Limit Calculator</strong>
+      <span>Check limiting behavior that often appears before integral definitions and continuity questions.</span>
+    </a>
+    <a class="intg-related-card" href="/math/calculus/series-convergence/">
+      <strong>Series Convergence Calculator</strong>
+      <span>Move from accumulation ideas into convergence checks for infinite series.</span>
+    </a>
+  </div>
+</section>
 
-  <section>
-    <h3>Common Integrals</h3>
-    <ul>
-      <li>∫x^n dx = x^(n+1)/(n+1) + C</li>
-      <li>∫1/x dx = ln|x| + C</li>
-      <li>∫e^x dx = e^x + C</li>
-      <li>∫sin x dx = -cos x + C</li>
-      <li>∫cos x dx = sin x + C</li>
-      <li>∫sec² x dx = tan x + C</li>
-      <li>∫1/(1+x²) dx = arctan x + C</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Integration Techniques</h3>
-    <h4>Substitution Method</h4>
-    <p>Used for composite functions. Replace a portion of the integrand with u to simplify.</p>
-    <p><strong>Example:</strong> ∫2x·e^(x²)dx, let u = x², du = 2x dx</p>
-
-    <h4>Integration by Parts</h4>
-    <p>Based on the product rule: ∫u dv = uv - ∫v du</p>
-    <p><strong>Example:</strong> ∫x·e^x dx</p>
-
-    <h4>Partial Fractions</h4>
-    <p>Decompose rational functions into simpler fractions.</p>
-    <p><strong>Example:</strong> ∫1/(x²-1) dx = ∫1/[2(x-1)] dx - ∫1/[2(x+1)] dx</p>
-  </section>
-
-  <section>
-    <h3>Geometric Interpretation</h3>
-    <p>For a definite integral ∫[a to b]f(x)dx:</p>
-    <ul>
-      <li>The integral represents the signed area between f(x) and the x-axis</li>
-      <li>Area above the x-axis is positive</li>
-      <li>Area below the x-axis is negative</li>
-      <li>The net area is the algebraic sum</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Worked Example</h3>
-    <p><strong>Calculate ∫(3x² + 2x - 5)dx</strong></p>
-    <ol>
-      <li>
-        Apply power rule to each term:
-        <ul>
-          <li>∫3x² dx = 3·x³/3 = x³</li>
-          <li>∫2x dx = 2·x²/2 = x²</li>
-          <li>∫-5 dx = -5x</li>
-        </ul>
-      </li>
-      <li>Combine results: ∫(3x² + 2x - 5)dx = x³ + x² - 5x + C</li>
-    </ol>
-  </section>
-
-  <section>
-    <h3>Real-World Applications</h3>
-    <ul>
-      <li><strong>Physics:</strong> Finding position from velocity, work from force</li>
-      <li><strong>Economics:</strong> Total cost from marginal cost, consumer surplus</li>
-      <li>
-        <strong>Probability:</strong> Computing probabilities from probability density functions
-      </li>
-      <li><strong>Engineering:</strong> Calculating volumes, centroids, moments of inertia</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Common Mistakes</h3>
-    <ul>
-      <li>Forgetting the constant of integration + C for indefinite integrals</li>
-      <li>Incorrect application of power rule when n = -1</li>
-      <li>Sign errors when evaluating definite integrals</li>
-      <li>Not simplifying the antiderivative before evaluating bounds</li>
-    </ul>
-  </section>
-</div>
+<section class="intg-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="intg-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Scope rule:</strong> This route is designed for polynomial-style integration and simple bound evaluation.</li>
+    <li><strong>Indefinite rule:</strong> The antiderivative result keeps the constant of integration <strong>C</strong>.</li>
+    <li><strong>Definite rule:</strong> The numeric value uses the antiderivative evaluated at the upper and lower bounds.</li>
+    <li><strong>Use case:</strong> This tool is built for quick numeric and symbolic verification, not full symbolic integration proofs.</li>
+  </ul>
+</section>

@@ -1,6 +1,6 @@
-import { calculateMargin } from '/assets/js/core/math.js';
-import { formatNumber } from '/assets/js/core/format.js';
-import { setPageMetadata } from '/assets/js/core/ui.js';
+import { calculateMargin } from '../../assets/js/core/math.js';
+import { formatNumber } from '../../assets/js/core/format.js';
+import { setPageMetadata } from '../../assets/js/core/ui.js';
 
 const costMarginToggle = document.querySelector('#margin-cost-margin-toggle');
 const costPriceModeLabel = document.querySelector('[data-margin-mode-label="cost-price"]');
@@ -269,8 +269,8 @@ function calculate() {
     modeLabel = 'Cost + Price -> Margin %';
   } else {
     const marginPercent = Number.parseFloat(marginPercentInput?.value ?? '');
-    if (!Number.isFinite(marginPercent) || marginPercent < 0 || marginPercent >= 100) {
-      resultOutput.textContent = 'Enter a valid gross margin % between 0 and less than 100.';
+    if (!Number.isFinite(marginPercent) || marginPercent < 0 || marginPercent >= 99.99) {
+      resultOutput.textContent = 'Enter a valid gross margin % between 0 and less than 99.99.';
       resultDetail.textContent = '';
       updateNode(resultContext, '');
       return;

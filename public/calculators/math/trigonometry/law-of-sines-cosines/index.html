@@ -1,73 +1,153 @@
 <div id="calc-law-trig">
-  <div class="calculator-ui">
-    <p class="helper">
-      Solve triangles with the Law of Sines or Law of Cosines and see a scaled diagram.
-    </p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="law-method">Method</label>
-        <select id="law-method">
-          <option value="auto">Auto Detect</option>
-          <option value="sine">Law of Sines</option>
-          <option value="cosine">Law of Cosines</option>
-        </select>
+  <div class="law-shell">
+    <section class="law-card law-hero-card" aria-label="Law of sines and cosines overview">
+      <div class="law-hero-copy">
+        <p class="law-eyebrow">Simple Smooth Wow</p>
+        <h2 class="law-title">Solve triangle side and angle gaps with one answer-first Law of Sines and Cosines workspace.</h2>
+        <p class="law-subtitle">
+          Enter the sides and angles you already know, leave the rest blank, and let the route
+          detect the best law. The answer card stays dominant while the diagram and method notes
+          help you confirm the triangle type without carrying legacy split-shell clutter.
+        </p>
       </div>
+      <ul class="law-hero-points">
+        <li>Best for classroom triangle checks, surveying-style layouts, and quick trig-law comparisons.</li>
+        <li>The answer card surfaces the detected pattern, solved values, and law recommendation first.</li>
+        <li>The diagram card stays close so shape checking does not push the result below the fold.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label id="law-angle-unit">Angle Unit</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="law-angle-unit"
-          data-button-group="law-angle-unit"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="deg">
-            Degrees
+    <div class="law-workbench">
+      <div class="law-left-stack">
+        <section class="law-card law-input-card" aria-label="Law of sines and cosines inputs">
+          <div class="law-card-head">
+            <div>
+              <p class="law-section-label">Inputs</p>
+              <p class="law-card-title">Set the method, angle unit, and known triangle values</p>
+            </div>
+            <span class="law-chip">Answer-first</span>
+          </div>
+
+          <p class="law-helper">Fill only the values you actually know. Auto mode recommends the correct trig law for the current triangle pattern.</p>
+
+          <label class="law-field" for="law-method">
+            <span>Method</span>
+            <select id="law-method">
+              <option value="auto">Auto Detect</option>
+              <option value="sine">Law of Sines</option>
+              <option value="cosine">Law of Cosines</option>
+            </select>
+          </label>
+
+          <div class="law-toggle-section">
+            <span id="law-angle-unit">Angle unit</span>
+            <div
+              class="law-button-group"
+              role="group"
+              aria-labelledby="law-angle-unit"
+              data-button-group="law-angle-unit"
+            >
+              <button class="calculator-button law-mode-button is-active" type="button" data-value="deg">
+                Degrees
+              </button>
+              <button class="calculator-button law-mode-button" type="button" data-value="rad">
+                Radians
+              </button>
+            </div>
+          </div>
+
+          <div class="law-input-grid">
+            <label class="law-field" for="law-a">
+              <span>Side a</span>
+              <input id="law-a" type="number" value="8" step="any" />
+            </label>
+            <label class="law-field" for="law-b">
+              <span>Side b</span>
+              <input id="law-b" type="number" value="10" step="any" />
+            </label>
+            <label class="law-field" for="law-c">
+              <span>Side c</span>
+              <input id="law-c" type="number" value="12" step="any" />
+            </label>
+            <label class="law-field" for="law-A">
+              <span>Angle A</span>
+              <input id="law-A" type="number" value="" step="any" />
+            </label>
+            <label class="law-field" for="law-B">
+              <span>Angle B</span>
+              <input id="law-B" type="number" value="" step="any" />
+            </label>
+            <label class="law-field" for="law-C">
+              <span>Angle C</span>
+              <input id="law-C" type="number" value="" step="any" />
+            </label>
+          </div>
+
+          <div class="law-hint-row">
+            <span class="law-inline-note" id="law-hint">
+              Enter at least three consistent values, including one side. Auto mode picks the best law.
+            </span>
+          </div>
+
+          <button class="calculator-button law-solve-button" type="button" id="law-calc">
+            Solve with Trig Laws
           </button>
-          <button class="calculator-button secondary" type="button" data-value="rad">
-            Radians
-          </button>
-        </div>
+        </section>
+
+        <section class="law-card law-diagram-card" aria-label="Triangle diagram">
+          <div class="law-card-head">
+            <div>
+              <p class="law-section-label">Diagram</p>
+              <p class="law-card-title">Scaled preview of the first valid solved triangle</p>
+            </div>
+            <span class="law-chip law-chip--diagram">Shape check</span>
+          </div>
+
+          <div class="law-diagram-panel">
+            <canvas
+              id="law-triangle"
+              class="law-diagram-canvas"
+              width="320"
+              height="240"
+              aria-label="Triangle diagram"
+            ></canvas>
+          </div>
+          <p id="law-diagram-note" class="law-diagram-note">Diagram updates after the triangle is solved.</p>
+        </section>
       </div>
 
-      <div class="input-grid">
-        <div class="input-row">
-          <label for="law-a">Side a</label>
-          <input id="law-a" type="number" value="8" step="any" />
+      <section class="law-card law-answer-card" aria-label="Law of sines and cosines answer summary">
+        <div class="law-card-head">
+          <div>
+            <p class="law-section-label">Answer</p>
+            <p class="law-card-title">Solved triangle values, detected pattern, and method notes</p>
+          </div>
+          <span class="law-chip law-chip--answer">Triangle result</span>
         </div>
-        <div class="input-row">
-          <label for="law-b">Side b</label>
-          <input id="law-b" type="number" value="10" step="any" />
+
+        <div class="result law-result-card" id="law-result" aria-live="polite"></div>
+        <div class="result-detail law-detail-card" id="law-detail" aria-live="polite"></div>
+
+        <div class="law-snapshot-grid" aria-label="Triangle law snapshot">
+          <article class="law-snapshot-card">
+            <span>Pattern</span>
+            <strong data-law-snap="type">-</strong>
+          </article>
+          <article class="law-snapshot-card">
+            <span>Recommended law</span>
+            <strong data-law-snap="law">-</strong>
+          </article>
+          <article class="law-snapshot-card">
+            <span>Angle unit</span>
+            <strong data-law-snap="unit">Degrees</strong>
+          </article>
+          <article class="law-snapshot-card">
+            <span>Solutions</span>
+            <strong data-law-snap="solutions">-</strong>
+          </article>
         </div>
-        <div class="input-row">
-          <label for="law-c">Side c</label>
-          <input id="law-c" type="number" value="12" step="any" />
-        </div>
-        <div class="input-row">
-          <label for="law-A">Angle A</label>
-          <input id="law-A" type="number" value="35" step="any" />
-        </div>
-        <div class="input-row">
-          <label for="law-B">Angle B</label>
-          <input id="law-B" type="number" value="45" step="any" />
-        </div>
-        <div class="input-row">
-          <label for="law-C">Angle C</label>
-          <input id="law-C" type="number" value="100" step="any" />
-        </div>
-      </div>
-      <span class="inline-note" id="law-hint">
-        Enter any consistent combination of sides/angles. Auto mode picks the best law.
-      </span>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="law-calc">
-      Solve with Trig Laws
-    </button>
-
-    <div class="result" id="law-result" aria-live="polite"></div>
-    <div class="result-detail" id="law-detail" aria-live="polite"></div>
   </div>
 </div>
 

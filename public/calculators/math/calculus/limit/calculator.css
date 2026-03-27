@@ -1,128 +1,376 @@
-/* Limit Calculator Styles */
-
-#calc-limit .button-group {
-  display: flex;
-  gap: 10px;
-  margin: 15px 0;
+#calc-limit,
+.limq-exp-section {
+  --limq-surface: rgba(255, 255, 255, 0.97);
+  --limq-surface-soft: rgba(249, 252, 255, 0.98);
+  --limq-border: rgba(15, 23, 42, 0.08);
+  --limq-text: #193148;
+  --limq-muted: #607388;
+  --limq-accent: #0d5c92;
+  --limq-accent-soft: rgba(14, 165, 233, 0.12);
+  --limq-answer-soft: rgba(20, 184, 166, 0.12);
+  --limq-step-soft: rgba(37, 99, 235, 0.12);
+  --limq-highlight: #eef7ff;
+  --limq-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
 }
 
-#calc-limit .direction-button {
-  flex: 1;
-  padding: 10px;
-  background-color: #ecf0f1;
-  border: 2px solid #bdc3c7;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s;
-  font-size: 0.9em;
+#calc-limit,
+#calc-limit h2,
+#calc-limit h3,
+#calc-limit h4,
+#calc-limit p,
+#calc-limit span,
+#calc-limit strong,
+#calc-limit label,
+#calc-limit li,
+.limq-exp-section,
+.limq-exp-section h2,
+.limq-exp-section h3,
+.limq-exp-section h4,
+.limq-exp-section p,
+.limq-exp-section li,
+.limq-exp-section td,
+.limq-exp-section th {
+  color: var(--limq-text);
 }
 
-#calc-limit .direction-button:hover {
-  background-color: #d5dbdb;
+#calc-limit h2::after,
+#calc-limit h3::after,
+.limq-exp-section h2::after,
+.limq-exp-section h3::after {
+  display: none !important;
+  content: none !important;
 }
 
-#calc-limit .direction-button.active {
-  background-color: #3498db;
-  color: white;
-  border-color: #3498db;
+.limq-shell {
+  display: grid;
+  gap: 24px;
 }
 
-#calc-limit .result-box {
-  background-color: #f8f9fa;
-  border-left: 4px solid #3498db;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 4px;
-  font-size: 1.1em;
+.limq-card,
+.limq-exp-section {
+  border: 1px solid var(--limq-border);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--limq-surface), var(--limq-surface-soft));
+  box-shadow: var(--limq-shadow);
 }
 
-#calc-limit .result-box.success {
-  border-left-color: #2ecc71;
+.limq-card {
+  padding: 24px;
 }
 
-#calc-limit .result-box.error {
-  border-left-color: #e74c3c;
+.limq-exp-section {
+  padding: 22px;
+  margin-top: 0;
 }
 
-#calc-limit .info-text {
-  margin: 5px 0;
-  font-size: 0.95em;
-  color: #555;
+.limq-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
 }
 
-#calc-limit .steps-box {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 4px;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-#calc-limit .steps-box pre {
-  font-family: 'Courier New', monospace;
-  font-size: 0.9em;
-  white-space: pre-wrap;
+.limq-eyebrow,
+.limq-section-label {
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--limq-accent);
+}
+
+.limq-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.limq-subtitle,
+.limq-helper,
+.limq-exp-section p,
+.limq-exp-section li,
+.limq-exp-section td,
+.limq-exp-section th {
+  color: var(--limq-muted);
+  line-height: 1.7;
+}
+
+.limq-subtitle {
+  margin: 12px 0 0;
+}
+
+.limq-hero-points {
+  margin: 0;
+  padding: 18px 18px 18px 34px;
+  border-radius: 20px;
+  background: var(--limq-highlight);
+  display: grid;
+  gap: 12px;
+}
+
+.limq-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.limq-left-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.limq-input-card,
+.limq-steps-card,
+.limq-answer-card {
+  display: grid;
+  gap: 18px;
+}
+
+.limq-answer-card {
+  position: sticky;
+  top: 18px;
+}
+
+.limq-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+
+.limq-card-title {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #203348;
+}
+
+.limq-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--limq-accent-soft);
+  color: var(--limq-accent);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.limq-chip--answer {
+  background: var(--limq-answer-soft);
+  color: #0f766e;
+}
+
+.limq-chip--steps {
+  background: var(--limq-step-soft);
+  color: #1d4ed8;
+}
+
+.limq-field,
+.limq-field-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.limq-field-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.limq-field > span {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--limq-accent);
+}
+
+.limq-field input {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--limq-border);
+  background: #fff;
+  color: var(--limq-text);
+  font-size: 1rem;
+}
+
+.limq-direction-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.limq-direction-button {
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--limq-text);
+  font-weight: 600;
+}
+
+.limq-direction-button.active {
+  background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+  border-color: transparent;
+  color: #fff;
+}
+
+.limq-calc-button {
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 18px 28px rgba(14, 165, 233, 0.2);
+}
+
+.limq-summary-card,
+.limq-result-box,
+.limq-step-panel,
+.limq-snapshot-card,
+.limq-example-card,
+.limq-related-card,
+.faq-card {
+  border: 1px solid var(--limq-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.limq-summary-card,
+.limq-result-box,
+.limq-step-panel,
+.limq-snapshot-card,
+.limq-example-card,
+.faq-card {
+  padding: 16px;
+}
+
+.limq-summary-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(238, 248, 255, 0.96));
+}
+
+.limq-result-card,
+.limq-steps-output,
+.limq-example-grid,
+.limq-faq-grid,
+.limq-related-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.limq-summary-card h4,
+.limq-result-box h4,
+.limq-step-panel h4,
+.limq-example-card h4,
+.faq-card h4 {
+  margin: 0 0 10px;
+}
+
+.limq-summary-grid,
+.limq-snapshot-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.limq-stat,
+.limq-snapshot-card {
+  display: grid;
+  gap: 6px;
+}
+
+.limq-stat span,
+.limq-snapshot-card span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--limq-muted);
+}
+
+.limq-step-panel pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
   line-height: 1.6;
+  font-size: 0.92rem;
 }
 
-#calc-limit .error {
-  color: #e74c3c;
-  font-weight: bold;
-  padding: 10px;
-  background-color: #fadbd8;
-  border-radius: 4px;
+.limq-table-wrap {
+  overflow-x: auto;
 }
 
-#limit-explanation-pane {
-  padding: 0;
+.limq-summary-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-#limit-explanation-pane section {
-  margin-bottom: 25px;
+.limq-summary-table th,
+.limq-summary-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  text-align: left;
 }
 
-#limit-explanation-pane h3 {
-  color: #2c3e50;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 8px;
-  margin-bottom: 15px;
+.limq-example-grid,
+.limq-faq-grid,
+.limq-related-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-#limit-explanation-pane h4 {
-  color: #34495e;
-  margin-top: 15px;
-  margin-bottom: 8px;
+.limq-related-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
 }
 
-#limit-explanation-pane ul,
-#limit-explanation-pane ol {
-  padding-left: 25px;
+.limq-notes-list,
+.limq-summary-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
 }
 
-#limit-explanation-pane li {
-  margin-bottom: 8px;
-  line-height: 1.6;
+.limq-error {
+  color: #b42318;
+  background: rgba(254, 242, 242, 0.96);
 }
 
-#limit-graph-container {
-  margin: 20px 0;
-  text-align: center;
+@media (max-width: 980px) {
+  .limq-hero-card,
+  .limq-workbench,
+  .limq-example-grid,
+  .limq-faq-grid,
+  .limq-related-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .limq-answer-card {
+    position: static;
+  }
 }
 
-#limit-graph {
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  background-color: #fff;
-  max-width: 100%;
-  height: auto;
-}
+@media (max-width: 720px) {
+  .limq-card,
+  .limq-exp-section {
+    padding: 18px;
+    border-radius: 20px;
+  }
 
-.graph-info {
-  margin-top: 10px;
-  font-size: 0.9em;
-  text-align: center;
+  .limq-field-grid,
+  .limq-direction-row,
+  .limq-summary-grid,
+  .limq-snapshot-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .limq-title {
+    font-size: 1.7rem;
+  }
 }

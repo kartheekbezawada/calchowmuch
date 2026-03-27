@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Bonus Calculator to estimate bonus value and total compensation from either a bonus percentage or a flat bonus amount. It should help users compare salary-only pay with salary-plus-bonus compensation in one view.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `earnings` route variant in a fully light, answer-first layout.
+- Keep the hero result focused on bonus amount only.
+- Limit the first supporting result row to total compensation and bonus percent output.
+- Present the bonus mode switch as a simple segmented or radio control without adding dashboard-style density.
 
 ## SEO Metadata
 

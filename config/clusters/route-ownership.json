@@ -186,6 +186,86 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/salary-calculators/salary-calculator/",
+      "calculatorId": "salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/hourly-to-salary-calculator/",
+      "calculatorId": "hourly-to-salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/salary-to-hourly-calculator/",
+      "calculatorId": "salary-to-hourly-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
+      "calculatorId": "annual-to-monthly-salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/monthly-to-annual-salary-calculator/",
+      "calculatorId": "monthly-to-annual-salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/weekly-pay-calculator/",
+      "calculatorId": "weekly-pay-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/overtime-pay-calculator/",
+      "calculatorId": "overtime-pay-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/raise-calculator/",
+      "calculatorId": "raise-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/bonus-calculator/",
+      "calculatorId": "bonus-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/salary-calculators/commission-calculator/",
+      "calculatorId": "commission-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-rollout-20260326",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/car-loan-calculators/car-loan-calculator/",
       "calculatorId": "car-loan",
       "activeOwnerClusterId": "auto-loans",
@@ -319,6 +399,294 @@
       "activeOwnerClusterId": "finance",
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-finance-redesign-20260320",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/basic/",
+      "calculatorId": "basic",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave1-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/fraction-calculator/",
+      "calculatorId": "fraction-calculator",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave1-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/sample-size/",
+      "calculatorId": "sample-size",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave1-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/quadratic-equation/",
+      "calculatorId": "quadratic-equation",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/slope-distance/",
+      "calculatorId": "slope-distance",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/factoring/",
+      "calculatorId": "factoring",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/polynomial-operations/",
+      "calculatorId": "polynomial-operations",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/algebra/system-of-equations/",
+      "calculatorId": "system-of-equations",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave3-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/unit-circle/",
+      "calculatorId": "unit-circle",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/triangle-solver/",
+      "calculatorId": "triangle-solver",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/trig-functions/",
+      "calculatorId": "trig-functions",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/inverse-trig/",
+      "calculatorId": "inverse-trig",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/trigonometry/law-of-sines-cosines/",
+      "calculatorId": "law-of-sines-cosines",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave4-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/natural-log/",
+      "calculatorId": "natural-log",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/common-log/",
+      "calculatorId": "common-log",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/log-properties/",
+      "calculatorId": "log-properties",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/exponential-equations/",
+      "calculatorId": "exponential-equations",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/log/log-scale/",
+      "calculatorId": "log-scale",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave5-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/derivative/",
+      "calculatorId": "derivative",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/integral/",
+      "calculatorId": "integral",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/limit/",
+      "calculatorId": "limit",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/series-convergence/",
+      "calculatorId": "series-convergence",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/calculus/critical-points/",
+      "calculatorId": "critical-points",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave6-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/mean-median-mode-range/",
+      "calculatorId": "mean-median-mode-range",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/standard-deviation/",
+      "calculatorId": "standard-deviation",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/confidence-interval/",
+      "calculatorId": "confidence-interval",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/z-score/",
+      "calculatorId": "z-score",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave7-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/number-sequence/",
+      "calculatorId": "number-sequence",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave8-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/permutation-combination/",
+      "calculatorId": "permutation-combination",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave8-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/probability/",
+      "calculatorId": "probability",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave8-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/",
+      "calculatorId": "statistics",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave9-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/correlation/",
+      "calculatorId": "correlation",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave9-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/regression-analysis/",
+      "calculatorId": "regression-analysis",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave9-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/distribution/",
+      "calculatorId": "distribution",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave10-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/anova/",
+      "calculatorId": "anova",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave10-20260326",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/math/statistics/hypothesis-testing/",
+      "calculatorId": "hypothesis-testing",
+      "activeOwnerClusterId": "math",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-math-wave10-20260326",
       "generationMode": "cluster"
     }
   ]

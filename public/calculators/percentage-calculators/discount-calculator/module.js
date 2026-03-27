@@ -1,6 +1,6 @@
-import { percentOf } from '/assets/js/core/math.js';
-import { formatNumber } from '/assets/js/core/format.js';
-import { setPageMetadata } from '/assets/js/core/ui.js';
+import { percentOf } from '../../assets/js/core/math.js';
+import { formatNumber } from '../../assets/js/core/format.js';
+import { setPageMetadata } from '../../assets/js/core/ui.js';
 
 const originalPriceInput = document.querySelector('#discount-original-price');
 const discountPercentInput = document.querySelector('#discount-percent');
@@ -223,15 +223,15 @@ function calculate() {
   const originalPrice = Number.parseFloat(originalPriceInput?.value ?? '');
   const discountPercent = Number.parseFloat(discountPercentInput?.value ?? '');
 
-  if (!Number.isFinite(originalPrice)) {
-    resultOutput.textContent = 'Enter a valid original price.';
+  if (!Number.isFinite(originalPrice) || originalPrice < 0) {
+    resultOutput.textContent = 'Enter a valid non-negative original price.';
     resultDetail.textContent = '';
     updateNode(resultContext, '');
     return;
   }
 
-  if (!Number.isFinite(discountPercent)) {
-    resultOutput.textContent = 'Enter a valid discount percent.';
+  if (!Number.isFinite(discountPercent) || discountPercent < 0 || discountPercent > 100) {
+    resultOutput.textContent = 'Enter a valid discount percent between 0 and 100.';
     resultDetail.textContent = '';
     updateNode(resultContext, '');
     return;

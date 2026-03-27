@@ -3,261 +3,180 @@
  * Provides symbolic and numerical integration capabilities
  */
 
-import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+import { SymbolicIntegrator } from './logic.js';
 
-// Simple integration engine
-class SymbolicIntegrator {
-  constructor(variable = 'x') {
-    this.variable = variable;
-    this.steps = [];
-  }
+export { SymbolicIntegrator } from './logic.js';
 
-  // Parse polynomial expression
-  parsePolynomial(expr) {
-    expr = expr.replace(/\s/g, '');
-    const terms = [];
-    const regex = /([+-]?\d*\.?\d*)\*?([a-z])?\^?(\d*\.?\d*)/g;
-    let match;
-
-    while ((match = regex.exec(expr)) !== null) {
-      const coef = match[1]
-        ? match[1] === '+' || match[1] === ''
-          ? 1
-          : match[1] === '-'
-            ? -1
-            : parseFloat(match[1])
-        : 1;
-      const variable = match[2] || '';
-      const exponent = match[3] ? parseFloat(match[3]) : variable ? 1 : 0;
-
-      if (coef !== 0) {
-        terms.push({ coef, variable, exponent });
-      }
-    }
-
-    return terms;
-  }
-
-  // Integrate using power rule
-  integratePowerRule(coef, exponent) {
-    if (exponent === -1) {
-      return { type: 'ln', coef };
-    }
-
-    return {
-      type: 'polynomial',
-      coef: coef / (exponent + 1),
-      exponent: exponent + 1,
-    };
-  }
-
-  // Integrate polynomial
-  integratePolynomial(expr) {
-    this.steps = [];
-    this.steps.push(`Original function: f(x) = ${expr}`);
-
-    const terms = this.parsePolynomial(expr);
-    const integrals = [];
-
-    this.steps.push('\nApplying power rule to each term:');
-
-    for (const term of terms) {
-      if (term.variable !== this.variable && term.variable !== '') continue;
-
-      const original = this.formatTerm(term);
-      const integral = this.integratePowerRule(term.coef, term.exponent);
-
-      if (integral.type === 'ln') {
-        integrals.push(integral);
-        this.steps.push(`  ∫${original} dx = ${integral.coef}·ln|${this.variable}|`);
-      } else {
-        integrals.push(integral);
-        const integralStr = this.formatIntegral(integral);
-        this.steps.push(`  ∫${original} dx = ${integralStr}`);
-      }
-    }
-
-    return integrals;
-  }
-
-  // Format term for display
-  formatTerm(term) {
-    let str = '';
-
-    if (term.coef === 0) return '0';
-
-    if (Math.abs(term.coef) !== 1 || term.exponent === 0) {
-      str += Math.abs(term.coef);
-    }
-
-    if (term.variable && term.exponent !== 0) {
-      str += term.variable;
-      if (term.exponent !== 1) {
-        str += '^' + term.exponent;
-      }
-    }
-
-    return str || '1';
-  }
-
-  // Format integrated term
-  formatIntegral(integral) {
-    if (integral.type === 'ln') {
-      return `${integral.coef}·ln|${this.variable}|`;
-    }
-
-    let str = '';
-
-    if (integral.coef !== 1) {
-      str += integral.coef.toFixed(4).replace(/\.?0+$/, '');
-    }
-
-    if (integral.exponent !== 0) {
-      str += this.variable;
-      if (integral.exponent !== 1) {
-        str += '^' + integral.exponent;
-      }
-    }
-
-    return str || integral.coef.toString();
-  }
-
-  // Format full integral expression
-  formatExpression(terms) {
-    if (terms.length === 0) return '0';
-
-    let expr = '';
-    for (let i = 0; i < terms.length; i++) {
-      const term = terms[i];
-      const termStr = this.formatIntegral(term);
-
-      if (i === 0) {
-        expr += term.coef < 0 ? '-' : '';
-        expr += termStr;
-      } else {
-        expr += term.coef < 0 ? ' - ' : ' + ';
-        expr += termStr;
-      }
-    }
-
-    return expr + ' + C';
-  }
-
-  // Main integration function
-  integrate(expr) {
-    const integrals = this.integratePolynomial(expr);
-    const result = this.formatExpression(integrals);
-
-    this.steps.push(`\nFinal result: ∫f(x)dx = ${result}`);
-
-    return {
-      integral: result,
-      steps: this.steps,
-      terms: integrals,
-    };
-  }
-
-  // Evaluate definite integral
-  evaluateDefinite(terms, a, b) {
-    const evalAt = (x) => {
-      let sum = 0;
-      for (const term of terms) {
-        if (term.type === 'ln') {
-          sum += term.coef * Math.log(Math.abs(x));
-        } else {
-          sum += term.coef * Math.pow(x, term.exponent);
-        }
-      }
-      return sum;
-    };
-
-    const Fb = evalAt(b);
-    const Fa = evalAt(a);
-
-    return Fb - Fa;
-  }
-}
-
-// Plot integral graph with shaded area
-// Initialize calculator
 export function initIntegralCalculator() {
   const calculateBtn = document.getElementById('int-calculate');
   const resultDiv = document.getElementById('int-result');
   const stepsDiv = document.getElementById('int-steps');
   const modeButtons = document.querySelectorAll('.mode-button');
   const definiteBounds = document.getElementById('definite-bounds');
+  const functionInput = document.getElementById('int-function');
+  const variableInput = document.getElementById('int-variable');
+  const lowerInput = document.getElementById('int-lower');
+  const upperInput = document.getElementById('int-upper');
+  const snapshotMode = document.querySelector('[data-int-snap="mode"]');
+  const snapshotFunction = document.querySelector('[data-int-snap="function"]');
+  const snapshotResult = document.querySelector('[data-int-snap="result"]');
+  const snapshotStatus = document.querySelector('[data-int-snap="status"]');
 
   let currentMode = 'indefinite';
 
   if (!calculateBtn) return;
 
-  // Mode switching
+  function updateSnapshots({
+    mode = currentMode === 'indefinite' ? 'Indefinite' : 'Definite',
+    fn = functionInput?.value?.trim() || 'x^2',
+    result = '-',
+    status = '-',
+  } = {}) {
+    if (snapshotMode) snapshotMode.textContent = mode;
+    if (snapshotFunction) snapshotFunction.textContent = fn;
+    if (snapshotResult) snapshotResult.textContent = result;
+    if (snapshotStatus) snapshotStatus.textContent = status;
+  }
+
+  function showError(message) {
+    resultDiv.innerHTML = `
+      <article class="intg-result-box intg-error">
+        <h4>Input issue</h4>
+        <p>${message}</p>
+      </article>
+    `;
+    stepsDiv.innerHTML = `
+      <article class="intg-step-panel">
+        <h4>What to do next</h4>
+        <p>Use a polynomial-style expression such as <strong>x^2 + 3*x + 5</strong>, keep the variable short, and enter valid numeric bounds for definite mode.</p>
+      </article>
+    `;
+    updateSnapshots({ status: 'Invalid input' });
+  }
+
   modeButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      modeButtons.forEach((b) => b.classList.remove('active'));
+      modeButtons.forEach((button) => button.classList.remove('active'));
       btn.classList.add('active');
       currentMode = btn.dataset.mode;
-
-      if (currentMode === 'definite') {
-        definiteBounds.style.display = 'block';
-      } else {
-        definiteBounds.style.display = 'none';
-      }
+      definiteBounds.hidden = currentMode !== 'definite';
+      updateSnapshots({ mode: currentMode === 'indefinite' ? 'Indefinite' : 'Definite' });
+      calculateIntegral();
     });
   });
 
-  calculateBtn.addEventListener('click', () => {
-    const funcInput = document.getElementById('int-function').value.trim();
-    const variableInput = document.getElementById('int-variable').value.trim() || 'x';
+  function calculateIntegral() {
+    const fn = functionInput.value.trim();
+    const variableName = variableInput.value.trim() || 'x';
 
-    if (!funcInput) {
-      resultDiv.innerHTML = '<p class="error">Please enter a function.</p>';
-      stepsDiv.innerHTML = '';
+    if (!fn) {
+      showError('Please enter a function before calculating.');
       return;
     }
 
     try {
-      const integrator = new SymbolicIntegrator(variableInput);
-      const result = integrator.integrate(funcInput);
+      const integrator = new SymbolicIntegrator(variableName);
+      const result = integrator.integrate(fn);
 
       if (currentMode === 'indefinite') {
         resultDiv.innerHTML = `
-          <h4>Result:</h4>
-          <div class="result-box">
-            <strong>∫f(${variableInput})d${variableInput} = ${result.integral}</strong>
-          </div>
+          <article class="intg-summary-card">
+            <h4>Integral summary</h4>
+            <div class="intg-summary-grid">
+              <div class="intg-stat">
+                <span>Mode</span>
+                <strong>Indefinite</strong>
+              </div>
+              <div class="intg-stat">
+                <span>Antiderivative</span>
+                <strong>${result.integral}</strong>
+              </div>
+              <div class="intg-stat">
+                <span>Function</span>
+                <strong>f(${variableName}) = ${fn}</strong>
+              </div>
+              <div class="intg-stat">
+                <span>Interpretation</span>
+                <strong>Family of antiderivatives with constant C</strong>
+              </div>
+            </div>
+          </article>
+          <article class="intg-result-box">
+            <h4>Quick interpretation</h4>
+            <p><strong>∫f(${variableName})d${variableName} = ${result.integral}</strong></p>
+            <p>This mode returns an antiderivative family, so the result includes the integration constant <strong>C</strong>.</p>
+          </article>
         `;
+
+        updateSnapshots({
+          mode: 'Indefinite',
+          fn,
+          result: result.integral,
+          status: 'Solved',
+        });
       } else {
-        // Definite integral
-        const lowerBound = parseFloat(document.getElementById('int-lower').value);
-        const upperBound = parseFloat(document.getElementById('int-upper').value);
+        const lowerBound = parseFloat(lowerInput.value);
+        const upperBound = parseFloat(upperInput.value);
+        if (!Number.isFinite(lowerBound) || !Number.isFinite(upperBound)) {
+          showError('Enter valid numeric lower and upper bounds for definite mode.');
+          return;
+        }
 
         const value = integrator.evaluateDefinite(result.terms, lowerBound, upperBound);
+        const formattedValue = value.toFixed(6);
 
         resultDiv.innerHTML = `
-          <h4>Result:</h4>
-          <div class="result-box">
-            <strong>∫[${lowerBound} to ${upperBound}]f(${variableInput})d${variableInput} = ${value.toFixed(6)}</strong>
-          </div>
-          <div class="result-box" style="margin-top: 10px;">
-            <strong>Antiderivative:</strong> F(${variableInput}) = ${result.integral}
-          </div>
+          <article class="intg-summary-card">
+            <h4>Integral summary</h4>
+            <div class="intg-summary-grid">
+              <div class="intg-stat">
+                <span>Mode</span>
+                <strong>Definite</strong>
+              </div>
+              <div class="intg-stat">
+                <span>Value</span>
+                <strong>${formattedValue}</strong>
+              </div>
+              <div class="intg-stat">
+                <span>Bounds</span>
+                <strong>${lowerBound} to ${upperBound}</strong>
+              </div>
+              <div class="intg-stat">
+                <span>Antiderivative</span>
+                <strong>${result.integral}</strong>
+              </div>
+            </div>
+          </article>
+          <article class="intg-result-box">
+            <h4>Quick interpretation</h4>
+            <p><strong>∫[${lowerBound} to ${upperBound}]f(${variableName})d${variableName} = ${formattedValue}</strong></p>
+            <p>This mode evaluates the antiderivative at the upper and lower bounds and subtracts the two values.</p>
+          </article>
         `;
+
+        updateSnapshots({
+          mode: 'Definite',
+          fn,
+          result: formattedValue,
+          status: 'Solved',
+        });
       }
 
-      // Show steps
       stepsDiv.innerHTML = `
-        <h4>Step-by-Step Solution:</h4>
-        <div class="steps-box">
+        <article class="intg-step-panel">
+          <h4>Step-by-step solution</h4>
           <pre>${result.steps.join('\n')}</pre>
-        </div>
+        </article>
       `;
     } catch (error) {
-      resultDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
-      stepsDiv.innerHTML = '';
+      showError(`Unable to integrate the current expression. ${error.message}`);
     }
-  });
+  }
 
-  // Trigger initial calculation
-  calculateBtn.click();
+  calculateBtn.addEventListener('click', calculateIntegral);
+  calculateIntegral();
+}
+
+if (typeof document !== 'undefined') {
+  initIntegralCalculator();
 }

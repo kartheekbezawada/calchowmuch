@@ -1,7 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { setPageMetadata } from '/assets/js/core/ui.js';
-import { calculateLogBase, calculateLogChangeOfBase } from '/assets/js/core/logarithm.js';
+import { calculateLogBase, calculateLogChangeOfBase, drawLogCurve } from '/assets/js/core/logarithm.js';
 
 const valueInput = document.querySelector('#log-value');
 const baseSelect = document.querySelector('#log-base');
@@ -11,26 +10,12 @@ const calculateBtn = document.querySelector('#log-calculate');
 const resultDiv = document.querySelector('#log-result');
 const detailDiv = document.querySelector('#log-detail');
 const changeDiv = document.querySelector('#log-change');
-
-const commonLogMetadata = {
-  title: 'Common & Custom Log Calculator | Calculate How Much',
-  description:
-    'Compute logarithms for base 10, base 2, e, or any custom base and inspect change-of-base conversions.',
-  canonical: 'https://calchowmuch.com/calculators/math/log/common-log/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'Common log calculator',
-    description: 'Switch between log bases, compute log_b(x), and see change-of-base results.',
-    step: [
-      { '@type': 'HowToStep', text: 'Pick the argument value and base.' },
-      { '@type': 'HowToStep', text: 'Toggle a custom base if needed and calculate log_b(x).' },
-      { '@type': 'HowToStep', text: 'Read the decimal result and change-of-base relationship.' },
-    ],
-  },
-};
-
-setPageMetadata(commonLogMetadata);
+const graphCanvas = document.querySelector('#log-graph');
+const graphNote = document.querySelector('#log-graph-note');
+const snapshotValue = document.querySelector('[data-log-snap="value"]');
+const snapshotBase = document.querySelector('[data-log-snap="base"]');
+const snapshotResult = document.querySelector('[data-log-snap="result"]');
+const snapshotStatus = document.querySelector('[data-log-snap="status"]');
 
 function getSelectedBase() {
   const value = baseSelect.value;
@@ -43,6 +28,31 @@ function getSelectedBase() {
   return Number(value);
 }
 
+function getBaseLabel(base) {
+  if (!Number.isFinite(base)) {
+    return '-';
+  }
+  if (Math.abs(base - Math.E) < 1e-10) {
+    return 'e';
+  }
+  return formatNumber(base, { maximumFractionDigits: 4 });
+}
+
+function updateSnapshots({ value = '-', base = '-', result = '-', status = '-' } = {}) {
+  if (snapshotValue) {
+    snapshotValue.textContent = String(value);
+  }
+  if (snapshotBase) {
+    snapshotBase.textContent = String(base);
+  }
+  if (snapshotResult) {
+    snapshotResult.textContent = String(result);
+  }
+  if (snapshotStatus) {
+    snapshotStatus.textContent = String(status);
+  }
+}
+
 function toggleCustomRow() {
   customRow.hidden = baseSelect.value !== 'custom';
 }
@@ -51,12 +61,20 @@ function showMessage(message) {
   resultDiv.textContent = message;
   detailDiv.textContent = '';
   changeDiv.textContent = '';
+  updateSnapshots({ status: 'Invalid input' });
+  if (graphCanvas) {
+    drawLogCurve(graphCanvas, 10, 1);
+  }
+  if (graphNote) {
+    graphNote.textContent = 'Graph updates after you enter a valid positive argument and base.';
+  }
 }
 
 function updateResults() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
   changeDiv.textContent = '';
+  updateSnapshots();
 
   if (!hasMaxDigits(valueInput.value, 12)) {
     showMessage('Argument values are limited to 12 digits.');
@@ -82,27 +100,65 @@ function updateResults() {
     return;
   }
 
-  resultDiv.innerHTML = `<strong>log_${formatNumber(base, { maximumFractionDigits: 4 })}(${formatNumber(
-    value,
-    { maximumFractionDigits: 6 }
-  )}) = ${formatNumber(result, { maximumFractionDigits: 6 })}</strong>`;
+  const formattedValue = formatNumber(value, { maximumFractionDigits: 6 });
+  const formattedBase = getBaseLabel(base);
+  const formattedResult = formatNumber(result, { maximumFractionDigits: 6 });
 
-  detailDiv.innerHTML = `Change of base (to base 10): log_${formatNumber(base, {
-    maximumFractionDigits: 4,
-  })}(${formatNumber(value, { maximumFractionDigits: 6 })}) = ${formatNumber(result, { maximumFractionDigits: 6 })}`;
+  resultDiv.innerHTML = `
+    <article class="clog-summary-card">
+      <h4>Selected Log Result</h4>
+      <div class="clog-summary-grid">
+        <div class="clog-stat">
+          <span>Argument</span>
+          <strong>x = ${formattedValue}</strong>
+        </div>
+        <div class="clog-stat">
+          <span>Base</span>
+          <strong>${formattedBase}</strong>
+        </div>
+        <div class="clog-stat">
+          <span>log_b(x)</span>
+          <strong>${formattedResult}</strong>
+        </div>
+        <div class="clog-stat">
+          <span>Meaning</span>
+          <strong>${formattedBase}^${formattedResult} = ${formattedValue}</strong>
+        </div>
+      </div>
+    </article>
+  `;
+
+  detailDiv.innerHTML = `
+    <article class="clog-detail-panel">
+      <h4>Selected Base Interpretation</h4>
+      <p><strong>log_${formattedBase}(${formattedValue}) = ${formattedResult}</strong></p>
+      <p>The logarithm tells you which power of <strong>${formattedBase}</strong> produces <strong>${formattedValue}</strong>.</p>
+    </article>
+  `;
 
   const change = calculateLogChangeOfBase(value, base, 10);
   if (change) {
-    changeDiv.innerHTML = `Change-of-base: log_${formatNumber(base, {
-      maximumFractionDigits: 4,
-    })}(${formatNumber(value, { maximumFractionDigits: 6 })}) = ${formatNumber(change.fromValue, {
-      maximumFractionDigits: 6,
-    })}, log_10(${formatNumber(value, { maximumFractionDigits: 6 })}) = ${formatNumber(
-      change.toValue,
-      {
-        maximumFractionDigits: 6,
-      }
-    )}.`;
+    changeDiv.innerHTML = `
+      <article class="clog-detail-panel">
+        <h4>Change-of-Base Check</h4>
+        <p><strong>log_${formattedBase}(${formattedValue}) = ln(${formattedValue}) / ln(${formattedBase}) = ${formatNumber(change.fromValue, { maximumFractionDigits: 6 })}</strong></p>
+        <p><strong>log_10(${formattedValue}) = ${formatNumber(change.toValue, { maximumFractionDigits: 6 })}</strong></p>
+      </article>
+    `;
+  }
+
+  updateSnapshots({
+    value: formattedValue,
+    base: formattedBase,
+    result: formattedResult,
+    status: 'Solved',
+  });
+
+  if (graphCanvas) {
+    drawLogCurve(graphCanvas, base, value);
+  }
+  if (graphNote) {
+    graphNote.textContent = `Curve highlight is at x = ${formattedValue} for base ${formattedBase}.`;
   }
 }
 

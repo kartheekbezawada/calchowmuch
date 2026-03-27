@@ -1,53 +1,93 @@
 <div id="calc-regression">
-  <div class="calculator-ui">
-    <p class="helper">
-      Perform regression analysis on your data with R-squared and residual analysis.
-    </p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="reg-x-data">X Values (Independent Variable)</label>
-        <textarea id="reg-x-data" rows="2" placeholder="Enter X values separated by commas">
-1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea
-        >
+  <div class="analysis-shell">
+    <section class="analysis-card analysis-hero-card" aria-label="Regression overview">
+      <div class="analysis-hero-copy">
+        <p class="analysis-eyebrow">Simple Smooth Wow</p>
+        <h2 class="analysis-title">Fit the data, compare model families, and read the equation with goodness-of-fit in one answer-first view.</h2>
+        <p class="analysis-subtitle">
+          Paste X and Y values, switch between linear, polynomial, exponential, and logarithmic
+          models, and keep the equation, R-squared, and coefficient checks together before moving
+          into any external charting or reporting step.
+        </p>
       </div>
+      <ul class="analysis-hero-points">
+        <li>Keeps the fitted equation and goodness-of-fit metrics in the same answer panel.</li>
+        <li>Lets you compare model families quickly instead of rebuilding inputs for each fit.</li>
+        <li>Removes the inline-init dependency and legacy shell chrome from the route.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label for="reg-y-data">Y Values (Dependent Variable)</label>
-        <textarea id="reg-y-data" rows="2" placeholder="Enter Y values separated by commas">
-2.1, 4.2, 5.8, 8.1, 10.3, 11.9, 14.2, 16.1, 17.8, 20.2</textarea
-        >
-      </div>
-
-      <div class="input-row">
-        <label>Regression Type</label>
-        <div class="button-group" role="group" data-button-group="reg-type">
-          <button class="calculator-button secondary is-active" data-value="linear">Linear</button>
-          <button class="calculator-button secondary" data-value="polynomial">Polynomial</button>
-          <button class="calculator-button secondary" data-value="exponential">Exponential</button>
-          <button class="calculator-button secondary" data-value="logarithmic">Logarithmic</button>
+    <div class="analysis-workbench">
+      <section class="analysis-card analysis-input-card" aria-label="Regression inputs">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Inputs</p>
+            <p class="analysis-card-title">Enter paired data and choose the model family</p>
+          </div>
+          <span class="analysis-chip">Model fit</span>
         </div>
-      </div>
 
-      <div class="input-row" id="reg-degree-row" style="display: none">
-        <label for="reg-degree">Polynomial Degree</label>
-        <input id="reg-degree" type="number" value="2" min="2" max="5" step="1" />
-      </div>
+        <div class="analysis-two-up">
+          <label class="analysis-field" for="reg-x-data">
+            <span>X values (independent variable)</span>
+            <textarea id="reg-x-data" rows="5" placeholder="Enter X values separated by commas">
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10</textarea
+            >
+          </label>
+          <label class="analysis-field" for="reg-y-data">
+            <span>Y values (dependent variable)</span>
+            <textarea id="reg-y-data" rows="5" placeholder="Enter Y values separated by commas">
+2.1, 4.2, 5.8, 8.1, 10.3, 11.9, 14.2, 16.1, 17.8, 20.2</textarea
+            >
+          </label>
+        </div>
+
+        <div class="analysis-field">
+          <span>Regression type</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="reg-type">
+            <button class="calculator-button secondary is-active" type="button" data-value="linear">Linear</button>
+            <button class="calculator-button secondary" type="button" data-value="polynomial">Polynomial</button>
+            <button class="calculator-button secondary" type="button" data-value="exponential">Exponential</button>
+            <button class="calculator-button secondary" type="button" data-value="logarithmic">Logarithmic</button>
+          </div>
+        </div>
+
+        <label class="analysis-field" for="reg-degree" id="reg-degree-row" style="display: none">
+          <span>Polynomial degree</span>
+          <input id="reg-degree" type="number" value="2" min="2" max="5" step="1" />
+        </label>
+
+        <button class="calculator-button analysis-calc-button" type="button" id="reg-calculate">
+          Perform regression
+        </button>
+      </section>
+
+      <section class="analysis-card analysis-answer-card" aria-label="Regression answer">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Answer</p>
+            <p class="analysis-card-title">Equation, goodness of fit, and coefficient checks</p>
+          </div>
+          <span class="analysis-chip analysis-chip--answer">R-squared</span>
+        </div>
+
+        <div class="result analysis-result-card" id="reg-result" aria-live="polite"></div>
+
+        <div class="analysis-snapshot-grid" aria-label="Regression workflow summary">
+          <article class="analysis-snapshot-card">
+            <span>Primary output</span>
+            <strong>Equation and fit</strong>
+          </article>
+          <article class="analysis-snapshot-card">
+            <span>Verification</span>
+            <strong>Standard error and coefficients</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="reg-calculate">
-      Perform Regression
-    </button>
-
-    <div class="result" id="reg-result" aria-live="polite"></div>
   </div>
 </div>
 
 <style>
   @import url('/calculators/math/statistics/regression-analysis/calculator.css');
 </style>
-
-<script type="module">
-  import { initRegressionCalculator } from '/calculators/math/statistics/regression-analysis/module.js';
-  initRegressionCalculator();
-</script>

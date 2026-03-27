@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Monthly to Annual Salary Calculator to estimate yearly salary from a monthly pay figure. It serves users who want to reverse a monthly income into annual, biweekly, and weekly equivalents without introducing tax or payroll assumptions.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `conversion` route variant in a fully light, answer-first layout.
+- Keep the hero result focused on annual salary only.
+- Limit the first supporting result row to biweekly pay and weekly pay.
+- Keep explanation, FAQ, and related calculators below the primary answer area.
 
 ## SEO Metadata
 

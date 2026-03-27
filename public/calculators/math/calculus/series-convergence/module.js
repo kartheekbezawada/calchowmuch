@@ -3,10 +3,10 @@
  * Tests series for convergence using various convergence tests
  */
 
-import { expressionParser } from '../../../assets/js/core/expression-parser.js';
+import { expressionParser } from '../../../../assets/js/core/expression-parser.js';
 
 // Series convergence analyzer
-class SeriesAnalyzer {
+export class SeriesAnalyzer {
   constructor(termExpr, startIndex = 1) {
     this.termExpr = termExpr;
     this.startIndex = startIndex;
@@ -369,4 +369,14 @@ export function initSeriesConvergenceCalculator() {
 
   // Trigger initial calculation
   calculateBtn.click();
+}
+
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => initSeriesConvergenceCalculator(), {
+      once: true,
+    });
+  } else {
+    initSeriesConvergenceCalculator();
+  }
 }

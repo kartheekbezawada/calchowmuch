@@ -1,103 +1,144 @@
-<section>
-  <h3>What is a Z-score?</h3>
-  <p>
-    A z-score (also called a standard score) measures how many standard deviations a value is from
-    the mean. It standardizes values from different distributions, making them comparable.
-  </p>
-</section>
+<div id="zscore-explanation">
+  <section class="stats-exp-section">
+    <h2>Z-Score Calculator Practical Guide</h2>
+    <p>
+      Use this calculator to convert one raw value into a z-score and read how far it sits above or
+      below the mean. The answer-first result keeps the standard score, formula, and interpretation
+      together so you can assess the value quickly.
+    </p>
+    <ul class="stats-summary-list">
+      <li><strong>Best for:</strong> quick standard-score interpretation on one value.</li>
+      <li><strong>Quick answer flow:</strong> enter x, mean, and standard deviation, then calculate once.</li>
+      <li><strong>Output includes:</strong> z-score, formula substitution, and above/below-mean interpretation.</li>
+    </ul>
+  </section>
 
-<section>
-  <h3>When to Use This Calculator</h3>
-  <ul>
-    <li>Comparing values from different datasets</li>
-    <li>Determining how unusual a value is</li>
-    <li>Standardizing test scores</li>
-    <li>Quality control (identifying outliers)</li>
-    <li>Statistical hypothesis testing</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Enter the raw value, the mean, and the standard deviation.</li>
+      <li>Click <strong>Calculate z-score</strong> to update the answer card.</li>
+      <li>Read the z-score first, then use the interpretation line to see whether the value is above or below the mean.</li>
+      <li>Use the formula block when you want to verify the substitution manually.</li>
+    </ol>
+  </section>
 
-<section>
-  <h3>Input Definitions</h3>
-  <ul>
-    <li><strong>Value (x):</strong> The data point you want to standardize.</li>
-    <li><strong>Mean (μ):</strong> The average of the population or sample.</li>
-    <li>
-      <strong>Standard Deviation (σ):</strong> The measure of spread in the data. Must be greater
-      than 0.
-    </li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="stats-table-wrap">
+      <table class="stats-summary-table">
+        <thead>
+          <tr>
+            <th>Z-score</th>
+            <th>What it means</th>
+            <th>Quick interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>The value equals the mean</td>
+            <td>The observation is exactly average for that distribution.</td>
+          </tr>
+          <tr>
+            <td>Positive</td>
+            <td>The value is above the mean</td>
+            <td>The larger the score, the further above average it sits.</td>
+          </tr>
+          <tr>
+            <td>Negative</td>
+            <td>The value is below the mean</td>
+            <td>The smaller the score, the further below average it sits.</td>
+          </tr>
+          <tr>
+            <td>Large absolute value</td>
+            <td>The value is far from the mean</td>
+            <td>Useful when you want to spot unusual observations quickly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-<section>
-  <h3>Formula</h3>
-  <p style="margin-left: 1rem"><strong>z = (x - μ) / σ</strong></p>
-  <p>Where:</p>
-  <ul>
-    <li>x = the value</li>
-    <li>μ = the mean</li>
-    <li>σ = the standard deviation</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      The route uses <strong>z = (x - mu) / sigma</strong>. It subtracts the mean from the raw
+      value, then divides the difference by the standard deviation to show how many standard
+      deviations away the value sits.
+    </p>
+  </section>
 
-<section>
-  <h3>Worked Example</h3>
-  <p>Using the defaults: x = 85, μ = 75, σ = 10</p>
-  <ol>
-    <li>Formula: z = (x - μ) / σ</li>
-    <li>Substitute: z = (85 - 75) / 10</li>
-    <li>Calculate: z = 10 / 10 = 1</li>
-    <li>Interpretation: 85 is 1 standard deviation above the mean.</li>
-  </ol>
-</section>
+  <section class="stats-exp-section">
+    <h3>Worked Example</h3>
+    <div class="stats-example-grid">
+      <article class="stats-example-card">
+        <h4>Default example</h4>
+        <p>With x = <strong>85</strong>, mean = <strong>75</strong>, and sigma = <strong>10</strong>, the z-score is <strong>1</strong>.</p>
+        <p>That means the value is one standard deviation above the mean.</p>
+      </article>
+      <article class="stats-example-card">
+        <h4>Below-mean example</h4>
+        <p>If you change the value to <strong>65</strong> while keeping the same mean and sigma, the z-score becomes <strong>-1</strong>.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Interpreting Z-scores</h3>
-  <ul>
-    <li><strong>z = 0:</strong> The value equals the mean.</li>
-    <li><strong>z > 0:</strong> The value is above the mean.</li>
-    <li><strong>z < 0:</strong> The value is below the mean.</li>
-    <li><strong>|z| > 2:</strong> The value is considered unusual (outside ~95% of data).</li>
-    <li>
-      <strong>|z| > 3:</strong> The value is considered very unusual (outside ~99.7% of data).
-    </li>
-  </ul>
-</section>
+  <section class="stats-exp-section" id="zscore-faq">
+    <h3>FAQ</h3>
+    <div class="stats-faq-grid">
+      <article class="faq-card">
+        <h4>What does a z-score of 0 mean?</h4>
+        <p>It means the value is exactly equal to the mean.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What does a positive z-score mean?</h4>
+        <p>It means the value is above the mean.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What does a negative z-score mean?</h4>
+        <p>It means the value is below the mean.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why does a larger absolute z-score matter?</h4>
+        <p>Because it shows the value is further from average and may be more unusual.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can I use decimals?</h4>
+        <p>Yes. The route accepts decimal values for the score, mean, and standard deviation.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if the standard deviation is zero?</h4>
+        <p>The route blocks that input because dividing by zero would make the z-score invalid.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>The 68-95-99.7 Rule</h3>
-  <p>For normally distributed data:</p>
-  <ul>
-    <li>~68% of values have z-scores between -1 and +1</li>
-    <li>~95% of values have z-scores between -2 and +2</li>
-    <li>~99.7% of values have z-scores between -3 and +3</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="stats-related-grid">
+      <a class="stats-related-card" href="/math/standard-deviation/">
+        <strong>Standard Deviation Calculator</strong>
+        <span>Check the spread input before standardizing a value.</span>
+      </a>
+      <a class="stats-related-card" href="/math/confidence-interval/">
+        <strong>Confidence Interval Calculator</strong>
+        <span>See the same z-based idea used in interval estimation.</span>
+      </a>
+      <a class="stats-related-card" href="/math/mean-median-mode-range/">
+        <strong>Mean Median Mode Range Calculator</strong>
+        <span>Start with the basic summary values before standardizing one observation.</span>
+      </a>
+    </div>
+  </section>
 
-<section>
-  <h3>Common Applications</h3>
-  <ul>
-    <li>
-      <strong>Test Scores:</strong> SAT, IQ, and other standardized tests use z-scores for
-      comparison.
-    </li>
-    <li>
-      <strong>Finance:</strong> Measuring how unusual a stock return is compared to historical
-      performance.
-    </li>
-    <li>
-      <strong>Quality Control:</strong> Identifying products that deviate too far from
-      specifications.
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Edge Cases and Validation</h3>
-  <ul>
-    <li>Standard deviation must be greater than 0 (division by zero is undefined).</li>
-    <li>All inputs must be valid finite numbers.</li>
-    <li>Results are formatted to 4 decimal places.</li>
-    <li>Negative z-scores indicate values below the mean.</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="stats-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Formula rule:</strong> The route uses the standard z-score formula with one value, one mean, and one standard deviation.</li>
+      <li><strong>Validation rule:</strong> Standard deviation must be greater than zero.</li>
+      <li><strong>Use case:</strong> This route is built for quick interpretation, not percentile table lookup.</li>
+    </ul>
+  </section>
+</div>

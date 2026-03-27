@@ -1,109 +1,143 @@
-<section>
-  <h3>What is a Confidence Interval?</h3>
-  <p>
-    A confidence interval is a range of values that likely contains the true population parameter.
-    For example, a 95% confidence interval means that if we repeated the sampling process many
-    times, 95% of the intervals would contain the true value.
-  </p>
-</section>
+<div id="ci-explanation">
+  <section class="stats-exp-section">
+    <h2>Confidence Interval Calculator Practical Guide</h2>
+    <p>
+      Use this calculator to estimate a confidence interval around a sample proportion or sample
+      mean in one answer-first result. It keeps the lower bound, upper bound, margin of error, and
+      formula summary together so you can assess the interval quickly.
+    </p>
+    <ul class="stats-summary-list">
+      <li><strong>Best for:</strong> quick interval estimates on sample proportions or known-sigma means.</li>
+      <li><strong>Quick answer flow:</strong> choose the mode, set the confidence level, enter the sample values, and calculate once.</li>
+      <li><strong>Output includes:</strong> interval bounds, standard error, margin of error, and formula summary.</li>
+    </ul>
+  </section>
 
-<section>
-  <h3>When to Use This Calculator</h3>
-  <ul>
-    <li>Estimating population proportions from survey data</li>
-    <li>Estimating population means when σ is known</li>
-    <li>Reporting margins of error in research</li>
-    <li>Quality control and process monitoring</li>
-    <li>Political polling and market research</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Select <strong>Proportion</strong> for p-hat or <strong>Mean</strong> for x-bar with known sigma.</li>
+      <li>Pick 90%, 95%, or 99% confidence.</li>
+      <li>Enter the sample values and click <strong>Calculate confidence interval</strong>.</li>
+      <li>Read the interval bounds first, then the error and formula notes underneath.</li>
+    </ol>
+  </section>
 
-<section>
-  <h3>Input Definitions</h3>
-  <ul>
-    <li>
-      <strong>Calculation Type:</strong> Choose Proportion for percentages or Mean for continuous
-      values.
-    </li>
-    <li><strong>Confidence Level:</strong> How confident you want to be (90%, 95%, or 99%).</li>
-    <li>
-      <strong>Sample Proportion (p-hat):</strong> The proportion observed in your sample (as %).
-    </li>
-    <li><strong>Sample Mean (x-bar):</strong> The average observed in your sample.</li>
-    <li>
-      <strong>Population Std Dev (σ):</strong> The known population standard deviation (for mean
-      CI).
-    </li>
-    <li><strong>Sample Size (n):</strong> The number of observations in your sample.</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="stats-table-wrap">
+      <table class="stats-summary-table">
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>What it uses</th>
+            <th>Quick interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Proportion</td>
+            <td>Sample proportion p-hat, sample size, and z-value</td>
+            <td>Useful for yes/no or success-rate style samples.</td>
+          </tr>
+          <tr>
+            <td>Mean</td>
+            <td>Sample mean, known sigma, sample size, and z-value</td>
+            <td>Useful when you already know the population standard deviation.</td>
+          </tr>
+          <tr>
+            <td>Confidence level</td>
+            <td>The selected z-value</td>
+            <td>Higher confidence gives a wider interval.</td>
+          </tr>
+          <tr>
+            <td>Margin of error</td>
+            <td>The distance from the centre to each bound</td>
+            <td>A smaller margin means a tighter interval.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-<section>
-  <h3>Formulas</h3>
-  <p><strong>Confidence Interval for Proportion:</strong></p>
-  <p style="margin-left: 1rem">CI = p-hat ± z × √(p(1-p)/n)</p>
+  <section class="stats-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      For proportions, the route uses <strong>p-hat ± z × sqrt(p(1-p)/n)</strong>. For means with
+      known sigma, it uses <strong>x-bar ± z × sigma / sqrt(n)</strong>. In both cases, a larger
+      sample size narrows the interval, while a higher confidence level widens it.
+    </p>
+  </section>
 
-  <p><strong>Confidence Interval for Mean (σ known):</strong></p>
-  <p style="margin-left: 1rem">CI = x-bar ± z × σ/√n</p>
+  <section class="stats-exp-section">
+    <h3>Worked Example</h3>
+    <div class="stats-example-grid">
+      <article class="stats-example-card">
+        <h4>Default proportion example</h4>
+        <p>With p-hat = <strong>60%</strong>, n = <strong>100</strong>, and 95% confidence, the interval lands around <strong>50.4%</strong> to <strong>69.6%</strong>.</p>
+      </article>
+      <article class="stats-example-card">
+        <h4>Mean example</h4>
+        <p>With x-bar = <strong>50</strong>, sigma = <strong>10</strong>, n = <strong>25</strong>, and 95% confidence, the interval is <strong>46.08</strong> to <strong>53.92</strong>.</p>
+      </article>
+    </div>
+  </section>
 
-  <p><strong>Z-values:</strong></p>
-  <ul>
-    <li>90% confidence: z = 1.645</li>
-    <li>95% confidence: z = 1.96</li>
-    <li>99% confidence: z = 2.576</li>
-  </ul>
-</section>
+  <section class="stats-exp-section" id="ci-faq">
+    <h3>FAQ</h3>
+    <div class="stats-faq-grid">
+      <article class="faq-card">
+        <h4>What does a confidence interval mean?</h4>
+        <p>It gives a plausible range for the population value based on your sample and chosen confidence level.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why does higher confidence make the interval wider?</h4>
+        <p>Because the route uses a larger z-value, which increases the margin of error.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use proportion mode?</h4>
+        <p>Use proportion mode when the sample result is a percent or share, such as approval rate or conversion rate.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use mean mode?</h4>
+        <p>Use mean mode when you are estimating an average and you already know the population standard deviation.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What narrows the interval?</h4>
+        <p>A larger sample size or a lower confidence level narrows the interval.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can the proportion interval go below 0% or above 100%?</h4>
+        <p>The route keeps the result inside valid proportion bounds.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (Proportion)</h3>
-  <p>Using defaults: p-hat = 60%, n = 100, 95% confidence</p>
-  <ol>
-    <li>Convert to decimal: p = 0.60</li>
-    <li>Standard error: SE = √(0.60 × 0.40 / 100) = √0.0024 = 0.049</li>
-    <li>Margin of error: ME = 1.96 × 0.049 = 0.096</li>
-    <li>CI: 0.60 ± 0.096 = (0.504, 0.696)</li>
-    <li>Result: 50.4% to 69.6%</li>
-  </ol>
-</section>
+  <section class="stats-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="stats-related-grid">
+      <a class="stats-related-card" href="/math/sample-size/">
+        <strong>Sample Size Calculator</strong>
+        <span>Plan the sample before you estimate the interval.</span>
+      </a>
+      <a class="stats-related-card" href="/math/z-score/">
+        <strong>Z-Score Calculator</strong>
+        <span>Review the standard-score logic behind the z-based interval.</span>
+      </a>
+      <a class="stats-related-card" href="/math/standard-deviation/">
+        <strong>Standard Deviation Calculator</strong>
+        <span>Check the spread input used in mean-based intervals.</span>
+      </a>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (Mean)</h3>
-  <p>Using: x-bar = 50, σ = 10, n = 100, 95% confidence</p>
-  <ol>
-    <li>Standard error: SE = 10 / √100 = 10 / 10 = 1</li>
-    <li>Margin of error: ME = 1.96 × 1 = 1.96</li>
-    <li>CI: 50 ± 1.96 = (48.04, 51.96)</li>
-  </ol>
-</section>
-
-<section>
-  <h3>Interpreting Results</h3>
-  <ul>
-    <li>A <strong>narrower interval</strong> indicates more precise estimation.</li>
-    <li>Larger sample sizes produce narrower intervals.</li>
-    <li>Higher confidence levels produce wider intervals.</li>
-    <li>The margin of error is half the width of the interval.</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Common Misconceptions</h3>
-  <ul>
-    <li>
-      A 95% CI does NOT mean there's a 95% chance the true value is in this specific interval.
-    </li>
-    <li>It means 95% of similarly constructed intervals would contain the true value.</li>
-    <li>The interval refers to the procedure's reliability, not this particular result.</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Edge Cases and Validation</h3>
-  <ul>
-    <li>Sample size must be at least 1.</li>
-    <li>Proportion must be between 0% and 100%.</li>
-    <li>Population standard deviation must be greater than 0.</li>
-    <li>Proportion bounds are clamped to [0, 1].</li>
-    <li>Results are formatted to 4 decimal places.</li>
-  </ul>
-</section>
+  <section class="stats-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="stats-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Mode rule:</strong> Mean mode assumes the population standard deviation is known.</li>
+      <li><strong>Confidence rule:</strong> Higher confidence widens the interval.</li>
+      <li><strong>Use case:</strong> This route is built for quick interval estimation, not for full hypothesis test selection.</li>
+    </ul>
+  </section>
+</div>

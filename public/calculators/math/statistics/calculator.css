@@ -1,33 +1,274 @@
-#calc-statistics .stats-table {
+#calc-statistics {
+  --stats-border: #dbe6f1;
+  --stats-surface: #ffffff;
+  --stats-surface-alt: #f4f8fc;
+  --stats-ink: #17324d;
+  --stats-muted: #5b7289;
+  --stats-accent: #1c73d7;
+  --stats-accent-soft: #dcebff;
+}
+
+#calc-statistics .stats-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-statistics .stats-card {
+  background: var(--stats-surface);
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+}
+
+#calc-statistics .stats-hero-card,
+#calc-statistics .stats-input-card,
+#calc-statistics .stats-answer-card {
+  padding: 1.5rem;
+}
+
+#calc-statistics .stats-hero-card {
+  display: grid;
+  gap: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(28, 115, 215, 0.12), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f6faff);
+}
+
+#calc-statistics .stats-eyebrow,
+#calc-statistics .stats-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stats-accent);
+}
+
+#calc-statistics .stats-title,
+#calc-statistics .stats-card-title {
+  margin: 0.35rem 0 0;
+  color: var(--stats-ink);
+}
+
+#calc-statistics .stats-title {
+  font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+  line-height: 1.15;
+}
+
+#calc-statistics .stats-subtitle,
+#calc-statistics .stats-hero-points,
+#calc-statistics .stats-field small {
+  color: var(--stats-muted);
+}
+
+#calc-statistics .stats-hero-points {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#calc-statistics .stats-workbench {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-statistics .stats-card-head {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+#calc-statistics .stats-chip {
+  border-radius: 999px;
+  background: var(--stats-accent-soft);
+  color: var(--stats-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+#calc-statistics .stats-chip--answer {
+  background: #fff2d8;
+  color: #8d5b10;
+}
+
+#calc-statistics .stats-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+#calc-statistics .stats-field span {
+  font-weight: 600;
+  color: var(--stats-ink);
+}
+
+#calc-statistics .stats-field textarea {
+  width: 100%;
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  font: inherit;
+  color: var(--stats-ink);
+  background: #fff;
+  resize: vertical;
+}
+
+#calc-statistics .stats-field textarea:focus {
+  outline: 2px solid rgba(28, 115, 215, 0.16);
+  border-color: var(--stats-accent);
+}
+
+#calc-statistics .stats-calc-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#calc-statistics .stats-result-card strong,
+#calc-statistics .stats-detail-card strong {
+  color: var(--stats-ink);
+}
+
+#calc-statistics .stats-detail-card {
+  margin-top: 1rem;
+}
+
+#calc-statistics .stats-table {
+  display: grid;
   gap: 1rem;
 }
 
 #calc-statistics .stats-section {
-  flex: 1 1 200px;
-  min-width: 200px;
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: var(--stats-surface-alt);
 }
 
 #calc-statistics .stats-section h4 {
-  margin: 0 0 0.5rem 0;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.9rem;
-  color: var(--header-text);
+  margin: 0 0 0.6rem;
+  color: var(--stats-ink);
 }
 
 #calc-statistics .stats-row {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.25rem 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 #calc-statistics .stats-row span:first-child {
-  color: var(--muted-text);
+  color: var(--stats-muted);
 }
 
 #calc-statistics .stats-row span:last-child {
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--stats-ink);
+  text-align: right;
+}
+
+#calc-statistics .stats-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+#calc-statistics .stats-snapshot-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fbfdff;
+}
+
+#calc-statistics .stats-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--stats-muted);
+  margin-bottom: 0.25rem;
+}
+
+#statistics-explanation {
+  display: grid;
+  gap: 1.25rem;
+}
+
+#statistics-explanation .stats-exp-section {
+  background: #fff;
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  padding: 1.4rem;
+}
+
+#statistics-explanation .stats-summary-list,
+#statistics-explanation .stats-notes-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#statistics-explanation .stats-table-wrap {
+  overflow-x: auto;
+}
+
+#statistics-explanation .stats-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#statistics-explanation .stats-summary-table th,
+#statistics-explanation .stats-summary-table td {
+  border-bottom: 1px solid var(--stats-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#statistics-explanation .stats-example-grid,
+#statistics-explanation .stats-faq-grid,
+#statistics-explanation .stats-related-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+#statistics-explanation .stats-example-card,
+#statistics-explanation .faq-card,
+#statistics-explanation .stats-related-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #fbfdff;
+}
+
+#statistics-explanation .stats-related-card {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  #calc-statistics .stats-hero-card {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+    align-items: start;
+  }
+
+  #calc-statistics .stats-workbench {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  #calc-statistics .stats-table {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #statistics-explanation .stats-example-grid,
+  #statistics-explanation .stats-faq-grid,
+  #statistics-explanation .stats-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

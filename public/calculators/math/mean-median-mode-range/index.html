@@ -1,26 +1,72 @@
 <div id="calc-mean-median-mode-range">
-  <div class="calculator-ui">
-    <p class="helper">Calculate mean, median, mode, and range for a dataset.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="mmmr-dataset">Dataset</label>
-        <textarea
-          id="mmmr-dataset"
-          rows="4"
-          placeholder="Enter numbers separated by commas, spaces, or newlines"
-        >
-12, 15, 18, 22, 15, 25, 18, 15</textarea
-        >
+  <div class="stats-shell">
+    <section class="stats-card stats-hero-card" aria-label="Dataset summary overview">
+      <div class="stats-hero-copy">
+        <p class="stats-eyebrow">Simple Smooth Wow</p>
+        <h2 class="stats-title">Turn a raw dataset into the six summary numbers you usually need first.</h2>
+        <p class="stats-subtitle">
+          Paste a list of values, calculate once, and keep the center, spread, and range summary in
+          one answer-first card before you move into the interpretation notes below.
+        </p>
       </div>
+      <ul class="stats-hero-points">
+        <li>Best for quick classwork checks, basic descriptive statistics, and cleaned survey columns.</li>
+        <li>The answer card keeps mean, median, mode, minimum, maximum, and range together.</li>
+        <li>The layout stays usable on the first screen without duplicate controls or legacy chrome.</li>
+      </ul>
+    </section>
+
+    <div class="stats-workbench">
+      <section class="stats-card stats-input-card" aria-label="Dataset input">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Inputs</p>
+            <p class="stats-card-title">Paste the dataset and calculate the summary</p>
+          </div>
+          <span class="stats-chip">Answer-first</span>
+        </div>
+
+        <label class="stats-field" for="mmmr-dataset">
+          <span>Dataset</span>
+          <textarea
+            id="mmmr-dataset"
+            rows="6"
+            placeholder="Enter numbers separated by commas, spaces, or newlines"
+          >
+12, 15, 18, 22, 15, 25, 18, 15</textarea
+          >
+          <small>Use commas, spaces, or line breaks. Mixed separators are fine.</small>
+        </label>
+
+        <button class="calculator-button stats-calc-button" type="button" id="mmmr-calculate">
+          Calculate summary
+        </button>
+      </section>
+
+      <section class="stats-card stats-answer-card" aria-label="Summary statistics answer">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Answer</p>
+            <p class="stats-card-title">Center, spread, and range summary</p>
+          </div>
+          <span class="stats-chip stats-chip--answer">Dataset summary</span>
+        </div>
+
+        <div class="result stats-result-card" id="mmmr-result" aria-live="polite"></div>
+        <div class="result-detail stats-detail-card" id="mmmr-detail" aria-live="polite"></div>
+
+        <div class="stats-snapshot-grid" aria-label="Summary workflow snapshot">
+          <article class="stats-snapshot-card">
+            <span>Primary outputs</span>
+            <strong>Mean, median, mode</strong>
+          </article>
+          <article class="stats-snapshot-card">
+            <span>Spread check</span>
+            <strong>Min, max, range</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="mmmr-calculate">
-      Calculate
-    </button>
-
-    <div class="result" id="mmmr-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="mmmr-detail" aria-live="polite"></div>
   </div>
 </div>
 

@@ -1,0 +1,726 @@
+{
+  "version": 1,
+  "clusterId": "math",
+  "routes": {
+    "/math/basic/": {
+      "route": "/math/basic/",
+      "calculatorId": "basic",
+      "clusterId": "math",
+      "buildId": "wave1-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/basic/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/basic/module.js"
+        ]
+      }
+    },
+    "/math/fraction-calculator/": {
+      "route": "/math/fraction-calculator/",
+      "calculatorId": "fraction-calculator",
+      "clusterId": "math",
+      "buildId": "wave1-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/fraction-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/fraction-calculator/module.js"
+        ]
+      }
+    },
+    "/math/sample-size/": {
+      "route": "/math/sample-size/",
+      "calculatorId": "sample-size",
+      "clusterId": "math",
+      "buildId": "wave1-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/sample-size/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/sample-size/module.js"
+        ]
+      }
+    },
+    "/math/algebra/quadratic-equation/": {
+      "route": "/math/algebra/quadratic-equation/",
+      "calculatorId": "quadratic-equation",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/quadratic-equation/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/quadratic-equation/module.js"
+        ]
+      }
+    },
+    "/math/algebra/slope-distance/": {
+      "route": "/math/algebra/slope-distance/",
+      "calculatorId": "slope-distance",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/slope-distance/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/slope-distance/module.js"
+        ]
+      }
+    },
+    "/math/algebra/factoring/": {
+      "route": "/math/algebra/factoring/",
+      "calculatorId": "factoring",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/factoring/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/factoring/module.js"
+        ]
+      }
+    },
+    "/math/algebra/polynomial-operations/": {
+      "route": "/math/algebra/polynomial-operations/",
+      "calculatorId": "polynomial-operations",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/polynomial-operations/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/polynomial-operations/module.js"
+        ]
+      }
+    },
+    "/math/algebra/system-of-equations/": {
+      "route": "/math/algebra/system-of-equations/",
+      "calculatorId": "system-of-equations",
+      "clusterId": "math",
+      "buildId": "wave3-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/system-of-equations/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/algebra/system-of-equations/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/unit-circle/": {
+      "route": "/math/trigonometry/unit-circle/",
+      "calculatorId": "unit-circle",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/unit-circle/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/unit-circle/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/triangle-solver/": {
+      "route": "/math/trigonometry/triangle-solver/",
+      "calculatorId": "triangle-solver",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/triangle-solver/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/triangle-solver/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/trig-functions/": {
+      "route": "/math/trigonometry/trig-functions/",
+      "calculatorId": "trig-functions",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/trig-functions/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/trig-functions/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/inverse-trig/": {
+      "route": "/math/trigonometry/inverse-trig/",
+      "calculatorId": "inverse-trig",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/inverse-trig/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/inverse-trig/module.js"
+        ]
+      }
+    },
+    "/math/trigonometry/law-of-sines-cosines/": {
+      "route": "/math/trigonometry/law-of-sines-cosines/",
+      "calculatorId": "law-of-sines-cosines",
+      "clusterId": "math",
+      "buildId": "wave4-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/law-of-sines-cosines/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/trigonometry/law-of-sines-cosines/module.js"
+        ]
+      }
+    },
+    "/math/log/natural-log/": {
+      "route": "/math/log/natural-log/",
+      "calculatorId": "natural-log",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/natural-log/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/natural-log/module.js"
+        ]
+      }
+    },
+    "/math/log/common-log/": {
+      "route": "/math/log/common-log/",
+      "calculatorId": "common-log",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/common-log/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/common-log/module.js"
+        ]
+      }
+    },
+    "/math/log/log-properties/": {
+      "route": "/math/log/log-properties/",
+      "calculatorId": "log-properties",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-properties/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-properties/module.js"
+        ]
+      }
+    },
+    "/math/log/exponential-equations/": {
+      "route": "/math/log/exponential-equations/",
+      "calculatorId": "exponential-equations",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/exponential-equations/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/exponential-equations/module.js"
+        ]
+      }
+    },
+    "/math/log/log-scale/": {
+      "route": "/math/log/log-scale/",
+      "calculatorId": "log-scale",
+      "clusterId": "math",
+      "buildId": "wave5-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-scale/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/log/log-scale/module.js"
+        ]
+      }
+    },
+    "/math/calculus/derivative/": {
+      "route": "/math/calculus/derivative/",
+      "calculatorId": "derivative",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/derivative/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/derivative/module.js"
+        ]
+      }
+    },
+    "/math/calculus/integral/": {
+      "route": "/math/calculus/integral/",
+      "calculatorId": "integral",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/integral/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/integral/module.js"
+        ]
+      }
+    },
+    "/math/calculus/limit/": {
+      "route": "/math/calculus/limit/",
+      "calculatorId": "limit",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/limit/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/limit/module.js"
+        ]
+      }
+    },
+    "/math/calculus/series-convergence/": {
+      "route": "/math/calculus/series-convergence/",
+      "calculatorId": "series-convergence",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/series-convergence/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/series-convergence/module.js"
+        ]
+      }
+    },
+    "/math/calculus/critical-points/": {
+      "route": "/math/calculus/critical-points/",
+      "calculatorId": "critical-points",
+      "clusterId": "math",
+      "buildId": "wave6-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/critical-points/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/calculus/critical-points/module.js"
+        ]
+      }
+    },
+    "/math/mean-median-mode-range/": {
+      "route": "/math/mean-median-mode-range/",
+      "calculatorId": "mean-median-mode-range",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/mean-median-mode-range/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/mean-median-mode-range/module.js"
+        ]
+      }
+    },
+    "/math/standard-deviation/": {
+      "route": "/math/standard-deviation/",
+      "calculatorId": "standard-deviation",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/standard-deviation/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/standard-deviation/module.js"
+        ]
+      }
+    },
+    "/math/confidence-interval/": {
+      "route": "/math/confidence-interval/",
+      "calculatorId": "confidence-interval",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/confidence-interval/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/confidence-interval/module.js"
+        ]
+      }
+    },
+    "/math/z-score/": {
+      "route": "/math/z-score/",
+      "calculatorId": "z-score",
+      "clusterId": "math",
+      "buildId": "wave7-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/z-score/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/z-score/module.js"
+        ]
+      }
+    },
+    "/math/number-sequence/": {
+      "route": "/math/number-sequence/",
+      "calculatorId": "number-sequence",
+      "clusterId": "math",
+      "buildId": "wave8-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/number-sequence/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/number-sequence/module.js"
+        ]
+      }
+    },
+    "/math/permutation-combination/": {
+      "route": "/math/permutation-combination/",
+      "calculatorId": "permutation-combination",
+      "clusterId": "math",
+      "buildId": "wave8-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/permutation-combination/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/permutation-combination/module.js"
+        ]
+      }
+    },
+    "/math/probability/": {
+      "route": "/math/probability/",
+      "calculatorId": "probability",
+      "clusterId": "math",
+      "buildId": "wave8-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/probability/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/probability/module.js"
+        ]
+      }
+    },
+    "/math/statistics/": {
+      "route": "/math/statistics/",
+      "calculatorId": "statistics",
+      "clusterId": "math",
+      "buildId": "wave9-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/module.js"
+        ]
+      }
+    },
+    "/math/statistics/correlation/": {
+      "route": "/math/statistics/correlation/",
+      "calculatorId": "correlation",
+      "clusterId": "math",
+      "buildId": "wave9-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/correlation/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/correlation/module.js"
+        ]
+      }
+    },
+    "/math/statistics/regression-analysis/": {
+      "route": "/math/statistics/regression-analysis/",
+      "calculatorId": "regression-analysis",
+      "clusterId": "math",
+      "buildId": "wave9-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/regression-analysis/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/regression-analysis/module.js"
+        ]
+      }
+    },
+    "/math/statistics/distribution/": {
+      "route": "/math/statistics/distribution/",
+      "calculatorId": "distribution",
+      "clusterId": "math",
+      "buildId": "wave10-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/distribution/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/distribution/module.js"
+        ]
+      }
+    },
+    "/math/statistics/anova/": {
+      "route": "/math/statistics/anova/",
+      "calculatorId": "anova",
+      "clusterId": "math",
+      "buildId": "wave10-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/anova/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/anova/module.js"
+        ]
+      }
+    },
+    "/math/statistics/hypothesis-testing/": {
+      "route": "/math/statistics/hypothesis-testing/",
+      "calculatorId": "hypothesis-testing",
+      "clusterId": "math",
+      "buildId": "wave10-20260326",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/hypothesis-testing/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/math/statistics/hypothesis-testing/module.js"
+        ]
+      }
+    }
+  }
+}

@@ -1,27 +1,274 @@
+#calc-mean-median-mode-range {
+  --stats-border: #dbe6f1;
+  --stats-surface: #ffffff;
+  --stats-surface-alt: #f4f8fc;
+  --stats-ink: #17324d;
+  --stats-muted: #5b7289;
+  --stats-accent: #1c73d7;
+  --stats-accent-soft: #dcebff;
+}
+
+#calc-mean-median-mode-range .stats-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#calc-mean-median-mode-range .stats-card {
+  background: var(--stats-surface);
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(23, 50, 77, 0.08);
+}
+
+#calc-mean-median-mode-range .stats-hero-card,
+#calc-mean-median-mode-range .stats-input-card,
+#calc-mean-median-mode-range .stats-answer-card {
+  padding: 1.5rem;
+}
+
+#calc-mean-median-mode-range .stats-hero-card {
+  display: grid;
+  gap: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(28, 115, 215, 0.12), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f6faff);
+}
+
+#calc-mean-median-mode-range .stats-eyebrow,
+#calc-mean-median-mode-range .stats-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stats-accent);
+}
+
+#calc-mean-median-mode-range .stats-title,
+#calc-mean-median-mode-range .stats-card-title {
+  margin: 0.35rem 0 0;
+  color: var(--stats-ink);
+}
+
+#calc-mean-median-mode-range .stats-title {
+  font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+  line-height: 1.15;
+}
+
+#calc-mean-median-mode-range .stats-subtitle,
+#calc-mean-median-mode-range .stats-hero-points,
+#calc-mean-median-mode-range .stats-field small {
+  color: var(--stats-muted);
+}
+
+#calc-mean-median-mode-range .stats-hero-points {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#calc-mean-median-mode-range .stats-workbench {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+#calc-mean-median-mode-range .stats-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+#calc-mean-median-mode-range .stats-chip {
+  border-radius: 999px;
+  background: var(--stats-accent-soft);
+  color: var(--stats-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0.8rem;
+  white-space: nowrap;
+}
+
+#calc-mean-median-mode-range .stats-chip--answer {
+  background: #fff2d8;
+  color: #8d5b10;
+}
+
+#calc-mean-median-mode-range .stats-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+#calc-mean-median-mode-range .stats-field span {
+  font-weight: 600;
+  color: var(--stats-ink);
+}
+
+#calc-mean-median-mode-range .stats-field textarea {
+  width: 100%;
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  font: inherit;
+  color: var(--stats-ink);
+  background: #fff;
+  resize: vertical;
+}
+
+#calc-mean-median-mode-range .stats-field textarea:focus {
+  outline: 2px solid rgba(28, 115, 215, 0.16);
+  border-color: var(--stats-accent);
+}
+
+#calc-mean-median-mode-range .stats-calc-button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+#calc-mean-median-mode-range .stats-result-card strong,
+#calc-mean-median-mode-range .stats-detail-card strong {
+  color: var(--stats-ink);
+}
+
+#calc-mean-median-mode-range .stats-detail-card {
+  margin-top: 1rem;
+}
+
 #calc-mean-median-mode-range .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
 }
 
 #calc-mean-median-mode-range .stat-item {
-  text-align: center;
-  padding: 0.5rem;
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 0.95rem 1rem;
+  background: var(--stats-surface-alt);
+  display: grid;
+  gap: 0.3rem;
 }
 
 #calc-mean-median-mode-range .stat-label {
-  display: block;
-  font-size: 0.8rem;
-  color: #6b7280;
-  margin-bottom: 0.25rem;
+  font-size: 0.82rem;
+  color: var(--stats-muted);
 }
 
 #calc-mean-median-mode-range .stat-value {
+  font-weight: 700;
+  color: var(--stats-ink);
+}
+
+#calc-mean-median-mode-range .stats-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+#calc-mean-median-mode-range .stats-snapshot-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: #fbfdff;
+}
+
+#calc-mean-median-mode-range .stats-snapshot-card span {
   display: block;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #111827;
+  font-size: 0.78rem;
+  color: var(--stats-muted);
+  margin-bottom: 0.25rem;
+}
+
+#mmmr-explanation {
+  display: grid;
+  gap: 1.25rem;
+}
+
+#mmmr-explanation .stats-exp-section {
+  background: #fff;
+  border: 1px solid var(--stats-border);
+  border-radius: 24px;
+  padding: 1.4rem;
+}
+
+#mmmr-explanation .stats-summary-list,
+#mmmr-explanation .stats-notes-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+#mmmr-explanation .stats-table-wrap {
+  overflow-x: auto;
+}
+
+#mmmr-explanation .stats-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#mmmr-explanation .stats-summary-table th,
+#mmmr-explanation .stats-summary-table td {
+  border-bottom: 1px solid var(--stats-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+#mmmr-explanation .stats-example-grid,
+#mmmr-explanation .stats-faq-grid,
+#mmmr-explanation .stats-related-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+#mmmr-explanation .stats-example-card,
+#mmmr-explanation .faq-card,
+#mmmr-explanation .stats-related-card {
+  border: 1px solid var(--stats-border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: #fbfdff;
+}
+
+#mmmr-explanation .stats-related-card {
+  display: grid;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  #calc-mean-median-mode-range .stats-hero-card {
+    grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.9fr);
+    align-items: start;
+  }
+
+  #calc-mean-median-mode-range .stats-workbench {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  #mmmr-explanation .stats-example-grid,
+  #mmmr-explanation .stats-faq-grid,
+  #mmmr-explanation .stats-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-mean-median-mode-range .stats-hero-card,
+  #calc-mean-median-mode-range .stats-input-card,
+  #calc-mean-median-mode-range .stats-answer-card,
+  #mmmr-explanation .stats-exp-section {
+    padding: 1.1rem;
+  }
+
+  #calc-mean-median-mode-range .stats-grid,
+  #calc-mean-median-mode-range .stats-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
 }

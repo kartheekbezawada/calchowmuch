@@ -1,53 +1,99 @@
 <div id="calc-standard-deviation">
-  <div class="calculator-ui">
-    <p class="helper">Enter a dataset to compute mean, variance, and standard deviation.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="std-dataset">Dataset</label>
-        <textarea
-          id="std-dataset"
-          rows="4"
-          placeholder="Enter numbers separated by commas, spaces, or newlines"
-        >
-10, 12, 23, 23, 16, 23, 21, 16</textarea
-        >
+  <div class="stats-shell">
+    <section class="stats-card stats-hero-card" aria-label="Standard deviation overview">
+      <div class="stats-hero-copy">
+        <p class="stats-eyebrow">Simple Smooth Wow</p>
+        <h2 class="stats-title">Measure how tightly or loosely your dataset sits around the mean.</h2>
+        <p class="stats-subtitle">
+          Paste a dataset, choose sample or population mode, and keep the standard deviation,
+          variance, and mean summary together in one answer-first result.
+        </p>
       </div>
+      <ul class="stats-hero-points">
+        <li>Best for spread checks on one cleaned dataset.</li>
+        <li>The answer card surfaces standard deviation first, then variance and count.</li>
+        <li>The mode toggle stays on the first screen so sample versus population is easy to compare.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label id="std-mode-label">Mode</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="std-mode-label"
-          data-button-group="std-mode"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="sample"
-            aria-pressed="true"
-          >
-            Sample (n-1)
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="population"
-            aria-pressed="false"
-          >
-            Population (n)
-          </button>
+    <div class="stats-workbench">
+      <section class="stats-card stats-input-card" aria-label="Standard deviation inputs">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Inputs</p>
+            <p class="stats-card-title">Paste the dataset and choose the spread mode</p>
+          </div>
+          <span class="stats-chip">Answer-first</span>
         </div>
-      </div>
+
+        <label class="stats-field" for="std-dataset">
+          <span>Dataset</span>
+          <textarea
+            id="std-dataset"
+            rows="6"
+            placeholder="Enter numbers separated by commas, spaces, or newlines"
+          >
+10, 12, 23, 23, 16, 23, 21, 16</textarea
+          >
+          <small>Use sample mode when the list is only a sample from a larger population.</small>
+        </label>
+
+        <div class="stats-mode-row">
+          <label id="std-mode-label">Spread mode</label>
+          <div
+            class="button-group"
+            role="group"
+            aria-labelledby="std-mode-label"
+            data-button-group="std-mode"
+          >
+            <button
+              class="calculator-button secondary is-active"
+              type="button"
+              data-value="sample"
+              aria-pressed="true"
+            >
+              Sample (n-1)
+            </button>
+            <button
+              class="calculator-button secondary"
+              type="button"
+              data-value="population"
+              aria-pressed="false"
+            >
+              Population (n)
+            </button>
+          </div>
+        </div>
+
+        <button class="calculator-button stats-calc-button" type="button" id="std-calculate">
+          Calculate standard deviation
+        </button>
+      </section>
+
+      <section class="stats-card stats-answer-card" aria-label="Standard deviation answer">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Answer</p>
+            <p class="stats-card-title">Spread result, variance, and count summary</p>
+          </div>
+          <span class="stats-chip stats-chip--answer">Spread summary</span>
+        </div>
+
+        <div class="result stats-result-card" id="std-result" aria-live="polite"></div>
+        <div class="result-detail stats-detail-card" id="std-detail" aria-live="polite"></div>
+
+        <div class="stats-snapshot-grid" aria-label="Spread workflow snapshot">
+          <article class="stats-snapshot-card">
+            <span>Choice</span>
+            <strong>Sample or population</strong>
+          </article>
+          <article class="stats-snapshot-card">
+            <span>Outputs</span>
+            <strong>Std dev, variance, mean</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="std-calculate">
-      Calculate Standard Deviation
-    </button>
-
-    <div class="result" id="std-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="std-detail" aria-live="polite"></div>
   </div>
 </div>
 

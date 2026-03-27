@@ -1,66 +1,141 @@
-<div class="explanation-content">
-  <h2>Regression Analysis</h2>
+<div id="regression-explanation">
+  <section class="analysis-exp-section">
+    <h2>Regression Analysis Practical Guide</h2>
+    <p>
+      Use this route to fit a relationship, compare model families, and judge whether the equation
+      is actually useful. It keeps the fitted equation, R-squared, adjusted R-squared, and
+      coefficient checks together so you can decide whether the data supports a straight line, a
+      curve, or a different modelling choice.
+    </p>
+    <ul class="analysis-summary-list">
+      <li><strong>Best for:</strong> quick model fitting on paired X and Y data.</li>
+      <li><strong>Quick answer flow:</strong> paste paired values, choose the model, and read equation plus fit metrics together.</li>
+      <li><strong>Output includes:</strong> fitted equation, R-squared, adjusted R-squared, standard error, and coefficient detail where available.</li>
+    </ul>
+  </section>
 
-  <p>
-    Regression analysis is a statistical method used to model the relationship between a dependent
-    variable (Y) and one or more independent variables (X).
-  </p>
+  <section class="analysis-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Paste X and Y values with the same number of observations.</li>
+      <li>Start with <strong>Linear</strong>, then compare polynomial, exponential, or logarithmic fits if the relationship is not straight.</li>
+      <li>Use the polynomial degree input only when the polynomial model is selected.</li>
+      <li>Click <strong>Perform regression</strong> and compare equation quality with the fit metrics before trusting the model.</li>
+    </ol>
+  </section>
 
-  <h3>Types of Regression</h3>
+  <section class="analysis-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="analysis-table-wrap">
+      <table class="analysis-summary-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Best use</th>
+            <th>Signal to watch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Linear</td>
+            <td>Roughly straight relationships</td>
+            <td>Slope, intercept, and R-squared</td>
+          </tr>
+          <tr>
+            <td>Polynomial</td>
+            <td>Curved relationships</td>
+            <td>Improved fit without overcomplicating the degree</td>
+          </tr>
+          <tr>
+            <td>Exponential / Logarithmic</td>
+            <td>Growth, decay, or slowing response patterns</td>
+            <td>Whether the transformation matches the underlying shape</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <h4>Linear Regression</h4>
-  <p>Fits the equation: <strong>y = ax + b</strong></p>
-  <p>
-    The least squares method minimizes the sum of squared residuals to find the best-fitting line.
-  </p>
+  <section class="analysis-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      Linear regression fits <strong>y = ax + b</strong> with least squares. Polynomial regression
+      extends that to curved terms such as <strong>x²</strong>. Exponential and logarithmic models
+      transform the data so the route can fit growth, decay, or slowing-response patterns with the
+      same answer-first logic.
+    </p>
+  </section>
 
-  <h4>Polynomial Regression</h4>
-  <p>Fits higher-degree polynomials: <strong>y = a0 + a1x + a2x2 + ... + anxn</strong></p>
-  <p>Useful when the relationship between variables is curvilinear.</p>
+  <section class="analysis-exp-section">
+    <h3>Worked Example</h3>
+    <div class="analysis-example-grid">
+      <article class="analysis-example-card">
+        <h4>Default linear fit</h4>
+        <p>The default X and Y values are close to a straight upward trend, so the linear model returns a high R-squared and a simple slope-intercept equation.</p>
+        <p>That makes the route a fast first stop before you try more flexible models.</p>
+      </article>
+      <article class="analysis-example-card">
+        <h4>When to try a polynomial fit</h4>
+        <p>If the data bends rather than following a straight line, a low-degree polynomial can improve fit without jumping to a more complex workflow.</p>
+      </article>
+    </div>
+  </section>
 
-  <h4>Exponential Regression</h4>
-  <p>Fits the equation: <strong>y = a x ebx</strong></p>
-  <p>Appropriate for data showing exponential growth or decay patterns.</p>
+  <section class="analysis-exp-section" id="regression-faq">
+    <h3>FAQ</h3>
+    <div class="analysis-faq-grid">
+      <article class="faq-card">
+        <h4>What does R-squared tell me?</h4>
+        <p>It tells you how much of the Y variation is explained by the fitted model, with values closer to 1 indicating a tighter fit.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why show adjusted R-squared too?</h4>
+        <p>Adjusted R-squared penalizes unnecessary complexity, which helps when you compare linear and higher-degree polynomial models.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Should I always choose the model with the highest R-squared?</h4>
+        <p>No. A slightly lower but simpler model can be more stable and easier to justify than an overfit curve.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When does exponential regression make sense?</h4>
+        <p>It makes sense when the response grows or decays by multiplicative steps rather than equal linear increments.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why might logarithmic regression fit better?</h4>
+        <p>It often fits relationships where change is rapid at first and then slows as X increases.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Do I still need to inspect residuals?</h4>
+        <p>Yes. A good-looking equation can still hide systematic errors if the residual pattern is not random.</p>
+      </article>
+    </div>
+  </section>
 
-  <h4>Logarithmic Regression</h4>
-  <p>Fits the equation: <strong>y = a + b x ln(x)</strong></p>
-  <p>Suitable for data where growth rate decreases as X increases.</p>
+  <section class="analysis-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="analysis-related-grid">
+      <a class="analysis-related-card" href="/math/statistics/correlation/">
+        <strong>Correlation Calculator</strong>
+        <span>Check the raw relationship strength before choosing a fitted model.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/">
+        <strong>Statistics Calculator</strong>
+        <span>Profile each variable first so you understand the spread behind the model.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/distribution/">
+        <strong>Distribution Calculator</strong>
+        <span>Use supporting probability values when you need additional statistical context.</span>
+      </a>
+    </div>
+  </section>
 
-  <h3>Key Statistics</h3>
-
-  <h4>R-squared (R2)</h4>
-  <p>
-    The coefficient of determination measures how well the regression line fits the data. Values
-    range from 0 to 1, where 1 indicates a perfect fit.
-  </p>
-  <ul>
-    <li>R2 >= 0.9: Excellent fit</li>
-    <li>R2 >= 0.7: Good fit</li>
-    <li>R2 >= 0.5: Moderate fit</li>
-    <li>R2 < 0.5: Poor fit</li>
-  </ul>
-
-  <h4>Adjusted R-squared</h4>
-  <p>
-    A modified version of R2 that adjusts for the number of predictors. It only increases if a new
-    predictor improves the model more than expected by chance.
-  </p>
-
-  <h4>Standard Error</h4>
-  <p>
-    Measures the average distance between observed values and the regression line. Smaller values
-    indicate better fit.
-  </p>
-
-  <h4>Residuals</h4>
-  <p>
-    The differences between observed and predicted values. Analyzing residuals helps identify
-    patterns the model may have missed.
-  </p>
-
-  <h3>Coefficient Testing</h3>
-  <p>
-    The t-statistic and p-value for each coefficient test whether it significantly differs from
-    zero. A small p-value (typically < 0.05) indicates the coefficient is statistically significant.
-  </p>
+  <section class="analysis-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="analysis-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Input rule:</strong> X and Y must contain the same number of numeric values.</li>
+      <li><strong>Model rule:</strong> Higher-degree or transformed fits should be justified by the data shape, not used automatically.</li>
+      <li><strong>Interpretation rule:</strong> A strong fit does not prove the model is causal or stable outside the observed range.</li>
+    </ul>
+  </section>
 </div>

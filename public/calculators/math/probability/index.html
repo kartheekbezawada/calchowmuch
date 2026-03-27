@@ -1,148 +1,160 @@
 <div id="calc-probability">
-  <div class="calculator-ui">
-    <p class="helper">
-      Calculate probability for single events, combined events, and distributions.
-    </p>
+  <div class="prob-shell">
+    <section class="prob-card prob-hero-card" aria-label="Probability calculator overview">
+      <div class="prob-hero-copy">
+        <p class="prob-eyebrow">Simple Smooth Wow</p>
+        <h2 class="prob-title">Move from single-event odds to combined-event rules and binomial checks in one light answer-first route.</h2>
+        <p class="prob-subtitle">
+          Choose the probability mode first, then let the answer card show the decimal result,
+          percentage view, and formula explanation together so you can confirm whether the event
+          logic is independent, conditional, or distribution-based.
+        </p>
+      </div>
+      <ul class="prob-hero-points">
+        <li>Keeps single-event, combined-event, Bayes, and binomial paths in one route without duplicate panels.</li>
+        <li>Shows the formula explanation directly under the answer so the probability rule stays visible.</li>
+        <li>Preserves a usable first screen even when advanced inputs appear for distribution mode.</li>
+      </ul>
+    </section>
 
-    <div class="input-stack">
-      <div class="input-row">
-        <label id="prob-mode-label">Operation</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="prob-mode-label"
-          data-button-group="prob-mode"
-        >
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="single"
-            aria-pressed="false"
-          >
-            Single Event P(A)
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="and"
-            aria-pressed="false"
-          >
-            AND (Independent): P(A) × P(B)
-          </button>
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="or"
-            aria-pressed="true"
-          >
-            OR (Combined Events)
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="conditional"
-            aria-pressed="false"
-          >
-            Conditional P(A|B)
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="bayes"
-            aria-pressed="false"
-          >
-            Bayes: P(A|B)
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="distribution"
-            aria-pressed="false"
-          >
-            Distribution (Binomial)
-          </button>
+    <div class="prob-workbench">
+      <section class="prob-card prob-input-card" aria-label="Probability inputs">
+        <div class="prob-card-head">
+          <div>
+            <p class="prob-section-label">Inputs</p>
+            <p class="prob-card-title">Pick the probability rule, then enter only the values that apply</p>
+          </div>
+          <span class="prob-chip">Event logic</span>
         </div>
-      </div>
 
-      <div class="input-row" id="prob-favorable-row">
-        <label for="prob-favorable">Favorable Outcomes</label>
-        <input id="prob-favorable" type="number" value="3" min="0" step="1" />
-      </div>
-
-      <div class="input-row" id="prob-total-row">
-        <label for="prob-total">Total Outcomes</label>
-        <input id="prob-total" type="number" value="10" min="1" step="1" />
-      </div>
-
-      <div class="input-row" id="prob-a-row">
-        <label for="prob-a">P(A) Probability (%)</label>
-        <input id="prob-a" type="number" value="30" min="0" max="100" step="0.1" />
-      </div>
-
-      <div class="input-row" id="prob-b-row">
-        <label for="prob-b">P(B) Probability (%)</label>
-        <input id="prob-b" type="number" value="50" min="0" max="100" step="0.1" />
-      </div>
-
-      <div class="input-row" id="prob-or-type-row">
-        <label id="prob-or-type-label">OR Mode</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="prob-or-type-label"
-          data-button-group="prob-or-type"
-        >
-          <button
-            class="calculator-button secondary is-active"
-            type="button"
-            data-value="independent"
-            aria-pressed="true"
+        <div class="prob-field">
+          <span id="prob-mode-label">Operation</span>
+          <div
+            class="button-group prob-button-group"
+            role="group"
+            aria-labelledby="prob-mode-label"
+            data-button-group="prob-mode"
           >
-            Independent
-          </button>
-          <button
-            class="calculator-button secondary"
-            type="button"
-            data-value="inclusive"
-            aria-pressed="false"
-          >
-            Include P(A and B)
-          </button>
+            <button class="calculator-button secondary" type="button" data-value="single" aria-pressed="false">
+              Single event P(A)
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="and" aria-pressed="false">
+              AND
+            </button>
+            <button class="calculator-button secondary is-active" type="button" data-value="or" aria-pressed="true">
+              OR
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="conditional" aria-pressed="false">
+              Conditional
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="bayes" aria-pressed="false">
+              Bayes
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="distribution" aria-pressed="false">
+              Binomial
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="input-row" id="prob-joint-row">
-        <label for="prob-joint">P(A and B) Probability (%)</label>
-        <input id="prob-joint" type="number" value="15" min="0" max="100" step="0.1" />
-      </div>
+        <div class="prob-field-row">
+          <label class="prob-field" for="prob-favorable" id="prob-favorable-row">
+            <span>Favorable outcomes</span>
+            <input id="prob-favorable" type="number" value="3" min="0" step="1" />
+          </label>
 
-      <div class="input-row" id="prob-bgivena-row">
-        <label for="prob-bgivena">P(B|A) Probability (%)</label>
-        <input id="prob-bgivena" type="number" value="50" min="0" max="100" step="0.1" />
-      </div>
+          <label class="prob-field" for="prob-total" id="prob-total-row">
+            <span>Total outcomes</span>
+            <input id="prob-total" type="number" value="10" min="1" step="1" />
+          </label>
+        </div>
 
-      <div class="input-row" id="prob-n-row">
-        <label for="prob-n">n (number of trials)</label>
-        <input id="prob-n" type="number" value="10" min="1" step="1" />
-      </div>
+        <div class="prob-field-row">
+          <label class="prob-field" for="prob-a" id="prob-a-row">
+            <span>P(A) probability (%)</span>
+            <input id="prob-a" type="number" value="30" min="0" max="100" step="0.1" />
+          </label>
 
-      <div class="input-row" id="prob-k-row">
-        <label for="prob-k">k (successes)</label>
-        <input id="prob-k" type="number" value="3" min="0" step="1" />
-      </div>
+          <label class="prob-field" for="prob-b" id="prob-b-row">
+            <span>P(B) probability (%)</span>
+            <input id="prob-b" type="number" value="50" min="0" max="100" step="0.1" />
+          </label>
+        </div>
 
-      <div class="input-row" id="prob-p-row">
-        <label for="prob-p">Success Probability p (%)</label>
-        <input id="prob-p" type="number" value="40" min="0" max="100" step="0.1" />
-      </div>
+        <div class="prob-field" id="prob-or-type-row">
+          <span id="prob-or-type-label">OR mode</span>
+          <div
+            class="button-group prob-button-group"
+            role="group"
+            aria-labelledby="prob-or-type-label"
+            data-button-group="prob-or-type"
+          >
+            <button class="calculator-button secondary is-active" type="button" data-value="independent" aria-pressed="true">
+              Independent
+            </button>
+            <button class="calculator-button secondary" type="button" data-value="inclusive" aria-pressed="false">
+              Include overlap
+            </button>
+          </div>
+        </div>
+
+        <div class="prob-field-row">
+          <label class="prob-field" for="prob-joint" id="prob-joint-row">
+            <span>P(A and B) probability (%)</span>
+            <input id="prob-joint" type="number" value="15" min="0" max="100" step="0.1" />
+          </label>
+
+          <label class="prob-field" for="prob-bgivena" id="prob-bgivena-row">
+            <span>P(B|A) probability (%)</span>
+            <input id="prob-bgivena" type="number" value="50" min="0" max="100" step="0.1" />
+          </label>
+        </div>
+
+        <div class="prob-field-row">
+          <label class="prob-field" for="prob-n" id="prob-n-row">
+            <span>n (number of trials)</span>
+            <input id="prob-n" type="number" value="10" min="1" step="1" />
+          </label>
+
+          <label class="prob-field" for="prob-k" id="prob-k-row">
+            <span>k (successes)</span>
+            <input id="prob-k" type="number" value="3" min="0" step="1" />
+          </label>
+        </div>
+
+        <label class="prob-field" for="prob-p" id="prob-p-row">
+          <span>Success probability p (%)</span>
+          <input id="prob-p" type="number" value="40" min="0" max="100" step="0.1" />
+        </label>
+
+        <button class="calculator-button prob-calc-button" type="button" id="prob-calculate">
+          Calculate probability
+        </button>
+      </section>
+
+      <section class="prob-card prob-answer-card" aria-label="Probability answer">
+        <div class="prob-card-head">
+          <div>
+            <p class="prob-section-label">Answer</p>
+            <p class="prob-card-title">Probability result, percentage view, and rule explanation</p>
+          </div>
+          <span class="prob-chip prob-chip--answer">P(event)</span>
+        </div>
+
+        <div class="result prob-result-card" id="prob-result" aria-live="polite"></div>
+        <div class="result-detail prob-detail-card" id="prob-detail" aria-live="polite"></div>
+
+        <div class="prob-snapshot-grid" aria-label="Probability workflow summary">
+          <article class="prob-snapshot-card">
+            <span>Primary output</span>
+            <strong>Decimal and percent</strong>
+          </article>
+          <article class="prob-snapshot-card">
+            <span>Verification</span>
+            <strong>Formula and explanation</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="prob-calculate">
-      Calculate Probability
-    </button>
-
-    <div class="result" id="prob-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="prob-detail" aria-live="polite"></div>
   </div>
 </div>
 

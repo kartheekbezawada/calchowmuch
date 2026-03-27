@@ -98,10 +98,14 @@ export function calculateMargin({ mode = 'cost-price', cost, price, marginPercen
 
   if (mode === 'cost-margin') {
     const g = Number(marginPercent);
-    if (!Number.isFinite(g) || g < 0 || g >= 100) {
+    if (!Number.isFinite(g) || g < 0 || g >= 99.99) {
       return null;
     }
-    const p = c / (1 - g / 100);
+    const denominator = 1 - g / 100;
+    if (!Number.isFinite(denominator) || denominator <= 0) {
+      return null;
+    }
+    const p = c / denominator;
     if (!Number.isFinite(p)) {
       return null;
     }

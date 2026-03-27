@@ -1,0 +1,68 @@
+<div id="calc-commission" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Commission calculator inputs">
+    <p class="sal-calc-kicker">Sales earnings</p>
+    <h2 class="sal-calc-form-title">Estimate commission earned from sales</h2>
+    <p class="sal-calc-lead">
+      Keep the route simple for commission-only use, then layer in base pay only when you need a
+      total-earnings view.
+    </p>
+
+    <div class="sal-input-row">
+      <label for="commission-sales-amount">Sales amount</label>
+      <input id="commission-sales-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row">
+      <label id="commission-mode-label">Commission mode</label>
+      <div
+        class="sal-chip-group"
+        role="group"
+        aria-labelledby="commission-mode-label"
+        data-button-group="commission-mode"
+      >
+        <button class="sal-chip-button is-active" type="button" data-value="rate" aria-pressed="true">
+          Rate
+        </button>
+        <button class="sal-chip-button" type="button" data-value="amount" aria-pressed="false">
+          Amount
+        </button>
+      </div>
+    </div>
+
+    <div class="sal-input-row" id="commission-rate-row">
+      <label for="commission-rate">Commission rate</label>
+      <input id="commission-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row" id="commission-amount-row" hidden aria-hidden="true">
+      <label for="commission-amount">Commission amount</label>
+      <input id="commission-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row">
+      <label for="commission-base-pay">Base pay</label>
+      <input id="commission-base-pay" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <p class="sal-calc-helper">Base pay is optional and only affects the total-earnings support value.</p>
+    <p class="sal-calc-error" id="commission-error" hidden></p>
+    <button class="sal-primary-action" id="commission-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Commission calculator results">
+    <p class="sal-answer-title">Commission earned</p>
+    <p class="sal-answer-hero" id="commission-earned-output">—</p>
+    <p class="sal-answer-note" id="commission-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card">
+        <span>Total earnings</span>
+        <strong id="commission-total-earnings">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Effective rate</span>
+        <strong id="commission-effective-rate">—</strong>
+      </div>
+    </div>
+    <p class="sal-results-disclaimer">Gross-pay estimate only. Industry-specific commission rules are not assumed.</p>
+  </aside>
+</div>

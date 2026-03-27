@@ -81,6 +81,44 @@ const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'future-value-of-annuity',
   'present-value-of-annuity',
 ]);
+const MATH_CLUSTER_REDESIGN_IDS = new Set([
+  'basic',
+  'fraction-calculator',
+  'sample-size',
+  'quadratic-equation',
+  'slope-distance',
+  'factoring',
+  'polynomial-operations',
+  'system-of-equations',
+  'unit-circle',
+  'triangle-solver',
+  'trig-functions',
+  'inverse-trig',
+  'law-of-sines-cosines',
+  'natural-log',
+  'common-log',
+  'log-properties',
+  'exponential-equations',
+  'log-scale',
+  'derivative',
+  'integral',
+  'limit',
+  'series-convergence',
+  'critical-points',
+  'mean-median-mode-range',
+  'standard-deviation',
+  'confidence-interval',
+  'z-score',
+  'number-sequence',
+  'permutation-combination',
+  'probability',
+  'statistics',
+  'correlation',
+  'regression-analysis',
+  'distribution',
+  'anova',
+  'hypothesis-testing',
+]);
 const FINANCE_CALCULATOR_IDS = new Set([
   'present-value',
   'future-value',
@@ -96,6 +134,134 @@ const FINANCE_CALCULATOR_IDS = new Set([
   'monthly-savings-needed',
 ]);
 const CALCULATOR_OVERRIDES = {
+  basic: {
+    title: 'Basic Calculator | Add, Subtract, Multiply and Divide | CalcHowMuch',
+    description:
+      'Add, subtract, multiply, or divide everyday numbers in one clean answer-first basic calculator with support for extra inputs and memory tools.',
+    h1: 'Basic Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'series-convergence': {
+    title: 'Series Convergence Calculator | Ratio, Root and Comparison Tests | CalcHowMuch',
+    description:
+      'Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.',
+    h1: 'Series Convergence Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'critical-points': {
+    title: 'Critical Points Finder | Maxima, Minima and Inflection Scan | CalcHowMuch',
+    description:
+      'Find critical points, classify local maxima and minima, and surface inflection candidates in a light answer-first calculus layout built for quick curve analysis.',
+    h1: 'Critical Points Finder',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'mean-median-mode-range': {
+    title: 'Mean Median Mode Range Calculator | Dataset Summary Statistics | CalcHowMuch',
+    description:
+      'Turn one dataset into mean, median, mode, minimum, maximum, and range in a light answer-first statistics layout built for quick descriptive checks.',
+    h1: 'Mean Median Mode Range Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'standard-deviation': {
+    title: 'Standard Deviation Calculator | Sample and Population Spread | CalcHowMuch',
+    description:
+      'Measure sample or population spread with standard deviation, variance, and mean outputs in a light answer-first statistics layout.',
+    h1: 'Standard Deviation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'confidence-interval': {
+    title: 'Confidence Interval Calculator | Mean and Proportion Interval Estimator | CalcHowMuch',
+    description:
+      'Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.',
+    h1: 'Confidence Interval Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'z-score': {
+    title: 'Z-Score Calculator | Standard Score and Interpretation | CalcHowMuch',
+    description:
+      'Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.',
+    h1: 'Z-Score Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'number-sequence': {
+    title: 'Number Sequence Calculator | Arithmetic and Geometric Terms | CalcHowMuch',
+    description:
+      'Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.',
+    h1: 'Number Sequence Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'permutation-combination': {
+    title: 'Permutation & Combination Calculator | nPr, nCr and Factorial | CalcHowMuch',
+    description:
+      'Calculate permutations, combinations, and factorial values in a light answer-first counting calculator built for quick exact-integer results.',
+    h1: 'Permutation & Combination Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  probability: {
+    title: 'Probability Calculator | Event Odds, Bayes and Binomial Checks | CalcHowMuch',
+    description:
+      'Calculate single-event, combined-event, conditional, Bayes, and binomial probabilities in a light answer-first probability calculator.',
+    h1: 'Probability Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  statistics: {
+    title: 'Statistics Calculator | Full Descriptive Summary | CalcHowMuch',
+    description:
+      'Calculate a full descriptive statistics summary with centre, spread, variance, and standard deviation in a light answer-first layout.',
+    h1: 'Statistics Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  correlation: {
+    title: 'Correlation Calculator | Pearson, Spearman and Kendall | CalcHowMuch',
+    description:
+      'Measure Pearson, Spearman, and Kendall correlation with significance checks in a light answer-first statistics layout.',
+    h1: 'Correlation Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'regression-analysis': {
+    title: 'Regression Analysis | Linear, Polynomial and Exponential Fit | CalcHowMuch',
+    description:
+      'Fit linear, polynomial, exponential, and logarithmic models with goodness-of-fit metrics in a light answer-first statistics layout.',
+    h1: 'Regression Analysis',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  distribution: {
+    title: 'Distribution Calculator | Normal, t, Chi-Square and F Values | CalcHowMuch',
+    description:
+      'Calculate CDF, PDF, and quantile values for normal, Student\'s t, chi-square, and F distributions in a light answer-first statistics layout.',
+    h1: 'Distribution Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  anova: {
+    title: 'ANOVA Calculator | One-Way F-Test and Effect Size | CalcHowMuch',
+    description:
+      'Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.',
+    h1: 'ANOVA Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'hypothesis-testing': {
+    title: 'Hypothesis Testing | t-Tests, Chi-Square and p-Value Checks | CalcHowMuch',
+    description:
+      'Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.',
+    h1: 'Hypothesis Testing',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'home-loan': {
     title: 'Home Loan Calculator | Mortgage Payment Planner | CalcHowMuch',
     description:
@@ -216,6 +382,110 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'sample-size': {
+    title: 'Sample Size Calculator — Proportion & Mean Study Planner | CalcHowMuch',
+    description:
+      'Plan your study sample size for proportions or means with confidence intervals, finite-population correction, worked examples, formulas, and research-ready guidance.',
+    h1: 'Sample Size Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'triangle-solver': {
+    title: 'Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch',
+    description:
+      'Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram.',
+    h1: 'Triangle Solver',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'trig-functions': {
+    title: 'Trigonometric Functions Calculator | sin, cos, tan and Reciprocals | CalcHowMuch',
+    description:
+      'Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.',
+    h1: 'Trigonometric Functions Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'inverse-trig': {
+    title: 'Inverse Trig Functions Calculator | arcsin, arccos and arctan | CalcHowMuch',
+    description:
+      'Find arcsin, arccos, and arctan principal values plus every matching solution in a custom degree or radian interval with a light answer-first trig layout.',
+    h1: 'Inverse Trig Functions Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'law-of-sines-cosines': {
+    title: 'Law of Sines and Cosines Calculator | Triangle Solver | CalcHowMuch',
+    description:
+      'Solve missing triangle sides, angles, and area with an answer-first Law of Sines and Cosines calculator that recommends the correct trig law and shows a live diagram.',
+    h1: 'Law of Sines and Cosines Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'natural-log': {
+    title: 'Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch',
+    description:
+      'Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.',
+    h1: 'Natural Log Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'common-log': {
+    title: 'Common Log Calculator | Base 10, Base 2 and Custom Logs | CalcHowMuch',
+    description:
+      'Compute base-10, base-2, base-e, or custom logarithms with an answer-first layout that compares change-of-base results and shows the selected log curve.',
+    h1: 'Common Log Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'log-properties': {
+    title: 'Logarithm Properties Calculator | Product, Quotient and Power Rules | CalcHowMuch',
+    description:
+      'Check the product, quotient, and power log rules in an answer-first layout that pairs each numeric result with the matching symbolic rewrite.',
+    h1: 'Logarithm Properties Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'exponential-equations': {
+    title: 'Exponential Equation Solver | Solve base^(m·x + c) = target | CalcHowMuch',
+    description:
+      'Solve exponential equations in an answer-first layout that shows the logarithmic rearrangement, solved x value, and a graph checkpoint on the curve.',
+    h1: 'Exponential Equation Solver',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'log-scale': {
+    title: 'Log Scale Converter | Decibel, pH and Richter Inputs | CalcHowMuch',
+    description:
+      'Convert decibel, pH, and Richter-scale inputs in an answer-first layout that keeps the result, formula, and plain-language interpretation together.',
+    h1: 'Log Scale Converter',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  derivative: {
+    title: 'Derivative Calculator | Symbolic Derivative and Point Evaluation | CalcHowMuch',
+    description:
+      'Find a symbolic derivative, repeat the derivative order, and evaluate the result at one point in a light answer-first calculus layout.',
+    h1: 'Derivative Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  integral: {
+    title: 'Integral Calculator | Antiderivative and Definite Value | CalcHowMuch',
+    description:
+      'Find an antiderivative or a definite integral value in a light answer-first calculus layout built for quick power-rule checks.',
+    h1: 'Integral Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  limit: {
+    title: 'Limit Calculator | Direct, One-Sided and Infinity Limits | CalcHowMuch',
+    description:
+      'Check direct, one-sided, and infinity limits in a light answer-first calculus layout built for quick continuity and approach-value checks.',
+    h1: 'Limit Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'credit-card-minimum-payment': {
     title: 'Credit Card Minimum Payment Calculator | Payoff Cost',
     description:
@@ -285,6 +555,14 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics.',
     h1: 'System of Equations Solver',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'unit-circle': {
+    title: 'Unit Circle Calculator | Angles, Quadrants and Trig Values | CalcHowMuch',
+    description:
+      'Explore unit circle angles in degrees or radians with quadrant, reference angle, and exact sine, cosine, and tangent values.',
+    h1: 'Unit Circle Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -556,6 +834,16 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.',
     h1: 'Find Percentage of a Number Calculator',
+  },
+};
+
+const ROUTE_SPECIFIC_OVERRIDES = {
+  '/salary-calculators/commission-calculator/': {
+    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    description:
+      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
+    h1: 'Commission Calculator',
+    paneLayout: 'single',
   },
 };
 
@@ -1191,6 +1479,14 @@ function buildCanonical(pathname) {
   return `${SITE_URL}${withSlash}`;
 }
 
+function resolveCalculatorOverride(calculator) {
+  const routeKey = normalizeRoutePath(calculator?.url || '');
+  if (routeKey && ROUTE_SPECIFIC_OVERRIDES[routeKey]) {
+    return ROUTE_SPECIFIC_OVERRIDES[routeKey];
+  }
+  return CALCULATOR_OVERRIDES[calculator?.id];
+}
+
 function isCalculatorPath(pathname) {
   const normalizedPath = typeof pathname === 'string' ? pathname : '';
   return normalizedPath.includes('-calculators/') || normalizedPath.endsWith('-calculator/');
@@ -1601,6 +1897,101 @@ function buildFinanceStructuredData({
             position: 2,
             name: breadcrumbSectionLabel,
             item: `${SITE_URL}/finance-calculators/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function buildMathStructuredData({
+  title,
+  description,
+  canonical,
+  faqEntries,
+  breadcrumbLabel,
+  softwareName,
+  softwareDescription,
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: OG_IMAGE,
+        },
+        about: { '@id': `${canonical}#softwareapplication` },
+        mainEntity: { '@id': `${canonical}#softwareapplication` },
+        breadcrumb: { '@id': `${canonical}#breadcrumbs` },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${canonical}#softwareapplication`,
+        name: softwareName,
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: canonical,
+        description: softwareDescription || description,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Math',
+            item: `${SITE_URL}/math/basic/`,
           },
           {
             '@type': 'ListItem',
@@ -2311,6 +2702,20 @@ const PRICING_CLUSTER_REDESIGN_ORDER = [
   'markup-calculator',
 ];
 
+const SALARY_CLUSTER_REDESIGN_ORDER = [
+  'salary-calculators-hub',
+  'salary-calculator',
+  'hourly-to-salary-calculator',
+  'salary-to-hourly-calculator',
+  'annual-to-monthly-salary-calculator',
+  'monthly-to-annual-salary-calculator',
+  'weekly-pay-calculator',
+  'overtime-pay-calculator',
+  'raise-calculator',
+  'bonus-calculator',
+  'commission-calculator',
+];
+
 PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   if (!PERCENTAGE_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
     throw new Error(`Unknown Percentage redesign calculator id: ${calculatorId}`);
@@ -2318,10 +2723,17 @@ PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
 });
 
 const PRICING_CLUSTER_REDESIGN_IDS = new Set(PRICING_CLUSTER_REDESIGN_ORDER);
+const SALARY_CLUSTER_REDESIGN_IDS = new Set(SALARY_CLUSTER_REDESIGN_ORDER);
 
 PRICING_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
   if (!PRICING_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
     throw new Error(`Unknown Pricing redesign calculator id: ${calculatorId}`);
+  }
+});
+
+SALARY_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
+  if (!SALARY_CLUSTER_REDESIGN_ORDER.includes(calculatorId)) {
+    throw new Error(`Unknown Salary redesign calculator id: ${calculatorId}`);
   }
 });
 
@@ -2340,7 +2752,14 @@ function buildCreditCardClusterInlineCss(calculatorRelPath) {
     .filter((filePath) => fs.existsSync(filePath))
     .map((filePath) => {
       const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
-      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+      const fileContents = readFile(filePath)
+        .trim()
+        .replace(
+          /\/\*\s*theme-premium-dark\.css[\s\S]*?\*\//gi,
+          ''
+        )
+        .trim();
+      return `/* ${relPath} */\n${fileContents}`;
     })
     .join('\n\n');
 }
@@ -2360,7 +2779,11 @@ function buildHomeLoanInlineCss(calculatorRelPath) {
     .filter((filePath) => fs.existsSync(filePath))
     .map((filePath) => {
       const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
-      return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+      const fileContents = readFile(filePath)
+        .trim()
+        .replace(/\/\*\s*theme-premium-dark\.css[\s\S]*?\*\//gi, '')
+        .trim();
+      return `/* ${relPath} */\n${fileContents}`;
     })
     .join('\n\n');
 }
@@ -2401,6 +2824,30 @@ function buildFinanceClusterInlineCss(calculatorRelPath) {
     .map((filePath) => {
       const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
       return `/* ${relPath} */\n${readFile(filePath).trim()}`;
+    })
+    .join('\n\n');
+}
+
+function buildMathClusterInlineCss(calculatorRelPath) {
+  const sources = [
+    path.join(PUBLIC_DIR, 'assets', 'css', 'base.css'),
+    path.join(PUBLIC_DIR, 'assets', 'css', 'calculator.css'),
+    path.join(PUBLIC_DIR, 'calculators', 'math', 'shared', 'cluster-light.css'),
+  ];
+
+  if (calculatorRelPath) {
+    sources.push(path.join(PUBLIC_DIR, 'calculators', calculatorRelPath, 'calculator.css'));
+  }
+
+  return sources
+    .filter((filePath) => fs.existsSync(filePath))
+    .map((filePath) => {
+      const relPath = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+      const fileContents = readFile(filePath)
+        .trim()
+        .replace(/\/\*\s*theme-premium-dark\.css[\s\S]*?\*\//gi, '')
+        .trim();
+      return `/* ${relPath} */\n${fileContents}`;
     })
     .join('\n\n');
 }
@@ -2605,6 +3052,38 @@ function buildFinanceClusterFooterHtml() {
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
     <span class="fi-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>`;
+}
+
+function buildMathClusterHeaderHtml() {
+  return `<header class="math-cluster-site-header">
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>`;
+}
+
+function buildMathClusterFooterHtml() {
+  return `<footer class="math-cluster-site-footer">
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
   </div>
 </footer>`;
 }
@@ -3618,8 +4097,10 @@ function buildPageHtml({
     canonical.includes('/percentage-calculators/') && PERCENTAGE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedPricingClusterRoute =
     canonical.includes('/pricing-calculators/') && PRICING_CLUSTER_REDESIGN_IDS.has(calculatorId);
+  const isMigratedMathClusterRoute =
+    canonical.includes('/math/') && MATH_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedSalaryClusterRoute =
-    canonical.includes('/salary-calculators/') && calculatorId === 'salary-calculators-hub';
+    canonical.includes('/salary-calculators/') && SALARY_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedFinanceClusterRoute =
     canonical.includes('/finance-calculators/') && FINANCE_CLUSTER_REDESIGN_IDS.has(calculatorId);
   const isMigratedTimeAndDateClusterRoute =
@@ -3636,6 +4117,7 @@ function buildPageHtml({
   const sanitizedCalculatorHtml =
     (assetConfig ||
       isCreditCardClusterRoute ||
+      isMigratedMathClusterRoute ||
       isMigratedPercentageClusterRoute ||
       isMigratedSalaryClusterRoute ||
       isMigratedPricingClusterRoute ||
@@ -3730,6 +4212,25 @@ function buildPageHtml({
     ${relatedCalculatorsHtml}
   </div>
 </div>`
+        : isMigratedMathClusterRoute
+        ? `<div class="math-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="math-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+  </div>
+</div>`
         : isMigratedTimeAndDateClusterRoute
         ? `<div class="td-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="td-cluster-page-header">
@@ -3739,6 +4240,18 @@ function buildPageHtml({
   <div class="calculator-page-single td-cluster-flow">
     ${sanitizedCalculatorHtml}
     ${injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
+  </div>
+</div>`
+        : isMigratedSalaryClusterRoute
+        ? `<div class="sal-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+  <div class="sal-cluster-page-header">
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="sal-cluster-page-intro">${description}</p>
+  </div>
+  <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
+    ${sanitizedCalculatorHtml}
+    ${explanationHtml}
+    ${relatedCalculatorsHtml}
   </div>
 </div>`
         : isMigratedAutoLoanClusterRoute
@@ -3891,6 +4404,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   const topNavStaticAttribute =
     topNavStatic &&
     !isMigratedTimeAndDateClusterRoute &&
+    !isMigratedMathClusterRoute &&
     !isMigratedPercentageClusterRoute &&
     !isMigratedSalaryClusterRoute &&
     !isMigratedFinanceClusterRoute &&
@@ -3903,6 +4417,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   let scriptTagsHtml = '';
   if (
     isCreditCardClusterRoute ||
+    isMigratedMathClusterRoute ||
     isMigratedPercentageClusterRoute ||
     isMigratedSalaryClusterRoute ||
     isMigratedPricingClusterRoute ||
@@ -3972,6 +4487,11 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
       buildPricingClusterInlineCss(calculatorRelPath),
       '      '
     )}\n    </style>\n`;
+  } else if (isMigratedMathClusterRoute) {
+    cssLinksHtml = `    <style data-math-cluster="true">\n${indentBlock(
+      buildMathClusterInlineCss(calculatorRelPath),
+      '      '
+    )}\n    </style>\n`;
   } else if (isMigratedTimeAndDateClusterRoute) {
     cssLinksHtml = `    <style data-time-and-date-cluster="true">\n${indentBlock(
       buildTimeAndDateClusterInlineCss(calculatorRelPath),
@@ -4026,6 +4546,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
   const adsColumnHtml =
     suppressAdsColumn ||
     isCreditCardClusterRoute ||
+    isMigratedMathClusterRoute ||
     isMigratedPercentageClusterRoute ||
     isMigratedSalaryClusterRoute ||
     isMigratedPricingClusterRoute ||
@@ -4068,6 +4589,16 @@ ${adPanelHtml}
         </section>
       </main>
       ${buildSalaryClusterFooterHtml()}
+    </div>`
+    : isMigratedMathClusterRoute
+    ? `    <div class="page math-cluster-page-shell">
+      ${buildMathClusterHeaderHtml()}
+      <main class="math-cluster-layout-main${layoutMainClassSuffix}">
+        <section class="math-cluster-center-column">
+          ${calcContent}
+        </section>
+      </main>
+      ${buildMathClusterFooterHtml()}
     </div>`
     : isMigratedPricingClusterRoute
     ? `    <div class="page pct-cluster-page-shell">
@@ -4721,7 +5252,7 @@ function main() {
         if (!relPath) {
           throw new Error(`Unable to locate calculator folder for ${calculator.id}`);
         }
-        const override = CALCULATOR_OVERRIDES[calculator.id];
+        const override = resolveCalculatorOverride(calculator);
         const governance = resolveCalculatorGovernance({
           category,
           subcategory,
@@ -4778,7 +5309,11 @@ function main() {
     const isMigratedPricingClusterRoute =
       calculator.url.startsWith('/pricing-calculators/') &&
       PRICING_CLUSTER_REDESIGN_IDS.has(calculator.id);
-    const isMigratedSalaryClusterRoute = calculator.url.startsWith('/salary-calculators/');
+    const isMigratedMathClusterRoute =
+      calculator.url.startsWith('/math/') && MATH_CLUSTER_REDESIGN_IDS.has(calculator.id);
+    const isMigratedSalaryClusterRoute =
+      calculator.url.startsWith('/salary-calculators/') &&
+      SALARY_CLUSTER_REDESIGN_IDS.has(calculator.id);
     const isMigratedFinanceClusterRoute =
       calculator.url.startsWith('/finance-calculators/') &&
       FINANCE_CLUSTER_REDESIGN_IDS.has(calculator.id);
@@ -4796,6 +5331,7 @@ function main() {
     const assetConfig = resolveAssetConfig(assetManifest, calculator.url);
     if (
       assetConfig?.options?.generationMode === 'manual' &&
+      !isMigratedMathClusterRoute &&
       !isMigratedPercentageClusterRoute &&
       !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
@@ -4808,7 +5344,7 @@ function main() {
       return;
     }
     const fragmentDir = resolveCalculatorFragmentDir(relPath);
-    const override = CALCULATOR_OVERRIDES[calculator.id];
+    const override = resolveCalculatorOverride(calculator);
     const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
     const topNavHtml = buildTopNavHtml(
       navigation.categories,
@@ -4835,6 +5371,7 @@ function main() {
     const routeBundleEntry =
       !assetConfig &&
       !isCreditCardClusterRoute &&
+      !isMigratedMathClusterRoute &&
       !isMigratedPercentageClusterRoute &&
       !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
@@ -4848,6 +5385,7 @@ function main() {
     const topNavStatic =
       Boolean(assetConfig?.options?.topNavStatic) ||
       (ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+        !isMigratedMathClusterRoute &&
         !isMigratedPercentageClusterRoute &&
         !isMigratedSalaryClusterRoute &&
         !isMigratedPricingClusterRoute &&
@@ -4857,6 +5395,7 @@ function main() {
     if (
       !assetConfig &&
       ROUTE_BUNDLE_PILOT_IDS.has(calculator.id) &&
+      !isMigratedMathClusterRoute &&
       !isMigratedPercentageClusterRoute &&
       !isMigratedSalaryClusterRoute &&
       !isMigratedPricingClusterRoute &&
@@ -4896,6 +5435,19 @@ function main() {
 
     let staticStructuredData = null;
     let injectStaticStructuredData = false;
+    if (isMigratedMathClusterRoute) {
+      const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildMathStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        breadcrumbLabel: override?.h1 ?? calculator.name,
+        softwareName: override?.h1 ?? calculator.name,
+        softwareDescription: pageDescription,
+      });
+      injectStaticStructuredData = true;
+    }
     const homeLoanSchemaConfig = HOME_LOAN_SCHEMA_CONFIG[calculator.id];
     if (homeLoanSchemaConfig) {
       const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);

@@ -1,44 +1,147 @@
-<div class="log-calculator" id="log-scale-calculator">
-  <div class="calculator-ui">
-    <p class="helper">
-      Convert values between linear measurements and logarithmic scales such as decibels, pH, and
-      the Richter scale.
-    </p>
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="scale-type">Scale</label>
-        <select id="scale-type">
-          <option value="decibel">Decibel (dB)</option>
-          <option value="ph">pH</option>
-          <option value="richter">Richter magnitude</option>
-        </select>
+<div id="log-scale-calculator">
+  <div class="lscale-shell">
+    <section class="lscale-card lscale-hero-card" aria-label="Log scale overview">
+      <div class="lscale-hero-copy">
+        <p class="lscale-eyebrow">Simple Smooth Wow</p>
+        <h2 class="lscale-title">Convert decibels, pH, or Richter values in one answer-first log scale workspace.</h2>
+        <p class="lscale-subtitle">
+          Choose the scale, enter the measured value, and convert once. The answer card keeps the
+          converted scale reading, the formula, and the quick interpretation visible while the guide
+          card explains what the current scale means without cluttering the first screen.
+        </p>
       </div>
-      <div class="scale-sections">
-        <div class="input-row" data-scale="decibel">
-          <label for="scale-amplitude">Amplitude ratio</label>
-          <input id="scale-amplitude" type="number" step="any" min="0.0001" value="2" />
-          <label for="scale-reference">Reference amplitude (optional)</label>
-          <input id="scale-reference" type="number" step="any" min="0.0001" value="1" />
-        </div>
-        <div class="input-row" data-scale="ph" hidden>
-          <label for="scale-concentration">Hydrogen ion concentration [H+]</label>
-          <input id="scale-concentration" type="number" step="any" min="1e-12" value="1e-7" />
-        </div>
-        <div class="input-row" data-scale="richter" hidden>
-          <label for="scale-magnitude">Ground motion amplitude</label>
-          <input id="scale-magnitude" type="number" step="any" min="0.0001" value="10" />
-          <label for="scale-richter-reference">Reference amplitude (default 1)</label>
-          <input id="scale-richter-reference" type="number" step="any" min="0.0001" value="1" />
-        </div>
+      <ul class="lscale-hero-points">
+        <li>Best for sound ratios, acidity checks, and earthquake magnitude comparisons.</li>
+        <li>The answer card surfaces the converted result, formula, and plain-language reading first.</li>
+        <li>The scale guide stays nearby so each mode keeps its meaning visible without legacy shell noise.</li>
+      </ul>
+    </section>
+
+    <div class="lscale-workbench">
+      <div class="lscale-left-stack">
+        <section class="lscale-card lscale-input-card" aria-label="Log scale inputs">
+          <div class="lscale-card-head">
+            <div>
+              <p class="lscale-section-label">Inputs</p>
+              <p class="lscale-card-title">Choose the scale and enter the measured value</p>
+            </div>
+            <span class="lscale-chip">Answer-first</span>
+          </div>
+
+          <p class="lscale-helper">
+            All three modes use positive values. Use the reference fields when you want to compare
+            your measurement against a different baseline.
+          </p>
+
+          <label class="lscale-field" for="scale-type">
+            <span>Scale</span>
+            <select id="scale-type">
+              <option value="decibel">Decibel (dB)</option>
+              <option value="ph">pH</option>
+              <option value="richter">Richter magnitude</option>
+            </select>
+          </label>
+
+          <div class="lscale-scale-sections">
+            <div class="lscale-section-block" data-scale="decibel">
+              <div class="lscale-field-grid">
+                <label class="lscale-field" for="scale-amplitude">
+                  <span>Amplitude ratio</span>
+                  <input id="scale-amplitude" type="number" step="any" min="0.0001" value="2" />
+                </label>
+                <label class="lscale-field" for="scale-reference">
+                  <span>Reference amplitude</span>
+                  <input id="scale-reference" type="number" step="any" min="0.0001" value="1" />
+                </label>
+              </div>
+              <p class="lscale-inline-note">
+                Decibels compare the measured amplitude against a reference using a base-10 logarithm.
+              </p>
+            </div>
+
+            <div class="lscale-section-block" data-scale="ph" hidden>
+              <div class="lscale-field-grid lscale-field-grid--single">
+                <label class="lscale-field" for="scale-concentration">
+                  <span>Hydrogen ion concentration [H+]</span>
+                  <input id="scale-concentration" type="number" step="any" min="1e-12" value="1e-7" />
+                </label>
+              </div>
+              <p class="lscale-inline-note">
+                pH uses the negative base-10 logarithm of hydrogen ion concentration, so smaller concentrations produce higher pH values.
+              </p>
+            </div>
+
+            <div class="lscale-section-block" data-scale="richter" hidden>
+              <div class="lscale-field-grid">
+                <label class="lscale-field" for="scale-magnitude">
+                  <span>Ground motion amplitude</span>
+                  <input id="scale-magnitude" type="number" step="any" min="0.0001" value="10" />
+                </label>
+                <label class="lscale-field" for="scale-richter-reference">
+                  <span>Reference amplitude</span>
+                  <input id="scale-richter-reference" type="number" step="any" min="0.0001" value="1" />
+                </label>
+              </div>
+              <p class="lscale-inline-note">
+                Richter magnitude measures how many powers of 10 separate the recorded ground motion from the reference motion.
+              </p>
+            </div>
+          </div>
+
+          <button id="scale-calculate" class="calculator-button lscale-calc-button" type="button">
+            Convert scale
+          </button>
+        </section>
+
+        <section class="lscale-card lscale-guide-card" aria-label="Scale guide">
+          <div class="lscale-card-head">
+            <div>
+              <p class="lscale-section-label">Guide</p>
+              <p class="lscale-card-title">What the current scale is telling you</p>
+            </div>
+            <span class="lscale-chip lscale-chip--guide">Interpretation</span>
+          </div>
+
+          <div id="scale-guide" class="lscale-guide-content" aria-live="polite"></div>
+        </section>
       </div>
+
+      <section class="lscale-card lscale-answer-card" aria-label="Log scale answer summary">
+        <div class="lscale-card-head">
+          <div>
+            <p class="lscale-section-label">Answer</p>
+            <p class="lscale-card-title">Converted scale result, formula, and quick interpretation</p>
+          </div>
+          <span class="lscale-chip lscale-chip--answer">Scale result</span>
+        </div>
+
+        <div class="result lscale-result-card" id="scale-result" aria-live="polite"></div>
+        <div class="result-detail lscale-detail-card" id="scale-detail" aria-live="polite"></div>
+
+        <div class="lscale-snapshot-grid" aria-label="Log scale snapshot">
+          <article class="lscale-snapshot-card">
+            <span>Scale</span>
+            <strong data-scale-snap="scale">Decibel</strong>
+          </article>
+          <article class="lscale-snapshot-card">
+            <span>Input</span>
+            <strong data-scale-snap="input">-</strong>
+          </article>
+          <article class="lscale-snapshot-card">
+            <span>Result</span>
+            <strong data-scale-snap="result">-</strong>
+          </article>
+          <article class="lscale-snapshot-card">
+            <span>Status</span>
+            <strong data-scale-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
     </div>
-    <button id="scale-calculate" class="calculator-button primary" type="button">Convert</button>
-    <div class="result" id="scale-result" aria-live="polite"></div>
-    <div class="result-detail" id="scale-detail"></div>
   </div>
 </div>
 
 <style>
-  @import url('/assets/css/calculator.css?v=20260127');
   @import url('/calculators/math/log/shared.css');
+  @import url('/calculators/math/log/log-scale/calculator.css');
 </style>

@@ -1,8 +1,63 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('math/statistics seo scope placeholder', () => {
-  test.skip('migrated SEO content pending for /math/statistics/', async ({ page }) => {
+function collectStructuredData() {
+  const scripts = Array.from(document.querySelectorAll('script[type="application/ld+json"]'));
+  const parsed = [];
+
+  for (const script of scripts) {
+    const raw = (script.textContent || '').trim();
+    if (!raw) continue;
+
+    try {
+      const value = JSON.parse(raw);
+      if (Array.isArray(value)) {
+        parsed.push(...value);
+      } else {
+        parsed.push(value);
+      }
+    } catch {
+      // Ignore unrelated blocks.
+    }
+  }
+
+  return parsed;
+}
+
+test.describe('math/statistics seo', () => {
+  test('metadata, explanation contract, schema parity, and sitemap are present', async ({
+    page,
+  }) => {
     await page.goto('/math/statistics/');
-    await expect(page.locator('title')).toHaveCount(1);
+
+    await expect(page).toHaveTitle(
+      'Statistics Calculator | Full Descriptive Summary | CalcHowMuch'
+    );
+    await expect(page.locator('h1')).toHaveText('Statistics Calculator');
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.left-nav')).toHaveCount(0);
+    await expect(page.locator('link[href*="theme-premium-dark.css"]')).toHaveCount(0);
+
+    const explanation = page.locator('#statistics-explanation');
+    await expect(explanation.locator('h2')).toHaveText('Statistics Calculator Practical Guide');
+    await expect(explanation.locator('.faq-card')).toHaveCount(6);
+    await expect(explanation.locator('.stats-related-card')).toHaveCount(3);
+
+    const jsonLdObjects = await page.evaluate(collectStructuredData);
+    const graphNodes = jsonLdObjects.flatMap((node) =>
+      Array.isArray(node?.['@graph']) ? node['@graph'] : [node]
+    );
+    const faqNode = graphNodes.find((node) => {
+      const type = node?.['@type'];
+      return type === 'FAQPage' || (Array.isArray(type) && type.includes('FAQPage'));
+    });
+
+    expect(faqNode.mainEntity).toHaveLength(6);
+    expect(faqNode.mainEntity[0].name).toBe(
+      'When should I use this route instead of mean-median-mode-range?'
+    );
+
+    const sitemapResponse = await page.request.get('/sitemap.xml');
+    expect(sitemapResponse.ok()).toBeTruthy();
+    expect(await sitemapResponse.text()).toContain('/math/statistics/');
   });
 });

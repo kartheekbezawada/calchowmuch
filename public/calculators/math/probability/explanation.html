@@ -1,107 +1,149 @@
-<section>
-  <h3>What is Probability?</h3>
-  <p>
-    Probability measures the likelihood of an event occurring, expressed as a number between 0
-    (impossible) and 1 (certain), or equivalently 0% to 100%.
-  </p>
-</section>
+<div id="probability-explanation">
+  <section class="prob-exp-section">
+    <h2>Probability Calculator Practical Guide</h2>
+    <p>
+      Use this route to move from basic event odds into combined-event logic, Bayes updates, and
+      exact binomial probabilities without switching tools. The answer-first layout keeps the
+      decimal result, percentage view, and formula explanation together so you can verify the event
+      rule before using the output in school, risk, or planning work.
+    </p>
+    <ul class="prob-summary-list">
+      <li><strong>Best for:</strong> single events, AND/OR rules, conditional probability, Bayes, and binomial checks.</li>
+      <li><strong>Quick answer flow:</strong> choose the event rule first, then enter only the values the rule needs.</li>
+      <li><strong>Output includes:</strong> decimal probability, percentage view, formula, and plain-language explanation.</li>
+    </ul>
+  </section>
 
-<section>
-  <h3>When to Use This Calculator</h3>
-  <ul>
-    <li>Calculating odds of combined events</li>
-    <li>Risk assessment and decision making</li>
-    <li>Game theory and gambling odds</li>
-    <li>Quality control probability calculations</li>
-    <li>Understanding basic probability rules</li>
-  </ul>
-</section>
+  <section class="prob-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Select the event rule that matches the question before entering numbers.</li>
+      <li>Use outcome counts for single events and percentage probabilities for combined-event modes.</li>
+      <li>If events can overlap, use the inclusive OR option and enter <strong>P(A and B)</strong>.</li>
+      <li>For binomial mode, enter the number of trials, target successes, and success probability.</li>
+    </ol>
+  </section>
 
-<section>
-  <h3>Operations Available</h3>
-  <ul>
-    <li><strong>Single Event P(A):</strong> The basic probability of event A.</li>
-    <li>
-      <strong>AND (Independent):</strong> The probability of both A and B occurring when they are
-      independent.
-    </li>
-    <li>
-      <strong>OR (Combined Events):</strong> The probability of at least one of A or B occurring,
-      with optional overlap input.
-    </li>
-    <li><strong>Conditional:</strong> P(A|B) and P(B|A) from overlap and base rates.</li>
-    <li><strong>Bayes:</strong> Update P(A|B) using P(B|A), P(A), and P(B).</li>
-    <li><strong>Distribution:</strong> Binomial probability and normal approximation.</li>
-  </ul>
-</section>
+  <section class="prob-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="prob-table-wrap">
+      <table class="prob-summary-table">
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Rule</th>
+            <th>Typical question</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Single event</td>
+            <td>P(E) = favorable / total</td>
+            <td>What is the chance of one event from a known outcome set?</td>
+          </tr>
+          <tr>
+            <td>AND / OR</td>
+            <td>Combine event probabilities</td>
+            <td>What is the chance of both events or at least one event?</td>
+          </tr>
+          <tr>
+            <td>Conditional / Bayes</td>
+            <td>Update using overlap or evidence</td>
+            <td>How does one event change the odds of another?</td>
+          </tr>
+          <tr>
+            <td>Binomial</td>
+            <td>C(n, k) × p^k × (1-p)^(n-k)</td>
+            <td>What is the chance of exactly k successes in n trials?</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-<section>
-  <h3>Input Definitions</h3>
-  <ul>
-    <li><strong>Favorable / Total:</strong> Used for single-event probability.</li>
-    <li><strong>P(A):</strong> The probability of event A occurring, as a percentage (0-100%).</li>
-    <li>
-      <strong>P(B):</strong> The probability of event B occurring, as a percentage (0-100%). Only
-      needed for AND/OR/Conditional/Bayes operations.
-    </li>
-    <li><strong>P(A and B):</strong> The overlap between events (used for OR and Conditional).</li>
-    <li><strong>P(B|A):</strong> The probability of B given A (Bayes mode).</li>
-    <li><strong>n, k, p:</strong> Binomial trials, successes, and success probability.</li>
-  </ul>
-</section>
+  <section class="prob-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      The route supports <strong>P(E) = favorable / total</strong>,
+      <strong>P(A and B) = P(A) × P(B)</strong> for independent events,
+      <strong>P(A or B) = P(A) + P(B) - P(A and B)</strong>,
+      <strong>P(A|B) = P(A and B) / P(B)</strong>, Bayes'
+      <strong>P(A|B) = P(B|A) × P(A) / P(B)</strong>, and the binomial expression
+      <strong>P(X = k) = C(n, k) × p^k × (1-p)^(n-k)</strong>.
+    </p>
+  </section>
 
-<section>
-  <h3>Formulas</h3>
-  <p><strong>Single Event:</strong> P(E) = favorable / total</p>
-  <p><strong>AND (Independent):</strong> P(A and B) = P(A) × P(B)</p>
-  <p><strong>OR (Combined):</strong> P(A or B) = P(A) + P(B) - P(A and B)</p>
-  <p><strong>Conditional:</strong> P(A|B) = P(A and B) / P(B)</p>
-  <p><strong>Bayes:</strong> P(A|B) = P(B|A) × P(A) / P(B)</p>
-  <p><strong>Binomial:</strong> P(X = k) = C(n, k) × p^k × (1-p)^(n-k)</p>
-</section>
+  <section class="prob-exp-section">
+    <h3>Worked Example</h3>
+    <div class="prob-example-grid">
+      <article class="prob-example-card">
+        <h4>Default OR example</h4>
+        <p>With <strong>P(A) = 30%</strong> and <strong>P(B) = 50%</strong> in independent OR mode, the route returns <strong>65%</strong>.</p>
+        <p>That comes from <strong>0.30 + 0.50 - (0.30 × 0.50)</strong>.</p>
+      </article>
+      <article class="prob-example-card">
+        <h4>Conditional example</h4>
+        <p>If <strong>P(A and B) = 15%</strong>, then <strong>P(A|B) = 30%</strong> and <strong>P(B|A) = 50%</strong> with the default overlap inputs.</p>
+        <p>This is a quick way to compare how the base event changes once the other event is known.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (AND)</h3>
-  <p>Using defaults: P(A) = 30%, P(B) = 50%</p>
-  <ol>
-    <li>Convert to decimals: P(A) = 0.30, P(B) = 0.50</li>
-    <li>Apply formula: P(A and B) = P(A) × P(B)</li>
-    <li>Calculate: 0.30 × 0.50 = 0.15</li>
-    <li>Result: 0.15 or 15%</li>
-  </ol>
-  <p>There is a 15% chance that both events occur.</p>
-</section>
+  <section class="prob-exp-section" id="probability-faq">
+    <h3>FAQ</h3>
+    <div class="prob-faq-grid">
+      <article class="faq-card">
+        <h4>When should I use AND instead of OR?</h4>
+        <p>Use AND when both events must happen together. Use OR when at least one of the events can happen.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why does OR subtract overlap?</h4>
+        <p>Without subtracting the shared part, the overlap would be counted twice and the result would be too large.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What is the difference between conditional mode and Bayes mode?</h4>
+        <p>Conditional mode starts with the overlap directly, while Bayes mode solves the updated probability from prior and evidence values.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can probabilities be entered above 100%?</h4>
+        <p>No. Every probability input is limited to the 0% to 100% range.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What does binomial mode calculate?</h4>
+        <p>It calculates the probability of exactly k successes in n independent trials with the same success probability.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does the route show decimals and percentages?</h4>
+        <p>Yes. The answer card keeps the decimal probability and the percentage view together for easy interpretation.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (OR)</h3>
-  <p>Using: P(A) = 30%, P(B) = 50%</p>
-  <ol>
-    <li>Convert to decimals: P(A) = 0.30, P(B) = 0.50</li>
-    <li>Apply formula: P(A or B) = P(A) + P(B) - P(A) × P(B)</li>
-    <li>Calculate: 0.30 + 0.50 - (0.30 × 0.50) = 0.80 - 0.15 = 0.65</li>
-    <li>Result: 0.65 or 65%</li>
-  </ol>
-  <p>There is a 65% chance that at least one event occurs.</p>
-</section>
+  <section class="prob-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="prob-related-grid">
+      <a class="prob-related-card" href="/math/permutation-combination/">
+        <strong>Permutation &amp; Combination Calculator</strong>
+        <span>Use counting totals to build event spaces before you calculate odds.</span>
+      </a>
+      <a class="prob-related-card" href="/math/sample-size/">
+        <strong>Sample Size</strong>
+        <span>Move from event probability into survey and study design planning.</span>
+      </a>
+      <a class="prob-related-card" href="/math/confidence-interval/">
+        <strong>Confidence Interval Calculator</strong>
+        <span>Take probability thinking into interval estimation for means and proportions.</span>
+      </a>
+    </div>
+  </section>
 
-<section>
-  <h3>Important Notes</h3>
-  <ul>
-    <li>
-      <strong>Independence:</strong> These formulas assume events are independent (one event doesn't
-      affect the other).
-    </li>
-    <li>Conditional and Bayes modes cover dependent event relationships.</li>
-    <li>The OR formula subtracts overlap to avoid double-counting.</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Edge Cases and Validation</h3>
-  <ul>
-    <li>All probabilities must be between 0% and 100%.</li>
-    <li>P(A) = 0% means the event never occurs.</li>
-    <li>P(A) = 100% means the event always occurs.</li>
-    <li>Results are shown as both decimal and percentage.</li>
-  </ul>
-</section>
+  <section class="prob-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="prob-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Input rule:</strong> Probability percentages must stay between 0 and 100.</li>
+      <li><strong>Overlap rule:</strong> P(A and B) cannot exceed either P(A) or P(B).</li>
+      <li><strong>Binomial rule:</strong> k must stay between 0 and n for distribution mode.</li>
+    </ul>
+  </section>
+</div>

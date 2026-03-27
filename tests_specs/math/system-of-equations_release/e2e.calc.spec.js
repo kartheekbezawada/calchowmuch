@@ -5,12 +5,13 @@ test.describe('math/system-of-equations e2e', () => {
     await page.setViewportSize({ width: 1366, height: 900 });
     await page.goto('/math/algebra/system-of-equations/');
 
-    await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
+    await expect(page.locator('.math-cluster-panel.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
-    await expect(page.locator('.algebra-preview-panel')).toBeVisible();
+    await expect(page.locator('.top-nav')).toHaveCount(0);
+    await expect(page.locator('.system-answer-card')).toBeVisible();
 
-    const formBox = await page.locator('.algebra-form-panel').boundingBox();
-    const previewBox = await page.locator('.algebra-preview-panel').boundingBox();
+    const formBox = await page.locator('.system-input-card').boundingBox();
+    const previewBox = await page.locator('.system-answer-card').boundingBox();
     expect(formBox).toBeTruthy();
     expect(previewBox).toBeTruthy();
     expect(previewBox.x).toBeGreaterThan(formBox.x);
@@ -28,6 +29,7 @@ test.describe('math/system-of-equations e2e', () => {
     await expect(page.locator('#system-result')).toContainText('x = 1');
     await expect(page.locator('#system-result')).toContainText('y = 2');
     await expect(page.locator('[data-system-snap="status"]')).toHaveText('Unique solution');
+    await expect(page.locator('#system-detail')).toContainText('Elimination Method Steps');
   });
 
   test('3x3 mode toggles and snapshot state updates', async ({ page }) => {

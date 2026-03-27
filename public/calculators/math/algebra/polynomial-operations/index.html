@@ -1,207 +1,105 @@
-<style>
-  #calc-polynomial .algebra-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-    gap: 16px;
-    align-items: start;
-  }
-  #calc-polynomial .algebra-preview-panel {
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    border-radius: 12px;
-    background: rgba(15, 23, 42, 0.62);
-    padding: 12px;
-  }
-  #calc-polynomial .algebra-preview-main {
-    display: grid;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  #calc-polynomial .algebra-result-card,
-  #calc-polynomial .algebra-summary-card {
-    margin: 0;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    background: rgba(30, 41, 59, 0.5);
-  }
-  #calc-polynomial .algebra-snapshot-list {
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    border-radius: 10px;
-    background: rgba(30, 41, 59, 0.45);
-  }
-  #calc-polynomial .algebra-snapshot-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-  }
-  #calc-polynomial .algebra-snapshot-row:last-child {
-    border-bottom: 0;
-  }
-  @media (max-width: 980px) {
-    #calc-polynomial .algebra-hero {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
 <div id="calc-polynomial">
-  <div class="calculator-ui algebra-surface">
-    <section class="algebra-hero" aria-label="Polynomial operations calculator">
-      <div class="algebra-form-panel">
-        <p class="helper">Add, subtract, multiply, or divide two polynomial expressions.</p>
+  <div class="poly-shell">
+    <section class="poly-card poly-hero-card" aria-label="Polynomial operations overview">
+      <div class="poly-hero-copy">
+        <p class="poly-eyebrow">Simple Smooth Wow</p>
+        <h2 class="poly-title">Run polynomial operations in one answer-first view, then read the degree and remainder summary without old shell clutter.</h2>
+        <p class="poly-subtitle">
+          Choose an operation, enter two expressions, and calculate once. The result card stays dominant,
+          while the detail panel explains the selected operation and the snapshot cards keep the final
+          degree and remainder easy to scan.
+        </p>
+      </div>
+      <ul class="poly-hero-points">
+        <li>Best for checking algebra homework, quick operation comparisons, and long-division verification.</li>
+        <li>The answer card surfaces the result, quotient, or remainder before the supporting detail.</li>
+        <li>Operation mode stays visible on first screen so you can switch between add, subtract, multiply, and divide quickly.</li>
+      </ul>
+    </section>
 
-        <div class="operation-selector">
-          <label>Operation</label>
-          <div class="button-group" role="group" data-button-group="poly-operation">
-            <button class="calculator-button secondary is-active" type="button" data-value="add" aria-pressed="true">
+    <div class="poly-workbench">
+      <section class="poly-card poly-input-card" aria-label="Polynomial operation inputs">
+        <div class="poly-card-head">
+          <div>
+            <p class="poly-section-label">Inputs</p>
+            <p class="poly-card-title">Choose the operation and enter the two polynomials</p>
+          </div>
+          <span class="poly-chip">Answer-first</span>
+        </div>
+
+        <p class="poly-helper">Add, subtract, multiply, or divide two polynomial expressions using one shared workflow.</p>
+
+        <div class="poly-operation-selector">
+          <span>Operation</span>
+          <div class="poly-button-group" role="group" data-button-group="poly-operation" aria-label="Polynomial operation">
+            <button class="calculator-button poly-mode-button is-active" type="button" data-value="add" aria-pressed="true">
               Add
             </button>
-            <button class="calculator-button secondary" type="button" data-value="subtract" aria-pressed="false">
+            <button class="calculator-button poly-mode-button" type="button" data-value="subtract" aria-pressed="false">
               Subtract
             </button>
-            <button class="calculator-button secondary" type="button" data-value="multiply" aria-pressed="false">
+            <button class="calculator-button poly-mode-button" type="button" data-value="multiply" aria-pressed="false">
               Multiply
             </button>
-            <button class="calculator-button secondary" type="button" data-value="divide" aria-pressed="false">
+            <button class="calculator-button poly-mode-button" type="button" data-value="divide" aria-pressed="false">
               Divide
             </button>
           </div>
         </div>
 
-        <div class="input-stack">
-          <div class="polynomial-input">
-            <label for="poly1">Polynomial 1</label>
+        <div class="poly-input-grid">
+          <label class="poly-field" for="poly1">
+            <span>Polynomial 1</span>
             <input id="poly1" type="text" value="2x^2 + 3x - 1" maxlength="60" placeholder="Example: 2x^2 + 3x - 1" />
-          </div>
-          <div class="polynomial-input">
-            <label for="poly2">Polynomial 2</label>
+          </label>
+          <label class="poly-field" for="poly2">
+            <span>Polynomial 2</span>
             <input id="poly2" type="text" value="x^2 - x + 2" maxlength="60" placeholder="Example: x^2 - x + 2" />
-          </div>
+          </label>
         </div>
 
-        <button class="calculator-button full-width" type="button" id="calculate-poly">
+        <button class="calculator-button poly-calculate-button" type="button" id="calculate-poly">
           Calculate
         </button>
-      </div>
+      </section>
 
-      <aside class="algebra-preview-panel" aria-label="Polynomial operations answer cards">
-        <div class="algebra-preview-main">
-          <p class="algebra-preview-label">Answer Card</p>
-          <div class="result algebra-result-card" id="poly-result" aria-live="polite">
-            Results will appear after you click <strong>Calculate</strong>.
+      <section class="poly-card poly-answer-card" aria-label="Polynomial operations answer summary">
+        <div class="poly-card-head">
+          <div>
+            <p class="poly-section-label">Answer</p>
+            <p class="poly-card-title">Result, degree, and remainder summary</p>
           </div>
-          <div class="result-detail algebra-summary-card" id="poly-detail" aria-live="polite"></div>
+          <span class="poly-chip poly-chip--answer">Polynomial tools</span>
         </div>
 
-        <div class="algebra-snapshot-list" aria-label="Polynomial snapshot">
-          <div class="algebra-snapshot-row">
+        <div class="result poly-result-card" id="poly-result" aria-live="polite">
+          Results will appear after you click <strong>Calculate</strong>.
+        </div>
+        <div class="result-detail poly-summary-card" id="poly-detail" aria-live="polite"></div>
+
+        <div class="poly-snapshot-grid" aria-label="Polynomial snapshot">
+          <article class="poly-snapshot-card">
             <span>Operation</span>
             <strong data-poly-snap="operation">Add</strong>
-          </div>
-          <div class="algebra-snapshot-row">
+          </article>
+          <article class="poly-snapshot-card">
             <span>Result</span>
             <strong data-poly-snap="result">-</strong>
-          </div>
-          <div class="algebra-snapshot-row">
-            <span>Result Degree</span>
+          </article>
+          <article class="poly-snapshot-card">
+            <span>Result degree</span>
             <strong data-poly-snap="degree">-</strong>
-          </div>
-          <div class="algebra-snapshot-row">
-            <span>Division Remainder</span>
+          </article>
+          <article class="poly-snapshot-card">
+            <span>Division remainder</span>
             <strong data-poly-snap="remainder">-</strong>
-          </div>
+          </article>
         </div>
-      </aside>
-    </section>
+      </section>
+    </div>
   </div>
 </div>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Which operations are supported?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The calculator supports polynomial addition, subtraction, multiplication, and division."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How are like terms handled in addition and subtraction?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Terms with the same power are combined by adding or subtracting their coefficients."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What multiplication method is used?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The calculator distributes each term and then merges like terms into standard polynomial form."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens during division by a polynomial?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It performs polynomial long division and returns both quotient and remainder."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I divide by zero polynomial?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No, division by a zero polynomial is undefined and returns an error message."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are decimals allowed in coefficients?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, decimal coefficients are accepted as long as term syntax is valid."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How is polynomial degree shown in results?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The answer card shows the highest exponent with a non-zero coefficient in the output polynomial."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why might my output order differ from notes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Equivalent results can be displayed in standard descending-power form, which may differ in arrangement."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the calculator validate malformed terms?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, invalid tokens are detected and reported so you can correct the expression."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can this be used to verify manual long division?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, quotient and remainder outputs are useful for checking manual polynomial division steps."
-        }
-      }
-    ]
-  }
-</script>
+
+<style>
+  @import url('/calculators/math/algebra/polynomial-operations/calculator.css');
+</style>

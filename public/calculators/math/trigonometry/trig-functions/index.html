@@ -1,62 +1,142 @@
 <div id="calc-trig-functions">
-  <div class="calculator-ui">
-    <p class="helper">
-      Compute all six trigonometric functions, see exact values, and visualize graphs.
-    </p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="trig-angle">Angle Value</label>
-        <input id="trig-angle" type="number" value="30" step="any" />
+  <div class="trig-shell">
+    <section class="trig-card trig-hero-card" aria-label="Trigonometric functions overview">
+      <div class="trig-hero-copy">
+        <p class="trig-eyebrow">Simple Smooth Wow</p>
+        <h2 class="trig-title">Check all six trig functions, exact special-angle values, and a live graph in one answer-first trigonometry workspace.</h2>
+        <p class="trig-subtitle">
+          Enter an angle in degrees or radians, choose the function you want to graph, and adjust
+          amplitude or period only when you need it. The answer card stays dominant while the graph
+          and identity notes support quick trig review.
+        </p>
       </div>
+      <ul class="trig-hero-points">
+        <li>Best for checking sine, cosine, tangent, and reciprocal trig values at one angle.</li>
+        <li>The answer card shows the angle pair, special-angle status, quadrant, and six outputs first.</li>
+        <li>The graph panel stays nearby so wave shape and undefined regions stay easy to confirm.</li>
+      </ul>
+    </section>
 
-      <div class="input-row">
-        <label id="trig-angle-unit">Angle Unit</label>
-        <div
-          class="button-group"
-          role="group"
-          aria-labelledby="trig-angle-unit"
-          data-button-group="trig-angle-unit"
-        >
-          <button class="calculator-button secondary is-active" type="button" data-value="deg">
-            Degrees
+    <div class="trig-workbench">
+      <div class="trig-left-stack">
+        <section class="trig-card trig-input-card" aria-label="Trigonometric function inputs">
+          <div class="trig-card-head">
+            <div>
+              <p class="trig-section-label">Inputs</p>
+              <p class="trig-card-title">Set the angle, unit, graph function, and graph scale</p>
+            </div>
+            <span class="trig-chip">Answer-first</span>
+          </div>
+
+          <p class="trig-helper">Start with the angle. Use the graph controls only when you want to see the waveform change.</p>
+
+          <label class="trig-field" for="trig-angle">
+            <span>Angle value</span>
+            <input id="trig-angle" type="number" value="30" step="any" />
+          </label>
+
+          <div class="trig-toggle-section">
+            <span id="trig-angle-unit">Angle unit</span>
+            <div
+              class="trig-button-group"
+              role="group"
+              aria-labelledby="trig-angle-unit"
+              data-button-group="trig-angle-unit"
+            >
+              <button class="calculator-button trig-mode-button is-active" type="button" data-value="deg">
+                Degrees
+              </button>
+              <button class="calculator-button trig-mode-button" type="button" data-value="rad">
+                Radians
+              </button>
+            </div>
+          </div>
+
+          <div class="trig-input-grid">
+            <label class="trig-field" for="trig-graph-function">
+              <span>Graph function</span>
+              <select id="trig-graph-function">
+                <option value="sin">sin(x)</option>
+                <option value="cos">cos(x)</option>
+                <option value="tan">tan(x)</option>
+                <option value="sec">sec(x)</option>
+                <option value="csc">csc(x)</option>
+                <option value="cot">cot(x)</option>
+              </select>
+            </label>
+            <label class="trig-field" for="trig-amplitude">
+              <span>Amplitude</span>
+              <input id="trig-amplitude" type="number" value="1" step="any" />
+            </label>
+            <label class="trig-field" for="trig-period">
+              <span>Period</span>
+              <input id="trig-period" type="number" value="6.283185" step="any" />
+            </label>
+          </div>
+
+          <div class="trig-hint-row">
+            <span class="trig-inline-note">Period uses radians on the graph scale, so one full sine cycle is about 6.283185.</span>
+          </div>
+
+          <button class="calculator-button trig-calc-button" type="button" id="trig-calc">
+            Calculate Functions
           </button>
-          <button class="calculator-button secondary" type="button" data-value="rad">
-            Radians
-          </button>
-        </div>
+        </section>
+
+        <section class="trig-card trig-graph-card" aria-label="Trigonometric graph">
+          <div class="trig-card-head">
+            <div>
+              <p class="trig-section-label">Graph</p>
+              <p class="trig-card-title">Live wave preview for the selected trig function</p>
+            </div>
+            <span class="trig-chip trig-chip--graph">Waveform</span>
+          </div>
+
+          <div class="trig-graph-panel">
+            <canvas
+              id="trig-graph"
+              class="trig-graph-canvas"
+              width="360"
+              height="240"
+              aria-label="Trigonometric function graph"
+            ></canvas>
+          </div>
+          <p id="trig-graph-note" class="trig-graph-note">The graph updates with the selected function, amplitude, and period.</p>
+        </section>
       </div>
 
-      <div class="input-grid">
-        <div class="input-row">
-          <label for="trig-graph-function">Graph Function</label>
-          <select id="trig-graph-function">
-            <option value="sin">sin(x)</option>
-            <option value="cos">cos(x)</option>
-            <option value="tan">tan(x)</option>
-            <option value="sec">sec(x)</option>
-            <option value="csc">csc(x)</option>
-            <option value="cot">cot(x)</option>
-          </select>
+      <section class="trig-card trig-answer-card" aria-label="Trigonometric function answer summary">
+        <div class="trig-card-head">
+          <div>
+            <p class="trig-section-label">Answer</p>
+            <p class="trig-card-title">Angle summary, six trig outputs, and identity notes</p>
+          </div>
+          <span class="trig-chip trig-chip--answer">Trig values</span>
         </div>
-        <div class="input-row">
-          <label for="trig-amplitude">Amplitude</label>
-          <input id="trig-amplitude" type="number" value="1" step="any" />
+
+        <div class="result trig-result-card" id="trig-result" aria-live="polite"></div>
+        <div class="result-detail trig-detail-card" id="trig-detail" aria-live="polite"></div>
+
+        <div class="trig-snapshot-grid" aria-label="Trig snapshot">
+          <article class="trig-snapshot-card">
+            <span>Angle pair</span>
+            <strong data-trig-snap="angle">-</strong>
+          </article>
+          <article class="trig-snapshot-card">
+            <span>Quadrant</span>
+            <strong data-trig-snap="quadrant">-</strong>
+          </article>
+          <article class="trig-snapshot-card">
+            <span>Graph focus</span>
+            <strong data-trig-snap="function">sin(x)</strong>
+          </article>
+          <article class="trig-snapshot-card">
+            <span>Special angle</span>
+            <strong data-trig-snap="special">-</strong>
+          </article>
         </div>
-        <div class="input-row">
-          <label for="trig-period">Period</label>
-          <input id="trig-period" type="number" value="6.283" step="any" />
-        </div>
-      </div>
-      <span class="inline-note">Period uses radians for the graph scale (2*pi ~ 6.283).</span>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="trig-calc">
-      Calculate Functions
-    </button>
-
-    <div class="result" id="trig-result" aria-live="polite"></div>
-    <div class="result-detail" id="trig-detail" aria-live="polite"></div>
   </div>
 </div>
 

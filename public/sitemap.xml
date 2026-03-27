@@ -499,4 +499,54 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/salary-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/hourly-to-salary-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/salary-to-hourly-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/weekly-pay-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/overtime-pay-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/raise-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/bonus-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://calchowmuch.com/salary-calculators/commission-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

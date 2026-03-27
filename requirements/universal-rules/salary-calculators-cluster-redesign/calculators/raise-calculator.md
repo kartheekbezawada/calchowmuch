@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Raise Calculator to estimate new pay after a raise. It should support both percentage-based raises and flat-amount raises so users can compare current pay, raise amount, and resulting salary in one place.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `earnings` route variant in a fully light, answer-first layout.
+- Keep the hero result focused on new salary only.
+- Limit the first supporting result row to raise amount and percent increase.
+- Present the raise mode switch as a simple segmented or radio control without adding dense secondary panels.
 
 ## SEO Metadata
 

@@ -1,132 +1,157 @@
-<div id="series-explanation-pane">
-  <section>
-    <h3>What Is Series Convergence?</h3>
+<div id="series-explanation">
+  <section class="series-exp-section">
+    <h2>Series Convergence Calculator Practical Guide</h2>
     <p>
-      An infinite series is the sum of an infinite sequence of terms: Σa<sub>n</sub> = a<sub>1</sub>
-      + a<sub>2</sub> + a<sub>3</sub> + ... The series converges if the sequence of partial sums
-      approaches a finite limit. Otherwise, it diverges.
+      Use this series convergence calculator to test whether an infinite series converges or
+      diverges in a clean answer-first layout. It keeps the verdict, chosen test, and step-by-step
+      limit reasoning on the same page so you can confirm the conclusion without working through a
+      legacy split shell.
     </p>
-    <p>
-      Understanding convergence is crucial in calculus, analysis, and applications ranging from
-      physics to computer science.
-    </p>
-  </section>
-
-  <section>
-    <h3>Convergence Tests</h3>
-
-    <h4>Ratio Test</h4>
-    <p>
-      For a series Σa<sub>n</sub>, compute L = lim<sub>n→∞</sub> |a<sub>n+1</sub>/a<sub>n</sub>|:
-    </p>
-    <ul>
-      <li><strong>If L &lt; 1:</strong> The series converges absolutely</li>
-      <li><strong>If L &gt; 1:</strong> The series diverges</li>
-      <li><strong>If L = 1:</strong> The test is inconclusive</li>
-    </ul>
-    <p><strong>Best for:</strong> Series with factorials, exponentials, or powers of n</p>
-    <p>
-      <strong>Example:</strong> For Σn!/n<sup>n</sup>, the ratio test quickly determines convergence
-    </p>
-
-    <h4>Root Test (Cauchy Root Test)</h4>
-    <p>For a series Σa<sub>n</sub>, compute L = lim<sub>n→∞</sub> <sup>n</sup>√|a<sub>n</sub>|:</p>
-    <ul>
-      <li><strong>If L &lt; 1:</strong> The series converges absolutely</li>
-      <li><strong>If L &gt; 1:</strong> The series diverges</li>
-      <li><strong>If L = 1:</strong> The test is inconclusive</li>
-    </ul>
-    <p><strong>Best for:</strong> Series with n<sup>th</sup> powers</p>
-    <p><strong>Example:</strong> For Σ(n/(n+1))<sup>n</sup>, the root test is ideal</p>
-
-    <h4>Comparison Test</h4>
-    <p>Compare your series Σa<sub>n</sub> with a known series Σb<sub>n</sub>:</p>
-    <ul>
-      <li>
-        <strong>Direct Comparison:</strong> If 0 ≤ a<sub>n</sub> ≤ b<sub>n</sub> and Σb<sub>n</sub>
-        converges, then Σa<sub>n</sub> converges
-      </li>
-      <li>
-        <strong>Direct Comparison:</strong> If a<sub>n</sub> ≥ b<sub>n</sub> ≥ 0 and Σb<sub>n</sub>
-        diverges, then Σa<sub>n</sub> diverges
-      </li>
-      <li>
-        <strong>Limit Comparison:</strong> If lim<sub>n→∞</sub> (a<sub>n</sub>/b<sub>n</sub>) = L
-        where 0 &lt; L &lt; ∞, then both series converge or both diverge
-      </li>
-    </ul>
-    <p><strong>Common comparison series:</strong></p>
-    <ul>
-      <li>p-series: Σ1/n<sup>p</sup> converges if p &gt; 1, diverges if p ≤ 1</li>
-      <li>Geometric series: Σr<sup>n</sup> converges if |r| &lt; 1, diverges otherwise</li>
+    <ul class="series-summary-list">
+      <li><strong>Best for:</strong> quick ratio, root, and comparison test checks.</li>
+      <li><strong>Quick answer flow:</strong> enter the general term, pick a test, then calculate once.</li>
+      <li><strong>Output includes:</strong> convergence verdict, test used, limit estimate, and written steps.</li>
     </ul>
   </section>
 
-  <section>
-    <h3>Common Series</h3>
-    <h4>Convergent Series</h4>
-    <ul>
-      <li><strong>p-series (p &gt; 1):</strong> Σ1/n<sup>2</sup>, Σ1/n<sup>3</sup>, etc.</li>
-      <li><strong>Geometric (|r| &lt; 1):</strong> Σ(1/2)<sup>n</sup>, Σ(2/3)<sup>n</sup></li>
-      <li><strong>Alternating series:</strong> Σ(-1)<sup>n</sup>/n (conditionally convergent)</li>
-      <li><strong>Exponential:</strong> Σn/2<sup>n</sup>, Σn!/n<sup>n</sup></li>
-    </ul>
-
-    <h4>Divergent Series</h4>
-    <ul>
-      <li><strong>Harmonic series:</strong> Σ1/n</li>
-      <li><strong>p-series (p ≤ 1):</strong> Σ1/√n</li>
-      <li><strong>Geometric (|r| ≥ 1):</strong> Σ2<sup>n</sup>, Σ(-1)<sup>n</sup></li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Step-by-Step Analysis</h3>
+  <section class="series-exp-section">
+    <h3>How to Guide</h3>
     <ol>
-      <li>Write out the general term a<sub>n</sub> of the series</li>
-      <li>Choose an appropriate convergence test based on the form of a<sub>n</sub></li>
-      <li>Compute the limit or comparison required by the test</li>
-      <li>Apply the test criteria to determine convergence or divergence</li>
-      <li>If inconclusive, try a different test</li>
+      <li>Enter the general term using <strong>n</strong> as the index variable.</li>
+      <li>Choose auto-detect if you want the route to try the clearest test first.</li>
+      <li>Click <strong>Test convergence</strong> and read the answer card before opening the full step list.</li>
+      <li>If one test is inconclusive, switch tests and rerun without changing the term.</li>
     </ol>
   </section>
 
-  <section>
+  <section class="series-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="series-table-wrap">
+      <table class="series-summary-table">
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Best fit</th>
+            <th>Quick interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ratio test</td>
+            <td>Factorials, exponentials, and fast-growth terms</td>
+            <td>If the limit is below 1, the series converges; above 1, it diverges.</td>
+          </tr>
+          <tr>
+            <td>Root test</td>
+            <td>Terms raised to the n-th power</td>
+            <td>It asks whether the long-run n-th root settles below or above 1.</td>
+          </tr>
+          <tr>
+            <td>Comparison test</td>
+            <td>p-series style behaviour such as 1/n^p</td>
+            <td>It compares your term with a known family to suggest convergence or divergence.</td>
+          </tr>
+          <tr>
+            <td>Auto-detect</td>
+            <td>Quick first pass</td>
+            <td>The route tries the cleanest built-in test sequence automatically.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      The ratio test estimates <strong>L = lim |a_(n+1) / a_n|</strong>. The root test estimates
+      <strong>L = lim n-th root of |a_n|</strong>. The comparison test estimates whether the term
+      behaves like a familiar <strong>1 / n^p</strong> pattern.
+    </p>
+    <p>
+      A limit below <strong>1</strong> suggests convergence for ratio and root tests, while a limit
+      above <strong>1</strong> suggests divergence. A value near <strong>1</strong> usually means
+      that test alone is inconclusive.
+    </p>
+  </section>
+
+  <section class="series-exp-section">
     <h3>Worked Example</h3>
-    <p>
-      <strong>Determine if Σn/2<sup>n</sup> converges using the ratio test</strong>
-    </p>
-    <ol>
-      <li>General term: a<sub>n</sub> = n/2<sup>n</sup></li>
-      <li>Next term: a<sub>n+1</sub> = (n+1)/2<sup>n+1</sup></li>
-      <li>
-        Compute ratio: |a<sub>n+1</sub>/a<sub>n</sub>| = [(n+1)/2<sup>n+1</sup>] / [n/2<sup>n</sup>]
-        = (n+1)/(2n)
-      </li>
-      <li>Take limit: L = lim<sub>n→∞</sub> (n+1)/(2n) = 1/2</li>
-      <li>Since L = 1/2 &lt; 1, the series <strong>converges</strong> by the ratio test</li>
-    </ol>
+    <div class="series-example-grid">
+      <article class="series-example-card">
+        <h4>Convergent example</h4>
+        <p>Enter <strong>n / 2^n</strong> and use the ratio test.</p>
+        <p>
+          The ratio settles below 1, so the route reports that the series converges and explains
+          the limit estimate in the steps panel.
+        </p>
+      </article>
+      <article class="series-example-card">
+        <h4>Divergent example</h4>
+        <p>Enter <strong>2^n</strong> and use the ratio test.</p>
+        <p>
+          The ratio stays above 1, so the route reports divergence and shows why the terms grow too
+          fast for the series to settle.
+        </p>
+      </article>
+    </div>
   </section>
 
-  <section>
-    <h3>Common Mistakes to Avoid</h3>
-    <ul>
-      <li>Confusing sequence convergence with series convergence</li>
-      <li>Misapplying tests (e.g., using ratio test on p-series)</li>
-      <li>Forgetting absolute value in ratio and root tests</li>
-      <li>Concluding divergence when a test is inconclusive (L = 1)</li>
-      <li>Not simplifying limits before evaluating</li>
-    </ul>
+  <section class="series-exp-section" id="series-faq">
+    <h3>FAQ</h3>
+    <div class="series-faq-grid">
+      <article class="faq-card">
+        <h4>What does convergence mean for a series?</h4>
+        <p>It means the partial sums approach a finite value instead of growing without bound or oscillating forever.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why can one test be inconclusive?</h4>
+        <p>Some tests only give a clear answer when the limit is strictly below or above 1, so a borderline value needs another method.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use the ratio test?</h4>
+        <p>It is especially useful for factorials, exponentials, and expressions where successive terms simplify neatly.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When is the root test better?</h4>
+        <p>It is useful when the term already contains an n-th power or when the ratio is awkward to simplify.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What is a p-series?</h4>
+        <p>It is a family of series of the form 1 / n^p, which converges for p greater than 1 and diverges otherwise.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does the route prove convergence for every possible series?</h4>
+        <p>No. It is a practical calculator for common series forms, not a full symbolic analysis system.</p>
+      </article>
+    </div>
   </section>
 
-  <section>
-    <h3>Real-World Applications</h3>
-    <ul>
-      <li><strong>Physics:</strong> Fourier series for wave analysis</li>
-      <li><strong>Engineering:</strong> Power series approximations</li>
-      <li><strong>Computer Science:</strong> Analysis of algorithms (asymptotic series)</li>
-      <li><strong>Probability:</strong> Expected values and moment-generating functions</li>
-      <li><strong>Finance:</strong> Present value of perpetuities and annuities</li>
+  <section class="series-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="series-related-grid">
+      <a class="series-related-card" href="/math/calculus/limit/">
+        <strong>Limit Calculator</strong>
+        <span>Check the underlying limit behaviour that often drives a convergence test.</span>
+      </a>
+      <a class="series-related-card" href="/math/calculus/derivative/">
+        <strong>Derivative Calculator</strong>
+        <span>Stay in calculus mode when the next step is a rate-of-change check.</span>
+      </a>
+      <a class="series-related-card" href="/math/calculus/critical-points/">
+        <strong>Critical Points Finder</strong>
+        <span>Switch from infinite-series behaviour to turning-point analysis on ordinary functions.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="series-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Scope rule:</strong> This route is built for practical convergence checking on common textbook-style series.</li>
+      <li><strong>Interpretation rule:</strong> An inconclusive result does not mean the series diverges; it means a different test is needed.</li>
+      <li><strong>Input rule:</strong> Use n as the index variable and keep the term in a parser-friendly form.</li>
     </ul>
   </section>
 </div>

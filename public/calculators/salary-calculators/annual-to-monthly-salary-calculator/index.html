@@ -1,0 +1,28 @@
+<div id="calc-annual-to-monthly" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Annual to monthly salary inputs">
+    <p class="sal-calc-kicker">Focused conversion</p>
+    <h2 class="sal-calc-form-title">Turn yearly salary into monthly pay with supporting weekly views</h2>
+    <p class="sal-calc-lead">The monthly answer stays first, while weekly and biweekly pay stay secondary.</p>
+    <div class="sal-input-row">
+      <label for="annual-salary-input">Annual salary</label>
+      <input id="annual-salary-input" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+    <div class="sal-input-row">
+      <label for="annual-weeks-input">Weeks per year</label>
+      <input id="annual-weeks-input" type="number" min="0" step="0.1" value="52" />
+    </div>
+    <p class="sal-calc-error" id="annual-to-monthly-error" hidden></p>
+    <button class="sal-primary-action" id="annual-to-monthly-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Annual to monthly salary results">
+    <p class="sal-answer-title">Monthly salary</p>
+    <p class="sal-answer-hero" id="annual-monthly-result">—</p>
+    <p class="sal-answer-note" id="annual-monthly-note">Enter values and click Calculate.</p>
+    <div class="sal-support-grid">
+      <div class="sal-support-card"><span>Biweekly pay</span><strong id="annual-biweekly-result">—</strong></div>
+      <div class="sal-support-card"><span>Weekly pay</span><strong id="annual-weekly-result">—</strong></div>
+    </div>
+    <p class="sal-results-disclaimer">Gross-pay estimate only. Real paychecks can differ from this simple conversion.</p>
+  </aside>
+</div>

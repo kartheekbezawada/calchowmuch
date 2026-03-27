@@ -3,6 +3,7 @@
 ## Parent Plan
 
 - `requirements/universal-rules/salary-calculators-cluster-redesign/ROLLOUT_PLAN.md`
+- `requirements/universal-rules/salary-calculators-cluster-redesign/DESIGN_SYSTEM.md`
 
 ## Route
 
@@ -11,6 +12,14 @@
 ## Route Intro
 
 Use this Salary Calculator to convert a pay amount across hourly, daily, weekly, biweekly, monthly, and annual views. It should act as the cluster’s broad, answer-first conversion page for users who know one pay frequency and need to see the others.
+
+## Route Design Contract
+
+- Inherit the shared salary design baseline from `DESIGN_SYSTEM.md`.
+- Use the `conversion` route variant in a fully light, answer-first layout.
+- Keep one dominant hero result group, with annual and monthly outputs receiving the strongest visual emphasis.
+- Demote biweekly, weekly, daily, and hourly outputs into clearly secondary supporting metrics.
+- Keep intro and answer-adjacent copy concise so the broad conversion page still feels light.
 
 ## SEO Metadata
 

@@ -1,204 +1,105 @@
-<style>
-  #calc-slope-distance .algebra-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-    gap: 16px;
-    align-items: start;
-  }
-  #calc-slope-distance .algebra-preview-panel {
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    border-radius: 12px;
-    background: rgba(15, 23, 42, 0.62);
-    padding: 12px;
-  }
-  #calc-slope-distance .algebra-preview-main {
-    display: grid;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  #calc-slope-distance .algebra-result-card,
-  #calc-slope-distance .algebra-summary-card {
-    margin: 0;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    background: rgba(30, 41, 59, 0.5);
-  }
-  #calc-slope-distance .algebra-snapshot-list {
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    border-radius: 10px;
-    background: rgba(30, 41, 59, 0.45);
-  }
-  #calc-slope-distance .algebra-snapshot-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-  }
-  #calc-slope-distance .algebra-snapshot-row:last-child {
-    border-bottom: 0;
-  }
-  @media (max-width: 980px) {
-    #calc-slope-distance .algebra-hero {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
 <div id="calc-slope-distance">
-  <div class="calculator-ui algebra-surface">
-    <section class="algebra-hero" aria-label="Slope and distance calculator">
-      <div class="algebra-form-panel">
-        <p class="helper">Find slope, distance, midpoint, and line forms for two points.</p>
+  <div class="slope-shell">
+    <section class="slope-card slope-hero-card" aria-label="Slope and distance overview">
+      <div class="slope-hero-copy">
+        <p class="slope-eyebrow">Simple Smooth Wow</p>
+        <h2 class="slope-title">Compare two points and keep slope, distance, midpoint, and line forms in one answer-first view.</h2>
+        <p class="slope-subtitle">
+          Enter two coordinate pairs, calculate once, and use the answer card to see the core line
+          properties before you read the equation forms and parallel or perpendicular references.
+        </p>
+      </div>
+      <ul class="slope-hero-points">
+        <li>Best for coordinate geometry homework, graph checks, and line-equation review.</li>
+        <li>The answer card surfaces slope, distance, midpoint, and line type immediately.</li>
+        <li>Equation forms and parallel or perpendicular references stay in the detail panel below the answer.</li>
+      </ul>
+    </section>
 
-        <div class="input-stack point-grid">
-          <div class="point-card">
+    <div class="slope-workbench">
+      <section class="slope-card slope-input-card" aria-label="Coordinate inputs">
+        <div class="slope-card-head">
+          <div>
+            <p class="slope-section-label">Inputs</p>
+            <p class="slope-card-title">Set the two points and calculate the line properties</p>
+          </div>
+          <span class="slope-chip">Answer-first</span>
+        </div>
+
+        <p class="slope-helper">Find slope, distance, midpoint, and line equations from two points.</p>
+
+        <div class="slope-point-grid">
+          <div class="slope-point-card">
             <h3>Point 1</h3>
-            <div class="input-row">
-              <label for="x1">x1</label>
-              <input id="x1" type="number" value="1" step="any" inputmode="decimal" />
-            </div>
-            <div class="input-row">
-              <label for="y1">y1</label>
-              <input id="y1" type="number" value="2" step="any" inputmode="decimal" />
+            <div class="slope-field-grid">
+              <label class="slope-field" for="x1">
+                <span>x1</span>
+                <input id="x1" type="number" value="1" step="any" inputmode="decimal" />
+              </label>
+              <label class="slope-field" for="y1">
+                <span>y1</span>
+                <input id="y1" type="number" value="2" step="any" inputmode="decimal" />
+              </label>
             </div>
           </div>
 
-          <div class="point-card">
+          <div class="slope-point-card">
             <h3>Point 2</h3>
-            <div class="input-row">
-              <label for="x2">x2</label>
-              <input id="x2" type="number" value="4" step="any" inputmode="decimal" />
-            </div>
-            <div class="input-row">
-              <label for="y2">y2</label>
-              <input id="y2" type="number" value="8" step="any" inputmode="decimal" />
+            <div class="slope-field-grid">
+              <label class="slope-field" for="x2">
+                <span>x2</span>
+                <input id="x2" type="number" value="4" step="any" inputmode="decimal" />
+              </label>
+              <label class="slope-field" for="y2">
+                <span>y2</span>
+                <input id="y2" type="number" value="8" step="any" inputmode="decimal" />
+              </label>
             </div>
           </div>
         </div>
 
-        <button class="calculator-button full-width" type="button" id="calculate-slope">
+        <button class="calculator-button slope-calculate-button" type="button" id="calculate-slope">
           Calculate Properties
         </button>
-      </div>
+      </section>
 
-      <aside class="algebra-preview-panel" aria-label="Slope and distance answer cards">
-        <div class="algebra-preview-main">
-          <p class="algebra-preview-label">Answer Card</p>
-          <div class="result algebra-result-card" id="slope-result" aria-live="polite">
-            Results will appear after you click <strong>Calculate Properties</strong>.
+      <section class="slope-card slope-answer-card" aria-label="Slope and distance answer summary">
+        <div class="slope-card-head">
+          <div>
+            <p class="slope-section-label">Answer</p>
+            <p class="slope-card-title">Main line properties</p>
           </div>
-          <div class="result-detail algebra-summary-card" id="slope-detail" aria-live="polite"></div>
+          <span class="slope-chip slope-chip--answer">Coordinate geometry</span>
         </div>
 
-        <div class="algebra-snapshot-list" aria-label="Slope snapshot">
-          <div class="algebra-snapshot-row">
+        <div class="result slope-result-card" id="slope-result" aria-live="polite">
+          Results will appear after you click <strong>Calculate Properties</strong>.
+        </div>
+        <div class="result-detail slope-summary-card" id="slope-detail" aria-live="polite"></div>
+
+        <div class="slope-snapshot-grid" aria-label="Slope snapshot">
+          <article class="slope-snapshot-card">
             <span>Slope</span>
             <strong data-slope-snap="slope">-</strong>
-          </div>
-          <div class="algebra-snapshot-row">
+          </article>
+          <article class="slope-snapshot-card">
             <span>Distance</span>
             <strong data-slope-snap="distance">-</strong>
-          </div>
-          <div class="algebra-snapshot-row">
+          </article>
+          <article class="slope-snapshot-card">
             <span>Midpoint</span>
             <strong data-slope-snap="midpoint">-</strong>
-          </div>
-          <div class="algebra-snapshot-row">
-            <span>Line Type</span>
+          </article>
+          <article class="slope-snapshot-card">
+            <span>Line type</span>
             <strong data-slope-snap="line-type">-</strong>
-          </div>
+          </article>
         </div>
-      </aside>
-    </section>
+      </section>
+    </div>
   </div>
 </div>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What does slope represent between two points?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Slope represents how much y changes for each one-unit change in x between the points."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is slope undefined for vertical lines?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "For vertical lines, the x-change is zero, so the slope formula requires division by zero."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How is midpoint calculated?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Midpoint is found by averaging x-values and y-values separately: ((x1+x2)/2, (y1+y2)/2)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does distance use the Pythagorean theorem?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, the distance formula is derived from the Pythagorean theorem in coordinate geometry."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can this handle decimal coordinates?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, decimal and negative coordinates are supported."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What line forms are provided?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The result includes slope-intercept, point-slope, and standard forms when applicable."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is shown for horizontal lines?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Horizontal lines show slope 0, and the equation is presented as y = constant."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use identical points?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, but distance becomes 0 and the line relationship is degenerate."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does it show parallel and perpendicular lines?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, it provides representative parallel and perpendicular equations through Point 1."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why might standard form look different from my textbook?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Equivalent standard forms can differ by scaling or sign but represent the same line."
-        }
-      }
-    ]
-  }
-</script>
+
+<style>
+  @import url('/calculators/math/algebra/slope-distance/calculator.css');
+</style>

@@ -1,6 +1,6 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
+import { setupButtonGroup } from '/assets/js/core/ui.js';
 import {
   degToRad,
   formatAnglePair,
@@ -17,46 +17,39 @@ const endInput = document.querySelector('#inv-interval-end');
 const calcButton = document.querySelector('#inv-calc');
 const resultDiv = document.querySelector('#inv-result');
 const detailDiv = document.querySelector('#inv-detail');
-
-const inverseTrigMetadata = {
-  title: 'Inverse Trig Functions Calculator | Calculate How Much',
-  description:
-    'Find arcsin, arccos, or arctan principal values plus every solution within a custom interval.',
-  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/inverse-trig/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What inputs are valid for arcsin or arccos?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Values between -1 and 1 only. The calculator validates the input and warns if the value is outside the domain.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How do I list all solutions in an interval?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Set the custom interval boundaries and the calculator lists every solution using periodic extensions of the principal value.',
-        },
-      },
-    ],
-  },
-};
-
-setPageMetadata(inverseTrigMetadata);
+const snapshotFunction = document.querySelector('[data-inv-snap="function"]');
+const snapshotUnit = document.querySelector('[data-inv-snap="unit"]');
+const snapshotPrincipal = document.querySelector('[data-inv-snap="principal"]');
+const snapshotCount = document.querySelector('[data-inv-snap="count"]');
 
 function toRadians(value) {
   const unit = unitButtons?.getValue() ?? 'deg';
   return unit === 'deg' ? degToRad(value) : value;
 }
 
+function formatSolution(value) {
+  return formatAnglePair(radToDeg(value), { normalize: false });
+}
+
+function updateSnapshots(result) {
+  if (snapshotFunction) {
+    snapshotFunction.textContent = functionSelect.value;
+  }
+  if (snapshotUnit) {
+    snapshotUnit.textContent = (unitButtons?.getValue() ?? 'deg') === 'deg' ? 'Degrees' : 'Radians';
+  }
+  if (snapshotPrincipal) {
+    snapshotPrincipal.textContent = result ? formatSolution(result.principal) : '-';
+  }
+  if (snapshotCount) {
+    snapshotCount.textContent = result ? String(result.solutions.length) : '-';
+  }
+}
+
 function calculate() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
+  updateSnapshots(null);
 
   const inputs = [valueInput, startInput, endInput];
   if (inputs.find((input) => !hasMaxDigits(input.value, 12))) {
@@ -83,24 +76,48 @@ function calculate() {
     return;
   }
 
+  updateSnapshots(result);
   const principalDegrees = radToDeg(result.principal);
+  const domainLabel =
+    func === 'arctan' ? 'Any real input is allowed.' : 'Input must stay between -1 and 1.';
 
   const resultHtml = `
-    <div class="result-list">
-      <p><strong>Principal value:</strong> ${formatAnglePair(principalDegrees, { normalize: false })}</p>
-      <p><strong>Function:</strong> ${func}(x) = ${formatNumber(rawValue, { maximumFractionDigits: 6 })}</p>
-    </div>
+    <article class="inv-value-card">
+      <h4>Principal Value</h4>
+      <div class="inv-value-grid">
+        <div class="inv-value-cell">
+          <span>Function</span>
+          <p>${func}(x) = ${formatNumber(rawValue, { maximumFractionDigits: 6 })}</p>
+        </div>
+        <div class="inv-value-cell">
+          <span>Principal angle</span>
+          <p>${formatAnglePair(principalDegrees, { normalize: false })}</p>
+        </div>
+        <div class="inv-value-cell">
+          <span>Interval</span>
+          <p>${formatNumber(Math.min(start, end), { maximumFractionDigits: 6 })} to ${formatNumber(Math.max(start, end), { maximumFractionDigits: 6 })}</p>
+        </div>
+        <div class="inv-value-cell">
+          <span>Domain note</span>
+          <p>${domainLabel}</p>
+        </div>
+      </div>
+    </article>
   `;
 
   const solutionItems = result.solutions
-    .map((value) => `<li>${formatAnglePair(radToDeg(value), { normalize: false })}</li>`)
+    .map((value) => `<li>${formatSolution(value)}</li>`)
     .join('');
 
   const detailHtml = `
-    <div class="solution-steps">
-      <strong>Solutions in Interval</strong>
-      <ul>${solutionItems || '<li>No solutions in the interval.</li>'}</ul>
-    </div>
+    <article class="inv-method-card">
+      <h4>Solutions in Interval</h4>
+      <ul class="inv-solution-list">${solutionItems || '<li>No solutions in the interval.</li>'}</ul>
+      <p class="inv-method-note">
+        Principal ranges: arcsin returns -90 to 90 degrees, arccos returns 0 to 180 degrees, and
+        arctan returns a centered angle range that repeats every 180 degrees.
+      </p>
+    </article>
   `;
 
   resultDiv.innerHTML = resultHtml;

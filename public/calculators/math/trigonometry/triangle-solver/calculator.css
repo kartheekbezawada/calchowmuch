@@ -1,17 +1,475 @@
-#calc-triangle-solver .input-grid {
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+#calc-triangle-solver,
+.tri-exp-section {
+  --tri-surface: rgba(255, 255, 255, 0.97);
+  --tri-surface-soft: rgba(247, 251, 255, 0.98);
+  --tri-border: rgba(15, 23, 42, 0.08);
+  --tri-border-strong: rgba(37, 99, 235, 0.18);
+  --tri-text: #183047;
+  --tri-muted: #5e7288;
+  --tri-accent: #0f5e9c;
+  --tri-accent-soft: rgba(14, 165, 233, 0.12);
+  --tri-answer-soft: rgba(15, 118, 110, 0.12);
+  --tri-highlight: #ecf6ff;
+  --tri-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+  --tri-shadow-soft: 0 10px 24px rgba(14, 165, 233, 0.08);
 }
 
-#triangle-diagram-note {
+#calc-triangle-solver,
+#calc-triangle-solver h2,
+#calc-triangle-solver h3,
+#calc-triangle-solver h4,
+#calc-triangle-solver p,
+#calc-triangle-solver span,
+#calc-triangle-solver strong,
+#calc-triangle-solver label,
+#calc-triangle-solver li,
+.tri-exp-section,
+.tri-exp-section h2,
+.tri-exp-section h3,
+.tri-exp-section h4,
+.tri-exp-section p,
+.tri-exp-section li,
+.tri-exp-section td,
+.tri-exp-section th {
+  color: var(--tri-text);
+}
+
+#calc-triangle-solver h2::after,
+#calc-triangle-solver h3::after,
+.tri-exp-section h2::after,
+.tri-exp-section h3::after {
+  display: none !important;
+  content: none !important;
+}
+
+.tri-shell {
+  display: grid;
+  gap: 24px;
+}
+
+.tri-card,
+.tri-exp-section {
+  border: 1px solid var(--tri-border);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--tri-surface), var(--tri-surface-soft));
+  box-shadow: var(--tri-shadow);
+}
+
+.tri-card {
+  padding: 24px;
+}
+
+.tri-exp-section {
+  padding: 22px;
+  margin-top: 0;
+}
+
+.tri-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.tri-eyebrow,
+.tri-section-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--tri-accent);
+}
+
+.tri-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.tri-subtitle,
+.tri-helper,
+.tri-exp-section p,
+.tri-exp-section li,
+.tri-exp-section td,
+.tri-exp-section th {
+  color: var(--tri-muted);
+  line-height: 1.7;
+}
+
+.tri-subtitle {
+  margin: 12px 0 0;
+}
+
+.tri-hero-points {
+  margin: 0;
+  padding: 18px 18px 18px 34px;
+  border-radius: 20px;
+  background: var(--tri-highlight);
+  display: grid;
+  gap: 12px;
+}
+
+.tri-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.tri-left-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.tri-input-card,
+.tri-answer-card,
+.tri-diagram-card {
+  display: grid;
+  gap: 18px;
+}
+
+.tri-answer-card {
+  position: sticky;
+  top: 18px;
+}
+
+.tri-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+}
+
+.tri-card-title {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #203348;
+}
+
+.tri-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--tri-accent-soft);
+  color: var(--tri-accent);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.tri-chip--answer {
+  background: var(--tri-answer-soft);
+  color: #0f766e;
+}
+
+.tri-chip--diagram {
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+}
+
+.tri-field {
+  display: grid;
+  gap: 8px;
+}
+
+.tri-field > span,
+.tri-toggle-section > span {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--tri-accent);
+}
+
+.tri-field input,
+.tri-field select {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--tri-border);
+  background: #fff;
+  color: var(--tri-text);
+  font-size: 1rem;
+}
+
+.tri-toggle-section {
+  display: grid;
+  gap: 10px;
+}
+
+.tri-button-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tri-mode-button {
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid var(--tri-border);
+  background: rgba(248, 252, 255, 0.95);
+  color: var(--tri-text);
+  box-shadow: var(--tri-shadow-soft);
+}
+
+.tri-mode-button.is-active {
+  border-color: rgba(14, 165, 233, 0.32);
+  background: linear-gradient(135deg, #0c5b90, #1792d1);
+  color: #fff;
+}
+
+.tri-input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.tri-field.is-disabled {
+  opacity: 0.55;
+}
+
+.tri-field.is-disabled input {
+  background: #f3f6fa;
+}
+
+.tri-hint-row {
+  min-height: 24px;
+}
+
+.tri-inline-note {
+  color: var(--tri-muted);
+  font-size: 0.84rem;
+}
+
+.tri-solve-button {
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0b5a8a, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 18px 28px rgba(14, 165, 233, 0.2);
+}
+
+.tri-diagram-panel {
+  display: grid;
+  place-items: center;
+  min-height: 272px;
+  border-radius: 20px;
+  background: rgba(248, 252, 255, 0.95);
+  border: 1px solid var(--tri-border);
+  box-shadow: var(--tri-shadow-soft);
+}
+
+.tri-diagram-canvas {
+  width: min(100%, 320px);
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--tri-border);
+  background: #fff;
+}
+
+.tri-diagram-note {
+  margin: 0;
   text-align: center;
-  margin-top: 8px;
+  color: var(--tri-muted);
 }
 
-.solution-summary {
-  margin-top: 12px;
+.tri-result-card,
+.tri-detail-card {
+  display: grid;
+  gap: 14px;
 }
 
-.solution-summary h4 {
-  margin-bottom: 6px;
-  color: #1e40af;
+.tri-result-card {
+  margin-top: 0;
+}
+
+.tri-solution-card,
+.tri-method-card,
+.tri-snapshot-card {
+  border-radius: 18px;
+  background: rgba(248, 252, 255, 0.96);
+  border: 1px solid var(--tri-border);
+  box-shadow: var(--tri-shadow-soft);
+}
+
+.tri-solution-card,
+.tri-method-card {
+  padding: 18px;
+}
+
+.tri-solution-card h4,
+.tri-method-card h4 {
+  margin: 0;
+  color: var(--tri-accent);
+}
+
+.tri-solution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tri-solution-cell {
+  padding: 14px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--tri-border);
+}
+
+.tri-solution-cell span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tri-accent);
+}
+
+.tri-solution-cell p {
+  margin: 6px 0 0;
+  color: var(--tri-text);
+}
+
+.tri-method-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--tri-muted);
+}
+
+.tri-method-note {
+  margin: 12px 0 0;
+  color: var(--tri-accent);
+}
+
+.tri-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tri-snapshot-card {
+  padding: 14px;
+}
+
+.tri-snapshot-card span {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tri-muted);
+}
+
+.tri-snapshot-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1rem;
+}
+
+.tri-summary-list,
+.tri-notes-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.tri-table-wrap {
+  overflow-x: auto;
+}
+
+.tri-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tri-summary-table th,
+.tri-summary-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--tri-border);
+  text-align: left;
+}
+
+.tri-summary-table th {
+  color: var(--tri-accent);
+  font-size: 0.84rem;
+}
+
+.tri-example-grid,
+.tri-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tri-example-card,
+.tri-related-card,
+.tri-faq-grid .faq-card {
+  border-radius: 18px;
+  border: 1px solid var(--tri-border);
+  background: rgba(248, 252, 255, 0.95);
+  box-shadow: var(--tri-shadow-soft);
+}
+
+.tri-example-card,
+.tri-faq-grid .faq-card {
+  padding: 18px;
+}
+
+.tri-related-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  text-decoration: none;
+}
+
+.tri-related-card span {
+  color: var(--tri-muted);
+}
+
+.tri-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tri-faq-grid .faq-card h4,
+.tri-example-card h4 {
+  margin: 0 0 8px;
+}
+
+@media (max-width: 1100px) {
+  .tri-workbench,
+  .tri-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .tri-answer-card {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .tri-card,
+  .tri-exp-section {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .tri-title {
+    font-size: 1.55rem;
+  }
+
+  .tri-input-grid,
+  .tri-solution-grid,
+  .tri-faq-grid,
+  .tri-example-grid,
+  .tri-related-grid,
+  .tri-snapshot-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,26 +1,73 @@
 <div id="calc-statistics">
-  <div class="calculator-ui">
-    <p class="helper">Get a complete descriptive statistics summary for any dataset.</p>
-
-    <div class="input-stack">
-      <div class="input-row">
-        <label for="stats-dataset">Dataset</label>
-        <textarea
-          id="stats-dataset"
-          rows="4"
-          placeholder="Enter numbers separated by commas, spaces, or newlines"
-        >
-5, 10, 15, 20, 25, 20, 15, 10, 5</textarea
-        >
+  <div class="stats-shell">
+    <section class="stats-card stats-hero-card" aria-label="Statistics overview">
+      <div class="stats-hero-copy">
+        <p class="stats-eyebrow">Simple Smooth Wow</p>
+        <h2 class="stats-title">Turn one dataset into a full descriptive summary without bouncing between separate summary routes.</h2>
+        <p class="stats-subtitle">
+          Paste a list once and get centre, spread, and variability measures in one answer-first
+          panel so you can decide whether the data looks balanced, skewed, tight, or noisy before
+          moving into deeper analysis.
+        </p>
       </div>
+      <ul class="stats-hero-points">
+        <li>Keeps mean, median, mode, range, variance, and standard deviation together in one answer-first summary.</li>
+        <li>Works as the all-in-one descriptive route when you need more than a quick mean or z-score check.</li>
+        <li>Preserves first-screen usability without legacy split-shell chrome.</li>
+      </ul>
+    </section>
+
+    <div class="stats-workbench">
+      <section class="stats-card stats-input-card" aria-label="Dataset input">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Inputs</p>
+            <p class="stats-card-title">Paste the full dataset and calculate the descriptive summary</p>
+          </div>
+          <span class="stats-chip">Full summary</span>
+        </div>
+
+        <label class="stats-field" for="stats-dataset">
+          <span>Dataset</span>
+          <textarea
+            id="stats-dataset"
+            rows="6"
+            placeholder="Enter numbers separated by commas, spaces, or newlines"
+          >
+5, 10, 15, 20, 25, 20, 15, 10, 5</textarea
+          >
+          <small>Use commas, spaces, or line breaks. Non-numeric values are rejected.</small>
+        </label>
+
+        <button class="calculator-button stats-calc-button" type="button" id="stats-calculate">
+          Calculate statistics
+        </button>
+      </section>
+
+      <section class="stats-card stats-answer-card" aria-label="Statistics answer">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Answer</p>
+            <p class="stats-card-title">Descriptive statistics summary</p>
+          </div>
+          <span class="stats-chip stats-chip--answer">Dataset profile</span>
+        </div>
+
+        <div class="result stats-result-card" id="stats-result" aria-live="polite"></div>
+        <div class="result-detail stats-detail-card" id="stats-detail" aria-live="polite"></div>
+
+        <div class="stats-snapshot-grid" aria-label="Statistics workflow summary">
+          <article class="stats-snapshot-card">
+            <span>Primary outputs</span>
+            <strong>Center and spread</strong>
+          </article>
+          <article class="stats-snapshot-card">
+            <span>Advanced outputs</span>
+            <strong>Variance and standard deviation</strong>
+          </article>
+        </div>
+      </section>
     </div>
-
-    <button class="calculator-button full-width" type="button" id="stats-calculate">
-      Calculate Statistics
-    </button>
-
-    <div class="result" id="stats-result" aria-live="polite" style="min-height: 60px"></div>
-    <div class="result-detail" id="stats-detail" aria-live="polite"></div>
   </div>
 </div>
 

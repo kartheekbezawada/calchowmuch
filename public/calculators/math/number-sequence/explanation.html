@@ -1,95 +1,143 @@
-<section>
-  <h3>What is a Number Sequence?</h3>
-  <p>
-    A number sequence is an ordered list of numbers following a specific pattern. This calculator
-    supports two common types: arithmetic and geometric sequences.
-  </p>
-</section>
+<div id="sequence-explanation">
+  <section class="sequence-exp-section">
+    <h2>Number Sequence Calculator Practical Guide</h2>
+    <p>
+      Use this calculator to identify whether a list behaves like an arithmetic or geometric
+      sequence, then read the nth term, first-k preview, and running sum in one answer-first view.
+      It is built for quick classwork checks, growth-pattern reviews, and simple recurrence
+      verification without legacy shell clutter.
+    </p>
+    <ul class="sequence-summary-list">
+      <li><strong>Best for:</strong> arithmetic and geometric pattern checks from a short list of terms.</li>
+      <li><strong>Quick answer flow:</strong> paste the terms, keep auto-detect on, and read the answer card first.</li>
+      <li><strong>Output includes:</strong> sequence type, nth term, pattern rule, running sum, and preview list.</li>
+    </ul>
+  </section>
 
-<section>
-  <h3>When to Use This Calculator</h3>
-  <ul>
-    <li>Finding the nth term of a predictable pattern</li>
-    <li>Calculating compound growth scenarios (geometric)</li>
-    <li>Solving math problems involving sequences and series</li>
-    <li>Predicting future values based on a constant rate of change</li>
-  </ul>
-</section>
+  <section class="sequence-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Paste at least three terms using commas, spaces, or line breaks.</li>
+      <li>Leave <strong>Auto detect</strong> on unless you already know the route should be arithmetic or geometric.</li>
+      <li>Set <strong>n</strong> for the target term and <strong>k</strong> for the preview length.</li>
+      <li>Click <strong>Calculate sequence</strong> and read the pattern verdict before trusting the nth term.</li>
+    </ol>
+  </section>
 
-<section>
-  <h3>Input Definitions</h3>
-  <ul>
-    <li>
-      <strong>Sequence Terms:</strong> Enter at least three terms separated by commas, spaces, or
-      newlines.
-    </li>
-    <li>
-      <strong>Sequence Type:</strong> Auto-detect uses your terms to identify the pattern, or you
-      can force Arithmetic or Geometric.
-    </li>
-    <li>
-      <strong>Term Index (n):</strong> Which term to calculate (must be at least 1). The calculator
-      also shows the sum of the first n terms.
-    </li>
-    <li><strong>Preview Length (k):</strong> How many terms to display (1-50).</li>
-  </ul>
-</section>
+  <section class="sequence-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="sequence-table-wrap">
+      <table class="sequence-summary-table">
+        <thead>
+          <tr>
+            <th>Pattern</th>
+            <th>Rule</th>
+            <th>Best use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Arithmetic</td>
+            <td>Add the same difference each step</td>
+            <td>Linear growth, steady payment steps, equal spacing</td>
+          </tr>
+          <tr>
+            <td>Geometric</td>
+            <td>Multiply by the same ratio each step</td>
+            <td>Compound growth, repeated scaling, exponential change</td>
+          </tr>
+          <tr>
+            <td>Neither</td>
+            <td>No stable common difference or ratio</td>
+            <td>Signals that the input list needs a different model</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-<section>
-  <h3>Formulas</h3>
-  <p><strong>Arithmetic Sequence:</strong></p>
-  <p style="margin-left: 1rem">a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d</p>
-  <p style="margin-left: 1rem">S<sub>n</sub> = n/2 × (2a<sub>1</sub> + (n - 1)d)</p>
+  <section class="sequence-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      Arithmetic sequences use <strong>a<sub>n</sub> = a<sub>1</sub> + (n - 1)d</strong> and
+      <strong>S<sub>n</sub> = n / 2 × (2a<sub>1</sub> + (n - 1)d)</strong>. Geometric sequences
+      use <strong>a<sub>n</sub> = a<sub>1</sub> × r<sup>n-1</sup></strong> and
+      <strong>S<sub>n</sub> = a<sub>1</sub>(1 - r<sup>n</sup>) / (1 - r)</strong> when
+      <strong>r ≠ 1</strong>.
+    </p>
+  </section>
 
-  <p><strong>Geometric Sequence:</strong></p>
-  <p style="margin-left: 1rem">a<sub>n</sub> = a<sub>1</sub> * r<sup>(n-1)</sup></p>
-  <p style="margin-left: 1rem">S<sub>n</sub> = a<sub>1</sub> × (1 - r<sup>n</sup>) / (1 - r)</p>
-</section>
+  <section class="sequence-exp-section">
+    <h3>Worked Example</h3>
+    <div class="sequence-example-grid">
+      <article class="sequence-example-card">
+        <h4>Default arithmetic list</h4>
+        <p>The default list <strong>2, 4, 6, 8, 10</strong> has a common difference of <strong>2</strong>.</p>
+        <p>For <strong>n = 10</strong>, the nth term is <strong>20</strong> and the sum of the first ten terms is <strong>110</strong>.</p>
+      </article>
+      <article class="sequence-example-card">
+        <h4>Quick geometric check</h4>
+        <p>With <strong>2, 6, 18, 54</strong>, the common ratio is <strong>3</strong>.</p>
+        <p>That makes the fifth term <strong>162</strong>, which is a fast way to project repeated growth.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (Arithmetic)</h3>
-  <p>Using the defaults: a1 = 2, d = 3, n = 10</p>
-  <ol>
-    <li>Formula: a<sub>n</sub> = a<sub>1</sub> + (n - 1) * d</li>
-    <li>Substitute: a<sub>10</sub> = 2 + (10 - 1) * 3</li>
-    <li>Calculate: a<sub>10</sub> = 2 + 9 * 3 = 2 + 27 = 29</li>
-  </ol>
-  <p>First 10 terms: 2, 5, 8, 11, 14, 17, 20, 23, 26, 29</p>
-</section>
+  <section class="sequence-exp-section" id="sequence-faq">
+    <h3>FAQ</h3>
+    <div class="sequence-faq-grid">
+      <article class="faq-card">
+        <h4>How many terms do I need?</h4>
+        <p>You need at least three terms so the route can test whether the difference or ratio stays consistent.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I force arithmetic mode?</h4>
+        <p>Force arithmetic mode when you already know the list should increase or decrease by one fixed difference.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if the route says neither?</h4>
+        <p>That means the list does not keep one common difference or one common ratio across the supplied terms.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can the ratio be negative?</h4>
+        <p>Yes. A negative ratio produces alternating positive and negative terms if the input terms support that pattern.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why does the route limit preview length?</h4>
+        <p>The preview is capped at fifty terms so the answer card stays readable and avoids oversized result blocks.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does it show a series sum too?</h4>
+        <p>Yes. The answer card reports the sum of the first n terms alongside the nth-term output.</p>
+      </article>
+    </div>
+  </section>
 
-<section>
-  <h3>Worked Example (Geometric)</h3>
-  <p>Using: a1 = 2, r = 2, n = 10</p>
-  <ol>
-    <li>Formula: a<sub>n</sub> = a<sub>1</sub> * r<sup>(n-1)</sup></li>
-    <li>Substitute: a<sub>10</sub> = 2 * 2<sup>9</sup></li>
-    <li>Calculate: a<sub>10</sub> = 2 * 512 = 1024</li>
-  </ol>
-  <p>First 10 terms: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024</p>
-</section>
+  <section class="sequence-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="sequence-related-grid">
+      <a class="sequence-related-card" href="/math/permutation-combination/">
+        <strong>Permutation &amp; Combination Calculator</strong>
+        <span>Move from ordered patterns into counting arrangements and selections.</span>
+      </a>
+      <a class="sequence-related-card" href="/math/probability/">
+        <strong>Probability Calculator</strong>
+        <span>Use counting results as the next step in event and binomial probability checks.</span>
+      </a>
+      <a class="sequence-related-card" href="/math/mean-median-mode-range/">
+        <strong>Mean Median Mode Range Calculator</strong>
+        <span>Switch from sequence rules to a quick summary of raw dataset behaviour.</span>
+      </a>
+    </div>
+  </section>
 
-<section>
-  <h3>Special Cases</h3>
-  <ul>
-    <li>
-      <strong>Negative d or r:</strong> Both negative differences and ratios are allowed, creating
-      alternating or decreasing sequences.
-    </li>
-    <li><strong>r = 1:</strong> A geometric sequence with ratio 1 produces constant terms.</li>
-    <li><strong>r = 0:</strong> All terms after the first will be 0.</li>
-    <li>
-      <strong>Large n with r > 1:</strong> Results grow very quickly and may exceed JavaScript
-      number limits.
-    </li>
-  </ul>
-</section>
-
-<section>
-  <h3>Edge Cases and Validation</h3>
-  <ul>
-    <li>n must be a positive integer (at least 1).</li>
-    <li>Preview length k is clamped to a maximum of 50.</li>
-    <li>Very large results will show an error message.</li>
-    <li>Results are formatted to 4 decimal places.</li>
-  </ul>
-</section>
+  <section class="sequence-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="sequence-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Input rule:</strong> Enter only numeric terms and use at least three values.</li>
+      <li><strong>Preview rule:</strong> Preview length is capped at fifty terms to keep the result readable.</li>
+      <li><strong>Overflow rule:</strong> Large geometric ratios can exceed safe number ranges and trigger an error.</li>
+    </ul>
+  </section>
+</div>

@@ -267,3 +267,7 @@ export function initDistributionCalculator() {
   updateInputVisibility();
   calculate();
 }
+
+if (document.querySelector('#calc-distribution')) {
+  initDistributionCalculator();
+}

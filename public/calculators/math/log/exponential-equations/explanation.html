@@ -1,21 +1,169 @@
-<div class="explanation">
-  <h3>Exponential Equation Workflows</h3>
+<section class="expq-exp-section">
+  <h2>Exponential Equations Practical Guide</h2>
   <p>
-    Translate expressions such as 2^(x + 3) = 32 into logarithmic form to isolate x. Use the
-    multiplier and shift fields to handle more complex forms like a^(m·x + c) = target.
+    Use this exponential equations calculator to solve expressions such as
+    <strong>a^(m·x + c) = target</strong> with a clean answer-first layout. It is built for quick
+    checking, so the route shows the solved x value, the logarithmic rearrangement, and the curve
+    checkpoint together instead of hiding the method in a legacy split-shell view.
   </p>
-  <ul>
-    <li>
-      The tool solves for x = (log_b(target) - c) / m and highlights the intersection point on the
-      exponential curve.
-    </li>
-    <li>
-      If the multiplier is zero or the base is invalid, the calculator prompts you to choose new
-      parameters.
-    </li>
-    <li>
-      The graph gives visual confirmation that the computed x lands on the target height on the
-      exponential surface.
-    </li>
+  <ul class="expq-summary-list">
+    <li><strong>Best for:</strong> solving exponential equations with a base, multiplier, shift, and target value.</li>
+    <li><strong>Quick answer flow:</strong> enter the coefficients, solve once, then verify the graph checkpoint.</li>
+    <li><strong>Output includes:</strong> the solved x value, the log-based rearrangement, and a graph note.</li>
   </ul>
-</div>
+</section>
+
+<section class="expq-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter a valid base that is positive and not equal to 1.</li>
+    <li>Enter the target value on the right-hand side of the equation.</li>
+    <li>Set the multiplier and shift for the exponent expression <strong>m·x + c</strong>.</li>
+    <li>Click <strong>Solve for x</strong> and read the answer card before checking the graph.</li>
+  </ol>
+</section>
+
+<section class="expq-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="expq-table-wrap">
+    <table class="expq-summary-table">
+      <thead>
+        <tr>
+          <th>Equation part</th>
+          <th>What it controls</th>
+          <th>Quick interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Base</td>
+          <td>The exponential growth or decay family</td>
+          <td>Changes the curve shape and the log base used in the solution.</td>
+        </tr>
+        <tr>
+          <td>Multiplier m</td>
+          <td>The rate inside the exponent</td>
+          <td>Scales how quickly x moves before reaching the target.</td>
+        </tr>
+        <tr>
+          <td>Shift c</td>
+          <td>The constant offset inside the exponent</td>
+          <td>Moves the exponent before the logarithm isolates x.</td>
+        </tr>
+        <tr>
+          <td>Target</td>
+          <td>The right-hand-side value</td>
+          <td>Must stay positive for the logarithmic solve step.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="expq-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    For equations of the form <strong>b^(m·x + c) = target</strong>, take a logarithm with the same
+    base to isolate the exponent. That gives the rearrangement
+    <strong>x = (log_b(target) - c) / m</strong>.
+  </p>
+  <p>
+    The route applies that exact solve path numerically, then shows the result and a graph note so
+    you can check whether the solution makes sense for the chosen base and target.
+  </p>
+</section>
+
+<section class="expq-exp-section">
+  <h3>Worked Example</h3>
+  <div class="expq-example-grid">
+    <article class="expq-example-card">
+      <h4>Simple power example</h4>
+      <p>Enter <strong>base = 2</strong>, <strong>target = 16</strong>, <strong>m = 1</strong>, and <strong>c = 0</strong>.</p>
+      <p>
+        The route returns <strong>x = 4</strong> because <strong>2^4 = 16</strong>.
+      </p>
+    </article>
+    <article class="expq-example-card">
+      <h4>Shifted exponent example</h4>
+      <p>Enter <strong>base = 2</strong>, <strong>target = 32</strong>, <strong>m = 2</strong>, and <strong>c = 1</strong>.</p>
+      <p>
+        The route returns <strong>x = 2</strong> because <strong>2^(2·2 + 1) = 32</strong>.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="expq-exp-section">
+  <h3>FAQ</h3>
+  <div class="expq-faq-grid">
+    <div class="faq-card">
+      <h4>What kind of equation does this route solve?</h4>
+      <p>It solves equations of the form base^(m·x + c) = target.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why must the base be positive and not 1?</h4>
+      <p>Those are the standard domain rules for valid exponential and logarithmic solving.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why must the target stay positive?</h4>
+      <p>The logarithm step only works for positive targets in the real-number setting.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why can’t the multiplier be zero?</h4>
+      <p>A zero multiplier removes x from the exponent, so there is no variable to solve for normally.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does the shift do?</h4>
+      <p>It offsets the exponent before the logarithm isolates x.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does the route use logarithms internally?</h4>
+      <p>Yes. The solve step rewrites the equation into logarithmic form to isolate x.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can the solution be negative?</h4>
+      <p>Yes. Depending on the base, target, multiplier, and shift, x can be positive or negative.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does the graph show?</h4>
+      <p>It shows the exponential curve and highlights the checkpoint where the solved x reaches the target value.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I use decimal inputs?</h4>
+      <p>Yes. Decimal bases, targets, multipliers, and shifts are supported when they satisfy the domain rules.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is this route useful?</h4>
+      <p>It is useful for algebra review, growth-model solving, and checking exponent equations quickly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="expq-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="expq-related-grid">
+    <a class="expq-related-card" href="/math/log/log-properties/">
+      <strong>Logarithm Properties Calculator</strong>
+      <span>Review the log rules that support the equation rearrangement step.</span>
+    </a>
+    <a class="expq-related-card" href="/math/log/common-log/">
+      <strong>Common Log Calculator</strong>
+      <span>Check the selected log base directly when you want the logarithm value on its own.</span>
+    </a>
+    <a class="expq-related-card" href="/math/log/natural-log/">
+      <strong>Natural Log Calculator</strong>
+      <span>Switch to ln(x) when you want the base-e version of the same solve idea.</span>
+    </a>
+  </div>
+</section>
+
+<section class="expq-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="expq-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li><strong>Base rule:</strong> The base must be positive and cannot equal 1.</li>
+    <li><strong>Target rule:</strong> The right-hand-side target must stay positive for real-number solving.</li>
+    <li><strong>Multiplier rule:</strong> The multiplier cannot be zero in the standard solve path.</li>
+    <li><strong>Use case:</strong> This tool is built for quick numeric verification, not symbolic proof writing.</li>
+  </ul>
+</section>

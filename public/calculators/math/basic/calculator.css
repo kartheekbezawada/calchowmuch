@@ -1,10 +1,176 @@
-/* Shared calculator styles live in /assets/css/calculator.css */
+.basic-shell {
+  display: grid;
+  gap: 24px;
+}
 
-/* Memory section styles */
+.basic-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  padding: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 251, 255, 0.96));
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+}
+
+.basic-intro-card {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  align-items: start;
+}
+
+.basic-eyebrow,
+.basic-section-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.basic-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #132238;
+}
+
+.basic-helper {
+  margin: 0;
+  color: #5e7086;
+  line-height: 1.7;
+}
+
+.basic-hero-points {
+  margin: 0;
+  padding: 18px 18px 18px 34px;
+  border-radius: 20px;
+  background: #effcf8;
+  color: #11423e;
+  display: grid;
+  gap: 12px;
+}
+
+.basic-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.basic-card-head,
+.basic-answer-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.basic-card-title {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f3147;
+}
+
+.basic-toolbar {
+  margin-bottom: 18px;
+}
+
+.basic-inputs {
+  margin-bottom: 18px;
+}
+
+.basic-input-row {
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(248, 251, 255, 0.92);
+}
+
+.basic-input-row label {
+  font-weight: 600;
+}
+
+.basic-input-row input {
+  background: #fff;
+}
+
+.basic-operation-row .calculator-button {
+  min-height: 52px;
+  border-radius: 16px;
+}
+
+.basic-operation-row .calculator-button.is-active,
+.basic-operation-row .calculator-button[aria-pressed='true'] {
+  background: linear-gradient(135deg, #0f766e, #0ea5a3);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 16px 28px rgba(15, 118, 110, 0.2);
+}
+
+.basic-answer-card {
+  position: sticky;
+  top: 18px;
+}
+
+.basic-answer-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(14, 165, 233, 0.12);
+  color: #0b5a8a;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.basic-result {
+  min-height: 112px;
+  margin: 0;
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #14263d, #1b3658);
+  color: #f8fbff;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1.35;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.basic-answer-notes {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+  color: #55687f;
+  line-height: 1.6;
+}
+
+.basic-answer-notes p {
+  margin: 0;
+}
+
 .memory-section {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color, #e2e8f0);
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.basic-memory-details {
+  background: rgba(244, 248, 252, 0.92);
+  border-radius: 18px;
+  padding: 14px 16px 16px;
+}
+
+.basic-memory-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #17324d;
+}
+
+.basic-memory-details[open] summary {
+  margin-bottom: 14px;
 }
 
 .memory-indicator {
@@ -12,10 +178,10 @@
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  background-color: var(--accent-color, #3b82f6);
-  color: white;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
+  background-color: #0f766e;
+  color: #fff;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
 }
 
 .memory-buttons {
@@ -23,13 +189,99 @@
 }
 
 .memory-buttons .calculator-button {
-  min-width: 50px;
+  min-width: 56px;
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
 }
 
 .memory-value {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--text-muted, #64748b);
+  margin-top: 0.75rem;
+  font-size: 0.92rem;
+  color: #64748b;
+}
+
+.basic-explanation {
+  display: grid;
+  gap: 22px;
+}
+
+.basic-explanation section {
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(248, 251, 255, 0.9);
+}
+
+.basic-explanation h2,
+.basic-explanation h3,
+.basic-explanation h4 {
+  color: #132238;
+}
+
+.basic-explanation p,
+.basic-explanation li,
+.basic-explanation td,
+.basic-explanation th {
+  line-height: 1.7;
+  color: #42556d;
+}
+
+.basic-summary-table-wrap {
+  overflow-x: auto;
+}
+
+.basic-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.basic-summary-table th,
+.basic-summary-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  text-align: left;
+}
+
+.basic-example-grid,
+.basic-faq-grid,
+.basic-links {
+  display: grid;
+  gap: 14px;
+}
+
+.basic-example-card,
+.faq-card,
+.basic-link-card {
+  padding: 16px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.basic-link-card strong,
+.basic-link-card span {
+  display: block;
+}
+
+.basic-link-card strong {
+  color: #132238;
+  margin-bottom: 4px;
+}
+
+.basic-notes-list {
+  padding-left: 18px;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .basic-intro-card,
+  .basic-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .basic-answer-card {
+    position: static;
+  }
 }

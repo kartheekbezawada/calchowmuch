@@ -1,88 +1,141 @@
-<div class="explanation-content">
-  <h2>Correlation Analysis</h2>
+<div id="correlation-explanation">
+  <section class="analysis-exp-section">
+    <h2>Correlation Calculator Practical Guide</h2>
+    <p>
+      Use this route to measure whether two variables move together, how strongly they move
+      together, and whether that relationship is statistically meaningful. It keeps the coefficient,
+      strength label, p-value, and confidence interval in one answer-first panel so you can review
+      the relationship before fitting a regression line.
+    </p>
+    <ul class="analysis-summary-list">
+      <li><strong>Best for:</strong> quick relationship checks between paired numeric or ranked variables.</li>
+      <li><strong>Quick answer flow:</strong> paste paired lists, choose the coefficient family, and read the answer card first.</li>
+      <li><strong>Output includes:</strong> coefficient, interpretation, significance test, and confidence interval when available.</li>
+    </ul>
+  </section>
 
-  <p>
-    Correlation measures the strength and direction of the linear relationship between two
-    variables. The correlation coefficient ranges from -1 to +1.
-  </p>
+  <section class="analysis-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Paste paired X and Y values with the same number of data points.</li>
+      <li>Use <strong>Pearson</strong> for linear continuous relationships and rank-based options for monotonic relationships.</li>
+      <li>Choose an alpha level that matches how strict you want the significance test to be.</li>
+      <li>Click <strong>Calculate correlation</strong> and compare strength, direction, and p-value together.</li>
+    </ol>
+  </section>
 
-  <h3>Types of Correlation</h3>
+  <section class="analysis-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="analysis-table-wrap">
+      <table class="analysis-summary-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Best use</th>
+            <th>What it measures</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pearson</td>
+            <td>Continuous linear relationships</td>
+            <td>Linear association strength and direction</td>
+          </tr>
+          <tr>
+            <td>Spearman</td>
+            <td>Ranked or monotonic relationships</td>
+            <td>Association based on value ranks</td>
+          </tr>
+          <tr>
+            <td>Kendall</td>
+            <td>Small samples or ties</td>
+            <td>Ordinal concordance and discordance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <h4>Pearson Correlation (r)</h4>
-  <p>Measures the linear relationship between two continuous variables.</p>
-  <p>
-    <strong>r = sum((x - x-bar)(y - y-bar)) / sqrt(sum((x - x-bar)2) x sum((y - y-bar)2))</strong>
-  </p>
-  <p>Assumes both variables are normally distributed and the relationship is linear.</p>
+  <section class="analysis-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      Pearson correlation compares centred X and Y values and scales them by their spread.
+      Spearman and Kendall shift the focus to ranks and ordered pairs. In plain terms, the route is
+      asking whether larger X values tend to come with larger Y values, smaller Y values, or no
+      clear pattern at all.
+    </p>
+  </section>
 
-  <h4>Spearman Rank Correlation (rho)</h4>
-  <p>A non-parametric measure based on ranks rather than actual values.</p>
-  <p>Appropriate when data are ordinal or when the relationship is monotonic but not linear.</p>
+  <section class="analysis-exp-section">
+    <h3>Worked Example</h3>
+    <div class="analysis-example-grid">
+      <article class="analysis-example-card">
+        <h4>Default paired data</h4>
+        <p>The default lists rise together almost perfectly, so the route returns a very strong positive Pearson correlation.</p>
+        <p>That makes it a good first check before you decide whether a regression line is worth fitting.</p>
+      </article>
+      <article class="analysis-example-card">
+        <h4>Why compare Pearson and Spearman?</h4>
+        <p>If Spearman stays strong while Pearson weakens, the relationship may be monotonic but not perfectly linear.</p>
+      </article>
+    </div>
+  </section>
 
-  <h4>Kendall's Tau (tau)</h4>
-  <p>Another rank-based correlation that measures ordinal association.</p>
-  <p>More robust than Spearman's for small samples and handles ties better.</p>
+  <section class="analysis-exp-section" id="correlation-faq">
+    <h3>FAQ</h3>
+    <div class="analysis-faq-grid">
+      <article class="faq-card">
+        <h4>What does a negative correlation mean?</h4>
+        <p>It means larger X values tend to come with smaller Y values, so the relationship slopes downward.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does correlation prove causation?</h4>
+        <p>No. Correlation only shows association, not that one variable directly causes the other.</p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use Spearman instead of Pearson?</h4>
+        <p>Use Spearman when the values are better understood by ranks or the relationship is monotonic but not clearly linear.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why might Kendall be useful?</h4>
+        <p>Kendall is often more stable with smaller samples or data that contains many tied ranks.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What makes a correlation statistically significant?</h4>
+        <p>A small p-value relative to your chosen alpha suggests the observed association is unlikely to be zero in the source population.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why should I still inspect the data visually?</h4>
+        <p>Outliers or curved patterns can distort a coefficient, so a scatter plot can reveal problems the summary number hides.</p>
+      </article>
+    </div>
+  </section>
 
-  <h3>Interpreting Correlation Strength</h3>
-  <table>
-    <tr>
-      <th>|r| Value</th>
-      <th>Interpretation</th>
-    </tr>
-    <tr>
-      <td>0.9 - 1.0</td>
-      <td>Very Strong</td>
-    </tr>
-    <tr>
-      <td>0.7 - 0.9</td>
-      <td>Strong</td>
-    </tr>
-    <tr>
-      <td>0.5 - 0.7</td>
-      <td>Moderate</td>
-    </tr>
-    <tr>
-      <td>0.3 - 0.5</td>
-      <td>Weak</td>
-    </tr>
-    <tr>
-      <td>0.0 - 0.3</td>
-      <td>Very Weak / No correlation</td>
-    </tr>
-  </table>
+  <section class="analysis-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="analysis-related-grid">
+      <a class="analysis-related-card" href="/math/statistics/regression-analysis/">
+        <strong>Regression Analysis</strong>
+        <span>Move from relationship strength into fitted equations and goodness-of-fit checks.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/">
+        <strong>Statistics Calculator</strong>
+        <span>Profile each variable on its own before comparing them together.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/distribution/">
+        <strong>Distribution Calculator</strong>
+        <span>Check supporting probability distribution values for significance work.</span>
+      </a>
+    </div>
+  </section>
 
-  <h3>Direction</h3>
-  <ul>
-    <li><strong>Positive correlation (r > 0):</strong> As X increases, Y tends to increase</li>
-    <li><strong>Negative correlation (r < 0):</strong> As X increases, Y tends to decrease</li>
-    <li><strong>Zero correlation (r = 0):</strong> No linear relationship</li>
-  </ul>
-
-  <h3>Coefficient of Determination (r2)</h3>
-  <p>
-    The square of the correlation coefficient represents the proportion of variance in Y that can be
-    explained by X.
-  </p>
-  <p>For example, r = 0.8 means r2 = 0.64, so 64% of the variance in Y is explained by X.</p>
-
-  <h3>Significance Testing</h3>
-  <p>The t-test for correlation tests whether r significantly differs from zero.</p>
-  <p><strong>t = r x sqrt((n-2) / (1-r2))</strong></p>
-  <p>A small p-value indicates the correlation is statistically significant.</p>
-
-  <h3>Confidence Interval</h3>
-  <p>
-    Uses Fisher's z-transformation to construct confidence intervals for the correlation
-    coefficient.
-  </p>
-
-  <h3>Important Notes</h3>
-  <ul>
-    <li>Correlation does not imply causation</li>
-    <li>Outliers can strongly influence correlation</li>
-    <li>Always visualize data with scatter plots</li>
-    <li>
-      Sample size affects significance - large samples may show significant but weak correlations
-    </li>
-  </ul>
+  <section class="analysis-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="analysis-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Input rule:</strong> X and Y must have the same number of valid values.</li>
+      <li><strong>Interpretation rule:</strong> A strong coefficient can still come from data with hidden outliers or non-linear shape.</li>
+      <li><strong>Decision rule:</strong> Treat significance, effect size, and visual pattern as separate checks.</li>
+    </ul>
+  </section>
 </div>

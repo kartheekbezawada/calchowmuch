@@ -1,6 +1,5 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { setPageMetadata } from '/assets/js/core/ui.js';
 import { logProductRule, logQuotientRule, logPowerRule } from '/assets/js/core/logarithm.js';
 
 const baseInput = document.querySelector('#properties-base');
@@ -13,26 +12,25 @@ const powerExponent = document.querySelector('#properties-power-exp');
 const resultDiv = document.querySelector('#properties-result');
 const detailDiv = document.querySelector('#properties-detail');
 const calculateBtn = document.querySelector('#properties-calculate');
+const snapshotBase = document.querySelector('[data-properties-snap="base"]');
+const snapshotProduct = document.querySelector('[data-properties-snap="product"]');
+const snapshotQuotient = document.querySelector('[data-properties-snap="quotient"]');
+const snapshotPower = document.querySelector('[data-properties-snap="power"]');
 
-const logPropMetadata = {
-  title: 'Logarithm Properties | Calculate How Much',
-  description:
-    'See how the product, quotient, and power rules simplify logarithmic expressions with any base.',
-  canonical: 'https://calchowmuch.com/calculators/math/log/log-properties/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'Logarithm property explorer',
-    description: 'Inspect the product, quotient, and power rules before simplifying expressions.',
-    step: [
-      { '@type': 'HowToStep', text: 'Enter a base and positive operands for each rule.' },
-      { '@type': 'HowToStep', text: 'Hit Apply log rules to view each result.' },
-      { '@type': 'HowToStep', text: 'Use the detail panel to read the symbolic rewrites.' },
-    ],
-  },
-};
-
-setPageMetadata(logPropMetadata);
+function updateSnapshots({ base = '-', product = '-', quotient = '-', power = '-' } = {}) {
+  if (snapshotBase) {
+    snapshotBase.textContent = String(base);
+  }
+  if (snapshotProduct) {
+    snapshotProduct.textContent = String(product);
+  }
+  if (snapshotQuotient) {
+    snapshotQuotient.textContent = String(quotient);
+  }
+  if (snapshotPower) {
+    snapshotPower.textContent = String(power);
+  }
+}
 
 function validateInputs() {
   const inputs = [
@@ -49,6 +47,7 @@ function validateInputs() {
     if (input && !hasMaxDigits(input.value, 12)) {
       resultDiv.textContent = 'Inputs are limited to 12 digits.';
       detailDiv.textContent = '';
+      updateSnapshots();
       return false;
     }
   }
@@ -59,6 +58,7 @@ function updateResults() {
   if (!validateInputs()) {
     return;
   }
+  updateSnapshots();
 
   const base = toNumber(baseInput.value, 10);
   const x = toNumber(productX.value, 1);
@@ -71,6 +71,7 @@ function updateResults() {
   if (base <= 0 || base === 1) {
     resultDiv.textContent = 'Base must be positive and not equal to 1.';
     detailDiv.textContent = '';
+    updateSnapshots();
     return;
   }
 
@@ -79,32 +80,52 @@ function updateResults() {
   const power = logPowerRule(base, powValue, exponent);
 
   if (product === null || quotient === null || power === null) {
-    resultDiv.innerHTML = '<strong>Invalid inputs for the log rules.</strong>';
+    resultDiv.textContent = 'Invalid inputs for the log rules.';
     detailDiv.textContent = '';
+    updateSnapshots({ base: formatNumber(base, { maximumFractionDigits: 4 }) });
     return;
   }
 
+  const formattedBase = formatNumber(base, { maximumFractionDigits: 4 });
+  const formattedProduct = formatNumber(product, { maximumFractionDigits: 6 });
+  const formattedQuotient = formatNumber(quotient, { maximumFractionDigits: 6 });
+  const formattedPower = formatNumber(power, { maximumFractionDigits: 6 });
+
   resultDiv.innerHTML = `
-    <p><strong>Product rule:</strong> log_${formatNumber(base)}(${formatNumber(x)} × ${formatNumber(y)}) = ${formatNumber(
-      product,
-      { maximumFractionDigits: 6 }
-    )}</p>
-    <p><strong>Quotient rule:</strong> log_${formatNumber(base)}(${formatNumber(num)} / ${formatNumber(den)}) = ${formatNumber(
-      quotient,
-      { maximumFractionDigits: 6 }
-    )}</p>
-    <p><strong>Power rule:</strong> log_${formatNumber(base)}(${formatNumber(powValue)}^{${formatNumber(
-      exponent,
-      { maximumFractionDigits: 3 }
-    )}}) = ${formatNumber(power, { maximumFractionDigits: 6 })}</p>
+    <article class="lprop-summary-card">
+      <h4>Rule Results</h4>
+      <div class="lprop-summary-grid">
+        <div class="lprop-stat">
+          <span>Product rule</span>
+          <strong>log_${formattedBase}(${formatNumber(x)} × ${formatNumber(y)}) = ${formattedProduct}</strong>
+        </div>
+        <div class="lprop-stat">
+          <span>Quotient rule</span>
+          <strong>log_${formattedBase}(${formatNumber(num)} / ${formatNumber(den)}) = ${formattedQuotient}</strong>
+        </div>
+        <div class="lprop-stat">
+          <span>Power rule</span>
+          <strong>log_${formattedBase}(${formatNumber(powValue)}^${formatNumber(exponent, { maximumFractionDigits: 3 })}) = ${formattedPower}</strong>
+        </div>
+      </div>
+    </article>
   `;
 
-  detailDiv.innerHTML = `Product rule: log_${formatNumber(base)}(${formatNumber(x)} × ${formatNumber(y)}) = log_${formatNumber(base)}(${formatNumber(
-    x
-  )}) + log_${formatNumber(base)}(${formatNumber(y)}) ; Quotient rule: log_${formatNumber(base)}(${formatNumber(num)}) - log_${formatNumber(base)}(${formatNumber(den)}) ; Power rule: ${formatNumber(
-    exponent,
-    { maximumFractionDigits: 3 }
-  )} × log_${formatNumber(base)}(${formatNumber(powValue)})`;
+  detailDiv.innerHTML = `
+    <article class="lprop-detail-panel">
+      <h4>Symbolic Rewrites</h4>
+      <p><strong>Product:</strong> log_${formattedBase}(${formatNumber(x)} × ${formatNumber(y)}) = log_${formattedBase}(${formatNumber(x)}) + log_${formattedBase}(${formatNumber(y)})</p>
+      <p><strong>Quotient:</strong> log_${formattedBase}(${formatNumber(num)} / ${formatNumber(den)}) = log_${formattedBase}(${formatNumber(num)}) - log_${formattedBase}(${formatNumber(den)})</p>
+      <p><strong>Power:</strong> log_${formattedBase}(${formatNumber(powValue)}^${formatNumber(exponent, { maximumFractionDigits: 3 })}) = ${formatNumber(exponent, { maximumFractionDigits: 3 })} · log_${formattedBase}(${formatNumber(powValue)})</p>
+    </article>
+  `;
+
+  updateSnapshots({
+    base: formattedBase,
+    product: formattedProduct,
+    quotient: formattedQuotient,
+    power: formattedPower,
+  });
 }
 
 calculateBtn?.addEventListener('click', updateResults);

@@ -1,7 +1,15 @@
 import { formatNumber } from '/assets/js/core/format.js';
 import { hasMaxDigits, toNumber } from '/assets/js/core/validate.js';
-import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
-import { computeTrigValues, degToRad, getSpecialAngleInfo } from '/assets/js/core/trigonometry.js';
+import { setupButtonGroup } from '/assets/js/core/ui.js';
+import {
+  computeTrigValues,
+  degToRad,
+  formatAnglePair,
+  getQuadrantFromDegrees,
+  getReferenceAngleDegrees,
+  getSpecialAngleInfo,
+  radToDeg,
+} from '/assets/js/core/trigonometry.js';
 
 const angleInput = document.querySelector('#trig-angle');
 const angleUnitGroup = document.querySelector('[data-button-group="trig-angle-unit"]');
@@ -15,37 +23,12 @@ const calcButton = document.querySelector('#trig-calc');
 const resultDiv = document.querySelector('#trig-result');
 const detailDiv = document.querySelector('#trig-detail');
 const canvas = document.querySelector('#trig-graph');
-const ctx = canvas.getContext('2d');
-
-const trigFunctionsMetadata = {
-  title: 'Trigonometric Functions Calculator | Calculate How Much',
-  description:
-    'Compute sin, cos, tan, sec, csc, and cot values and graph each function with custom amplitude and period.',
-  canonical: 'https://calchowmuch.com/calculators/math/trigonometry/trig-functions/',
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'Graph trigonometric functions',
-    description:
-      'Enter an angle, adjust amplitude and period, and analyze sin/cos/tan/sec/csc/cot outputs.',
-    step: [
-      {
-        '@type': 'HowToStep',
-        text: 'Enter an angle in degrees or radians to compute the six functions.',
-      },
-      {
-        '@type': 'HowToStep',
-        text: 'Adjust the amplitude and period sliders to reshape the graph.',
-      },
-      {
-        '@type': 'HowToStep',
-        text: 'Use the graph to inspect periodic behavior and undefined regions.',
-      },
-    ],
-  },
-};
-
-setPageMetadata(trigFunctionsMetadata);
+const ctx = canvas?.getContext('2d') ?? null;
+const graphNote = document.querySelector('#trig-graph-note');
+const snapshotAngle = document.querySelector('[data-trig-snap="angle"]');
+const snapshotQuadrant = document.querySelector('[data-trig-snap="quadrant"]');
+const snapshotFunction = document.querySelector('[data-trig-snap="function"]');
+const snapshotSpecial = document.querySelector('[data-trig-snap="special"]');
 
 function getAngleDegrees() {
   const unit = angleUnitButtons?.getValue() ?? 'deg';
@@ -98,6 +81,9 @@ function getFunctionValue(name, x) {
 }
 
 function drawGraph() {
+  if (!canvas || !ctx) {
+    return;
+  }
   const functionName = functionSelect.value;
   const amplitude = toNumber(amplitudeInput.value, 1);
   const period = toNumber(periodInput.value, Math.PI * 2);
@@ -192,6 +178,21 @@ function drawGraph() {
   ctx.stroke();
 }
 
+function updateSnapshots(degrees, exact) {
+  if (snapshotAngle) {
+    snapshotAngle.textContent = formatAnglePair(degrees);
+  }
+  if (snapshotQuadrant) {
+    snapshotQuadrant.textContent = getQuadrantFromDegrees(degrees);
+  }
+  if (snapshotFunction) {
+    snapshotFunction.textContent = `${functionSelect.value}(x)`;
+  }
+  if (snapshotSpecial) {
+    snapshotSpecial.textContent = exact ? `${exact.deg} deg` : 'No exact label';
+  }
+}
+
 function calculate() {
   resultDiv.textContent = '';
   detailDiv.textContent = '';
@@ -207,51 +208,87 @@ function calculate() {
   const radians = degToRad(degrees);
   const trig = computeTrigValues(radians);
   const exact = getSpecialAngleInfo(degrees);
+  const quadrant = getQuadrantFromDegrees(degrees);
+  const referenceAngle = getReferenceAngleDegrees(degrees);
+  updateSnapshots(degrees, exact);
 
   const resultHtml = `
-    <div class="result-grid">
-      <div class="result-card">
-        <div class="result-title">sin</div>
-        <p>${formatValue(trig.sin, exact?.sin)}</p>
+    <article class="trig-value-card">
+      <h4>Angle Summary</h4>
+      <div class="trig-value-grid">
+        <div class="trig-value-cell">
+          <span>Angle pair</span>
+          <p>${formatAnglePair(degrees)}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>Reference angle</span>
+          <p>${formatAnglePair(referenceAngle)}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>Quadrant</span>
+          <p>${quadrant}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>Special angle</span>
+          <p>${exact ? `${exact.deg} deg (${exact.radLabel} rad)` : 'Not in the exact-value table'}</p>
+        </div>
       </div>
-      <div class="result-card">
-        <div class="result-title">cos</div>
-        <p>${formatValue(trig.cos, exact?.cos)}</p>
+    </article>
+    <article class="trig-value-card">
+      <h4>Six Trig Values</h4>
+      <div class="trig-value-grid">
+        <div class="trig-value-cell">
+          <span>sin</span>
+          <p>${formatValue(trig.sin, exact?.sin)}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>cos</span>
+          <p>${formatValue(trig.cos, exact?.cos)}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>tan</span>
+          <p>${formatValue(trig.tan, exact?.tan)}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>sec</span>
+          <p>${formatValue(trig.sec, null)}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>csc</span>
+          <p>${formatValue(trig.csc, null)}</p>
+        </div>
+        <div class="trig-value-cell">
+          <span>cot</span>
+          <p>${formatValue(trig.cot, null)}</p>
+        </div>
       </div>
-      <div class="result-card">
-        <div class="result-title">tan</div>
-        <p>${formatValue(trig.tan, exact?.tan)}</p>
-      </div>
-      <div class="result-card">
-        <div class="result-title">sec</div>
-        <p>${formatValue(trig.sec, null)}</p>
-      </div>
-      <div class="result-card">
-        <div class="result-title">csc</div>
-        <p>${formatValue(trig.csc, null)}</p>
-      </div>
-      <div class="result-card">
-        <div class="result-title">cot</div>
-        <p>${formatValue(trig.cot, null)}</p>
-      </div>
-    </div>
+    </article>
   `;
 
   const detailHtml = `
-    <div class="solution-steps">
-      <strong>Identity Highlights</strong>
+    <article class="trig-method-card">
+      <h4>Identity Highlights</h4>
       <ol>
         <li>sin^2(x) + cos^2(x) = 1</li>
         <li>tan(x) = sin(x) / cos(x)</li>
         <li>sec(x) = 1 / cos(x), csc(x) = 1 / sin(x), cot(x) = cos(x) / sin(x)</li>
       </ol>
-    </div>
+      <p class="trig-method-note">
+        Graph focus: ${functionSelect.value}(x), amplitude ${formatNumber(toNumber(amplitudeInput.value, 1), { maximumFractionDigits: 4 })},
+        period ${formatNumber(toNumber(periodInput.value, Math.PI * 2), { maximumFractionDigits: 6 })}.
+      </p>
+    </article>
   `;
 
   resultDiv.innerHTML = resultHtml;
   detailDiv.innerHTML = detailHtml;
 
   drawGraph();
+  if (graphNote) {
+    graphNote.textContent = exact
+      ? `Graph shows ${functionSelect.value}(x). The entered angle is a special angle with an exact-value label.`
+      : `Graph shows ${functionSelect.value}(x) with the selected amplitude and period.`;
+  }
 }
 
 calcButton.addEventListener('click', calculate);
