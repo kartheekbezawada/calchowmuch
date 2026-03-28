@@ -1,259 +1,217 @@
 # CalcHowMuch
 
-CalcHowMuch is a static, SEO-focused multi-page calculator platform.
-It serves calculators across finance, loans, math, percentage, and time/date categories.
+CalcHowMuch is a multi-page calculator website built to help people make practical decisions with clear, searchable, and easy-to-use tools.
 
-## What This Project Is
+This README is a project scope document. It explains what the project includes, how calculators are organised, and how quality is protected. It is written for people who need to understand the product and delivery model, not just the code.
 
-- Frontend-only calculator platform (no backend runtime).
-- MPA architecture with full-page navigation via static `<a href>` links.
-- Route pages are generated into `public/` and served as static HTML.
-- Governance and quality gates are defined in:
-  - `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
+## Project Purpose
 
-## Core Architecture
+CalcHowMuch exists to publish calculator pages that are:
 
-- Source route fragments live under `public/calculators/<category>/<slug>/`
-  - Common files: `index.html`, `explanation.html`, `module.js`, `calculator.css`
-  - Archetype-based routes also support `content.html` where applicable.
-- Generated route pages are written to:
-  - `public/<category>/<slug>/index.html`
-- Route navigation source of truth:
-  - `public/config/navigation.json`
-- MPA generation script:
-  - `scripts/generate-mpa-pages.js`
+- easy for users to find through search
+- easy to use on desktop and mobile
+- clear enough to support a real decision, not just a number
+- supported by explanation content, FAQs, and important notes
+- governed by a release process before they are considered ready
 
-## Build and Runtime Tooling
+The platform covers calculator categories such as:
 
-### Required Software
+- salary
+- finance
+- loans
+- credit cards
+- pricing
+- math
+- percentage
+- time and date
+- sleep and nap
 
-- Node.js `>=18` (defined in `package.json`)
-- npm (scripts are npm-based)
-- Python 3 for local static hosting
+## What The Project Delivers
 
-### Main Build/Dev Commands
+Each calculator is treated as a publishable product page, not just a formula.
 
-- Install dependencies:
-  - `npm install`
-- Serve static site locally:
-  - `python3 -m http.server 8000 --directory public`
-- Port policy/status:
-  - `npm run ports:list`
-  - `npm run ports:next-free -- --group=playwright`
-  - `npm run ports:acquire -- --group=lighthouse`
-  - `npm run ports:release -- --lease-id=<lease-id>`
-- Regenerate one route safely (default workflow):
-  - `TARGET_ROUTE=/finance/simple-interest/ node scripts/generate-mpa-pages.js`
-- Regenerate one calculator by id:
-  - `TARGET_CALC_ID=simple-interest node scripts/generate-mpa-pages.js`
-- Full-site regeneration (explicit opt-in only):
-  - `node scripts/generate-mpa-pages.js --all`
-- Lint JS:
-  - `npm run lint`
-- Format check:
-  - `npm run format:check`
+In practice, that means a release usually includes:
 
-## Codex Usage Modes
+- a calculator experience
+- supporting explanation content
+- FAQ content where required
+- SEO metadata and structured data
+- navigation to and from related calculators
+- sitemap coverage for public pages
+- test evidence and release sign-off
 
-Use these chat commands to control Codex response efficiency:
+## Scope Of The Website
 
-- `MODE: MAX` -> compact responses with reduced token usage.
-- `MODE: STANDARD` -> normal response detail and verbosity.
-- `MODE: STATUS` -> one-line output of the current mode.
+The site is a static, SEO-focused calculator platform. It does not rely on a traditional backend application to render calculator pages for users at request time.
 
-Notes:
+Key scope decisions:
 
-- Commands are case-insensitive but must start with `MODE:`.
-- Unknown mode values should return one-line guidance with valid options.
-- This affects collaboration verbosity only; release/compliance gate requirements stay unchanged.
+- calculators are delivered as static pages
+- calculator navigation uses standard links and full page loads
+- public pages must be discoverable and governed
+- explanation content is part of the product, not an optional add-on
+- release quality is controlled through documented gates
 
-## Packages Used (Build + Dev)
+## Calculator Architecture
 
-From `package.json`:
+The project uses a multi-page architecture.
 
-- `@playwright/test`
-- `vitest`
-- `@vitest/coverage-v8`
-- `jsdom`
-- `eslint`
-- `prettier`
+This means:
+
+- each calculator has its own route
+- moving between calculators uses normal `<a href>` links
+- the project does not use single-page-app calculator navigation
+- calculator pages are generated into public, static HTML output
+
+At a high level, a calculator page can contain:
+
+- a calculator pane
+- an explanation pane
+- standalone content for non-calculator routes when needed
+
+The main supported route patterns are:
+
+- `calc_exp`: calculator plus explanation
+- `calc_only`: calculator without explanation
+- `exp_only`: explanation without calculator
+- `content_shell`: structured content page inside the site shell
+
+This architecture is used because it supports:
+
+- stronger SEO crawlability
+- clearer route ownership
+- predictable page-level testing
+- simpler release control
+
+## Project Structure
+
+The project is organised around public routes, cluster ownership, requirements, and tests.
+
+Important areas:
+
+- `public/`
+  Public route output and route source fragments.
+- `clusters/`
+  Cluster-owned route configuration and assets.
+- `config/`
+  Shared configuration such as cluster ownership and registry data.
+- `requirements/`
+  Governance, release rules, and project requirements.
+- `tests_specs/`
+  Unit, end-to-end, SEO, layout, and release-oriented test coverage.
+- `scripts/`
+  Build and generation utilities used to produce route output.
+
+In simple terms:
+
+- `public/` is what gets served
+- `requirements/` defines the rules
+- `tests_specs/` checks that releases meet those rules
+
+## How Calculators Are Treated
+
+A calculator is not considered complete just because the formula works.
+
+A release-ready calculator normally needs to satisfy all of the following:
+
+- correct calculation logic
+- usable page layout
+- mobile-friendly interaction
+- explanation content in the required format
+- SEO and schema coverage
+- sitemap presence if the route is public
+- release evidence showing checks were completed
+
+This keeps the project focused on publishable user value, not isolated code delivery.
 
 ## Testing Strategy
 
-The project uses layered testing:
+The testing strategy is layered. Different tests answer different risks.
 
-- Unit and core behavior tests (Vitest + JSDOM)
-- Route and interaction E2E tests (Playwright)
-- SEO-specific E2E checks (Playwright specs)
-- Static SEO/schema source guard tests (Vitest)
-- Local SEO+Lighthouse audit runs (custom script)
-- Layout stability ISS checks for shell-impacting changes
+### 1. Unit Tests
 
-### Test Types and Locations
+Unit tests check calculation logic, helper functions, metadata guards, and other rule-based behaviour.
 
-All tests live under `tests_specs/` categorized by calculator domain:
+These tests answer:
 
-- Unit tests: `tests_specs/{category}/unit/*.test.js`
-- E2E specs: `tests_specs/{category}/e2e/*.spec.js`
-- ISS tests: `tests_specs/infrastructure/e2e/iss-design-001.spec.js`, `tests_specs/infrastructure/e2e/iss/`
-- CWV guard: `tests_specs/infrastructure/e2e/cls-guard-all-calculators.spec.js`
-- Schema guards: `tests_specs/infrastructure/unit/page-metadata-schema-guard.test.js`, `tests_specs/finance/unit/finance-static-schema-source-parity.test.js`
+- does the calculator produce the correct result?
+- do important rules and metadata stay valid?
+- did a local code change break a known rule?
 
-Categories: `loans`, `credit-cards`, `finance`, `percentage`, `math`, `time-and-date`, `sleep-and-nap`, `infrastructure`
+### 2. End-To-End Tests
 
-### Test Commands
+End-to-end tests check real page behaviour in the browser.
 
-- Run unit/core test suite:
-  - `npm run test`
-- Run E2E suite:
-  - `npm run test:e2e`
-- Run ISS subset:
-  - `npm run test:iss`
-- Run ISS-001:
-  - `npm run test:iss001`
-- Run finance static SEO source parity:
-  - `npm run test:seo:source-finance`
-- Run local SEO + Lighthouse audit:
-  - `npm run audit:local-seo -- --base-url http://127.0.0.1:8000 --slugs <slugs-file> --audit-md <audit-output.md> --out-dir <artifact-dir>`
+These tests answer:
 
-## Where Tests Are Conducted
+- can a user open the calculator page successfully?
+- do inputs, actions, and results work as expected?
+- does the route behave correctly in a real browsing flow?
 
-- Vitest tests run in Node with `jsdom` environment.
-- Playwright tests run Chromium locally using:
-  - Base URL: `PW_BASE_URL` (default `http://localhost:8001`)
-  - Auto web server command from config:
-    - `python3 -m http.server ${PW_WEB_SERVER_PORT} --directory public` (default `8001`)
-- Local SEO audit runs against a manually provided local base URL.
-  - Default in script is `http://127.0.0.1:8000`.
-  - Artifacts are written under `test-results/seo/local-audit/`.
+### 3. SEO And SERP Checks
 
-## Pass Criteria (Practical + Governance)
+SEO checks validate that public pages are release-ready from a search and indexing perspective.
 
-At minimum, a high-confidence pass for a calculator change means:
+These checks cover areas such as:
 
-- No lint failures for changed JS scope.
-- Required Vitest suites pass for affected logic.
-- Required Playwright route specs pass for affected routes.
-- ISS checks pass when layout/shell behavior is impacted.
-- SEO checks pass for required priorities and schema contracts:
-  - Required metadata present.
-  - Required JSON-LD types present per route archetype.
-  - FAQ/schema parity checks pass where required.
-- Sitemap coverage is present for any public/live route.
+- title and metadata presence
+- structured data and FAQ expectations
+- page-level SEO contract compliance
+- sitemap inclusion for public routes
 
-Governance source:
+### 4. Layout And Visual Stability Checks
+
+Some tests protect layout behaviour and visual stability.
+
+These checks are used to catch issues such as:
+
+- broken calculator shell layouts
+- unstable page rendering
+- regressions in required page structure
+
+### 5. Performance And CWV Checks
+
+Performance checks are used to confirm that calculator pages remain efficient enough for release expectations.
+
+This matters because the project depends on static, search-friendly pages that should load cleanly and behave predictably.
+
+## Release And Quality Control
+
+The project follows a governed release flow.
+
+The high-level sequence is:
+
+1. requirement
+2. build
+3. release checklist
+4. release sign-off
+5. ready to merge
+
+Important release rules:
+
+- failing checks must be fixed before release readiness
+- public routes must be represented in the sitemap
+- release evidence must be recorded
+- the agent can prepare work, but does not merge
+
+## Source Of Truth
+
+The main governance document for implementation and release expectations is:
 
 - `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md`
 
-## Calculator Explanation Authoring Standard
+Related release control documents include:
 
-For `calc_exp` and `exp_only` routes, explanation content is mandatory in this order:
+- `requirements/universal-rules/RELEASE_CHECKLIST.md`
+- `requirements/universal-rules/RELEASE_SIGNOFF.md`
 
-- Intent-led heading (calculator purpose/topic; avoid generic `Explanation` headings)
-- `How to Guide`
-- FAQ (schema-aligned)
-- `Important Notes` (must be final section)
+## Who This README Is For
 
-`Important Notes` must include:
+This document is intended for:
 
-- `Last updated: <Month YYYY>` (refresh when page content changes in release)
-- `Accuracy: ...`
-- calculator-relevant disclaimer key (for example `Financial disclaimer`, `Health disclaimer`, or `Disclaimer`)
-- `Assumptions: ...` (calculator-specific)
-- `Privacy: All calculations run locally in your browser - no data is stored.` (exact text)
+- project owners
+- reviewers
+- content and SEO stakeholders
+- contributors who need to understand the platform before changing it
 
-Presentation requirements:
-
-- notes use a bullet list (`ul`/`ol`)
-- no dedicated notes container box
-- key label color is `rgba(186, 230, 253, 0.98)`
-
-If a calculator includes graphs/charts, they must be readable and decision-useful:
-
-- Axes with clear labels and units/time basis
-- Distinct data series + legible legend placement
-- Mobile readability without horizontal overflow
-
-Source of truth: `requirements/universal-rules/UNIVERSAL_REQUIREMENTS.md` and `requirements/universal-rules/RELEASE_CHECKLIST.md`
-
-## Thin-Content Governance
-
-Thin-content quality checks are integrated into scoped SEO release commands.
-
-- Primary command:
-  - `npm run test:content:quality -- --scope=<full|cluster|calc|route> [--route=/path/]`
-- Scoped SEO integration:
-  - `CLUSTER={cluster} CALC={calculator} npm run test:calc:seo` runs Playwright SEO specs, then thin-content scoring (`--scope=calc`).
-  - `CLUSTER={cluster} npm run test:cluster:seo` runs Playwright SEO specs, then thin-content scoring (`--scope=cluster`).
-
-Rollout policy:
-
-- `soft` mode: evidence + warnings only (non-blocking)
-- `hard` mode: blocking fail when score `<70` or hard flags exist
-
-Scoped calc artifact path:
-
-- `test-results/content-quality/scoped/{cluster}/{calc}.json`
-
-## Compliance and Tracking
-
-Release governance follows the document chain:
-
-- `requirements/compliance/requirement_tracker.md` — REQ lifecycle
-- `requirements/universal-rules/RELEASE_CHECKLIST.md` — pre-release gate
-- `requirements/universal-rules/RELEASE_SIGNOFF.md` — release sign-off template
-- `requirements/universal-rules/release-signoffs/` — per-release evidence files
-
-## Token Savings / Fast Execution Mode
-
-Estimated documentation-process savings:
-
-- Remove mandatory `Project Bible` read: `~1,000–2,500` tokens saved per task
-- Simplify `RELEASE_SIGNOFF.md`: `~1,500–4,000` tokens saved per release task
-- Skip `Release Sign-Off Master Table.md` updates: `~800–2,000` tokens saved per release task
-
-Combined savings:
-
-- Normal coding task: `~1,000–2,500`
-- Release/compliance task: `~3,000–8,500` (can be higher on large releases)
-- Extra gain from strict file scope: often `5k+` on larger tasks
-
-Operator snippet:
-
-```text
-MODE: MAX
-Reuse session context; do not reread policy docs unless this task edits them.
-Read only these files: <list>
-Do not scan outside scope unless blocked.
-Do not run full release gates unless I explicitly ask.
-```
-
-## Chromium and WSL Notes
-
-- Playwright uses Chromium for E2E and will download browser binaries via:
-  - `npx playwright install --with-deps chromium`
-- Lighthouse audits must run against a Linux Chromium binary when you are inside WSL.
-  - Do not rely on Windows Chrome from WSL.
-- Install Chromium in WSL using your distro package manager, then verify binary path:
-  - Ubuntu:
-    - `sudo apt update && sudo apt install -y chromium-browser`
-  - Debian:
-    - `sudo apt update && sudo apt install -y chromium`
-  - Fedora:
-    - `sudo dnf install -y chromium`
-  - `which chromium`
-  - `which chromium-browser`
-- If needed, force the executable path explicitly for audit runs:
-  - `CHROME_PATH=/usr/bin/chromium node scripts/local-seo-performance-audit.mjs --base-url http://127.0.0.1:8000 --slugs <slugs-file> --audit-md <audit-output.md> --out-dir <artifact-dir>`
-- Common failure signal when Chromium is missing/misresolved:
-  - `Lighthouse desktop/mobile unavailable (Unable to connect to Chrome)`
-
-## Useful Notes
-
-- This repo is static-first: generated HTML in `public/` is expected output.
-- `scripts/local-seo-performance-audit.mjs` uses `CHROME_PATH` resolution to stabilize Lighthouse runs in WSL/Linux environments.
-- Cache policy baseline for calculators:
-  - HTML routes are short-cache (`max-age=0, must-revalidate`).
-  - JS/CSS assets are long-cache (`max-age=2592000, stale-while-revalidate=86400`).
-  - Calculator-source imports under `/calculators/...` are versioned by `ROUTE_ASSET_VERSION` in `scripts/generate-mpa-pages.js`.
-  - On scoped releases, purge only the changed route path plus changed calculator module/helper asset paths.
+If you need low-level engineering commands or release execution details, those should live in the governed requirement and release documents rather than being the main purpose of this README.
