@@ -132,15 +132,12 @@ calculator must be completed, regenerated, verified, and logged before the next 
 ### Percentage
 
 - Fix nav/path mismatch first for `percent-change`
+- Current repo routing note: `commission-calculator`, `discount-calculator`, `margin-calculator`, and `markup-calculator` now live under the `pricing` cluster at `/pricing-calculators/...`
 - Then execute:
   - `percent-change`
-  - `discount-calculator`
-  - `markup-calculator`
   - `what-percent-is-x-of-y`
   - `percentage-of-a-number`
   - `reverse-percentage`
-  - `commission-calculator`
-  - `margin-calculator`
   - `percent-to-fraction-decimal`
   - `percentage-difference`
   - `percentage-increase`
@@ -152,13 +149,13 @@ calculator must be completed, regenerated, verified, and logged before the next 
 | Calculator | Route | CLUSTER | CALC | SEO Issues | Content Scope | Verification | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Percent Change Calculator | `/percentage-calculators/percent-change-calculator/` | `percentage` | `percent-change` | route mismatch cleanup | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality + nav/contracts | complete (`content quality: warn`) |
-| Discount Calculator | `/percentage-calculators/discount-calculator/` | `percentage` | `discount-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
-| Markup Calculator | `/percentage-calculators/markup-calculator/` | `percentage` | `markup-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Discount Calculator | `/pricing-calculators/discount-calculator/` | `pricing` | `discount-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`moved from percentage cluster`) |
+| Markup Calculator | `/pricing-calculators/markup-calculator/` | `pricing` | `markup-calculator` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`moved from percentage cluster`) |
 | What Percent Is X of Y | `/percentage-calculators/percentage-finder-calculator/` | `percentage` | `what-percent-is-x-of-y` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `LOW_WORD_COUNT` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 | Find Percentage of a Number | `/percentage-calculators/percentage-of-a-number-calculator/` | `percentage` | `percentage-of-a-number` | `DESC_TOO_SHORT` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 | Reverse Percentage Calculator | `/percentage-calculators/reverse-percentage-calculator/` | `percentage` | `reverse-percentage` | `DESC_TOO_LONG` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
-| Commission Calculator | `/percentage-calculators/commission-calculator/` | `percentage` | `commission-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
-| Margin Calculator | `/percentage-calculators/margin-calculator/` | `percentage` | `margin-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Commission Calculator | `/pricing-calculators/commission-calculator/` | `pricing` | `commission-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`moved from percentage cluster`) |
+| Margin Calculator | `/pricing-calculators/margin-calculator/` | `pricing` | `margin-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`moved from percentage cluster`) |
 | Percent to Fraction/Decimal | `/percentage-calculators/percent-to-fraction-decimal-calculator/` | `percentage` | `percent-to-fraction-decimal` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 | Percentage Difference Calculator | `/percentage-calculators/percentage-difference-calculator/` | `percentage` | `percentage-difference` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 | Percentage Increase Calculator | `/percentage-calculators/percentage-increase-calculator/` | `percentage` | `percentage-increase` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |

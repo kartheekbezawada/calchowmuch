@@ -47,6 +47,7 @@
 | Important Notes contract proof (if applicable) | `public/calculators/salary-calculators/inflation-adjusted-salary-calculator/explanation.html` and generated output at `public/salary-calculators/inflation-adjusted-salary-calculator/index.html` |
 | Pane layout proof (for `calc_exp`) | `public/config/navigation.json`, `public/salary-calculators/inflation-adjusted-salary-calculator/index.html` |
 | Mobile layout verification | Manual Playwright mobile probe against `public/salary-calculators/inflation-adjusted-salary-calculator/index.html`: `innerWidth=437`, `scrollWidth=437`, `hasPageOverflow=false`, `shellWidth=358` |
+| Mobile table verification | Manual Playwright probe and screenshot confirmed the explanation table stacks into labeled cards on small screens with no page overflow. |
 
 Notes:
 - The route ships as `calc_exp` with `paneLayout=single`.
@@ -60,6 +61,7 @@ Notes:
 | :--- | :--- | :--- | :--- |
 | `IAS-CONTENT-001` | Thin-content scorer now passes with score `78` (`Acceptable`), but still flags FAQ specificity and edge-case coverage as improvement opportunities. | Low | Expand calculator-specific FAQ coverage and edge-case guidance in a follow-up content pass. |
 | `IAS-SEO-LOG-001` | SEO/content-quality scripts emit a non-blocking jsdom CSS parse log while still returning success. | Low | Treat as repo-level tooling noise unless the parser warning is promoted to a failing condition later. |
+| `IAS-GEN-001` | Scoped regeneration is currently blocked by a missing repo file: `requirements/universal-rules/AdSense code snippet.md`. | Low | Restore the missing generator dependency, then rerun scoped generation to replace the direct sync applied to the generated route file. |
 
 ---
 

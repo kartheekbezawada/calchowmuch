@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const ROUTE = '/percentage-calculators/commission-calculator/';
+const ROUTE = '/percentage-calculators/percentage-increase-calculator/';
 
 test.describe('percentage cluster seo smoke', () => {
   test('representative route has canonical/title/robots', async ({ page }) => {

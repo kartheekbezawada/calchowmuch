@@ -1583,14 +1583,49 @@
       @media (max-width: 640px) {
         #inflation-adjusted-salary-calculator-explanation .calculator-table {
           display: block;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          white-space: nowrap;
+          border: 0;
+          background: transparent;
         }
 
-        #inflation-adjusted-salary-calculator-explanation .calculator-table th,
+        #inflation-adjusted-salary-calculator-explanation .calculator-table thead {
+          display: none;
+        }
+
+        #inflation-adjusted-salary-calculator-explanation .calculator-table tbody {
+          display: grid;
+          gap: 12px;
+        }
+
+        #inflation-adjusted-salary-calculator-explanation .calculator-table tr {
+          display: grid;
+          gap: 10px;
+          padding: 14px;
+          border: 1px solid rgba(19, 34, 47, 0.08);
+          border-radius: 18px;
+          background: #fcfdfc;
+          box-shadow: 0 10px 24px rgba(19, 34, 47, 0.05);
+        }
+
         #inflation-adjusted-salary-calculator-explanation .calculator-table td {
-          padding: 10px 12px;
+          display: grid;
+          gap: 4px;
+          padding: 0;
+          border-bottom: 0;
+          white-space: normal;
+        }
+
+        #inflation-adjusted-salary-calculator-explanation .calculator-table td::before {
+          content: attr(data-label);
+          color: #5d6f67;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        #inflation-adjusted-salary-calculator-explanation .calculator-table td:first-child {
+          color: #13222f;
+          font-weight: 700;
         }
       }
     </style>
@@ -1768,20 +1803,20 @@
       </thead>
       <tbody>
         <tr>
-          <td>Nominal change</td>
-          <td>How much the salary moved before inflation is considered.</td>
+          <td data-label="Output">Nominal change</td>
+          <td data-label="What it answers">How much the salary moved before inflation is considered.</td>
         </tr>
         <tr>
-          <td>Salary needed to keep pace</td>
-          <td>What the later salary must reach to preserve the original buying power.</td>
+          <td data-label="Output">Salary needed to keep pace</td>
+          <td data-label="What it answers">What the later salary must reach to preserve the original buying power.</td>
         </tr>
         <tr>
-          <td>Real salary gap</td>
-          <td>Whether the new salary is ahead of or behind that keep-pace target.</td>
+          <td data-label="Output">Real salary gap</td>
+          <td data-label="What it answers">Whether the new salary is ahead of or behind that keep-pace target.</td>
         </tr>
         <tr>
-          <td>Today's dollars</td>
-          <td>What the new salary is worth after inflation is stripped back out.</td>
+          <td data-label="Output">Today's dollars</td>
+          <td data-label="What it answers">What the new salary is worth after inflation is stripped back out.</td>
         </tr>
       </tbody>
     </table>
