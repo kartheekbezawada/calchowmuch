@@ -216,7 +216,7 @@ HARD: Dedupe run must emit both report artifacts at repository root:
 - `schema_duplicates_report.md`
 - `schema_duplicates_report.csv`
 
-Policy source: `requirements/universal-rules/SCHEMA_DEDUPE_GUARDRAIL.md`.
+Policy source: `requirements/universal-rules/reference/SCHEMA_DEDUPE_GUARDRAIL.md`.
 
 3.2 HARD rule: universal “all calculators” runs are not allowed by default
 
@@ -575,7 +575,7 @@ HARD: Body ad unit snippet must match controlled contract:
 `<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1063975431106361" data-ad-slot="3901083802" data-ad-format="auto" data-full-width-responsive="true"></ins>`
 and slot activation `(adsbygoogle = window.adsbygoogle || []).push({});` must execute once per slot.
 
-HARD: Canonical snippet rationale files are archived under `requirements/universal-rules/Archive Rules/`; release validation must enforce governance contracts, not ad-hoc snippet variants.
+HARD: Canonical snippet rationale files are archived under `requirements/universal-rules/archive/legacy-notes/`; release validation must enforce governance contracts, not ad-hoc snippet variants.
 
 11. Mobile & Tablet UX — HARD
     11.1 Layout

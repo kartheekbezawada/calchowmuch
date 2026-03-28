@@ -51,7 +51,7 @@
 **Pipeline:** `REQUIREMENT -> BUILD -> RELEASE CHECKLIST -> RELEASE SIGN-OFF -> READY`
 
 ### Step 1: Requirement In
-- Read: `UNIVERSAL_REQUIREMENTS.md` (How), Calc Rules.
+- Read: `requirements/universal-rules/README.md` (folder map), `UNIVERSAL_REQUIREMENTS.md` (law), and only the companion docs needed for the task.
 
 ### Step 2: Build
 - Implement change.
@@ -86,11 +86,16 @@
 ---
 
 ## 4. Document Chain
-`Req -> UNIVERSAL_REQUIREMENTS -> RELEASE_CHECKLIST -> RELEASE_SIGNOFF`
+`Req -> universal-rules/README -> UNIVERSAL_REQUIREMENTS -> CALCULATOR_BUILD_GUIDE -> RELEASE_CHECKLIST -> RELEASE_SIGNOFF`
 
-- **UNIVERSAL_REQUIREMENTS.md:** The "How" (Rules).
-- **RELEASE_CHECKLIST.md:** Pre-release Gate.
+- **README.md:** Folder index. Explains which docs are active, reference-only, incident-only, or archived.
+- **UNIVERSAL_REQUIREMENTS.md:** Sole authoritative law file.
+- **CALCULATOR_BUILD_GUIDE.md:** Practical calculator build and UX/content guidance.
+- **RELEASE_CHECKLIST.md:** Pre-release gate.
 - **RELEASE_SIGNOFF.md:** Template for evidence.
+- **`reference/`:** Support docs loaded only when a rule/checklist points to them.
+- **`decisions/` and `incidents/`:** Historical context, not project law.
+- **`archive/legacy-notes/`:** Legacy material; do not treat as active governance unless HUMAN asks.
 
 ---
 
