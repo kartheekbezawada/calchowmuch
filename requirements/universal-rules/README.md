@@ -26,7 +26,7 @@ This folder contains project-wide governance and companion documents. Only a sma
 
 | File | Role |
 |---|---|
-| `About Us.md` | Live content source for the public About Us page. It is not a governance document. |
+| `About Us.md` | Legacy content file retained outside governance. It is not used by the MPA generator as a build source. |
 | `NON_MATH_SEO_WAVE_PLAN.md` | Working tracker for a specific SEO rollout wave. It is not project law. |
 | `cluster_migration_plane.md` | Planning baseline for the cluster-isolation migration. Use only for migration work. |
 | `Archive Rules/` | Older archived material retained in place. Do not treat it as active governance. |

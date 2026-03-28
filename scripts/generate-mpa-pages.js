@@ -25,19 +25,6 @@ const PUBLIC_CLUSTER_REGISTRY_PATH = path.join(
 );
 const HEADER_PATH = path.join(PUBLIC_DIR, 'layout', 'header.html');
 const FOOTER_PATH = path.join(PUBLIC_DIR, 'layout', 'footer.html');
-const ADSENSE_SNIPPET_PATH = path.join(
-  ROOT,
-  'requirements',
-  'universal-rules',
-  'AdSense code snippet.md'
-);
-const AD_UNIT_SNIPPET_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'Ad Unit Code.md');
-const ABOUT_US_SOURCE_PATH = path.join(
-  ROOT,
-  'requirements',
-  'universal-rules',
-  'About Us.md'
-);
 const ROUTE_BUNDLE_MANIFEST_PATH = path.join(
   PUBLIC_DIR,
   'assets',
@@ -51,14 +38,6 @@ const GTEP_CSS_VERSION = '20260127';
 const ROUTE_ASSET_VERSION = process.env.ROUTE_ASSET_VERSION || '20260224';
 const SITE_URL = 'https://calchowmuch.com';
 const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
-const ADSENSE_HEAD_MARKER_START = '<!-- CHM_ADSENSE_HEAD_START -->';
-const ADSENSE_HEAD_MARKER_END = '<!-- CHM_ADSENSE_HEAD_END -->';
-const ADSENSE_SLOT_MARKER_START = '<!-- CHM_AD_SLOT_START -->';
-const ADSENSE_SLOT_MARKER_END = '<!-- CHM_AD_SLOT_END -->';
-const ADSENSE_LOADER_SRC_RE =
-  /https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/i;
-const ADSENSE_LOADER_SCRIPT_RE =
-  /^[ \t]*<script\b[^>]*src=["']https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=[^"']+["'][^>]*>\s*<\/script>\s*\n?/gim;
 // CHM_ENABLE_ADSENSE is deprecated — AdSense code is always injected.
 // Ads only render on approved production domains via Google AdSense domain verification.
 const ROUTE_ARCHETYPES = new Set(['calc_exp', 'calc_only', 'exp_only', 'content_shell']);
@@ -1363,88 +1342,12 @@ function parseBooleanFlag(value) {
   return normalized === '1' || normalized === 'true';
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 function indentBlock(block, indent) {
   return block
     .split('\n')
     .map((line) => (line ? `${indent}${line}` : line))
     .join('\n');
 }
-
-function extractMandatoryMatch(source, regex, errorMessage) {
-  const match = source.match(regex);
-  if (!match) {
-    throw new Error(errorMessage);
-  }
-  return match[0].trim();
-}
-
-function loadAdSenseSnippets() {
-  const adSenseSnippetSource = readFile(ADSENSE_SNIPPET_PATH);
-  const adUnitSnippetSource = readFile(AD_UNIT_SNIPPET_PATH);
-
-  const headLoaderScript = extractMandatoryMatch(
-    adSenseSnippetSource,
-    /<script\b[\s\S]*?<\/script>/i,
-    `Missing AdSense head loader script in ${ADSENSE_SNIPPET_PATH}`
-  );
-  if (!ADSENSE_LOADER_SRC_RE.test(headLoaderScript)) {
-    throw new Error(
-      `AdSense head snippet in ${ADSENSE_SNIPPET_PATH} does not contain the adsbygoogle.js loader`
-    );
-  }
-
-  const adSlotCommentMatch = adUnitSnippetSource.match(/<!--[\s\S]*?-->/i);
-  const adSlotComment = adSlotCommentMatch ? adSlotCommentMatch[0].trim() : '';
-  const adSlotInsTag = extractMandatoryMatch(
-    adUnitSnippetSource,
-    /<ins\b[\s\S]*?<\/ins>/i,
-    `Missing <ins class="adsbygoogle"> tag in ${AD_UNIT_SNIPPET_PATH}`
-  );
-  if (!/\badsbygoogle\b/i.test(adSlotInsTag)) {
-    throw new Error(
-      `Ad unit snippet in ${AD_UNIT_SNIPPET_PATH} does not include class="adsbygoogle"`
-    );
-  }
-
-  const scriptMatches = Array.from(
-    adUnitSnippetSource.matchAll(/<script\b[\s\S]*?<\/script>/gi)
-  ).map((match) => match[0].trim());
-  const adPushScript = scriptMatches.find(
-    (scriptTag) => !/\bsrc\s*=/i.test(scriptTag) && /adsbygoogle/i.test(scriptTag)
-  );
-  if (!adPushScript) {
-    throw new Error(
-      `Missing inline adsbygoogle push script in ${AD_UNIT_SNIPPET_PATH}. Expected '(adsbygoogle = window.adsbygoogle || []).push({});'`
-    );
-  }
-
-  return {
-    headLoaderScript,
-    adSlotComment,
-    adSlotInsTag,
-    adPushScript,
-  };
-}
-
-const ADSENSE_SNIPPETS = loadAdSenseSnippets();
-const ADSENSE_HEAD_MANAGED_BLOCK = [
-  ADSENSE_HEAD_MARKER_START,
-  ADSENSE_SNIPPETS.headLoaderScript,
-  ADSENSE_HEAD_MARKER_END,
-].join('\n');
-const ADSENSE_SLOT_MANAGED_BLOCK = [
-  ADSENSE_SLOT_MARKER_START,
-  ADSENSE_SNIPPETS.adSlotComment,
-  ADSENSE_SNIPPETS.adSlotInsTag,
-  ADSENSE_SNIPPETS.adPushScript,
-  ADSENSE_SLOT_MARKER_END,
-]
-  .filter(Boolean)
-  .join('\n');
 
 function inferDesignFamily(categoryId, subcategoryId) {
   if (categoryId === 'loans' && DESIGN_FAMILIES.has(subcategoryId)) {
@@ -2618,80 +2521,6 @@ function renderManagedHeadAdsenseBlock() {
 
 function renderManagedAdPanel(indent = '          ') {
   return `${indent}<div class="ad-panel"></div>`;
-}
-
-function stripManagedBlock(html, startMarker, endMarker) {
-  const blockPattern = new RegExp(
-    `^[ \\t]*${escapeRegExp(startMarker)}\\s*\\n[\\s\\S]*?^[ \\t]*${escapeRegExp(
-      endMarker
-    )}\\s*\\n?`,
-    'gm'
-  );
-  return html.replace(blockPattern, '');
-}
-
-function normalizeAdSenseHead(html) {
-  let normalized = stripManagedBlock(html, ADSENSE_HEAD_MARKER_START, ADSENSE_HEAD_MARKER_END);
-  normalized = normalized.replace(ADSENSE_LOADER_SCRIPT_RE, '');
-  normalized = normalized.replace(
-    /^[ \t]*<!-- Cloudflare Web Analytics -->/gm,
-    '    <!-- Cloudflare Web Analytics -->'
-  );
-
-  if (!/^[ \t]*<\/head>/im.test(normalized)) {
-    return normalized;
-  }
-
-  return normalized;
-}
-
-function normalizeAdPanelSlots(html) {
-  if (!/class=["']ads-column["']/i.test(html)) {
-    return html;
-  }
-
-  return html.replace(
-    /(^[ \t]*)<div class="ad-panel"[^>]*>[\s\S]*?<\/div>/gm,
-    (match, indent = '') => renderManagedAdPanel(indent)
-  );
-}
-
-function collectHtmlFiles(rootDir) {
-  const htmlFiles = [];
-  const stack = [rootDir];
-
-  while (stack.length) {
-    const current = stack.pop();
-    const entries = fs.readdirSync(current, { withFileTypes: true });
-    entries.forEach((entry) => {
-      const fullPath = path.join(current, entry.name);
-      if (entry.isDirectory()) {
-        stack.push(fullPath);
-        return;
-      }
-      if (entry.isFile() && path.extname(entry.name).toLowerCase() === '.html') {
-        htmlFiles.push(fullPath);
-      }
-    });
-  }
-
-  return htmlFiles;
-}
-
-function syncAdsenseAcrossPublicHtml() {
-  const htmlFiles = collectHtmlFiles(PUBLIC_DIR);
-  htmlFiles.forEach((filePath) => {
-    const currentHtml = readFile(filePath);
-    if (!/<!doctype html>/i.test(currentHtml)) {
-      return;
-    }
-
-    const withHead = normalizeAdSenseHead(currentHtml);
-    const withAdPanels = normalizeAdPanelSlots(withHead);
-    if (withAdPanels !== currentHtml) {
-      writeFile(filePath, withAdPanels);
-    }
-  });
 }
 
 function readRequiredFragment(filePath, fragmentName, calculatorId, routeArchetype) {
@@ -5469,145 +5298,6 @@ function buildGtepSitemap(categories) {
   });
 }
 
-const ABOUT_US_TOP_LEVEL_HEADINGS = new Set([
-  'About CalcHowMuch',
-  'Why CalcHowMuch Exists',
-  'What the Site Covers',
-  'Approach and Design Philosophy',
-  'What Makes the Site Different',
-  'Accuracy and Limitations',
-  'Transparency About How the Site Is Built',
-  'Who Runs CalcHowMuch',
-  'Ongoing Improvements',
-  'What Users Should Get From the Site',
-  'Trust and Responsibility',
-  'Feedback and Corrections',
-  'Final Note',
-]);
-
-const ABOUT_US_SUBHEADINGS = new Set([
-  'Clarity first',
-  'Useful results, not just visible results',
-  'Explanation matters',
-  'Related tools should work together',
-  'Simplicity is a feature',
-]);
-
-function buildAboutUsBodyHtml() {
-  const source = readFile(ABOUT_US_SOURCE_PATH);
-  const blocks = source
-    .split(/\r?\n\s*\r?\n/)
-    .map((block) => block.trim())
-    .filter(Boolean);
-
-  return blocks
-    .map((block, index) => {
-      const lines = block
-        .split(/\r?\n/)
-        .map((line) => line.trim())
-        .filter(Boolean);
-
-      if (!lines.length) {
-        return '';
-      }
-
-      if (index === 0) {
-        const fragments = [`<h1>${escapeHtmlText(lines[0])}</h1>`];
-        const remainingLines = lines.slice(1);
-
-        if (remainingLines.length === 1 && ABOUT_US_TOP_LEVEL_HEADINGS.has(remainingLines[0])) {
-          fragments.push(`<h2>${escapeHtmlText(remainingLines[0])}</h2>`);
-        } else if (
-          remainingLines.length > 1 &&
-          remainingLines.every((line) => !/[.!?]$/.test(line))
-        ) {
-          fragments.push(
-            `<ul>\n${remainingLines
-              .map((line) => `            <li>${escapeHtmlText(line)}</li>`)
-              .join('\n')}\n          </ul>`
-          );
-        } else if (remainingLines.length) {
-          fragments.push(`<p>${escapeHtmlText(remainingLines.join(' '))}</p>`);
-        }
-
-        return fragments.join('\n          ');
-      }
-
-      if (lines.length > 1 && lines.every((line) => !/[.!?]$/.test(line))) {
-        return `<ul>\n${lines
-          .map((line) => `            <li>${escapeHtmlText(line)}</li>`)
-          .join('\n')}\n          </ul>`;
-      }
-
-      if (lines.length === 1 && ABOUT_US_TOP_LEVEL_HEADINGS.has(lines[0])) {
-        return `<h2>${escapeHtmlText(lines[0])}</h2>`;
-      }
-
-      if (lines.length === 1 && ABOUT_US_SUBHEADINGS.has(lines[0])) {
-        return `<h3>${escapeHtmlText(lines[0])}</h3>`;
-      }
-
-      return `<p>${escapeHtmlText(lines.join(' '))}</p>`;
-    })
-    .join('\n          ');
-}
-
-function buildAboutUsStructuredData({ canonical, title, description }) {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebSite',
-        '@id': `${SITE_URL}/#website`,
-        url: `${SITE_URL}/`,
-        name: 'CalcHowMuch',
-        inLanguage: 'en',
-      },
-      {
-        '@type': 'Organization',
-        '@id': `${SITE_URL}/#organization`,
-        name: 'CalcHowMuch',
-        alternateName: 'Calculate How Much',
-        url: `${SITE_URL}/`,
-        founder: {
-          '@type': 'Person',
-          name: 'Venkata Kartheek Bezawada',
-        },
-      },
-      {
-        '@type': 'AboutPage',
-        '@id': `${canonical}#webpage`,
-        name: title,
-        url: canonical,
-        description,
-        isPartOf: {
-          '@id': `${SITE_URL}/#website`,
-        },
-        about: {
-          '@id': `${SITE_URL}/#organization`,
-        },
-        inLanguage: 'en',
-      },
-    ],
-  };
-}
-
-function buildAboutUsPage() {
-  const title = 'About CalcHowMuch | Practical Online Calculators';
-  const description =
-    'Explore practical calculators for salary, finance, percentages, and time with clear results, examples, and easy-to-understand explanations.';
-  const canonical = buildCanonical('/about-us/');
-
-  return buildGtepPage({
-    title,
-    description,
-    canonical,
-    bodyHtml: buildAboutUsBodyHtml(),
-    structuredData: buildAboutUsStructuredData({ canonical, title, description }),
-    showHomeLink: true,
-  });
-}
-
 function buildSitemapXml(categories) {
   const lastmod = '2026-03-27';
   const staticUrls = [
@@ -5687,7 +5377,6 @@ ${urlItems}
 function main() {
   const scope = parseGenerationScope();
   const shouldWriteRootHomepage = scope.fullSite || scope.targetRoute === '/';
-  const shouldWriteAboutPage = scope.fullSite || scope.targetRoute === '/about-us/';
   const shouldWriteCalculatorIndex = scope.fullSite || scope.targetRoute === '/calculators/';
   const shouldWritePricingClusterLanding =
     scope.fullSite || scope.targetRoute === '/pricing-calculators/';
@@ -5769,7 +5458,6 @@ function main() {
 
   if (
     !selectedEntries.length &&
-    !shouldWriteAboutPage &&
     !shouldWriteRootHomepage &&
     !shouldWriteCalculatorIndex &&
     !shouldWritePricingClusterLanding
@@ -6121,10 +5809,6 @@ function main() {
     );
   }
 
-  if (shouldWriteAboutPage) {
-    writeFile(path.join(PUBLIC_DIR, 'about-us', 'index.html'), buildAboutUsPage());
-  }
-
   if (shouldWriteCalculatorIndex) {
     writeFile(
       path.join(PUBLIC_DIR, 'calculators', 'index.html'),
@@ -6151,7 +5835,6 @@ function main() {
     return;
   }
   writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), buildSitemapXml(navigation.categories));
-  syncAdsenseAcrossPublicHtml();
 }
 
 main();
