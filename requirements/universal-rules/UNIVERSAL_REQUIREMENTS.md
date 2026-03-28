@@ -8,7 +8,7 @@
 - **Version:** 4.6 (Graph/Table UX contract standardization)
 - **Last Updated:** 2026-03-07
 
-This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme.
+This is the only active governance file under `requirements/universal-rules/`. All previously separate rule modules are merged here and re-numbered with the `UR-*` scheme. The folder map and companion-document loading order live in `requirements/universal-rules/README.md`.
 
 ---
 
@@ -238,7 +238,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 
 ### 4.6 Graph/Table UX Contract (Mandatory for Routes That Include Graphs or Tables)
 
-- **UR-UI-040 (P0):** Routes with graphs/tables must comply with `requirements/universal-rules/How to build a calculator.md` sections `5.8`, `5.9`, and `5.10`.
+- **UR-UI-040 (P0):** Routes with graphs/tables must comply with `requirements/universal-rules/CALCULATOR_BUILD_GUIDE.md` sections `5.8`, `5.9`, and `5.10`.
 - **UR-UI-041 (P0):** Graph start-point integrity is mandatory: period `0` must represent true opening value; synthetic start spikes are release fail.
 - **UR-UI-042 (P0):** Axis labels/ticks must not overlap, clip, or overflow at desktop and mobile widths.
 - **UR-UI-043 (P0):** Graph metadata/legend presentation must be compact; large boxed KPI blocks above graph are disallowed unless explicitly required by REQ.
@@ -345,7 +345,7 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-SEO-012 (P0):** Schema types or validation failure is FAIL.
 - **UR-SEO-013 (P0):** Per-page uniqueness is mandatory for `FAQPage`, `BreadcrumbList`, and `SoftwareApplication` (max one each per URL).
 - **UR-SEO-014 (P0):** Structured-data dedupe evidence is mandatory for schema-dedupe releases: `schema_duplicates_report.md` and `schema_duplicates_report.csv`.
-- **UR-SEO-015 (P0):** Structured-data dedupe governance is defined in `requirements/universal-rules/SCHEMA_DEDUPE_GUARDRAIL.md`; runtime/build behavior must conform.
+- **UR-SEO-015 (P0):** Structured-data dedupe governance is defined in `requirements/universal-rules/reference/SCHEMA_DEDUPE_GUARDRAIL.md`; runtime/build behavior must conform.
 
 ### 7.3 P3/P4/P5 Governance
 
@@ -681,12 +681,14 @@ Use only `UR-*` IDs for new work.
 
 ## 19) Reference Pointers
 
+- **Folder Map:** `requirements/universal-rules/README.md`
+- **Build Guide:** `requirements/universal-rules/CALCULATOR_BUILD_GUIDE.md`
+- **Schema Dedupe Reference:** `requirements/universal-rules/reference/SCHEMA_DEDUPE_GUARDRAIL.md`
 - **Nav:** `requirements/site-structure/calculator-hierarchy.md`
 - **Comp:** `requirements/compliance/`
 - **Gen:** `scripts/generate-mpa-pages.js`
 - **LH Policy:** `config/testing/lighthouse_policy.json`
-- **Archived Testing Rationale (non-authoritative):** `requirements/universal-rules/Archive Rules/code_diff_.md`, `requirements/universal-rules/Archive Rules/performance_improvements.md`
-- **Archived AdSense Rationale (non-authoritative):** `requirements/universal-rules/Archive Rules/AdSense code snippet.md`, `requirements/universal-rules/Archive Rules/Ad Unit Code.md`
+- **Archived Legacy Notes (non-authoritative):** `requirements/universal-rules/archive/legacy-notes/`
 
 ---
 

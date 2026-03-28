@@ -14,7 +14,7 @@ calculator must be completed, regenerated, verified, and logged before the next 
   - schema copy
   - canonical/sitemap/internal-link cleanup
   - explanation upgrades
-- Thin-content fixes must follow `requirements/universal-rules/How to build a calculator.md`.
+- Thin-content fixes must follow `requirements/universal-rules/CALCULATOR_BUILD_GUIDE.md`.
 - Explanation contract for touched calculator pages:
   - intent-led `H2`
   - short answer-first paragraph

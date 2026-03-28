@@ -24,7 +24,6 @@
   - `#loan-personal-explanation h2`
 
 ## Governance Link
-- `requirements/universal-rules/How to build a calculator.md`
+- `requirements/universal-rules/CALCULATOR_BUILD_GUIDE.md`
   - Advanced disclosure compact one-row rule
   - Graph/table and spacing quality standards
-

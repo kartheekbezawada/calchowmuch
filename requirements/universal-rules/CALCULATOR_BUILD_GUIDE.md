@@ -1,4 +1,6 @@
-# How to Build a Calculator
+# Calculator Build Guide
+
+Status: Active companion guide. Use this with `UNIVERSAL_REQUIREMENTS.md`; it does not replace project law.
 
 ## 1. Goal
 Build a production-ready calculator that helps users calculate a clear output from clear inputs, with results and explanations users can trust.
