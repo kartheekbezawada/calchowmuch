@@ -297,8 +297,12 @@ export function initCriticalPointsCalculator() {
       if (result.criticalPoints.length > 0) {
         html += '<div class="result-box critical-points">';
         html += '<h5>Critical Points:</h5>';
+        html += '<div class="points-table-wrap">';
         html += '<table class="points-table">';
-        html += "<tr><th>x</th><th>f(x)</th><th>f''(x)</th><th>Type</th></tr>";
+        html +=
+          '<caption class="math-cluster-visually-hidden">Critical points found in the selected range</caption>';
+        html +=
+          '<thead><tr><th scope="col">x</th><th scope="col">f(x)</th><th scope="col">f\'\'(x)</th><th scope="col">Type</th></tr></thead><tbody>';
 
         result.criticalPoints.forEach((cp) => {
           const rowClass =
@@ -311,7 +315,7 @@ export function initCriticalPointsCalculator() {
           html += '</tr>';
         });
 
-        html += '</table></div>';
+        html += '</tbody></table></div></div>';
       } else {
         html += '<div class="result-box">No critical points found in the given range.</div>';
       }
@@ -320,8 +324,11 @@ export function initCriticalPointsCalculator() {
       if (result.inflectionPoints.length > 0) {
         html += '<div class="result-box inflection-points">';
         html += '<h5>Inflection Points:</h5>';
+        html += '<div class="points-table-wrap">';
         html += '<table class="points-table">';
-        html += '<tr><th>x</th><th>f(x)</th></tr>';
+        html +=
+          '<caption class="math-cluster-visually-hidden">Inflection points found in the selected range</caption>';
+        html += '<thead><tr><th scope="col">x</th><th scope="col">f(x)</th></tr></thead><tbody>';
 
         result.inflectionPoints.forEach((ip) => {
           html += '<tr>';
@@ -330,7 +337,7 @@ export function initCriticalPointsCalculator() {
           html += '</tr>';
         });
 
-        html += '</table></div>';
+        html += '</tbody></table></div></div>';
       }
 
       resultDiv.innerHTML = html;

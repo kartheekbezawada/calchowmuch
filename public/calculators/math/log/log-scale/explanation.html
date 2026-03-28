@@ -1,23 +1,35 @@
 <section class="lscale-exp-section">
   <h2>Log Scale Converter Practical Guide</h2>
   <p>
-    Use this log scale converter to switch between decibels, pH, and Richter magnitude in one
-    clean answer-first layout. It is built for quick interpretation, so the route keeps the
-    converted result, formula, and plain-language meaning together instead of hiding them in a
-    legacy split-shell workflow.
+    Use this log scale converter to switch between decibels, pH, and Richter magnitude in one clean
+    answer-first layout. It is built for quick interpretation, so the route keeps the converted
+    result, formula, and plain-language meaning together instead of hiding them in a legacy
+    split-shell workflow.
   </p>
   <ul class="lscale-summary-list">
-    <li><strong>Best for:</strong> comparing amplitude ratios, acidity, and earthquake-motion readings quickly.</li>
-    <li><strong>Quick answer flow:</strong> choose the scale, enter the value, then convert once.</li>
-    <li><strong>Output includes:</strong> the converted result, the active formula, and a short interpretation.</li>
+    <li>
+      <strong>Best for:</strong> comparing amplitude ratios, acidity, and earthquake-motion readings
+      quickly.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> choose the scale, enter the value, then convert once.
+    </li>
+    <li>
+      <strong>Output includes:</strong> the converted result, the active formula, and a short
+      interpretation.
+    </li>
   </ul>
 </section>
 
 <section class="lscale-exp-section">
   <h3>How to Guide</h3>
   <ol>
-    <li>Choose <strong>Decibel</strong>, <strong>pH</strong>, or <strong>Richter magnitude</strong>.</li>
-    <li>Enter the measured value for the selected scale and fill any reference field when needed.</li>
+    <li>
+      Choose <strong>Decibel</strong>, <strong>pH</strong>, or <strong>Richter magnitude</strong>.
+    </li>
+    <li>
+      Enter the measured value for the selected scale and fill any reference field when needed.
+    </li>
     <li>Click <strong>Convert scale</strong> to update the answer card.</li>
     <li>Read the formula check and the guide card to understand what the number means.</li>
   </ol>
@@ -27,26 +39,29 @@
   <h3>Quick Answer Table</h3>
   <div class="lscale-table-wrap">
     <table class="lscale-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the log scale calculator
+      </caption>
       <thead>
         <tr>
-          <th>Scale</th>
-          <th>What the route converts</th>
-          <th>Quick interpretation</th>
+          <th scope="col">Scale</th>
+          <th scope="col">What the route converts</th>
+          <th scope="col">Quick interpretation</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Decibel (dB)</td>
+          <th scope="row">Decibel (dB)</th>
           <td>Amplitude ratio compared with a reference</td>
           <td>Positive dB is above the reference, negative dB is below it.</td>
         </tr>
         <tr>
-          <td>pH</td>
+          <th scope="row">pH</th>
           <td>Hydrogen ion concentration</td>
           <td>Lower pH is more acidic, higher pH is more basic.</td>
         </tr>
         <tr>
-          <td>Richter magnitude</td>
+          <th scope="row">Richter magnitude</th>
           <td>Ground motion compared with a reference amplitude</td>
           <td>Each +1 step represents about 10× more motion amplitude.</td>
         </tr>
@@ -75,15 +90,14 @@
     <article class="lscale-example-card">
       <h4>Decibel example</h4>
       <p>Enter an amplitude of <strong>10</strong> and keep the reference at <strong>1</strong>.</p>
-      <p>
-        The route returns <strong>20 dB</strong> because 20 × log₁₀(10 / 1) = 20.
-      </p>
+      <p>The route returns <strong>20 dB</strong> because 20 × log₁₀(10 / 1) = 20.</p>
     </article>
     <article class="lscale-example-card">
       <h4>pH example</h4>
       <p>Enter a hydrogen ion concentration of <strong>1e-7</strong>.</p>
       <p>
-        The route returns <strong>pH 7</strong>, which is the neutral point on the standard pH scale.
+        The route returns <strong>pH 7</strong>, which is the neutral point on the standard pH
+        scale.
       </p>
     </article>
   </div>
@@ -94,11 +108,16 @@
   <div class="lscale-faq-grid">
     <div class="faq-card">
       <h4>What is a logarithmic scale?</h4>
-      <p>It is a scale that converts ratios into smaller, easier-to-read numbers with logarithms.</p>
+      <p>
+        It is a scale that converts ratios into smaller, easier-to-read numbers with logarithms.
+      </p>
     </div>
     <div class="faq-card">
       <h4>Why do decibels use 20 × log₁₀?</h4>
-      <p>That formula is used for amplitude-style ratios such as sound pressure or voltage comparisons.</p>
+      <p>
+        That formula is used for amplitude-style ratios such as sound pressure or voltage
+        comparisons.
+      </p>
     </div>
     <div class="faq-card">
       <h4>What does 0 dB mean?</h4>
@@ -110,19 +129,30 @@
     </div>
     <div class="faq-card">
       <h4>Why does lower concentration produce higher pH?</h4>
-      <p>The pH formula uses a negative logarithm, so smaller positive concentrations map to larger pH values.</p>
+      <p>
+        The pH formula uses a negative logarithm, so smaller positive concentrations map to larger
+        pH values.
+      </p>
     </div>
     <div class="faq-card">
       <h4>What does a +1 Richter step mean?</h4>
-      <p>It means the measured ground motion amplitude is about 10 times larger than the previous step.</p>
+      <p>
+        It means the measured ground motion amplitude is about 10 times larger than the previous
+        step.
+      </p>
     </div>
     <div class="faq-card">
       <h4>Can I change the reference value?</h4>
-      <p>Yes. Decibel and Richter modes both let you compare against a custom reference amplitude.</p>
+      <p>
+        Yes. Decibel and Richter modes both let you compare against a custom reference amplitude.
+      </p>
     </div>
     <div class="faq-card">
       <h4>Why must the inputs stay positive?</h4>
-      <p>The real-number logarithm only accepts positive values, so the compared quantities must stay above zero.</p>
+      <p>
+        The real-number logarithm only accepts positive values, so the compared quantities must stay
+        above zero.
+      </p>
     </div>
     <div class="faq-card">
       <h4>Does this route convert between all three scales directly?</h4>
@@ -130,7 +160,10 @@
     </div>
     <div class="faq-card">
       <h4>When is this route useful?</h4>
-      <p>It helps when you need quick ratio, acidity, or seismic-scale interpretation without extra calculation steps.</p>
+      <p>
+        It helps when you need quick ratio, acidity, or seismic-scale interpretation without extra
+        calculation steps.
+      </p>
     </div>
   </div>
 </section>
@@ -158,8 +191,16 @@
   <ul class="lscale-notes-list">
     <li><strong>Last updated:</strong> March 2026</li>
     <li><strong>Domain rule:</strong> All measured and reference values must stay positive.</li>
-    <li><strong>Decibel rule:</strong> The route uses the amplitude form 20 × log₁₀(amplitude / reference).</li>
-    <li><strong>pH rule:</strong> The route uses pH = -log₁₀([H+]) for the concentration you enter.</li>
-    <li><strong>Use case:</strong> This tool is built for quick numeric interpretation, not lab-grade or seismology-grade certification.</li>
+    <li>
+      <strong>Decibel rule:</strong> The route uses the amplitude form 20 × log₁₀(amplitude /
+      reference).
+    </li>
+    <li>
+      <strong>pH rule:</strong> The route uses pH = -log₁₀([H+]) for the concentration you enter.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool is built for quick numeric interpretation, not lab-grade
+      or seismology-grade certification.
+    </li>
   </ul>
 </section>

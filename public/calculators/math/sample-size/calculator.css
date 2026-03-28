@@ -126,8 +126,7 @@
   padding: 20px 24px;
   background:
     radial-gradient(circle at top right, rgba(14, 165, 233, 0.14), transparent 28%),
-    linear-gradient(135deg, rgba(248, 253, 255, 0.98), rgba(237, 248, 253, 0.98)),
-    var(--ss-surface);
+    linear-gradient(135deg, rgba(248, 253, 255, 0.98), rgba(237, 248, 253, 0.98)), var(--ss-surface);
 }
 
 #calc-sample-size .ss-intro-layout {
@@ -585,7 +584,7 @@
   border-collapse: collapse;
 }
 
-#calc-sample-size .ss-sensitivity-table th {
+#calc-sample-size .ss-sensitivity-table thead th {
   padding: 10px 12px;
   text-align: left;
   font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
@@ -597,11 +596,21 @@
   border-bottom: 1px solid var(--ss-line);
 }
 
+#calc-sample-size .ss-sensitivity-table tbody th,
 #calc-sample-size .ss-sensitivity-table td {
   padding: 11px 12px;
   border-bottom: 1px solid var(--ss-line);
   color: var(--ss-ink-muted);
   vertical-align: top;
+}
+
+#calc-sample-size .ss-sensitivity-table tbody th {
+  color: var(--ss-ink);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 #calc-sample-size .ss-sensitivity-table td span {
@@ -616,10 +625,12 @@
   color: var(--ss-ink-faint);
 }
 
+#calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
 #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
   background: rgba(248, 252, 255, 0.75);
 }
 
+#calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
 #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
   background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
   border-bottom-color: rgba(14, 161, 183, 0.26);

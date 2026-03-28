@@ -234,7 +234,7 @@ function renderSensitivityTable(result) {
       const classes = row.isActive ? 'ss-row-active' : '';
       return (
         `<tr class="${classes}">` +
-        `<td>${row.marginLabel}</td>` +
+        `<th scope="row">${row.marginLabel}</th>` +
         `<td><span>${formatNumber(row.baseRounded, { maximumFractionDigits: 0 })}</span><small>${formatNumber(
           row.baseN,
           { minimumFractionDigits: 2, maximumFractionDigits: 2 }

@@ -8,19 +8,34 @@
       leaving the result behind heavy legacy navigation.
     </p>
     <ul class="count-summary-list">
-      <li><strong>Best for:</strong> counting arrangements, selections, and factorial totals from one route.</li>
-      <li><strong>Quick answer flow:</strong> choose the mode first, enter n and r, then read the exact integer answer card.</li>
-      <li><strong>Output includes:</strong> exact total, formula, optional step expansion, and a plain-language use case.</li>
+      <li>
+        <strong>Best for:</strong> counting arrangements, selections, and factorial totals from one
+        route.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> choose the mode first, enter n and r, then read the
+        exact integer answer card.
+      </li>
+      <li>
+        <strong>Output includes:</strong> exact total, formula, optional step expansion, and a
+        plain-language use case.
+      </li>
     </ul>
   </section>
 
   <section class="count-exp-section">
     <h3>How to Guide</h3>
     <ol>
-      <li>Choose <strong>Permutation</strong> when order matters, <strong>Combination</strong> when order does not, or <strong>Factorial</strong> for n! only.</li>
+      <li>
+        Choose <strong>Permutation</strong> when order matters, <strong>Combination</strong> when
+        order does not, or <strong>Factorial</strong> for n! only.
+      </li>
       <li>Enter <strong>n</strong> as the total available items.</li>
       <li>Enter <strong>r</strong> when you are selecting or arranging fewer than all items.</li>
-      <li>Click <strong>Calculate count</strong> and compare the answer card with the example use line to confirm the mode.</li>
+      <li>
+        Click <strong>Calculate count</strong> and compare the answer card with the example use line
+        to confirm the mode.
+      </li>
     </ol>
   </section>
 
@@ -28,26 +43,29 @@
     <h3>Quick Answer Table</h3>
     <div class="count-table-wrap">
       <table class="count-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the permutation and combination calculator
+        </caption>
         <thead>
           <tr>
-            <th>Mode</th>
-            <th>Meaning</th>
-            <th>Typical use</th>
+            <th scope="col">Mode</th>
+            <th scope="col">Meaning</th>
+            <th scope="col">Typical use</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>nPr</td>
+            <th scope="row">nPr</th>
             <td>Order matters</td>
             <td>Rankings, passwords, seating plans, finish orders</td>
           </tr>
           <tr>
-            <td>nCr</td>
+            <th scope="row">nCr</th>
             <td>Order does not matter</td>
             <td>Committees, lottery picks, unordered selections</td>
           </tr>
           <tr>
-            <td>n!</td>
+            <th scope="row">n!</th>
             <td>Arrange all n items</td>
             <td>Full arrangement counts and formula building blocks</td>
           </tr>
@@ -71,13 +89,22 @@
     <div class="count-example-grid">
       <article class="count-example-card">
         <h4>Permutation example</h4>
-        <p>With <strong>n = 10</strong> and <strong>r = 3</strong>, the route computes <strong>10P3 = 720</strong>.</p>
-        <p>That matches a ranking problem where first, second, and third place are all distinct positions.</p>
+        <p>
+          With <strong>n = 10</strong> and <strong>r = 3</strong>, the route computes
+          <strong>10P3 = 720</strong>.
+        </p>
+        <p>
+          That matches a ranking problem where first, second, and third place are all distinct
+          positions.
+        </p>
       </article>
       <article class="count-example-card">
         <h4>Combination example</h4>
         <p>Using the same numbers in combination mode gives <strong>10C3 = 120</strong>.</p>
-        <p>That fits a committee or team selection where the chosen people matter, but their order does not.</p>
+        <p>
+          That fits a committee or team selection where the chosen people matter, but their order
+          does not.
+        </p>
       </article>
     </div>
   </section>
@@ -87,19 +114,31 @@
     <div class="count-faq-grid">
       <article class="faq-card">
         <h4>What is the simplest way to tell nPr from nCr?</h4>
-        <p>If swapping positions changes the outcome, use a permutation. If swapping does nothing, use a combination.</p>
+        <p>
+          If swapping positions changes the outcome, use a permutation. If swapping does nothing,
+          use a combination.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why does factorial mode hide r?</h4>
-        <p>Factorial only needs one input because it counts all arrangements of the full set from n down to 1.</p>
+        <p>
+          Factorial only needs one input because it counts all arrangements of the full set from n
+          down to 1.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why is n limited to 170?</h4>
-        <p>Values above 170 become too large for the current exact-number handling and can overflow practical display limits.</p>
+        <p>
+          Values above 170 become too large for the current exact-number handling and can overflow
+          practical display limits.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why is nPr larger than nCr?</h4>
-        <p>Permutations count every order separately, while combinations collapse those repeated orderings into one selection.</p>
+        <p>
+          Permutations count every order separately, while combinations collapse those repeated
+          orderings into one selection.
+        </p>
       </article>
       <article class="faq-card">
         <h4>What does 0! equal?</h4>
@@ -107,7 +146,10 @@
       </article>
       <article class="faq-card">
         <h4>Does the route round the answer?</h4>
-        <p>No. Results stay as exact integers so you can use them directly in later probability or counting work.</p>
+        <p>
+          No. Results stay as exact integers so you can use them directly in later probability or
+          counting work.
+        </p>
       </article>
     </div>
   </section>
@@ -117,11 +159,15 @@
     <div class="count-related-grid">
       <a class="count-related-card" href="/math/probability/">
         <strong>Probability Calculator</strong>
-        <span>Use counting totals as the next step in event and binomial probability questions.</span>
+        <span
+          >Use counting totals as the next step in event and binomial probability questions.</span
+        >
       </a>
       <a class="count-related-card" href="/math/number-sequence/">
         <strong>Number Sequence Calculator</strong>
-        <span>Move from counting arrangements into structured arithmetic and geometric patterns.</span>
+        <span
+          >Move from counting arrangements into structured arithmetic and geometric patterns.</span
+        >
       </a>
       <a class="count-related-card" href="/math/sample-size/">
         <strong>Sample Size</strong>
@@ -135,8 +181,14 @@
     <ul class="count-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Input rule:</strong> n and r must be whole numbers, and r cannot exceed n.</li>
-      <li><strong>Overflow rule:</strong> n is limited to 170 to keep the exact-integer engine within safe bounds.</li>
-      <li><strong>Decision rule:</strong> Always decide whether order matters before trusting the result.</li>
+      <li>
+        <strong>Overflow rule:</strong> n is limited to 170 to keep the exact-integer engine within
+        safe bounds.
+      </li>
+      <li>
+        <strong>Decision rule:</strong> Always decide whether order matters before trusting the
+        result.
+      </li>
     </ul>
   </section>
 </div>

@@ -8,9 +8,18 @@
       the relationship before fitting a regression line.
     </p>
     <ul class="analysis-summary-list">
-      <li><strong>Best for:</strong> quick relationship checks between paired numeric or ranked variables.</li>
-      <li><strong>Quick answer flow:</strong> paste paired lists, choose the coefficient family, and read the answer card first.</li>
-      <li><strong>Output includes:</strong> coefficient, interpretation, significance test, and confidence interval when available.</li>
+      <li>
+        <strong>Best for:</strong> quick relationship checks between paired numeric or ranked
+        variables.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> paste paired lists, choose the coefficient family, and
+        read the answer card first.
+      </li>
+      <li>
+        <strong>Output includes:</strong> coefficient, interpretation, significance test, and
+        confidence interval when available.
+      </li>
     </ul>
   </section>
 
@@ -18,9 +27,15 @@
     <h3>How to Guide</h3>
     <ol>
       <li>Paste paired X and Y values with the same number of data points.</li>
-      <li>Use <strong>Pearson</strong> for linear continuous relationships and rank-based options for monotonic relationships.</li>
+      <li>
+        Use <strong>Pearson</strong> for linear continuous relationships and rank-based options for
+        monotonic relationships.
+      </li>
       <li>Choose an alpha level that matches how strict you want the significance test to be.</li>
-      <li>Click <strong>Calculate correlation</strong> and compare strength, direction, and p-value together.</li>
+      <li>
+        Click <strong>Calculate correlation</strong> and compare strength, direction, and p-value
+        together.
+      </li>
     </ol>
   </section>
 
@@ -28,26 +43,29 @@
     <h3>Quick Answer Table</h3>
     <div class="analysis-table-wrap">
       <table class="analysis-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the correlation calculator
+        </caption>
         <thead>
           <tr>
-            <th>Method</th>
-            <th>Best use</th>
-            <th>What it measures</th>
+            <th scope="col">Method</th>
+            <th scope="col">Best use</th>
+            <th scope="col">What it measures</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Pearson</td>
+            <th scope="row">Pearson</th>
             <td>Continuous linear relationships</td>
             <td>Linear association strength and direction</td>
           </tr>
           <tr>
-            <td>Spearman</td>
+            <th scope="row">Spearman</th>
             <td>Ranked or monotonic relationships</td>
             <td>Association based on value ranks</td>
           </tr>
           <tr>
-            <td>Kendall</td>
+            <th scope="row">Kendall</th>
             <td>Small samples or ties</td>
             <td>Ordinal concordance and discordance</td>
           </tr>
@@ -59,10 +77,10 @@
   <section class="analysis-exp-section">
     <h3>Formula Guide</h3>
     <p>
-      Pearson correlation compares centred X and Y values and scales them by their spread.
-      Spearman and Kendall shift the focus to ranks and ordered pairs. In plain terms, the route is
-      asking whether larger X values tend to come with larger Y values, smaller Y values, or no
-      clear pattern at all.
+      Pearson correlation compares centred X and Y values and scales them by their spread. Spearman
+      and Kendall shift the focus to ranks and ordered pairs. In plain terms, the route is asking
+      whether larger X values tend to come with larger Y values, smaller Y values, or no clear
+      pattern at all.
     </p>
   </section>
 
@@ -71,12 +89,21 @@
     <div class="analysis-example-grid">
       <article class="analysis-example-card">
         <h4>Default paired data</h4>
-        <p>The default lists rise together almost perfectly, so the route returns a very strong positive Pearson correlation.</p>
-        <p>That makes it a good first check before you decide whether a regression line is worth fitting.</p>
+        <p>
+          The default lists rise together almost perfectly, so the route returns a very strong
+          positive Pearson correlation.
+        </p>
+        <p>
+          That makes it a good first check before you decide whether a regression line is worth
+          fitting.
+        </p>
       </article>
       <article class="analysis-example-card">
         <h4>Why compare Pearson and Spearman?</h4>
-        <p>If Spearman stays strong while Pearson weakens, the relationship may be monotonic but not perfectly linear.</p>
+        <p>
+          If Spearman stays strong while Pearson weakens, the relationship may be monotonic but not
+          perfectly linear.
+        </p>
       </article>
     </div>
   </section>
@@ -86,27 +113,43 @@
     <div class="analysis-faq-grid">
       <article class="faq-card">
         <h4>What does a negative correlation mean?</h4>
-        <p>It means larger X values tend to come with smaller Y values, so the relationship slopes downward.</p>
+        <p>
+          It means larger X values tend to come with smaller Y values, so the relationship slopes
+          downward.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Does correlation prove causation?</h4>
-        <p>No. Correlation only shows association, not that one variable directly causes the other.</p>
+        <p>
+          No. Correlation only shows association, not that one variable directly causes the other.
+        </p>
       </article>
       <article class="faq-card">
         <h4>When should I use Spearman instead of Pearson?</h4>
-        <p>Use Spearman when the values are better understood by ranks or the relationship is monotonic but not clearly linear.</p>
+        <p>
+          Use Spearman when the values are better understood by ranks or the relationship is
+          monotonic but not clearly linear.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why might Kendall be useful?</h4>
-        <p>Kendall is often more stable with smaller samples or data that contains many tied ranks.</p>
+        <p>
+          Kendall is often more stable with smaller samples or data that contains many tied ranks.
+        </p>
       </article>
       <article class="faq-card">
         <h4>What makes a correlation statistically significant?</h4>
-        <p>A small p-value relative to your chosen alpha suggests the observed association is unlikely to be zero in the source population.</p>
+        <p>
+          A small p-value relative to your chosen alpha suggests the observed association is
+          unlikely to be zero in the source population.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why should I still inspect the data visually?</h4>
-        <p>Outliers or curved patterns can distort a coefficient, so a scatter plot can reveal problems the summary number hides.</p>
+        <p>
+          Outliers or curved patterns can distort a coefficient, so a scatter plot can reveal
+          problems the summary number hides.
+        </p>
       </article>
     </div>
   </section>
@@ -116,7 +159,9 @@
     <div class="analysis-related-grid">
       <a class="analysis-related-card" href="/math/statistics/regression-analysis/">
         <strong>Regression Analysis</strong>
-        <span>Move from relationship strength into fitted equations and goodness-of-fit checks.</span>
+        <span
+          >Move from relationship strength into fitted equations and goodness-of-fit checks.</span
+        >
       </a>
       <a class="analysis-related-card" href="/math/statistics/">
         <strong>Statistics Calculator</strong>
@@ -134,8 +179,14 @@
     <ul class="analysis-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Input rule:</strong> X and Y must have the same number of valid values.</li>
-      <li><strong>Interpretation rule:</strong> A strong coefficient can still come from data with hidden outliers or non-linear shape.</li>
-      <li><strong>Decision rule:</strong> Treat significance, effect size, and visual pattern as separate checks.</li>
+      <li>
+        <strong>Interpretation rule:</strong> A strong coefficient can still come from data with
+        hidden outliers or non-linear shape.
+      </li>
+      <li>
+        <strong>Decision rule:</strong> Treat significance, effect size, and visual pattern as
+        separate checks.
+      </li>
     </ul>
   </section>
 </div>

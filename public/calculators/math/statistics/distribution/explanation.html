@@ -8,9 +8,18 @@
       lookups quickly.
     </p>
     <ul class="analysis-summary-list">
-      <li><strong>Best for:</strong> fast probability and critical-value checks across the main continuous distributions.</li>
-      <li><strong>Quick answer flow:</strong> choose the family, choose CDF, PDF, or quantile, then read the answer card first.</li>
-      <li><strong>Output includes:</strong> requested value, complementary probability, and common critical values where relevant.</li>
+      <li>
+        <strong>Best for:</strong> fast probability and critical-value checks across the main
+        continuous distributions.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> choose the family, choose CDF, PDF, or quantile, then
+        read the answer card first.
+      </li>
+      <li>
+        <strong>Output includes:</strong> requested value, complementary probability, and common
+        critical values where relevant.
+      </li>
     </ul>
   </section>
 
@@ -18,9 +27,17 @@
     <h3>How to Guide</h3>
     <ol>
       <li>Choose the distribution family that matches your problem.</li>
-      <li>Enter the required parameters such as mean and standard deviation or degrees of freedom.</li>
-      <li>Use <strong>P(X &le; x)</strong> for cumulative probability, <strong>PDF</strong> for curve height, or <strong>Quantile</strong> for a cutoff value.</li>
-      <li>Click <strong>Calculate distribution</strong> and read the requested answer plus the complementary checks underneath.</li>
+      <li>
+        Enter the required parameters such as mean and standard deviation or degrees of freedom.
+      </li>
+      <li>
+        Use <strong>P(X ≤ x)</strong> for cumulative probability, <strong>PDF</strong> for curve
+        height, or <strong>Quantile</strong> for a cutoff value.
+      </li>
+      <li>
+        Click <strong>Calculate distribution</strong> and read the requested answer plus the
+        complementary checks underneath.
+      </li>
     </ol>
   </section>
 
@@ -28,26 +45,29 @@
     <h3>Quick Answer Table</h3>
     <div class="analysis-table-wrap">
       <table class="analysis-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the distribution calculator
+        </caption>
         <thead>
           <tr>
-            <th>Distribution</th>
-            <th>Best use</th>
-            <th>Parameter focus</th>
+            <th scope="col">Distribution</th>
+            <th scope="col">Best use</th>
+            <th scope="col">Parameter focus</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Normal</td>
+            <th scope="row">Normal</th>
             <td>Symmetric continuous data and z-based checks</td>
             <td>Mean and standard deviation</td>
           </tr>
           <tr>
-            <td>Student&apos;s t</td>
+            <th scope="row">Student's t</th>
             <td>Mean inference with smaller samples</td>
             <td>Degrees of freedom</td>
           </tr>
           <tr>
-            <td>Chi-Square / F</td>
+            <th scope="row">Chi-Square / F</th>
             <td>Variance, fit, and ANOVA-related checks</td>
             <td>Degrees of freedom pairs</td>
           </tr>
@@ -59,7 +79,7 @@
   <section class="analysis-exp-section">
     <h3>Formula Guide</h3>
     <p>
-      The route uses the cumulative distribution function for <strong>P(X &le; x)</strong>, the
+      The route uses the cumulative distribution function for <strong>P(X ≤ x)</strong>, the
       probability density function for curve height at a point, and the inverse cumulative function
       for quantiles. In plain language, you are asking for area to the left of a cutoff, the curve
       height at a cutoff, or the cutoff that matches a chosen probability.
@@ -71,12 +91,19 @@
     <div class="analysis-example-grid">
       <article class="analysis-example-card">
         <h4>Default normal example</h4>
-        <p>With a normal distribution centred at <strong>0</strong> and standard deviation <strong>1</strong>, the default value <strong>x = 1.96</strong> produces a cumulative probability close to <strong>0.975</strong>.</p>
+        <p>
+          With a normal distribution centred at <strong>0</strong> and standard deviation
+          <strong>1</strong>, the default value <strong>x = 1.96</strong> produces a cumulative
+          probability close to <strong>0.975</strong>.
+        </p>
         <p>That is why <strong>1.96</strong> is the familiar two-sided 95% z critical value.</p>
       </article>
       <article class="analysis-example-card">
         <h4>When should I switch to a t distribution?</h4>
-        <p>If the sample is small and population spread is being estimated rather than known, Student&apos;s t is usually the safer cutoff family.</p>
+        <p>
+          If the sample is small and population spread is being estimated rather than known,
+          Student's t is usually the safer cutoff family.
+        </p>
       </article>
     </div>
   </section>
@@ -86,27 +113,45 @@
     <div class="analysis-faq-grid">
       <article class="faq-card">
         <h4>What is the difference between CDF and PDF?</h4>
-        <p>CDF gives accumulated probability up to a cutoff, while PDF gives the height of the curve at that cutoff.</p>
+        <p>
+          CDF gives accumulated probability up to a cutoff, while PDF gives the height of the curve
+          at that cutoff.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why is a PDF value not the same as probability?</h4>
-        <p>For continuous distributions, probability comes from area under the curve, not the curve height at one exact point.</p>
+        <p>
+          For continuous distributions, probability comes from area under the curve, not the curve
+          height at one exact point.
+        </p>
       </article>
       <article class="faq-card">
         <h4>When should I use a quantile calculation?</h4>
-        <p>Use quantiles when you know the probability and need the matching cutoff or critical value.</p>
+        <p>
+          Use quantiles when you know the probability and need the matching cutoff or critical
+          value.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why can chi-square and F values never be negative?</h4>
-        <p>Those distributions are built from squared terms and variance ratios, so their support starts at zero.</p>
+        <p>
+          Those distributions are built from squared terms and variance ratios, so their support
+          starts at zero.
+        </p>
       </article>
       <article class="faq-card">
         <h4>How do degrees of freedom affect the answer?</h4>
-        <p>Lower degrees of freedom usually widen tails or shift the curve shape, which changes both probabilities and critical values.</p>
+        <p>
+          Lower degrees of freedom usually widen tails or shift the curve shape, which changes both
+          probabilities and critical values.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Should I still check the context of the distribution?</h4>
-        <p>Yes. A clean calculation does not guarantee the chosen family is appropriate for the real statistical problem.</p>
+        <p>
+          Yes. A clean calculation does not guarantee the chosen family is appropriate for the real
+          statistical problem.
+        </p>
       </article>
     </div>
   </section>
@@ -116,7 +161,10 @@
     <div class="analysis-related-grid">
       <a class="analysis-related-card" href="/math/confidence-interval/">
         <strong>Confidence Interval Calculator</strong>
-        <span>Use interval estimation when you need bounds instead of a single probability lookup.</span>
+        <span
+          >Use interval estimation when you need bounds instead of a single probability
+          lookup.</span
+        >
       </a>
       <a class="analysis-related-card" href="/math/statistics/hypothesis-testing/">
         <strong>Hypothesis Testing</strong>
@@ -133,9 +181,18 @@
     <h3>Important Notes</h3>
     <ul class="analysis-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Parameter rule:</strong> Standard deviation and all degrees of freedom inputs must stay positive.</li>
-      <li><strong>Quantile rule:</strong> Probability inputs should stay between 0 and 1, excluding extreme impossible values.</li>
-      <li><strong>Interpretation rule:</strong> Critical values only help if the selected distribution matches the data-generating process.</li>
+      <li>
+        <strong>Parameter rule:</strong> Standard deviation and all degrees of freedom inputs must
+        stay positive.
+      </li>
+      <li>
+        <strong>Quantile rule:</strong> Probability inputs should stay between 0 and 1, excluding
+        extreme impossible values.
+      </li>
+      <li>
+        <strong>Interpretation rule:</strong> Critical values only help if the selected distribution
+        matches the data-generating process.
+      </li>
     </ul>
   </section>
 </div>

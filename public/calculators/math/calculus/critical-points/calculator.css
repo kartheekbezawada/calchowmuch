@@ -195,8 +195,15 @@
   color: var(--cp-ink);
 }
 
+#calc-critical-points .points-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--cp-border);
+  border-radius: 18px;
+  background: #fff;
+}
+
 #calc-critical-points .points-table {
-  width: 100%;
+  width: max(100%, 34rem);
   border-collapse: collapse;
 }
 
@@ -207,9 +214,13 @@
   text-align: left;
 }
 
-#calc-critical-points .points-table th {
+#calc-critical-points .points-table thead th {
   color: var(--cp-ink);
   background: rgba(219, 230, 243, 0.45);
+}
+
+#calc-critical-points .points-table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 #calc-critical-points .points-table tr.maximum td {

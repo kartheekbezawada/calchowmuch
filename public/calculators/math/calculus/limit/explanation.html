@@ -1,14 +1,23 @@
 <section class="limq-exp-section">
   <h2>Limit Calculator Practical Guide</h2>
   <p>
-    Use this limit calculator to check direct, one-sided, and infinity limits in a clean answer-first
-    layout. It is built for fast interpretation, so the route keeps the limit result, existence
-    status, and analysis steps together instead of burying them in a legacy shell.
+    Use this limit calculator to check direct, one-sided, and infinity limits in a clean
+    answer-first layout. It is built for fast interpretation, so the route keeps the limit result,
+    existence status, and analysis steps together instead of burying them in a legacy shell.
   </p>
   <ul class="limq-summary-list">
-    <li><strong>Best for:</strong> direct-substitution checks, one-sided limits, and simple infinity behavior.</li>
-    <li><strong>Quick answer flow:</strong> enter the function, set the approach value and direction, then calculate once.</li>
-    <li><strong>Output includes:</strong> the limit result, continuity or existence status, and step-by-step numeric analysis.</li>
+    <li>
+      <strong>Best for:</strong> direct-substitution checks, one-sided limits, and simple infinity
+      behavior.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> enter the function, set the approach value and direction,
+      then calculate once.
+    </li>
+    <li>
+      <strong>Output includes:</strong> the limit result, continuity or existence status, and
+      step-by-step numeric analysis.
+    </li>
   </ul>
 </section>
 
@@ -18,7 +27,10 @@
     <li>Enter the function and choose the variable you want to approach.</li>
     <li>Enter a number, <strong>inf</strong>, or <strong>-inf</strong> as the approach value.</li>
     <li>Select whether you want a two-sided, left-hand, or right-hand limit.</li>
-    <li>Click <strong>Calculate limit</strong> and read the answer card before reviewing the analysis panel.</li>
+    <li>
+      Click <strong>Calculate limit</strong> and read the answer card before reviewing the analysis
+      panel.
+    </li>
   </ol>
 </section>
 
@@ -26,31 +38,34 @@
   <h3>Quick Answer Table</h3>
   <div class="limq-table-wrap">
     <table class="limq-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the limit calculator
+      </caption>
       <thead>
         <tr>
-          <th>Direction</th>
-          <th>What the route checks</th>
-          <th>Quick interpretation</th>
+          <th scope="col">Direction</th>
+          <th scope="col">What the route checks</th>
+          <th scope="col">Quick interpretation</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Two-Sided</td>
+          <th scope="row">Two-Sided</th>
           <td>Both left-hand and right-hand behavior</td>
           <td>The limit exists only if the two one-sided values agree.</td>
         </tr>
         <tr>
-          <td>Left</td>
+          <th scope="row">Left</th>
           <td>Approach from values below the point</td>
           <td>Useful when the function behaves differently on the left side.</td>
         </tr>
         <tr>
-          <td>Right</td>
+          <th scope="row">Right</th>
           <td>Approach from values above the point</td>
           <td>Useful when the function behaves differently on the right side.</td>
         </tr>
         <tr>
-          <td>Infinity</td>
+          <th scope="row">Infinity</th>
           <td>Behavior as the input grows very large in magnitude</td>
           <td>Shows whether the function appears to settle, diverge, or grow without bound.</td>
         </tr>
@@ -62,9 +77,10 @@
 <section class="limq-exp-section">
   <h3>Formula Guide</h3>
   <p>
-    A limit asks what value a function approaches as the input approaches a target point. When direct
-    substitution works, the route reports that value immediately. When direct substitution fails, the
-    route compares nearby values numerically to estimate the left-hand and right-hand behavior.
+    A limit asks what value a function approaches as the input approaches a target point. When
+    direct substitution works, the route reports that value immediately. When direct substitution
+    fails, the route compares nearby values numerically to estimate the left-hand and right-hand
+    behavior.
   </p>
   <p>
     For limits at infinity, the route evaluates the function at increasingly large magnitudes to
@@ -87,8 +103,8 @@
       <h4>Indeterminate example</h4>
       <p>Enter <strong>(x^2 - 1)/(x - 1)</strong> and let x approach <strong>1</strong>.</p>
       <p>
-        Direct substitution fails, but the nearby values settle near <strong>2</strong>, so the route
-        reports a two-sided limit of about 2.
+        Direct substitution fails, but the nearby values settle near <strong>2</strong>, so the
+        route reports a two-sided limit of about 2.
       </p>
     </article>
   </div>
@@ -111,7 +127,10 @@
     </div>
     <div class="faq-card">
       <h4>Why can a two-sided limit fail?</h4>
-      <p>The most common reason is that the left-hand and right-hand values approach different results.</p>
+      <p>
+        The most common reason is that the left-hand and right-hand values approach different
+        results.
+      </p>
     </div>
     <div class="faq-card">
       <h4>What does direct substitution mean?</h4>
@@ -119,11 +138,16 @@
     </div>
     <div class="faq-card">
       <h4>What is an indeterminate form?</h4>
-      <p>It is a substitution result such as 0/0 that needs more analysis before the limit can be judged.</p>
+      <p>
+        It is a substitution result such as 0/0 that needs more analysis before the limit can be
+        judged.
+      </p>
     </div>
     <div class="faq-card">
       <h4>Can I use infinity here?</h4>
-      <p>Yes. Enter <strong>inf</strong> or <strong>-inf</strong> to estimate a limit at infinity.</p>
+      <p>
+        Yes. Enter <strong>inf</strong> or <strong>-inf</strong> to estimate a limit at infinity.
+      </p>
     </div>
     <div class="faq-card">
       <h4>Does the variable field matter?</h4>
@@ -131,11 +155,16 @@
     </div>
     <div class="faq-card">
       <h4>Does this route prove limits symbolically?</h4>
-      <p>No. It focuses on practical direct substitution and numeric approximation rather than formal proof steps.</p>
+      <p>
+        No. It focuses on practical direct substitution and numeric approximation rather than formal
+        proof steps.
+      </p>
     </div>
     <div class="faq-card">
       <h4>When is this route useful?</h4>
-      <p>It is useful for continuity checks, approach-value comparisons, and quick calculus practice.</p>
+      <p>
+        It is useful for continuity checks, approach-value comparisons, and quick calculus practice.
+      </p>
     </div>
   </div>
 </section>
@@ -145,7 +174,9 @@
   <div class="limq-related-grid">
     <a class="limq-related-card" href="/math/calculus/derivative/">
       <strong>Derivative Calculator</strong>
-      <span>Move from approach behavior into rates of change when you need the derivative itself.</span>
+      <span
+        >Move from approach behavior into rates of change when you need the derivative itself.</span
+      >
     </a>
     <a class="limq-related-card" href="/math/calculus/integral/">
       <strong>Integral Calculator</strong>
@@ -153,7 +184,10 @@
     </a>
     <a class="limq-related-card" href="/math/calculus/critical-points/">
       <strong>Critical Points Finder</strong>
-      <span>Use derivative-based turning-point analysis once continuity and local behavior are clear.</span>
+      <span
+        >Use derivative-based turning-point analysis once continuity and local behavior are
+        clear.</span
+      >
     </a>
   </div>
 </section>
@@ -162,9 +196,21 @@
   <h3>Important Notes</h3>
   <ul class="limq-notes-list">
     <li><strong>Last updated:</strong> March 2026</li>
-    <li><strong>Direct rule:</strong> If substitution gives a finite value, the route treats the function as continuous at that point.</li>
-    <li><strong>Approximation rule:</strong> If substitution fails, the route samples nearby values to estimate one-sided and two-sided behavior.</li>
-    <li><strong>Infinity rule:</strong> Enter <strong>inf</strong> or <strong>-inf</strong> for limits at infinity.</li>
-    <li><strong>Use case:</strong> This tool is built for quick numeric verification, not full symbolic limit proofs.</li>
+    <li>
+      <strong>Direct rule:</strong> If substitution gives a finite value, the route treats the
+      function as continuous at that point.
+    </li>
+    <li>
+      <strong>Approximation rule:</strong> If substitution fails, the route samples nearby values to
+      estimate one-sided and two-sided behavior.
+    </li>
+    <li>
+      <strong>Infinity rule:</strong> Enter <strong>inf</strong> or <strong>-inf</strong> for limits
+      at infinity.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool is built for quick numeric verification, not full
+      symbolic limit proofs.
+    </li>
   </ul>
 </section>

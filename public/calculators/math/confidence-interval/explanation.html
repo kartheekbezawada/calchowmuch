@@ -7,16 +7,28 @@
       formula summary together so you can assess the interval quickly.
     </p>
     <ul class="stats-summary-list">
-      <li><strong>Best for:</strong> quick interval estimates on sample proportions or known-sigma means.</li>
-      <li><strong>Quick answer flow:</strong> choose the mode, set the confidence level, enter the sample values, and calculate once.</li>
-      <li><strong>Output includes:</strong> interval bounds, standard error, margin of error, and formula summary.</li>
+      <li>
+        <strong>Best for:</strong> quick interval estimates on sample proportions or known-sigma
+        means.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> choose the mode, set the confidence level, enter the
+        sample values, and calculate once.
+      </li>
+      <li>
+        <strong>Output includes:</strong> interval bounds, standard error, margin of error, and
+        formula summary.
+      </li>
     </ul>
   </section>
 
   <section class="stats-exp-section">
     <h3>How to Guide</h3>
     <ol>
-      <li>Select <strong>Proportion</strong> for p-hat or <strong>Mean</strong> for x-bar with known sigma.</li>
+      <li>
+        Select <strong>Proportion</strong> for p-hat or <strong>Mean</strong> for x-bar with known
+        sigma.
+      </li>
       <li>Pick 90%, 95%, or 99% confidence.</li>
       <li>Enter the sample values and click <strong>Calculate confidence interval</strong>.</li>
       <li>Read the interval bounds first, then the error and formula notes underneath.</li>
@@ -27,31 +39,34 @@
     <h3>Quick Answer Table</h3>
     <div class="stats-table-wrap">
       <table class="stats-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the confidence interval calculator
+        </caption>
         <thead>
           <tr>
-            <th>Mode</th>
-            <th>What it uses</th>
-            <th>Quick interpretation</th>
+            <th scope="col">Mode</th>
+            <th scope="col">What it uses</th>
+            <th scope="col">Quick interpretation</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Proportion</td>
+            <th scope="row">Proportion</th>
             <td>Sample proportion p-hat, sample size, and z-value</td>
             <td>Useful for yes/no or success-rate style samples.</td>
           </tr>
           <tr>
-            <td>Mean</td>
+            <th scope="row">Mean</th>
             <td>Sample mean, known sigma, sample size, and z-value</td>
             <td>Useful when you already know the population standard deviation.</td>
           </tr>
           <tr>
-            <td>Confidence level</td>
+            <th scope="row">Confidence level</th>
             <td>The selected z-value</td>
             <td>Higher confidence gives a wider interval.</td>
           </tr>
           <tr>
-            <td>Margin of error</td>
+            <th scope="row">Margin of error</th>
             <td>The distance from the centre to each bound</td>
             <td>A smaller margin means a tighter interval.</td>
           </tr>
@@ -74,11 +89,17 @@
     <div class="stats-example-grid">
       <article class="stats-example-card">
         <h4>Default proportion example</h4>
-        <p>With p-hat = <strong>60%</strong>, n = <strong>100</strong>, and 95% confidence, the interval lands around <strong>50.4%</strong> to <strong>69.6%</strong>.</p>
+        <p>
+          With p-hat = <strong>60%</strong>, n = <strong>100</strong>, and 95% confidence, the
+          interval lands around <strong>50.4%</strong> to <strong>69.6%</strong>.
+        </p>
       </article>
       <article class="stats-example-card">
         <h4>Mean example</h4>
-        <p>With x-bar = <strong>50</strong>, sigma = <strong>10</strong>, n = <strong>25</strong>, and 95% confidence, the interval is <strong>46.08</strong> to <strong>53.92</strong>.</p>
+        <p>
+          With x-bar = <strong>50</strong>, sigma = <strong>10</strong>, n = <strong>25</strong>,
+          and 95% confidence, the interval is <strong>46.08</strong> to <strong>53.92</strong>.
+        </p>
       </article>
     </div>
   </section>
@@ -88,7 +109,10 @@
     <div class="stats-faq-grid">
       <article class="faq-card">
         <h4>What does a confidence interval mean?</h4>
-        <p>It gives a plausible range for the population value based on your sample and chosen confidence level.</p>
+        <p>
+          It gives a plausible range for the population value based on your sample and chosen
+          confidence level.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why does higher confidence make the interval wider?</h4>
@@ -96,11 +120,17 @@
       </article>
       <article class="faq-card">
         <h4>When should I use proportion mode?</h4>
-        <p>Use proportion mode when the sample result is a percent or share, such as approval rate or conversion rate.</p>
+        <p>
+          Use proportion mode when the sample result is a percent or share, such as approval rate or
+          conversion rate.
+        </p>
       </article>
       <article class="faq-card">
         <h4>When should I use mean mode?</h4>
-        <p>Use mean mode when you are estimating an average and you already know the population standard deviation.</p>
+        <p>
+          Use mean mode when you are estimating an average and you already know the population
+          standard deviation.
+        </p>
       </article>
       <article class="faq-card">
         <h4>What narrows the interval?</h4>
@@ -135,9 +165,14 @@
     <h3>Important Notes</h3>
     <ul class="stats-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Mode rule:</strong> Mean mode assumes the population standard deviation is known.</li>
+      <li>
+        <strong>Mode rule:</strong> Mean mode assumes the population standard deviation is known.
+      </li>
       <li><strong>Confidence rule:</strong> Higher confidence widens the interval.</li>
-      <li><strong>Use case:</strong> This route is built for quick interval estimation, not for full hypothesis test selection.</li>
+      <li>
+        <strong>Use case:</strong> This route is built for quick interval estimation, not for full
+        hypothesis test selection.
+      </li>
     </ul>
   </section>
 </div>
