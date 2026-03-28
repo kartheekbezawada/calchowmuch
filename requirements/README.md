@@ -60,7 +60,7 @@ These are the main files that define how work should be done:
 ## Notes
 
 - `UNIVERSAL_REQUIREMENTS.md` remains the highest-precedence project law.
-- `About Us.md` inside `requirements/universal-rules/` is a live content source, not a governance file.
+- `About Us.md` inside `requirements/universal-rules/` is not a governance file and is no longer used by the MPA generator as a build source.
 - Additional special-case working documents may still exist at the top level of `requirements/universal-rules/`; treat `requirements/universal-rules/README.md` as the source of truth for how to classify them.
 - Program-specific rollout material stays in its own subfolder, such as `salary-calculators-cluster-redesign/`.
 
