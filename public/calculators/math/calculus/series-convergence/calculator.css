@@ -19,6 +19,29 @@
   gap: 1.5rem;
 }
 
+#calc-series .series-shell,
+#calc-series .series-card,
+#calc-series .series-hero-card,
+#calc-series .series-hero-card > *,
+#calc-series .series-workbench,
+#calc-series .series-workbench > *,
+#calc-series .series-left-stack,
+#calc-series .series-input-card,
+#calc-series .series-answer-card,
+#calc-series .series-steps-card {
+  min-width: 0;
+}
+
+#calc-series,
+#series-explanation,
+#calc-series .series-card,
+#series-explanation .series-exp-section {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
 #calc-series .series-card {
   background: var(--series-surface);
   border: 1px solid var(--series-border);
@@ -54,6 +77,7 @@
 #calc-series .series-title {
   font-size: clamp(1.65rem, 2.4vw, 2.25rem);
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 #calc-series .series-subtitle,
@@ -92,6 +116,7 @@
   gap: 1rem;
   align-items: flex-start;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 #calc-series .series-chip {

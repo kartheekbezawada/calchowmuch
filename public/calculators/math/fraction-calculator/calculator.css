@@ -130,6 +130,29 @@
   align-items: start;
 }
 
+#calc-fraction-calculator .fc-shell,
+#calc-fraction-calculator .fc-card,
+#calc-fraction-calculator .fc-hero-card,
+#calc-fraction-calculator .fc-hero-card > *,
+#calc-fraction-calculator .fc-workbench,
+#calc-fraction-calculator .fc-workbench > *,
+#calc-fraction-calculator .fc-controls-card,
+#calc-fraction-calculator .fc-answer-card,
+#calc-fraction-calculator .fc-steps-card {
+  min-width: 0;
+}
+
+#calc-fraction-calculator .fc-card-head {
+  flex-wrap: wrap;
+}
+
+#calc-fraction-calculator .fc-title,
+#calc-fraction-calculator .fc-subtitle,
+#calc-fraction-calculator .fc-card-title,
+#calc-fraction-calculator .fc-hero-points {
+  overflow-wrap: anywhere;
+}
+
 #calc-fraction-calculator .fc-controls-card {
   display: grid;
   gap: 20px;
@@ -558,6 +581,7 @@
   justify-items: center;
   min-width: 1.85em;
   vertical-align: middle;
+  color: inherit;
 }
 
 #calc-fraction-calculator .fc-inline-fraction > span:first-child {
@@ -567,6 +591,13 @@
 
 #calc-fraction-calculator .fc-inline-fraction > span:last-child {
   padding: 0.08em 0.2em 0;
+}
+
+#calc-fraction-calculator #fc-result-main,
+#calc-fraction-calculator #fc-result-main .fc-expression,
+#calc-fraction-calculator #fc-result-main .fc-inline-fraction,
+#calc-fraction-calculator #fc-result-main .fc-inline-fraction > span {
+  color: #f8fbff !important;
 }
 
 #calc-fraction-calculator .fc-mixed-inline,

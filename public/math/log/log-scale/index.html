@@ -888,6 +888,8 @@
         --math-shell-muted: #5e7086;
         --math-shell-accent: #0f766e;
         --math-shell-accent-strong: #0b5a54;
+        --accent: var(--math-shell-accent);
+        --button-active-bg: var(--math-shell-accent-strong);
         --math-shell-highlight: #effcf8;
         --math-shell-chip: rgba(15, 118, 110, 0.12);
         --math-shell-chip-text: #0f5d58;
@@ -902,6 +904,7 @@
       .math-cluster-wrap {
         width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
+        min-width: 0;
       }
 
       .math-cluster-site-header,
@@ -972,6 +975,7 @@
       .math-cluster-center-column {
         width: min(100%, 1120px);
         margin: 0 auto;
+        min-width: 0;
       }
 
       .math-cluster-panel {
@@ -982,11 +986,17 @@
         border-radius: 28px;
         background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
+        min-width: 0;
       }
 
       .math-cluster-page-header {
         display: grid;
         gap: 12px;
+        min-width: 0;
+      }
+
+      .math-cluster-page-header > * {
+        min-width: 0;
       }
 
       .math-cluster-breadcrumbs {
@@ -1021,6 +1031,7 @@
         font-size: clamp(2rem, 4vw, 3.35rem);
         line-height: 1.05;
         letter-spacing: -0.03em;
+        overflow-wrap: anywhere;
       }
 
       .math-cluster-page-intro {
@@ -1029,11 +1040,19 @@
         font-size: 1.05rem;
         line-height: 1.7;
         color: var(--math-shell-muted);
+        min-width: 0;
+        overflow-wrap: anywhere;
       }
 
       .math-cluster-flow {
         display: grid;
         gap: 28px;
+        min-width: 0;
+      }
+
+      .math-cluster-flow > * {
+        min-width: 0;
+        width: 100%;
       }
 
       .math-cluster-footer-copy {
@@ -1103,6 +1122,20 @@
         gap: 24px;
       }
 
+      .lscale-shell,
+      .lscale-card,
+      .lscale-exp-section,
+      .lscale-hero-card,
+      .lscale-hero-card > *,
+      .lscale-workbench,
+      .lscale-workbench > *,
+      .lscale-left-stack,
+      .lscale-input-card,
+      .lscale-guide-card,
+      .lscale-answer-card {
+        min-width: 0;
+      }
+
       .lscale-card,
       .lscale-exp-section {
         border: 1px solid var(--lscale-border);
@@ -1142,6 +1175,7 @@
         font-size: clamp(1.7rem, 3vw, 2.3rem);
         line-height: 1.08;
         letter-spacing: -0.03em;
+        overflow-wrap: anywhere;
       }
 
       .lscale-subtitle,
@@ -1157,6 +1191,7 @@
 
       .lscale-subtitle {
         margin: 12px 0 0;
+        overflow-wrap: anywhere;
       }
 
       .lscale-hero-points {
@@ -1197,6 +1232,7 @@
         justify-content: space-between;
         align-items: start;
         gap: 16px;
+        flex-wrap: wrap;
       }
 
       .lscale-card-title {
