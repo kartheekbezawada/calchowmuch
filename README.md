@@ -214,4 +214,3 @@ This document is intended for:
 - content and SEO stakeholders
 - contributors who need to understand the platform before changing it
 
-If you need low-level engineering commands or release execution details, those should live in the governed requirement and release documents rather than being the main purpose of this README.
