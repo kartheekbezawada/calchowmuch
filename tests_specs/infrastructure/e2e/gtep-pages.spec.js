@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const routes = [
+  { name: 'About Us', path: '/about-us/', h1: 'About Us' },
   { name: 'Privacy', path: '/privacy/', h1: 'Privacy Policy' },
   { name: 'Terms', path: '/terms-and-conditions/', h1: 'Terms & Conditions' },
   { name: 'Contact', path: '/contact-us/', h1: 'Contact' },
@@ -22,11 +23,12 @@ routes.forEach(({ name, path, h1 }) => {
     await expect(page.locator('script[src*="mpa-nav.js"]')).toHaveCount(0);
 
     const footerLinks = page.locator('.gtep-footer a');
-    await expect(footerLinks).toHaveCount(5);
+    await expect(footerLinks).toHaveCount(6);
     await expect(footerLinks.nth(0)).toHaveText('Privacy');
     await expect(footerLinks.nth(1)).toHaveText('Terms & Conditions');
     await expect(footerLinks.nth(2)).toHaveText('Contact');
-    await expect(footerLinks.nth(3)).toHaveText('FAQs');
-    await expect(footerLinks.nth(4)).toHaveText('Sitemap');
+    await expect(footerLinks.nth(3)).toHaveText('About Us');
+    await expect(footerLinks.nth(4)).toHaveText('FAQs');
+    await expect(footerLinks.nth(5)).toHaveText('Sitemap');
   });
 });

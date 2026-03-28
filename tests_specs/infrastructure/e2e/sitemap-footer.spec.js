@@ -5,14 +5,15 @@ test.describe('Sitemap footer link', () => {
     await page.goto('/');
 
     const footerLinks = page.locator('.site-footer a');
-    await expect(footerLinks).toHaveCount(5);
+    await expect(footerLinks).toHaveCount(6);
     await expect(footerLinks.nth(0)).toHaveText('Privacy');
     await expect(footerLinks.nth(1)).toHaveText('Terms & Conditions');
     await expect(footerLinks.nth(2)).toHaveText('Contact');
-    await expect(footerLinks.nth(3)).toHaveText('FAQs');
-    await expect(footerLinks.nth(4)).toHaveText('Sitemap');
+    await expect(footerLinks.nth(3)).toHaveText('About Us');
+    await expect(footerLinks.nth(4)).toHaveText('FAQs');
+    await expect(footerLinks.nth(5)).toHaveText('Sitemap');
 
-    await footerLinks.nth(4).click();
+    await footerLinks.nth(5).click();
     await expect(page).toHaveURL(/\/sitemap(\.xml|\/?)$/);
 
     const currentUrl = page.url();

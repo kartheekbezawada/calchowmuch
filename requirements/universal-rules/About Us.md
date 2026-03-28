@@ -154,7 +154,3 @@ Final Note
 CalcHowMuch is built around a simple idea: everyday calculations should be easier, clearer, and more useful.
 
 CalcHowMuch is independently built and maintained by Venkata Kartheek Bezawada. AI-assisted tools are used in parts of the development workflow, with published content and calculator behavior reviewed before release
-
-Whether the task is comparing salary periods, estimating loan payments, checking inflation impact, solving a percentage problem, or calculating dates and durations, the goal stays the same: provide a clear answer and enough context to make that answer genuinely useful.
-
-Thank you for using CalcHowMuch.
