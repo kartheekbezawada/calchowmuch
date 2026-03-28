@@ -92,11 +92,16 @@
 
 .sal-cluster-layout-main {
   padding: 40px 0 64px;
+  min-width: 0;
 }
 
 .sal-cluster-panel {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .sal-cluster-page-shell #calculator-title {
@@ -126,7 +131,19 @@
 
 .sal-cluster-flow {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
+.sal-cluster-panel > *,
+.sal-cluster-flow > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .sal-cluster-section {
@@ -242,6 +259,9 @@
 .sal-support-grid {
   display: grid;
   gap: 16px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .sal-calc-shell {
@@ -256,6 +276,8 @@
   border: 1px solid rgba(19, 34, 47, 0.08);
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .sal-calc-card {

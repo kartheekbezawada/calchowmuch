@@ -28,7 +28,7 @@
 | CWV | `CLUSTER=salary CALC=inflation-adjusted-salary-calculator npm run test:calc:cwv` | Pass | `test-results/performance/scoped-cwv/salary/inflation-adjusted-salary-calculator.json` |
 | ISS-001 | `npm run test:iss001` (if applicable) | Skipped | not required for this single-calculator salary release |
 | Schema Dedupe | `CLUSTER=salary CALC=inflation-adjusted-salary-calculator npm run test:schema:dedupe -- --scope=calc` | Pass | `schema_duplicates_report.md`, `schema_duplicates_report.csv` |
-| Thin Content | `CLUSTER=salary CALC=inflation-adjusted-salary-calculator npm run test:content:quality -- --scope=calc` | Pass (Warn) | `test-results/content-quality/scoped/salary/inflation-adjusted-salary-calculator.json` |
+| Thin Content | `CLUSTER=salary CALC=inflation-adjusted-salary-calculator npm run test:content:quality -- --scope=calc` | Pass | `test-results/content-quality/scoped/salary/inflation-adjusted-salary-calculator.json` |
 | Cluster Contracts | `CLUSTER=salary npm run test:cluster:contracts` | Pass | command output |
 | Isolation Scope | `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` | Pass | command output |
 
@@ -46,6 +46,7 @@
 | Thin-content artifact (if `calc_exp` / `exp_only`) | `test-results/content-quality/scoped/salary/inflation-adjusted-salary-calculator.json` |
 | Important Notes contract proof (if applicable) | `public/calculators/salary-calculators/inflation-adjusted-salary-calculator/explanation.html` and generated output at `public/salary-calculators/inflation-adjusted-salary-calculator/index.html` |
 | Pane layout proof (for `calc_exp`) | `public/config/navigation.json`, `public/salary-calculators/inflation-adjusted-salary-calculator/index.html` |
+| Mobile layout verification | Manual Playwright mobile probe against `public/salary-calculators/inflation-adjusted-salary-calculator/index.html`: `innerWidth=437`, `scrollWidth=437`, `hasPageOverflow=false`, `shellWidth=358` |
 
 Notes:
 - The route ships as `calc_exp` with `paneLayout=single`.
@@ -57,7 +58,7 @@ Notes:
 
 | ID | Description | Severity | Mitigation / Follow-up |
 | :--- | :--- | :--- | :--- |
-| `IAS-THIN-001` | Thin-content scorer finished in `soft` mode with score `68` and warning flags for FAQ specificity and edge-case coverage. | Medium | Expand calculator-specific FAQ coverage and edge-case guidance in a follow-up content pass. |
+| `IAS-CONTENT-001` | Thin-content scorer now passes with score `78` (`Acceptable`), but still flags FAQ specificity and edge-case coverage as improvement opportunities. | Low | Expand calculator-specific FAQ coverage and edge-case guidance in a follow-up content pass. |
 | `IAS-SEO-LOG-001` | SEO/content-quality scripts emit a non-blocking jsdom CSS parse log while still returning success. | Low | Treat as repo-level tooling noise unless the parser warning is promoted to a failing condition later. |
 
 ---

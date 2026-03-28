@@ -2613,14 +2613,11 @@ function resolveAssetConfig(assetManifest, routePath) {
 }
 
 function renderManagedHeadAdsenseBlock() {
-  return `${indentBlock(ADSENSE_HEAD_MANAGED_BLOCK, '    ')}\n`;
+  return '';
 }
 
 function renderManagedAdPanel(indent = '          ') {
-  return `${indent}<div class="ad-panel">\n${indentBlock(
-    ADSENSE_SLOT_MANAGED_BLOCK,
-    `${indent}  `
-  )}\n${indent}</div>`;
+  return `${indent}<div class="ad-panel"></div>`;
 }
 
 function stripManagedBlock(html, startMarker, endMarker) {
@@ -2645,7 +2642,7 @@ function normalizeAdSenseHead(html) {
     return normalized;
   }
 
-  return normalized.replace(/^[ \t]*<\/head>/im, `${renderManagedHeadAdsenseBlock()}  </head>`);
+  return normalized;
 }
 
 function normalizeAdPanelSlots(html) {
