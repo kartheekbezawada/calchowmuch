@@ -47,6 +47,24 @@
   gap: 24px;
 }
 
+.unit-shell,
+.unit-card,
+.unit-exp-section,
+.unit-hero-card,
+.unit-hero-card > *,
+.unit-workbench,
+.unit-workbench > *,
+.unit-left-stack,
+.unit-input-card,
+.unit-answer-card,
+.unit-diagram-card {
+  min-width: 0;
+}
+
+.unit-card-head {
+  flex-wrap: wrap;
+}
+
 .unit-card,
 .unit-exp-section {
   border: 1px solid var(--unit-border);
@@ -86,6 +104,7 @@
   font-size: clamp(1.65rem, 3vw, 2.35rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
 }
 
 .unit-subtitle,
@@ -100,6 +119,7 @@
 
 .unit-subtitle {
   margin: 12px 0 0;
+  overflow-wrap: anywhere;
 }
 
 .unit-hero-points {
@@ -285,6 +305,15 @@
 
 .unit-result-card * {
   color: inherit !important;
+}
+
+#calc-unit-circle .unit-result-card .result-grid,
+#calc-unit-circle .unit-result-card .result-grid * {
+  color: var(--unit-text) !important;
+}
+
+#calc-unit-circle .unit-result-card .result-title {
+  color: var(--unit-muted) !important;
 }
 
 .unit-summary-card {

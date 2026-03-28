@@ -13,6 +13,27 @@
   gap: 1.5rem;
 }
 
+#calc-standard-deviation .stats-shell,
+#calc-standard-deviation .stats-card,
+#calc-standard-deviation .stats-hero-card,
+#calc-standard-deviation .stats-hero-card > *,
+#calc-standard-deviation .stats-workbench,
+#calc-standard-deviation .stats-workbench > *,
+#calc-standard-deviation .stats-input-card,
+#calc-standard-deviation .stats-answer-card {
+  min-width: 0;
+}
+
+#calc-standard-deviation,
+#std-explanation,
+#calc-standard-deviation .stats-card,
+#std-explanation .stats-exp-section {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
 #calc-standard-deviation .stats-card {
   background: var(--stats-surface);
   border: 1px solid var(--stats-border);
@@ -53,6 +74,7 @@
 #calc-standard-deviation .stats-title {
   font-size: clamp(1.65rem, 2.4vw, 2.2rem);
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 #calc-standard-deviation .stats-subtitle,
@@ -80,6 +102,7 @@
   gap: 1rem;
   align-items: flex-start;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 #calc-standard-deviation .stats-chip {

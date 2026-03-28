@@ -2,13 +2,16 @@
   <section class="stats-exp-section">
     <h2>Standard Deviation Calculator Practical Guide</h2>
     <p>
-      Use this calculator to measure how tightly or loosely values sit around the mean. It keeps
-      the standard deviation, variance, and mean summary in one answer-first result so you can
-      judge spread quickly before moving on to z-scores or interval work.
+      Use this calculator to measure how tightly or loosely values sit around the mean. It keeps the
+      standard deviation, variance, and mean summary in one answer-first result so you can judge
+      spread quickly before moving on to z-scores or interval work.
     </p>
     <ul class="stats-summary-list">
       <li><strong>Best for:</strong> comparing spread in a single dataset.</li>
-      <li><strong>Quick answer flow:</strong> paste the values, pick sample or population mode, and calculate once.</li>
+      <li>
+        <strong>Quick answer flow:</strong> paste the values, pick sample or population mode, and
+        calculate once.
+      </li>
       <li><strong>Output includes:</strong> standard deviation, variance, mean, and count.</li>
     </ul>
   </section>
@@ -17,7 +20,9 @@
     <h3>How to Guide</h3>
     <ol>
       <li>Paste the dataset into the input box.</li>
-      <li>Use <strong>Sample</strong> when your list represents a sample from a larger population.</li>
+      <li>
+        Use <strong>Sample</strong> when your list represents a sample from a larger population.
+      </li>
       <li>Use <strong>Population</strong> when the list already contains the full population.</li>
       <li>Click <strong>Calculate standard deviation</strong> and read the spread result first.</li>
     </ol>
@@ -27,31 +32,34 @@
     <h3>Quick Answer Table</h3>
     <div class="stats-table-wrap">
       <table class="stats-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the standard deviation calculator
+        </caption>
         <thead>
           <tr>
-            <th>Measure</th>
-            <th>What it tells you</th>
-            <th>Quick interpretation</th>
+            <th scope="col">Measure</th>
+            <th scope="col">What it tells you</th>
+            <th scope="col">Quick interpretation</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Standard deviation</td>
+            <th scope="row">Standard deviation</th>
             <td>The typical distance from the mean</td>
             <td>A larger value means the dataset is more spread out.</td>
           </tr>
           <tr>
-            <td>Variance</td>
+            <th scope="row">Variance</th>
             <td>The squared spread around the mean</td>
             <td>Useful in formulas, but less intuitive than standard deviation.</td>
           </tr>
           <tr>
-            <td>Sample mode</td>
+            <th scope="row">Sample mode</th>
             <td>Uses n - 1 in the denominator</td>
             <td>Best when the data is only a sample.</td>
           </tr>
           <tr>
-            <td>Population mode</td>
+            <th scope="row">Population mode</th>
             <td>Uses n in the denominator</td>
             <td>Best when the data already covers the whole group.</td>
           </tr>
@@ -74,12 +82,18 @@
     <div class="stats-example-grid">
       <article class="stats-example-card">
         <h4>Default dataset</h4>
-        <p>The default list has a mean of <strong>18</strong> and a sample standard deviation a little above <strong>5.23</strong>.</p>
+        <p>
+          The default list has a mean of <strong>18</strong> and a sample standard deviation a
+          little above <strong>5.23</strong>.
+        </p>
         <p>That tells you the values typically sit around five units away from the mean.</p>
       </article>
       <article class="stats-example-card">
         <h4>Why compare sample and population?</h4>
-        <p>Sample mode is slightly larger because it adjusts for estimating a wider population from limited data.</p>
+        <p>
+          Sample mode is slightly larger because it adjusts for estimating a wider population from
+          limited data.
+        </p>
       </article>
     </div>
   </section>
@@ -97,15 +111,22 @@
       </article>
       <article class="faq-card">
         <h4>When should I use population mode?</h4>
-        <p>Use population mode when the dataset already covers the whole population you care about.</p>
+        <p>
+          Use population mode when the dataset already covers the whole population you care about.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Can standard deviation be zero?</h4>
-        <p>Yes. If every value is the same, there is no spread, so the standard deviation is zero.</p>
+        <p>
+          Yes. If every value is the same, there is no spread, so the standard deviation is zero.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Does standard deviation show skew?</h4>
-        <p>No. It shows spread, not shape, so a skewed dataset can still share the same standard deviation as another list.</p>
+        <p>
+          No. It shows spread, not shape, so a skewed dataset can still share the same standard
+          deviation as another list.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Can I use decimals and negative values?</h4>
@@ -137,8 +158,14 @@
     <ul class="stats-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Mode rule:</strong> Sample mode needs at least two values.</li>
-      <li><strong>Interpretation rule:</strong> Standard deviation measures spread around the mean, not the shape of the distribution.</li>
-      <li><strong>Use case:</strong> This route is built for quick descriptive spread checks, not full inference.</li>
+      <li>
+        <strong>Interpretation rule:</strong> Standard deviation measures spread around the mean,
+        not the shape of the distribution.
+      </li>
+      <li>
+        <strong>Use case:</strong> This route is built for quick descriptive spread checks, not full
+        inference.
+      </li>
     </ul>
   </section>
 </div>

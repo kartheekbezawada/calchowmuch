@@ -9,8 +9,14 @@
     </p>
     <ul class="series-summary-list">
       <li><strong>Best for:</strong> quick ratio, root, and comparison test checks.</li>
-      <li><strong>Quick answer flow:</strong> enter the general term, pick a test, then calculate once.</li>
-      <li><strong>Output includes:</strong> convergence verdict, test used, limit estimate, and written steps.</li>
+      <li>
+        <strong>Quick answer flow:</strong> enter the general term, pick a test, then calculate
+        once.
+      </li>
+      <li>
+        <strong>Output includes:</strong> convergence verdict, test used, limit estimate, and
+        written steps.
+      </li>
     </ul>
   </section>
 
@@ -19,7 +25,10 @@
     <ol>
       <li>Enter the general term using <strong>n</strong> as the index variable.</li>
       <li>Choose auto-detect if you want the route to try the clearest test first.</li>
-      <li>Click <strong>Test convergence</strong> and read the answer card before opening the full step list.</li>
+      <li>
+        Click <strong>Test convergence</strong> and read the answer card before opening the full
+        step list.
+      </li>
       <li>If one test is inconclusive, switch tests and rerun without changing the term.</li>
     </ol>
   </section>
@@ -28,31 +37,34 @@
     <h3>Quick Answer Table</h3>
     <div class="series-table-wrap">
       <table class="series-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the series convergence calculator
+        </caption>
         <thead>
           <tr>
-            <th>Test</th>
-            <th>Best fit</th>
-            <th>Quick interpretation</th>
+            <th scope="col">Test</th>
+            <th scope="col">Best fit</th>
+            <th scope="col">Quick interpretation</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Ratio test</td>
+            <th scope="row">Ratio test</th>
             <td>Factorials, exponentials, and fast-growth terms</td>
             <td>If the limit is below 1, the series converges; above 1, it diverges.</td>
           </tr>
           <tr>
-            <td>Root test</td>
+            <th scope="row">Root test</th>
             <td>Terms raised to the n-th power</td>
             <td>It asks whether the long-run n-th root settles below or above 1.</td>
           </tr>
           <tr>
-            <td>Comparison test</td>
+            <th scope="row">Comparison test</th>
             <td>p-series style behaviour such as 1/n^p</td>
             <td>It compares your term with a known family to suggest convergence or divergence.</td>
           </tr>
           <tr>
-            <td>Auto-detect</td>
+            <th scope="row">Auto-detect</th>
             <td>Quick first pass</td>
             <td>The route tries the cleanest built-in test sequence automatically.</td>
           </tr>
@@ -82,8 +94,8 @@
         <h4>Convergent example</h4>
         <p>Enter <strong>n / 2^n</strong> and use the ratio test.</p>
         <p>
-          The ratio settles below 1, so the route reports that the series converges and explains
-          the limit estimate in the steps panel.
+          The ratio settles below 1, so the route reports that the series converges and explains the
+          limit estimate in the steps panel.
         </p>
       </article>
       <article class="series-example-card">
@@ -102,27 +114,45 @@
     <div class="series-faq-grid">
       <article class="faq-card">
         <h4>What does convergence mean for a series?</h4>
-        <p>It means the partial sums approach a finite value instead of growing without bound or oscillating forever.</p>
+        <p>
+          It means the partial sums approach a finite value instead of growing without bound or
+          oscillating forever.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why can one test be inconclusive?</h4>
-        <p>Some tests only give a clear answer when the limit is strictly below or above 1, so a borderline value needs another method.</p>
+        <p>
+          Some tests only give a clear answer when the limit is strictly below or above 1, so a
+          borderline value needs another method.
+        </p>
       </article>
       <article class="faq-card">
         <h4>When should I use the ratio test?</h4>
-        <p>It is especially useful for factorials, exponentials, and expressions where successive terms simplify neatly.</p>
+        <p>
+          It is especially useful for factorials, exponentials, and expressions where successive
+          terms simplify neatly.
+        </p>
       </article>
       <article class="faq-card">
         <h4>When is the root test better?</h4>
-        <p>It is useful when the term already contains an n-th power or when the ratio is awkward to simplify.</p>
+        <p>
+          It is useful when the term already contains an n-th power or when the ratio is awkward to
+          simplify.
+        </p>
       </article>
       <article class="faq-card">
         <h4>What is a p-series?</h4>
-        <p>It is a family of series of the form 1 / n^p, which converges for p greater than 1 and diverges otherwise.</p>
+        <p>
+          It is a family of series of the form 1 / n^p, which converges for p greater than 1 and
+          diverges otherwise.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Does the route prove convergence for every possible series?</h4>
-        <p>No. It is a practical calculator for common series forms, not a full symbolic analysis system.</p>
+        <p>
+          No. It is a practical calculator for common series forms, not a full symbolic analysis
+          system.
+        </p>
       </article>
     </div>
   </section>
@@ -140,7 +170,10 @@
       </a>
       <a class="series-related-card" href="/math/calculus/critical-points/">
         <strong>Critical Points Finder</strong>
-        <span>Switch from infinite-series behaviour to turning-point analysis on ordinary functions.</span>
+        <span
+          >Switch from infinite-series behaviour to turning-point analysis on ordinary
+          functions.</span
+        >
       </a>
     </div>
   </section>
@@ -149,9 +182,18 @@
     <h3>Important Notes</h3>
     <ul class="series-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Scope rule:</strong> This route is built for practical convergence checking on common textbook-style series.</li>
-      <li><strong>Interpretation rule:</strong> An inconclusive result does not mean the series diverges; it means a different test is needed.</li>
-      <li><strong>Input rule:</strong> Use n as the index variable and keep the term in a parser-friendly form.</li>
+      <li>
+        <strong>Scope rule:</strong> This route is built for practical convergence checking on
+        common textbook-style series.
+      </li>
+      <li>
+        <strong>Interpretation rule:</strong> An inconclusive result does not mean the series
+        diverges; it means a different test is needed.
+      </li>
+      <li>
+        <strong>Input rule:</strong> Use n as the index variable and keep the term in a
+        parser-friendly form.
+      </li>
     </ul>
   </section>
 </div>

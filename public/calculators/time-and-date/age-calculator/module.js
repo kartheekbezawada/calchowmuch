@@ -1,4 +1,4 @@
-import { setPageMetadata } from '../../assets/js/core/ui.js';
+import { setPageMetadata } from '../../../assets/js/core/ui.js';
 import { buildAgeViewModel } from './engine.js';
 
 const FAQ_ITEMS = [
@@ -184,8 +184,7 @@ function parseDate(value) {
     return null;
   }
 
-  // Use UTC date-only to avoid local timezone rollovers at midnight
-  return new Date(Date.UTC(year, month - 1, day));
+  return new Date(year, month - 1, day);
 }
 
 function clearError() {

@@ -16,10 +16,6 @@ Pass criteria:
 Ownership: cluster release owner.
 
 Routes:
-- /percentage-calculators/commission-calculator/
-- /percentage-calculators/discount-calculator/
-- /percentage-calculators/margin-calculator/
-- /percentage-calculators/markup-calculator/
 - /percentage-calculators/percent-change-calculator/
 - /percentage-calculators/percent-to-fraction-decimal-calculator/
 - /percentage-calculators/percentage-composition-calculator/

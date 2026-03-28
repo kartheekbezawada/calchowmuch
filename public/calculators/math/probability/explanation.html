@@ -8,9 +8,18 @@
       rule before using the output in school, risk, or planning work.
     </p>
     <ul class="prob-summary-list">
-      <li><strong>Best for:</strong> single events, AND/OR rules, conditional probability, Bayes, and binomial checks.</li>
-      <li><strong>Quick answer flow:</strong> choose the event rule first, then enter only the values the rule needs.</li>
-      <li><strong>Output includes:</strong> decimal probability, percentage view, formula, and plain-language explanation.</li>
+      <li>
+        <strong>Best for:</strong> single events, AND/OR rules, conditional probability, Bayes, and
+        binomial checks.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> choose the event rule first, then enter only the values
+        the rule needs.
+      </li>
+      <li>
+        <strong>Output includes:</strong> decimal probability, percentage view, formula, and
+        plain-language explanation.
+      </li>
     </ul>
   </section>
 
@@ -18,9 +27,15 @@
     <h3>How to Guide</h3>
     <ol>
       <li>Select the event rule that matches the question before entering numbers.</li>
-      <li>Use outcome counts for single events and percentage probabilities for combined-event modes.</li>
-      <li>If events can overlap, use the inclusive OR option and enter <strong>P(A and B)</strong>.</li>
-      <li>For binomial mode, enter the number of trials, target successes, and success probability.</li>
+      <li>
+        Use outcome counts for single events and percentage probabilities for combined-event modes.
+      </li>
+      <li>
+        If events can overlap, use the inclusive OR option and enter <strong>P(A and B)</strong>.
+      </li>
+      <li>
+        For binomial mode, enter the number of trials, target successes, and success probability.
+      </li>
     </ol>
   </section>
 
@@ -28,31 +43,34 @@
     <h3>Quick Answer Table</h3>
     <div class="prob-table-wrap">
       <table class="prob-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the probability calculator
+        </caption>
         <thead>
           <tr>
-            <th>Mode</th>
-            <th>Rule</th>
-            <th>Typical question</th>
+            <th scope="col">Mode</th>
+            <th scope="col">Rule</th>
+            <th scope="col">Typical question</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Single event</td>
+            <th scope="row">Single event</th>
             <td>P(E) = favorable / total</td>
             <td>What is the chance of one event from a known outcome set?</td>
           </tr>
           <tr>
-            <td>AND / OR</td>
+            <th scope="row">AND / OR</th>
             <td>Combine event probabilities</td>
             <td>What is the chance of both events or at least one event?</td>
           </tr>
           <tr>
-            <td>Conditional / Bayes</td>
+            <th scope="row">Conditional / Bayes</th>
             <td>Update using overlap or evidence</td>
             <td>How does one event change the odds of another?</td>
           </tr>
           <tr>
-            <td>Binomial</td>
+            <th scope="row">Binomial</th>
             <td>C(n, k) × p^k × (1-p)^(n-k)</td>
             <td>What is the chance of exactly k successes in n trials?</td>
           </tr>
@@ -78,13 +96,21 @@
     <div class="prob-example-grid">
       <article class="prob-example-card">
         <h4>Default OR example</h4>
-        <p>With <strong>P(A) = 30%</strong> and <strong>P(B) = 50%</strong> in independent OR mode, the route returns <strong>65%</strong>.</p>
+        <p>
+          With <strong>P(A) = 30%</strong> and <strong>P(B) = 50%</strong> in independent OR mode,
+          the route returns <strong>65%</strong>.
+        </p>
         <p>That comes from <strong>0.30 + 0.50 - (0.30 × 0.50)</strong>.</p>
       </article>
       <article class="prob-example-card">
         <h4>Conditional example</h4>
-        <p>If <strong>P(A and B) = 15%</strong>, then <strong>P(A|B) = 30%</strong> and <strong>P(B|A) = 50%</strong> with the default overlap inputs.</p>
-        <p>This is a quick way to compare how the base event changes once the other event is known.</p>
+        <p>
+          If <strong>P(A and B) = 15%</strong>, then <strong>P(A|B) = 30%</strong> and
+          <strong>P(B|A) = 50%</strong> with the default overlap inputs.
+        </p>
+        <p>
+          This is a quick way to compare how the base event changes once the other event is known.
+        </p>
       </article>
     </div>
   </section>
@@ -94,15 +120,24 @@
     <div class="prob-faq-grid">
       <article class="faq-card">
         <h4>When should I use AND instead of OR?</h4>
-        <p>Use AND when both events must happen together. Use OR when at least one of the events can happen.</p>
+        <p>
+          Use AND when both events must happen together. Use OR when at least one of the events can
+          happen.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why does OR subtract overlap?</h4>
-        <p>Without subtracting the shared part, the overlap would be counted twice and the result would be too large.</p>
+        <p>
+          Without subtracting the shared part, the overlap would be counted twice and the result
+          would be too large.
+        </p>
       </article>
       <article class="faq-card">
         <h4>What is the difference between conditional mode and Bayes mode?</h4>
-        <p>Conditional mode starts with the overlap directly, while Bayes mode solves the updated probability from prior and evidence values.</p>
+        <p>
+          Conditional mode starts with the overlap directly, while Bayes mode solves the updated
+          probability from prior and evidence values.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Can probabilities be entered above 100%?</h4>
@@ -110,11 +145,17 @@
       </article>
       <article class="faq-card">
         <h4>What does binomial mode calculate?</h4>
-        <p>It calculates the probability of exactly k successes in n independent trials with the same success probability.</p>
+        <p>
+          It calculates the probability of exactly k successes in n independent trials with the same
+          success probability.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Does the route show decimals and percentages?</h4>
-        <p>Yes. The answer card keeps the decimal probability and the percentage view together for easy interpretation.</p>
+        <p>
+          Yes. The answer card keeps the decimal probability and the percentage view together for
+          easy interpretation.
+        </p>
       </article>
     </div>
   </section>

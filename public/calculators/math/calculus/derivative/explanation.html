@@ -2,14 +2,22 @@
   <h2>Derivative Calculator Practical Guide</h2>
   <p>
     Use this derivative calculator to find a symbolic derivative and optionally evaluate it at one
-    point in a clean answer-first layout. It is built for polynomial-style expressions, so the
-    route keeps the derivative, order, and rule-by-rule steps together instead of spreading them
-    across a legacy shell.
+    point in a clean answer-first layout. It is built for polynomial-style expressions, so the route
+    keeps the derivative, order, and rule-by-rule steps together instead of spreading them across a
+    legacy shell.
   </p>
   <ul class="deriv-summary-list">
-    <li><strong>Best for:</strong> quick power-rule differentiation, repeated derivatives, and slope checks at a point.</li>
-    <li><strong>Quick answer flow:</strong> enter the expression, set the order, then calculate once.</li>
-    <li><strong>Output includes:</strong> the symbolic derivative, optional evaluated value, and step-by-step notes.</li>
+    <li>
+      <strong>Best for:</strong> quick power-rule differentiation, repeated derivatives, and slope
+      checks at a point.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> enter the expression, set the order, then calculate once.
+    </li>
+    <li>
+      <strong>Output includes:</strong> the symbolic derivative, optional evaluated value, and
+      step-by-step notes.
+    </li>
   </ul>
 </section>
 
@@ -17,9 +25,15 @@
   <h3>How to Guide</h3>
   <ol>
     <li>Enter a polynomial-style expression such as <strong>x^2 + 3*x + 5</strong>.</li>
-    <li>Set the variable and choose a derivative order between <strong>1</strong> and <strong>5</strong>.</li>
+    <li>
+      Set the variable and choose a derivative order between <strong>1</strong> and
+      <strong>5</strong>.
+    </li>
     <li>Optionally enter a numeric point where you want to evaluate the derivative.</li>
-    <li>Click <strong>Calculate derivative</strong> and read the answer card before reviewing the steps panel.</li>
+    <li>
+      Click <strong>Calculate derivative</strong> and read the answer card before reviewing the
+      steps panel.
+    </li>
   </ol>
 </section>
 
@@ -27,31 +41,34 @@
   <h3>Quick Answer Table</h3>
   <div class="deriv-table-wrap">
     <table class="deriv-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the derivative calculator
+      </caption>
       <thead>
         <tr>
-          <th>Input part</th>
-          <th>What it controls</th>
-          <th>Quick interpretation</th>
+          <th scope="col">Input part</th>
+          <th scope="col">What it controls</th>
+          <th scope="col">Quick interpretation</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Function f(x)</td>
+          <th scope="row">Function f(x)</th>
           <td>The polynomial-style expression to differentiate</td>
           <td>Sets the symbolic derivative you see in the answer card.</td>
         </tr>
         <tr>
-          <td>Variable</td>
+          <th scope="row">Variable</th>
           <td>The symbol treated as the changing input</td>
           <td>Keeps the result aligned with the intended variable name.</td>
         </tr>
         <tr>
-          <td>Derivative order</td>
+          <th scope="row">Derivative order</th>
           <td>How many times the route differentiates</td>
           <td>Higher orders repeat the same process on the new expression.</td>
         </tr>
         <tr>
-          <td>Evaluate at</td>
+          <th scope="row">Evaluate at</th>
           <td>The point used after the derivative is found</td>
           <td>Returns a numeric slope value at that specific point.</td>
         </tr>
@@ -68,9 +85,9 @@
     applies the rule term by term to polynomial-style expressions.
   </p>
   <p>
-    If you request a higher-order derivative, the route differentiates the new expression again.
-    If you enter an evaluation point, it substitutes that value into the derivative after the
-    symbolic result is built.
+    If you request a higher-order derivative, the route differentiates the new expression again. If
+    you enter an evaluation point, it substitutes that value into the derivative after the symbolic
+    result is built.
   </p>
 </section>
 
@@ -79,7 +96,10 @@
   <div class="deriv-example-grid">
     <article class="deriv-example-card">
       <h4>First derivative example</h4>
-      <p>Enter <strong>x^2 + 3*x + 5</strong>, keep the order at <strong>1</strong>, and leave the point empty.</p>
+      <p>
+        Enter <strong>x^2 + 3*x + 5</strong>, keep the order at <strong>1</strong>, and leave the
+        point empty.
+      </p>
       <p>
         The route returns <strong>2x + 3</strong> because the derivative of x² is 2x, the derivative
         of 3x is 3, and the constant 5 becomes 0.
@@ -125,7 +145,9 @@
     </div>
     <div class="faq-card">
       <h4>What happens when I enter an evaluation point?</h4>
-      <p>The route substitutes that point into the derivative after the symbolic result is found.</p>
+      <p>
+        The route substitutes that point into the derivative after the symbolic result is found.
+      </p>
     </div>
     <div class="faq-card">
       <h4>Can I change the variable name?</h4>
@@ -133,7 +155,9 @@
     </div>
     <div class="faq-card">
       <h4>Does this route handle full symbolic calculus?</h4>
-      <p>No. It is designed for quick polynomial-style differentiation rather than a full CAS engine.</p>
+      <p>
+        No. It is designed for quick polynomial-style differentiation rather than a full CAS engine.
+      </p>
     </div>
     <div class="faq-card">
       <h4>When is this route useful?</h4>
@@ -155,7 +179,10 @@
     </a>
     <a class="deriv-related-card" href="/math/calculus/limit/">
       <strong>Limit Calculator</strong>
-      <span>Check the limiting behavior that often appears before differentiation rules are introduced.</span>
+      <span
+        >Check the limiting behavior that often appears before differentiation rules are
+        introduced.</span
+      >
     </a>
   </div>
 </section>
@@ -164,9 +191,21 @@
   <h3>Important Notes</h3>
   <ul class="deriv-notes-list">
     <li><strong>Last updated:</strong> March 2026</li>
-    <li><strong>Scope rule:</strong> This route is designed for polynomial-style expressions and repeated power-rule differentiation.</li>
-    <li><strong>Order rule:</strong> The derivative order should stay between 1 and 5 for a readable output.</li>
-    <li><strong>Evaluation rule:</strong> The point is applied after the symbolic derivative is calculated.</li>
-    <li><strong>Use case:</strong> This tool is built for quick numeric and symbolic verification, not full symbolic theorem proving.</li>
+    <li>
+      <strong>Scope rule:</strong> This route is designed for polynomial-style expressions and
+      repeated power-rule differentiation.
+    </li>
+    <li>
+      <strong>Order rule:</strong> The derivative order should stay between 1 and 5 for a readable
+      output.
+    </li>
+    <li>
+      <strong>Evaluation rule:</strong> The point is applied after the symbolic derivative is
+      calculated.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool is built for quick numeric and symbolic verification, not
+      full symbolic theorem proving.
+    </li>
   </ul>
 </section>

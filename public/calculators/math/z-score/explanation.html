@@ -8,8 +8,14 @@
     </p>
     <ul class="stats-summary-list">
       <li><strong>Best for:</strong> quick standard-score interpretation on one value.</li>
-      <li><strong>Quick answer flow:</strong> enter x, mean, and standard deviation, then calculate once.</li>
-      <li><strong>Output includes:</strong> z-score, formula substitution, and above/below-mean interpretation.</li>
+      <li>
+        <strong>Quick answer flow:</strong> enter x, mean, and standard deviation, then calculate
+        once.
+      </li>
+      <li>
+        <strong>Output includes:</strong> z-score, formula substitution, and above/below-mean
+        interpretation.
+      </li>
     </ul>
   </section>
 
@@ -18,7 +24,10 @@
     <ol>
       <li>Enter the raw value, the mean, and the standard deviation.</li>
       <li>Click <strong>Calculate z-score</strong> to update the answer card.</li>
-      <li>Read the z-score first, then use the interpretation line to see whether the value is above or below the mean.</li>
+      <li>
+        Read the z-score first, then use the interpretation line to see whether the value is above
+        or below the mean.
+      </li>
       <li>Use the formula block when you want to verify the substitution manually.</li>
     </ol>
   </section>
@@ -27,31 +36,34 @@
     <h3>Quick Answer Table</h3>
     <div class="stats-table-wrap">
       <table class="stats-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the z-score calculator
+        </caption>
         <thead>
           <tr>
-            <th>Z-score</th>
-            <th>What it means</th>
-            <th>Quick interpretation</th>
+            <th scope="col">Z-score</th>
+            <th scope="col">What it means</th>
+            <th scope="col">Quick interpretation</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>0</td>
+            <th scope="row">0</th>
             <td>The value equals the mean</td>
             <td>The observation is exactly average for that distribution.</td>
           </tr>
           <tr>
-            <td>Positive</td>
+            <th scope="row">Positive</th>
             <td>The value is above the mean</td>
             <td>The larger the score, the further above average it sits.</td>
           </tr>
           <tr>
-            <td>Negative</td>
+            <th scope="row">Negative</th>
             <td>The value is below the mean</td>
             <td>The smaller the score, the further below average it sits.</td>
           </tr>
           <tr>
-            <td>Large absolute value</td>
+            <th scope="row">Large absolute value</th>
             <td>The value is far from the mean</td>
             <td>Useful when you want to spot unusual observations quickly.</td>
           </tr>
@@ -74,12 +86,18 @@
     <div class="stats-example-grid">
       <article class="stats-example-card">
         <h4>Default example</h4>
-        <p>With x = <strong>85</strong>, mean = <strong>75</strong>, and sigma = <strong>10</strong>, the z-score is <strong>1</strong>.</p>
+        <p>
+          With x = <strong>85</strong>, mean = <strong>75</strong>, and sigma = <strong>10</strong>,
+          the z-score is <strong>1</strong>.
+        </p>
         <p>That means the value is one standard deviation above the mean.</p>
       </article>
       <article class="stats-example-card">
         <h4>Below-mean example</h4>
-        <p>If you change the value to <strong>65</strong> while keeping the same mean and sigma, the z-score becomes <strong>-1</strong>.</p>
+        <p>
+          If you change the value to <strong>65</strong> while keeping the same mean and sigma, the
+          z-score becomes <strong>-1</strong>.
+        </p>
       </article>
     </div>
   </section>
@@ -136,9 +154,15 @@
     <h3>Important Notes</h3>
     <ul class="stats-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Formula rule:</strong> The route uses the standard z-score formula with one value, one mean, and one standard deviation.</li>
+      <li>
+        <strong>Formula rule:</strong> The route uses the standard z-score formula with one value,
+        one mean, and one standard deviation.
+      </li>
       <li><strong>Validation rule:</strong> Standard deviation must be greater than zero.</li>
-      <li><strong>Use case:</strong> This route is built for quick interpretation, not percentile table lookup.</li>
+      <li>
+        <strong>Use case:</strong> This route is built for quick interpretation, not percentile
+        table lookup.
+      </li>
     </ul>
   </section>
 </div>

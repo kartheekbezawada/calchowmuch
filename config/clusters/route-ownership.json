@@ -114,6 +114,38 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/percentage-calculators/percentage-difference-calculator/",
+      "calculatorId": "percentage-difference",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-percentage-difference-wave10-20260224",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/percentage-calculators/percentage-increase-calculator/",
+      "calculatorId": "percentage-increase",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-percentage-increase-wave11-20260224",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/percentage-calculators/percentage-decrease-calculator/",
+      "calculatorId": "percentage-decrease",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-percentage-decrease-wave12-20260224",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/percentage-calculators/percentage-composition-calculator/",
+      "calculatorId": "percentage-composition",
+      "activeOwnerClusterId": "percentage",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-percentage-composition-wave13-20260224",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/percentage-calculators/reverse-percentage-calculator/",
       "calculatorId": "reverse-percentage",
       "activeOwnerClusterId": "percentage",

@@ -4,16 +4,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Number Sequence Calculator | Arithmetic &amp; Geometric</title>
-    <meta name="description" content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator." />
+    <meta
+      name="description"
+      content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator."
+    />
     <link rel="canonical" href="https://calchowmuch.com/math/number-sequence/" />
     <meta property="og:title" content="Number Sequence Calculator | Arithmetic &amp; Geometric" />
-    <meta property="og:description" content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator." />
+    <meta
+      property="og:description"
+      content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/number-sequence/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Number Sequence Calculator | Arithmetic &amp; Geometric" />
-    <meta name="twitter:description" content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator." />
+    <meta
+      name="twitter:description"
+      content="Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator."
+    />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -367,7 +376,10 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+      #calc-percentage-composition
+        .composition-toggle
+        input:focus-visible
+        + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -888,6 +900,8 @@
         --math-shell-muted: #5e7086;
         --math-shell-accent: #0f766e;
         --math-shell-accent-strong: #0b5a54;
+        --accent: var(--math-shell-accent);
+        --button-active-bg: var(--math-shell-accent-strong);
         --math-shell-highlight: #effcf8;
         --math-shell-chip: rgba(15, 118, 110, 0.12);
         --math-shell-chip-text: #0f5d58;
@@ -902,6 +916,7 @@
       .math-cluster-wrap {
         width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
+        min-width: 0;
       }
 
       .math-cluster-site-header,
@@ -972,6 +987,7 @@
       .math-cluster-center-column {
         width: min(100%, 1120px);
         margin: 0 auto;
+        min-width: 0;
       }
 
       .math-cluster-panel {
@@ -980,13 +996,23 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
+        background: linear-gradient(
+          180deg,
+          var(--math-shell-surface-strong),
+          var(--math-shell-surface)
+        );
         box-shadow: var(--math-shell-shadow);
+        min-width: 0;
       }
 
       .math-cluster-page-header {
         display: grid;
         gap: 12px;
+        min-width: 0;
+      }
+
+      .math-cluster-page-header > * {
+        min-width: 0;
       }
 
       .math-cluster-breadcrumbs {
@@ -1021,6 +1047,7 @@
         font-size: clamp(2rem, 4vw, 3.35rem);
         line-height: 1.05;
         letter-spacing: -0.03em;
+        overflow-wrap: anywhere;
       }
 
       .math-cluster-page-intro {
@@ -1029,11 +1056,19 @@
         font-size: 1.05rem;
         line-height: 1.7;
         color: var(--math-shell-muted);
+        min-width: 0;
+        overflow-wrap: anywhere;
       }
 
       .math-cluster-flow {
         display: grid;
         gap: 28px;
+        min-width: 0;
+      }
+
+      .math-cluster-flow > * {
+        min-width: 0;
+        width: 100%;
       }
 
       .math-cluster-footer-copy {
@@ -1312,324 +1347,658 @@
         }
       }
     </style>
- 
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/number-sequence/#webpage","name":"Number Sequence Calculator | Arithmetic & Geometric","url":"https://calchowmuch.com/math/number-sequence/","description":"Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/number-sequence/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/number-sequence/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/number-sequence/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/number-sequence/#softwareapplication","name":"Number Sequence Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/number-sequence/","description":"Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/number-sequence/#faq","mainEntity":[{"@type":"Question","name":"How many terms do I need?","acceptedAnswer":{"@type":"Answer","text":"You need at least three terms so the route can test whether the difference or ratio stays consistent."}},{"@type":"Question","name":"When should I force arithmetic mode?","acceptedAnswer":{"@type":"Answer","text":"Force arithmetic mode when you already know the list should increase or decrease by one fixed difference."}},{"@type":"Question","name":"What if the route says neither?","acceptedAnswer":{"@type":"Answer","text":"That means the list does not keep one common difference or one common ratio across the supplied terms."}},{"@type":"Question","name":"Can the ratio be negative?","acceptedAnswer":{"@type":"Answer","text":"Yes. A negative ratio produces alternating positive and negative terms if the input terms support that pattern."}},{"@type":"Question","name":"Why does the route limit preview length?","acceptedAnswer":{"@type":"Answer","text":"The preview is capped at fifty terms so the answer card stays readable and avoids oversized result blocks."}},{"@type":"Question","name":"Does it show a series sum too?","acceptedAnswer":{"@type":"Answer","text":"Yes. The answer card reports the sum of the first n terms alongside the nth-term output."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/number-sequence/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Number Sequence Calculator","item":"https://calchowmuch.com/math/number-sequence/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://calchowmuch.com/#website",
+            "url": "https://calchowmuch.com/",
+            "name": "CalcHowMuch",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://calchowmuch.com/#organization",
+            "name": "CalcHowMuch",
+            "url": "https://calchowmuch.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://calchowmuch.com/assets/images/og-default.png"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://calchowmuch.com/math/number-sequence/#webpage",
+            "name": "Number Sequence Calculator | Arithmetic & Geometric",
+            "url": "https://calchowmuch.com/math/number-sequence/",
+            "description": "Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.",
+            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
+            "publisher": { "@id": "https://calchowmuch.com/#organization" },
+            "inLanguage": "en",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://calchowmuch.com/assets/images/og-default.png"
+            },
+            "about": { "@id": "https://calchowmuch.com/math/number-sequence/#softwareapplication" },
+            "mainEntity": {
+              "@id": "https://calchowmuch.com/math/number-sequence/#softwareapplication"
+            },
+            "breadcrumb": { "@id": "https://calchowmuch.com/math/number-sequence/#breadcrumbs" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://calchowmuch.com/math/number-sequence/#softwareapplication",
+            "name": "Number Sequence Calculator",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Web",
+            "url": "https://calchowmuch.com/math/number-sequence/",
+            "description": "Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.",
+            "inLanguage": "en",
+            "provider": { "@id": "https://calchowmuch.com/#organization" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://calchowmuch.com/math/number-sequence/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many terms do I need?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You need at least three terms so the route can test whether the difference or ratio stays consistent."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "When should I force arithmetic mode?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Force arithmetic mode when you already know the list should increase or decrease by one fixed difference."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What if the route says neither?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "That means the list does not keep one common difference or one common ratio across the supplied terms."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can the ratio be negative?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. A negative ratio produces alternating positive and negative terms if the input terms support that pattern."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does the route limit preview length?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The preview is capped at fifty terms so the answer card stays readable and avoids oversized result blocks."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does it show a series sum too?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. The answer card reports the sum of the first n terms alongside the nth-term output."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://calchowmuch.com/math/number-sequence/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://calchowmuch.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Math",
+                "item": "https://calchowmuch.com/math/basic/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Number Sequence Calculator",
+                "item": "https://calchowmuch.com/math/number-sequence/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <style data-math-table-remediation="true">
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap,
+      #calc-critical-points .points-table-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table,
+      #calc-critical-points .points-table-wrap > table {
+        width: max(100%, 34rem);
+      }
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: #132238 !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td,
+      #calc-critical-points .points-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th,
+      #calc-critical-points .points-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      #calc-sample-size .ss-sensitivity-table tbody th,
+      #calc-sample-size .ss-sensitivity-table td {
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--ss-line);
+        vertical-align: top;
+      }
+      #calc-sample-size .ss-sensitivity-table tbody th {
+        color: var(--ss-ink);
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: normal;
+        text-transform: none;
+      }
+      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
+      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
+        background: rgba(248, 252, 255, 0.75);
+      }
+      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
+      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
+        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
+        border-bottom-color: rgba(14, 161, 183, 0.26);
+      }
+      #calc-critical-points .points-table thead th {
+        background: rgba(219, 230, 243, 0.45);
+      }
+      @media (max-width: 900px) {
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap,
+        #calc-critical-points .points-table-wrap {
+          border-radius: 16px;
+        }
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table,
+        #calc-critical-points .points-table-wrap > table {
+          width: max(100%, 32rem);
+        }
+      }
+    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-  <div class="math-cluster-wrap math-cluster-site-header-inner">
-    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-      <span>CalcHowMuch</span>
-    </a>
-    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-    <nav class="math-cluster-site-links" aria-label="Site links">
-      <a href="/">All Calculators</a>
-      <a href="/contact-us/">Contact</a>
-      <a href="/faq/">FAQs</a>
-    </nav>
-  </div>
-</header>
+        <div class="math-cluster-wrap math-cluster-site-header-inner">
+          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+            <span>CalcHowMuch</span>
+          </a>
+          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+          <nav class="math-cluster-site-links" aria-label="Site links">
+            <a href="/">All Calculators</a>
+            <a href="/contact-us/">Contact</a>
+            <a href="/faq/">FAQs</a>
+          </nav>
+        </div>
+      </header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-  <div class="math-cluster-page-header">
-    <div class="math-cluster-breadcrumbs">
-      <a href="/">Home</a>
-      <span>/</span>
-      <a href="/math/basic/">Math</a>
-      <span>/</span>
-      <span>Number Sequence Calculator</span>
-    </div>
-    <span class="math-cluster-page-kicker">Math Calculator</span>
-    <h1 id="calculator-title">Number Sequence Calculator</h1>
-    <p class="math-cluster-page-intro">Identify arithmetic or geometric patterns, calculate the nth term, and preview future values in a light answer-first sequence calculator.</p>
-  </div>
-  <div class="calculator-page-single math-cluster-flow">
-    <div id="calc-number-sequence">
-  <div class="sequence-shell">
-    <section class="sequence-card sequence-hero-card" aria-label="Number sequence overview">
-      <div class="sequence-hero-copy">
-        <p class="sequence-eyebrow">Simple Smooth Wow</p>
-        <h2 class="sequence-title">Check the pattern, jump to the nth term, and preview the next values without leaving the first screen.</h2>
-        <p class="sequence-subtitle">
-          Paste three or more terms, keep auto-detect on when the pattern is obvious, or force
-          arithmetic versus geometric mode when you want a quick answer card with the rule and sum
-          together.
-        </p>
-      </div>
-      <ul class="sequence-hero-points">
-        <li>Shows the sequence type, nth term, and running sum in one answer-first view.</li>
-        <li>Keeps the preview list beside the answer so you can verify the pattern immediately.</li>
-        <li>Stays light, uncluttered, and usable before any explanation scrolling starts.</li>
-      </ul>
-    </section>
+            <div class="math-cluster-page-header">
+              <div class="math-cluster-breadcrumbs">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="/math/basic/">Math</a>
+                <span>/</span>
+                <span>Number Sequence Calculator</span>
+              </div>
+              <span class="math-cluster-page-kicker">Math Calculator</span>
+              <h1 id="calculator-title">Number Sequence Calculator</h1>
+              <p class="math-cluster-page-intro">
+                Identify arithmetic or geometric patterns, calculate the nth term, and preview
+                future values in a light answer-first sequence calculator.
+              </p>
+            </div>
+            <div class="calculator-page-single math-cluster-flow">
+              <div id="calc-number-sequence">
+                <div class="sequence-shell">
+                  <section
+                    class="sequence-card sequence-hero-card"
+                    aria-label="Number sequence overview"
+                  >
+                    <div class="sequence-hero-copy">
+                      <p class="sequence-eyebrow">Simple Smooth Wow</p>
+                      <h2 class="sequence-title">
+                        Check the pattern, jump to the nth term, and preview the next values without
+                        leaving the first screen.
+                      </h2>
+                      <p class="sequence-subtitle">
+                        Paste three or more terms, keep auto-detect on when the pattern is obvious,
+                        or force arithmetic versus geometric mode when you want a quick answer card
+                        with the rule and sum together.
+                      </p>
+                    </div>
+                    <ul class="sequence-hero-points">
+                      <li>
+                        Shows the sequence type, nth term, and running sum in one answer-first view.
+                      </li>
+                      <li>
+                        Keeps the preview list beside the answer so you can verify the pattern
+                        immediately.
+                      </li>
+                      <li>
+                        Stays light, uncluttered, and usable before any explanation scrolling
+                        starts.
+                      </li>
+                    </ul>
+                  </section>
 
-    <div class="sequence-workbench">
-      <section class="sequence-card sequence-input-card" aria-label="Sequence inputs">
-        <div class="sequence-card-head">
-          <div>
-            <p class="sequence-section-label">Inputs</p>
-            <p class="sequence-card-title">Enter the terms and choose how the rule should be read</p>
-          </div>
-          <span class="sequence-chip">Pattern check</span>
-        </div>
+                  <div class="sequence-workbench">
+                    <section class="sequence-card sequence-input-card" aria-label="Sequence inputs">
+                      <div class="sequence-card-head">
+                        <div>
+                          <p class="sequence-section-label">Inputs</p>
+                          <p class="sequence-card-title">
+                            Enter the terms and choose how the rule should be read
+                          </p>
+                        </div>
+                        <span class="sequence-chip">Pattern check</span>
+                      </div>
 
-        <label class="sequence-field" for="seq-terms">
-          <span>Sequence terms</span>
-          <textarea
-            id="seq-terms"
-            rows="5"
-            placeholder="Enter at least 3 terms (for example 2, 4, 6, 8, 10)"
-          >
+                      <label class="sequence-field" for="seq-terms">
+                        <span>Sequence terms</span>
+                        <textarea
+                          id="seq-terms"
+                          rows="5"
+                          placeholder="Enter at least 3 terms (for example 2, 4, 6, 8, 10)"
+                        >
 2, 4, 6, 8, 10</textarea
-          >
-          <small>Use commas, spaces, or line breaks. The route reads at least three values.</small>
-        </label>
+                        >
+                        <small
+                          >Use commas, spaces, or line breaks. The route reads at least three
+                          values.</small
+                        >
+                      </label>
 
-        <div class="sequence-field">
-          <span id="seq-type-label">Sequence type</span>
-          <div
-            class="button-group sequence-button-group"
-            role="group"
-            aria-labelledby="seq-type-label"
-            data-button-group="seq-type"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="auto"
-              aria-pressed="true"
-            >
-              Auto detect
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="arithmetic"
-              aria-pressed="false"
-            >
-              Arithmetic
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="geometric"
-              aria-pressed="false"
-            >
-              Geometric
-            </button>
+                      <div class="sequence-field">
+                        <span id="seq-type-label">Sequence type</span>
+                        <div
+                          class="button-group sequence-button-group"
+                          role="group"
+                          aria-labelledby="seq-type-label"
+                          data-button-group="seq-type"
+                        >
+                          <button
+                            class="calculator-button secondary is-active"
+                            type="button"
+                            data-value="auto"
+                            aria-pressed="true"
+                          >
+                            Auto detect
+                          </button>
+                          <button
+                            class="calculator-button secondary"
+                            type="button"
+                            data-value="arithmetic"
+                            aria-pressed="false"
+                          >
+                            Arithmetic
+                          </button>
+                          <button
+                            class="calculator-button secondary"
+                            type="button"
+                            data-value="geometric"
+                            aria-pressed="false"
+                          >
+                            Geometric
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="sequence-two-up">
+                        <label class="sequence-field" for="seq-n">
+                          <span>Term index (n)</span>
+                          <input id="seq-n" type="number" value="10" min="1" step="1" />
+                        </label>
+                        <label class="sequence-field" for="seq-k">
+                          <span>Preview length (k)</span>
+                          <input id="seq-k" type="number" value="10" min="1" max="50" step="1" />
+                        </label>
+                      </div>
+
+                      <button
+                        class="calculator-button sequence-calc-button"
+                        type="button"
+                        id="seq-calculate"
+                      >
+                        Calculate sequence
+                      </button>
+                    </section>
+
+                    <section
+                      class="sequence-card sequence-answer-card"
+                      aria-label="Sequence answer"
+                    >
+                      <div class="sequence-card-head">
+                        <div>
+                          <p class="sequence-section-label">Answer</p>
+                          <p class="sequence-card-title">Pattern verdict, nth term, and preview</p>
+                        </div>
+                        <span class="sequence-chip sequence-chip--answer">Nth term</span>
+                      </div>
+
+                      <div
+                        class="result sequence-result-card"
+                        id="seq-result"
+                        aria-live="polite"
+                      ></div>
+                      <div
+                        class="result-detail sequence-detail-card"
+                        id="seq-detail"
+                        aria-live="polite"
+                      ></div>
+
+                      <div class="sequence-snapshot-grid" aria-label="Sequence workflow summary">
+                        <article class="sequence-snapshot-card">
+                          <span>Primary output</span>
+                          <strong>Type and nth term</strong>
+                        </article>
+                        <article class="sequence-snapshot-card">
+                          <span>Verification</span>
+                          <strong>Running sum and preview</strong>
+                        </article>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+
+              <div id="sequence-explanation">
+                <section class="sequence-exp-section">
+                  <h2>Number Sequence Calculator Practical Guide</h2>
+                  <p>
+                    Use this calculator to identify whether a list behaves like an arithmetic or
+                    geometric sequence, then read the nth term, first-k preview, and running sum in
+                    one answer-first view. It is built for quick classwork checks, growth-pattern
+                    reviews, and simple recurrence verification without legacy shell clutter.
+                  </p>
+                  <ul class="sequence-summary-list">
+                    <li>
+                      <strong>Best for:</strong> arithmetic and geometric pattern checks from a
+                      short list of terms.
+                    </li>
+                    <li>
+                      <strong>Quick answer flow:</strong> paste the terms, keep auto-detect on, and
+                      read the answer card first.
+                    </li>
+                    <li>
+                      <strong>Output includes:</strong> sequence type, nth term, pattern rule,
+                      running sum, and preview list.
+                    </li>
+                  </ul>
+                </section>
+
+                <section class="sequence-exp-section">
+                  <h3>How to Guide</h3>
+                  <ol>
+                    <li>Paste at least three terms using commas, spaces, or line breaks.</li>
+                    <li>
+                      Leave <strong>Auto detect</strong> on unless you already know the route should
+                      be arithmetic or geometric.
+                    </li>
+                    <li>
+                      Set <strong>n</strong> for the target term and <strong>k</strong> for the
+                      preview length.
+                    </li>
+                    <li>
+                      Click <strong>Calculate sequence</strong> and read the pattern verdict before
+                      trusting the nth term.
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="sequence-exp-section">
+                  <h3>Quick Answer Table</h3>
+                  <div class="sequence-table-wrap">
+                    <table class="sequence-summary-table">
+                      <caption class="math-cluster-visually-hidden">
+                        Quick answer table for the number sequence calculator
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Pattern</th>
+                          <th scope="col">Rule</th>
+                          <th scope="col">Best use</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Arithmetic</th>
+                          <td>Add the same difference each step</td>
+                          <td>Linear growth, steady payment steps, equal spacing</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Geometric</th>
+                          <td>Multiply by the same ratio each step</td>
+                          <td>Compound growth, repeated scaling, exponential change</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Neither</th>
+                          <td>No stable common difference or ratio</td>
+                          <td>Signals that the input list needs a different model</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section class="sequence-exp-section">
+                  <h3>Formula Guide</h3>
+                  <p>
+                    Arithmetic sequences use
+                    <strong>a<sub>n</sub> = a<sub>1</sub> + (n - 1)d</strong> and
+                    <strong>S<sub>n</sub> = n / 2 × (2a<sub>1</sub> + (n - 1)d)</strong>. Geometric
+                    sequences use
+                    <strong>a<sub>n</sub> = a<sub>1</sub> × r<sup>n-1</sup></strong> and
+                    <strong>S<sub>n</sub> = a<sub>1</sub>(1 - r<sup>n</sup>) / (1 - r)</strong> when
+                    <strong>r ≠ 1</strong>.
+                  </p>
+                </section>
+
+                <section class="sequence-exp-section">
+                  <h3>Worked Example</h3>
+                  <div class="sequence-example-grid">
+                    <article class="sequence-example-card">
+                      <h4>Default arithmetic list</h4>
+                      <p>
+                        The default list <strong>2, 4, 6, 8, 10</strong> has a common difference of
+                        <strong>2</strong>.
+                      </p>
+                      <p>
+                        For <strong>n = 10</strong>, the nth term is <strong>20</strong> and the sum
+                        of the first ten terms is <strong>110</strong>.
+                      </p>
+                    </article>
+                    <article class="sequence-example-card">
+                      <h4>Quick geometric check</h4>
+                      <p>
+                        With <strong>2, 6, 18, 54</strong>, the common ratio is <strong>3</strong>.
+                      </p>
+                      <p>
+                        That makes the fifth term <strong>162</strong>, which is a fast way to
+                        project repeated growth.
+                      </p>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="sequence-exp-section" id="sequence-faq">
+                  <h3>FAQ</h3>
+                  <div class="sequence-faq-grid">
+                    <article class="faq-card">
+                      <h4>How many terms do I need?</h4>
+                      <p>
+                        You need at least three terms so the route can test whether the difference
+                        or ratio stays consistent.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>When should I force arithmetic mode?</h4>
+                      <p>
+                        Force arithmetic mode when you already know the list should increase or
+                        decrease by one fixed difference.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>What if the route says neither?</h4>
+                      <p>
+                        That means the list does not keep one common difference or one common ratio
+                        across the supplied terms.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>Can the ratio be negative?</h4>
+                      <p>
+                        Yes. A negative ratio produces alternating positive and negative terms if
+                        the input terms support that pattern.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>Why does the route limit preview length?</h4>
+                      <p>
+                        The preview is capped at fifty terms so the answer card stays readable and
+                        avoids oversized result blocks.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>Does it show a series sum too?</h4>
+                      <p>
+                        Yes. The answer card reports the sum of the first n terms alongside the
+                        nth-term output.
+                      </p>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="sequence-exp-section">
+                  <h3>Related Calculators</h3>
+                  <div class="sequence-related-grid">
+                    <a class="sequence-related-card" href="/math/permutation-combination/">
+                      <strong>Permutation &amp; Combination Calculator</strong>
+                      <span
+                        >Move from ordered patterns into counting arrangements and selections.</span
+                      >
+                    </a>
+                    <a class="sequence-related-card" href="/math/probability/">
+                      <strong>Probability Calculator</strong>
+                      <span
+                        >Use counting results as the next step in event and binomial probability
+                        checks.</span
+                      >
+                    </a>
+                    <a class="sequence-related-card" href="/math/mean-median-mode-range/">
+                      <strong>Mean Median Mode Range Calculator</strong>
+                      <span
+                        >Switch from sequence rules to a quick summary of raw dataset
+                        behaviour.</span
+                      >
+                    </a>
+                  </div>
+                </section>
+
+                <section class="sequence-exp-section">
+                  <h3>Important Notes</h3>
+                  <ul class="sequence-notes-list">
+                    <li><strong>Last updated:</strong> March 2026</li>
+                    <li>
+                      <strong>Input rule:</strong> Enter only numeric terms and use at least three
+                      values.
+                    </li>
+                    <li>
+                      <strong>Preview rule:</strong> Preview length is capped at fifty terms to keep
+                      the result readable.
+                    </li>
+                    <li>
+                      <strong>Overflow rule:</strong> Large geometric ratios can exceed safe number
+                      ranges and trigger an error.
+                    </li>
+                  </ul>
+                </section>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="sequence-two-up">
-          <label class="sequence-field" for="seq-n">
-            <span>Term index (n)</span>
-            <input id="seq-n" type="number" value="10" min="1" step="1" />
-          </label>
-          <label class="sequence-field" for="seq-k">
-            <span>Preview length (k)</span>
-            <input id="seq-k" type="number" value="10" min="1" max="50" step="1" />
-          </label>
-        </div>
-
-        <button class="calculator-button sequence-calc-button" type="button" id="seq-calculate">
-          Calculate sequence
-        </button>
-      </section>
-
-      <section class="sequence-card sequence-answer-card" aria-label="Sequence answer">
-        <div class="sequence-card-head">
-          <div>
-            <p class="sequence-section-label">Answer</p>
-            <p class="sequence-card-title">Pattern verdict, nth term, and preview</p>
-          </div>
-          <span class="sequence-chip sequence-chip--answer">Nth term</span>
-        </div>
-
-        <div class="result sequence-result-card" id="seq-result" aria-live="polite"></div>
-        <div class="result-detail sequence-detail-card" id="seq-detail" aria-live="polite"></div>
-
-        <div class="sequence-snapshot-grid" aria-label="Sequence workflow summary">
-          <article class="sequence-snapshot-card">
-            <span>Primary output</span>
-            <strong>Type and nth term</strong>
-          </article>
-          <article class="sequence-snapshot-card">
-            <span>Verification</span>
-            <strong>Running sum and preview</strong>
-          </article>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
-
-
-
-    <div id="sequence-explanation">
-  <section class="sequence-exp-section">
-    <h2>Number Sequence Calculator Practical Guide</h2>
-    <p>
-      Use this calculator to identify whether a list behaves like an arithmetic or geometric
-      sequence, then read the nth term, first-k preview, and running sum in one answer-first view.
-      It is built for quick classwork checks, growth-pattern reviews, and simple recurrence
-      verification without legacy shell clutter.
-    </p>
-    <ul class="sequence-summary-list">
-      <li><strong>Best for:</strong> arithmetic and geometric pattern checks from a short list of terms.</li>
-      <li><strong>Quick answer flow:</strong> paste the terms, keep auto-detect on, and read the answer card first.</li>
-      <li><strong>Output includes:</strong> sequence type, nth term, pattern rule, running sum, and preview list.</li>
-    </ul>
-  </section>
-
-  <section class="sequence-exp-section">
-    <h3>How to Guide</h3>
-    <ol>
-      <li>Paste at least three terms using commas, spaces, or line breaks.</li>
-      <li>Leave <strong>Auto detect</strong> on unless you already know the route should be arithmetic or geometric.</li>
-      <li>Set <strong>n</strong> for the target term and <strong>k</strong> for the preview length.</li>
-      <li>Click <strong>Calculate sequence</strong> and read the pattern verdict before trusting the nth term.</li>
-    </ol>
-  </section>
-
-  <section class="sequence-exp-section">
-    <h3>Quick Answer Table</h3>
-    <div class="sequence-table-wrap">
-      <table class="sequence-summary-table">
-        <thead>
-          <tr>
-            <th>Pattern</th>
-            <th>Rule</th>
-            <th>Best use</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Arithmetic</td>
-            <td>Add the same difference each step</td>
-            <td>Linear growth, steady payment steps, equal spacing</td>
-          </tr>
-          <tr>
-            <td>Geometric</td>
-            <td>Multiply by the same ratio each step</td>
-            <td>Compound growth, repeated scaling, exponential change</td>
-          </tr>
-          <tr>
-            <td>Neither</td>
-            <td>No stable common difference or ratio</td>
-            <td>Signals that the input list needs a different model</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="sequence-exp-section">
-    <h3>Formula Guide</h3>
-    <p>
-      Arithmetic sequences use <strong>a<sub>n</sub> = a<sub>1</sub> + (n - 1)d</strong> and
-      <strong>S<sub>n</sub> = n / 2 × (2a<sub>1</sub> + (n - 1)d)</strong>. Geometric sequences
-      use <strong>a<sub>n</sub> = a<sub>1</sub> × r<sup>n-1</sup></strong> and
-      <strong>S<sub>n</sub> = a<sub>1</sub>(1 - r<sup>n</sup>) / (1 - r)</strong> when
-      <strong>r ≠ 1</strong>.
-    </p>
-  </section>
-
-  <section class="sequence-exp-section">
-    <h3>Worked Example</h3>
-    <div class="sequence-example-grid">
-      <article class="sequence-example-card">
-        <h4>Default arithmetic list</h4>
-        <p>The default list <strong>2, 4, 6, 8, 10</strong> has a common difference of <strong>2</strong>.</p>
-        <p>For <strong>n = 10</strong>, the nth term is <strong>20</strong> and the sum of the first ten terms is <strong>110</strong>.</p>
-      </article>
-      <article class="sequence-example-card">
-        <h4>Quick geometric check</h4>
-        <p>With <strong>2, 6, 18, 54</strong>, the common ratio is <strong>3</strong>.</p>
-        <p>That makes the fifth term <strong>162</strong>, which is a fast way to project repeated growth.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="sequence-exp-section" id="sequence-faq">
-    <h3>FAQ</h3>
-    <div class="sequence-faq-grid">
-      <article class="faq-card">
-        <h4>How many terms do I need?</h4>
-        <p>You need at least three terms so the route can test whether the difference or ratio stays consistent.</p>
-      </article>
-      <article class="faq-card">
-        <h4>When should I force arithmetic mode?</h4>
-        <p>Force arithmetic mode when you already know the list should increase or decrease by one fixed difference.</p>
-      </article>
-      <article class="faq-card">
-        <h4>What if the route says neither?</h4>
-        <p>That means the list does not keep one common difference or one common ratio across the supplied terms.</p>
-      </article>
-      <article class="faq-card">
-        <h4>Can the ratio be negative?</h4>
-        <p>Yes. A negative ratio produces alternating positive and negative terms if the input terms support that pattern.</p>
-      </article>
-      <article class="faq-card">
-        <h4>Why does the route limit preview length?</h4>
-        <p>The preview is capped at fifty terms so the answer card stays readable and avoids oversized result blocks.</p>
-      </article>
-      <article class="faq-card">
-        <h4>Does it show a series sum too?</h4>
-        <p>Yes. The answer card reports the sum of the first n terms alongside the nth-term output.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="sequence-exp-section">
-    <h3>Related Calculators</h3>
-    <div class="sequence-related-grid">
-      <a class="sequence-related-card" href="/math/permutation-combination/">
-        <strong>Permutation &amp; Combination Calculator</strong>
-        <span>Move from ordered patterns into counting arrangements and selections.</span>
-      </a>
-      <a class="sequence-related-card" href="/math/probability/">
-        <strong>Probability Calculator</strong>
-        <span>Use counting results as the next step in event and binomial probability checks.</span>
-      </a>
-      <a class="sequence-related-card" href="/math/mean-median-mode-range/">
-        <strong>Mean Median Mode Range Calculator</strong>
-        <span>Switch from sequence rules to a quick summary of raw dataset behaviour.</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="sequence-exp-section">
-    <h3>Important Notes</h3>
-    <ul class="sequence-notes-list">
-      <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Input rule:</strong> Enter only numeric terms and use at least three values.</li>
-      <li><strong>Preview rule:</strong> Preview length is capped at fifty terms to keep the result readable.</li>
-      <li><strong>Overflow rule:</strong> Large geometric ratios can exceed safe number ranges and trigger an error.</li>
-    </ul>
-  </section>
-</div>
-
-  </div>
-</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-  <div class="math-cluster-wrap math-cluster-site-footer-inner">
-    <nav class="math-cluster-footer-links" aria-label="Footer links">
-      <a href="/privacy/">Privacy</a>
-      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-      <a href="/contact-us/">Contact</a>
-      <a href="/about-us/">About Us</a>
-      <a href="/faq/">FAQs</a>
-      <a href="/sitemap.xml">Sitemap</a>
-    </nav>
-    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
-  </div>
-</footer>
+        <div class="math-cluster-wrap math-cluster-site-footer-inner">
+          <nav class="math-cluster-footer-links" aria-label="Footer links">
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+            <a href="/contact-us/">Contact</a>
+            <a href="/about-us/">About Us</a>
+            <a href="/faq/">FAQs</a>
+            <a href="/sitemap.xml">Sitemap</a>
+          </nav>
+          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
+        </div>
+      </footer>
     </div>
     <script type="module" src="/calculators/math/number-sequence/module.js?v=20260224"></script>
   </body>

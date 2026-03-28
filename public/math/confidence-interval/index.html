@@ -4,16 +4,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Confidence Interval Calculator | Mean &amp; Proportion</title>
-    <meta name="description" content="Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together." />
+    <meta
+      name="description"
+      content="Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together."
+    />
     <link rel="canonical" href="https://calchowmuch.com/math/confidence-interval/" />
     <meta property="og:title" content="Confidence Interval Calculator | Mean &amp; Proportion" />
-    <meta property="og:description" content="Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together." />
+    <meta
+      property="og:description"
+      content="Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/confidence-interval/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Confidence Interval Calculator | Mean &amp; Proportion" />
-    <meta name="twitter:description" content="Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together." />
+    <meta
+      name="twitter:description"
+      content="Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together."
+    />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -367,7 +376,10 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+      #calc-percentage-composition
+        .composition-toggle
+        input:focus-visible
+        + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -888,6 +900,8 @@
         --math-shell-muted: #5e7086;
         --math-shell-accent: #0f766e;
         --math-shell-accent-strong: #0b5a54;
+        --accent: var(--math-shell-accent);
+        --button-active-bg: var(--math-shell-accent-strong);
         --math-shell-highlight: #effcf8;
         --math-shell-chip: rgba(15, 118, 110, 0.12);
         --math-shell-chip-text: #0f5d58;
@@ -902,6 +916,7 @@
       .math-cluster-wrap {
         width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
+        min-width: 0;
       }
 
       .math-cluster-site-header,
@@ -972,6 +987,7 @@
       .math-cluster-center-column {
         width: min(100%, 1120px);
         margin: 0 auto;
+        min-width: 0;
       }
 
       .math-cluster-panel {
@@ -980,13 +996,23 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
+        background: linear-gradient(
+          180deg,
+          var(--math-shell-surface-strong),
+          var(--math-shell-surface)
+        );
         box-shadow: var(--math-shell-shadow);
+        min-width: 0;
       }
 
       .math-cluster-page-header {
         display: grid;
         gap: 12px;
+        min-width: 0;
+      }
+
+      .math-cluster-page-header > * {
+        min-width: 0;
       }
 
       .math-cluster-breadcrumbs {
@@ -1021,6 +1047,7 @@
         font-size: clamp(2rem, 4vw, 3.35rem);
         line-height: 1.05;
         letter-spacing: -0.03em;
+        overflow-wrap: anywhere;
       }
 
       .math-cluster-page-intro {
@@ -1029,11 +1056,19 @@
         font-size: 1.05rem;
         line-height: 1.7;
         color: var(--math-shell-muted);
+        min-width: 0;
+        overflow-wrap: anywhere;
       }
 
       .math-cluster-flow {
         display: grid;
         gap: 28px;
+        min-width: 0;
+      }
+
+      .math-cluster-flow > * {
+        min-width: 0;
+        width: 100%;
       }
 
       .math-cluster-footer-copy {
@@ -1330,349 +1365,678 @@
         }
       }
     </style>
- 
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/confidence-interval/#webpage","name":"Confidence Interval Calculator | Mean & Proportion","url":"https://calchowmuch.com/math/confidence-interval/","description":"Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/confidence-interval/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/confidence-interval/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/confidence-interval/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/confidence-interval/#softwareapplication","name":"Confidence Interval Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/confidence-interval/","description":"Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/confidence-interval/#faq","mainEntity":[{"@type":"Question","name":"What does a confidence interval mean?","acceptedAnswer":{"@type":"Answer","text":"It gives a plausible range for the population value based on your sample and chosen confidence level."}},{"@type":"Question","name":"Why does higher confidence make the interval wider?","acceptedAnswer":{"@type":"Answer","text":"Because the route uses a larger z-value, which increases the margin of error."}},{"@type":"Question","name":"When should I use proportion mode?","acceptedAnswer":{"@type":"Answer","text":"Use proportion mode when the sample result is a percent or share, such as approval rate or conversion rate."}},{"@type":"Question","name":"When should I use mean mode?","acceptedAnswer":{"@type":"Answer","text":"Use mean mode when you are estimating an average and you already know the population standard deviation."}},{"@type":"Question","name":"What narrows the interval?","acceptedAnswer":{"@type":"Answer","text":"A larger sample size or a lower confidence level narrows the interval."}},{"@type":"Question","name":"Can the proportion interval go below 0% or above 100%?","acceptedAnswer":{"@type":"Answer","text":"The route keeps the result inside valid proportion bounds."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/confidence-interval/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Confidence Interval Calculator","item":"https://calchowmuch.com/math/confidence-interval/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://calchowmuch.com/#website",
+            "url": "https://calchowmuch.com/",
+            "name": "CalcHowMuch",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://calchowmuch.com/#organization",
+            "name": "CalcHowMuch",
+            "url": "https://calchowmuch.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://calchowmuch.com/assets/images/og-default.png"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://calchowmuch.com/math/confidence-interval/#webpage",
+            "name": "Confidence Interval Calculator | Mean & Proportion",
+            "url": "https://calchowmuch.com/math/confidence-interval/",
+            "description": "Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.",
+            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
+            "publisher": { "@id": "https://calchowmuch.com/#organization" },
+            "inLanguage": "en",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://calchowmuch.com/assets/images/og-default.png"
+            },
+            "about": {
+              "@id": "https://calchowmuch.com/math/confidence-interval/#softwareapplication"
+            },
+            "mainEntity": {
+              "@id": "https://calchowmuch.com/math/confidence-interval/#softwareapplication"
+            },
+            "breadcrumb": { "@id": "https://calchowmuch.com/math/confidence-interval/#breadcrumbs" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://calchowmuch.com/math/confidence-interval/#softwareapplication",
+            "name": "Confidence Interval Calculator",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Web",
+            "url": "https://calchowmuch.com/math/confidence-interval/",
+            "description": "Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.",
+            "inLanguage": "en",
+            "provider": { "@id": "https://calchowmuch.com/#organization" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://calchowmuch.com/math/confidence-interval/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What does a confidence interval mean?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "It gives a plausible range for the population value based on your sample and chosen confidence level."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does higher confidence make the interval wider?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Because the route uses a larger z-value, which increases the margin of error."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "When should I use proportion mode?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use proportion mode when the sample result is a percent or share, such as approval rate or conversion rate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "When should I use mean mode?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use mean mode when you are estimating an average and you already know the population standard deviation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What narrows the interval?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A larger sample size or a lower confidence level narrows the interval."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can the proportion interval go below 0% or above 100%?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The route keeps the result inside valid proportion bounds."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://calchowmuch.com/math/confidence-interval/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://calchowmuch.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Math",
+                "item": "https://calchowmuch.com/math/basic/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Confidence Interval Calculator",
+                "item": "https://calchowmuch.com/math/confidence-interval/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <style data-math-table-remediation="true">
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap,
+      #calc-critical-points .points-table-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table,
+      #calc-critical-points .points-table-wrap > table {
+        width: max(100%, 34rem);
+      }
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: #132238 !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td,
+      #calc-critical-points .points-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th,
+      #calc-critical-points .points-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      #calc-sample-size .ss-sensitivity-table tbody th,
+      #calc-sample-size .ss-sensitivity-table td {
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--ss-line);
+        vertical-align: top;
+      }
+      #calc-sample-size .ss-sensitivity-table tbody th {
+        color: var(--ss-ink);
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: normal;
+        text-transform: none;
+      }
+      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
+      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
+        background: rgba(248, 252, 255, 0.75);
+      }
+      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
+      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
+        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
+        border-bottom-color: rgba(14, 161, 183, 0.26);
+      }
+      #calc-critical-points .points-table thead th {
+        background: rgba(219, 230, 243, 0.45);
+      }
+      @media (max-width: 900px) {
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap,
+        #calc-critical-points .points-table-wrap {
+          border-radius: 16px;
+        }
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table,
+        #calc-critical-points .points-table-wrap > table {
+          width: max(100%, 32rem);
+        }
+      }
+    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-  <div class="math-cluster-wrap math-cluster-site-header-inner">
-    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-      <span>CalcHowMuch</span>
-    </a>
-    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-    <nav class="math-cluster-site-links" aria-label="Site links">
-      <a href="/">All Calculators</a>
-      <a href="/contact-us/">Contact</a>
-      <a href="/faq/">FAQs</a>
-    </nav>
-  </div>
-</header>
+        <div class="math-cluster-wrap math-cluster-site-header-inner">
+          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+            <span>CalcHowMuch</span>
+          </a>
+          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+          <nav class="math-cluster-site-links" aria-label="Site links">
+            <a href="/">All Calculators</a>
+            <a href="/contact-us/">Contact</a>
+            <a href="/faq/">FAQs</a>
+          </nav>
+        </div>
+      </header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-  <div class="math-cluster-page-header">
-    <div class="math-cluster-breadcrumbs">
-      <a href="/">Home</a>
-      <span>/</span>
-      <a href="/math/basic/">Math</a>
-      <span>/</span>
-      <span>Confidence Interval Calculator</span>
-    </div>
-    <span class="math-cluster-page-kicker">Math Calculator</span>
-    <h1 id="calculator-title">Confidence Interval Calculator</h1>
-    <p class="math-cluster-page-intro">Estimate confidence intervals for sample proportions or known-sigma means in a light answer-first statistics layout with bounds and margin of error together.</p>
-  </div>
-  <div class="calculator-page-single math-cluster-flow">
-    <div id="calc-confidence-interval">
-  <div class="stats-shell">
-    <section class="stats-card stats-hero-card" aria-label="Confidence interval overview">
-      <div class="stats-hero-copy">
-        <p class="stats-eyebrow">Simple Smooth Wow</p>
-        <h2 class="stats-title">Estimate a practical interval around a sample proportion or sample mean without leaving the first screen.</h2>
-        <p class="stats-subtitle">
-          Choose the interval type, set the confidence level, and keep the bounds, margin of error,
-          and formula summary together in one answer-first result.
-        </p>
-      </div>
-      <ul class="stats-hero-points">
-        <li>Best for quick interval estimation on proportions or known-sigma means.</li>
-        <li>The answer card surfaces the lower and upper bounds first.</li>
-        <li>The mode and confidence controls stay visible so you can compare intervals quickly.</li>
-      </ul>
-    </section>
+            <div class="math-cluster-page-header">
+              <div class="math-cluster-breadcrumbs">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="/math/basic/">Math</a>
+                <span>/</span>
+                <span>Confidence Interval Calculator</span>
+              </div>
+              <span class="math-cluster-page-kicker">Math Calculator</span>
+              <h1 id="calculator-title">Confidence Interval Calculator</h1>
+              <p class="math-cluster-page-intro">
+                Estimate confidence intervals for sample proportions or known-sigma means in a light
+                answer-first statistics layout with bounds and margin of error together.
+              </p>
+            </div>
+            <div class="calculator-page-single math-cluster-flow">
+              <div id="calc-confidence-interval">
+                <div class="stats-shell">
+                  <section
+                    class="stats-card stats-hero-card"
+                    aria-label="Confidence interval overview"
+                  >
+                    <div class="stats-hero-copy">
+                      <p class="stats-eyebrow">Simple Smooth Wow</p>
+                      <h2 class="stats-title">
+                        Estimate a practical interval around a sample proportion or sample mean
+                        without leaving the first screen.
+                      </h2>
+                      <p class="stats-subtitle">
+                        Choose the interval type, set the confidence level, and keep the bounds,
+                        margin of error, and formula summary together in one answer-first result.
+                      </p>
+                    </div>
+                    <ul class="stats-hero-points">
+                      <li>
+                        Best for quick interval estimation on proportions or known-sigma means.
+                      </li>
+                      <li>The answer card surfaces the lower and upper bounds first.</li>
+                      <li>
+                        The mode and confidence controls stay visible so you can compare intervals
+                        quickly.
+                      </li>
+                    </ul>
+                  </section>
 
-    <div class="stats-workbench">
-      <section class="stats-card stats-input-card" aria-label="Confidence interval inputs">
-        <div class="stats-card-head">
-          <div>
-            <p class="stats-section-label">Inputs</p>
-            <p class="stats-card-title">Set the interval type, confidence level, and sample values</p>
+                  <div class="stats-workbench">
+                    <section
+                      class="stats-card stats-input-card"
+                      aria-label="Confidence interval inputs"
+                    >
+                      <div class="stats-card-head">
+                        <div>
+                          <p class="stats-section-label">Inputs</p>
+                          <p class="stats-card-title">
+                            Set the interval type, confidence level, and sample values
+                          </p>
+                        </div>
+                        <span class="stats-chip">Answer-first</span>
+                      </div>
+
+                      <div class="stats-mode-row">
+                        <label id="ci-mode-label">Calculation type</label>
+                        <div
+                          class="button-group"
+                          role="group"
+                          aria-labelledby="ci-mode-label"
+                          data-button-group="ci-mode"
+                        >
+                          <button
+                            class="calculator-button secondary is-active"
+                            type="button"
+                            data-value="proportion"
+                            aria-pressed="true"
+                          >
+                            Proportion (p-hat)
+                          </button>
+                          <button
+                            class="calculator-button secondary"
+                            type="button"
+                            data-value="mean"
+                            aria-pressed="false"
+                          >
+                            Mean (x-bar)
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="stats-mode-row">
+                        <label id="ci-confidence-label">Confidence level</label>
+                        <div
+                          class="button-group"
+                          role="group"
+                          aria-labelledby="ci-confidence-label"
+                          data-button-group="ci-confidence"
+                        >
+                          <button
+                            class="calculator-button secondary"
+                            type="button"
+                            data-value="1.645"
+                            aria-pressed="false"
+                          >
+                            90%
+                          </button>
+                          <button
+                            class="calculator-button secondary is-active"
+                            type="button"
+                            data-value="1.96"
+                            aria-pressed="true"
+                          >
+                            95%
+                          </button>
+                          <button
+                            class="calculator-button secondary"
+                            type="button"
+                            data-value="2.576"
+                            aria-pressed="false"
+                          >
+                            99%
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="stats-field-grid">
+                        <label class="stats-field" id="ci-phat-row" for="ci-phat">
+                          <span>Sample proportion p-hat (%)</span>
+                          <input
+                            id="ci-phat"
+                            type="number"
+                            value="60"
+                            min="0"
+                            max="100"
+                            step="0.1"
+                          />
+                        </label>
+
+                        <label
+                          class="stats-field"
+                          id="ci-xbar-row"
+                          for="ci-xbar"
+                          style="display: none"
+                        >
+                          <span>Sample mean (x-bar)</span>
+                          <input id="ci-xbar" type="number" value="50" step="any" />
+                        </label>
+
+                        <label
+                          class="stats-field"
+                          id="ci-sigma-row"
+                          for="ci-sigma"
+                          style="display: none"
+                        >
+                          <span>Population std dev (sigma)</span>
+                          <input id="ci-sigma" type="number" value="10" min="0.0001" step="any" />
+                        </label>
+
+                        <label class="stats-field" for="ci-n">
+                          <span>Sample size (n)</span>
+                          <input id="ci-n" type="number" value="100" min="1" step="1" />
+                        </label>
+                      </div>
+
+                      <button
+                        class="calculator-button stats-calc-button"
+                        type="button"
+                        id="ci-calculate"
+                      >
+                        Calculate confidence interval
+                      </button>
+                    </section>
+
+                    <section
+                      class="stats-card stats-answer-card"
+                      aria-label="Confidence interval answer"
+                    >
+                      <div class="stats-card-head">
+                        <div>
+                          <p class="stats-section-label">Answer</p>
+                          <p class="stats-card-title">
+                            Interval bounds, margin of error, and formula summary
+                          </p>
+                        </div>
+                        <span class="stats-chip stats-chip--answer">Interval estimate</span>
+                      </div>
+
+                      <div class="result stats-result-card" id="ci-result" aria-live="polite"></div>
+                      <div
+                        class="result-detail stats-detail-card"
+                        id="ci-detail"
+                        aria-live="polite"
+                      ></div>
+
+                      <div class="stats-snapshot-grid" aria-label="Interval workflow snapshot">
+                        <article class="stats-snapshot-card">
+                          <span>Modes</span>
+                          <strong>Proportion or mean</strong>
+                        </article>
+                        <article class="stats-snapshot-card">
+                          <span>Outputs</span>
+                          <strong>Bounds, error, formula</strong>
+                        </article>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+
+              <div id="ci-explanation">
+                <section class="stats-exp-section">
+                  <h2>Confidence Interval Calculator Practical Guide</h2>
+                  <p>
+                    Use this calculator to estimate a confidence interval around a sample proportion
+                    or sample mean in one answer-first result. It keeps the lower bound, upper
+                    bound, margin of error, and formula summary together so you can assess the
+                    interval quickly.
+                  </p>
+                  <ul class="stats-summary-list">
+                    <li>
+                      <strong>Best for:</strong> quick interval estimates on sample proportions or
+                      known-sigma means.
+                    </li>
+                    <li>
+                      <strong>Quick answer flow:</strong> choose the mode, set the confidence level,
+                      enter the sample values, and calculate once.
+                    </li>
+                    <li>
+                      <strong>Output includes:</strong> interval bounds, standard error, margin of
+                      error, and formula summary.
+                    </li>
+                  </ul>
+                </section>
+
+                <section class="stats-exp-section">
+                  <h3>How to Guide</h3>
+                  <ol>
+                    <li>
+                      Select <strong>Proportion</strong> for p-hat or <strong>Mean</strong> for
+                      x-bar with known sigma.
+                    </li>
+                    <li>Pick 90%, 95%, or 99% confidence.</li>
+                    <li>
+                      Enter the sample values and click
+                      <strong>Calculate confidence interval</strong>.
+                    </li>
+                    <li>
+                      Read the interval bounds first, then the error and formula notes underneath.
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="stats-exp-section">
+                  <h3>Quick Answer Table</h3>
+                  <div class="stats-table-wrap">
+                    <table class="stats-summary-table">
+                      <caption class="math-cluster-visually-hidden">
+                        Quick answer table for the confidence interval calculator
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Mode</th>
+                          <th scope="col">What it uses</th>
+                          <th scope="col">Quick interpretation</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Proportion</th>
+                          <td>Sample proportion p-hat, sample size, and z-value</td>
+                          <td>Useful for yes/no or success-rate style samples.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Mean</th>
+                          <td>Sample mean, known sigma, sample size, and z-value</td>
+                          <td>Useful when you already know the population standard deviation.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Confidence level</th>
+                          <td>The selected z-value</td>
+                          <td>Higher confidence gives a wider interval.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Margin of error</th>
+                          <td>The distance from the centre to each bound</td>
+                          <td>A smaller margin means a tighter interval.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section class="stats-exp-section">
+                  <h3>Formula Guide</h3>
+                  <p>
+                    For proportions, the route uses <strong>p-hat ± z × sqrt(p(1-p)/n)</strong>. For
+                    means with known sigma, it uses <strong>x-bar ± z × sigma / sqrt(n)</strong>. In
+                    both cases, a larger sample size narrows the interval, while a higher confidence
+                    level widens it.
+                  </p>
+                </section>
+
+                <section class="stats-exp-section">
+                  <h3>Worked Example</h3>
+                  <div class="stats-example-grid">
+                    <article class="stats-example-card">
+                      <h4>Default proportion example</h4>
+                      <p>
+                        With p-hat = <strong>60%</strong>, n = <strong>100</strong>, and 95%
+                        confidence, the interval lands around <strong>50.4%</strong> to
+                        <strong>69.6%</strong>.
+                      </p>
+                    </article>
+                    <article class="stats-example-card">
+                      <h4>Mean example</h4>
+                      <p>
+                        With x-bar = <strong>50</strong>, sigma = <strong>10</strong>, n =
+                        <strong>25</strong>, and 95% confidence, the interval is
+                        <strong>46.08</strong> to <strong>53.92</strong>.
+                      </p>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="stats-exp-section" id="ci-faq">
+                  <h3>FAQ</h3>
+                  <div class="stats-faq-grid">
+                    <article class="faq-card">
+                      <h4>What does a confidence interval mean?</h4>
+                      <p>
+                        It gives a plausible range for the population value based on your sample and
+                        chosen confidence level.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>Why does higher confidence make the interval wider?</h4>
+                      <p>
+                        Because the route uses a larger z-value, which increases the margin of
+                        error.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>When should I use proportion mode?</h4>
+                      <p>
+                        Use proportion mode when the sample result is a percent or share, such as
+                        approval rate or conversion rate.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>When should I use mean mode?</h4>
+                      <p>
+                        Use mean mode when you are estimating an average and you already know the
+                        population standard deviation.
+                      </p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>What narrows the interval?</h4>
+                      <p>A larger sample size or a lower confidence level narrows the interval.</p>
+                    </article>
+                    <article class="faq-card">
+                      <h4>Can the proportion interval go below 0% or above 100%?</h4>
+                      <p>The route keeps the result inside valid proportion bounds.</p>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="stats-exp-section">
+                  <h3>Related Calculators</h3>
+                  <div class="stats-related-grid">
+                    <a class="stats-related-card" href="/math/sample-size/">
+                      <strong>Sample Size Calculator</strong>
+                      <span>Plan the sample before you estimate the interval.</span>
+                    </a>
+                    <a class="stats-related-card" href="/math/z-score/">
+                      <strong>Z-Score Calculator</strong>
+                      <span>Review the standard-score logic behind the z-based interval.</span>
+                    </a>
+                    <a class="stats-related-card" href="/math/standard-deviation/">
+                      <strong>Standard Deviation Calculator</strong>
+                      <span>Check the spread input used in mean-based intervals.</span>
+                    </a>
+                  </div>
+                </section>
+
+                <section class="stats-exp-section">
+                  <h3>Important Notes</h3>
+                  <ul class="stats-notes-list">
+                    <li><strong>Last updated:</strong> March 2026</li>
+                    <li>
+                      <strong>Mode rule:</strong> Mean mode assumes the population standard
+                      deviation is known.
+                    </li>
+                    <li>
+                      <strong>Confidence rule:</strong> Higher confidence widens the interval.
+                    </li>
+                    <li>
+                      <strong>Use case:</strong> This route is built for quick interval estimation,
+                      not for full hypothesis test selection.
+                    </li>
+                  </ul>
+                </section>
+              </div>
+            </div>
           </div>
-          <span class="stats-chip">Answer-first</span>
-        </div>
-
-        <div class="stats-mode-row">
-          <label id="ci-mode-label">Calculation type</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="ci-mode-label"
-            data-button-group="ci-mode"
-          >
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="proportion"
-              aria-pressed="true"
-            >
-              Proportion (p-hat)
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="mean"
-              aria-pressed="false"
-            >
-              Mean (x-bar)
-            </button>
-          </div>
-        </div>
-
-        <div class="stats-mode-row">
-          <label id="ci-confidence-label">Confidence level</label>
-          <div
-            class="button-group"
-            role="group"
-            aria-labelledby="ci-confidence-label"
-            data-button-group="ci-confidence"
-          >
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="1.645"
-              aria-pressed="false"
-            >
-              90%
-            </button>
-            <button
-              class="calculator-button secondary is-active"
-              type="button"
-              data-value="1.96"
-              aria-pressed="true"
-            >
-              95%
-            </button>
-            <button
-              class="calculator-button secondary"
-              type="button"
-              data-value="2.576"
-              aria-pressed="false"
-            >
-              99%
-            </button>
-          </div>
-        </div>
-
-        <div class="stats-field-grid">
-          <label class="stats-field" id="ci-phat-row" for="ci-phat">
-            <span>Sample proportion p-hat (%)</span>
-            <input id="ci-phat" type="number" value="60" min="0" max="100" step="0.1" />
-          </label>
-
-          <label class="stats-field" id="ci-xbar-row" for="ci-xbar" style="display: none">
-            <span>Sample mean (x-bar)</span>
-            <input id="ci-xbar" type="number" value="50" step="any" />
-          </label>
-
-          <label class="stats-field" id="ci-sigma-row" for="ci-sigma" style="display: none">
-            <span>Population std dev (sigma)</span>
-            <input id="ci-sigma" type="number" value="10" min="0.0001" step="any" />
-          </label>
-
-          <label class="stats-field" for="ci-n">
-            <span>Sample size (n)</span>
-            <input id="ci-n" type="number" value="100" min="1" step="1" />
-          </label>
-        </div>
-
-        <button class="calculator-button stats-calc-button" type="button" id="ci-calculate">
-          Calculate confidence interval
-        </button>
-      </section>
-
-      <section class="stats-card stats-answer-card" aria-label="Confidence interval answer">
-        <div class="stats-card-head">
-          <div>
-            <p class="stats-section-label">Answer</p>
-            <p class="stats-card-title">Interval bounds, margin of error, and formula summary</p>
-          </div>
-          <span class="stats-chip stats-chip--answer">Interval estimate</span>
-        </div>
-
-        <div class="result stats-result-card" id="ci-result" aria-live="polite"></div>
-        <div class="result-detail stats-detail-card" id="ci-detail" aria-live="polite"></div>
-
-        <div class="stats-snapshot-grid" aria-label="Interval workflow snapshot">
-          <article class="stats-snapshot-card">
-            <span>Modes</span>
-            <strong>Proportion or mean</strong>
-          </article>
-          <article class="stats-snapshot-card">
-            <span>Outputs</span>
-            <strong>Bounds, error, formula</strong>
-          </article>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
-
-
-
-    <div id="ci-explanation">
-  <section class="stats-exp-section">
-    <h2>Confidence Interval Calculator Practical Guide</h2>
-    <p>
-      Use this calculator to estimate a confidence interval around a sample proportion or sample
-      mean in one answer-first result. It keeps the lower bound, upper bound, margin of error, and
-      formula summary together so you can assess the interval quickly.
-    </p>
-    <ul class="stats-summary-list">
-      <li><strong>Best for:</strong> quick interval estimates on sample proportions or known-sigma means.</li>
-      <li><strong>Quick answer flow:</strong> choose the mode, set the confidence level, enter the sample values, and calculate once.</li>
-      <li><strong>Output includes:</strong> interval bounds, standard error, margin of error, and formula summary.</li>
-    </ul>
-  </section>
-
-  <section class="stats-exp-section">
-    <h3>How to Guide</h3>
-    <ol>
-      <li>Select <strong>Proportion</strong> for p-hat or <strong>Mean</strong> for x-bar with known sigma.</li>
-      <li>Pick 90%, 95%, or 99% confidence.</li>
-      <li>Enter the sample values and click <strong>Calculate confidence interval</strong>.</li>
-      <li>Read the interval bounds first, then the error and formula notes underneath.</li>
-    </ol>
-  </section>
-
-  <section class="stats-exp-section">
-    <h3>Quick Answer Table</h3>
-    <div class="stats-table-wrap">
-      <table class="stats-summary-table">
-        <thead>
-          <tr>
-            <th>Mode</th>
-            <th>What it uses</th>
-            <th>Quick interpretation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Proportion</td>
-            <td>Sample proportion p-hat, sample size, and z-value</td>
-            <td>Useful for yes/no or success-rate style samples.</td>
-          </tr>
-          <tr>
-            <td>Mean</td>
-            <td>Sample mean, known sigma, sample size, and z-value</td>
-            <td>Useful when you already know the population standard deviation.</td>
-          </tr>
-          <tr>
-            <td>Confidence level</td>
-            <td>The selected z-value</td>
-            <td>Higher confidence gives a wider interval.</td>
-          </tr>
-          <tr>
-            <td>Margin of error</td>
-            <td>The distance from the centre to each bound</td>
-            <td>A smaller margin means a tighter interval.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="stats-exp-section">
-    <h3>Formula Guide</h3>
-    <p>
-      For proportions, the route uses <strong>p-hat ± z × sqrt(p(1-p)/n)</strong>. For means with
-      known sigma, it uses <strong>x-bar ± z × sigma / sqrt(n)</strong>. In both cases, a larger
-      sample size narrows the interval, while a higher confidence level widens it.
-    </p>
-  </section>
-
-  <section class="stats-exp-section">
-    <h3>Worked Example</h3>
-    <div class="stats-example-grid">
-      <article class="stats-example-card">
-        <h4>Default proportion example</h4>
-        <p>With p-hat = <strong>60%</strong>, n = <strong>100</strong>, and 95% confidence, the interval lands around <strong>50.4%</strong> to <strong>69.6%</strong>.</p>
-      </article>
-      <article class="stats-example-card">
-        <h4>Mean example</h4>
-        <p>With x-bar = <strong>50</strong>, sigma = <strong>10</strong>, n = <strong>25</strong>, and 95% confidence, the interval is <strong>46.08</strong> to <strong>53.92</strong>.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="stats-exp-section" id="ci-faq">
-    <h3>FAQ</h3>
-    <div class="stats-faq-grid">
-      <article class="faq-card">
-        <h4>What does a confidence interval mean?</h4>
-        <p>It gives a plausible range for the population value based on your sample and chosen confidence level.</p>
-      </article>
-      <article class="faq-card">
-        <h4>Why does higher confidence make the interval wider?</h4>
-        <p>Because the route uses a larger z-value, which increases the margin of error.</p>
-      </article>
-      <article class="faq-card">
-        <h4>When should I use proportion mode?</h4>
-        <p>Use proportion mode when the sample result is a percent or share, such as approval rate or conversion rate.</p>
-      </article>
-      <article class="faq-card">
-        <h4>When should I use mean mode?</h4>
-        <p>Use mean mode when you are estimating an average and you already know the population standard deviation.</p>
-      </article>
-      <article class="faq-card">
-        <h4>What narrows the interval?</h4>
-        <p>A larger sample size or a lower confidence level narrows the interval.</p>
-      </article>
-      <article class="faq-card">
-        <h4>Can the proportion interval go below 0% or above 100%?</h4>
-        <p>The route keeps the result inside valid proportion bounds.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="stats-exp-section">
-    <h3>Related Calculators</h3>
-    <div class="stats-related-grid">
-      <a class="stats-related-card" href="/math/sample-size/">
-        <strong>Sample Size Calculator</strong>
-        <span>Plan the sample before you estimate the interval.</span>
-      </a>
-      <a class="stats-related-card" href="/math/z-score/">
-        <strong>Z-Score Calculator</strong>
-        <span>Review the standard-score logic behind the z-based interval.</span>
-      </a>
-      <a class="stats-related-card" href="/math/standard-deviation/">
-        <strong>Standard Deviation Calculator</strong>
-        <span>Check the spread input used in mean-based intervals.</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="stats-exp-section">
-    <h3>Important Notes</h3>
-    <ul class="stats-notes-list">
-      <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Mode rule:</strong> Mean mode assumes the population standard deviation is known.</li>
-      <li><strong>Confidence rule:</strong> Higher confidence widens the interval.</li>
-      <li><strong>Use case:</strong> This route is built for quick interval estimation, not for full hypothesis test selection.</li>
-    </ul>
-  </section>
-</div>
-
-  </div>
-</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-  <div class="math-cluster-wrap math-cluster-site-footer-inner">
-    <nav class="math-cluster-footer-links" aria-label="Footer links">
-      <a href="/privacy/">Privacy</a>
-      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-      <a href="/contact-us/">Contact</a>
-      <a href="/about-us/">About Us</a>
-      <a href="/faq/">FAQs</a>
-      <a href="/sitemap.xml">Sitemap</a>
-    </nav>
-    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
-  </div>
-</footer>
+        <div class="math-cluster-wrap math-cluster-site-footer-inner">
+          <nav class="math-cluster-footer-links" aria-label="Footer links">
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+            <a href="/contact-us/">Contact</a>
+            <a href="/about-us/">About Us</a>
+            <a href="/faq/">FAQs</a>
+            <a href="/sitemap.xml">Sitemap</a>
+          </nav>
+          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
+        </div>
+      </footer>
     </div>
     <script type="module" src="/calculators/math/confidence-interval/module.js?v=20260224"></script>
   </body>

@@ -12,8 +12,7 @@ function isValidDate(value) {
 }
 
 function toStartOfDay(date) {
-  // Treat date as a date-only value in UTC to avoid timezone edges around midnight/DST.
-  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 function diffInDays(start, end) {

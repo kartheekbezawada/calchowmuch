@@ -4,7 +4,9 @@
       <p class="ss-kicker">Research sample planner</p>
       <div class="ss-intro-layout">
         <div class="ss-intro-copy">
-          <h2 class="ss-intro-title">Calculate a defensible sample target without reading the whole guide first.</h2>
+          <h2 class="ss-intro-title">
+            Calculate a defensible sample target without reading the whole guide first.
+          </h2>
           <p class="ss-intro-text">
             Pick the study type, set confidence and margin, and use the result card to brief your
             fieldwork plan before you drop into the deeper formulas and examples.
@@ -43,12 +45,7 @@
         >
           Proportion study
         </button>
-        <button
-          class="ss-mode-button"
-          type="button"
-          data-value="mean"
-          aria-selected="false"
-        >
+        <button class="ss-mode-button" type="button" data-value="mean" aria-selected="false">
           Mean study
         </button>
       </div>
@@ -59,8 +56,8 @@
         <div class="ss-card-head">
           <p class="ss-section-label">Core inputs</p>
           <p class="ss-card-help">
-            Enter the study assumptions, then calculate. Manual edits do not auto-run and the
-            last valid result stays visible.
+            Enter the study assumptions, then calculate. Manual edits do not auto-run and the last
+            valid result stays visible.
           </p>
         </div>
 
@@ -138,7 +135,7 @@
             </label>
           </div>
 
-          <div class="ss-mode-panel" data-mode-panel="mean" hidden>
+          <div class="ss-mode-panel" data-mode-panel="mean" hidden="">
             <label class="ss-field" data-field="sigma" for="ss-sigma">
               <span>Population standard deviation</span>
               <input
@@ -241,7 +238,9 @@
             sign-off.
           </p>
         </div>
-        <p class="ss-presets-note">Cards outside the active mode stay available but visually secondary.</p>
+        <p class="ss-presets-note">
+          Cards outside the active mode stay available but visually secondary.
+        </p>
       </div>
 
       <div class="ss-preset-grid">
@@ -300,7 +299,9 @@
       <section class="ss-card ss-assumptions-card">
         <div class="ss-card-head">
           <p class="ss-section-label">Interpretation</p>
-          <p class="ss-card-help">Protocol-ready wording plus the assumptions behind the estimate.</p>
+          <p class="ss-card-help">
+            Protocol-ready wording plus the assumptions behind the estimate.
+          </p>
         </div>
         <div class="ss-interpretation-panel">
           <p class="ss-interpretation" id="ss-interpretation">
@@ -308,9 +309,7 @@
           </p>
         </div>
         <ul class="ss-assumption-list" id="ss-assumptions">
-          <li class="ss-assumption-item">
-            Choose a study mode that matches the planned outcome.
-          </li>
+          <li class="ss-assumption-item">Choose a study mode that matches the planned outcome.</li>
           <li class="ss-assumption-item">
             Use realistic assumptions before you commit to a protocol or fieldwork plan.
           </li>
@@ -336,17 +335,20 @@
         <div class="ss-card-head">
           <p class="ss-section-label">Sensitivity table</p>
           <p class="ss-card-help">
-            See how the sample requirement changes as the margin tightens or loosens while the
-            other assumptions stay fixed.
+            See how the sample requirement changes as the margin tightens or loosens while the other
+            assumptions stay fixed.
           </p>
         </div>
         <div class="ss-sensitivity-wrap">
           <table class="ss-sensitivity-table">
+            <caption class="math-cluster-visually-hidden">
+              Sensitivity table showing how required sample size changes as the margin changes
+            </caption>
             <thead>
               <tr>
-                <th id="ss-sensitivity-margin-header">Margin of error</th>
-                <th>Base n0</th>
-                <th>Final n</th>
+                <th id="ss-sensitivity-margin-header" scope="col">Margin of error</th>
+                <th scope="col">Base n0</th>
+                <th scope="col">Final n</th>
               </tr>
             </thead>
             <tbody id="ss-sensitivity-body">
@@ -361,7 +363,6 @@
       </section>
     </div>
   </div>
-
 </div>
 
 <style>

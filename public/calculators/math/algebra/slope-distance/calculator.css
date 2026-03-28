@@ -48,6 +48,18 @@
   gap: 24px;
 }
 
+.slope-shell,
+.slope-card,
+.slope-exp-section,
+.slope-hero-card,
+.slope-hero-card > *,
+.slope-workbench,
+.slope-workbench > *,
+.slope-input-card,
+.slope-answer-card {
+  min-width: 0;
+}
+
 .slope-card,
 .slope-exp-section {
   border: 1px solid var(--slope-border);
@@ -87,6 +99,7 @@
   font-size: clamp(1.65rem, 3vw, 2.35rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
 }
 
 .slope-subtitle,
@@ -101,6 +114,7 @@
 
 .slope-subtitle {
   margin: 12px 0 0;
+  overflow-wrap: anywhere;
 }
 
 .slope-hero-points {
@@ -135,6 +149,7 @@
   justify-content: space-between;
   align-items: start;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .slope-card-title {

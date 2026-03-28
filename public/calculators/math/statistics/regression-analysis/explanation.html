@@ -9,8 +9,14 @@
     </p>
     <ul class="analysis-summary-list">
       <li><strong>Best for:</strong> quick model fitting on paired X and Y data.</li>
-      <li><strong>Quick answer flow:</strong> paste paired values, choose the model, and read equation plus fit metrics together.</li>
-      <li><strong>Output includes:</strong> fitted equation, R-squared, adjusted R-squared, standard error, and coefficient detail where available.</li>
+      <li>
+        <strong>Quick answer flow:</strong> paste paired values, choose the model, and read equation
+        plus fit metrics together.
+      </li>
+      <li>
+        <strong>Output includes:</strong> fitted equation, R-squared, adjusted R-squared, standard
+        error, and coefficient detail where available.
+      </li>
     </ul>
   </section>
 
@@ -18,9 +24,15 @@
     <h3>How to Guide</h3>
     <ol>
       <li>Paste X and Y values with the same number of observations.</li>
-      <li>Start with <strong>Linear</strong>, then compare polynomial, exponential, or logarithmic fits if the relationship is not straight.</li>
+      <li>
+        Start with <strong>Linear</strong>, then compare polynomial, exponential, or logarithmic
+        fits if the relationship is not straight.
+      </li>
       <li>Use the polynomial degree input only when the polynomial model is selected.</li>
-      <li>Click <strong>Perform regression</strong> and compare equation quality with the fit metrics before trusting the model.</li>
+      <li>
+        Click <strong>Perform regression</strong> and compare equation quality with the fit metrics
+        before trusting the model.
+      </li>
     </ol>
   </section>
 
@@ -28,26 +40,29 @@
     <h3>Quick Answer Table</h3>
     <div class="analysis-table-wrap">
       <table class="analysis-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the regression analysis calculator
+        </caption>
         <thead>
           <tr>
-            <th>Model</th>
-            <th>Best use</th>
-            <th>Signal to watch</th>
+            <th scope="col">Model</th>
+            <th scope="col">Best use</th>
+            <th scope="col">Signal to watch</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Linear</td>
+            <th scope="row">Linear</th>
             <td>Roughly straight relationships</td>
             <td>Slope, intercept, and R-squared</td>
           </tr>
           <tr>
-            <td>Polynomial</td>
+            <th scope="row">Polynomial</th>
             <td>Curved relationships</td>
             <td>Improved fit without overcomplicating the degree</td>
           </tr>
           <tr>
-            <td>Exponential / Logarithmic</td>
+            <th scope="row">Exponential / Logarithmic</th>
             <td>Growth, decay, or slowing response patterns</td>
             <td>Whether the transformation matches the underlying shape</td>
           </tr>
@@ -71,12 +86,18 @@
     <div class="analysis-example-grid">
       <article class="analysis-example-card">
         <h4>Default linear fit</h4>
-        <p>The default X and Y values are close to a straight upward trend, so the linear model returns a high R-squared and a simple slope-intercept equation.</p>
+        <p>
+          The default X and Y values are close to a straight upward trend, so the linear model
+          returns a high R-squared and a simple slope-intercept equation.
+        </p>
         <p>That makes the route a fast first stop before you try more flexible models.</p>
       </article>
       <article class="analysis-example-card">
         <h4>When to try a polynomial fit</h4>
-        <p>If the data bends rather than following a straight line, a low-degree polynomial can improve fit without jumping to a more complex workflow.</p>
+        <p>
+          If the data bends rather than following a straight line, a low-degree polynomial can
+          improve fit without jumping to a more complex workflow.
+        </p>
       </article>
     </div>
   </section>
@@ -86,27 +107,44 @@
     <div class="analysis-faq-grid">
       <article class="faq-card">
         <h4>What does R-squared tell me?</h4>
-        <p>It tells you how much of the Y variation is explained by the fitted model, with values closer to 1 indicating a tighter fit.</p>
+        <p>
+          It tells you how much of the Y variation is explained by the fitted model, with values
+          closer to 1 indicating a tighter fit.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why show adjusted R-squared too?</h4>
-        <p>Adjusted R-squared penalizes unnecessary complexity, which helps when you compare linear and higher-degree polynomial models.</p>
+        <p>
+          Adjusted R-squared penalizes unnecessary complexity, which helps when you compare linear
+          and higher-degree polynomial models.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Should I always choose the model with the highest R-squared?</h4>
-        <p>No. A slightly lower but simpler model can be more stable and easier to justify than an overfit curve.</p>
+        <p>
+          No. A slightly lower but simpler model can be more stable and easier to justify than an
+          overfit curve.
+        </p>
       </article>
       <article class="faq-card">
         <h4>When does exponential regression make sense?</h4>
-        <p>It makes sense when the response grows or decays by multiplicative steps rather than equal linear increments.</p>
+        <p>
+          It makes sense when the response grows or decays by multiplicative steps rather than equal
+          linear increments.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why might logarithmic regression fit better?</h4>
-        <p>It often fits relationships where change is rapid at first and then slows as X increases.</p>
+        <p>
+          It often fits relationships where change is rapid at first and then slows as X increases.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Do I still need to inspect residuals?</h4>
-        <p>Yes. A good-looking equation can still hide systematic errors if the residual pattern is not random.</p>
+        <p>
+          Yes. A good-looking equation can still hide systematic errors if the residual pattern is
+          not random.
+        </p>
       </article>
     </div>
   </section>
@@ -134,8 +172,14 @@
     <ul class="analysis-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
       <li><strong>Input rule:</strong> X and Y must contain the same number of numeric values.</li>
-      <li><strong>Model rule:</strong> Higher-degree or transformed fits should be justified by the data shape, not used automatically.</li>
-      <li><strong>Interpretation rule:</strong> A strong fit does not prove the model is causal or stable outside the observed range.</li>
+      <li>
+        <strong>Model rule:</strong> Higher-degree or transformed fits should be justified by the
+        data shape, not used automatically.
+      </li>
+      <li>
+        <strong>Interpretation rule:</strong> A strong fit does not prove the model is causal or
+        stable outside the observed range.
+      </li>
     </ul>
   </section>
 </div>

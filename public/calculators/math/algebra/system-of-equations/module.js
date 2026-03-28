@@ -222,9 +222,9 @@ function showMatrixSteps(a11, a12, b1, a21, a22, b2, x, y, det) {
   stepsHTML += `<ol>`;
   stepsHTML += `<li>Coefficient matrix A and constants vector b:</li>`;
   stepsHTML += `<div class="matrix-display">`;
-  stepsHTML += `A = <table><tr><td>${formatNumber(a11)}</td><td>${formatNumber(a12)}</td></tr>`;
-  stepsHTML += `<tr><td>${formatNumber(a21)}</td><td>${formatNumber(a22)}</td></tr></table>`;
-  stepsHTML += `&nbsp;&nbsp;&nbsp;b = <table><tr><td>${formatNumber(b1)}</td></tr><tr><td>${formatNumber(b2)}</td></tr></table>`;
+  stepsHTML += `A = <table class="system-matrix-table"><caption class="math-cluster-visually-hidden">Coefficient matrix A</caption><tbody><tr><td>${formatNumber(a11)}</td><td>${formatNumber(a12)}</td></tr>`;
+  stepsHTML += `<tr><td>${formatNumber(a21)}</td><td>${formatNumber(a22)}</td></tr></tbody></table>`;
+  stepsHTML += `&nbsp;&nbsp;&nbsp;b = <table class="system-matrix-table"><caption class="math-cluster-visually-hidden">Constants vector b</caption><tbody><tr><td>${formatNumber(b1)}</td></tr><tr><td>${formatNumber(b2)}</td></tr></tbody></table>`;
   stepsHTML += `</div>`;
   stepsHTML += `<li>Calculate determinant: det(A) = ${formatNumber(det)}</li>`;
   stepsHTML += `<li>Using Cramer's rule:<br>`;

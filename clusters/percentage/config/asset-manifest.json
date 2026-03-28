@@ -26,6 +26,86 @@
         ]
       }
     },
+    "/percentage-calculators/percentage-difference-calculator/": {
+      "route": "/percentage-calculators/percentage-difference-calculator/",
+      "calculatorId": "percentage-difference",
+      "clusterId": "percentage",
+      "buildId": "wave10-20260224",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/shared/cluster-light.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/percentage-difference-calculator/module.js"
+        ]
+      }
+    },
+    "/percentage-calculators/percentage-increase-calculator/": {
+      "route": "/percentage-calculators/percentage-increase-calculator/",
+      "calculatorId": "percentage-increase",
+      "clusterId": "percentage",
+      "buildId": "wave11-20260224",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/shared/cluster-light.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/percentage-increase-calculator/module.js"
+        ]
+      }
+    },
+    "/percentage-calculators/percentage-decrease-calculator/": {
+      "route": "/percentage-calculators/percentage-decrease-calculator/",
+      "calculatorId": "percentage-decrease",
+      "clusterId": "percentage",
+      "buildId": "wave12-20260224",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/shared/cluster-light.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/percentage-decrease-calculator/module.js"
+        ]
+      }
+    },
+    "/percentage-calculators/percentage-composition-calculator/": {
+      "route": "/percentage-calculators/percentage-composition-calculator/",
+      "calculatorId": "percentage-composition",
+      "clusterId": "percentage",
+      "buildId": "wave13-20260224",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/shared/cluster-light.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/percentage-calculators/percentage-composition-calculator/module.js"
+        ]
+      }
+    },
     "/percentage-calculators/reverse-percentage-calculator/": {
       "route": "/percentage-calculators/reverse-percentage-calculator/",
       "calculatorId": "reverse-percentage",

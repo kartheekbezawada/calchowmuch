@@ -8,9 +8,18 @@
       pages.
     </p>
     <ul class="analysis-summary-list">
-      <li><strong>Best for:</strong> one-sample, two-sample, paired, and chi-square significance checks.</li>
-      <li><strong>Quick answer flow:</strong> choose the test, paste the data, set alpha, and read the answer card first.</li>
-      <li><strong>Output includes:</strong> test statistic, p-value, degrees of freedom, decision, interval, and effect size where applicable.</li>
+      <li>
+        <strong>Best for:</strong> one-sample, two-sample, paired, and chi-square significance
+        checks.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> choose the test, paste the data, set alpha, and read the
+        answer card first.
+      </li>
+      <li>
+        <strong>Output includes:</strong> test statistic, p-value, degrees of freedom, decision,
+        interval, and effect size where applicable.
+      </li>
     </ul>
   </section>
 
@@ -18,9 +27,15 @@
     <h3>How to Guide</h3>
     <ol>
       <li>Select the test family that matches your data structure.</li>
-      <li>Paste the required sample or frequency values and choose the alternative hypothesis when relevant.</li>
+      <li>
+        Paste the required sample or frequency values and choose the alternative hypothesis when
+        relevant.
+      </li>
       <li>Choose alpha based on how strict the decision rule should be.</li>
-      <li>Click <strong>Run test</strong> and read the decision line together with the p-value and interval context.</li>
+      <li>
+        Click <strong>Run test</strong> and read the decision line together with the p-value and
+        interval context.
+      </li>
     </ol>
   </section>
 
@@ -28,26 +43,29 @@
     <h3>Quick Answer Table</h3>
     <div class="analysis-table-wrap">
       <table class="analysis-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the hypothesis testing calculator
+        </caption>
         <thead>
           <tr>
-            <th>Test type</th>
-            <th>Best use</th>
-            <th>Main question</th>
+            <th scope="col">Test type</th>
+            <th scope="col">Best use</th>
+            <th scope="col">Main question</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>One-sample t</td>
+            <th scope="row">One-sample t</th>
             <td>Compare one sample mean with a target value</td>
             <td>Is this sample mean different from mu0?</td>
           </tr>
           <tr>
-            <td>Two-sample or paired t</td>
+            <th scope="row">Two-sample or paired t</th>
             <td>Compare two mean patterns</td>
             <td>Do the groups or paired differences differ enough to matter?</td>
           </tr>
           <tr>
-            <td>Chi-square</td>
+            <th scope="row">Chi-square</th>
             <td>Observed versus expected category counts</td>
             <td>Do the observed frequencies match the expected pattern?</td>
           </tr>
@@ -71,12 +89,21 @@
     <div class="analysis-example-grid">
       <article class="analysis-example-card">
         <h4>Default one-sample test</h4>
-        <p>The default sample is centred slightly above <strong>100</strong>, so the route checks whether that gap is large relative to the sample spread.</p>
-        <p>The answer card then tells you if the observed difference is strong enough to reject the null at the chosen alpha.</p>
+        <p>
+          The default sample is centred slightly above <strong>100</strong>, so the route checks
+          whether that gap is large relative to the sample spread.
+        </p>
+        <p>
+          The answer card then tells you if the observed difference is strong enough to reject the
+          null at the chosen alpha.
+        </p>
       </article>
       <article class="analysis-example-card">
         <h4>Why keep the confidence interval in view?</h4>
-        <p>The interval gives scale to the decision, which helps you judge not only significance but also the plausible size of the effect.</p>
+        <p>
+          The interval gives scale to the decision, which helps you judge not only significance but
+          also the plausible size of the effect.
+        </p>
       </article>
     </div>
   </section>
@@ -86,27 +113,45 @@
     <div class="analysis-faq-grid">
       <article class="faq-card">
         <h4>What does reject H0 actually mean?</h4>
-        <p>It means the observed data would be unlikely enough under the null assumption that you choose the alternative explanation instead.</p>
+        <p>
+          It means the observed data would be unlikely enough under the null assumption that you
+          choose the alternative explanation instead.
+        </p>
       </article>
       <article class="faq-card">
         <h4>What if the result is not significant?</h4>
-        <p>It means the data did not supply strong enough evidence against the null at the chosen alpha, not that the null is proven true.</p>
+        <p>
+          It means the data did not supply strong enough evidence against the null at the chosen
+          alpha, not that the null is proven true.
+        </p>
       </article>
       <article class="faq-card">
         <h4>When should I use a paired test?</h4>
-        <p>Use a paired test when each value in one sample is naturally matched to a value in the other sample, such as before-and-after measurements.</p>
+        <p>
+          Use a paired test when each value in one sample is naturally matched to a value in the
+          other sample, such as before-and-after measurements.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Why do one-sided and two-sided tests matter?</h4>
-        <p>They change how the evidence is allocated across the tails, so the p-value and decision can differ even with the same sample data.</p>
+        <p>
+          They change how the evidence is allocated across the tails, so the p-value and decision
+          can differ even with the same sample data.
+        </p>
       </article>
       <article class="faq-card">
-        <h4>What does Cohen&apos;s d add to the result?</h4>
-        <p>It gives a scale-free effect size so you can judge whether the difference is tiny, moderate, or large in practical terms.</p>
+        <h4>What does Cohen's d add to the result?</h4>
+        <p>
+          It gives a scale-free effect size so you can judge whether the difference is tiny,
+          moderate, or large in practical terms.
+        </p>
       </article>
       <article class="faq-card">
         <h4>Can a statistically significant result still be unimportant?</h4>
-        <p>Yes. Large samples can make small effects significant, so you should read the effect size and interval as well as the p-value.</p>
+        <p>
+          Yes. Large samples can make small effects significant, so you should read the effect size
+          and interval as well as the p-value.
+        </p>
       </article>
     </div>
   </section>
@@ -124,7 +169,10 @@
       </a>
       <a class="analysis-related-card" href="/math/confidence-interval/">
         <strong>Confidence Interval Calculator</strong>
-        <span>Estimate bounds directly when interval interpretation matters more than the formal reject decision.</span>
+        <span
+          >Estimate bounds directly when interval interpretation matters more than the formal reject
+          decision.</span
+        >
       </a>
     </div>
   </section>
@@ -133,9 +181,18 @@
     <h3>Important Notes</h3>
     <ul class="analysis-notes-list">
       <li><strong>Last updated:</strong> March 2026</li>
-      <li><strong>Input rule:</strong> Samples must contain numeric values, and paired tests require equal sample lengths.</li>
-      <li><strong>Decision rule:</strong> Compare p-value with alpha, then read interval and effect size before making a practical conclusion.</li>
-      <li><strong>Interpretation rule:</strong> Statistical significance does not automatically mean the effect is large or important.</li>
+      <li>
+        <strong>Input rule:</strong> Samples must contain numeric values, and paired tests require
+        equal sample lengths.
+      </li>
+      <li>
+        <strong>Decision rule:</strong> Compare p-value with alpha, then read interval and effect
+        size before making a practical conclusion.
+      </li>
+      <li>
+        <strong>Interpretation rule:</strong> Statistical significance does not automatically mean
+        the effect is large or important.
+      </li>
     </ul>
   </section>
 </div>

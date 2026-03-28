@@ -47,6 +47,18 @@
   gap: 24px;
 }
 
+.system-shell,
+.system-card,
+.system-exp-section,
+.system-hero-card,
+.system-hero-card > *,
+.system-workbench,
+.system-workbench > *,
+.system-input-card,
+.system-answer-card {
+  min-width: 0;
+}
+
 .system-card,
 .system-exp-section {
   border: 1px solid var(--system-border);
@@ -86,6 +98,7 @@
   font-size: clamp(1.65rem, 3vw, 2.35rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
 }
 
 .system-subtitle,
@@ -100,6 +113,7 @@
 
 .system-subtitle {
   margin: 12px 0 0;
+  overflow-wrap: anywhere;
 }
 
 .system-hero-points {
@@ -134,6 +148,7 @@
   justify-content: space-between;
   align-items: start;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .system-card-title {
