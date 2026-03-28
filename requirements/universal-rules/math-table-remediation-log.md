@@ -1,6 +1,7 @@
 # Math Table Remediation Log
 
 ## Scope Lock
+
 - Date: 2026-03-28
 - Release intent: cluster-shared math table semantics and mobile remediation
 - Approved scope:
@@ -17,6 +18,7 @@
   - sitemap/navigation/content work unrelated to touched math routes
 
 ## Confirmed Issue Groups
+
 - Cluster-wide real tables already exist, but their semantics are incomplete:
   - no `<caption>` elements
   - no `scope="col"` on column headers
@@ -29,6 +31,7 @@
 - True faux-table conversions found in public math routes so far: none confirmed.
 
 ## Route Inventory
+
 - Public math routes with table markup discovered during baseline audit:
   - `/math/algebra/factoring/`
   - `/math/algebra/polynomial-operations/`
@@ -68,6 +71,7 @@
   - `/math/z-score/`
 
 ## Baseline Evidence
+
 - Representative screenshots captured before edits:
   - `tmp/math-table-remediation/baseline/permutation-combination__desktop.png`
   - `tmp/math-table-remediation/baseline/permutation-combination__mobile-390.png`
@@ -86,10 +90,52 @@
   - 0 `scope="row"`
 
 ## Current Milestone
-- `in_progress`: shared table system and source semantic normalization
+
+- `completed`: shared table system, semantic normalization, built-route sync, and route audit
+
+## Touched Routes
+
+- All 36 routes listed in the inventory were updated in `public/math/**`.
+- Source/runtime remediation was applied for:
+  - `public/calculators/math/shared/cluster-light.css`
+  - `public/calculators/math/fraction-calculator/calculator.css`
+  - `public/calculators/math/calculus/critical-points/module.js`
+  - `public/calculators/math/calculus/critical-points/calculator.css`
+  - `public/calculators/math/algebra/system-of-equations/module.js`
+  - `public/calculators/math/sample-size/module.js`
+  - `public/calculators/math/sample-size/calculator.css`
+- True faux-table conversions in public math routes: none were required. The cluster issue was semantic/table-presentation debt on real tables.
 
 ## Verification Notes
-- Pending
+
+- `npm run lint`: PASS
+- `CLUSTER=math npm run test:cluster:unit`: PASS
+- `CLUSTER=math npm run test:cluster:e2e`: PASS
+- `CLUSTER=math npm run test:cluster:seo`: PASS
+- `CLUSTER=math npm run test:cluster:cwv`: PASS
+- `CLUSTER=math npm run test:schema:dedupe -- --scope=cluster`: PASS
+- `CLUSTER=math npm run test:cluster:contracts`: PASS
+- `npm run test:isolation:scope`: PASS
+- `npm run test:iss001`: FAIL
+  - Failure mode is global/legacy-shell mismatch, not a math-table regression:
+    - `.left-nav`, `.center-column`, and `.ads-column` selectors are absent on the tested layout
+    - snapshot baseline expects a different full-page shell shape
+  - Evidence:
+    - `test-results/infrastructure-e2e-iss-des-82101-imensions-during-navigation-chromium/`
+    - `test-results/infrastructure-e2e-iss-des-ac836-imensions-during-navigation-chromium/`
+    - `test-results/infrastructure-e2e-iss-des-8cbea-imensions-during-navigation-chromium/`
+    - `test-results/infrastructure-e2e-iss-des-4ebfc-n-visible-during-navigation-chromium/`
+    - `test-results/infrastructure-e2e-iss-des-edb3f-ion---page-layout-stability-chromium/`
+- Route audit: PASS
+  - `tmp/math-table-remediation/final-audit.json`
+  - 36/36 touched routes now have captions, header scopes, the remediation style, and `scrollWidth === clientWidth` at `390px`
+- Before/after screenshot evidence:
+  - `tmp/math-table-remediation/baseline/`
+  - `tmp/math-table-remediation/after/`
 
 ## Deferred Items
-- None yet
+
+- Release readiness is blocked only by the failing global `ISS-001` suite.
+- Scoped generator regeneration was blocked by an out-of-scope repo issue:
+  - `scripts/generate-mpa-pages.js` hard-fails because `requirements/universal-rules/AdSense code snippet.md` is missing
+  - To stay inside the approved scope contract, built outputs were synced directly under `public/math/**` instead of widening into generator fixes
