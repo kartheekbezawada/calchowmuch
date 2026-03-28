@@ -13,9 +13,9 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you calculate a raise?', acceptedAnswer: { '@type': 'Answer', text: 'You can either add a flat raise amount to current salary or multiply current salary by the raise percentage.' } },
-    { '@type': 'Question', name: 'Can I use a percent raise or a flat raise amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The route should support both modes.' } },
+    { '@type': 'Question', name: 'Can I use a percent raise or a flat raise amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator supports both modes.' } },
     { '@type': 'Question', name: 'Does this show my new salary after the raise?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The main result is the new salary after applying the raise.' } },
-    { '@type': 'Question', name: 'Can I see the raise amount separately?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The output should include the raise amount and the resulting percent increase.' } },
+    { '@type': 'Question', name: 'Can I see the raise amount separately?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator also shows the raise amount and the resulting percent increase.' } },
     { '@type': 'Question', name: 'Does this include taxes?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross pay changes only.' } },
   ],
 };

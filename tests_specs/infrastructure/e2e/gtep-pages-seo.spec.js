@@ -18,6 +18,15 @@ function ensureLength(text, min, max) {
 
 const pages = [
   {
+    name: 'About Us',
+    path: '/about-us/',
+    title: 'About CalcHowMuch | Practical Online Calculators',
+    description:
+      'Explore practical calculators for salary, finance, percentages, and time with clear results, examples, and easy-to-understand explanations.',
+    canonical: 'https://calchowmuch.com/about-us/',
+    h1: 'About Us',
+  },
+  {
     name: 'Privacy',
     path: '/privacy/',
     title: 'Privacy Policy | Calculate How Much - Data & Cookies',

@@ -266,6 +266,14 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/salary-calculators/inflation-adjusted-salary-calculator/",
+      "calculatorId": "inflation-adjusted-salary-calculator",
+      "activeOwnerClusterId": "salary",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-salary-inflation-adjusted-20260328",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/car-loan-calculators/car-loan-calculator/",
       "calculatorId": "car-loan",
       "activeOwnerClusterId": "auto-loans",

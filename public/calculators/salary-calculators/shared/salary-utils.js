@@ -346,6 +346,45 @@ export function calculateSalaryCommission({
   };
 }
 
+export function calculateInflationAdjustedSalary({
+  currentSalary,
+  newSalary,
+  annualInflationRate,
+  yearsBetween,
+}) {
+  if (!isPositiveNumber(currentSalary) || !isPositiveNumber(newSalary)) {
+    return null;
+  }
+
+  if (!isNonNegativeNumber(annualInflationRate) || !isNonNegativeNumber(yearsBetween)) {
+    return null;
+  }
+
+  const inflationMultiplier = Math.pow(1 + annualInflationRate / 100, yearsBetween);
+  const requiredSalary = currentSalary * inflationMultiplier;
+  const nominalRaiseAmount = newSalary - currentSalary;
+  const nominalRaisePercent = (nominalRaiseAmount / currentSalary) * 100;
+  const newSalaryInTodayDollars = newSalary / inflationMultiplier;
+  const realRaiseAmount = newSalary - requiredSalary;
+  const realRaisePercent = requiredSalary === 0 ? null : (realRaiseAmount / requiredSalary) * 100;
+  const buyingPowerChange = newSalaryInTodayDollars - currentSalary;
+
+  return {
+    currentSalary,
+    newSalary,
+    annualInflationRate,
+    yearsBetween,
+    inflationMultiplier,
+    requiredSalary,
+    nominalRaiseAmount,
+    nominalRaisePercent,
+    newSalaryInTodayDollars,
+    realRaiseAmount,
+    realRaisePercent,
+    buyingPowerChange,
+  };
+}
+
 export function buildSalaryMetadata({
   title,
   description,

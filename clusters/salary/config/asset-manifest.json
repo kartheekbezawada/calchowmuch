@@ -107,6 +107,19 @@
       "isolationBoundary": "route",
       "css": { "core": [], "route": [], "critical": null },
       "js": { "core": [], "route": ["/calculators/salary-calculators/commission-calculator/module.js"] }
+    },
+    "/salary-calculators/inflation-adjusted-salary-calculator/": {
+      "route": "/salary-calculators/inflation-adjusted-salary-calculator/",
+      "calculatorId": "inflation-adjusted-salary-calculator",
+      "clusterId": "salary",
+      "buildId": "salary-rollout-20260328",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": ["/calculators/salary-calculators/inflation-adjusted-salary-calculator/calculator.css"],
+        "critical": null
+      },
+      "js": { "core": [], "route": ["/calculators/salary-calculators/inflation-adjusted-salary-calculator/module.js"] }
     }
   }
 }

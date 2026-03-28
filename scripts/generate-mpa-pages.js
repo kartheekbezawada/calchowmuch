@@ -32,6 +32,12 @@ const ADSENSE_SNIPPET_PATH = path.join(
   'AdSense code snippet.md'
 );
 const AD_UNIT_SNIPPET_PATH = path.join(ROOT, 'requirements', 'universal-rules', 'Ad Unit Code.md');
+const ABOUT_US_SOURCE_PATH = path.join(
+  ROOT,
+  'requirements',
+  'universal-rules',
+  'About Us.md'
+);
 const ROUTE_BUNDLE_MANIFEST_PATH = path.join(
   PUBLIC_DIR,
   'assets',
@@ -451,6 +457,14 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
     h1: 'Commission Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  'inflation-adjusted-salary-calculator': {
+    title: 'Inflation Adjusted Salary Calculator | Real Raise vs Inflation',
+    description:
+      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise keeps up with inflation.',
+    h1: 'Inflation Adjusted Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -1543,6 +1557,13 @@ function escapeHtmlAttr(value) {
     .replace(/>/g, '&gt;');
 }
 
+function escapeHtmlText(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 function buildTitle(name) {
   const normalizedName = normalizeSeoText(name);
   return `${normalizedName} | Calculate How Much Online Calculator`;
@@ -2592,14 +2613,11 @@ function resolveAssetConfig(assetManifest, routePath) {
 }
 
 function renderManagedHeadAdsenseBlock() {
-  return `${indentBlock(ADSENSE_HEAD_MANAGED_BLOCK, '    ')}\n`;
+  return '';
 }
 
 function renderManagedAdPanel(indent = '          ') {
-  return `${indent}<div class="ad-panel">\n${indentBlock(
-    ADSENSE_SLOT_MANAGED_BLOCK,
-    `${indent}  `
-  )}\n${indent}</div>`;
+  return `${indent}<div class="ad-panel"></div>`;
 }
 
 function stripManagedBlock(html, startMarker, endMarker) {
@@ -2624,7 +2642,7 @@ function normalizeAdSenseHead(html) {
     return normalized;
   }
 
-  return normalized.replace(/^[ \t]*<\/head>/im, `${renderManagedHeadAdsenseBlock()}  </head>`);
+  return normalized;
 }
 
 function normalizeAdPanelSlots(html) {
@@ -2999,6 +3017,7 @@ const SALARY_CLUSTER_REDESIGN_ORDER = [
   'raise-calculator',
   'bonus-calculator',
   'commission-calculator',
+  'inflation-adjusted-salary-calculator',
 ];
 
 PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
@@ -3240,6 +3259,7 @@ function buildCreditCardClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -3271,6 +3291,7 @@ function buildHomeLoanClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -3302,6 +3323,7 @@ function buildAutoLoanClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -3333,6 +3355,7 @@ function buildFinanceClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -3365,6 +3388,7 @@ function buildMathClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -3398,6 +3422,7 @@ function buildTimeAndDateClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
     </nav>
     <span class="td-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
   </div>
@@ -3428,6 +3453,7 @@ function buildPercentageClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -3460,6 +3486,7 @@ function buildPricingClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -3492,6 +3519,7 @@ function buildSalaryClusterFooterHtml() {
       <a href="/privacy/">Privacy</a>
       <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
       <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
       <a href="/faq/">FAQs</a>
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
@@ -5348,6 +5376,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         <a href="/privacy/">Privacy</a>
         <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
         <a href="/contact-us/">Contact</a>
+        <a href="/about-us/">About Us</a>
         <a href="/faq/">FAQs</a>
         <a href="/sitemap.xml">Sitemap</a>
       </nav>
@@ -5359,10 +5388,10 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
 }
 
 function buildGtepFooter() {
-  return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact-us/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/faq/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap.xml">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
+  return `<footer class="gtep-footer">\n  <a href="/privacy/">Privacy</a>\n  <span class="footer-divider">|</span>\n  <a href="/terms-and-conditions/">Terms &amp; Conditions</a>\n  <span class="footer-divider">|</span>\n  <a href="/contact-us/">Contact</a>\n  <span class="footer-divider">|</span>\n  <a href="/about-us/">About Us</a>\n  <span class="footer-divider">|</span>\n  <a href="/faq/">FAQs</a>\n  <span class="footer-divider">|</span>\n  <a href="/sitemap.xml">Sitemap</a>\n  <span class="footer-divider">|</span>\n  <span class="footer-branding">&copy; 2026 @CalcHowMuch</span>\n</footer>`;
 }
 
-function buildGtepPage({ title, description, canonical, bodyHtml }) {
+function buildGtepPage({ title, description, canonical, bodyHtml, structuredData = null, showHomeLink = false }) {
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const headMetaHtml = generateHeadMeta({
     canonicalUrl: canonical,
@@ -5372,7 +5401,13 @@ function buildGtepPage({ title, description, canonical, bodyHtml }) {
     h1: title,
     isCalculatorPage: isCalculatorPathFromCanonical(canonical),
   });
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n${headMetaHtml}\n    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  const structuredDataHtml = structuredData
+    ? `\n    <script type="application/ld+json">${stringifyStructuredData(structuredData)}</script>`
+    : '';
+  const homeLinkHtml = showHomeLink
+    ? '\n        <a href="/" class="gtep-home-link" aria-label="Go to Home Page">← Home</a>'
+    : '';
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n${headMetaHtml}${structuredDataHtml}\n    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">${homeLinkHtml}\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
@@ -5380,6 +5415,7 @@ function buildGtepSitemap(categories) {
           <section>
             <h2>Site Pages</h2>
             <ul>
+              <li><a href="/about-us/">About Us</a></li>
               <li><a href="/privacy/">Privacy</a></li>
               <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
               <li><a href="/contact-us/">Contact</a></li>
@@ -5433,10 +5469,150 @@ function buildGtepSitemap(categories) {
   });
 }
 
+const ABOUT_US_TOP_LEVEL_HEADINGS = new Set([
+  'About CalcHowMuch',
+  'Why CalcHowMuch Exists',
+  'What the Site Covers',
+  'Approach and Design Philosophy',
+  'What Makes the Site Different',
+  'Accuracy and Limitations',
+  'Transparency About How the Site Is Built',
+  'Who Runs CalcHowMuch',
+  'Ongoing Improvements',
+  'What Users Should Get From the Site',
+  'Trust and Responsibility',
+  'Feedback and Corrections',
+  'Final Note',
+]);
+
+const ABOUT_US_SUBHEADINGS = new Set([
+  'Clarity first',
+  'Useful results, not just visible results',
+  'Explanation matters',
+  'Related tools should work together',
+  'Simplicity is a feature',
+]);
+
+function buildAboutUsBodyHtml() {
+  const source = readFile(ABOUT_US_SOURCE_PATH);
+  const blocks = source
+    .split(/\r?\n\s*\r?\n/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  return blocks
+    .map((block, index) => {
+      const lines = block
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      if (!lines.length) {
+        return '';
+      }
+
+      if (index === 0) {
+        const fragments = [`<h1>${escapeHtmlText(lines[0])}</h1>`];
+        const remainingLines = lines.slice(1);
+
+        if (remainingLines.length === 1 && ABOUT_US_TOP_LEVEL_HEADINGS.has(remainingLines[0])) {
+          fragments.push(`<h2>${escapeHtmlText(remainingLines[0])}</h2>`);
+        } else if (
+          remainingLines.length > 1 &&
+          remainingLines.every((line) => !/[.!?]$/.test(line))
+        ) {
+          fragments.push(
+            `<ul>\n${remainingLines
+              .map((line) => `            <li>${escapeHtmlText(line)}</li>`)
+              .join('\n')}\n          </ul>`
+          );
+        } else if (remainingLines.length) {
+          fragments.push(`<p>${escapeHtmlText(remainingLines.join(' '))}</p>`);
+        }
+
+        return fragments.join('\n          ');
+      }
+
+      if (lines.length > 1 && lines.every((line) => !/[.!?]$/.test(line))) {
+        return `<ul>\n${lines
+          .map((line) => `            <li>${escapeHtmlText(line)}</li>`)
+          .join('\n')}\n          </ul>`;
+      }
+
+      if (lines.length === 1 && ABOUT_US_TOP_LEVEL_HEADINGS.has(lines[0])) {
+        return `<h2>${escapeHtmlText(lines[0])}</h2>`;
+      }
+
+      if (lines.length === 1 && ABOUT_US_SUBHEADINGS.has(lines[0])) {
+        return `<h3>${escapeHtmlText(lines[0])}</h3>`;
+      }
+
+      return `<p>${escapeHtmlText(lines.join(' '))}</p>`;
+    })
+    .join('\n          ');
+}
+
+function buildAboutUsStructuredData({ canonical, title, description }) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        alternateName: 'Calculate How Much',
+        url: `${SITE_URL}/`,
+        founder: {
+          '@type': 'Person',
+          name: 'Venkata Kartheek Bezawada',
+        },
+      },
+      {
+        '@type': 'AboutPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: {
+          '@id': `${SITE_URL}/#website`,
+        },
+        about: {
+          '@id': `${SITE_URL}/#organization`,
+        },
+        inLanguage: 'en',
+      },
+    ],
+  };
+}
+
+function buildAboutUsPage() {
+  const title = 'About CalcHowMuch | Practical Online Calculators';
+  const description =
+    'Explore practical calculators for salary, finance, percentages, and time with clear results, examples, and easy-to-understand explanations.';
+  const canonical = buildCanonical('/about-us/');
+
+  return buildGtepPage({
+    title,
+    description,
+    canonical,
+    bodyHtml: buildAboutUsBodyHtml(),
+    structuredData: buildAboutUsStructuredData({ canonical, title, description }),
+    showHomeLink: true,
+  });
+}
+
 function buildSitemapXml(categories) {
   const lastmod = '2026-03-27';
   const staticUrls = [
     { path: '/pricing-calculators/', changefreq: 'monthly', priority: '0.75', lastmod },
+    { path: '/about-us/', changefreq: 'monthly', priority: '0.40', lastmod },
     { path: '/privacy/', changefreq: 'monthly', priority: '0.4', lastmod },
     {
       path: '/terms-and-conditions/',
@@ -5511,6 +5687,7 @@ ${urlItems}
 function main() {
   const scope = parseGenerationScope();
   const shouldWriteRootHomepage = scope.fullSite || scope.targetRoute === '/';
+  const shouldWriteAboutPage = scope.fullSite || scope.targetRoute === '/about-us/';
   const shouldWriteCalculatorIndex = scope.fullSite || scope.targetRoute === '/calculators/';
   const shouldWritePricingClusterLanding =
     scope.fullSite || scope.targetRoute === '/pricing-calculators/';
@@ -5592,6 +5769,7 @@ function main() {
 
   if (
     !selectedEntries.length &&
+    !shouldWriteAboutPage &&
     !shouldWriteRootHomepage &&
     !shouldWriteCalculatorIndex &&
     !shouldWritePricingClusterLanding
@@ -5941,6 +6119,10 @@ function main() {
         robots: 'index,follow',
       })
     );
+  }
+
+  if (shouldWriteAboutPage) {
+    writeFile(path.join(PUBLIC_DIR, 'about-us', 'index.html'), buildAboutUsPage());
   }
 
   if (shouldWriteCalculatorIndex) {

@@ -59,6 +59,7 @@ The cluster should:
 8. `/salary-calculators/raise-calculator/`
 9. `/salary-calculators/bonus-calculator/`
 10. `/salary-calculators/commission-calculator/`
+11. `/salary-calculators/inflation-adjusted-salary-calculator/`
 
 ---
 
@@ -79,6 +80,7 @@ The cluster should:
 - raise calculator
 - bonus calculator
 - commission calculator
+- inflation adjusted salary calculator
 
 ### Query strategy
 
@@ -96,6 +98,7 @@ The cluster should:
 - no region-specific claims unless a separate scoped requirement is approved later
 - each route must preserve full page reload navigation with static `<a href>` links
 - each modified or new calculator route must ship as `calc_exp` with `paneLayout=single`
+- inflation-adjusted salary comparisons must remain user-input driven and must not depend on live inflation feeds unless separately approved
 
 ---
 
@@ -397,10 +400,9 @@ Only after separate approval and maintenance commitment:
 - income tax calculators by country
 - paycheck calculators by pay frequency and jurisdiction
 - contractor day-rate and freelancer rate calculators
-- inflation-adjusted salary calculator
 
 ---
 
 ## Summary
 
-The `salary-calculators` cluster should start as an evergreen salary and earnings-math cluster, not a payroll-rules cluster. The implementation priority is the conversion core first, then earnings support pages, then any future rules-heavy expansion only with separate scope and maintenance approval.
+The `salary-calculators` cluster should start as an evergreen salary and earnings-math cluster, not a payroll-rules cluster. The implementation priority is the conversion core first, then earnings support pages, then low-maintenance decision tools such as inflation-adjusted salary comparison, and only after that any future rules-heavy expansion with separate scope and maintenance approval.
