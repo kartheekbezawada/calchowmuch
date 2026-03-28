@@ -162,6 +162,16 @@
             "sales commission calculator",
             "commission earnings calculator"
           ]
+        },
+        {
+          "id": "inflation-adjusted-salary-calculator",
+          "name": "Inflation Adjusted Salary Calculator",
+          "url": "/salary-calculators/inflation-adjusted-salary-calculator/",
+          "keywords": [
+            "inflation adjusted salary calculator",
+            "real salary calculator",
+            "salary raise vs inflation"
+          ]
         }
       ]
     }

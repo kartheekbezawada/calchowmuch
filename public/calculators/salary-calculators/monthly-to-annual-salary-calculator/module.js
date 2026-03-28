@@ -11,9 +11,9 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you convert monthly salary to annual pay?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply the monthly salary by 12 to estimate annual pay.' } },
-    { '@type': 'Question', name: 'Is yearly salary just monthly pay times 12?', acceptedAnswer: { '@type': 'Answer', text: 'For a simple gross-pay estimate, yes. That is the standard monthly-to-annual conversion.' } },
-    { '@type': 'Question', name: 'Can this show weekly or biweekly pay too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Weekly and biweekly views can be shown as supporting outputs.' } },
-    { '@type': 'Question', name: 'Does this include bonuses or overtime?', acceptedAnswer: { '@type': 'Answer', text: 'No. The route converts the monthly pay figure you enter and does not automatically include bonus or overtime assumptions.' } },
+    { '@type': 'Question', name: 'Is yearly salary just monthly pay times 12?', acceptedAnswer: { '@type': 'Answer', text: 'For a simple gross-pay estimate, yes. That is the standard monthly to annual conversion.' } },
+    { '@type': 'Question', name: 'Can this show weekly or biweekly pay too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator also shows weekly and biweekly pay as support outputs.' } },
+    { '@type': 'Question', name: 'Does this include bonuses or overtime?', acceptedAnswer: { '@type': 'Answer', text: 'No. The calculator converts the monthly pay you enter and does not add bonus or overtime automatically.' } },
     { '@type': 'Question', name: 'Does it show net income?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross annual salary before taxes and deductions.' } },
   ],
 };

@@ -11,8 +11,8 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you convert salary to hourly pay?', acceptedAnswer: { '@type': 'Answer', text: 'Divide the annual salary by weeks worked per year and then divide again by hours worked per week.' } },
-    { '@type': 'Question', name: 'Why does hours per week affect the result?', acceptedAnswer: { '@type': 'Answer', text: 'Because the same salary spread across more or fewer hours produces a different hourly rate.' } },
-    { '@type': 'Question', name: 'Can I also see weekly and monthly pay?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Weekly, biweekly, and monthly pay can be shown alongside the hourly estimate.' } },
+    { '@type': 'Question', name: 'Why does hours per week affect the result?', acceptedAnswer: { '@type': 'Answer', text: 'The same salary spread across more or fewer hours produces a different hourly rate.' } },
+    { '@type': 'Question', name: 'Can I also see weekly and monthly pay?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator shows weekly, biweekly, and monthly pay alongside the hourly estimate.' } },
     { '@type': 'Question', name: 'Does this work for part-time schedules?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculation works for any schedule as long as you enter your own hours per week and weeks per year.' } },
     { '@type': 'Question', name: 'Does this include taxes?', acceptedAnswer: { '@type': 'Answer', text: 'No. The calculator estimates gross hourly pay only.' } },
   ],

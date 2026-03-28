@@ -11,8 +11,8 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you convert annual salary to monthly pay?', acceptedAnswer: { '@type': 'Answer', text: 'Divide the annual salary by 12 to estimate monthly pay.' } },
-    { '@type': 'Question', name: 'Is monthly pay just annual salary divided by 12?', acceptedAnswer: { '@type': 'Answer', text: 'For a simple gross-pay estimate, yes. Additional payroll deductions or irregular payments are not included here.' } },
-    { '@type': 'Question', name: 'Can I also estimate biweekly pay?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The route can also show biweekly and weekly pay views from the same annual salary input.' } },
+    { '@type': 'Question', name: 'Is monthly pay just annual salary divided by 12?', acceptedAnswer: { '@type': 'Answer', text: 'For a simple gross-pay estimate, yes. Payroll deductions and irregular payments are not included here.' } },
+    { '@type': 'Question', name: 'Can I also estimate biweekly pay?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator also shows biweekly and weekly pay from the same annual salary input.' } },
     { '@type': 'Question', name: 'Does this show net monthly income?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross monthly salary before taxes and deductions.' } },
     { '@type': 'Question', name: 'Why might my paycheck differ from the monthly estimate?', acceptedAnswer: { '@type': 'Answer', text: 'Actual paychecks can differ because of pay schedule timing, deductions, benefits, bonuses, and other payroll adjustments.' } },
   ],

@@ -13,9 +13,9 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you calculate a bonus from salary?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply salary by the bonus percentage, or enter a known bonus amount directly.' } },
-    { '@type': 'Question', name: 'Can I use a percentage or a flat amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The route should support both a percent-based bonus and a flat bonus amount.' } },
+    { '@type': 'Question', name: 'Can I use a percentage or a flat amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator supports both a percent-based bonus and a flat bonus amount.' } },
     { '@type': 'Question', name: 'Does this show total compensation?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Total compensation is the base salary plus bonus amount.' } },
-    { '@type': 'Question', name: 'Can I reverse the bonus percent from a known bonus amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The route can show bonus percent as a secondary output when salary and bonus amount are known.' } },
+    { '@type': 'Question', name: 'Can I reverse the bonus percent from a known bonus amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator also shows the effective bonus percentage when salary and bonus are known.' } },
     { '@type': 'Question', name: 'Does this include tax on bonuses?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross bonus and total compensation only.' } },
   ],
 };

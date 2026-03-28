@@ -10,11 +10,11 @@ import {
 const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'What does a salary calculator do?', acceptedAnswer: { '@type': 'Answer', text: 'It converts one pay amount into other pay frequencies using your own schedule assumptions.' } },
-    { '@type': 'Question', name: 'Can I convert hourly pay to annual salary?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Enter an hourly amount, plus hours per week and weeks per year, to estimate annual pay.' } },
-    { '@type': 'Question', name: 'Can I estimate daily and weekly pay too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The route can show hourly, daily, weekly, biweekly, monthly, and annual pay views together.' } },
-    { '@type': 'Question', name: 'Does this calculator include taxes or deductions?', acceptedAnswer: { '@type': 'Answer', text: 'No. The calculator estimates gross pay only.' } },
-    { '@type': 'Question', name: 'Why do hours per week and weeks per year matter?', acceptedAnswer: { '@type': 'Answer', text: 'Those assumptions determine how many total paid hours and weeks the pay amount is spread across.' } },
+    { '@type': 'Question', name: 'What does a salary calculator show?', acceptedAnswer: { '@type': 'Answer', text: 'It converts one pay amount into hourly, daily, weekly, biweekly, monthly, and annual views using your schedule inputs.' } },
+    { '@type': 'Question', name: 'Can I convert hourly pay to annual salary?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Enter an hourly rate plus hours per week and weeks per year to estimate annual pay.' } },
+    { '@type': 'Question', name: 'Can I compare daily and weekly pay too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator shows daily and weekly pay alongside the other converted results.' } },
+    { '@type': 'Question', name: 'Do schedule assumptions change the result?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Hours per week, weeks per year, and days per week can change the converted values a lot.' } },
+    { '@type': 'Question', name: 'Does this include taxes or deductions?', acceptedAnswer: { '@type': 'Answer', text: 'No. The calculator estimates gross pay only and does not include taxes, deductions, bonuses, or overtime.' } },
   ],
 };
 

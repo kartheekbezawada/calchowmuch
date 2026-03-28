@@ -47,7 +47,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
     title: 'Salary to Hourly Calculator | Convert Annual Salary to Hourly Pay',
     description:
       'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly pay using your hours worked and weeks per year.',
-    runE2E: async ({ page, parseNumericText }) => {
+    runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#salary-annual-input', '52000');
       await page.fill('#salary-hours-input', '40');
       await page.fill('#salary-weeks-input', '52');
@@ -63,7 +63,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
     title: 'Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly',
     description:
       'Convert annual salary into monthly pay, with optional biweekly and weekly estimates based on your yearly income.',
-    runE2E: async ({ page, parseNumericText }) => {
+    runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#annual-salary-input', '72000');
       await page.fill('#annual-weeks-input', '52');
       await page.click('#annual-to-monthly-button');
@@ -78,7 +78,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
     title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
     description:
       'Convert monthly salary into annual pay, with optional biweekly and weekly estimates based on your monthly income.',
-    runE2E: async ({ page, parseNumericText }) => {
+    runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#monthly-salary-input', '5000');
       await page.fill('#monthly-weeks-input', '52');
       await page.click('#monthly-to-annual-button');
@@ -113,7 +113,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
     title: 'Overtime Pay Calculator | Estimate Extra Pay From Overtime Hours',
     description:
       'Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.',
-    runE2E: async ({ page, parseNumericText }) => {
+    runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#overtime-hourly-rate', '25');
       await page.fill('#overtime-hours', '10');
       await page.fill('#overtime-multiplier', '1.5');
@@ -174,6 +174,24 @@ export const SALARY_CALCULATOR_CONFIGS = {
       expect(parseNumericText(await page.locator('#commission-earned-output').textContent())).toBeCloseTo(4000, 2);
       expect(parseNumericText(await page.locator('#commission-total-earnings').textContent())).toBeCloseTo(7000, 2);
       await expect(page.locator('#commission-effective-rate')).toContainText('8%');
+    },
+  },
+  'inflation-adjusted-salary-calculator': {
+    route: '/salary-calculators/inflation-adjusted-salary-calculator/',
+    h1: 'Inflation Adjusted Salary Calculator',
+    title: 'Inflation Adjusted Salary Calculator | Real Raise vs Inflation',
+    description:
+      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise keeps up with inflation.',
+    runE2E: async ({ page, expect, parseNumericText }) => {
+      await page.fill('#inflation-salary-current', '60000');
+      await page.fill('#inflation-salary-new', '66000');
+      await page.fill('#inflation-salary-rate', '3');
+      await page.fill('#inflation-salary-years', '2');
+      await page.click('#inflation-salary-button');
+
+      expect(parseNumericText(await page.locator('#inflation-salary-required').textContent())).toBeCloseTo(63654, 0);
+      expect(parseNumericText(await page.locator('#inflation-salary-real-gap').textContent())).toBeCloseTo(2346, 0);
+      await expect(page.locator('#inflation-salary-note')).toContainText('beats inflation');
     },
   },
 };

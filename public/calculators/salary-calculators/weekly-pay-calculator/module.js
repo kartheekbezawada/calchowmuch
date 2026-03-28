@@ -12,7 +12,7 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you calculate weekly pay?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply the hourly rate by total weekly hours, or split regular and overtime hours if that mode is enabled.' } },
-    { '@type': 'Question', name: 'Can this include overtime hours?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. A split-hours mode can estimate weekly pay using separate regular and overtime inputs plus an overtime multiplier.' } },
+    { '@type': 'Question', name: 'Can this include overtime hours?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Split mode can estimate weekly pay using separate regular and overtime inputs plus an overtime multiplier.' } },
     { '@type': 'Question', name: 'Can I annualize the weekly result?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The weekly result can be multiplied by weeks per year to estimate annualized pay.' } },
     { '@type': 'Question', name: 'Does this work for part-time schedules?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator works for any schedule as long as you enter the hours that match your workweek.' } },
     { '@type': 'Question', name: 'Does the result include tax deductions?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross weekly pay only.' } },

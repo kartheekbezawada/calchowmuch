@@ -1334,6 +1334,19 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "single"
+            },
+            {
+              "id": "inflation-adjusted-salary-calculator",
+              "name": "Inflation Adjusted Salary Calculator",
+              "url": "/salary-calculators/inflation-adjusted-salary-calculator/",
+              "keywords": [
+                "inflation adjusted salary calculator",
+                "real salary calculator",
+                "salary raise vs inflation"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
             }
           ]
         }

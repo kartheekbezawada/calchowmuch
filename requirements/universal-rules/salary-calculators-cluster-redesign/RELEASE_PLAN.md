@@ -87,7 +87,7 @@ Required evidence:
 
 ---
 
-## Batch 1-10: Single Calculator Launches
+## Batch 1-11: Single Calculator Launches
 
 Release type:
 
@@ -113,6 +113,7 @@ Applies to:
 - `raise-calculator`
 - `bonus-calculator`
 - `commission-calculator`
+- `inflation-adjusted-salary-calculator`
 
 Required scope lock fields:
 
@@ -144,7 +145,7 @@ Required evidence:
 
 ---
 
-## Optional Batch 11: Cluster Sweep
+## Optional Batch 12: Cluster Sweep
 
 Use this only if a later approved change intentionally affects multiple salary routes through shared cluster files.
 
@@ -182,6 +183,7 @@ Required gates:
 9. `/salary-calculators/raise-calculator/`
 10. `/salary-calculators/bonus-calculator/`
 11. `/salary-calculators/commission-calculator/`
+12. `/salary-calculators/inflation-adjusted-salary-calculator/`
 
 This order is mandatory unless scope is re-approved.
 
@@ -202,6 +204,7 @@ Suggested sign-off IDs:
 - `REL-YYYYMMDD-SALARY-RAISE`
 - `REL-YYYYMMDD-SALARY-BONUS`
 - `REL-YYYYMMDD-SALARY-COMMISSION`
+- `REL-YYYYMMDD-SALARY-INFLATION-ADJUSTED-SALARY`
 
 ---
 

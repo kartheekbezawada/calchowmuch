@@ -17,10 +17,11 @@ Target routes:
 - `/salary-calculators/raise-calculator/`
 - `/salary-calculators/bonus-calculator/`
 - `/salary-calculators/commission-calculator/`
+- `/salary-calculators/inflation-adjusted-salary-calculator/`
 
 Primary outcomes:
 
-- ship a dedicated salary cluster hub plus 10 salary calculator routes
+- ship a dedicated salary cluster hub plus 11 salary calculator routes
 - preserve MPA navigation, route URLs, and single-pane `calc_exp` behavior on calculator pages
 - keep formulas evergreen, user-input driven, and free of threshold-maintenance dependencies
 - onboard the cluster into route ownership, cluster contracts, homepage discoverability, and sitemap governance
@@ -42,6 +43,7 @@ Target calculators:
 - `raise-calculator`
 - `bonus-calculator`
 - `commission-calculator`
+- `inflation-adjusted-salary-calculator`
 
 Allowed files:
 
@@ -124,6 +126,7 @@ Out-of-scope violation rule:
 - Preserve title, canonical, metadata, schema parity, and FAQ meaning.
 - Keep all maintenance-sensitive values user-entered rather than hardcoded.
 - Do not introduce tax withholding, net-pay, labor-law, or payroll-compliance claims.
+- Keep inflation inputs user-provided. Do not introduce live CPI feeds or jurisdiction-specific inflation claims without re-scoping.
 - Keep route-specific styling and logic route-owned or cluster-owned; do not borrow runtime assets from other clusters.
 - Keep the hub and child pages internally linked according to the approved mesh.
 - The cluster must feel simple, clear, task-first, and mobile-safe.
@@ -182,6 +185,7 @@ Out-of-scope violation rule:
 9. [x] `raise-calculator`
 10. [x] `bonus-calculator`
 11. [x] `commission-calculator`
+12. [x] `inflation-adjusted-salary-calculator`
 
 ---
 
@@ -217,6 +221,7 @@ Out-of-scope violation rule:
 | `raise-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
 | `bonus-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
 | `commission-calculator` | Completed | Pass | Covered by cluster release | Covered by cluster release | Covered by cluster release | Covered by cluster release | Pass | Pass |
+| `inflation-adjusted-salary-calculator` | Completed | Pass | Pass | Pass | Pass | Pass | Pass | Pass |
 
 ---
 

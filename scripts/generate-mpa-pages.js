@@ -454,6 +454,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'inflation-adjusted-salary-calculator': {
+    title: 'Inflation Adjusted Salary Calculator | Real Raise vs Inflation',
+    description:
+      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise keeps up with inflation.',
+    h1: 'Inflation Adjusted Salary Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'fraction-calculator': {
     title: 'Fraction Calculator | Math Operations & Simplify',
     description:
@@ -2999,6 +3007,7 @@ const SALARY_CLUSTER_REDESIGN_ORDER = [
   'raise-calculator',
   'bonus-calculator',
   'commission-calculator',
+  'inflation-adjusted-salary-calculator',
 ];
 
 PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {

@@ -11,9 +11,9 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you calculate overtime pay?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply the hourly rate by overtime hours and the overtime multiplier.' } },
-    { '@type': 'Question', name: 'Why is the overtime multiplier editable?', acceptedAnswer: { '@type': 'Answer', text: 'Because overtime treatment can vary by employer or situation, so the page should let users supply their own multiplier instead of assuming a fixed rule.' } },
-    { '@type': 'Question', name: 'Can I include total pay with overtime?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. If base pay is entered, the route can show total pay plus overtime.' } },
-    { '@type': 'Question', name: 'Does this route assume a legal overtime rule?', acceptedAnswer: { '@type': 'Answer', text: 'No. It is a user-input calculator and should not imply a universal legal standard.' } },
+    { '@type': 'Question', name: 'Why is the overtime multiplier editable?', acceptedAnswer: { '@type': 'Answer', text: 'Overtime treatment can vary by employer or situation, so you need to enter the multiplier that matches your case.' } },
+    { '@type': 'Question', name: 'Can I include total pay with overtime?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. If base pay is entered, the calculator can show total pay plus overtime.' } },
+    { '@type': 'Question', name: 'Does this route assume a legal overtime rule?', acceptedAnswer: { '@type': 'Answer', text: 'No. It is a user-input calculator and does not imply one legal overtime standard.' } },
     { '@type': 'Question', name: 'Does the result include tax deductions?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross overtime pay only.' } },
   ],
 };

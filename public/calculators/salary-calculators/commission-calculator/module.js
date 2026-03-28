@@ -13,9 +13,9 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you calculate commission?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply the sales amount by the commission rate to estimate commission earned.' } },
-    { '@type': 'Question', name: 'Can I use a commission rate or a known commission amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The route can support either a rate-based input or a known commission amount.' } },
-    { '@type': 'Question', name: 'Can I include base pay?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. If base pay is enabled for the route, total earnings can be shown as base pay plus commission.' } },
-    { '@type': 'Question', name: 'Does this show effective commission rate?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. If commission and sales are known, the route can also show the effective commission percentage.' } },
+    { '@type': 'Question', name: 'Can I use a commission rate or a known commission amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator can support either a rate-based input or a known commission amount.' } },
+    { '@type': 'Question', name: 'Can I include base pay?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. If base pay is entered, total earnings can be shown as base pay plus commission.' } },
+    { '@type': 'Question', name: 'Does this show effective commission rate?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. If commission and sales are known, the calculator can also show the effective commission percentage.' } },
     { '@type': 'Question', name: 'Does this include tax deductions?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross commission earnings only.' } },
   ],
 };

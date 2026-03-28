@@ -1,0 +1,102 @@
+<div id="calc-inflation-adjusted-salary" class="sal-calc-shell">
+  <section class="sal-calc-card sal-calc-form-card" aria-label="Inflation adjusted salary calculator inputs">
+    <p class="sal-calc-kicker">Real pay</p>
+    <h2 class="sal-calc-form-title">See whether a salary change beats inflation</h2>
+    <p class="sal-calc-lead">
+      Compare current salary, new salary, inflation rate, and years between pay points in one
+      decision-first view.
+    </p>
+
+    <div class="sal-input-row">
+      <label for="inflation-salary-current">Current salary</label>
+      <input id="inflation-salary-current" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-row">
+      <label for="inflation-salary-new">New salary</label>
+      <input id="inflation-salary-new" type="number" min="0" step="0.01" inputmode="decimal" />
+    </div>
+
+    <div class="sal-input-grid">
+      <div class="sal-input-row">
+        <label for="inflation-salary-rate">Average annual inflation rate</label>
+        <input id="inflation-salary-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+      </div>
+      <div class="sal-input-row">
+        <label for="inflation-salary-years">Years between salaries</label>
+        <input id="inflation-salary-years" type="number" min="0" step="0.1" inputmode="decimal" />
+      </div>
+    </div>
+
+    <p class="sal-calc-helper">
+      Use your own inflation assumption. This route does not pull live CPI or tax rules.
+    </p>
+
+    <p class="sal-calc-error" id="inflation-salary-error" hidden></p>
+    <button class="sal-primary-action" id="inflation-salary-button" type="button">Calculate</button>
+  </section>
+
+  <aside class="sal-calc-card sal-answer-card" aria-label="Inflation adjusted salary calculator results">
+    <p class="sal-answer-title">Real salary gap</p>
+    <p class="sal-answer-hero" id="inflation-salary-real-gap">—</p>
+    <p class="sal-answer-note" id="inflation-salary-note">
+      Calculate to see the inflation-adjusted salary needed to preserve buying power and the real
+      gap between the two salaries.
+    </p>
+    <p class="sal-answer-context" id="inflation-salary-context">
+      The route compares your new salary with the inflation-adjusted salary required to keep pace.
+    </p>
+
+    <div class="sal-support-grid">
+      <div class="sal-support-card">
+        <span>Salary needed to keep pace</span>
+        <strong id="inflation-salary-required">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Nominal change</span>
+        <strong id="inflation-salary-nominal">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Real change</span>
+        <strong id="inflation-salary-real-percent">—</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>New salary in today's dollars</span>
+        <strong id="inflation-salary-today-dollars">—</strong>
+      </div>
+    </div>
+
+    <div class="sal-breakdown-card">
+      <h3>Inflation sensitivity</h3>
+      <div class="sal-support-grid">
+        <div class="sal-support-card">
+          <span id="inflation-salary-low-label">Lower-rate scenario</span>
+          <strong id="inflation-salary-low-output">—</strong>
+        </div>
+        <div class="sal-support-card">
+          <span id="inflation-salary-base-label">Entered-rate scenario</span>
+          <strong id="inflation-salary-base-output">—</strong>
+        </div>
+        <div class="sal-support-card">
+          <span id="inflation-salary-high-label">Higher-rate scenario</span>
+          <strong id="inflation-salary-high-output">—</strong>
+        </div>
+      </div>
+      <p id="inflation-salary-sensitivity-copy">
+        The scenario cards show how much salary would be needed under a lower, entered, and higher
+        inflation path over the same period.
+      </p>
+    </div>
+
+    <div class="sal-method-card">
+      <h3>How we calculate this</h3>
+      <p id="inflation-salary-breakdown">
+        Required salary = current salary × (1 + inflation rate)^years. Real salary gap = new
+        salary − required salary.
+      </p>
+    </div>
+    <p class="sal-results-disclaimer">
+      Gross-pay comparison only. Taxes, benefits, and payroll deductions are not included.
+    </p>
+  </aside>
+</div>

@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `full`
-- HTML files scanned: **215**
-- Calculator pages scanned: **133**
+- Scope: `calc:salary/inflation-adjusted-salary-calculator`
+- HTML files scanned: **1**
+- Calculator pages scanned: **1**
 - Findings: **0**
 - Status: **PASS**
 

@@ -11,9 +11,9 @@ const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'How do you convert hourly pay to annual salary?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply the hourly rate by hours worked per week and weeks worked per year.' } },
-    { '@type': 'Question', name: 'What assumptions affect the result most?', acceptedAnswer: { '@type': 'Answer', text: 'Hours per week and weeks per year are the main assumptions because they determine the total number of paid hours.' } },
-    { '@type': 'Question', name: 'Can I estimate monthly and biweekly pay too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The route can also show monthly, biweekly, and weekly equivalents after calculating annual salary.' } },
-    { '@type': 'Question', name: 'Does this calculator include overtime?', acceptedAnswer: { '@type': 'Answer', text: 'No. It is designed for standard hourly-to-salary conversion rather than overtime-specific rules.' } },
+    { '@type': 'Question', name: 'What assumptions change the result most?', acceptedAnswer: { '@type': 'Answer', text: 'Hours per week and weeks per year matter most because they set the total number of paid hours.' } },
+    { '@type': 'Question', name: 'Can I estimate monthly and biweekly pay too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator also shows monthly, biweekly, and weekly pay after it estimates annual salary.' } },
+    { '@type': 'Question', name: 'Does this calculator include overtime?', acceptedAnswer: { '@type': 'Answer', text: 'No. It is built for standard hourly to salary conversion and does not model overtime pay rules.' } },
     { '@type': 'Question', name: 'Does the result include taxes?', acceptedAnswer: { '@type': 'Answer', text: 'No. The result is a gross-pay estimate before taxes and deductions.' } },
   ],
 };
