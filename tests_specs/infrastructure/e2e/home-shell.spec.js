@@ -1,6 +1,18 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Official standalone homepage', () => {
+  test('HOME-SEARCH-000: no-results state stays hidden on initial load and appears only for unmatched queries', async ({
+    page,
+  }) => {
+    await page.goto('/');
+
+    await expect(page.locator('#homepage-empty')).toBeHidden();
+
+    await page.locator('#homepage-search').fill('zzzzzzzzzzzz-no-match');
+
+    await expect(page.locator('#homepage-empty')).toBeVisible();
+  });
+
   test('HOME-MOBILE-001: mobile viewport uses compact cards without legacy particle canvas', async ({
     page,
   }) => {
