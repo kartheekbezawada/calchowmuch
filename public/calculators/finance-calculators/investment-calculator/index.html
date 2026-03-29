@@ -1,0 +1,438 @@
+<div id="calc-investment">
+  <div class="calculator-ui finance-ui inv-shell">
+    <section class="inv-hero" aria-label="Investment calculator">
+      <div class="inv-form-panel">
+        <p class="helper">
+          Estimate how an investment could grow, how much comes from your deposits, how much comes
+          from compounding, and what inflation may leave you with in real purchasing-power terms.
+        </p>
+
+        <section class="fi-form-section inv-section inv-section--core" aria-labelledby="inv-section-core">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="inv-section-core">Core planning inputs</h2>
+              <p class="fi-form-section-copy">
+                Use the broad planning case first. Advanced settings stay collapsed so the default
+                view remains fast, readable, and decision-focused.
+              </p>
+            </div>
+          </div>
+
+          <div class="inv-control-grid">
+            <article class="inv-control-card" data-inv-control="initialInvestment">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Starting capital</p>
+                  <label class="inv-control-label" for="inv-initial">Initial investment</label>
+                  <p class="inv-control-copy">
+                    The amount already invested before future deposits begin.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="initialInvestment">$15,000</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-initial-range"
+                type="range"
+                min="0"
+                max="100000000"
+                step="100"
+                value="15000"
+                data-inv-range="initialInvestment"
+                aria-label="Adjust initial investment"
+              />
+              <div class="inv-slider-scale">
+                <span>$0</span>
+                <span>$100M</span>
+              </div>
+              <div class="inv-number-shell">
+                <span class="inv-number-prefix">$</span>
+                <input
+                  class="inv-number-input"
+                  id="inv-initial"
+                  type="number"
+                  min="0"
+                  max="100000000"
+                  step="100"
+                  inputmode="decimal"
+                  value="15000"
+                />
+              </div>
+            </article>
+
+            <article class="inv-control-card" data-inv-control="annualReturnRate">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Growth assumption</p>
+                  <label class="inv-control-label" for="inv-return">Expected annual return</label>
+                  <p class="inv-control-copy">
+                    Your average yearly return assumption before inflation.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="annualReturnRate">7%</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-return-range"
+                type="range"
+                min="0"
+                max="100"
+                step="0.1"
+                value="7"
+                data-inv-range="annualReturnRate"
+                aria-label="Adjust expected annual return"
+              />
+              <div class="inv-slider-scale">
+                <span>0%</span>
+                <span>100%</span>
+              </div>
+              <div class="inv-number-shell inv-number-shell--suffix">
+                <input
+                  class="inv-number-input"
+                  id="inv-return"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  inputmode="decimal"
+                  value="7"
+                />
+                <span class="inv-number-suffix">%</span>
+              </div>
+            </article>
+
+            <article class="inv-control-card" data-inv-control="years">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Time horizon</p>
+                  <label class="inv-control-label" for="inv-years">Years</label>
+                  <p class="inv-control-copy">
+                    The number of years the plan remains invested.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="years">20 years</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-years-range"
+                type="range"
+                min="0"
+                max="80"
+                step="1"
+                value="20"
+                data-inv-range="years"
+                aria-label="Adjust years"
+              />
+              <div class="inv-slider-scale">
+                <span>0 years</span>
+                <span>80 years</span>
+              </div>
+              <div class="inv-number-shell">
+                <input
+                  class="inv-number-input"
+                  id="inv-years"
+                  type="number"
+                  min="0"
+                  max="80"
+                  step="1"
+                  inputmode="numeric"
+                  value="20"
+                />
+              </div>
+            </article>
+
+            <article class="inv-control-card" data-inv-control="recurringContribution">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Ongoing deposits</p>
+                  <label class="inv-control-label" for="inv-recurring">Recurring contribution</label>
+                  <p class="inv-control-copy">
+                    The regular amount added throughout the projection.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="recurringContribution">$300</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-recurring-range"
+                type="range"
+                min="0"
+                max="1000000"
+                step="10"
+                value="300"
+                data-inv-range="recurringContribution"
+                aria-label="Adjust recurring contribution"
+              />
+              <div class="inv-slider-scale">
+                <span>$0</span>
+                <span>$1M</span>
+              </div>
+              <div class="inv-number-shell">
+                <span class="inv-number-prefix">$</span>
+                <input
+                  class="inv-number-input"
+                  id="inv-recurring"
+                  type="number"
+                  min="0"
+                  max="1000000"
+                  step="10"
+                  inputmode="decimal"
+                  value="300"
+                />
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="inv-advanced-control">
+          <button
+            class="calculator-button secondary full-width"
+            type="button"
+            id="inv-advanced-toggle"
+            aria-expanded="false"
+          >
+            Advanced Options
+            <span class="inv-advanced-toggle-meta">Optional</span>
+          </button>
+        </div>
+
+        <section
+          class="fi-form-section inv-section inv-section--advanced inv-advanced is-hidden"
+          id="inv-advanced-section"
+          aria-labelledby="inv-section-advanced"
+          aria-hidden="true"
+        >
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="inv-section-advanced">Advanced framing</h2>
+              <p class="fi-form-section-copy">
+                Use these settings when you want to compare nominal growth with real value and to
+                decide whether the simple-vs-compound comparison should include ongoing deposits.
+              </p>
+            </div>
+          </div>
+
+          <div class="inv-control-grid inv-control-grid--advanced">
+            <article class="inv-control-card inv-control-card--advanced" data-inv-control="inflationRate">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Purchasing power</p>
+                  <label class="inv-control-label" for="inv-inflation">Inflation rate</label>
+                  <p class="inv-control-copy">
+                    Use this to compare the projected balance with its real buying power.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="inflationRate">2.5%</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-inflation-range"
+                type="range"
+                min="0"
+                max="100"
+                step="0.1"
+                value="2.5"
+                data-inv-range="inflationRate"
+                aria-label="Adjust inflation rate"
+              />
+              <div class="inv-slider-scale">
+                <span>0%</span>
+                <span>100%</span>
+              </div>
+              <div class="inv-number-shell inv-number-shell--suffix">
+                <input
+                  class="inv-number-input"
+                  id="inv-inflation"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  inputmode="decimal"
+                  value="2.5"
+                />
+                <span class="inv-number-suffix">%</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="fi-toggle-row inv-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding frequency</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="inv-compounding"
+              >
+                <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">Monthly</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">Quarterly</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">Semi-Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">Annual</button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Comparison contribution mode</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Comparison contribution mode"
+                data-button-group="inv-comparison-mode"
+              >
+                <button class="calculator-button secondary" type="button" data-value="lump-sum-only" aria-pressed="false">Lump Sum Only</button>
+                <button class="calculator-button secondary is-active" type="button" data-value="include-recurring-contributions" aria-pressed="true">Include Contributions</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button" type="button" id="inv-calc">Calculate Investment</button>
+          <button class="calculator-button secondary" type="button" id="inv-reset">Reset</button>
+          <p class="fi-action-note">
+            Inputs can change freely, but the projection updates only when you click Calculate.
+          </p>
+        </div>
+      </div>
+
+      <aside class="inv-preview-panel" id="inv-preview" aria-label="Investment summary">
+        <div class="inv-preview-main">
+          <p class="inv-preview-label">Ending value</p>
+          <div class="result inv-result-card" id="inv-result" aria-live="polite">
+            <span class="inv-result-value" id="inv-result-value">$0</span>
+          </div>
+          <p class="inv-assumption-line" data-inv="assumption-line"></p>
+        </div>
+
+        <div class="fi-metric-grid inv-metric-grid" id="inv-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total contributions</span>
+            <strong class="fi-metric-value" data-inv-metric="contributions">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total gains</span>
+            <strong class="fi-metric-value" data-inv-metric="gains">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Simple ending value</span>
+            <strong class="fi-metric-value" data-inv-metric="simple">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Compound ending value</span>
+            <strong class="fi-metric-value" data-inv-metric="compound">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Compounding uplift</span>
+            <strong class="fi-metric-value" data-inv-metric="uplift">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Inflation-adjusted value</span>
+            <strong class="fi-metric-value" data-inv-metric="real">—</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list inv-snapshot-list">
+          <div class="fi-snapshot-row"><span>Initial investment</span><strong data-inv-snap="initial">—</strong></div>
+          <div class="fi-snapshot-row"><span>Annual return</span><strong data-inv-snap="return">—</strong></div>
+          <div class="fi-snapshot-row"><span>Years</span><strong data-inv-snap="years">—</strong></div>
+          <div class="fi-snapshot-row"><span>Recurring contribution</span><strong data-inv-snap="recurring">—</strong></div>
+          <div class="fi-snapshot-row"><span>Compounding</span><strong data-inv-snap="compounding">—</strong></div>
+          <div class="fi-snapshot-row"><span>Comparison mode</span><strong data-inv-snap="mode">—</strong></div>
+        </div>
+
+        <p class="fi-preview-stale" id="inv-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the projection.
+        </p>
+      </aside>
+    </section>
+
+    <section class="inv-visual-grid" aria-label="Investment visuals">
+      <article class="inv-visual-card" id="inv-growth-visual">
+        <div class="inv-card-head">
+          <div>
+            <p class="inv-card-eyebrow">Nominal vs real</p>
+            <h2 class="inv-card-title">See How Inflation Changes the Story</h2>
+            <p class="inv-card-copy">
+              The nominal line shows the account statement. The real line shows what that path may
+              still buy after inflation.
+            </p>
+          </div>
+        </div>
+        <div class="inv-line-chart-frame">
+          <svg
+            id="inv-line-chart"
+            class="inv-line-chart"
+            viewBox="0 0 720 320"
+            role="img"
+            aria-label="Line chart comparing nominal and inflation-adjusted investment value over time"
+          ></svg>
+        </div>
+        <div class="inv-chart-legend">
+          <span class="inv-legend-item"><i class="inv-legend-swatch inv-legend-swatch--nominal"></i>Nominal value</span>
+          <span class="inv-legend-item"><i class="inv-legend-swatch inv-legend-swatch--real"></i>Real inflation-adjusted value</span>
+        </div>
+      </article>
+
+      <article class="inv-visual-card" id="inv-source-visual">
+        <div class="inv-card-head">
+          <div>
+            <p class="inv-card-eyebrow">Contributions vs growth</p>
+            <h2 class="inv-card-title">How Much Came From You vs the Market?</h2>
+            <p class="inv-card-copy">
+              This split turns the ending balance into something more useful: a clearer answer about
+              how much came from deposits and how much came from growth.
+            </p>
+          </div>
+        </div>
+        <div class="inv-donut-layout">
+          <div class="inv-donut" id="inv-donut" role="img" aria-label="Donut chart showing contributions versus growth">
+            <div class="inv-donut-hole">
+              <span class="inv-donut-label">Growth share</span>
+              <strong class="inv-donut-value" id="inv-donut-value">—</strong>
+            </div>
+          </div>
+          <div class="inv-donut-copy">
+            <p>
+              Your money supplied <strong data-inv-donut="contributions">—</strong>.
+            </p>
+            <p>
+              Investment growth supplied <strong data-inv-donut="growth">—</strong>.
+            </p>
+            <p class="inv-donut-note" id="inv-donut-note">
+              The mix changes with time horizon, contribution pace, and return assumptions.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="inv-table-card" aria-labelledby="inv-table-title">
+      <div class="inv-card-head inv-card-head--table">
+        <div>
+          <p class="inv-card-eyebrow">Simple vs compound comparison</p>
+          <h2 class="inv-card-title" id="inv-table-title">Year-by-Year Gap</h2>
+          <p class="inv-card-copy" id="inv-table-note">
+            Compare how the simple and compound paths separate over time under the active comparison
+            mode.
+          </p>
+        </div>
+        <div class="inv-mode-badge" id="inv-mode-badge">Include contributions</div>
+      </div>
+      <div class="table-scroll inv-table-scroll" tabindex="0" aria-describedby="inv-table-note">
+        <table class="inv-comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col">Cumulative contributions</th>
+              <th scope="col">Simple value</th>
+              <th scope="col">Compound value</th>
+              <th scope="col">Real compound value</th>
+              <th scope="col">Compounding uplift</th>
+            </tr>
+          </thead>
+          <tbody id="inv-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

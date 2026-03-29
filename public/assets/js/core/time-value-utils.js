@@ -949,6 +949,240 @@ function createValidationResult(errors) {
   };
 }
 
+function normalizeInvestmentPlanContributionMode(mode) {
+  const value = String(mode ?? 'include-recurring-contributions').trim().toLowerCase();
+  if (value === 'lump-sum-only') {
+    return 'lump-sum-only';
+  }
+  if (value === 'include-recurring-contributions') {
+    return 'include-recurring-contributions';
+  }
+  return null;
+}
+
+function buildInvestmentPlanScenario({
+  initialInvestment,
+  annualReturnRate,
+  years,
+  periodsPerYear,
+  recurringContribution,
+  inflationRate,
+  precision,
+  includeRecurringContribution,
+}) {
+  const periodicRate = annualReturnRate / 100 / periodsPerYear;
+  const contributionPerPeriod = includeRecurringContribution
+    ? recurringContribution * (12 / periodsPerYear)
+    : 0;
+
+  let compoundBalance = initialInvestment;
+  let simplePrincipal = initialInvestment;
+  let simpleAccruedInterest = 0;
+  let totalContributions = initialInvestment;
+
+  const yearlyRows = [
+    {
+      year: 0,
+      cumulativeContributions: roundHalfAwayFromZero(initialInvestment, precision),
+      simpleEndingValue: roundHalfAwayFromZero(initialInvestment, precision),
+      compoundEndingValue: roundHalfAwayFromZero(initialInvestment, precision),
+      realCompoundEndingValue: roundHalfAwayFromZero(initialInvestment, precision),
+      compoundingUplift: 0,
+    },
+  ];
+
+  const chart = {
+    labels: ['Year 0'],
+    nominalValues: [roundHalfAwayFromZero(initialInvestment, precision)],
+    realValues: [roundHalfAwayFromZero(initialInvestment, precision)],
+  };
+
+  for (let year = 1; year <= years; year += 1) {
+    for (let periodIndex = 0; periodIndex < periodsPerYear; periodIndex += 1) {
+      if (periodicRate !== 0) {
+        simpleAccruedInterest += simplePrincipal * periodicRate;
+        compoundBalance *= 1 + periodicRate;
+      }
+
+      if (contributionPerPeriod > 0) {
+        compoundBalance += contributionPerPeriod;
+        simplePrincipal += contributionPerPeriod;
+        totalContributions += contributionPerPeriod;
+      }
+    }
+
+    const simpleEndingValue = simplePrincipal + simpleAccruedInterest;
+    const realCompoundEndingValue =
+      inflationRate > 0
+        ? compoundBalance / Math.pow(1 + inflationRate / 100, year)
+        : compoundBalance;
+
+    yearlyRows.push({
+      year,
+      cumulativeContributions: roundHalfAwayFromZero(totalContributions, precision),
+      simpleEndingValue: roundHalfAwayFromZero(simpleEndingValue, precision),
+      compoundEndingValue: roundHalfAwayFromZero(compoundBalance, precision),
+      realCompoundEndingValue: roundHalfAwayFromZero(realCompoundEndingValue, precision),
+      compoundingUplift: roundHalfAwayFromZero(compoundBalance - simpleEndingValue, precision),
+    });
+
+    chart.labels.push(`Year ${year}`);
+    chart.nominalValues.push(roundHalfAwayFromZero(compoundBalance, precision));
+    chart.realValues.push(roundHalfAwayFromZero(realCompoundEndingValue, precision));
+  }
+
+  const compoundEndingValue = roundHalfAwayFromZero(compoundBalance, precision);
+  const simpleEndingValue = roundHalfAwayFromZero(simplePrincipal + simpleAccruedInterest, precision);
+  const realCompoundEndingValue =
+    inflationRate > 0
+      ? roundHalfAwayFromZero(
+          compoundBalance / Math.pow(1 + inflationRate / 100, Math.max(years, 0)),
+          precision
+        )
+      : compoundEndingValue;
+  const totalGrowth = roundHalfAwayFromZero(compoundBalance - totalContributions, precision);
+  const compoundingUplift = roundHalfAwayFromZero(compoundBalance - simplePrincipal - simpleAccruedInterest, precision);
+
+  return {
+    totalContributions: roundHalfAwayFromZero(totalContributions, precision),
+    compoundEndingValue,
+    simpleEndingValue,
+    realCompoundEndingValue,
+    totalGrowth,
+    compoundingUplift,
+    chart,
+    yearlyRows,
+  };
+}
+
+export function calculateInvestmentPlan(input = {}) {
+  const initialInvestment = normalizeOptionalNumber(input?.initialInvestment, 0);
+  const annualReturnRate = normalizeOptionalNumber(input?.annualReturnRate, 0);
+  const years = normalizeOptionalNumber(input?.years, NaN);
+  const recurringContribution = normalizeOptionalNumber(input?.recurringContribution, 0);
+  const inflationRate = normalizeOptionalNumber(input?.inflationRate, 0);
+  const precision = normalizeOptionalNumber(input?.precision, 2);
+  const compounding = input?.compounding ?? 'monthly';
+  const contributionMode = normalizeInvestmentPlanContributionMode(
+    input?.comparisonContributionMode
+  );
+  const { periodsPerYear, label: compoundingLabel } = resolveCompounding(compounding);
+  const errors = [];
+
+  if (!Number.isFinite(initialInvestment) || initialInvestment < 0) {
+    errors.push('initialInvestment must be a finite number >= 0.');
+  }
+  if (!Number.isFinite(annualReturnRate) || annualReturnRate < 0 || annualReturnRate > 100) {
+    errors.push('annualReturnRate must be between 0 and 100.');
+  }
+  if (!Number.isFinite(years) || !Number.isInteger(years) || years < 0 || years > 80) {
+    errors.push('years must be an integer between 0 and 80.');
+  }
+  if (!Number.isFinite(recurringContribution) || recurringContribution < 0) {
+    errors.push('recurringContribution must be a finite number >= 0.');
+  }
+  if (!Number.isFinite(inflationRate) || inflationRate < 0 || inflationRate > 100) {
+    errors.push('inflationRate must be between 0 and 100.');
+  }
+  if (!Number.isFinite(precision) || !Number.isInteger(precision) || precision < 0 || precision > 8) {
+    errors.push('precision must be an integer between 0 and 8.');
+  }
+  if (!contributionMode) {
+    errors.push(
+      'comparisonContributionMode must be lump-sum-only or include-recurring-contributions.'
+    );
+  }
+  if (!Number.isFinite(periodsPerYear) || periodsPerYear <= 0) {
+    errors.push('compounding must resolve to a valid frequency.');
+  }
+
+  if (errors.length) {
+    return createValidationResult(errors);
+  }
+
+  const mainScenario = buildInvestmentPlanScenario({
+    initialInvestment,
+    annualReturnRate,
+    years,
+    periodsPerYear,
+    recurringContribution,
+    inflationRate,
+    precision,
+    includeRecurringContribution: true,
+  });
+
+  const lumpSumOnlyScenario = buildInvestmentPlanScenario({
+    initialInvestment,
+    annualReturnRate,
+    years,
+    periodsPerYear,
+    recurringContribution,
+    inflationRate,
+    precision,
+    includeRecurringContribution: false,
+  });
+
+  const recurringScenario = buildInvestmentPlanScenario({
+    initialInvestment,
+    annualReturnRate,
+    years,
+    periodsPerYear,
+    recurringContribution,
+    inflationRate,
+    precision,
+    includeRecurringContribution: true,
+  });
+
+  const activeComparisonScenario =
+    contributionMode === 'lump-sum-only' ? lumpSumOnlyScenario : recurringScenario;
+  const compoundingUpliftPercent =
+    activeComparisonScenario.simpleEndingValue > 0
+      ? roundHalfAwayFromZero(
+          (activeComparisonScenario.compoundingUplift / activeComparisonScenario.simpleEndingValue) *
+            100,
+          precision
+        )
+      : null;
+
+  return {
+    isValid: true,
+    errors: [],
+    input: {
+      initialInvestment,
+      annualReturnRate,
+      years,
+      recurringContribution,
+      compounding,
+      compoundingLabel,
+      periodsPerYear,
+      inflationRate,
+      comparisonContributionMode: contributionMode,
+      precision,
+    },
+    main: {
+      endingValue: mainScenario.compoundEndingValue,
+      totalContributions: mainScenario.totalContributions,
+      totalGains: mainScenario.totalGrowth,
+      realValue: mainScenario.realCompoundEndingValue,
+    },
+    comparison: {
+      activeMode: contributionMode,
+      compoundingUplift: activeComparisonScenario.compoundingUplift,
+      compoundingUpliftPercent,
+      simpleEndingValue: activeComparisonScenario.simpleEndingValue,
+      compoundEndingValue: activeComparisonScenario.compoundEndingValue,
+      lumpSumOnly: lumpSumOnlyScenario,
+      includeRecurringContributions: recurringScenario,
+    },
+    chart: mainScenario.chart,
+    donut: {
+      contributions: mainScenario.totalContributions,
+      growth: Math.max(mainScenario.totalGrowth, 0),
+    },
+    table: activeComparisonScenario.yearlyRows,
+  };
+}
+
 function validateInvestmentReturnInput(input) {
   const errors = [];
   const initialInvestment = normalizeOptionalNumber(input?.initialInvestment, 0);

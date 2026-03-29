@@ -434,6 +434,14 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/finance-calculators/investment-calculator/",
+      "calculatorId": "investment",
+      "activeOwnerClusterId": "finance",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-investment-calculator-release-20260329",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/finance-calculators/investment-return-calculator/",
       "calculatorId": "investment-return",
       "activeOwnerClusterId": "finance",
