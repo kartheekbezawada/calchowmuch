@@ -1,0 +1,3264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Investment Calculator | Growth, Contributions &amp; Returns</title>
+    <meta name="description" content="Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan." />
+    <link rel="canonical" href="https://calchowmuch.com/finance-calculators/investment-calculator/" />
+    <meta property="og:title" content="Investment Calculator | Growth, Contributions &amp; Returns" />
+    <meta property="og:description" content="Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/finance-calculators/investment-calculator/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Investment Calculator | Growth, Contributions &amp; Returns" />
+    <meta name="twitter:description" content="Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/finance-calculators/investment-calculator/#softwareapplication","name":"Investment Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/finance-calculators/investment-calculator/","description":"Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/finance-calculators/investment-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Finance Calculators","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Investment Calculator","item":"https://calchowmuch.com/finance-calculators/investment-calculator/"}]}]}</script>
+    <style data-finance-cluster="true">
+      /* assets/css/base.css */
+      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+         instead of @import, to eliminate sequential CSS waterfall.
+         See known_issues.md KI-007 / KI-010. */
+
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/finance-calculators/shared/cluster-light.css */
+      body[data-design-family='neutral'] {
+        --fi-bg: #f6f7f4;
+        --fi-bg-soft: #eef1ec;
+        --fi-surface: rgba(255, 255, 255, 0.97);
+        --fi-surface-soft: #f8faf8;
+        --fi-surface-strong: #edf2ef;
+        --fi-text: #15202b;
+        --fi-muted: #5f6c78;
+        --fi-line: rgba(143, 158, 167, 0.28);
+        --fi-line-strong: rgba(113, 132, 145, 0.42);
+        --fi-accent: #1f5f87;
+        --fi-accent-strong: #163e59;
+        --fi-accent-soft: #e8f1f7;
+        --fi-success: #2f7c63;
+        --fi-shadow: 0 18px 42px rgba(21, 32, 43, 0.08);
+        --fi-shadow-soft: 0 10px 24px rgba(21, 32, 43, 0.06);
+        --fi-radius-xl: 30px;
+        --fi-radius-lg: 22px;
+        --fi-radius-md: 18px;
+        background:
+          radial-gradient(circle at top left, rgba(31, 95, 135, 0.1), transparent 32%),
+          radial-gradient(circle at 88% 6%, rgba(111, 140, 118, 0.12), transparent 22%),
+          linear-gradient(180deg, #fbfcfa 0%, #f4f6f2 100%);
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] a {
+        color: var(--fi-accent);
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-page-shell {
+        min-height: 100vh;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-wrap,
+      body[data-design-family='neutral'] .fi-cluster-center-column {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(16px);
+        background: rgba(251, 252, 250, 0.82);
+        border-bottom: 1px solid rgba(225, 231, 226, 0.95);
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-site-header-inner {
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--fi-text);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-brand:hover {
+        text-decoration: none;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-brand-mark {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #102438, #325f7e);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-site-links,
+      body[data-design-family='neutral'] .fi-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        font-size: 14px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-layout-main {
+        padding: 44px 0 64px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-panel {
+        display: grid;
+        gap: 28px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-page-header {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-page-kicker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--fi-line);
+        background: rgba(255, 255, 255, 0.76);
+        color: var(--fi-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] #calculator-title {
+        margin: 18px 0 0;
+        font-size: clamp(40px, 6vw, 58px);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-page-intro {
+        max-width: 700px;
+        margin: 14px auto 0;
+        color: var(--fi-muted);
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-flow {
+        display: grid;
+        gap: 24px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related {
+        border: 1px solid var(--fi-line);
+        border-radius: var(--fi-radius-xl);
+        background: linear-gradient(180deg, #ffffff, var(--fi-surface-soft));
+        box-shadow: var(--fi-shadow-soft);
+        padding: 28px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related h2 {
+        margin: 0 0 18px;
+        font-size: 18px;
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related-links {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related-link {
+        display: grid;
+        gap: 10px;
+        min-height: 156px;
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid var(--fi-line);
+        background: #ffffff;
+        color: var(--fi-text);
+        text-decoration: none;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related-link:hover {
+        transform: translateY(-1px);
+        border-color: rgba(31, 95, 135, 0.3);
+        box-shadow: var(--fi-shadow-soft);
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related-link.is-active,
+      body[data-design-family='neutral'] .fi-cluster-related-link[aria-current='page'] {
+        background: var(--fi-accent-soft);
+        border-color: rgba(31, 95, 135, 0.18);
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related-card-title {
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related-card-copy,
+      body[data-design-family='neutral'] .fi-cluster-related-card-meta {
+        color: var(--fi-muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-related-card-meta {
+        margin-top: auto;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-site-footer {
+        padding: 0 0 52px;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-site-footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 28px;
+        border: 1px solid var(--fi-line);
+        border-radius: var(--fi-radius-lg);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: var(--fi-shadow-soft);
+        text-align: center;
+      }
+
+      body[data-design-family='neutral'] .fi-cluster-footer-copy {
+        color: var(--fi-muted);
+      }
+
+      body[data-design-family='neutral']
+        :is(
+          #calc-present-value,
+          #calc-future-value,
+          #calc-present-value-of-annuity,
+          #calc-future-value-of-annuity,
+          #calc-effective-annual-rate,
+          #calc-simple-interest,
+          #calc-compound-interest,
+          #calc-investment-growth,
+          #calc-time-to-savings-goal,
+          #calc-monthly-savings-needed,
+          #calc-investment-return
+        ) {
+        width: 100%;
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral']
+        :is(
+          #calc-present-value,
+          #calc-future-value,
+          #calc-present-value-of-annuity,
+          #calc-future-value-of-annuity,
+          #calc-effective-annual-rate,
+          #calc-simple-interest,
+          #calc-compound-interest,
+          #calc-investment-growth,
+          #calc-time-to-savings-goal,
+          #calc-monthly-savings-needed,
+          #calc-investment-return
+        )
+        .calculator-ui {
+        display: grid;
+        gap: 24px;
+      }
+
+      body[data-design-family='neutral']
+        :is(
+          #calc-present-value,
+          #calc-future-value,
+          #calc-present-value-of-annuity,
+          #calc-future-value-of-annuity,
+          #calc-effective-annual-rate,
+          #calc-simple-interest,
+          #calc-compound-interest,
+          #calc-investment-growth,
+          #calc-time-to-savings-goal,
+          #calc-monthly-savings-needed,
+          #calc-investment-return
+        )
+        :is(.mtg-hero, .fi-hero) {
+        display: grid;
+        grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      body[data-design-family='neutral']
+        :is(
+          #calc-present-value,
+          #calc-future-value,
+          #calc-present-value-of-annuity,
+          #calc-future-value-of-annuity,
+          #calc-effective-annual-rate,
+          #calc-simple-interest,
+          #calc-compound-interest,
+          #calc-investment-growth,
+          #calc-time-to-savings-goal,
+          #calc-monthly-savings-needed,
+          #calc-investment-return
+        )
+        :is(.mtg-form-panel, .mtg-preview-panel, .fi-form-panel, .fi-preview-panel) {
+        border: 1px solid var(--fi-line);
+        border-radius: var(--fi-radius-xl);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(244, 247, 245, 0.98));
+        box-shadow: var(--fi-shadow);
+        padding: 28px;
+      }
+
+      body[data-design-family='neutral']
+        :is(
+          #calc-present-value,
+          #calc-future-value,
+          #calc-present-value-of-annuity,
+          #calc-future-value-of-annuity,
+          #calc-effective-annual-rate,
+          #calc-simple-interest,
+          #calc-compound-interest,
+          #calc-investment-growth,
+          #calc-time-to-savings-goal,
+          #calc-monthly-savings-needed,
+          #calc-investment-return
+        )
+        :is(.mtg-form-panel, .fi-form-panel) {
+        display: grid;
+        gap: 22px;
+      }
+
+      body[data-design-family='neutral']
+        :is(
+          #calc-present-value,
+          #calc-future-value,
+          #calc-present-value-of-annuity,
+          #calc-future-value-of-annuity,
+          #calc-effective-annual-rate,
+          #calc-simple-interest,
+          #calc-compound-interest,
+          #calc-investment-growth,
+          #calc-time-to-savings-goal,
+          #calc-monthly-savings-needed,
+          #calc-investment-return
+        )
+        :is(.mtg-preview-panel, .fi-preview-panel) {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+      }
+
+      body[data-design-family='neutral'] .helper,
+      body[data-design-family='neutral'] .fi-form-section-copy,
+      body[data-design-family='neutral'] .fi-action-note {
+        margin: 0;
+        color: var(--fi-muted);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      body[data-design-family='neutral'] .fi-form-section {
+        display: grid;
+        gap: 16px;
+        padding: 18px 20px;
+        border: 1px solid var(--fi-line);
+        border-radius: var(--fi-radius-md);
+        background: rgba(246, 249, 247, 0.9);
+      }
+
+      body[data-design-family='neutral'] .fi-form-section-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      body[data-design-family='neutral'] .fi-form-section-title {
+        margin: 0;
+        font-size: 18px;
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] .input-grid-2-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      body[data-design-family='neutral'] .input-row {
+        display: grid;
+        gap: 8px;
+      }
+
+      body[data-design-family='neutral'] .slider-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      body[data-design-family='neutral'] .slider-header label,
+      body[data-design-family='neutral'] .slider-precision-label,
+      body[data-design-family='neutral'] .fi-toggle-label {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] .slider-value {
+        color: var(--fi-accent-strong);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='neutral'] input[type='range'] {
+        width: 100%;
+        height: 6px;
+        appearance: none;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--fi-accent) 0,
+          var(--fi-accent) var(--fill, 0%),
+          rgba(199, 209, 214, 0.9) var(--fill, 0%),
+          rgba(199, 209, 214, 0.9) 100%
+        );
+        outline: none;
+      }
+
+      body[data-design-family='neutral'] input[type='range']::-webkit-slider-thumb {
+        width: 18px;
+        height: 18px;
+        appearance: none;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: var(--fi-accent);
+        box-shadow: 0 2px 8px rgba(21, 32, 43, 0.18);
+      }
+
+      body[data-design-family='neutral'] input[type='range']::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        background: var(--fi-accent);
+        box-shadow: 0 2px 8px rgba(21, 32, 43, 0.18);
+      }
+
+      body[data-design-family='neutral'] .slider-precision-row {
+        display: grid;
+        gap: 6px;
+      }
+
+      body[data-design-family='neutral'] .slider-precision-input {
+        width: 100%;
+        min-height: 46px;
+        padding: 0 14px;
+        border: 1px solid var(--fi-line-strong);
+        border-radius: 14px;
+        background: #fff;
+        color: var(--fi-text);
+        font-size: 15px;
+      }
+
+      body[data-design-family='neutral'] .slider-precision-input:focus-visible {
+        outline: 2px solid rgba(31, 95, 135, 0.2);
+        border-color: var(--fi-accent);
+      }
+
+      body[data-design-family='neutral'] .fi-toggle-row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      body[data-design-family='neutral'] .fi-toggle-group {
+        display: grid;
+        gap: 8px;
+        flex: 1 1 240px;
+      }
+
+      body[data-design-family='neutral'] .button-group {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      body[data-design-family='neutral'] .calculator-button {
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--fi-accent), #3d7da3);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease,
+          background-color 0.18s ease;
+      }
+
+      body[data-design-family='neutral'] .calculator-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 20px rgba(31, 95, 135, 0.18);
+      }
+
+      body[data-design-family='neutral'] .calculator-button:focus-visible {
+        outline: 2px solid rgba(31, 95, 135, 0.18);
+        outline-offset: 2px;
+      }
+
+      body[data-design-family='neutral'] .calculator-button.full-width {
+        width: 100%;
+      }
+
+      body[data-design-family='neutral'] .calculator-button.secondary {
+        background: rgba(255, 255, 255, 0.96);
+        border-color: var(--fi-line-strong);
+        color: var(--fi-text);
+        box-shadow: none;
+      }
+
+      body[data-design-family='neutral'] .calculator-button.secondary.is-active,
+      body[data-design-family='neutral'] .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--fi-accent-soft);
+        border-color: rgba(31, 95, 135, 0.18);
+        color: var(--fi-accent-strong);
+      }
+
+      body[data-design-family='neutral'] .mtg-preview-main {
+        display: grid;
+        gap: 12px;
+        padding: 22px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, #133247, #2d698d);
+        color: #fff;
+      }
+
+      body[data-design-family='neutral'] .mtg-preview-label {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(233, 242, 248, 0.9);
+      }
+
+      body[data-design-family='neutral'] .mtg-result-card,
+      body[data-design-family='neutral'] .mtg-summary-card,
+      body[data-design-family='neutral'] .fi-metric-card {
+        border-radius: 20px;
+      }
+
+      body[data-design-family='neutral'] .mtg-result-value {
+        display: block;
+        font-size: clamp(34px, 4vw, 46px);
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      body[data-design-family='neutral'] .mtg-result-value.is-updated {
+        animation: fi-result-pulse 0.42s ease;
+      }
+
+      body[data-design-family='neutral'] .mtg-summary-card {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border: 1px solid var(--fi-line);
+        background: var(--fi-surface-soft);
+      }
+
+      body[data-design-family='neutral'] .fi-metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      body[data-design-family='neutral'] .fi-metric-card {
+        display: grid;
+        gap: 6px;
+        padding: 16px;
+        border: 1px solid var(--fi-line);
+        background: #fff;
+      }
+
+      body[data-design-family='neutral'] .fi-metric-label {
+        color: var(--fi-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] .fi-metric-value {
+        font-size: 22px;
+        line-height: 1.1;
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] .fi-snapshot-list {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+        border: 1px solid var(--fi-line);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      body[data-design-family='neutral'] .fi-snapshot-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        color: var(--fi-muted);
+        font-size: 14px;
+      }
+
+      body[data-design-family='neutral'] .fi-snapshot-row strong {
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] .fi-preview-stale {
+        margin: 0;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(31, 95, 135, 0.18);
+        background: rgba(232, 241, 247, 0.88);
+        color: var(--fi-accent-strong);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='neutral'] .mtg-preview-panel[data-result-stale='true'] .mtg-result-value {
+        opacity: 0.72;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] {
+        display: grid;
+        gap: 18px;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] .mtg-exp-section {
+        display: grid;
+        gap: 14px;
+        padding: 28px;
+        border: 1px solid var(--fi-line);
+        border-radius: var(--fi-radius-xl);
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: var(--fi-shadow-soft);
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] h2,
+      body[data-design-family='neutral'] [id$='-explanation'] h3,
+      body[data-design-family='neutral'] [id$='-explanation'] h4 {
+        margin: 0;
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] p,
+      body[data-design-family='neutral'] [id$='-explanation'] li {
+        color: var(--fi-muted);
+        line-height: 1.7;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] ul,
+      body[data-design-family='neutral'] [id$='-explanation'] ol {
+        margin: 0;
+        padding-left: 1.2rem;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] strong,
+      body[data-design-family='neutral'] [id$='-explanation'] [data-pv],
+      body[data-design-family='neutral'] [id$='-explanation'] [data-fv] {
+        color: var(--fi-text);
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] .table-scroll {
+        overflow: auto;
+        max-height: 420px;
+        border: 1px solid var(--fi-line);
+        border-radius: 18px;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] .table-scroll:focus-visible {
+        outline: 2px solid rgba(31, 95, 135, 0.18);
+        outline-offset: 2px;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] th,
+      body[data-design-family='neutral'] [id$='-explanation'] td {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(143, 158, 167, 0.18);
+        text-align: left;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: #f8faf8;
+        color: var(--fi-text);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-card {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border: 1px solid var(--fi-line);
+        border-radius: 20px;
+        background: var(--fi-surface-soft);
+      }
+
+      body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-number {
+        color: var(--fi-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      @keyframes fi-result-pulse {
+        0% {
+          transform: translateY(3px);
+          opacity: 0.6;
+        }
+
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 1080px) {
+        body[data-design-family='neutral'] .fi-cluster-related-links {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 960px) {
+        body[data-design-family='neutral']
+          :is(
+            #calc-present-value,
+            #calc-future-value,
+            #calc-present-value-of-annuity,
+            #calc-future-value-of-annuity,
+            #calc-effective-annual-rate,
+            #calc-simple-interest,
+            #calc-compound-interest,
+            #calc-investment-growth,
+            #calc-time-to-savings-goal,
+            #calc-monthly-savings-needed,
+            #calc-investment-return
+          )
+          :is(.mtg-hero, .fi-hero) {
+          grid-template-columns: 1fr;
+        }
+
+        body[data-design-family='neutral'] .input-grid-2-col,
+        body[data-design-family='neutral'] .fi-metric-grid,
+        body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-grid,
+        body[data-design-family='neutral'] .fi-cluster-related-links {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body[data-design-family='neutral'] .fi-cluster-wrap,
+        body[data-design-family='neutral'] .fi-cluster-center-column {
+          width: min(100% - 20px, 1180px);
+        }
+
+        body[data-design-family='neutral'] .fi-cluster-layout-main {
+          padding: 28px 0 48px;
+        }
+
+        body[data-design-family='neutral']
+          :is(
+            #calc-present-value,
+            #calc-future-value,
+            #calc-present-value-of-annuity,
+            #calc-future-value-of-annuity,
+            #calc-effective-annual-rate,
+            #calc-simple-interest,
+            #calc-compound-interest,
+            #calc-investment-growth,
+            #calc-time-to-savings-goal,
+            #calc-monthly-savings-needed,
+            #calc-investment-return
+          )
+          :is(.mtg-form-panel, .mtg-preview-panel, .fi-form-panel, .fi-preview-panel) {
+          padding: 22px 18px;
+        }
+
+        body[data-design-family='neutral'] [id$='-explanation'] .mtg-exp-section,
+        body[data-design-family='neutral'] .fi-cluster-related {
+          padding: 22px 18px;
+        }
+
+        body[data-design-family='neutral'] .fi-toggle-row,
+        body[data-design-family='neutral'] .button-group {
+          flex-direction: column;
+        }
+
+        body[data-design-family='neutral'] .calculator-button.secondary {
+          width: 100%;
+        }
+      }
+
+      /* calculators/finance-calculators/investment-calculator/calculator.css */
+      #calc-investment .inv-shell {
+        display: grid;
+        gap: 24px;
+      }
+
+      #calc-investment {
+        --inv-accent: #1d4ed8;
+        --inv-accent-soft: rgba(29, 78, 216, 0.12);
+        --inv-ink: #13293d;
+        --inv-muted: #526170;
+        --inv-border: rgba(31, 95, 135, 0.14);
+        --inv-slider-fill: 0%;
+      }
+
+      #calc-investment .inv-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 22px;
+        align-items: start;
+      }
+
+      #calc-investment .inv-form-panel,
+      #calc-investment .inv-preview-panel,
+      #calc-investment .inv-visual-card,
+      #calc-investment .inv-table-card,
+      #inv-explanation .inv-exp-shell {
+        border: 1px solid rgba(31, 95, 135, 0.14);
+        border-radius: 26px;
+        background:
+          radial-gradient(circle at top right, rgba(191, 219, 254, 0.42), transparent 32%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(247, 250, 252, 0.98));
+        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      }
+
+      #calc-investment .inv-form-panel,
+      #calc-investment .inv-preview-panel,
+      #calc-investment .inv-visual-card,
+      #calc-investment .inv-table-card {
+        padding: 24px;
+      }
+
+      #calc-investment .inv-form-panel {
+        display: grid;
+        gap: 18px;
+      }
+
+      #calc-investment .inv-advanced-control {
+        margin: 4px 0 0;
+      }
+
+      #calc-investment .inv-section {
+        padding: 18px;
+        border-radius: 30px;
+        border: 1px solid rgba(31, 95, 135, 0.12);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.94)),
+          radial-gradient(circle at top left, rgba(191, 219, 254, 0.22), transparent 36%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      }
+
+      #calc-investment .inv-section--advanced {
+        margin-top: 12px;
+      }
+
+      #calc-investment #inv-advanced-toggle {
+        min-height: 58px;
+        justify-content: center;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.55);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 251, 0.98));
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+        color: var(--inv-ink);
+        font-weight: 700;
+      }
+
+      #calc-investment .inv-advanced-toggle-meta {
+        margin-left: 10px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(219, 234, 254, 0.72);
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      #calc-investment .inv-control-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      #calc-investment .inv-control-grid--advanced {
+        grid-template-columns: 1fr;
+      }
+
+      #calc-investment .inv-control-card {
+        --inv-slider-fill: 0%;
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+        border-radius: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 248, 251, 0.9)),
+          radial-gradient(circle at top right, rgba(191, 219, 254, 0.22), transparent 34%);
+        box-shadow: 0 16px 34px rgba(15, 23, 42, 0.04);
+      }
+
+      #calc-investment .inv-control-card--advanced {
+        max-width: 420px;
+      }
+
+      #calc-investment .inv-control-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      #calc-investment .inv-control-kicker {
+        margin: 0 0 6px;
+        color: #64809a;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      #calc-investment .inv-control-label {
+        display: block;
+        margin: 0;
+        color: var(--inv-ink);
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      #calc-investment .inv-control-copy {
+        margin: 6px 0 0;
+        color: var(--inv-muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      #calc-investment .inv-control-live {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 110px;
+        padding: 10px 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(147, 197, 253, 0.44);
+        color: var(--inv-ink);
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        text-align: right;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      }
+
+      #calc-investment .inv-slider {
+        width: 100%;
+        height: 14px;
+        margin: 4px 0 0;
+        border-radius: 999px;
+        appearance: none;
+        outline: none;
+        background: linear-gradient(
+          90deg,
+          #2563eb 0%,
+          #2563eb var(--inv-slider-fill),
+          rgba(191, 219, 254, 0.82) var(--inv-slider-fill),
+          rgba(191, 219, 254, 0.82) 100%
+        );
+        box-shadow: inset 0 0 0 1px rgba(147, 197, 253, 0.42);
+      }
+
+      #calc-investment .inv-slider::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+        border: 0;
+        border-radius: 999px;
+        appearance: none;
+        background: linear-gradient(180deg, #ffffff, #eff6ff);
+        box-shadow:
+          0 10px 24px rgba(29, 78, 216, 0.28),
+          0 0 0 1px rgba(37, 99, 235, 0.2);
+        cursor: pointer;
+      }
+
+      #calc-investment .inv-slider::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #ffffff, #eff6ff);
+        box-shadow:
+          0 10px 24px rgba(29, 78, 216, 0.28),
+          0 0 0 1px rgba(37, 99, 235, 0.2);
+        cursor: pointer;
+      }
+
+      #calc-investment .inv-slider-scale {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: #7b8b99;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #calc-investment .inv-number-shell {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: center;
+        min-height: 56px;
+        border-radius: 18px;
+        border: 1px solid rgba(148, 163, 184, 0.28);
+        background: rgba(255, 255, 255, 0.88);
+        overflow: hidden;
+      }
+
+      #calc-investment .inv-number-shell--suffix {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+
+      #calc-investment .inv-number-prefix,
+      #calc-investment .inv-number-suffix {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 52px;
+        height: 100%;
+        color: #53687d;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      #calc-investment .inv-number-prefix {
+        border-right: 1px solid rgba(148, 163, 184, 0.22);
+      }
+
+      #calc-investment .inv-number-suffix {
+        border-left: 1px solid rgba(148, 163, 184, 0.22);
+      }
+
+      #calc-investment .inv-number-input {
+        width: 100%;
+        min-height: 56px;
+        border: 0;
+        background: transparent;
+        color: var(--inv-ink);
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        padding: 0 16px;
+        box-shadow: none;
+      }
+
+      #calc-investment .inv-number-input:focus {
+        outline: none;
+      }
+
+      #calc-investment .inv-toggle-row {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      #calc-investment .fi-toggle-group {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 22px;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      #calc-investment .fi-toggle-label {
+        color: var(--inv-ink);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      #calc-investment .fi-toggle-group .button-group {
+        gap: 10px;
+      }
+
+      #calc-investment .fi-toggle-group .calculator-button.secondary {
+        min-height: 46px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border-color: rgba(148, 163, 184, 0.45);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--inv-ink);
+        font-weight: 700;
+      }
+
+      #calc-investment .fi-toggle-group .calculator-button.secondary.is-active {
+        border-color: rgba(96, 165, 250, 0.72);
+        background: linear-gradient(180deg, rgba(239, 246, 255, 0.96), rgba(219, 234, 254, 0.96));
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12);
+      }
+
+      #calc-investment .fi-action-rail {
+        margin-top: 4px;
+      }
+
+      #calc-investment .inv-preview-panel {
+        display: grid;
+        gap: 18px;
+        position: sticky;
+        top: 24px;
+      }
+
+      #calc-investment .inv-preview-main {
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(160deg, rgba(19, 41, 61, 0.96), rgba(29, 78, 137, 0.9));
+        color: #eff6ff;
+      }
+
+      #calc-investment .inv-preview-label,
+      #calc-investment .inv-card-eyebrow,
+      #calc-investment .inv-donut-label,
+      #calc-investment .inv-mode-badge {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      #calc-investment .inv-result-card {
+        background: transparent;
+        padding: 0;
+        margin-top: 8px;
+      }
+
+      #calc-investment .inv-result-value {
+        display: block;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1;
+        font-weight: 800;
+      }
+
+      #calc-investment .inv-assumption-line {
+        margin: 12px 0 0;
+        color: rgba(219, 234, 254, 0.92);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      #calc-investment .inv-metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-investment .inv-snapshot-list,
+      #calc-investment .inv-donut-copy,
+      #inv-explanation .inv-exp-list,
+      #inv-explanation .inv-notes-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-investment .inv-visual-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      #calc-investment .inv-card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      #calc-investment .inv-card-title,
+      #inv-explanation h2,
+      #inv-explanation h3,
+      #inv-explanation h4 {
+        margin: 0;
+        color: #13293d;
+      }
+
+      #calc-investment .inv-card-copy,
+      #inv-explanation p,
+      #inv-explanation li {
+        color: #44515c;
+        line-height: 1.7;
+      }
+
+      #calc-investment .inv-line-chart-frame {
+        min-height: 320px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(244, 247, 250, 0.92), rgba(255, 255, 255, 0.98));
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        overflow: hidden;
+      }
+
+      #calc-investment .inv-line-chart {
+        width: 100%;
+        height: 320px;
+        display: block;
+      }
+
+      #calc-investment .inv-chart-grid {
+        stroke: rgba(148, 163, 184, 0.3);
+        stroke-width: 1;
+      }
+
+      #calc-investment .inv-chart-axis-text {
+        fill: #64748b;
+        font-size: 12px;
+      }
+
+      #calc-investment .inv-chart-label {
+        fill: #475569;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #calc-investment .inv-chart-path--nominal,
+      #calc-investment .inv-chart-dot--nominal {
+        stroke: #0f766e;
+        fill: #0f766e;
+      }
+
+      #calc-investment .inv-chart-path--real,
+      #calc-investment .inv-chart-dot--real {
+        stroke: #1d4ed8;
+        fill: #1d4ed8;
+      }
+
+      #calc-investment .inv-chart-path--nominal,
+      #calc-investment .inv-chart-path--real {
+        fill: none;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      #calc-investment .inv-chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+        margin-top: 14px;
+      }
+
+      #calc-investment .inv-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #475569;
+        font-size: 14px;
+      }
+
+      #calc-investment .inv-legend-swatch {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        display: inline-block;
+      }
+
+      #calc-investment .inv-legend-swatch--nominal {
+        background: #0f766e;
+      }
+
+      #calc-investment .inv-legend-swatch--real {
+        background: #1d4ed8;
+      }
+
+      #calc-investment .inv-donut-layout {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 20px;
+        align-items: center;
+      }
+
+      #calc-investment .inv-donut {
+        --inv-contribution-angle: 60%;
+        width: 220px;
+        height: 220px;
+        border-radius: 999px;
+        background: conic-gradient(#1d4ed8 0 var(--inv-contribution-angle), #0f766e var(--inv-contribution-angle) 100%);
+        display: grid;
+        place-items: center;
+      }
+
+      #calc-investment .inv-donut-hole {
+        width: 132px;
+        height: 132px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.96);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 12px;
+      }
+
+      #calc-investment .inv-donut-value {
+        font-size: 28px;
+        line-height: 1;
+        color: #13293d;
+      }
+
+      #calc-investment .inv-donut-note {
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      #calc-investment .inv-table-scroll {
+        max-height: 420px;
+      }
+
+      #calc-investment .inv-comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      #calc-investment .inv-comparison-table th,
+      #calc-investment .inv-comparison-table td {
+        padding: 12px 14px;
+        text-align: left;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+        vertical-align: top;
+      }
+
+      #calc-investment .inv-comparison-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: rgba(248, 250, 252, 0.98);
+        color: #334155;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      #calc-investment .inv-mode-badge {
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(219, 234, 254, 0.9);
+        color: #1e3a8a;
+      }
+
+      #inv-explanation .inv-exp-shell {
+        padding: 28px;
+      }
+
+      #inv-explanation .inv-exp-head,
+      #inv-explanation .inv-exp-block {
+        display: grid;
+        gap: 14px;
+      }
+
+      #inv-explanation .inv-exp-shell {
+        gap: 26px;
+        display: grid;
+      }
+
+      #inv-explanation .inv-exp-list,
+      #inv-explanation .inv-notes-list {
+        padding-left: 20px;
+      }
+
+      #inv-explanation .inv-exp-formula {
+        font-size: 16px;
+        font-weight: 700;
+        color: #13293d;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(219, 234, 254, 0.28);
+        border: 1px solid rgba(147, 197, 253, 0.4);
+      }
+
+      #inv-explanation .inv-faq-section {
+        gap: 12px;
+      }
+
+      #inv-explanation .faq-card {
+        padding: 18px 20px;
+        border-radius: 18px;
+        border: 1px solid rgba(203, 213, 225, 0.8);
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      #inv-explanation .faq-card + .faq-card {
+        margin-top: 10px;
+      }
+
+      #inv-explanation .faq-card p {
+        margin: 8px 0 0;
+      }
+
+      #inv-explanation .inv-notes-section {
+        padding-top: 4px;
+      }
+
+      #inv-explanation .inv-notes-list li::marker {
+        color: rgba(186, 230, 253, 0.98);
+      }
+
+      @media (max-width: 1100px) {
+        #calc-investment .inv-hero,
+        #calc-investment .inv-visual-grid,
+        #calc-investment .inv-donut-layout {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-investment .inv-preview-panel {
+          position: static;
+        }
+
+        #calc-investment .inv-control-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        #calc-investment .inv-form-panel,
+        #calc-investment .inv-preview-panel,
+        #calc-investment .inv-visual-card,
+        #calc-investment .inv-table-card,
+        #inv-explanation .inv-exp-shell {
+          padding: 18px;
+          border-radius: 22px;
+        }
+
+        #calc-investment .inv-metric-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-investment .inv-section {
+          padding: 16px;
+          border-radius: 24px;
+        }
+
+        #calc-investment .inv-control-card {
+          padding: 16px;
+          border-radius: 20px;
+        }
+
+        #calc-investment .inv-control-top {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        #calc-investment .inv-control-live {
+          min-width: 0;
+          justify-content: flex-start;
+          text-align: left;
+        }
+
+        #calc-investment .inv-number-input {
+          font-size: 22px;
+        }
+
+        #calc-investment #inv-advanced-toggle {
+          min-height: 54px;
+          padding-inline: 18px;
+        }
+
+        #calc-investment .inv-line-chart-frame,
+        #calc-investment .inv-line-chart {
+          min-height: 250px;
+          height: 250px;
+        }
+
+        #calc-investment .inv-donut {
+          width: 180px;
+          height: 180px;
+          justify-self: center;
+        }
+
+        #calc-investment .inv-donut-hole {
+          width: 110px;
+          height: 110px;
+        }
+      }
+    </style>
+ 
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
+    <div class="page fi-cluster-page-shell">
+      <header class="fi-cluster-site-header">
+  <div class="fi-cluster-wrap fi-cluster-site-header-inner">
+    <a class="fi-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="fi-cluster-brand-mark" aria-hidden="true">FI</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="fi-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
+      <main class="fi-cluster-layout-main">
+        <section class="fi-cluster-center-column">
+          <div class="fi-cluster-panel panel-span-all">
+  <div class="fi-cluster-page-header">
+    <span class="fi-cluster-page-kicker">Finance Calculators</span>
+    <h1 id="calculator-title">Investment Calculator</h1>
+    <p class="fi-cluster-page-intro">Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan.</p>
+  </div>
+  <div class="calculator-page-single fi-cluster-flow">
+    <div id="calc-investment">
+  <div class="calculator-ui finance-ui inv-shell">
+    <section class="inv-hero" aria-label="Investment calculator">
+      <div class="inv-form-panel">
+        <p class="helper">
+          Estimate how an investment could grow, how much comes from your deposits, how much comes
+          from compounding, and what inflation may leave you with in real purchasing-power terms.
+        </p>
+
+        <section class="fi-form-section inv-section inv-section--core" aria-labelledby="inv-section-core">
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="inv-section-core">Core planning inputs</h2>
+              <p class="fi-form-section-copy">
+                Use the broad planning case first. Advanced settings stay collapsed so the default
+                view remains fast, readable, and decision-focused.
+              </p>
+            </div>
+          </div>
+
+          <div class="inv-control-grid">
+            <article class="inv-control-card" data-inv-control="initialInvestment">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Starting capital</p>
+                  <label class="inv-control-label" for="inv-initial">Initial investment</label>
+                  <p class="inv-control-copy">
+                    The amount already invested before future deposits begin.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="initialInvestment">$15,000</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-initial-range"
+                type="range"
+                min="0"
+                max="100000000"
+                step="100"
+                value="15000"
+                data-inv-range="initialInvestment"
+                aria-label="Adjust initial investment"
+              />
+              <div class="inv-slider-scale">
+                <span>$0</span>
+                <span>$100M</span>
+              </div>
+              <div class="inv-number-shell">
+                <span class="inv-number-prefix">$</span>
+                <input
+                  class="inv-number-input"
+                  id="inv-initial"
+                  type="number"
+                  min="0"
+                  max="100000000"
+                  step="100"
+                  inputmode="decimal"
+                  value="15000"
+                />
+              </div>
+            </article>
+
+            <article class="inv-control-card" data-inv-control="annualReturnRate">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Growth assumption</p>
+                  <label class="inv-control-label" for="inv-return">Expected annual return</label>
+                  <p class="inv-control-copy">
+                    Your average yearly return assumption before inflation.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="annualReturnRate">7%</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-return-range"
+                type="range"
+                min="0"
+                max="100"
+                step="0.1"
+                value="7"
+                data-inv-range="annualReturnRate"
+                aria-label="Adjust expected annual return"
+              />
+              <div class="inv-slider-scale">
+                <span>0%</span>
+                <span>100%</span>
+              </div>
+              <div class="inv-number-shell inv-number-shell--suffix">
+                <input
+                  class="inv-number-input"
+                  id="inv-return"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  inputmode="decimal"
+                  value="7"
+                />
+                <span class="inv-number-suffix">%</span>
+              </div>
+            </article>
+
+            <article class="inv-control-card" data-inv-control="years">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Time horizon</p>
+                  <label class="inv-control-label" for="inv-years">Years</label>
+                  <p class="inv-control-copy">
+                    The number of years the plan remains invested.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="years">20 years</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-years-range"
+                type="range"
+                min="0"
+                max="80"
+                step="1"
+                value="20"
+                data-inv-range="years"
+                aria-label="Adjust years"
+              />
+              <div class="inv-slider-scale">
+                <span>0 years</span>
+                <span>80 years</span>
+              </div>
+              <div class="inv-number-shell">
+                <input
+                  class="inv-number-input"
+                  id="inv-years"
+                  type="number"
+                  min="0"
+                  max="80"
+                  step="1"
+                  inputmode="numeric"
+                  value="20"
+                />
+              </div>
+            </article>
+
+            <article class="inv-control-card" data-inv-control="recurringContribution">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Ongoing deposits</p>
+                  <label class="inv-control-label" for="inv-recurring">Recurring contribution</label>
+                  <p class="inv-control-copy">
+                    The regular amount added throughout the projection.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="recurringContribution">$300</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-recurring-range"
+                type="range"
+                min="0"
+                max="1000000"
+                step="10"
+                value="300"
+                data-inv-range="recurringContribution"
+                aria-label="Adjust recurring contribution"
+              />
+              <div class="inv-slider-scale">
+                <span>$0</span>
+                <span>$1M</span>
+              </div>
+              <div class="inv-number-shell">
+                <span class="inv-number-prefix">$</span>
+                <input
+                  class="inv-number-input"
+                  id="inv-recurring"
+                  type="number"
+                  min="0"
+                  max="1000000"
+                  step="10"
+                  inputmode="decimal"
+                  value="300"
+                />
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="inv-advanced-control">
+          <button
+            class="calculator-button secondary full-width"
+            type="button"
+            id="inv-advanced-toggle"
+            aria-expanded="false"
+          >
+            Advanced Options
+            <span class="inv-advanced-toggle-meta">Optional</span>
+          </button>
+        </div>
+
+        <section
+          class="fi-form-section inv-section inv-section--advanced inv-advanced is-hidden"
+          id="inv-advanced-section"
+          aria-labelledby="inv-section-advanced"
+          aria-hidden="true"
+        >
+          <div class="fi-form-section-header">
+            <div>
+              <h2 class="fi-form-section-title" id="inv-section-advanced">Advanced framing</h2>
+              <p class="fi-form-section-copy">
+                Use these settings when you want to compare nominal growth with real value and to
+                decide whether the simple-vs-compound comparison should include ongoing deposits.
+              </p>
+            </div>
+          </div>
+
+          <div class="inv-control-grid inv-control-grid--advanced">
+            <article class="inv-control-card inv-control-card--advanced" data-inv-control="inflationRate">
+              <div class="inv-control-top">
+                <div>
+                  <p class="inv-control-kicker">Purchasing power</p>
+                  <label class="inv-control-label" for="inv-inflation">Inflation rate</label>
+                  <p class="inv-control-copy">
+                    Use this to compare the projected balance with its real buying power.
+                  </p>
+                </div>
+                <strong class="inv-control-live" data-inv-live-value="inflationRate">2.5%</strong>
+              </div>
+              <input
+                class="inv-slider"
+                id="inv-inflation-range"
+                type="range"
+                min="0"
+                max="100"
+                step="0.1"
+                value="2.5"
+                data-inv-range="inflationRate"
+                aria-label="Adjust inflation rate"
+              />
+              <div class="inv-slider-scale">
+                <span>0%</span>
+                <span>100%</span>
+              </div>
+              <div class="inv-number-shell inv-number-shell--suffix">
+                <input
+                  class="inv-number-input"
+                  id="inv-inflation"
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  inputmode="decimal"
+                  value="2.5"
+                />
+                <span class="inv-number-suffix">%</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="fi-toggle-row inv-toggle-row">
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Compounding frequency</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Compounding frequency"
+                data-button-group="inv-compounding"
+              >
+                <button class="calculator-button secondary is-active" type="button" data-value="monthly" aria-pressed="true">Monthly</button>
+                <button class="calculator-button secondary" type="button" data-value="quarterly" aria-pressed="false">Quarterly</button>
+                <button class="calculator-button secondary" type="button" data-value="semiannual" aria-pressed="false">Semi-Annual</button>
+                <button class="calculator-button secondary" type="button" data-value="annual" aria-pressed="false">Annual</button>
+              </div>
+            </div>
+
+            <div class="fi-toggle-group">
+              <span class="fi-toggle-label">Comparison contribution mode</span>
+              <div
+                class="button-group"
+                role="group"
+                aria-label="Comparison contribution mode"
+                data-button-group="inv-comparison-mode"
+              >
+                <button class="calculator-button secondary" type="button" data-value="lump-sum-only" aria-pressed="false">Lump Sum Only</button>
+                <button class="calculator-button secondary is-active" type="button" data-value="include-recurring-contributions" aria-pressed="true">Include Contributions</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="input-row fi-action-rail">
+          <button class="calculator-button" type="button" id="inv-calc">Calculate Investment</button>
+          <button class="calculator-button secondary" type="button" id="inv-reset">Reset</button>
+          <p class="fi-action-note">
+            Inputs can change freely, but the projection updates only when you click Calculate.
+          </p>
+        </div>
+      </div>
+
+      <aside class="inv-preview-panel" id="inv-preview" aria-label="Investment summary">
+        <div class="inv-preview-main">
+          <p class="inv-preview-label">Ending value</p>
+          <div class="result inv-result-card" id="inv-result" aria-live="polite">
+            <span class="inv-result-value" id="inv-result-value">$0</span>
+          </div>
+          <p class="inv-assumption-line" data-inv="assumption-line"></p>
+        </div>
+
+        <div class="fi-metric-grid inv-metric-grid" id="inv-result-detail" aria-live="polite">
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total contributions</span>
+            <strong class="fi-metric-value" data-inv-metric="contributions">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Total gains</span>
+            <strong class="fi-metric-value" data-inv-metric="gains">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Simple ending value</span>
+            <strong class="fi-metric-value" data-inv-metric="simple">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Compound ending value</span>
+            <strong class="fi-metric-value" data-inv-metric="compound">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Compounding uplift</span>
+            <strong class="fi-metric-value" data-inv-metric="uplift">—</strong>
+          </article>
+          <article class="fi-metric-card">
+            <span class="fi-metric-label">Inflation-adjusted value</span>
+            <strong class="fi-metric-value" data-inv-metric="real">—</strong>
+          </article>
+        </div>
+
+        <div class="fi-snapshot-list inv-snapshot-list">
+          <div class="fi-snapshot-row"><span>Initial investment</span><strong data-inv-snap="initial">—</strong></div>
+          <div class="fi-snapshot-row"><span>Annual return</span><strong data-inv-snap="return">—</strong></div>
+          <div class="fi-snapshot-row"><span>Years</span><strong data-inv-snap="years">—</strong></div>
+          <div class="fi-snapshot-row"><span>Recurring contribution</span><strong data-inv-snap="recurring">—</strong></div>
+          <div class="fi-snapshot-row"><span>Compounding</span><strong data-inv-snap="compounding">—</strong></div>
+          <div class="fi-snapshot-row"><span>Comparison mode</span><strong data-inv-snap="mode">—</strong></div>
+        </div>
+
+        <p class="fi-preview-stale" id="inv-stale-note" hidden aria-hidden="true">
+          Inputs changed. Recalculate to refresh the projection.
+        </p>
+      </aside>
+    </section>
+
+    <section class="inv-visual-grid" aria-label="Investment visuals">
+      <article class="inv-visual-card" id="inv-growth-visual">
+        <div class="inv-card-head">
+          <div>
+            <p class="inv-card-eyebrow">Nominal vs real</p>
+            <h2 class="inv-card-title">See How Inflation Changes the Story</h2>
+            <p class="inv-card-copy">
+              The nominal line shows the account statement. The real line shows what that path may
+              still buy after inflation.
+            </p>
+          </div>
+        </div>
+        <div class="inv-line-chart-frame">
+          <svg
+            id="inv-line-chart"
+            class="inv-line-chart"
+            viewBox="0 0 720 320"
+            role="img"
+            aria-label="Line chart comparing nominal and inflation-adjusted investment value over time"
+          ></svg>
+        </div>
+        <div class="inv-chart-legend">
+          <span class="inv-legend-item"><i class="inv-legend-swatch inv-legend-swatch--nominal"></i>Nominal value</span>
+          <span class="inv-legend-item"><i class="inv-legend-swatch inv-legend-swatch--real"></i>Real inflation-adjusted value</span>
+        </div>
+      </article>
+
+      <article class="inv-visual-card" id="inv-source-visual">
+        <div class="inv-card-head">
+          <div>
+            <p class="inv-card-eyebrow">Contributions vs growth</p>
+            <h2 class="inv-card-title">How Much Came From You vs the Market?</h2>
+            <p class="inv-card-copy">
+              This split turns the ending balance into something more useful: a clearer answer about
+              how much came from deposits and how much came from growth.
+            </p>
+          </div>
+        </div>
+        <div class="inv-donut-layout">
+          <div class="inv-donut" id="inv-donut" role="img" aria-label="Donut chart showing contributions versus growth">
+            <div class="inv-donut-hole">
+              <span class="inv-donut-label">Growth share</span>
+              <strong class="inv-donut-value" id="inv-donut-value">—</strong>
+            </div>
+          </div>
+          <div class="inv-donut-copy">
+            <p>
+              Your money supplied <strong data-inv-donut="contributions">—</strong>.
+            </p>
+            <p>
+              Investment growth supplied <strong data-inv-donut="growth">—</strong>.
+            </p>
+            <p class="inv-donut-note" id="inv-donut-note">
+              The mix changes with time horizon, contribution pace, and return assumptions.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="inv-table-card" aria-labelledby="inv-table-title">
+      <div class="inv-card-head inv-card-head--table">
+        <div>
+          <p class="inv-card-eyebrow">Simple vs compound comparison</p>
+          <h2 class="inv-card-title" id="inv-table-title">Year-by-Year Gap</h2>
+          <p class="inv-card-copy" id="inv-table-note">
+            Compare how the simple and compound paths separate over time under the active comparison
+            mode.
+          </p>
+        </div>
+        <div class="inv-mode-badge" id="inv-mode-badge">Include contributions</div>
+      </div>
+      <div class="table-scroll inv-table-scroll" tabindex="0" aria-describedby="inv-table-note">
+        <table class="inv-comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col">Cumulative contributions</th>
+              <th scope="col">Simple value</th>
+              <th scope="col">Compound value</th>
+              <th scope="col">Real compound value</th>
+              <th scope="col">Compounding uplift</th>
+            </tr>
+          </thead>
+          <tbody id="inv-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+
+    <div id="inv-explanation" class="explanation-pane">
+  <section class="inv-exp-section inv-exp-article">
+    <div class="inv-exp-shell">
+      <header class="inv-exp-head">
+        <h2>How Much Could an Investment Grow After Contributions, Compounding, and Inflation?</h2>
+        <p>
+          An investment calculator estimates how a starting amount and recurring deposits may grow
+          over time, then separates what came from your money, what came from compounding, and what
+          inflation may quietly take back in real purchasing power.
+        </p>
+        <p>
+          In the current scenario, the plan points to <strong data-inv-exp="ending">—</strong> from
+          total contributions of <strong data-inv-exp="contributions">—</strong>, with a real
+          inflation-adjusted value of <strong data-inv-exp="real">—</strong>. That is the practical
+          reason to look beyond one headline balance.
+        </p>
+        <ul class="inv-exp-list">
+          <li>Use it when you want a broad planning view, not a narrow return-analysis tool.</li>
+          <li>Read nominal and real values together so inflation does not hide inside the result.</li>
+          <li>Compare simple and compound growth to see why time matters so much.</li>
+        </ul>
+      </header>
+
+      <section class="inv-exp-block">
+        <h3>How to Guide</h3>
+
+        <h4>What this calculator is for</h4>
+        <p>
+          This route is the broad planning page for people asking the largest question first: what
+          could this investment become? It is built for long-horizon saving, portfolio projections,
+          retirement accumulation, education funds, and any case where you want to connect deposits,
+          growth assumptions, and inflation into one view.
+        </p>
+        <p>
+          That makes it different from a narrower future-value page or a detailed CAGR page. Here,
+          the main job is to frame the whole plan. You can see the ending balance, the contribution
+          burden, the simple-vs-compound gap, and the real value after inflation. That combination
+          is usually what a broad-intent searcher means when they type “investment calculator.”
+        </p>
+
+        <h4>Who should use it and when</h4>
+        <p>
+          Use this calculator when the decision is mostly about planning. You may be deciding how
+          much to invest now, how much to add each month, how long to stay invested, or whether a
+          headline balance still looks strong once inflation is brought back into the picture. This
+          page is also a good fit when you want to explain compounding to someone in plain English.
+        </p>
+        <p>
+          Do not use it when you need tax modelling, sequence-of-returns stress testing, or a
+          detailed performance audit of a portfolio you already ran in real life. Those are better
+          served by the <a href="/finance-calculators/investment-return-calculator/">investment
+          return calculator</a>. If you only need a simpler projection with future value and
+          inflation context, the <a href="/finance-calculators/investment-growth-calculator/"
+          >investment growth calculator</a> is the lighter route.
+        </p>
+
+        <h4>How to use the inputs</h4>
+        <p>
+          Start with the four visible inputs. The initial investment is the money already invested.
+          Expected annual return is your assumed average yearly growth rate. Years is the horizon you
+          want to test. Recurring contribution is the amount you plan to add regularly. These four
+          inputs are enough to produce a meaningful default result before you ever open the advanced
+          panel.
+        </p>
+        <p>
+          The advanced panel adds three framing decisions. Compounding frequency changes how often
+          the model applies returns. Inflation rate converts the nominal ending value into today’s
+          money. Comparison contribution mode decides whether the simple-vs-compound table should
+          compare pure lump-sum growth or a scenario that also includes recurring contributions.
+        </p>
+
+        <h4>How does inflation affect an investment?</h4>
+        <p>
+          Inflation does not change the account statement. Your broker or provider still shows the
+          nominal balance. But inflation does change what that balance can buy later. A plan that
+          looks impressive in nominal terms may look merely acceptable in real terms if inflation
+          runs high for a long time.
+        </p>
+        <p>
+          That is why this page shows both lines together. If nominal value reaches a large number
+          but the real line grows far more slowly, the plan may still be workable, but it is not as
+          strong as the nominal headline suggests. Inflation is not a side detail for long-horizon
+          investing. It is one of the main interpretation tools.
+        </p>
+
+        <h4>Simple vs compound investment over many years</h4>
+        <p>
+          Simple growth means returns are calculated only on the principal that has gone in. Compound
+          growth means returns are earned on the principal and also on prior gains. In the early
+          years the difference can look modest. Over longer periods the gap widens because compound
+          growth keeps building on itself.
+        </p>
+        <p>
+          The widening matters most in long-horizon planning because time is the force that lets the
+          later years become more powerful than the early ones. A simple-interest path rises in a
+          more linear fashion. A compound path becomes increasingly curved because each period begins
+          from a larger base than the one before it.
+        </p>
+
+        <h4>Formula derivations and variable meanings</h4>
+        <p>
+          The compound-growth side starts from the familiar future-value relationship:
+        </p>
+        <p class="inv-exp-formula">
+          Compound future value = P × (1 + r / n)<sup>n × t</sup>
+        </p>
+        <p>
+          Here, <strong>P</strong> is the initial investment, <strong>r</strong> is the annual
+          return as a decimal, <strong>n</strong> is the number of compounding periods per year, and
+          <strong>t</strong> is time in years. The exponent <strong>n × t</strong> matters because
+          compounding frequency changes how often growth is applied.
+        </p>
+        <p>
+          When recurring contributions are added, the calculator also includes the future value of a
+          regular contribution stream:
+        </p>
+        <p class="inv-exp-formula">
+          Contribution growth = C × ((1 + r / n)<sup>n × t</sup> - 1) ÷ (r / n)
+        </p>
+        <p>
+          In that formula, <strong>C</strong> is the contribution per compounding period. The page
+          converts the recurring contribution you enter into the contribution amount that matches the
+          selected compounding frequency. If the return rate is zero, the formula falls back to
+          straightforward arithmetic because there is no growth term to divide by.
+        </p>
+        <p>
+          The simple-growth comparison deliberately changes the logic. Instead of allowing gains to
+          earn gains, the model keeps adding return only on principal that has been contributed. That
+          creates a cleaner educational comparison because it shows the value of compounding rather
+          than hiding it behind a single result line.
+        </p>
+        <p>
+          Real value is then derived with the inflation adjustment:
+        </p>
+        <p class="inv-exp-formula">
+          Real value = Nominal value ÷ (1 + i)<sup>t</sup>
+        </p>
+        <p>
+          Here, <strong>i</strong> is the inflation rate as a decimal. This does not claim you know
+          future inflation precisely. It simply gives the nominal result a more realistic lens.
+        </p>
+
+        <h4>Worked example: long-horizon lump sum only</h4>
+        <p>
+          Suppose you invest <strong data-inv-exp="initial">—</strong> for
+          <strong data-inv-exp="years">—</strong> years at an assumed annual return of
+          <strong data-inv-exp="return">—</strong> with
+          <strong data-inv-exp="compounding">—</strong> compounding and no recurring deposits in the
+          comparison mode. The simple path ends at <strong data-inv-exp="simple">—</strong>. The
+          compound path ends at <strong data-inv-exp="compound">—</strong>. The difference,
+          <strong data-inv-exp="uplift">—</strong>, is the clearest expression of what compounding
+          adds.
+        </p>
+        <p>
+          This is why lump-sum examples are useful. They strip away the contribution habit and show
+          the pure effect of compounding over time. If the gap looks small in the first few years,
+          that is normal. The main lesson is how much later years can matter when earlier gains are
+          still allowed to grow.
+        </p>
+
+        <h4>Worked example: recurring-contribution comparison</h4>
+        <p>
+          Now include recurring contributions of <strong data-inv-exp="recurring">—</strong>. The
+          plan reaches <strong data-inv-exp="ending">—</strong> from total contributions of
+          <strong data-inv-exp="contributions">—</strong>. This is where many people realise that a
+          disciplined contribution habit can do nearly as much work as a slightly more aggressive
+          return assumption.
+        </p>
+        <p>
+          Contributions matter twice. They increase the capital base directly, and they also create
+          more money that can compound later. That is why the compound line usually separates from
+          the simple line faster when ongoing deposits are included. More principal arrives earlier,
+          which gives later periods more to build on.
+        </p>
+
+        <h4>How input changes affect outputs</h4>
+        <p>
+          The starting amount affects the whole runway because it gets the maximum possible time to
+          grow. The return assumption has a nonlinear effect because it compounds through the entire
+          horizon. The time horizon often changes the answer more than people expect because the most
+          dramatic compounding usually appears in later years. Recurring contributions create a
+          steadier and often more controllable path because they depend on saving behaviour, not
+          market luck.
+        </p>
+        <p>
+          Inflation mostly changes interpretation. A higher inflation rate does not shrink the
+          nominal ending balance, but it can materially reduce the real value. That is especially
+          important if the portfolio is meant to fund future spending rather than simply produce a
+          large nominal number.
+        </p>
+
+        <h4>Common mistakes and how to avoid them</h4>
+        <p>
+          The most common mistake is choosing an annual return that feels hopeful rather than
+          defensible. A calculator is only as useful as the assumptions inside it. Another common
+          mistake is ignoring inflation altogether, which makes long-term balances look stronger than
+          they may prove in practice. A third mistake is using a one-off projection as if it were a
+          promise instead of a scenario.
+        </p>
+        <p>
+          A stronger habit is to run three cases: a conservative one, a base case, and an optimistic
+          one. If a plan works only under the most optimistic return assumption, it is not yet a
+          strong plan. If it still looks workable under a more conservative assumption, the result is
+          more robust.
+        </p>
+
+        <h4>How to interpret the result for real decisions</h4>
+        <p>
+          A useful investment projection should answer three questions. First, what could the plan
+          reach? Second, how much of that outcome would come from your own deposits? Third, what
+          might the result still be worth in today’s money? If the ending balance is high but the
+          real value is underwhelming, the plan may need more time, more contributions, or lower
+          spending expectations.
+        </p>
+        <p>
+          That is also why this route links outward. If you want a lighter projection page, use the
+          <a href="/finance-calculators/investment-growth-calculator/">investment growth
+          calculator</a>. If you want a deeper performance analysis view with CAGR and advanced
+          return framing, use the <a href="/finance-calculators/investment-return-calculator/"
+          >investment return calculator</a>. This page sits in the middle as the broad planning
+          tool.
+        </p>
+      </section>
+
+      <section id="investment-faq" class="inv-exp-block inv-faq-section">
+        <h3>FAQ</h3>
+        <article class="faq-card">
+          <h4>What is an investment calculator used for?</h4>
+          <p>
+            It estimates how a lump sum and recurring deposits may grow over time and helps you read
+            the result as contributions, growth, and inflation-adjusted value rather than one
+            isolated balance.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>What is the difference between simple and compound investment growth?</h4>
+          <p>
+            Simple growth adds return only on principal. Compound growth adds return on principal and
+            on prior gains, which is why the gap widens more noticeably over longer horizons.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Why does compounding matter more over long periods?</h4>
+          <p>
+            The later years start from a larger base. That means each later period can generate more
+            growth than the periods before it, even if the stated annual return never changes.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>How do recurring contributions change the result?</h4>
+          <p>
+            They add fresh capital and give later deposits time to earn returns too. Consistent
+            contributions often matter as much as a slightly higher expected return.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Does compounding frequency make a big difference?</h4>
+          <p>
+            Usually the difference is modest compared with the impact of time, contribution size, and
+            return assumptions, but more frequent compounding can still lift the ending value.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Why show an inflation-adjusted value?</h4>
+          <p>
+            Because a nominal balance can overstate what the future money can actually buy.
+            Inflation-adjusted value gives the projection a real-world interpretation.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Can this calculator be used for retirement planning?</h4>
+          <p>
+            Yes. It is well suited to retirement-style planning because it combines starting balance,
+            recurring contributions, time horizon, compounding, and inflation into one view.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>What happens if the expected return is 0%?</h4>
+          <p>
+            The ending value becomes the total amount contributed. In that case the simple and
+            compound comparison collapses because there is no growth rate for compounding to amplify.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Is the result guaranteed?</h4>
+          <p>
+            No. The output is a scenario built from assumptions. Real market returns are uneven and
+            can differ materially from a smooth average return path.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Which related calculator should I use next?</h4>
+          <p>
+            Use investment growth for a lighter future-value projection, or investment return when
+            you need CAGR and more advanced performance analysis.
+          </p>
+        </article>
+      </section>
+
+      <section class="inv-exp-block inv-notes-section">
+        <h3>Important Notes</h3>
+        <ul class="inv-notes-list">
+          <li><strong>Last updated:</strong> March 2026.</li>
+          <li><strong>Accuracy:</strong> Results are fixed-assumption estimates based on the values, horizon, compounding schedule, and inflation rate entered on the page.</li>
+          <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
+          <li><strong>Assumptions:</strong> the calculator uses a constant annual return and constant inflation assumption for the whole projection.</li>
+          <li><strong>Comparison logic:</strong> the simple-vs-compound table is educational; it is designed to isolate the value of compounding rather than to model every real-world portfolio detail.</li>
+          <li><strong>Inflation framing:</strong> real value is an estimate, not a forecast of actual future prices.</li>
+          <li><strong>Rounding:</strong> values are rounded for readability, so small differences can appear between table rows and headline totals.</li>
+          <li><strong>Limitations:</strong> taxes, fees, market crashes, sequence risk, and irregular deposits are excluded from this version.</li>
+          <li><strong>Decision use:</strong> results are planning estimates and should not be treated as investment advice or a guaranteed outcome.</li>
+          <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</div>
+
+    <section class="fi-cluster-related" aria-labelledby="fi-cluster-related-title">
+  <h2 id="fi-cluster-related-title">Related Finance Calculators</h2>
+  <div class="fi-cluster-related-links">
+    <a class="fi-cluster-related-link" href="/finance-calculators/present-value-calculator/">
+        <span class="fi-cluster-related-card-title">Present Value (PV)</span>
+        <span class="fi-cluster-related-card-copy">Discount a future amount into today's value before you compare options.</span>
+        <span class="fi-cluster-related-card-meta">Time Value of Money</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/future-value-calculator/">
+        <span class="fi-cluster-related-card-title">Future Value (FV)</span>
+        <span class="fi-cluster-related-card-copy">Project how a starting balance compounds with time and recurring additions.</span>
+        <span class="fi-cluster-related-card-meta">Time Value of Money</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/present-value-of-annuity-calculator/">
+        <span class="fi-cluster-related-card-title">Present Value of Annuity</span>
+        <span class="fi-cluster-related-card-copy">Value a stream of future payments in today's terms.</span>
+        <span class="fi-cluster-related-card-meta">Time Value of Money</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/future-value-of-annuity-calculator/">
+        <span class="fi-cluster-related-card-title">Future Value of Annuity</span>
+        <span class="fi-cluster-related-card-copy">Estimate what recurring contributions could become over time.</span>
+        <span class="fi-cluster-related-card-meta">Time Value of Money</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/simple-interest-calculator/">
+        <span class="fi-cluster-related-card-title">Simple Interest</span>
+        <span class="fi-cluster-related-card-copy">Check straight-line interest cost without compounding.</span>
+        <span class="fi-cluster-related-card-meta">Interest & Growth</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/compound-interest-calculator/">
+        <span class="fi-cluster-related-card-title">Compound Interest</span>
+        <span class="fi-cluster-related-card-copy">Model compounding growth with clear interest and balance context.</span>
+        <span class="fi-cluster-related-card-meta">Interest & Growth</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/effective-annual-rate-calculator/">
+        <span class="fi-cluster-related-card-title">Effective Annual Rate (EAR)</span>
+        <span class="fi-cluster-related-card-copy">Translate a nominal rate into the real annual rate after compounding.</span>
+        <span class="fi-cluster-related-card-meta">Interest & Growth</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/inflation-calculator/">
+        <span class="fi-cluster-related-card-title">Inflation Calculator</span>
+        <span class="fi-cluster-related-card-copy">Translate an older dollar amount into later CPI-based purchasing power.</span>
+        <span class="fi-cluster-related-card-meta">Interest & Growth</span>
+      </a><a class="fi-cluster-related-link is-active" href="/finance-calculators/investment-calculator/" aria-current="page">
+        <span class="fi-cluster-related-card-title">Investment Calculator</span>
+        <span class="fi-cluster-related-card-copy">Explore this Finance calculator in the shared redesign system.</span>
+        <span class="fi-cluster-related-card-meta">Investments & Savings</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/investment-growth-calculator/">
+        <span class="fi-cluster-related-card-title">Investment Growth</span>
+        <span class="fi-cluster-related-card-copy">Forecast balances, contributions, and growth across longer horizons.</span>
+        <span class="fi-cluster-related-card-meta">Investments & Savings</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/investment-return-calculator/">
+        <span class="fi-cluster-related-card-title">Investment Return</span>
+        <span class="fi-cluster-related-card-copy">Stress test a portfolio path with contributions, events, and downturns.</span>
+        <span class="fi-cluster-related-card-meta">Investments & Savings</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/time-to-savings-goal-calculator/">
+        <span class="fi-cluster-related-card-title">Time to Savings Goal</span>
+        <span class="fi-cluster-related-card-copy">Estimate how long steady saving may take to reach a target.</span>
+        <span class="fi-cluster-related-card-meta">Investments & Savings</span>
+      </a><a class="fi-cluster-related-link" href="/finance-calculators/monthly-savings-needed-calculator/">
+        <span class="fi-cluster-related-card-title">Monthly Savings Needed</span>
+        <span class="fi-cluster-related-card-copy">Work backward from the goal to the monthly saving requirement.</span>
+        <span class="fi-cluster-related-card-meta">Investments & Savings</span>
+      </a>
+  </div>
+</section>
+  </div>
+</div>
+        </section>
+      </main>
+      <footer class="fi-cluster-site-footer">
+  <div class="fi-cluster-wrap fi-cluster-site-footer-inner">
+    <nav class="fi-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="fi-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>
+    </div>
+    <script type="module" src="/assets/js/calculators/finance-calculators/investment-calculator/module.js?v=20260224"></script>
+  </body>
+</html>

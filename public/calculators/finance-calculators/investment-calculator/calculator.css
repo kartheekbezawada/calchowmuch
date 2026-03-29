@@ -1,0 +1,685 @@
+#calc-investment .inv-shell {
+  display: grid;
+  gap: 24px;
+}
+
+#calc-investment {
+  --inv-accent: #1d4ed8;
+  --inv-accent-soft: rgba(29, 78, 216, 0.12);
+  --inv-ink: #13293d;
+  --inv-muted: #526170;
+  --inv-border: rgba(31, 95, 135, 0.14);
+  --inv-slider-fill: 0%;
+}
+
+#calc-investment .inv-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 22px;
+  align-items: start;
+}
+
+#calc-investment .inv-form-panel,
+#calc-investment .inv-preview-panel,
+#calc-investment .inv-visual-card,
+#calc-investment .inv-table-card,
+#inv-explanation .inv-exp-shell {
+  border: 1px solid rgba(31, 95, 135, 0.14);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at top right, rgba(191, 219, 254, 0.42), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(247, 250, 252, 0.98));
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+#calc-investment .inv-form-panel,
+#calc-investment .inv-preview-panel,
+#calc-investment .inv-visual-card,
+#calc-investment .inv-table-card {
+  padding: 24px;
+}
+
+#calc-investment .inv-form-panel {
+  display: grid;
+  gap: 18px;
+}
+
+#calc-investment .inv-advanced-control {
+  margin: 4px 0 0;
+}
+
+#calc-investment .inv-section {
+  padding: 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(31, 95, 135, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.94)),
+    radial-gradient(circle at top left, rgba(191, 219, 254, 0.22), transparent 36%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+#calc-investment .inv-section--advanced {
+  margin-top: 12px;
+}
+
+#calc-investment #inv-advanced-toggle {
+  min-height: 58px;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 251, 0.98));
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  color: var(--inv-ink);
+  font-weight: 700;
+}
+
+#calc-investment .inv-advanced-toggle-meta {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(219, 234, 254, 0.72);
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#calc-investment .inv-control-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#calc-investment .inv-control-grid--advanced {
+  grid-template-columns: 1fr;
+}
+
+#calc-investment .inv-control-card {
+  --inv-slider-fill: 0%;
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 248, 251, 0.9)),
+    radial-gradient(circle at top right, rgba(191, 219, 254, 0.22), transparent 34%);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.04);
+}
+
+#calc-investment .inv-control-card--advanced {
+  max-width: 420px;
+}
+
+#calc-investment .inv-control-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+#calc-investment .inv-control-kicker {
+  margin: 0 0 6px;
+  color: #64809a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+#calc-investment .inv-control-label {
+  display: block;
+  margin: 0;
+  color: var(--inv-ink);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+#calc-investment .inv-control-copy {
+  margin: 6px 0 0;
+  color: var(--inv-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+#calc-investment .inv-control-live {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 10px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(147, 197, 253, 0.44);
+  color: var(--inv-ink);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-align: right;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+#calc-investment .inv-slider {
+  width: 100%;
+  height: 14px;
+  margin: 4px 0 0;
+  border-radius: 999px;
+  appearance: none;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    #2563eb 0%,
+    #2563eb var(--inv-slider-fill),
+    rgba(191, 219, 254, 0.82) var(--inv-slider-fill),
+    rgba(191, 219, 254, 0.82) 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba(147, 197, 253, 0.42);
+}
+
+#calc-investment .inv-slider::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 999px;
+  appearance: none;
+  background: linear-gradient(180deg, #ffffff, #eff6ff);
+  box-shadow:
+    0 10px 24px rgba(29, 78, 216, 0.28),
+    0 0 0 1px rgba(37, 99, 235, 0.2);
+  cursor: pointer;
+}
+
+#calc-investment .inv-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff, #eff6ff);
+  box-shadow:
+    0 10px 24px rgba(29, 78, 216, 0.28),
+    0 0 0 1px rgba(37, 99, 235, 0.2);
+  cursor: pointer;
+}
+
+#calc-investment .inv-slider-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #7b8b99;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#calc-investment .inv-number-shell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  min-height: 56px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.88);
+  overflow: hidden;
+}
+
+#calc-investment .inv-number-shell--suffix {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+#calc-investment .inv-number-prefix,
+#calc-investment .inv-number-suffix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  height: 100%;
+  color: #53687d;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+#calc-investment .inv-number-prefix {
+  border-right: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+#calc-investment .inv-number-suffix {
+  border-left: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+#calc-investment .inv-number-input {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  background: transparent;
+  color: var(--inv-ink);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  padding: 0 16px;
+  box-shadow: none;
+}
+
+#calc-investment .inv-number-input:focus {
+  outline: none;
+}
+
+#calc-investment .inv-toggle-row {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+#calc-investment .fi-toggle-group {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+#calc-investment .fi-toggle-label {
+  color: var(--inv-ink);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#calc-investment .fi-toggle-group .button-group {
+  gap: 10px;
+}
+
+#calc-investment .fi-toggle-group .calculator-button.secondary {
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border-color: rgba(148, 163, 184, 0.45);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--inv-ink);
+  font-weight: 700;
+}
+
+#calc-investment .fi-toggle-group .calculator-button.secondary.is-active {
+  border-color: rgba(96, 165, 250, 0.72);
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.96), rgba(219, 234, 254, 0.96));
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12);
+}
+
+#calc-investment .fi-action-rail {
+  margin-top: 4px;
+}
+
+#calc-investment .inv-preview-panel {
+  display: grid;
+  gap: 18px;
+  position: sticky;
+  top: 24px;
+}
+
+#calc-investment .inv-preview-main {
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(19, 41, 61, 0.96), rgba(29, 78, 137, 0.9));
+  color: #eff6ff;
+}
+
+#calc-investment .inv-preview-label,
+#calc-investment .inv-card-eyebrow,
+#calc-investment .inv-donut-label,
+#calc-investment .inv-mode-badge {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+#calc-investment .inv-result-card {
+  background: transparent;
+  padding: 0;
+  margin-top: 8px;
+}
+
+#calc-investment .inv-result-value {
+  display: block;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  font-weight: 800;
+}
+
+#calc-investment .inv-assumption-line {
+  margin: 12px 0 0;
+  color: rgba(219, 234, 254, 0.92);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#calc-investment .inv-metric-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-investment .inv-snapshot-list,
+#calc-investment .inv-donut-copy,
+#inv-explanation .inv-exp-list,
+#inv-explanation .inv-notes-list {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-investment .inv-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+#calc-investment .inv-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+#calc-investment .inv-card-title,
+#inv-explanation h2,
+#inv-explanation h3,
+#inv-explanation h4 {
+  margin: 0;
+  color: #13293d;
+}
+
+#calc-investment .inv-card-copy,
+#inv-explanation p,
+#inv-explanation li {
+  color: #44515c;
+  line-height: 1.7;
+}
+
+#calc-investment .inv-line-chart-frame {
+  min-height: 320px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(244, 247, 250, 0.92), rgba(255, 255, 255, 0.98));
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  overflow: hidden;
+}
+
+#calc-investment .inv-line-chart {
+  width: 100%;
+  height: 320px;
+  display: block;
+}
+
+#calc-investment .inv-chart-grid {
+  stroke: rgba(148, 163, 184, 0.3);
+  stroke-width: 1;
+}
+
+#calc-investment .inv-chart-axis-text {
+  fill: #64748b;
+  font-size: 12px;
+}
+
+#calc-investment .inv-chart-label {
+  fill: #475569;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#calc-investment .inv-chart-path--nominal,
+#calc-investment .inv-chart-dot--nominal {
+  stroke: #0f766e;
+  fill: #0f766e;
+}
+
+#calc-investment .inv-chart-path--real,
+#calc-investment .inv-chart-dot--real {
+  stroke: #1d4ed8;
+  fill: #1d4ed8;
+}
+
+#calc-investment .inv-chart-path--nominal,
+#calc-investment .inv-chart-path--real {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#calc-investment .inv-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 14px;
+}
+
+#calc-investment .inv-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-size: 14px;
+}
+
+#calc-investment .inv-legend-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+#calc-investment .inv-legend-swatch--nominal {
+  background: #0f766e;
+}
+
+#calc-investment .inv-legend-swatch--real {
+  background: #1d4ed8;
+}
+
+#calc-investment .inv-donut-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+#calc-investment .inv-donut {
+  --inv-contribution-angle: 60%;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: conic-gradient(#1d4ed8 0 var(--inv-contribution-angle), #0f766e var(--inv-contribution-angle) 100%);
+  display: grid;
+  place-items: center;
+}
+
+#calc-investment .inv-donut-hole {
+  width: 132px;
+  height: 132px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 12px;
+}
+
+#calc-investment .inv-donut-value {
+  font-size: 28px;
+  line-height: 1;
+  color: #13293d;
+}
+
+#calc-investment .inv-donut-note {
+  color: #64748b;
+  font-size: 14px;
+}
+
+#calc-investment .inv-table-scroll {
+  max-height: 420px;
+}
+
+#calc-investment .inv-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calc-investment .inv-comparison-table th,
+#calc-investment .inv-comparison-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  vertical-align: top;
+}
+
+#calc-investment .inv-comparison-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(248, 250, 252, 0.98);
+  color: #334155;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#calc-investment .inv-mode-badge {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(219, 234, 254, 0.9);
+  color: #1e3a8a;
+}
+
+#inv-explanation .inv-exp-shell {
+  padding: 28px;
+}
+
+#inv-explanation .inv-exp-head,
+#inv-explanation .inv-exp-block {
+  display: grid;
+  gap: 14px;
+}
+
+#inv-explanation .inv-exp-shell {
+  gap: 26px;
+  display: grid;
+}
+
+#inv-explanation .inv-exp-list,
+#inv-explanation .inv-notes-list {
+  padding-left: 20px;
+}
+
+#inv-explanation .inv-exp-formula {
+  font-size: 16px;
+  font-weight: 700;
+  color: #13293d;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(219, 234, 254, 0.28);
+  border: 1px solid rgba(147, 197, 253, 0.4);
+}
+
+#inv-explanation .inv-faq-section {
+  gap: 12px;
+}
+
+#inv-explanation .faq-card {
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+#inv-explanation .faq-card + .faq-card {
+  margin-top: 10px;
+}
+
+#inv-explanation .faq-card p {
+  margin: 8px 0 0;
+}
+
+#inv-explanation .inv-notes-section {
+  padding-top: 4px;
+}
+
+#inv-explanation .inv-notes-list li::marker {
+  color: rgba(186, 230, 253, 0.98);
+}
+
+@media (max-width: 1100px) {
+  #calc-investment .inv-hero,
+  #calc-investment .inv-visual-grid,
+  #calc-investment .inv-donut-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment .inv-preview-panel {
+    position: static;
+  }
+
+  #calc-investment .inv-control-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-investment .inv-form-panel,
+  #calc-investment .inv-preview-panel,
+  #calc-investment .inv-visual-card,
+  #calc-investment .inv-table-card,
+  #inv-explanation .inv-exp-shell {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  #calc-investment .inv-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-investment .inv-section {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  #calc-investment .inv-control-card {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  #calc-investment .inv-control-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #calc-investment .inv-control-live {
+    min-width: 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  #calc-investment .inv-number-input {
+    font-size: 22px;
+  }
+
+  #calc-investment #inv-advanced-toggle {
+    min-height: 54px;
+    padding-inline: 18px;
+  }
+
+  #calc-investment .inv-line-chart-frame,
+  #calc-investment .inv-line-chart {
+    min-height: 250px;
+    height: 250px;
+  }
+
+  #calc-investment .inv-donut {
+    width: 180px;
+    height: 180px;
+    justify-self: center;
+  }
+
+  #calc-investment .inv-donut-hole {
+    width: 110px;
+    height: 110px;
+  }
+}

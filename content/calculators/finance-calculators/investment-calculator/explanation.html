@@ -1,0 +1,317 @@
+<div id="inv-explanation" class="explanation-pane">
+  <section class="inv-exp-section inv-exp-article">
+    <div class="inv-exp-shell">
+      <header class="inv-exp-head">
+        <h2>How Much Could an Investment Grow After Contributions, Compounding, and Inflation?</h2>
+        <p>
+          An investment calculator estimates how a starting amount and recurring deposits may grow
+          over time, then separates what came from your money, what came from compounding, and what
+          inflation may quietly take back in real purchasing power.
+        </p>
+        <p>
+          In the current scenario, the plan points to <strong data-inv-exp="ending">—</strong> from
+          total contributions of <strong data-inv-exp="contributions">—</strong>, with a real
+          inflation-adjusted value of <strong data-inv-exp="real">—</strong>. That is the practical
+          reason to look beyond one headline balance.
+        </p>
+        <ul class="inv-exp-list">
+          <li>Use it when you want a broad planning view, not a narrow return-analysis tool.</li>
+          <li>Read nominal and real values together so inflation does not hide inside the result.</li>
+          <li>Compare simple and compound growth to see why time matters so much.</li>
+        </ul>
+      </header>
+
+      <section class="inv-exp-block">
+        <h3>How to Guide</h3>
+
+        <h4>What this calculator is for</h4>
+        <p>
+          This route is the broad planning page for people asking the largest question first: what
+          could this investment become? It is built for long-horizon saving, portfolio projections,
+          retirement accumulation, education funds, and any case where you want to connect deposits,
+          growth assumptions, and inflation into one view.
+        </p>
+        <p>
+          That makes it different from a narrower future-value page or a detailed CAGR page. Here,
+          the main job is to frame the whole plan. You can see the ending balance, the contribution
+          burden, the simple-vs-compound gap, and the real value after inflation. That combination
+          is usually what a broad-intent searcher means when they type “investment calculator.”
+        </p>
+
+        <h4>Who should use it and when</h4>
+        <p>
+          Use this calculator when the decision is mostly about planning. You may be deciding how
+          much to invest now, how much to add each month, how long to stay invested, or whether a
+          headline balance still looks strong once inflation is brought back into the picture. This
+          page is also a good fit when you want to explain compounding to someone in plain English.
+        </p>
+        <p>
+          Do not use it when you need tax modelling, sequence-of-returns stress testing, or a
+          detailed performance audit of a portfolio you already ran in real life. Those are better
+          served by the <a href="/finance-calculators/investment-return-calculator/">investment
+          return calculator</a>. If you only need a simpler projection with future value and
+          inflation context, the <a href="/finance-calculators/investment-growth-calculator/"
+          >investment growth calculator</a> is the lighter route.
+        </p>
+
+        <h4>How to use the inputs</h4>
+        <p>
+          Start with the four visible inputs. The initial investment is the money already invested.
+          Expected annual return is your assumed average yearly growth rate. Years is the horizon you
+          want to test. Recurring contribution is the amount you plan to add regularly. These four
+          inputs are enough to produce a meaningful default result before you ever open the advanced
+          panel.
+        </p>
+        <p>
+          The advanced panel adds three framing decisions. Compounding frequency changes how often
+          the model applies returns. Inflation rate converts the nominal ending value into today’s
+          money. Comparison contribution mode decides whether the simple-vs-compound table should
+          compare pure lump-sum growth or a scenario that also includes recurring contributions.
+        </p>
+
+        <h4>How does inflation affect an investment?</h4>
+        <p>
+          Inflation does not change the account statement. Your broker or provider still shows the
+          nominal balance. But inflation does change what that balance can buy later. A plan that
+          looks impressive in nominal terms may look merely acceptable in real terms if inflation
+          runs high for a long time.
+        </p>
+        <p>
+          That is why this page shows both lines together. If nominal value reaches a large number
+          but the real line grows far more slowly, the plan may still be workable, but it is not as
+          strong as the nominal headline suggests. Inflation is not a side detail for long-horizon
+          investing. It is one of the main interpretation tools.
+        </p>
+
+        <h4>Simple vs compound investment over many years</h4>
+        <p>
+          Simple growth means returns are calculated only on the principal that has gone in. Compound
+          growth means returns are earned on the principal and also on prior gains. In the early
+          years the difference can look modest. Over longer periods the gap widens because compound
+          growth keeps building on itself.
+        </p>
+        <p>
+          The widening matters most in long-horizon planning because time is the force that lets the
+          later years become more powerful than the early ones. A simple-interest path rises in a
+          more linear fashion. A compound path becomes increasingly curved because each period begins
+          from a larger base than the one before it.
+        </p>
+
+        <h4>Formula derivations and variable meanings</h4>
+        <p>
+          The compound-growth side starts from the familiar future-value relationship:
+        </p>
+        <p class="inv-exp-formula">
+          Compound future value = P × (1 + r / n)<sup>n × t</sup>
+        </p>
+        <p>
+          Here, <strong>P</strong> is the initial investment, <strong>r</strong> is the annual
+          return as a decimal, <strong>n</strong> is the number of compounding periods per year, and
+          <strong>t</strong> is time in years. The exponent <strong>n × t</strong> matters because
+          compounding frequency changes how often growth is applied.
+        </p>
+        <p>
+          When recurring contributions are added, the calculator also includes the future value of a
+          regular contribution stream:
+        </p>
+        <p class="inv-exp-formula">
+          Contribution growth = C × ((1 + r / n)<sup>n × t</sup> - 1) ÷ (r / n)
+        </p>
+        <p>
+          In that formula, <strong>C</strong> is the contribution per compounding period. The page
+          converts the recurring contribution you enter into the contribution amount that matches the
+          selected compounding frequency. If the return rate is zero, the formula falls back to
+          straightforward arithmetic because there is no growth term to divide by.
+        </p>
+        <p>
+          The simple-growth comparison deliberately changes the logic. Instead of allowing gains to
+          earn gains, the model keeps adding return only on principal that has been contributed. That
+          creates a cleaner educational comparison because it shows the value of compounding rather
+          than hiding it behind a single result line.
+        </p>
+        <p>
+          Real value is then derived with the inflation adjustment:
+        </p>
+        <p class="inv-exp-formula">
+          Real value = Nominal value ÷ (1 + i)<sup>t</sup>
+        </p>
+        <p>
+          Here, <strong>i</strong> is the inflation rate as a decimal. This does not claim you know
+          future inflation precisely. It simply gives the nominal result a more realistic lens.
+        </p>
+
+        <h4>Worked example: long-horizon lump sum only</h4>
+        <p>
+          Suppose you invest <strong data-inv-exp="initial">—</strong> for
+          <strong data-inv-exp="years">—</strong> years at an assumed annual return of
+          <strong data-inv-exp="return">—</strong> with
+          <strong data-inv-exp="compounding">—</strong> compounding and no recurring deposits in the
+          comparison mode. The simple path ends at <strong data-inv-exp="simple">—</strong>. The
+          compound path ends at <strong data-inv-exp="compound">—</strong>. The difference,
+          <strong data-inv-exp="uplift">—</strong>, is the clearest expression of what compounding
+          adds.
+        </p>
+        <p>
+          This is why lump-sum examples are useful. They strip away the contribution habit and show
+          the pure effect of compounding over time. If the gap looks small in the first few years,
+          that is normal. The main lesson is how much later years can matter when earlier gains are
+          still allowed to grow.
+        </p>
+
+        <h4>Worked example: recurring-contribution comparison</h4>
+        <p>
+          Now include recurring contributions of <strong data-inv-exp="recurring">—</strong>. The
+          plan reaches <strong data-inv-exp="ending">—</strong> from total contributions of
+          <strong data-inv-exp="contributions">—</strong>. This is where many people realise that a
+          disciplined contribution habit can do nearly as much work as a slightly more aggressive
+          return assumption.
+        </p>
+        <p>
+          Contributions matter twice. They increase the capital base directly, and they also create
+          more money that can compound later. That is why the compound line usually separates from
+          the simple line faster when ongoing deposits are included. More principal arrives earlier,
+          which gives later periods more to build on.
+        </p>
+
+        <h4>How input changes affect outputs</h4>
+        <p>
+          The starting amount affects the whole runway because it gets the maximum possible time to
+          grow. The return assumption has a nonlinear effect because it compounds through the entire
+          horizon. The time horizon often changes the answer more than people expect because the most
+          dramatic compounding usually appears in later years. Recurring contributions create a
+          steadier and often more controllable path because they depend on saving behaviour, not
+          market luck.
+        </p>
+        <p>
+          Inflation mostly changes interpretation. A higher inflation rate does not shrink the
+          nominal ending balance, but it can materially reduce the real value. That is especially
+          important if the portfolio is meant to fund future spending rather than simply produce a
+          large nominal number.
+        </p>
+
+        <h4>Common mistakes and how to avoid them</h4>
+        <p>
+          The most common mistake is choosing an annual return that feels hopeful rather than
+          defensible. A calculator is only as useful as the assumptions inside it. Another common
+          mistake is ignoring inflation altogether, which makes long-term balances look stronger than
+          they may prove in practice. A third mistake is using a one-off projection as if it were a
+          promise instead of a scenario.
+        </p>
+        <p>
+          A stronger habit is to run three cases: a conservative one, a base case, and an optimistic
+          one. If a plan works only under the most optimistic return assumption, it is not yet a
+          strong plan. If it still looks workable under a more conservative assumption, the result is
+          more robust.
+        </p>
+
+        <h4>How to interpret the result for real decisions</h4>
+        <p>
+          A useful investment projection should answer three questions. First, what could the plan
+          reach? Second, how much of that outcome would come from your own deposits? Third, what
+          might the result still be worth in today’s money? If the ending balance is high but the
+          real value is underwhelming, the plan may need more time, more contributions, or lower
+          spending expectations.
+        </p>
+        <p>
+          That is also why this route links outward. If you want a lighter projection page, use the
+          <a href="/finance-calculators/investment-growth-calculator/">investment growth
+          calculator</a>. If you want a deeper performance analysis view with CAGR and advanced
+          return framing, use the <a href="/finance-calculators/investment-return-calculator/"
+          >investment return calculator</a>. This page sits in the middle as the broad planning
+          tool.
+        </p>
+      </section>
+
+      <section id="investment-faq" class="inv-exp-block inv-faq-section">
+        <h3>FAQ</h3>
+        <article class="faq-card">
+          <h4>What is an investment calculator used for?</h4>
+          <p>
+            It estimates how a lump sum and recurring deposits may grow over time and helps you read
+            the result as contributions, growth, and inflation-adjusted value rather than one
+            isolated balance.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>What is the difference between simple and compound investment growth?</h4>
+          <p>
+            Simple growth adds return only on principal. Compound growth adds return on principal and
+            on prior gains, which is why the gap widens more noticeably over longer horizons.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Why does compounding matter more over long periods?</h4>
+          <p>
+            The later years start from a larger base. That means each later period can generate more
+            growth than the periods before it, even if the stated annual return never changes.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>How do recurring contributions change the result?</h4>
+          <p>
+            They add fresh capital and give later deposits time to earn returns too. Consistent
+            contributions often matter as much as a slightly higher expected return.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Does compounding frequency make a big difference?</h4>
+          <p>
+            Usually the difference is modest compared with the impact of time, contribution size, and
+            return assumptions, but more frequent compounding can still lift the ending value.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Why show an inflation-adjusted value?</h4>
+          <p>
+            Because a nominal balance can overstate what the future money can actually buy.
+            Inflation-adjusted value gives the projection a real-world interpretation.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Can this calculator be used for retirement planning?</h4>
+          <p>
+            Yes. It is well suited to retirement-style planning because it combines starting balance,
+            recurring contributions, time horizon, compounding, and inflation into one view.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>What happens if the expected return is 0%?</h4>
+          <p>
+            The ending value becomes the total amount contributed. In that case the simple and
+            compound comparison collapses because there is no growth rate for compounding to amplify.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Is the result guaranteed?</h4>
+          <p>
+            No. The output is a scenario built from assumptions. Real market returns are uneven and
+            can differ materially from a smooth average return path.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h4>Which related calculator should I use next?</h4>
+          <p>
+            Use investment growth for a lighter future-value projection, or investment return when
+            you need CAGR and more advanced performance analysis.
+          </p>
+        </article>
+      </section>
+
+      <section class="inv-exp-block inv-notes-section">
+        <h3>Important Notes</h3>
+        <ul class="inv-notes-list">
+          <li><strong>Last updated:</strong> March 2026.</li>
+          <li><strong>Accuracy:</strong> Results are fixed-assumption estimates based on the values, horizon, compounding schedule, and inflation rate entered on the page.</li>
+          <li><strong>Disclaimer:</strong> Results are for planning and comparison only and are not financial, legal, tax, or investment advice.</li>
+          <li><strong>Assumptions:</strong> the calculator uses a constant annual return and constant inflation assumption for the whole projection.</li>
+          <li><strong>Comparison logic:</strong> the simple-vs-compound table is educational; it is designed to isolate the value of compounding rather than to model every real-world portfolio detail.</li>
+          <li><strong>Inflation framing:</strong> real value is an estimate, not a forecast of actual future prices.</li>
+          <li><strong>Rounding:</strong> values are rounded for readability, so small differences can appear between table rows and headline totals.</li>
+          <li><strong>Limitations:</strong> taxes, fees, market crashes, sequence risk, and irregular deposits are excluded from this version.</li>
+          <li><strong>Decision use:</strong> results are planning estimates and should not be treated as investment advice or a guaranteed outcome.</li>
+          <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</div>

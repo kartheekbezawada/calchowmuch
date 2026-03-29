@@ -113,6 +113,7 @@ const FINANCE_CALCULATOR_IDS = new Set([
   'compound-interest',
   'effective-annual-rate',
   'inflation',
+  'investment',
   'investment-growth',
   'investment-return',
   'time-to-savings-goal',
@@ -204,6 +205,14 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate a full descriptive statistics summary with centre, spread, variance, and standard deviation in a light answer-first layout.',
     h1: 'Statistics Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
+  investment: {
+    title: 'Investment Calculator | Growth, Contributions & Returns',
+    description:
+      'Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan.',
+    h1: 'Investment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -2735,6 +2744,7 @@ const FINANCE_CLUSTER_REDESIGN_ORDER = [
   'future-value-of-annuity',
   'effective-annual-rate',
   'inflation',
+  'investment',
   'simple-interest',
   'compound-interest',
   'investment-growth',
@@ -2751,6 +2761,7 @@ const FINANCE_CLUSTER_REDESIGN_IDS = new Set([
   'future-value-of-annuity',
   'effective-annual-rate',
   'inflation',
+  'investment',
   'simple-interest',
   'compound-interest',
   'investment-growth',

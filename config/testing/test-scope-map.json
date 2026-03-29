@@ -308,6 +308,7 @@
         "/finance-calculators/future-value-of-annuity-calculator/",
         "/finance-calculators/future-value-calculator/",
         "/finance-calculators/inflation-calculator/",
+        "/finance-calculators/investment-calculator/",
         "/finance-calculators/investment-growth-calculator/",
         "/finance-calculators/investment-return-calculator/",
         "/finance-calculators/monthly-savings-needed-calculator/",
@@ -348,6 +349,10 @@
         "inflation": {
           "route": "/finance-calculators/inflation-calculator/",
           "releaseDir": "tests_specs/finance/inflation_release"
+        },
+        "investment": {
+          "route": "/finance-calculators/investment-calculator/",
+          "releaseDir": "tests_specs/finance/investment_release"
         },
         "investment-growth": {
           "route": "/finance-calculators/investment-growth-calculator/",

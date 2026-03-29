@@ -736,6 +736,14 @@
           "name": "Investments & Savings",
           "calculators": [
             {
+              "id": "investment",
+              "name": "Investment Calculator",
+              "url": "/finance-calculators/investment-calculator/",
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
+            },
+            {
               "id": "investment-growth",
               "name": "Investment Growth",
               "url": "/finance-calculators/investment-growth-calculator/",
