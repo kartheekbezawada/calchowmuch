@@ -4,11 +4,11 @@ test.describe('Nap Time Calculator SEO', () => {
   test('NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/nap-time-calculator/');
 
-    await expect(page).toHaveTitle('Nap Time Calculator | Quick, Power or Afternoon Nap');
+    await expect(page).toHaveTitle('Nap Time Calculator | Best Nap Wake-Up Time');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.'
+      'Choose a quick, power, or longer nap and get the best wake-up time from your start time, nap length, and optional wake buffer.'
     );
 
     const h1 = page.locator('h1');

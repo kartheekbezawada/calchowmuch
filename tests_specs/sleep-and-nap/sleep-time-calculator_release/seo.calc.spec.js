@@ -4,11 +4,11 @@ test.describe('Sleep Time Calculator SEO', () => {
   test('SLEEP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/sleep-time-calculator/');
 
-    await expect(page).toHaveTitle('Sleep Time Calculator | Bedtime and Wake-Up Cycles');
+    await expect(page).toHaveTitle('Sleep Time Calculator | Best Bedtime & Wake-Up Times');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.'
+      'Find the best bedtime or wake-up time using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options for workdays, travel, or shift schedules.'
     );
 
     const h1 = page.locator('h1');

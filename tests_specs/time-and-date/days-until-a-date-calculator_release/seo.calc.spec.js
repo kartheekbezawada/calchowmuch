@@ -4,11 +4,11 @@ test.describe('Days Until a Date Calculator SEO', () => {
   test('DAYS-UNTIL-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/days-until-a-date-calculator');
 
-    await expect(page).toHaveTitle('Days Until a Date Calculator | Count Days to Any Date');
+    await expect(page).toHaveTitle('Days Until a Date Calculator | Countdown, Days Since & Weekdays');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Count how many days remain until a future date or how many days have passed since a past date.'
+      'Count days until a future date, days since a past date, or weekdays between two dates with countdown, range, and inclusive-count options.'
     );
 
     const h1 = page.locator('h1');

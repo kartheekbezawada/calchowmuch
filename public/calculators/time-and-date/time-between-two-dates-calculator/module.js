@@ -148,9 +148,9 @@ const STRUCTURED_DATA = {
 };
 
 setPageMetadata({
-  title: 'Time Between Dates Calculator – Days & Business Days',
+  title: 'Time Between Two Dates Calculator | Days, Weeks, Months & Hours',
   description:
-    'Find days, weeks, months, business days, and exact hours between two dates. Use date-only or date-time mode, inclusive counting, and copy-ready summaries.',
+    'Find the exact time between two dates in days, weeks, months, business days, and hours with date-only or date-time mode, inclusive counting, and copy-ready summaries.',
   canonical: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

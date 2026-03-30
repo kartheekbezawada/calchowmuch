@@ -102,9 +102,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
+  title: 'Birthday Day-of-Week Calculator | Find the Day You Were Born',
   description:
-    'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
+    'Find the weekday you were born on, preview future birthday weekdays, and spot upcoming Friday, Saturday, or Sunday birthdays for planning.',
   canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

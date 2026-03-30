@@ -4,11 +4,11 @@ test.describe('Countdown Timer SEO', () => {
   test('COUNTDOWN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/countdown-timer/');
 
-    await expect(page).toHaveTitle('Countdown Timer | Live Time Left to Any Date');
+    await expect(page).toHaveTitle('Countdown Timer | Live Countdown to Any Date or Event');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.'
+      'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.'
     );
 
     const h1 = page.locator('h1');

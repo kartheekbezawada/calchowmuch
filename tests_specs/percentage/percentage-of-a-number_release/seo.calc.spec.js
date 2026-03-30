@@ -4,11 +4,11 @@ test.describe('Find Percentage of a Number Calculator SEO', () => {
   test('PON-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-of-a-number-calculator/');
 
-    await expect(page).toHaveTitle('Percentage of a Number Calculator | Find X% of Y');
+    await expect(page).toHaveTitle('Percentage of a Number Calculator | Calculate X% of Y');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate what X percent of Y equals using the standard percent-to-decimal formula.'
+      'Calculate what X% of Y equals with the standard percent-to-decimal formula for discounts, tax, tips, commission, and quick percentage checks.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

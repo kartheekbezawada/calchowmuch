@@ -119,9 +119,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Work Hours Calculator | Shifts, Breaks and Totals',
+  title: 'Work Hours Calculator | Shift, Break & Weekly Hour Totals',
   description:
-    'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
+    'Calculate shift hours, split shifts, unpaid breaks, and weekly totals in HH:MM and decimal hours for timesheets, rotas, and payroll checks.',
   canonical: 'https://calchowmuch.com/time-and-date/work-hours-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

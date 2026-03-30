@@ -125,9 +125,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percentage Increase Calculator | Growth from Original',
+  title: 'Percentage Increase Calculator | Growth from Original Value',
   description:
-    'Calculate how much a value increased from its original amount using the standard percentage growth formula.',
+    'Calculate percentage increase from an original value to a new value and see the growth amount, direction, and formula in one step.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-increase-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

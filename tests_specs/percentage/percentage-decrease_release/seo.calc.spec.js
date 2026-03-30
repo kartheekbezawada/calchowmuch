@@ -4,11 +4,11 @@ test.describe('Percentage Decrease Calculator SEO', () => {
   test('PDEC-TEST-SEO-1: metadata, schema, sitemap, and migrated explanation parity', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-decrease-calculator/');
 
-    await expect(page).toHaveTitle('Percentage Decrease Calculator | Drop from Original');
+    await expect(page).toHaveTitle('Percentage Decrease Calculator | Percentage Drop from Original');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate how much a value decreased from its original amount using the standard percentage drop formula.'
+      'Calculate percentage decrease from an original value to a lower value and see the drop amount, direction, and formula in one step.'
     );
 
     const h1 = page.locator('h1');

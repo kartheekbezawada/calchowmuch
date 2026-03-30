@@ -126,9 +126,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percentage Difference Calculator | Compare Two Values',
+  title: 'Percentage Difference Calculator | Compare Two Values Fairly',
   description:
-    'Calculate the symmetric percentage difference between two values using their average as the baseline.',
+    'Compare two values with the symmetric percentage difference formula that uses their average as the baseline when neither number is the original.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-difference-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:auto-loans`
-- HTML files scanned: **5**
-- Calculator pages scanned: **5**
+- Scope: `cluster:time-and-date`
+- HTML files scanned: **12**
+- Calculator pages scanned: **12**
 - Findings: **0**
 - Status: **PASS**
 

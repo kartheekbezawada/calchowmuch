@@ -29,6 +29,33 @@ This program does **not** include Search Console operations, Bing review, indexi
   - `/pricing-calculators/commission-calculator/`
   - `/salary-calculators/commission-calculator/`
   - `/time-and-date/age-calculator/`
+- `Wave 3`: Completed on `2026-03-30`
+- Release evidence: `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_RELEASE-20260330-SEO-WAVE3.md`
+- `Wave 4`: Completed on `2026-03-30`
+- Release evidence: `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_RELEASE-20260330-SEO-WAVE4.md`
+- Wave 4 routes completed:
+  - `/time-and-date/sleep-time-calculator/`
+  - `/time-and-date/wake-up-time-calculator/`
+  - `/time-and-date/nap-time-calculator/`
+  - `/time-and-date/power-nap-calculator/`
+  - `/time-and-date/energy-based-nap-selector/`
+  - `/time-and-date/work-hours-calculator/`
+  - `/time-and-date/overtime-hours-calculator/`
+  - `/time-and-date/time-between-two-dates-calculator/`
+  - `/time-and-date/days-until-a-date-calculator/`
+  - `/time-and-date/countdown-timer/`
+  - `/time-and-date/birthday-day-of-week/`
+  - `/percentage-calculators/percent-change-calculator/`
+  - `/percentage-calculators/percent-to-fraction-decimal-calculator/`
+  - `/percentage-calculators/percentage-composition-calculator/`
+  - `/percentage-calculators/percentage-decrease-calculator/`
+  - `/percentage-calculators/percentage-difference-calculator/`
+  - `/percentage-calculators/percentage-increase-calculator/`
+  - `/percentage-calculators/percentage-of-a-number-calculator/`
+  - `/percentage-calculators/reverse-percentage-calculator/`
+  - `/percentage-calculators/percentage-finder-calculator/`
+- Wave 4 implementation note:
+  - `/time-and-date/` and `/percentage-calculators/` hub pages are not currently governed as active public routes in this repo, so Wave 4 remained route-level rather than hub-level.
 - `Wave 2` queue currently resolves to:
   - `/pricing-calculators/discount-calculator/`
   - `/salary-calculators/salary-calculator/`

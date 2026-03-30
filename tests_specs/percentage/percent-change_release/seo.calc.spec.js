@@ -4,11 +4,11 @@ test.describe('Percent Change Calculator SEO', () => {
   test('PCHG-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/percent-change-calculator/');
 
-    await expect(page).toHaveTitle('Percent Change Calculator | Increase or Decrease');
+    await expect(page).toHaveTitle('Percent Change Calculator | Percentage Increase or Decrease');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate percentage increase or decrease from one value to another with the correct sign and formula.'
+      'Calculate percent change between an original and new value, show increase or decrease, and see the signed result, raw change, and formula in one step.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

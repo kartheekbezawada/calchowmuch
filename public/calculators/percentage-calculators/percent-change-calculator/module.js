@@ -125,9 +125,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Percent Change Calculator | Increase or Decrease',
+  title: 'Percent Change Calculator | Percentage Increase or Decrease',
   description:
-    'Calculate percentage increase or decrease from one value to another with the correct sign and formula.',
+    'Calculate percent change between an original and new value, show increase or decrease, and see the signed result, raw change, and formula in one step.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percent-change-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -136,10 +136,10 @@ setPageMetadata({
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Percent Change Calculator | Increase or Decrease',
+        name: 'Percent Change Calculator | Percentage Increase or Decrease',
         url: 'https://calchowmuch.com/percentage-calculators/percent-change-calculator/',
         description:
-          'Calculate percentage increase or decrease from one value to another with the correct sign and formula.',
+          'Calculate percent change between an original and new value, show increase or decrease, and see the signed result, raw change, and formula in one step.',
         inLanguage: 'en',
       },
       {
@@ -149,7 +149,7 @@ setPageMetadata({
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/percentage-calculators/percent-change-calculator/',
         description:
-          'Free percent change calculator for finding percentage increase or decrease from an original value to a new value.',
+          'Free percent change calculator for comparing an original value with a new value and showing the signed percentage result.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

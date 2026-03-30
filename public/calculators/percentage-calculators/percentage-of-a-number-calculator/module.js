@@ -92,9 +92,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Percentage of a Number Calculator | Find X% of Y',
+  title: 'Percentage of a Number Calculator | Calculate X% of Y',
   description:
-    'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
+    'Calculate what X% of Y equals with the standard percent-to-decimal formula for discounts, tax, tips, commission, and quick percentage checks.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-of-a-number-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

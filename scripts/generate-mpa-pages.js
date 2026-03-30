@@ -649,69 +649,69 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'overtime-hours-calculator': {
-    title: 'Overtime Hours Calculator | Daily, Weekly and Night',
+    title: 'Overtime Hours Calculator | Daily, Weekly & Night Overtime',
     description:
-      'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.',
+      'Calculate regular and overtime hours with daily or weekly thresholds, split shifts, rounding rules, and night-hour tracking for scheduling and payroll checks.',
     h1: 'Overtime Hours Calculator',
   },
   'work-hours-calculator': {
-    title: 'Work Hours Calculator | Shifts, Breaks and Totals',
+    title: 'Work Hours Calculator | Shift, Break & Weekly Hour Totals',
     description:
-      'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
+      'Calculate shift hours, split shifts, unpaid breaks, and weekly totals in HH:MM and decimal hours for timesheets, rotas, and payroll checks.',
     h1: 'Work Hours Calculator',
   },
   'time-between-two-dates-calculator': {
-    title: 'Time Between Dates Calculator – Days & Business Days',
+    title: 'Time Between Two Dates Calculator | Days, Weeks, Months & Hours',
     description:
-      'Find days, weeks, months, business days, and exact hours between two dates. Use date-only or date-time mode, inclusive counting, and copy-ready summaries.',
+      'Find the exact time between two dates in days, weeks, months, business days, and hours with date-only or date-time mode, inclusive counting, and copy-ready summaries.',
     h1: 'Time Between Two Dates Calculator',
   },
   'sleep-time-calculator': {
-    title: 'Sleep Time Calculator | Bedtime and Wake-Up Cycles',
+    title: 'Sleep Time Calculator | Best Bedtime & Wake-Up Times',
     description:
-      'Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.',
+      'Find the best bedtime or wake-up time using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options for workdays, travel, or shift schedules.',
     h1: 'Sleep Time Calculator',
   },
   'wake-up-time-calculator': {
-    title: 'Wake-Up Time Calculator | Sleep Cycle Wake Times',
+    title: 'Wake-Up Time Calculator | Best Alarm Times by Sleep Cycle',
     description:
-      'Find wake-up times based on 90-minute sleep cycles and compare 4, 5, or 6 cycle options.',
+      'Calculate the best wake-up times from a target bedtime using 90-minute sleep cycles, then compare 4, 5, or 6 cycle options before you set an alarm.',
     h1: 'Wake-Up Time Calculator',
   },
   'nap-time-calculator': {
-    title: 'Nap Time Calculator | Quick, Power or Afternoon Nap',
+    title: 'Nap Time Calculator | Best Nap Wake-Up Time',
     description:
-      'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.',
+      'Choose a quick, power, or longer nap and get the best wake-up time from your start time, nap length, and optional wake buffer.',
     h1: 'Nap Time Calculator',
   },
   'power-nap-calculator': {
-    title: 'Power Nap Calculator | Best Wake-Up Times',
+    title: 'Power Nap Calculator | Compare 10, 20, 30, 60 & 90 Minutes',
     description:
-      'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.',
+      'Compare 10, 20, 30, 60, and 90-minute power nap options and see the best wake-up time for each nap length before you set an alarm.',
     h1: 'Power Nap Calculator',
   },
   'energy-based-nap-selector': {
-    title: 'Energy-Based Nap Selector | Quick, Strong or Full',
+    title: 'Energy-Based Nap Selector | Best Nap Length for Energy Goals',
     description:
-      'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.',
+      'Choose Quick, Strong, or Full energy goals to get the best nap length, wake-up time, and practical alternatives for daytime or late-night naps.',
     h1: 'Energy-Based Nap Selector',
   },
   'birthday-day-of-week': {
-    title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
+    title: 'Birthday Day-of-Week Calculator | Find the Day You Were Born',
     description:
-      'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
+      'Find the weekday you were born on, preview future birthday weekdays, and spot upcoming Friday, Saturday, or Sunday birthdays for planning.',
     h1: 'Birthday Day-of-Week Calculator',
   },
   'countdown-timer-generator': {
-    title: 'Countdown Timer | Live Time Left to Any Date',
+    title: 'Countdown Timer | Live Countdown to Any Date or Event',
     description:
-      'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.',
+      'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.',
     h1: 'Countdown Timer',
   },
   'days-until-a-date-calculator': {
-    title: 'Days Until a Date Calculator | Count Days to Any Date',
+    title: 'Days Until a Date Calculator | Countdown, Days Since & Weekdays',
     description:
-      'Count how many days remain until a future date or how many days have passed since a past date.',
+      'Count days until a future date, days since a past date, or weekdays between two dates with countdown, range, and inclusive-count options.',
     h1: 'Days Until a Date Calculator',
   },
   'age-calculator': {
@@ -732,22 +732,22 @@ const CALCULATOR_OVERRIDES = {
       'Calculate selling price from cost and markup percentage, or work backward from cost and selling price to find markup %.',
     h1: 'Markup Calculator',
   },
-  'percentage-finder-calculator': {
-    title: 'What Percent Is X of Y – Percentage Calculator',
+  'what-percent-is-x-of-y': {
+    title: 'What Percent Is X of Y Calculator | Find the Share of a Total',
     description:
-      'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
+      'Find what percent one number is of another using X divided by Y times 100, then use the result for scores, budgets, ratios, or completion rates.',
     h1: 'What Percent Is X of Y',
   },
   'percentage-of-a-number-calculator': {
-    title: 'Percentage of a Number Calculator | Find X% of Y',
+    title: 'Percentage of a Number Calculator | Calculate X% of Y',
     description:
-      'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
+      'Calculate what X% of Y equals with the standard percent-to-decimal formula for discounts, tax, tips, commission, and quick percentage checks.',
     h1: 'Find Percentage of a Number Calculator',
   },
-  'reverse-percentage-calculator': {
-    title: 'Reverse Percentage Calculator – Find Original Value',
+  'reverse-percentage': {
+    title: 'Reverse Percentage Calculator | Find the Original Value',
     description:
-      'Calculate reverse percentages instantly. Find the original value from a percentage with clear results, examples, and step-by-step explanations.',
+      'Find the original value before a percentage was applied when you know the final value and the percentage rate.',
     h1: 'Reverse Percentage',
   },
   'present-value': {
@@ -867,54 +867,54 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Margin Calculator',
   },
   'percent-change': {
-    title: 'Percent Change Calculator – CalcHowMuch',
+    title: 'Percent Change Calculator | Percentage Increase or Decrease',
     description:
-      'Calculate percent change from A to B with the correct +/− sign. Use our free percentage change calculator and formula instantly.',
+      'Calculate percent change between an original and new value, show increase or decrease, and see the signed result, raw change, and formula in one step.',
     h1: 'Percent Change Calculator',
     explanationHeading: '',
   },
   'percentage-difference': {
-    title: 'Percentage Difference Calculator | Compare Two Values',
+    title: 'Percentage Difference Calculator | Compare Two Values Fairly',
     description:
-      'Calculate the symmetric percentage difference between two values using their average as the baseline.',
+      'Compare two values with the symmetric percentage difference formula that uses their average as the baseline when neither number is the original.',
     h1: 'Percentage Difference Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-increase': {
-    title: 'Percentage Increase Calculator | Growth from Original',
+    title: 'Percentage Increase Calculator | Growth from Original Value',
     description:
-      'Calculate how much a value increased from its original amount using the standard percentage growth formula.',
+      'Calculate percentage increase from an original value to a new value and see the growth amount, direction, and formula in one step.',
     h1: 'Percentage Increase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-decrease': {
-    title: 'Percentage Decrease Calculator | Drop from Original',
+    title: 'Percentage Decrease Calculator | Percentage Drop from Original',
     description:
-      'Calculate how much a value decreased from its original amount using the standard percentage drop formula.',
+      'Calculate percentage decrease from an original value to a lower value and see the drop amount, direction, and formula in one step.',
     h1: 'Percentage Decrease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-composition': {
-    title: 'Percentage Composition Calculator | Share of Total',
+    title: 'Percentage Composition Calculator | Percent Share of a Total',
     description:
-      "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
+      "Calculate each item's percentage share of a total, compare components, and see any remainder percentage from a known or calculated total.",
     h1: 'Percentage Composition Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percent-to-fraction-decimal': {
-    title: 'Percent to Fraction and Decimal Calculator | Convert %',
+    title: 'Percent to Fraction & Decimal Calculator | Convert a Percentage',
     description:
-      'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
+      'Convert a percentage into a decimal and simplified fraction, then check the divide-by-100 steps and final forms side by side.',
     h1: 'Percent to Fraction & Decimal Converter',
   },
   'percentage-of-a-number': {
-    title: 'Find Percentage of a Number Calculator – CalcHowMuch',
+    title: 'Percentage of a Number Calculator | Calculate X% of Y',
     description:
-      'Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.',
+      'Calculate what X% of Y equals with the standard percent-to-decimal formula for discounts, tax, tips, commission, and quick percentage checks.',
     h1: 'Find Percentage of a Number Calculator',
   },
 };
@@ -3331,18 +3331,30 @@ const FINANCE_RELATED_CARD_COPY = {
 };
 
 const TIME_AND_DATE_RELATED_CARD_COPY = {
-  'sleep-time-calculator': 'Plan bedtime or wake-up options around familiar sleep cycles.',
-  'wake-up-time-calculator': 'Compare wake-up windows that line up with sleep-cycle timing.',
-  'nap-time-calculator': 'Pick a nap type and see practical wake-up targets fast.',
-  'power-nap-calculator': 'Compare short and long nap lengths side by side.',
-  'energy-based-nap-selector': 'Match nap length to the kind of energy reset you need.',
-  'work-hours-calculator': 'Track daily, split, or weekly hours with unpaid breaks included.',
-  'overtime-hours-calculator': 'Separate standard and overtime hours with clearer thresholds.',
-  'time-between-two-dates-calculator': 'Measure exact distance between dates or date-times.',
-  'days-until-a-date-calculator': 'Count days remaining to a deadline or milestone.',
-  'countdown-timer-generator': 'Create a live countdown for launches, trips, birthdays, or events.',
-  'age-calculator': 'See exact age, total days, and the next birthday in one view.',
-  'birthday-day-of-week': 'Find the weekday of birth and compare upcoming birthday years.',
+  'sleep-time-calculator': 'Plan better bedtimes or wake-up targets around 90-minute sleep cycles.',
+  'wake-up-time-calculator': 'Compare alarm times that line up with 4, 5, or 6 sleep cycles.',
+  'nap-time-calculator': 'Turn a nap type and start time into a practical wake-up target.',
+  'power-nap-calculator': 'Compare 10 to 90-minute nap options before you set an alarm.',
+  'energy-based-nap-selector': 'Match nap length to the kind of energy reset you need right now.',
+  'work-hours-calculator': 'Track shift totals, breaks, and weekly hours for timesheets or rotas.',
+  'overtime-hours-calculator': 'Separate standard and overtime hours with clearer daily or weekly rules.',
+  'time-between-two-dates-calculator': 'Measure exact distance between dates, date-times, or business days.',
+  'days-until-a-date-calculator': 'Count down to a deadline, measure days since, or switch to weekdays only.',
+  'countdown-timer-generator': 'Create a live countdown for launches, trips, birthdays, or deadline tracking.',
+  'age-calculator': 'See exact age, total days, and the next birthday in one planning view.',
+  'birthday-day-of-week': 'Find the weekday of birth and compare future birthday patterns quickly.',
+};
+
+const PERCENTAGE_RELATED_CARD_COPY = {
+  'percent-change': 'Measure signed increase or decrease from an original baseline.',
+  'percentage-difference': 'Compare two values fairly when neither one is the official starting point.',
+  'percentage-increase': 'Show how much a value grew from its original amount.',
+  'percentage-decrease': 'Show how much a value dropped from its original amount.',
+  'percentage-composition': 'Break a total into item shares and remaining percentage.',
+  'reverse-percentage': 'Work backward from a final value and percentage to the original base.',
+  'percent-to-fraction-decimal': 'Convert a percentage into decimal and fraction forms side by side.',
+  'what-percent-is-x-of-y': 'Find the share a part represents out of a known whole.',
+  'percentage-of-a-number': 'Calculate the amount created when a rate is applied to a base value.',
 };
 
 function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
@@ -3542,11 +3554,14 @@ function buildPercentageRelatedCalculatorsHtml(subcategory, activeCalculatorId) 
     ${calculators
       .map((calculator) => {
         const isActive = calculator.id === activeCalculatorId;
+        const description =
+          PERCENTAGE_RELATED_CARD_COPY[calculator.id] ||
+          'Open the same answer-first shell for this percentage scenario.';
         return `<a class="pct-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
           isActive ? ' aria-current="page"' : ''
         }>
       <span class="pct-cluster-related-card-title">${calculator.name}</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-copy">${description}</span>
       <span class="pct-cluster-related-card-meta">Percentage Core</span>
     </a>`;
       })

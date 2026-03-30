@@ -4,11 +4,11 @@ test.describe('Power Nap Calculator SEO', () => {
   test('POWER-NAP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/power-nap-calculator/');
 
-    await expect(page).toHaveTitle('Power Nap Calculator | Best Wake-Up Times');
+    await expect(page).toHaveTitle('Power Nap Calculator | Compare 10, 20, 30, 60 & 90 Minutes');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.'
+      'Compare 10, 20, 30, 60, and 90-minute power nap options and see the best wake-up time for each nap length before you set an alarm.'
     );
 
     const h1 = page.locator('h1');
