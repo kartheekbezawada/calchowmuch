@@ -6,12 +6,12 @@ test.describe('Personal Loan calculator SEO', () => {
     await expect(page.locator('.hl-cluster-panel')).toBeVisible();
 
     await expect(page).toHaveTitle(
-      'Personal Loan Calculator | Payments & Interest'
+      'Personal Loan Calculator | Monthly Payment, Interest & Payoff'
     );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.'
+      'Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

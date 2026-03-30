@@ -5,11 +5,11 @@ test.describe('Offset Calculator SEO', () => {
     await page.goto('/loan-calculators/offset-mortgage-calculator/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#calculator-title')).toHaveText('Offset Calculator');
 
-    await expect(page).toHaveTitle('Offset Calculator | Interest Savings & Payoff | CalcHowMuch');
+    await expect(page).toHaveTitle('Offset Mortgage Calculator | Interest Savings & Payoff');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.'
+      'See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

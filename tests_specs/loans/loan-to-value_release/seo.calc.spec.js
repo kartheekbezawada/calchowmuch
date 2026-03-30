@@ -5,11 +5,11 @@ test.describe('Loan-to-Value Calculator SEO', () => {
     await page.goto('/loan-calculators/ltv-calculator/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#calculator-title')).toHaveText('Loan-to-Value (LTV) Calculator');
 
-    await expect(page).toHaveTitle('Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch');
+    await expect(page).toHaveTitle('LTV Calculator | Loan-to-Value Ratio & Deposit Bands');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.'
+      'Calculate loan-to-value from property value and loan amount or deposit, then compare mortgage risk bands and target deposit levels.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

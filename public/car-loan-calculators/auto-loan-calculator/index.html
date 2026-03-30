@@ -3,20 +3,20 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Auto Loan Comparison Calculator | Compare 2 Loans</title>
-    <meta name="description" content="Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less." />
+    <title>Auto Loan Comparison Calculator | APR, Payment &amp; Cost</title>
+    <meta name="description" content="Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper." />
     <link rel="canonical" href="https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/" />
-    <meta property="og:title" content="Auto Loan Comparison Calculator | Compare 2 Loans" />
-    <meta property="og:description" content="Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less." />
+    <meta property="og:title" content="Auto Loan Comparison Calculator | APR, Payment &amp; Cost" />
+    <meta property="og:description" content="Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Auto Loan Comparison Calculator | Compare 2 Loans" />
-    <meta name="twitter:description" content="Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less." />
+    <meta name="twitter:title" content="Auto Loan Comparison Calculator | APR, Payment &amp; Cost" />
+    <meta name="twitter:description" content="Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/#softwareapplication","name":"Auto Loan Comparison Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/","description":"Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Car Loan Calculators","item":"https://calchowmuch.com/car-loan-calculators/"},{"@type":"ListItem","position":3,"name":"Auto Loan Comparison Calculator","item":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/#softwareapplication","name":"Auto Loan Comparison Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/","description":"Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Car Loan Calculators","item":"https://calchowmuch.com/car-loan-calculators/"},{"@type":"ListItem","position":3,"name":"Auto Loan Comparison Calculator","item":"https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/"}]}]}</script>
     <style data-auto-loan-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
@@ -986,7 +986,7 @@
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-header {
-        max-width: 980px;
+        max-width: 720px;
         margin: 0 auto;
         text-align: center;
       }
@@ -1007,12 +1007,11 @@
       }
 
       body[data-design-family='auto-loans'] #calculator-title {
-        margin: 0;
-        font-size: clamp(38px, 4.4vw, 56px);
+        margin: 18px 0 0;
+        font-size: clamp(42px, 6vw, 58px);
         line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--al-text);
-        white-space: nowrap;
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-intro {
@@ -2124,28 +2123,36 @@
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 12px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: auto minmax(0, 1fr);
         align-items: start;
-        gap: 6px;
+        column-gap: 14px;
+        row-gap: 6px;
         border: 1px solid var(--al-line);
         border-radius: var(--al-radius-lg);
         background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
         box-shadow: none;
-        padding: 14px 16px;
+        padding: 18px 20px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-number {
-        display: none;
-      }
-
-      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card h4,
-      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card p {
-        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 38px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: rgba(197, 140, 69, 0.14);
+        color: var(--al-warm);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        grid-row: span 2;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list {
@@ -2195,15 +2202,6 @@
       @media (max-width: 720px) {
         body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
           min-height: 64px;
-        }
-
-        body[data-design-family='auto-loans'] .al-cluster-page-header {
-          max-width: 100%;
-        }
-
-        body[data-design-family='auto-loans'] #calculator-title {
-          font-size: clamp(34px, 10vw, 44px);
-          white-space: normal;
         }
 
         body[data-design-family='auto-loans'] .al-cluster-site-links {
@@ -2358,8 +2356,8 @@
       }
     </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-</head>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans">
     <div class="page al-cluster-page-shell">
       <header class="al-cluster-site-header">
@@ -2379,8 +2377,9 @@
         <section class="al-cluster-center-column">
           <div class="al-cluster-panel">
   <div class="al-cluster-page-header">
+    <span class="al-cluster-page-kicker">Auto Loan Calculators</span>
     <h1 id="calculator-title">Auto Loan Comparison Calculator</h1>
-    <p class="al-cluster-page-intro">Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.</p>
+    <p class="al-cluster-page-intro">Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.</p>
   </div>
   <div class="calculator-page-single al-cluster-flow">
     <div id="calc-multi-car-loan">
@@ -2994,6 +2993,16 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>Related Calculators</h3>
+    <ul>
+      <li><a href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a> for a single-offer monthly payment breakdown.</li>
+      <li><a href="/car-loan-calculators/hire-purchase-calculator/">Hire Purchase Calculator</a> to compare a balloon-style agreement.</li>
+      <li><a href="/car-loan-calculators/pcp-calculator/">PCP Calculator</a> when the final payment structure matters.</li>
+      <li><a href="/car-loan-calculators/car-lease-calculator/">Car Lease Calculator</a> for lease-versus-loan comparisons.</li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--notes">

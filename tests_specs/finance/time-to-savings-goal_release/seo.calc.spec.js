@@ -4,11 +4,11 @@ test.describe('Time to Savings Goal Calculator SEO', () => {
   test('TSG-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/time-to-savings-goal-calculator');
 
-    await expect(page).toHaveTitle('Time to Savings Goal Calculator | Reach Your Target');
+    await expect(page).toHaveTitle('Time to Savings Goal Calculator | Months to Reach Target');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.'
+      'Estimate how many months it could take to reach a savings goal using current balance, recurring deposits, interest rate, and compounding.'
     );
 
     const h1 = page.locator('h1');

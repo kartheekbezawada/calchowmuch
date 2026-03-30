@@ -153,9 +153,9 @@ const CALCULATOR_STRUCTURED_DATA = {
       '@type': 'WebPage',
       '@id': 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/#webpage',
       url: 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/',
-      name: 'Car Lease Calculator | Payment, Residual & Cost',
+      name: 'Car Lease Calculator | Payment, Residual & Lease Cost',
       description:
-        'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.',
+        'Estimate car lease monthly payment, residual value, finance charge, and total lease cost from price, money factor, upfront payment, and term.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://calchowmuch.com/#website',
@@ -175,7 +175,7 @@ const CALCULATOR_STRUCTURED_DATA = {
       operatingSystem: 'Any',
       url: 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/',
       description:
-        'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.',
+        'Estimate car lease monthly payment, residual value, finance charge, and total lease cost from price, money factor, upfront payment, and term.',
     },
     {
       '@type': 'BreadcrumbList',
@@ -205,9 +205,9 @@ const CALCULATOR_STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Car Lease Calculator | Payment, Residual & Cost',
+  title: 'Car Lease Calculator | Payment, Residual & Lease Cost',
   description:
-    'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.',
+    'Estimate car lease monthly payment, residual value, finance charge, and total lease cost from price, money factor, upfront payment, and term.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/car-lease-calculator/',
   structuredData: CALCULATOR_STRUCTURED_DATA,
 };

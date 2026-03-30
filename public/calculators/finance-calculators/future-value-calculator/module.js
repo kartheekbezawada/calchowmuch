@@ -169,9 +169,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Future Value Calculator | Growth Over Time',
+  title: 'Future Value Calculator | Savings & Investment Projection',
   description:
-    'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
+    'Project how a lump sum or recurring deposits could grow using return rate, time period, and compounding assumptions.',
   canonical: 'https://calchowmuch.com/finance-calculators/future-value-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -180,10 +180,10 @@ setPageMetadata({
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Future Value Calculator | Growth Over Time',
+        name: 'Future Value Calculator | Savings & Investment Projection',
         url: 'https://calchowmuch.com/finance-calculators/future-value-calculator/',
         description:
-          'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
+          'Project how a lump sum or recurring deposits could grow using return rate, time period, and compounding assumptions.',
         inLanguage: 'en',
       },
       {
@@ -194,7 +194,7 @@ setPageMetadata({
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/future-value-calculator/',
         description:
-          'Calculate future value using present value, growth rate, time period, compounding frequency, and optional regular contributions.',
+          'Project future value using a starting balance, return rate, time period, compounding, and optional regular contributions.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

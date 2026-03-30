@@ -209,9 +209,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   investment: {
-    title: 'Investment Calculator | Growth, Contributions & Returns',
+    title: 'Investment Calculator | Growth, Inflation & Contributions',
     description:
-      'Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan.',
+      'Project ending value, total contributions, compound growth, and inflation-adjusted purchasing power for a broad investment plan.',
     h1: 'Investment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -257,105 +257,105 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'home-loan': {
-    title: 'Home Loan Calculator | Payment & Amortization',
+    title: 'Home Loan Calculator | Mortgage Payment, Interest & Amortization',
     description:
-      'Estimate monthly mortgage payments, amortization, payoff timeline, and interest savings from extra payments with our free Home Loan Calculator.',
+      'Estimate monthly mortgage payment, total interest, amortization, and payoff impact from deposit, rate, term, taxes, and extra payments.',
     h1: 'Home Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'how-much-can-i-borrow': {
-    title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
+    title: 'How Much Can I Borrow Calculator | Mortgage Affordability',
     description:
-      'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
+      'Estimate mortgage affordability from income, debts, deposit, rate, and term, then compare borrowing power with likely monthly payments.',
     h1: 'How Much Can I Borrow Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'remortgage-switching': {
-    title: 'Remortgage Calculator (Switching) | Break-even | CalcHowMuch',
+    title: 'Remortgage Calculator | Break-Even, Payment & Savings',
     description:
-      'Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon.',
+      'Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings.',
     h1: 'Remortgage Calculator (Switching)',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'buy-to-let': {
-    title: 'Buy-to-Let (Yield, Cashflow & Coverage) | CalcHowMuch',
+    title: 'Buy-to-Let Mortgage Calculator | Yield, Cash Flow & Cover',
     description:
-      'Estimate buy-to-let yield, cashflow, and stress coverage using rent, property price, deposit, rate, and mortgage type inputs.',
+      'Estimate buy-to-let yield, monthly cash flow, stress coverage, and financing impact from rent, deposit, rate, and costs.',
     h1: 'Buy-to-Let Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'car-loan': {
-    title: 'Car Loan Calculator | Monthly Payment & Cost',
+    title: 'Car Loan Calculator | Payment, APR & Total Cost',
     description:
-      'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.',
+      'Estimate car loan monthly payment, amount financed, total interest, and total cost using price, deposit, trade-in, fees, tax, APR, and term.',
     h1: 'Car Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hire-purchase': {
-    title: 'Hire Purchase Calculator | Monthly Payment & Cost',
+    title: 'Hire Purchase Calculator | Payment, Balloon & Total Cost',
     description:
-      'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.',
+      'Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.',
     h1: 'Hire Purchase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'pcp-calculator': {
-    title: 'PCP Calculator | Monthly Payment, GFV & Cost',
+    title: 'PCP Calculator | Payment, GFV & Total Cost',
     description:
-      'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
+      'Estimate PCP monthly payment, GFV, option fee, total interest, and total payable using vehicle price, deposit, APR, and term.',
     h1: 'PCP Car Finance Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'leasing-calculator': {
-    title: 'Car Lease Calculator | Payment, Residual & Cost',
+    title: 'Car Lease Calculator | Payment, Residual & Lease Cost',
     description:
-      'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.',
+      'Estimate car lease monthly payment, residual value, finance charge, and total lease cost from price, money factor, upfront payment, and term.',
     h1: 'Car Lease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'multiple-car-loan': {
-    title: 'Auto Loan Comparison Calculator | Compare 2 Loans',
+    title: 'Auto Loan Comparison Calculator | APR, Payment & Cost',
     description:
-      'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.',
+      'Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.',
     h1: 'Auto Loan Comparison Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'offset-calculator': {
-    title: 'Offset Calculator | Interest Savings & Payoff | CalcHowMuch',
+    title: 'Offset Mortgage Calculator | Interest Savings & Payoff',
     description:
-      'See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.',
+      'See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost.',
     h1: 'Offset Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'loan-to-value': {
-    title: 'Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch',
+    title: 'LTV Calculator | Loan-to-Value Ratio & Deposit Bands',
     description:
-      'Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.',
+      'Calculate loan-to-value from property value and loan amount or deposit, then compare mortgage risk bands and target deposit levels.',
     h1: 'Loan-to-Value (LTV) Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'personal-loan': {
-    title: 'Personal Loan Calculator | Payments & Interest',
+    title: 'Personal Loan Calculator | Monthly Payment, Interest & Payoff',
     description:
-      'Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.',
+      'Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term.',
     h1: 'Personal Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'interest-rate-change-calculator': {
-    title: 'Interest Rate Change Calculator | Rate Impact | CalcHowMuch',
+    title: 'Interest Rate Change Calculator | Mortgage Payment Impact',
     description:
-      'Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.',
+      'Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term.',
     h1: 'Interest Rate Change Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -569,33 +569,33 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'credit-card-minimum-payment': {
-    title: 'Credit Card Minimum Payment Calculator | Payoff Cost',
+    title: 'Credit Card Minimum Payment Calculator | Payoff Time & Interest',
     description:
-      'See how long minimum-only credit card payments take, what your first payment may be, and how much interest you could pay overall.',
+      'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
     h1: 'Credit Card Minimum Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'balance-transfer-installment-plan': {
-    title: 'Balance Transfer Calculator | Fees, Promo APR & Savings',
+    title: 'Balance Transfer Calculator | Promo APR, Fee & Savings',
     description:
-      'Compare transfer fee, promo months, post-promo APR, payoff time, and total cost to see whether a balance transfer saves money.',
+      'Compare transfer fees, promo APR, revert APR, payoff timing, and total cost to see whether a balance transfer saves money.',
     h1: 'Balance Transfer Credit Card Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-repayment-payoff': {
-    title: 'Credit Card Payment Calculator | Payoff & Interest',
+    title: 'Credit Card Payoff Calculator | Payment Plan & Interest',
     description:
-      'Estimate credit card payoff time, monthly payment impact, total interest, and total repaid from your balance, APR, and payment plan.',
+      'Estimate how long credit card repayment could take, total interest, and total paid from your balance, APR, monthly payment, and extra amount.',
     h1: 'Credit Card Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-consolidation': {
-    title: 'Credit Card Consolidation Calculator | Loan vs Cards',
+    title: 'Credit Card Consolidation Calculator | Loan vs Card Payoff',
     description:
-      'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
+      'Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.',
     h1: 'Credit Card Consolidation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -751,101 +751,101 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Reverse Percentage',
   },
   'present-value': {
-    title: 'Present Value Calculator | Discount Future Money',
+    title: 'Present Value Calculator | Future Cash Flow Discounting',
     description:
-      'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
+      'Discount future cash flow into today\'s value using rate, time period, and compounding to compare offers, projects, or investments.',
     h1: 'Present Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value': {
-    title: 'Future Value Calculator | Growth Over Time',
+    title: 'Future Value Calculator | Savings & Investment Projection',
     description:
-      'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
+      'Project how a lump sum or recurring deposits could grow using return rate, time period, and compounding assumptions.',
     h1: 'Future Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'present-value-of-annuity': {
-    title: 'Present Value of Annuity Calculator | Ordinary or Due',
+    title: 'Present Value of Annuity Calculator | Payment Stream Value',
     description:
-      'Estimate the present value of an annuity using payment amount, discount rate, periods, and annuity timing.',
+      'Find the present value of recurring payments using discount rate, number of periods, and ordinary or due annuity timing.',
     h1: 'Present Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value-of-annuity': {
-    title: 'Future Value of Annuity Calculator | Ordinary or Due',
+    title: 'Future Value of Annuity Calculator | Savings Plan Growth',
     description:
-      'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.',
+      'Project how recurring payments could grow using return rate, payment periods, and ordinary or due annuity timing.',
     h1: 'Future Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator | Interest & Final Amount',
+    title: 'Simple Interest Calculator | Interest Earned & Final Balance',
     description:
-      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
+      'Calculate simple interest, total interest earned, and ending balance from principal, rate, and time for loans or savings.',
     h1: 'Simple Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'effective-annual-rate': {
-    title: 'Effective Annual Rate Calculator | True Annual Rate',
+    title: 'Effective Annual Rate Calculator | APR to EAR',
     description:
-      'Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.',
+      'Convert a nominal rate or APR into effective annual rate so you can compare the true yearly borrowing cost or return.',
     h1: 'Effective Annual Rate Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   inflation: {
-    title: 'Inflation Calculator – CPI Value & Purchasing Power',
+    title: 'Inflation Calculator | CPI Purchasing Power',
     description:
-      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+      'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.',
     h1: 'Inflation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'time-to-savings-goal': {
-    title: 'Time to Savings Goal Calculator | Reach Your Target',
+    title: 'Time to Savings Goal Calculator | Months to Reach Target',
     description:
-      'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.',
+      'Estimate how many months it could take to reach a savings goal using current balance, recurring deposits, interest rate, and compounding.',
     h1: 'Time to Savings Goal Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'monthly-savings-needed': {
-    title: 'Monthly Savings Needed Calculator | Reach Your Goal',
+    title: 'Monthly Savings Needed Calculator | Savings Goal Planner',
     description:
-      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
+      'Calculate the monthly savings needed to reach a target balance using current savings, time horizon, rate, compounding, and deposit timing.',
     h1: 'Monthly Savings Needed Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'compound-interest': {
-    title: 'Compound Interest Calculator | Ending Balance & Growth',
+    title: 'Compound Interest Calculator | Savings Growth & Ending Balance',
     description:
-      'Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.',
+      'Project ending balance, interest earned, and contribution impact from principal, return rate, time, and compounding frequency.',
     h1: 'Compound Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator | Interest & Final Amount',
+    title: 'Simple Interest Calculator | Interest Earned & Final Balance',
     description:
-      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
+      'Calculate simple interest, total interest earned, and ending balance from principal, rate, and time for loans or savings.',
     h1: 'Simple Interest Calculator',
   },
   'investment-growth': {
-    title: 'Investment Growth Calculator | Future Value Projection',
+    title: 'Investment Growth Calculator | Future Value & Real Return',
     description:
-      'Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.',
+      'Project future value, total contributions, total gains, and inflation-adjusted balance from expected return and time horizon.',
     h1: 'Investment Growth Calculator',
   },
   'investment-return': {
-    title: 'Investment Return Calculator | CAGR, Profit & Growth',
+    title: 'Investment Return Calculator | CAGR, Profit & Real Return',
     description:
-      'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.',
+      'Estimate ending value, profit, CAGR, and real return with recurring deposits, tax assumptions, inflation, and scenario testing.',
     h1: 'Investment Return Calculator',
     paneLayout: 'single',
     explanationHeading: '',
@@ -934,7 +934,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Home Loan',
     softwareName: 'Home Loan Calculator',
     softwareDescription:
-      'Estimate monthly mortgage payments, amortization schedule, payoff timeline, and interest savings from extra payments.',
+      'Estimate monthly mortgage payment, total interest, amortization schedule, and payoff impact from deposit, rate, term, taxes, and extra payments.',
     featureList: [
       'Monthly mortgage payment estimate',
       'Amortization schedule (monthly and yearly)',
@@ -953,7 +953,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'How Much Can I Borrow',
     softwareName: 'How Much Can I Borrow Calculator',
     softwareDescription:
-      'Estimate your borrowing power using income multiples or payment-to-income affordability checks.',
+      'Estimate mortgage affordability from income, debts, deposit, rate, and term using income multiple and payment-to-income checks.',
     featureList: [
       'Income multiple borrowing estimate',
       'Payment-to-income affordability mode',
@@ -972,7 +972,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Remortgage / Switching',
     softwareName: 'Remortgage Calculator (Switching)',
     softwareDescription:
-      'Compare your current mortgage against a new rate and term to measure break-even and total savings.',
+      'Compare your current mortgage against a new rate or term to estimate payment change, break-even timing, and total savings.',
     featureList: [
       'Monthly and annual savings',
       'Break-even month tracking',
@@ -991,7 +991,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Buy-to-Let Calculator',
     softwareName: 'Buy-to-Let Calculator',
     softwareDescription:
-      'Estimate rental yield, cashflow, and lender stress coverage for buy-to-let mortgage scenarios.',
+      'Estimate buy-to-let yield, monthly cash flow, and lender stress coverage for rental property financing scenarios.',
     featureList: [
       'Gross and net rental yield',
       'Monthly and annual cashflow',
@@ -1010,7 +1010,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Offset Calculator',
     softwareName: 'Offset Calculator',
     softwareDescription:
-      'Model how offset savings and monthly contributions reduce mortgage interest and payoff time.',
+      'Model how offset savings and monthly deposits reduce mortgage interest, shorten payoff, and change total cost.',
     featureList: [
       'Offset interest savings estimate',
       'Effective mortgage balance tracking',
@@ -1029,7 +1029,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Interest Rate Change Calculator',
     softwareName: 'Interest Rate Change Calculator',
     softwareDescription:
-      'Compare payment and total interest impact when mortgage rates change now or after a selected period.',
+      'Estimate monthly payment and total interest impact when a mortgage rate changes now or after a selected period.',
     featureList: [
       'Current versus new rate comparison',
       'Immediate or delayed rate-change timing',
@@ -1048,7 +1048,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Loan-to-Value (LTV) Calculator',
     softwareName: 'Loan-to-Value (LTV) Calculator',
     softwareDescription:
-      'Calculate mortgage LTV and review risk bands using property value with loan or deposit inputs.',
+      'Calculate mortgage loan-to-value and review deposit bands using property value with loan or deposit inputs.',
     featureList: [
       'Loan-to-value percentage calculator',
       'Loan or deposit input modes',
@@ -1067,7 +1067,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Personal Loan Calculator',
     softwareName: 'Personal Loan Calculator',
     softwareDescription:
-      'Estimate personal loan monthly payment, total interest, and payoff impact of extra monthly payments across a fixed-rate term.',
+      'Estimate personal loan monthly payment, total interest, total cost, and the payoff impact of extra monthly payments across a fixed-rate term.',
     featureList: [
       'Fixed-rate monthly payment estimate',
       'Total repayment and interest breakdown',
@@ -1089,7 +1089,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Monthly Savings Needed',
     softwareName: 'Monthly Savings Needed Calculator',
     softwareDescription:
-      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
+      'Calculate the monthly savings needed to reach a target balance using current savings, time horizon, interest rate, and compounding.',
     featureList: [
       'Required monthly savings calculation',
       'Total contributions breakdown',
@@ -1107,7 +1107,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Compound Interest',
     softwareName: 'Compound Interest Calculator',
     softwareDescription:
-      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time.',
+      'Project ending balance, interest earned, and contribution impact from principal, return rate, time, and compounding frequency.',
     featureList: [
       'Ending balance estimate',
       'Total interest earned',
@@ -1125,7 +1125,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Time to Savings Goal',
     softwareName: 'Time to Savings Goal Calculator',
     softwareDescription:
-      'Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding.',
+      'Estimate how many months it could take to reach your savings target with regular contributions, interest, and compounding.',
     featureList: [
       'Time to goal estimate',
       'Total interest earned',
@@ -1138,7 +1138,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Effective Annual Rate',
     softwareName: 'Effective Annual Rate Calculator',
     softwareDescription:
-      'Convert a nominal interest rate into an effective annual rate using compounding frequency.',
+      'Convert a nominal rate or APR into effective annual rate using compounding frequency.',
     featureList: [
       'Nominal to EAR conversion',
       'Compounding frequency options',
@@ -1157,10 +1157,10 @@ const FINANCE_SCHEMA_CONFIG = {
     softwareName: 'Inflation Calculator',
     webPageName: 'Inflation Calculator',
     webPageDescription:
-      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+      'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.',
     linkWebPageToSoftwareApplication: true,
     softwareDescription:
-      'Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.',
+      'Calculate inflation-adjusted value using U.S. CPI data to compare purchasing power across months and years.',
     featureList: [
       'Inflation-adjusted value comparison',
       'Equivalent value in target month',
@@ -1180,7 +1180,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Future Value (FV)',
     softwareName: 'Future Value (FV) Calculator',
     softwareDescription:
-      'Calculate how much your money could grow over time using interest rate and compounding.',
+      'Project how a lump sum or recurring deposits could grow over time using return rate and compounding.',
     featureList: [
       'Future value estimate',
       'Total growth breakdown',
@@ -1198,7 +1198,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Future Value of Annuity',
     softwareName: 'Future Value of Annuity Calculator',
     softwareDescription:
-      'Calculate the future value of an annuity and compare ordinary annuity vs annuity due.',
+      'Project how recurring payments could grow and compare ordinary annuity versus annuity due.',
     featureList: [
       'Ordinary vs Annuity Due',
       'Future value estimate',
@@ -1212,11 +1212,29 @@ const FINANCE_SCHEMA_CONFIG = {
       'time value of money',
     ],
   },
+  investment: {
+    breadcrumbLabel: 'Investment Calculator',
+    softwareName: 'Investment Calculator',
+    softwareDescription:
+      'Project ending value, total contributions, compound growth, and inflation-adjusted purchasing power for a broad investment plan.',
+    featureList: [
+      'Ending value projection',
+      'Contribution breakdown',
+      'Inflation-adjusted purchasing power',
+      'Compound growth comparison',
+    ],
+    keywords: [
+      'investment calculator',
+      'investment growth calculator',
+      'compound growth calculator',
+      'inflation adjusted investment calculator',
+    ],
+  },
   'investment-growth': {
     breadcrumbLabel: 'Investment Growth',
     softwareName: 'Investment Growth Calculator',
     softwareDescription:
-      'Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.',
+      'Project future value, total contributions, total gains, and inflation-adjusted balance from expected return and time horizon.',
     featureList: [
       'Investment growth projection',
       'Inflation adjustment',
@@ -1234,7 +1252,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Investment Return',
     softwareName: 'Investment Return Calculator',
     softwareDescription:
-      'Estimate portfolio growth with lump sum and recurring contributions, with optional tax and inflation adjustment.',
+      'Estimate ending value, profit, CAGR, and real return with recurring deposits, tax assumptions, and inflation adjustments.',
     featureList: [
       'Future value from lump sum and recurring contributions',
       'Annual and monthly breakdowns',
@@ -1251,7 +1269,8 @@ const FINANCE_SCHEMA_CONFIG = {
   'present-value': {
     breadcrumbLabel: 'Present Value (PV)',
     softwareName: 'Present Value (PV) Calculator',
-    softwareDescription: 'Calculate the present value of future cash using discount rate and time.',
+    softwareDescription:
+      'Discount future cash flow into today\'s value using rate, time period, and compounding.',
     featureList: ['Present value estimate', 'Discount lost breakdown', 'Compounding options'],
     keywords: [
       'present value calculator',
@@ -1264,7 +1283,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Present Value of Annuity',
     softwareName: 'Present Value of Annuity Calculator',
     softwareDescription:
-      'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due.',
+      'Find the present value of recurring payments and compare ordinary annuity versus annuity due.',
     featureList: ['Ordinary vs Annuity Due', 'Present value estimate', 'Discount saved breakdown'],
     keywords: [
       'present value of annuity calculator',
@@ -1277,7 +1296,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Simple Interest',
     softwareName: 'Simple Interest Calculator',
     softwareDescription:
-      'Calculate simple interest to find total interest and ending amount using principal, rate, and time.',
+      'Calculate simple interest to find total interest earned and ending balance using principal, rate, and time.',
     featureList: [
       'Total interest calculation',
       'Ending amount estimate',

@@ -131,19 +131,19 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Consolidation Calculator | Loan vs Cards',
+  title: 'Credit Card Consolidation Calculator | Loan vs Card Payoff',
   description:
-    'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
+    'Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Credit Card Consolidation Calculator | Loan vs Cards',
+        name: 'Credit Card Consolidation Calculator | Loan vs Card Payoff',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/',
         description:
-          'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
+          'Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.',
         inLanguage: 'en',
       },
       {

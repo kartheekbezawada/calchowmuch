@@ -178,9 +178,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Future Value of Annuity Calculator | Ordinary or Due',
+  title: 'Future Value of Annuity Calculator | Savings Plan Growth',
   description:
-    'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.',
+    'Project how recurring payments could grow using return rate, payment periods, and ordinary or due annuity timing.',
   canonical: 'https://calchowmuch.com/finance-calculators/future-value-of-annuity-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -189,10 +189,10 @@ setPageMetadata({
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Future Value of Annuity Calculator | Ordinary or Due',
+        name: 'Future Value of Annuity Calculator | Savings Plan Growth',
         url: 'https://calchowmuch.com/finance-calculators/future-value-of-annuity-calculator/',
         description:
-          'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.',
+          'Project how recurring payments could grow using return rate, payment periods, and ordinary or due annuity timing.',
         inLanguage: 'en',
       },
       {
@@ -203,7 +203,7 @@ setPageMetadata({
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/future-value-of-annuity-calculator/',
         description:
-          'Free future value of annuity calculator for ordinary annuity and annuity due. Calculates future value using payment amount, rate, and timing.',
+          'Project how recurring payments could grow and compare ordinary annuity versus annuity due.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

@@ -4,11 +4,11 @@ test.describe('Present Value Calculator SEO', () => {
   test('PV-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/present-value-calculator');
 
-    await expect(page).toHaveTitle('Present Value Calculator | Discount Future Money');
+    await expect(page).toHaveTitle('Present Value Calculator | Future Cash Flow Discounting');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate the present value of future money using discount rate, time period, and compounding frequency.'
+      'Discount future cash flow into today's value using rate, time period, and compounding to compare offers, projects, or investments.'
     );
 
     const h1 = page.locator('h1');
@@ -21,11 +21,11 @@ test.describe('Present Value Calculator SEO', () => {
     expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/present-value-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBe('Present Value Calculator | Discount Future Money');
+    expect(ogTitle).toBe('Present Value Calculator | Future Cash Flow Discounting');
 
     const ogDescription = await page.locator('meta[property="og:description"]').getAttribute('content');
     expect(ogDescription).toBe(
-      'Estimate the present value of future money using discount rate, time period, and compounding frequency.'
+      'Discount future cash flow into today's value using rate, time period, and compounding to compare offers, projects, or investments.'
     );
 
     const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');

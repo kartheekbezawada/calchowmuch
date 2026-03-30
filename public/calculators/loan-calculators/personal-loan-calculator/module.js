@@ -14,9 +14,9 @@ import {
 } from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const metadata = {
-  title: 'Personal Loan Calculator | Payments & Interest',
+  title: 'Personal Loan Calculator | Monthly Payment, Interest & Payoff',
   description:
-    'Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.',
+    'Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term.',
   canonical: 'https://calchowmuch.com/loan-calculators/personal-loan-calculator/',
 };
 

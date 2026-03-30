@@ -5,11 +5,11 @@ test.describe('Home Loan calculator SEO', () => {
     await page.goto('/loan-calculators/mortgage-calculator/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#calculator-title')).toHaveText('Home Loan Calculator');
 
-    await expect(page).toHaveTitle('Home Loan Calculator | Payment & Amortization');
+    await expect(page).toHaveTitle('Home Loan Calculator | Mortgage Payment, Interest & Amortization');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate monthly mortgage payments, amortization, payoff timeline, and interest savings from extra payments with our free Home Loan Calculator.'
+      'Estimate monthly mortgage payment, total interest, amortization, and payoff impact from deposit, rate, term, taxes, and extra payments.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

@@ -3,20 +3,20 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Hire Purchase Calculator | Monthly Payment &amp; Cost</title>
-    <meta name="description" content="Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term." />
+    <title>Hire Purchase Calculator | Payment, Balloon &amp; Total Cost</title>
+    <meta name="description" content="Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term." />
     <link rel="canonical" href="https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/" />
-    <meta property="og:title" content="Hire Purchase Calculator | Monthly Payment &amp; Cost" />
-    <meta property="og:description" content="Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term." />
+    <meta property="og:title" content="Hire Purchase Calculator | Payment, Balloon &amp; Total Cost" />
+    <meta property="og:description" content="Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hire Purchase Calculator | Monthly Payment &amp; Cost" />
-    <meta name="twitter:description" content="Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term." />
+    <meta name="twitter:title" content="Hire Purchase Calculator | Payment, Balloon &amp; Total Cost" />
+    <meta name="twitter:description" content="Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#softwareapplication","name":"Hire Purchase Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/","description":"Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Car Loan Calculators","item":"https://calchowmuch.com/car-loan-calculators/"},{"@type":"ListItem","position":3,"name":"Hire Purchase Calculator","item":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#softwareapplication","name":"Hire Purchase Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/","description":"Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Car Loan Calculators","item":"https://calchowmuch.com/car-loan-calculators/"},{"@type":"ListItem","position":3,"name":"Hire Purchase Calculator","item":"https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/"}]}]}</script>
     <style data-auto-loan-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
@@ -986,7 +986,7 @@
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-header {
-        max-width: 980px;
+        max-width: 720px;
         margin: 0 auto;
         text-align: center;
       }
@@ -1007,12 +1007,11 @@
       }
 
       body[data-design-family='auto-loans'] #calculator-title {
-        margin: 0;
-        font-size: clamp(38px, 4.4vw, 56px);
+        margin: 18px 0 0;
+        font-size: clamp(42px, 6vw, 58px);
         line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--al-text);
-        white-space: nowrap;
       }
 
       body[data-design-family='auto-loans'] .al-cluster-page-intro {
@@ -2124,28 +2123,36 @@
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 12px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: auto minmax(0, 1fr);
         align-items: start;
-        gap: 6px;
+        column-gap: 14px;
+        row-gap: 6px;
         border: 1px solid var(--al-line);
         border-radius: var(--al-radius-lg);
         background: linear-gradient(180deg, #ffffff, var(--al-surface-soft));
         box-shadow: none;
-        padding: 14px 16px;
+        padding: 18px 20px;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-number {
-        display: none;
-      }
-
-      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card h4,
-      body[data-design-family='auto-loans'] .auto-loan-explanation .bor-faq-card p {
-        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 38px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: rgba(197, 140, 69, 0.14);
+        color: var(--al-warm);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        grid-row: span 2;
       }
 
       body[data-design-family='auto-loans'] .auto-loan-explanation .bor-note-list {
@@ -2195,15 +2202,6 @@
       @media (max-width: 720px) {
         body[data-design-family='auto-loans'] .al-cluster-site-header-inner {
           min-height: 64px;
-        }
-
-        body[data-design-family='auto-loans'] .al-cluster-page-header {
-          max-width: 100%;
-        }
-
-        body[data-design-family='auto-loans'] #calculator-title {
-          font-size: clamp(34px, 10vw, 44px);
-          white-space: normal;
         }
 
         body[data-design-family='auto-loans'] .al-cluster-site-links {
@@ -2352,8 +2350,8 @@
       }
     </style>
  
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-</head>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="auto-loans">
     <div class="page al-cluster-page-shell">
       <header class="al-cluster-site-header">
@@ -2373,8 +2371,9 @@
         <section class="al-cluster-center-column">
           <div class="al-cluster-panel">
   <div class="al-cluster-page-header">
+    <span class="al-cluster-page-kicker">Auto Loan Calculators</span>
     <h1 id="calculator-title">Hire Purchase Calculator</h1>
-    <p class="al-cluster-page-intro">Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.</p>
+    <p class="al-cluster-page-intro">Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.</p>
   </div>
   <div class="calculator-page-single al-cluster-flow">
     <div id="calc-hire-purchase">
@@ -2941,6 +2940,16 @@
         <p>No. These are fixed-rate estimates and may differ from lender disclosures and fees.</p>
       </div>
     </div>
+  </section>
+
+  <section class="mtg-exp-section">
+    <h3>Related Calculators</h3>
+    <ul>
+      <li><a href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a> for a standard amortizing-loan benchmark.</li>
+      <li><a href="/car-loan-calculators/auto-loan-calculator/">Auto Loan Comparison Calculator</a> to compare rival offers.</li>
+      <li><a href="/car-loan-calculators/pcp-calculator/">PCP Calculator</a> for another deferred-payment structure.</li>
+      <li><a href="/car-loan-calculators/car-lease-calculator/">Car Lease Calculator</a> to compare financing against leasing.</li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--notes">

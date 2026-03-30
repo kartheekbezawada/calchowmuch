@@ -3,25 +3,21 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Personal Loan Calculator | Payments &amp; Interest</title>
-    <meta name="description" content="Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff." />
+    <title>Personal Loan Calculator | Monthly Payment, Interest &amp; Payoff</title>
+    <meta name="description" content="Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term." />
     <link rel="canonical" href="https://calchowmuch.com/loan-calculators/personal-loan-calculator/" />
-    <meta property="og:title" content="Personal Loan Calculator | Payments &amp; Interest" />
-    <meta property="og:description" content="Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff." />
+    <meta property="og:title" content="Personal Loan Calculator | Monthly Payment, Interest &amp; Payoff" />
+    <meta property="og:description" content="Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loan-calculators/personal-loan-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Personal Loan Calculator | Payments &amp; Interest" />
-    <meta name="twitter:description" content="Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff." />
+    <meta name="twitter:title" content="Personal Loan Calculator | Monthly Payment, Interest &amp; Payoff" />
+    <meta name="twitter:description" content="Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-home-loan-cluster="true">
       /* assets/css/base.css */
-      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
-         instead of @import, to eliminate sequential CSS waterfall.
-         See known_issues.md KI-007 / KI-010. */
-
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -986,13 +982,13 @@
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-header {
-        max-width: 1100px;
+        max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-kicker {
-        display: none;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         padding: 9px 14px;
@@ -1007,17 +1003,11 @@
       }
 
       body[data-design-family='home-loan'] #calculator-title {
-        margin: 0;
-        font-size: clamp(36px, 5vw, 56px);
-        line-height: 1.04;
+        margin: 18px 0 0;
+        font-size: clamp(42px, 6vw, 58px);
+        line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--hl-text);
-        white-space: normal;
-      }
-      @media (min-width: 981px) {
-        body[data-design-family='home-loan'] #calculator-title {
-          white-space: nowrap;
-        }
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-intro {
@@ -1673,21 +1663,12 @@
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+        gap: 16px;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-        display: grid;
-        gap: 8px;
-        border: 1px solid var(--hl-line);
-        border-radius: var(--hl-radius-lg);
-        background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
-        box-shadow: var(--hl-shadow-soft);
-        padding: 16px;
-      }
-
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-related-card {
         border: 1px solid var(--hl-line);
         border-radius: var(--hl-radius-lg);
@@ -1697,22 +1678,22 @@
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-number {
-        display: none;
-      }
-
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card p {
-        margin: 0;
+      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 38px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: var(--hl-accent-soft);
+        color: var(--hl-accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-note-list,
-
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-note-list,
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-note-list {
         display: grid;
@@ -2071,13 +2052,6 @@
         body[data-design-family='home-loan'] .hl-cluster-site-footer-inner {
           padding: 22px;
         }
-
-        body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-          padding: 16px;
-        }
-}
 
         body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
         body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
@@ -2823,9 +2797,9 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#webpage","name":"Personal Loan Calculator | Payments & Interest","url":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/","description":"Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#softwareapplication","name":"Personal Loan Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/","description":"Estimate personal loan monthly payment, total interest, and payoff impact of extra monthly payments across a fixed-rate term.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Fixed-rate monthly payment estimate","Total repayment and interest breakdown","Early payoff projection with extra payments","12-month amortization preview and balance chart"],"keywords":"personal loan calculator, loan emi calculator, monthly payment calculator, loan interest calculator, early payoff calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#faq","mainEntity":[{"@type":"Question","name":"Is this payment guaranteed by lenders?","acceptedAnswer":{"@type":"Answer","text":"No. The calculator provides an estimate based on your entered inputs. Final lender terms can differ due to credit checks, underwriting, and policy rules."}},{"@type":"Question","name":"What does APR include in this calculator?","acceptedAnswer":{"@type":"Answer","text":"APR is treated as the annual borrowing rate used to compute monthly interest. It is converted into a monthly rate for installment calculations."}},{"@type":"Question","name":"Why does a longer term reduce monthly payment?","acceptedAnswer":{"@type":"Answer","text":"Because repayment is spread across more months. Monthly cost goes down, but total interest paid over the loan often goes up."}},{"@type":"Question","name":"How does extra monthly payment help?","acceptedAnswer":{"@type":"Answer","text":"Extra payment reduces principal faster. Lower principal means lower future interest, which can reduce total cost and shorten payoff time."}},{"@type":"Question","name":"Does setup fee affect monthly payment?","acceptedAnswer":{"@type":"Answer","text":"In this version, setup fee is added to total cost reporting and does not change installment math directly unless you manually add it into loan amount."}},{"@type":"Question","name":"Can I use decimal values for fee and extra payment?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fee and extra monthly fields accept decimal values so you can model realistic amounts."}},{"@type":"Question","name":"Why does the first year show more interest than later years?","acceptedAnswer":{"@type":"Answer","text":"Interest is calculated on remaining balance. Early balance is higher, so the interest share is higher in early payments and gradually falls over time."}},{"@type":"Question","name":"Does changing currency change the calculation?","acceptedAnswer":{"@type":"Answer","text":"No. Currency selection changes output formatting only. The underlying formulas remain the same."}},{"@type":"Question","name":"Can this model variable or step-up rates?","acceptedAnswer":{"@type":"Answer","text":"Not in this calculator. It assumes a fixed annual rate for the full term."}},{"@type":"Question","name":"What is the best way to compare two loan offers?","acceptedAnswer":{"@type":"Answer","text":"Enter each offer separately and compare monthly payment, total interest, total cost with fee, and payoff impact if you plan to overpay."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Personal Loan Calculator","item":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-</head>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#webpage","name":"Personal Loan Calculator | Monthly Payment, Interest & Payoff","url":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/","description":"Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#softwareapplication","name":"Personal Loan Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/","description":"Estimate personal loan monthly payment, total interest, total cost, and the payoff impact of extra monthly payments across a fixed-rate term.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Fixed-rate monthly payment estimate","Total repayment and interest breakdown","Early payoff projection with extra payments","12-month amortization preview and balance chart"],"keywords":"personal loan calculator, loan emi calculator, monthly payment calculator, loan interest calculator, early payoff calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#faq","mainEntity":[{"@type":"Question","name":"Is this payment guaranteed by lenders?","acceptedAnswer":{"@type":"Answer","text":"No. The calculator provides an estimate based on your entered inputs. Final lender terms can differ due to credit checks, underwriting, and policy rules."}},{"@type":"Question","name":"What does APR include in this calculator?","acceptedAnswer":{"@type":"Answer","text":"APR is treated as the annual borrowing rate used to compute monthly interest. It is converted into a monthly rate for installment calculations."}},{"@type":"Question","name":"Why does a longer term reduce monthly payment?","acceptedAnswer":{"@type":"Answer","text":"Because repayment is spread across more months. Monthly cost goes down, but total interest paid over the loan often goes up."}},{"@type":"Question","name":"How does extra monthly payment help?","acceptedAnswer":{"@type":"Answer","text":"Extra payment reduces principal faster. Lower principal means lower future interest, which can reduce total cost and shorten payoff time."}},{"@type":"Question","name":"Does setup fee affect monthly payment?","acceptedAnswer":{"@type":"Answer","text":"In this version, setup fee is added to total cost reporting and does not change installment math directly unless you manually add it into loan amount."}},{"@type":"Question","name":"Can I use decimal values for fee and extra payment?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fee and extra monthly fields accept decimal values so you can model realistic amounts."}},{"@type":"Question","name":"Why does the first year show more interest than later years?","acceptedAnswer":{"@type":"Answer","text":"Interest is calculated on remaining balance. Early balance is higher, so the interest share is higher in early payments and gradually falls over time."}},{"@type":"Question","name":"Does changing currency change the calculation?","acceptedAnswer":{"@type":"Answer","text":"No. Currency selection changes output formatting only. The underlying formulas remain the same."}},{"@type":"Question","name":"Can this model variable or step-up rates?","acceptedAnswer":{"@type":"Answer","text":"Not in this calculator. It assumes a fixed annual rate for the full term."}},{"@type":"Question","name":"What is the best way to compare two loan offers?","acceptedAnswer":{"@type":"Answer","text":"Enter each offer separately and compare monthly payment, total interest, total cost with fee, and payoff impact if you plan to overpay."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Personal Loan Calculator","item":"https://calchowmuch.com/loan-calculators/personal-loan-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="home-loan">
     <div class="page hl-cluster-page-shell">
       <header class="hl-cluster-site-header">
@@ -2845,8 +2819,9 @@
         <section class="hl-cluster-center-column">
           <div class="hl-cluster-panel">
   <div class="hl-cluster-page-header">
+    <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
     <h1 id="calculator-title">Personal Loan Calculator</h1>
-    <p class="hl-cluster-page-intro">Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.</p>
+    <p class="hl-cluster-page-intro">Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term.</p>
   </div>
   <div class="calculator-page-single hl-cluster-flow">
     <div id="calc-personal-loan">
@@ -3293,6 +3268,16 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="pl-exp-section" id="pl-section-related">
+    <h3>Related Calculators</h3>
+    <ul class="pl-important-list">
+      <li><a href="/credit-card-calculators/credit-card-consolidation-calculator/">Credit Card Consolidation Calculator</a> when debt restructure is part of the decision.</li>
+      <li><a href="/credit-card-calculators/credit-card-payment-calculator/">Credit Card Payoff Calculator</a> to compare loan repayment against card payoff.</li>
+      <li><a href="/loan-calculators/mortgage-calculator/">Home Loan Calculator</a> for larger secured-borrowing comparisons.</li>
+      <li><a href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculator</a> to compare personal-loan funding against dealer finance.</li>
+    </ul>
   </section>
 
   <section class="pl-exp-section pl-exp-section--notes" id="pl-section-important-notes">

@@ -157,9 +157,9 @@ const CALCULATOR_STRUCTURED_DATA = {
       '@type': 'WebPage',
       '@id': 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/#webpage',
       url: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
-      name: 'PCP Calculator | Monthly Payment, GFV & Cost',
+      name: 'PCP Calculator | Payment, GFV & Total Cost',
       description:
-        'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
+        'Estimate PCP monthly payment, GFV, option fee, total interest, and total payable using vehicle price, deposit, APR, and term.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://calchowmuch.com/#website',
@@ -179,7 +179,7 @@ const CALCULATOR_STRUCTURED_DATA = {
       operatingSystem: 'Any',
       url: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
       description:
-        'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
+        'Estimate PCP monthly payment, GFV, option fee, total interest, and total payable using vehicle price, deposit, APR, and term.',
     },
     {
       '@type': 'BreadcrumbList',
@@ -209,9 +209,9 @@ const CALCULATOR_STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'PCP Calculator | Monthly Payment, GFV & Cost',
+  title: 'PCP Calculator | Payment, GFV & Total Cost',
   description:
-    'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
+    'Estimate PCP monthly payment, GFV, option fee, total interest, and total payable using vehicle price, deposit, APR, and term.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/pcp-calculator/',
   structuredData: CALCULATOR_STRUCTURED_DATA,
 };

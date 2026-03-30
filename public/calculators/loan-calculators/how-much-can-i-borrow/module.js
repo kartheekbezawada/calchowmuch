@@ -8,9 +8,9 @@ import {
 } from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const metadata = {
-  title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
+  title: 'How Much Can I Borrow Calculator | Mortgage Affordability',
   description:
-    'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
+    'Estimate mortgage affordability from income, debts, deposit, rate, and term, then compare borrowing power with likely monthly payments.',
   canonical: 'https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/',
 };
 

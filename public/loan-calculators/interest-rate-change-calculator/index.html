@@ -3,25 +3,21 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Interest Rate Change Calculator | Rate Impact | CalcHowMuch</title>
-    <meta name="description" content="Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term." />
+    <title>Interest Rate Change Calculator | Mortgage Payment Impact</title>
+    <meta name="description" content="Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term." />
     <link rel="canonical" href="https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/" />
-    <meta property="og:title" content="Interest Rate Change Calculator | Rate Impact | CalcHowMuch" />
-    <meta property="og:description" content="Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term." />
+    <meta property="og:title" content="Interest Rate Change Calculator | Mortgage Payment Impact" />
+    <meta property="og:description" content="Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Interest Rate Change Calculator | Rate Impact | CalcHowMuch" />
-    <meta name="twitter:description" content="Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term." />
+    <meta name="twitter:title" content="Interest Rate Change Calculator | Mortgage Payment Impact" />
+    <meta name="twitter:description" content="Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-home-loan-cluster="true">
       /* assets/css/base.css */
-      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
-         instead of @import, to eliminate sequential CSS waterfall.
-         See known_issues.md KI-007 / KI-010. */
-
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -986,13 +982,13 @@
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-header {
-        max-width: 1100px;
+        max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-kicker {
-        display: none;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         padding: 9px 14px;
@@ -1007,17 +1003,11 @@
       }
 
       body[data-design-family='home-loan'] #calculator-title {
-        margin: 0;
-        font-size: clamp(36px, 5vw, 56px);
-        line-height: 1.04;
+        margin: 18px 0 0;
+        font-size: clamp(42px, 6vw, 58px);
+        line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--hl-text);
-        white-space: normal;
-      }
-      @media (min-width: 981px) {
-        body[data-design-family='home-loan'] #calculator-title {
-          white-space: nowrap;
-        }
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-intro {
@@ -1673,21 +1663,12 @@
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+        gap: 16px;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-        display: grid;
-        gap: 8px;
-        border: 1px solid var(--hl-line);
-        border-radius: var(--hl-radius-lg);
-        background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
-        box-shadow: var(--hl-shadow-soft);
-        padding: 16px;
-      }
-
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-related-card {
         border: 1px solid var(--hl-line);
         border-radius: var(--hl-radius-lg);
@@ -1697,22 +1678,22 @@
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-number {
-        display: none;
-      }
-
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card p {
-        margin: 0;
+      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 38px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: var(--hl-accent-soft);
+        color: var(--hl-accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-note-list,
-
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-note-list,
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-note-list {
         display: grid;
@@ -2071,13 +2052,6 @@
         body[data-design-family='home-loan'] .hl-cluster-site-footer-inner {
           padding: 22px;
         }
-
-        body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-          padding: 16px;
-        }
-}
 
         body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
         body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
@@ -2625,9 +2599,9 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#webpage","name":"Interest Rate Change Calculator | Rate Impact | CalcHowMuch","url":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/","description":"Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#softwareapplication","name":"Interest Rate Change Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/","description":"Compare payment and total interest impact when mortgage rates change now or after a selected period.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Current versus new rate comparison","Immediate or delayed rate-change timing","Monthly payment impact estimate","Total interest and cost difference"],"keywords":"interest rate change calculator, mortgage payment change, rate rise impact calculator, mortgage interest comparison, refinance impact calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this calculator compare?","acceptedAnswer":{"@type":"Answer","text":"It compares baseline mortgage payments and interest against a new rate scenario over your remaining term."}},{"@type":"Question","name":"Why can small rate moves matter so much?","acceptedAnswer":{"@type":"Answer","text":"Mortgage balances are large and terms are long, so even small rate differences can compound into meaningful payment and interest changes."}},{"@type":"Question","name":"What does Apply Immediately mean?","acceptedAnswer":{"@type":"Answer","text":"It assumes the new rate starts from month one of your remaining term, so all projected payments use the updated rate."}},{"@type":"Question","name":"What does After X Months mean?","acceptedAnswer":{"@type":"Answer","text":"It keeps the current rate for the selected months, then recalculates payment for the remaining term at the new rate."}},{"@type":"Question","name":"Does this include taxes and insurance?","acceptedAnswer":{"@type":"Answer","text":"No. This tool focuses on principal and interest so you can isolate the effect of rate changes on core mortgage cost."}},{"@type":"Question","name":"Can a lower rate reduce total interest?","acceptedAnswer":{"@type":"Answer","text":"Yes. If all else is unchanged, a lower rate generally reduces both monthly payment and total interest paid."}},{"@type":"Question","name":"Can a higher rate increase total interest?","acceptedAnswer":{"@type":"Answer","text":"Yes. Higher rates typically raise monthly payment and can significantly increase lifetime interest over the remaining term."}},{"@type":"Question","name":"Why view both monthly and yearly tables?","acceptedAnswer":{"@type":"Answer","text":"Monthly view helps with timing and budget detail, while yearly view makes long-term trend comparison easier."}},{"@type":"Question","name":"Is this an official lender quote?","acceptedAnswer":{"@type":"Answer","text":"No. It is a planning estimate. Final lender terms may differ due to product rules, fees, and underwriting."}},{"@type":"Question","name":"How should I use this to make decisions?","acceptedAnswer":{"@type":"Answer","text":"Run multiple new-rate and timing scenarios, then compare monthly affordability and lifetime interest direction before choosing a strategy."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Interest Rate Change Calculator","item":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-</head>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#webpage","name":"Interest Rate Change Calculator | Mortgage Payment Impact","url":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/","description":"Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#softwareapplication","name":"Interest Rate Change Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/","description":"Estimate monthly payment and total interest impact when a mortgage rate changes now or after a selected period.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Current versus new rate comparison","Immediate or delayed rate-change timing","Monthly payment impact estimate","Total interest and cost difference"],"keywords":"interest rate change calculator, mortgage payment change, rate rise impact calculator, mortgage interest comparison, refinance impact calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this calculator compare?","acceptedAnswer":{"@type":"Answer","text":"It compares baseline mortgage payments and interest against a new rate scenario over your remaining term."}},{"@type":"Question","name":"Why can small rate moves matter so much?","acceptedAnswer":{"@type":"Answer","text":"Mortgage balances are large and terms are long, so even small rate differences can compound into meaningful payment and interest changes."}},{"@type":"Question","name":"What does Apply Immediately mean?","acceptedAnswer":{"@type":"Answer","text":"It assumes the new rate starts from month one of your remaining term, so all projected payments use the updated rate."}},{"@type":"Question","name":"What does After X Months mean?","acceptedAnswer":{"@type":"Answer","text":"It keeps the current rate for the selected months, then recalculates payment for the remaining term at the new rate."}},{"@type":"Question","name":"Does this include taxes and insurance?","acceptedAnswer":{"@type":"Answer","text":"No. This tool focuses on principal and interest so you can isolate the effect of rate changes on core mortgage cost."}},{"@type":"Question","name":"Can a lower rate reduce total interest?","acceptedAnswer":{"@type":"Answer","text":"Yes. If all else is unchanged, a lower rate generally reduces both monthly payment and total interest paid."}},{"@type":"Question","name":"Can a higher rate increase total interest?","acceptedAnswer":{"@type":"Answer","text":"Yes. Higher rates typically raise monthly payment and can significantly increase lifetime interest over the remaining term."}},{"@type":"Question","name":"Why view both monthly and yearly tables?","acceptedAnswer":{"@type":"Answer","text":"Monthly view helps with timing and budget detail, while yearly view makes long-term trend comparison easier."}},{"@type":"Question","name":"Is this an official lender quote?","acceptedAnswer":{"@type":"Answer","text":"No. It is a planning estimate. Final lender terms may differ due to product rules, fees, and underwriting."}},{"@type":"Question","name":"How should I use this to make decisions?","acceptedAnswer":{"@type":"Answer","text":"Run multiple new-rate and timing scenarios, then compare monthly affordability and lifetime interest direction before choosing a strategy."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Interest Rate Change Calculator","item":"https://calchowmuch.com/loan-calculators/interest-rate-change-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="home-loan">
     <div class="page hl-cluster-page-shell">
       <header class="hl-cluster-site-header">
@@ -2647,8 +2621,9 @@
         <section class="hl-cluster-center-column">
           <div class="hl-cluster-panel">
   <div class="hl-cluster-page-header">
+    <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
     <h1 id="calculator-title">Interest Rate Change Calculator</h1>
-    <p class="hl-cluster-page-intro">Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.</p>
+    <p class="hl-cluster-page-intro">Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term.</p>
   </div>
   <div class="calculator-page-single hl-cluster-flow">
     <div id="calc-interest-rate-change">
@@ -3323,6 +3298,16 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="mtg-exp-section" id="rate-section-related">
+    <h3>Related Calculators</h3>
+    <ul class="rate-notes-list">
+      <li><a href="/loan-calculators/mortgage-calculator/">Home Loan Calculator</a> for the full amortization baseline.</li>
+      <li><a href="/loan-calculators/remortgage-calculator/">Remortgage Calculator</a> when a new deal may offset the rate change.</li>
+      <li><a href="/loan-calculators/offset-mortgage-calculator/">Offset Mortgage Calculator</a> to test a savings-balance strategy instead of refinancing.</li>
+      <li><a href="/loan-calculators/ltv-calculator/">LTV Calculator</a> to see whether deposit or equity changes could improve product options.</li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--notes" id="rate-section-notes">

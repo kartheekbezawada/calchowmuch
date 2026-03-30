@@ -100,19 +100,19 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Credit Card Minimum Payment Calculator | Payoff Cost',
+  title: 'Credit Card Minimum Payment Calculator | Payoff Time & Interest',
   description:
-    'See how long minimum-only credit card payments take, what your first payment may be, and how much interest you could pay overall.',
+    'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Credit Card Minimum Payment Calculator | Payoff Cost',
+        name: 'Credit Card Minimum Payment Calculator | Payoff Time & Interest',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
         description:
-          'See how long minimum-only credit card payments take, what your first payment may be, and how much interest you could pay overall.',
+          'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
         inLanguage: 'en',
       },
       {

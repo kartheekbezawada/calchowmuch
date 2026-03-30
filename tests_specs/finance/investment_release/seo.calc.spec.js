@@ -4,11 +4,11 @@ test.describe('Investment Calculator SEO', () => {
   test('INV-TEST-SEO-1: metadata, structured data, and sitemap coverage', async ({ page }) => {
     await page.goto('/finance-calculators/investment-calculator/');
 
-    await expect(page).toHaveTitle('Investment Calculator | Growth, Contributions & Returns');
+    await expect(page).toHaveTitle('Investment Calculator | Growth, Inflation & Contributions');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted purchasing power with one broad investment calculator.'
+      'Project ending value, total contributions, compound growth, and inflation-adjusted purchasing power for a broad investment plan.'
     );
 
     await expect(page.locator('h1')).toHaveText('Investment Calculator');
@@ -18,7 +18,7 @@ test.describe('Investment Calculator SEO', () => {
     );
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBe('Investment Calculator | Growth, Contributions & Returns');
+    expect(ogTitle).toBe('Investment Calculator | Growth, Inflation & Contributions');
 
     const ogUrl = await page.locator('meta[property="og:url"]').getAttribute('content');
     expect(ogUrl).toBe('https://calchowmuch.com/finance-calculators/investment-calculator/');

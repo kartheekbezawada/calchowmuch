@@ -7,11 +7,11 @@ test.describe('Buy-to-Let Calculator SEO', () => {
     });
     await expect(page.locator('#calculator-title')).toHaveText('Buy-to-Let Calculator');
 
-    await expect(page).toHaveTitle('Buy-to-Let (Yield, Cashflow & Coverage) | CalcHowMuch');
+    await expect(page).toHaveTitle('Buy-to-Let Mortgage Calculator | Yield, Cash Flow & Cover');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate buy-to-let yield, cashflow, and stress coverage using rent, property price, deposit, rate, and mortgage type inputs.'
+      'Estimate buy-to-let yield, monthly cash flow, stress coverage, and financing impact from rent, deposit, rate, and costs.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');
