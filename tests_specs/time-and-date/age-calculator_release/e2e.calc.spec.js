@@ -60,10 +60,18 @@ test.describe('Age Calculator', () => {
       'Date of birth must be on or before the as-of date.'
     );
 
-    await expect(page.locator('#age-explanation h2')).toHaveText(
-      'How old am I on a specific date?'
-    );
-    await expect(page.locator('#age-explanation h3').first()).toHaveText('How to Guide');
+    await expect(
+      page.locator('#age-explanation').getByRole('heading', {
+        level: 2,
+        name: 'How old am I on a specific date?',
+      })
+    ).toBeVisible();
+    await expect(
+      page.locator('#age-explanation').getByRole('heading', {
+        level: 3,
+        name: 'How to Guide',
+      })
+    ).toBeVisible();
     await expect(page.locator('#age-explanation .age-notes')).toContainText('Last updated:');
 
     const workbench = page.locator('.age-workbench');

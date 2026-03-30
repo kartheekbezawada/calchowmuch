@@ -22,14 +22,16 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Commission Calculator – Calculate Sales Earnings',
+    title: 'Commission Earnings Calculator | Sales Commission Pay & Base Pay',
     description:
-      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
+      'Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.',
     canonical: 'https://calchowmuch.com/salary-calculators/commission-calculator/',
-    name: 'Commission Calculator',
-    appDescription: 'Estimate commission and optional total earnings from sales and commission inputs.',
+    name: 'Commission Earnings Calculator',
+    appDescription:
+      'Estimate commission pay, effective commission rate, and optional gross total earnings from sales and base-pay inputs.',
     featureList: ['Commission estimate', 'Effective commission rate', 'Optional total earnings'],
-    keywords: 'commission calculator, sales commission calculator, commission earnings calculator',
+    keywords:
+      'commission earnings calculator, salary plus commission calculator, commission pay calculator',
     faqSchema: FAQ_SCHEMA,
   })
 );

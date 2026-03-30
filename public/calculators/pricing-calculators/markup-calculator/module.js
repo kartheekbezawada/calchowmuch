@@ -147,9 +147,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Markup Calculator | Cost to Selling Price',
+  title: 'Markup Calculator | Selling Price From Cost & Markup %',
   description:
-    'Calculate selling price from cost and markup, or find markup percentage from cost and price.',
+    'Calculate selling price from cost and markup percentage, or work backward from cost and selling price to find markup %.',
   canonical: 'https://calchowmuch.com/pricing-calculators/markup-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -158,10 +158,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Markup Calculator | Cost to Selling Price',
+        name: 'Markup Calculator | Selling Price From Cost & Markup %',
         url: 'https://calchowmuch.com/pricing-calculators/markup-calculator/',
         description:
-          'Calculate selling price from cost and markup, or find markup percentage from cost and price.',
+          'Calculate selling price from cost and markup percentage, or work backward from cost and selling price to find markup %.',
         inLanguage: 'en',
       },
       {
@@ -171,7 +171,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/pricing-calculators/markup-calculator/',
         description:
-          'Free markup calculator for single-item or basket pricing from cost, price, and markup percentage.',
+          'Free markup calculator for single-item or basket pricing from cost, selling price, and markup percentage.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

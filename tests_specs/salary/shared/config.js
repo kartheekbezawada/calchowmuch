@@ -160,10 +160,10 @@ export const SALARY_CALCULATOR_CONFIGS = {
   },
   'commission-calculator': {
     route: '/salary-calculators/commission-calculator/',
-    h1: 'Commission Calculator',
-    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    h1: 'Commission Earnings Calculator',
+    title: 'Commission Earnings Calculator | Sales Commission Pay & Base Pay',
     description:
-      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
+      'Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#commission-sales-amount', '50000');
       await page.click('button[data-value="amount"]');

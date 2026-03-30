@@ -14,12 +14,14 @@ test.describe('Commission Calculator', () => {
       page
         .locator('.fin-nav-item.is-active, .math-nav-item.is-active, .nav-item.is-active')
         .first()
-    ).toContainText('Commission Calculator');
+    ).toContainText('Sales Commission Calculator');
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
     await expect(page.locator('.ads-column')).toHaveCount(0);
-    await expect(page.locator('.comm-mode-chip.is-active')).toContainText('Flat Commission %');
-    await expect(page.locator('.comm-sticky-action #comm-calc')).toBeInViewport();
+    await expect(page.locator('[data-comm-mode-label="flat"].is-active')).toContainText(
+      'Flat Rate'
+    );
+    await expect(page.locator('#comm-calc')).toBeVisible();
 
     await page.fill('#comm-sales', '20000');
     await page.fill('#comm-rate', '7.5');
@@ -31,14 +33,16 @@ test.describe('Commission Calculator', () => {
     await expect(page.locator('#comm-tier-summary')).toContainText('Flat rate 7.50% applies to the full sale amount.');
     await expect(page.locator('#comm-chart-placeholder')).toBeVisible();
     await expect(page.locator('#comm-chart-donut')).toBeHidden();
-    await expect(page.locator('#comm-chart-card')).toBeVisible();
+    await expect(page.locator('.comm-chart-card')).toBeVisible();
     await expect(page.locator('#comm-chart-legend .comm-chart-legend-item')).toHaveCount(1);
 
-    await page.click('label[for="comm-mode-tiered"]');
+    await page.click('label.mode-switch-toggle[for="comm-tiered-toggle"] .mode-switch-track');
     const tierSection = page.locator('#comm-tiered-section');
     await expect(tierSection).not.toBeHidden();
-    await expect(page.locator('.comm-mode-chip.is-active')).toContainText('Tiered Commission');
-    await expect(page.locator('.comm-sticky-action #comm-calc')).toBeInViewport();
+    await expect(page.locator('[data-comm-mode-label="tiered"].is-active')).toContainText(
+      'Tiered Plan'
+    );
+    await expect(page.locator('#comm-calc')).toBeVisible();
 
     await page.click('#comm-add-tier');
     const rows = page.locator('.commission-tier-row');

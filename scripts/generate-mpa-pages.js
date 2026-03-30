@@ -361,9 +361,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-calculators-hub': {
-    title: 'Salary Calculators – Pay Conversion & Raise Tools',
+    title: 'Salary Calculators | Pay Conversion, Overtime, Raises & Commission',
     description:
-      'Explore salary calculators for hourly to salary conversion, annual and monthly pay, overtime, raises, bonuses, and commission estimates.',
+      'Browse salary calculators to convert pay, compare overtime, plan raises, estimate bonuses, and model commission-based earnings with gross-pay assumptions.',
     h1: 'Salary Calculators',
     explanationHeading: '',
     paneLayout: 'single',
@@ -715,9 +715,9 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Days Until a Date Calculator',
   },
   'age-calculator': {
-    title: 'Age Calculator | Years, Months and Days',
+    title: 'Age Calculator | Exact Age in Years, Months, Days & Next Birthday',
     description:
-      'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.',
+      'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.',
     h1: 'Age Calculator',
   },
   'discount-calculator': {
@@ -727,9 +727,9 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Discount Calculator',
   },
   'markup-calculator': {
-    title: 'Markup Calculator | Cost to Selling Price',
+    title: 'Markup Calculator | Selling Price From Cost & Markup %',
     description:
-      'Calculate selling price from cost and markup, or find markup percentage from cost and price.',
+      'Calculate selling price from cost and markup percentage, or work backward from cost and selling price to find markup %.',
     h1: 'Markup Calculator',
   },
   'percentage-finder-calculator': {
@@ -851,19 +851,19 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
   },
   'commission-calculator': {
-    title: 'Commission Calculator – CalcHowMuch',
+    title: 'Sales Commission Calculator | Flat & Tiered Commission on Sales',
     description:
-      'Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.',
-    h1: 'Commission Calculator',
+      'Calculate commission on sales using flat or tiered rates, compare the effective commission %, and model payout scenarios for pricing or sales plans.',
+    h1: 'Sales Commission Calculator',
     paneLayout: 'single',
     suppressAdsColumn: true,
     calculatorPanelClass: 'panel--shellless',
     layoutMainClass: 'layout-main--no-ads',
   },
   'margin-calculator': {
-    title: 'Margin Calculator – CalcHowMuch',
+    title: 'Margin Calculator | Gross Margin %, Profit & Selling Price',
     description:
-      'Calculate gross margin %, profit, and selling price instantly. Use our free margin calculator with simple formulas for pricing and profit.',
+      'Calculate gross margin percentage, profit, or target selling price from cost so you can price products and protect profitability.',
     h1: 'Margin Calculator',
   },
   'percent-change': {
@@ -921,10 +921,10 @@ const CALCULATOR_OVERRIDES = {
 
 const ROUTE_SPECIFIC_OVERRIDES = {
   '/salary-calculators/commission-calculator/': {
-    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    title: 'Commission Earnings Calculator | Sales Commission Pay & Base Pay',
     description:
-      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
-    h1: 'Commission Calculator',
+      'Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.',
+    h1: 'Commission Earnings Calculator',
     paneLayout: 'single',
   },
 };
@@ -2227,10 +2227,34 @@ function buildHomepageStructuredData({ title, description, canonical }) {
   const faqEntries = [
     {
       '@type': 'Question',
+      name: 'What calculators are available?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'CalcHowMuch covers mortgage, loan, credit card, finance, pricing, salary, time, percentage, and math calculators.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How should I choose the right calculator?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Start with the closest calculator cluster, then choose the route that matches your exact question such as margin, markup, overtime, age, or mortgage payment.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are the results accurate?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Calculations use standard formulas and are designed for planning, comparison, and educational use.',
+      },
+    },
+    {
+      '@type': 'Question',
       name: 'Are the calculators free to use?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. All calculators on CalcHowMuch are free to use. You can use them as often as you like without creating an account.',
+        text: 'Yes. All calculators on CalcHowMuch are free to use.',
       },
     },
     {
@@ -2238,7 +2262,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Do I need to sign up to use the calculators?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. You do not need to register or sign in. Our calculators are available instantly in your browser.',
+        text: 'No. The calculators are available instantly in your browser without registration.',
       },
     },
     {
@@ -2246,15 +2270,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Do you store my inputs or calculation results?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are the calculator results accurate?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The calculators are designed to provide accurate estimates based on the inputs and assumptions shown on each page. However, actual results may vary depending on rounding, timing, institution-specific rules, or real-world conditions.',
+        text: 'No. Calculator inputs and results stay in your browser and are not stored as personal calculation records.',
       },
     },
     {
@@ -2262,7 +2278,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Can I use these calculator results for financial, legal, or tax decisions?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Calculator results are for informational and planning purposes only. They should not be treated as financial, legal, tax, or professional advice. For important decisions, consult a qualified professional or official source.',
+        text: 'No. Calculator results are for informational and planning purposes only and should not replace professional advice.',
       },
     },
     {
@@ -2270,15 +2286,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Why do results sometimes differ from banks, lenders, or other websites?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Results can differ because different tools may use different assumptions, rounding methods, compounding frequency, date handling, or fee/tax rules. We recommend checking the explanation and assumptions section on each calculator page.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What assumptions do your calculators use?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Each calculator includes its own assumptions and methodology. Common assumptions may include fixed interest rates, regular payment intervals, standard compounding periods, and simplified timing rules. Always review the page-specific explanation for details.',
+        text: 'Results can differ because other tools may use different assumptions, rounding methods, timing rules, fees, or tax treatments.',
       },
     },
     {
@@ -2291,98 +2299,10 @@ function buildHomepageStructuredData({ title, description, canonical }) {
     },
     {
       '@type': 'Question',
-      name: 'Can I use CalcHowMuch calculators for business or professional planning?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You can use them for planning and estimation. However, because calculators simplify some real-world variables, final decisions should be verified with official documents, providers, or professionals.',
-      },
-    },
-    {
-      '@type': 'Question',
       name: 'Do your calculators include fees, taxes, or penalties?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It depends on the calculator. Some calculators include optional fields for fees, taxes, or extra costs, while others focus on the core calculation only. Check the inputs and explanation section for what is included.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How often are the calculators updated?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'We review and improve calculators regularly to keep formulas, explanations, and usability clear and reliable. The “Last updated” date on each page shows when that calculator was most recently reviewed.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I trust the formulas used on the site?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. We aim to use standard formulas and clearly explain how each calculator works. Where relevant, we also provide formula sections, assumptions, and examples so you can verify the logic.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why does the same input sometimes produce different results after changing options?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Some options (such as compounding frequency, payment timing, rounding, or contribution intervals) can significantly affect the output. Even small changes in settings can change the final result.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are your calculators suitable for students and learning?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Many users use CalcHowMuch calculators for learning, homework support, and understanding formulas. The explanation and FAQ sections are designed to make the calculations easier to understand.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do you provide professional advice or recommendations?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. CalcHowMuch provides tools and explanations, not personalized advice. We do not recommend specific financial products, legal actions, or tax strategies.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What should I do if I think a calculator result is wrong?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'First, recheck your inputs (especially dates, rates, and frequencies). Then review the assumptions and explanation section on the calculator page. If something still looks incorrect, contact us and include the inputs you used so we can review it.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I share calculator results with someone else?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You can share the calculator page and inputs, but remember that results are estimates and should be independently verified before making important decisions.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are the calculators available worldwide?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Most calculators can be used from anywhere. However, some results may vary by country because local laws, taxes, lending rules, and financial products differ.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do you use cookies or analytics?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'We may use basic analytics and site tools to improve performance and usability. Calculator inputs themselves are not stored as personal calculation records. For full details, see our Privacy Policy.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Where can I learn more about how a calculator works?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Each calculator page includes an explanation section, formula details, and FAQs. You can also visit our About page and site policies for more information about how CalcHowMuch works.',
+        text: 'It depends on the route. Some calculators include optional fee or tax inputs, while others focus on the core formula only.',
       },
     },
   ];
@@ -3582,7 +3502,7 @@ function buildPercentageRelatedCalculatorsHtml(subcategory, activeCalculatorId) 
     ${calculators
       .map((calculator) => {
         const isActive = calculator.id === activeCalculatorId;
-        return `<a class="pct-cluster-switch-chip${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        return `<a class="pct-cluster-switch-chip nav-item${isActive ? ' is-active' : ''}" href="${calculator.url}"${
           isActive ? ' aria-current="page"' : ''
         }>${calculator.name}</a>`;
       })
@@ -3681,9 +3601,9 @@ function buildPricingClusterLandingPage(category) {
   const calculators = Array.isArray(category?.subcategories)
     ? category.subcategories.flatMap((subcategory) => subcategory.calculators || [])
     : [];
-  const title = 'Pricing Calculators – Discount, Margin & Markup Tools';
+  const title = 'Pricing Calculators | Margin, Markup, Discount & Commission';
   const description =
-    'Browse pricing calculators for discount, markup, margin, and commission with the shared answer-first shell.';
+    'Browse pricing calculators for margin, markup, discount, and sales commission so you can protect profit, set prices, and compare pricing scenarios.';
   const canonical = buildCanonical('/pricing-calculators/');
   const headMetaHtml = generateHeadMeta({
     canonicalUrl: canonical,
@@ -3722,7 +3642,7 @@ ${renderManagedHeadAdsenseBlock()}    <!-- Cloudflare Web Analytics (manual beac
           <section class="pct-cluster-panel panel-span-all">
             <div class="pct-cluster-page-header">
               <h1>Pricing Calculators</h1>
-              <p class="pct-cluster-page-intro">Pick a pricing workflow and get to margin, markup, discount, or commission answers without going through generic percentage routes.</p>
+              <p class="pct-cluster-page-intro">Use this pricing calculator hub when you need to move from cost to price, check profitability, compare discount impact, or estimate sales commission without bouncing between generic percentage tools.</p>
             </div>
             <section class="pct-cluster-related" aria-labelledby="pricing-cluster-list-title">
               <div class="pct-cluster-related-head">
@@ -3733,6 +3653,61 @@ ${renderManagedHeadAdsenseBlock()}    <!-- Cloudflare Web Analytics (manual beac
               </div>
               <div class="pct-cluster-related-links">
                 ${cardsHtml}
+              </div>
+            </section>
+            <section class="pct-cluster-related" aria-labelledby="pricing-cluster-use-cases-title">
+              <div class="pct-cluster-related-head">
+                <div>
+                  <span class="pct-cluster-switch-kicker">Use cases</span>
+                  <h2 id="pricing-cluster-use-cases-title">When to use each pricing calculator</h2>
+                </div>
+              </div>
+              <div class="pct-cluster-related-links">
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Margin calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use margin when you manage gross profit as a share of selling price and need to protect profitability after discounts or channel changes.</span>
+                  <span class="pct-cluster-related-card-meta">Profitability view</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Markup calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use markup when your pricing rule starts from cost and you need to turn cost into a consistent selling price or quote.</span>
+                  <span class="pct-cluster-related-card-meta">Cost-based pricing</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Discount calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use discount when you need to see sale price, savings, and the immediate revenue impact of a markdown or promotional offer.</span>
+                  <span class="pct-cluster-related-card-meta">Promotion planning</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Sales commission calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use commission when you want to test flat or tiered sales payouts and understand the effective commission rate on a deal or period of sales.</span>
+                  <span class="pct-cluster-related-card-meta">Sales payouts</span>
+                </article>
+              </div>
+            </section>
+            <section class="pct-cluster-related" aria-labelledby="pricing-cluster-guide-title">
+              <div class="pct-cluster-related-head">
+                <div>
+                  <span class="pct-cluster-switch-kicker">Planning guide</span>
+                  <h2 id="pricing-cluster-guide-title">How this pricing cluster helps</h2>
+                </div>
+              </div>
+              <div class="pct-cluster-related-links">
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Protect margin before discounting</span>
+                  <span class="pct-cluster-related-card-copy">Check how much room you really have before a discount or negotiated price starts to erode gross margin more than expected.</span>
+                  <span class="pct-cluster-related-card-meta">Margin control</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Translate cost into a sellable price</span>
+                  <span class="pct-cluster-related-card-copy">Move from a supplier cost or landed cost into a target price with markup rules that are easier to standardize across products.</span>
+                  <span class="pct-cluster-related-card-meta">Quote building</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Compare adjacent pricing questions</span>
+                  <span class="pct-cluster-related-card-copy">Jump between markup, margin, discount, and commission routes when one pricing question turns into another during planning.</span>
+                  <span class="pct-cluster-related-card-meta">Internal linking</span>
+                </article>
               </div>
             </section>
           </section>
@@ -3771,7 +3746,7 @@ function injectBeforeFaq(explanationHtml, injectedHtml) {
     return explanationHtml;
   }
 
-  const faqHeadingRe = /<h3>\s*FAQ\s*<\/h3>/i;
+  const faqHeadingRe = /<h3>\s*(FAQ|Frequently Asked Questions)\s*<\/h3>/i;
   const headingMatch = explanationHtml.match(faqHeadingRe);
 
   if (!headingMatch || typeof headingMatch.index !== 'number') {
@@ -4342,7 +4317,7 @@ function buildPageHtml({
   </div>
         </div>`
         : isMigratedPercentageClusterRoute
-        ? `<div class="pct-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+        ? `<div class="pct-cluster-panel panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <div class="pct-cluster-page-header">
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="pct-cluster-page-intro">${description}</p>
@@ -4350,6 +4325,20 @@ function buildPageHtml({
   <div class="calculator-page-single pct-cluster-flow">
     ${sanitizedCalculatorHtml}
     ${injectPercentageSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
+  </div>
+</div>`
+        : isMigratedPricingClusterRoute
+        ? `<div class="pct-cluster-panel panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
+  <div class="pct-cluster-page-header">
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="pct-cluster-page-intro">${description}</p>
+  </div>
+  <nav class="pct-cluster-switch-chips" aria-label="Current pricing route">
+    <a class="pct-cluster-switch-chip nav-item is-active" href="${canonical}" aria-current="page">${calculatorTitle}</a>
+  </nav>
+  <div class="calculator-page-single pct-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${injectPricingSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
   </div>
 </div>`
         : isMigratedFinanceClusterRoute
@@ -4856,9 +4845,9 @@ function buildCalculatorIndex(categories) {
     })
     .join('');
 
-  const title = 'All Calculators | Calculate How Much Online Calculator Hub';
+  const title = 'All Online Calculators by Category | Finance, Salary, Pricing & Math';
   const description =
-    'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.';
+    'Browse every CalcHowMuch calculator by category, including finance, loans, credit cards, pricing, salary, time, percentage, and math tools.';
   const canonical = buildCanonical('/calculators/');
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const staticStructuredData = buildCollectionPageStructuredData({
@@ -4899,20 +4888,20 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <div class="panel panel-scroll">
             <h1>All Calculators</h1>
             <p class="helper">
-              Browse calculators by category. Select a calculator to launch it in the main
-              calculator shell.
+              Browse every public calculator by category so you can jump straight into the right
+              tool for finance, pricing, salary, time, percentage, or math questions.
             </p>
             <p class="helper">
-              This directory groups every public calculator route in one place so you can move from
-              quick everyday percentage checks to deeper mortgage, loan, finance, salary, and time
-              planning tools without hunting through separate menus. If you already know the type of
-              problem you want to solve, jump straight into the matching category below.
+              This master hub is designed for discovery as well as navigation. Use it when you know
+              the problem you want to solve, when you want to compare adjacent calculators before
+              choosing one, or when you need to find a more specific route than a general-purpose
+              percentage or finance tool.
             </p>
             <p class="helper">
-              Each calculator is designed to give a direct result first, then support that answer
-              with explanations, examples, formulas, and related tools where useful. Use this page
-              as a hub when you want to compare calculators, discover adjacent routes, or find the
-              right starting point before running a more detailed scenario.
+              Each route is built to answer one calculation clearly, then support that answer with
+              formulas, worked examples, and related calculators. Start with the category that best
+              matches your intent, then move deeper into the cluster when you need a more precise
+              scenario.
             </p>
             <p id="all-calculators-no-results" class="helper" hidden>
               No calculator matches your search.
@@ -5007,7 +4996,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           });
 
           if (noResultsNode) {
-            noResultsNode.hidden = visibleItemCount > 0;
+            noResultsNode.hidden = !query || visibleItemCount > 0;
           }
         }
 
@@ -5065,8 +5054,9 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         <div class="hero-inner">
           <h1 id="homepage-hero-title">All Calculators — Finance, Loan, Mortgage &amp; Math Tools</h1>
           <p>
-            Explore mortgage, loan, credit card, finance, percentage, and time
-            calculators. Get instant results with simple and accurate tools.
+            Browse calculators for mortgages, loans, credit cards, pricing, salary, percentages,
+            time, and math. Use the homepage as a search-first hub to compare routes, jump into a
+            specific workflow, and get answer-first tools with supporting explanations.
           </p>
           <div class="search" role="search">
             <div class="search-bar">
@@ -5121,6 +5111,11 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         <div class="section-head">
           <div>
             <h2 id="homepage-clusters-title">Browse Calculator Clusters</h2>
+            <p>
+              Start with the cluster that matches your problem, then narrow into the exact
+              calculator you need for budgeting, borrowing, pricing, pay planning, date math, or
+              classroom-style calculations.
+            </p>
           </div>
         </div>
         <div id="homepage-empty" class="empty-state" hidden>No calculator matches your search.</div>
@@ -5135,40 +5130,46 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         </div>
         <div class="seo-grid">
           <section class="seo-block">
-            <h3>Mortgage &amp; Loan Calculators</h3>
+            <h3>Borrowing &amp; Mortgage Planning</h3>
             <p>
-              Estimate monthly payments and total interest using our
-              <a href="/loan-calculators/mortgage-calculator/">mortgage calculator</a>, compare borrowing costs with the
-              <a href="/loan-calculators/personal-loan-calculator/">loan calculator</a>, or analyse rate changes using the
+              Estimate monthly payments, compare borrowing costs, and model affordability with the
+              <a href="/loan-calculators/mortgage-calculator/">mortgage calculator</a>,
+              <a href="/loan-calculators/personal-loan-calculator/">loan calculator</a>, and
               <a href="/loan-calculators/interest-rate-change-calculator/">interest rate change calculator</a>.
             </p>
           </section>
 
           <section class="seo-block">
-            <h3>Credit Card Calculators</h3>
+            <h3>Pricing &amp; Profitability</h3>
             <p>
-              Compare payoff plans with the <a href="/credit-card-calculators/credit-card-payment-calculator/">credit card repayment tool</a>,
-              review minimum payment costs, and explore
-              <a href="/credit-card-calculators/balance-transfer-savings-calculator/">balance transfer calculators</a>.
+              Compare
+              <a href="/pricing-calculators/margin-calculator/">margin</a>,
+              <a href="/pricing-calculators/markup-calculator/">markup</a>,
+              <a href="/pricing-calculators/discount-calculator/">discount</a>, and
+              <a href="/pricing-calculators/commission-calculator/">sales commission</a>
+              calculators when you need to protect profit while still pricing competitively.
             </p>
           </section>
 
           <section class="seo-block">
-            <h3>Finance &amp; Savings Calculators</h3>
+            <h3>Salary, Earnings &amp; Pay Conversion</h3>
             <p>
-              Forecast growth with the <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>,
-              compare purchasing power with the <a href="/finance-calculators/inflation-calculator/">inflation calculator</a>,
-              plan targets using the <a href="/finance-calculators/time-to-savings-goal-calculator/">time to savings goal calculator</a>,
-              and compare scenarios with future value tools.
+              Convert hourly and annual pay, compare overtime, and estimate commission-driven
+              earnings with the
+              <a href="/salary-calculators/salary-calculator/">salary calculator</a>,
+              <a href="/salary-calculators/hourly-to-salary-calculator/">hourly to salary calculator</a>,
+              and <a href="/salary-calculators/commission-calculator/">commission earnings calculator</a>.
             </p>
           </section>
 
           <section class="seo-block">
-            <h3>Percentage &amp; Time Calculators</h3>
+            <h3>Time, Percentage &amp; Everyday Math</h3>
             <p>
-              Solve everyday problems with the <a href="/percentage-calculators/percent-change-calculator/">percentage calculator</a>,
-              compare dates with the <a href="/time-and-date/time-between-two-dates-calculator/">time between dates calculator</a>,
-              and use practical planning tools for daily use.
+              Solve everyday planning questions with the
+              <a href="/time-and-date/age-calculator/">age calculator</a>,
+              <a href="/time-and-date/time-between-two-dates-calculator/">time between dates calculator</a>,
+              <a href="/percentage-calculators/percent-change-calculator/">percent change calculator</a>,
+              and classroom-friendly math routes.
             </p>
           </section>
         </div>
@@ -5178,10 +5179,10 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         <div class="trust" aria-labelledby="homepage-why-title">
           <h2 id="homepage-why-title">Why Use CalcHowMuch</h2>
           <p>
-            CalcHowMuch helps you make better financial and everyday decisions by providing
-            simple, fast, and accurate calculators. Each tool is designed to give clear
-            results, including breakdowns, formulas, and insights so you can compare scenarios
-            and understand outcomes.
+            CalcHowMuch is built as a practical calculator library rather than a thin list of
+            widgets. The goal is to give you a direct answer fast, then support that answer with
+            formulas, examples, and related tools so you can compare scenarios without restarting
+            your search from scratch.
           </p>
         </div>
       </section>
@@ -5196,15 +5197,43 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <div class="faq-list">
             <div class="faq-item">
               <h3>What calculators are available?</h3>
-              <p>We offer mortgage, loan, credit card, finance, percentage, and time calculators.</p>
+              <p>We cover mortgage, loan, credit card, finance, pricing, salary, time, percentage, and math calculators.</p>
             </div>
             <div class="faq-item">
-              <h3>Are these calculators free?</h3>
-              <p>Yes, all calculators on CalcHowMuch are free and easy to use.</p>
+              <h3>How should I choose the right calculator?</h3>
+              <p>Start with the closest cluster, then use the route that matches your exact question such as margin, markup, overtime, age, or mortgage payment.</p>
             </div>
             <div class="faq-item">
               <h3>Are the results accurate?</h3>
-              <p>Calculations are based on standard formulas and provide reliable estimates.</p>
+              <p>Calculations use standard formulas and are designed for planning, comparison, and educational use.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Are the calculators free to use?</h3>
+              <p>Yes. All calculators on CalcHowMuch are free to use.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do I need to sign up to use the calculators?</h3>
+              <p>No. The calculators are available instantly in your browser without registration.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do you store my inputs or calculation results?</h3>
+              <p>No. Calculator inputs and results stay in your browser and are not stored as personal calculation records.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I use these calculator results for financial, legal, or tax decisions?</h3>
+              <p>No. Calculator results are for informational and planning purposes only and should not replace professional advice.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Why do results sometimes differ from banks, lenders, or other websites?</h3>
+              <p>Different tools can use different assumptions, rounding methods, timing rules, fees, or tax treatments.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do the calculators work on mobile devices?</h3>
+              <p>Yes. CalcHowMuch calculators are designed to work on mobile, tablet, and desktop devices.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do your calculators include fees, taxes, or penalties?</h3>
+              <p>It depends on the route. Some calculators include optional fee or tax inputs, while others focus on the core formula only.</p>
             </div>
           </div>
         </div>
@@ -5804,9 +5833,9 @@ function main() {
     writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
 
-  const homeTitle = 'All Calculators | Finance, Loan, Mortgage & Math';
+  const homeTitle = 'Online Calculators for Finance, Salary, Pricing, Time & Math | CalcHowMuch';
   const homeDescription =
-    'Quick calculations for everyday numbers. Explore calculator clusters and launch focused tools for math, finance, loans, time, and percentage planning.';
+    'Browse online calculators for mortgages, loans, credit cards, pricing, salary, time, percentage, and math. Compare scenarios and launch focused tools from one calculator hub.';
 
   if (shouldWriteRootHomepage) {
     writeFile(
