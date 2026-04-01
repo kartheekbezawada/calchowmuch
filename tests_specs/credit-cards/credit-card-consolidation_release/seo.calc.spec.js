@@ -3,9 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('Credit Card Consolidation Calculator SEO', () => {
   test('CONSOLIDATION-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap', async ({ page }) => {
     const route = '/credit-card-calculators/credit-card-consolidation-calculator/';
-    const expectedTitle = 'Credit Card Consolidation Calculator | Loan vs Cards';
+    const expectedTitle = 'Credit Card Consolidation Calculator | Loan vs Card Payoff';
     const expectedDescription =
-      'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.';
+      'Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.';
 
     await page.goto(route);
 

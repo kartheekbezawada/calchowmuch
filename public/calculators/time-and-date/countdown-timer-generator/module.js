@@ -150,9 +150,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Countdown Timer | Live Time Left to Any Date',
+  title: 'Countdown Timer | Live Countdown to Any Date or Event',
   description:
-    'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.',
+    'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.',
   canonical: 'https://calchowmuch.com/time-and-date/countdown-timer/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

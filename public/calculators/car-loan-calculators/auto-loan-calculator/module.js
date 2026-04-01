@@ -148,9 +148,9 @@ const CALCULATOR_STRUCTURED_DATA = {
       '@type': 'WebPage',
       '@id': 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/#webpage',
       url: 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/',
-      name: 'Auto Loan Comparison Calculator | Compare 2 Loans',
+      name: 'Auto Loan Comparison Calculator | APR, Payment & Cost',
       description:
-        'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.',
+        'Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://calchowmuch.com/#website',
@@ -170,7 +170,7 @@ const CALCULATOR_STRUCTURED_DATA = {
       operatingSystem: 'Any',
       url: 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/',
       description:
-        'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.',
+        'Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.',
     },
     {
       '@type': 'BreadcrumbList',
@@ -200,9 +200,9 @@ const CALCULATOR_STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Auto Loan Comparison Calculator | Compare 2 Loans',
+  title: 'Auto Loan Comparison Calculator | APR, Payment & Cost',
   description:
-    'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.',
+    'Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/auto-loan-calculator/',
   structuredData: CALCULATOR_STRUCTURED_DATA,
 };

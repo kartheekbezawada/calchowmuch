@@ -97,9 +97,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percent to Fraction and Decimal Calculator | Convert %',
+  title: 'Percent to Fraction & Decimal Calculator | Convert a Percentage',
   description:
-    'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
+    'Convert a percentage into a decimal and simplified fraction, then check the divide-by-100 steps and final forms side by side.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percent-to-fraction-decimal-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

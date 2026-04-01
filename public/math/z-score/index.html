@@ -4,25 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Z-Score Calculator | Standard Score Interpretation</title>
-    <meta
-      name="description"
-      content="Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks."
-    />
+    <meta name="description" content="Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks." />
     <link rel="canonical" href="https://calchowmuch.com/math/z-score/" />
     <meta property="og:title" content="Z-Score Calculator | Standard Score Interpretation" />
-    <meta
-      property="og:description"
-      content="Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks."
-    />
+    <meta property="og:description" content="Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/z-score/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Z-Score Calculator | Standard Score Interpretation" />
-    <meta
-      name="twitter:description"
-      content="Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks."
-    />
+    <meta name="twitter:description" content="Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1348,583 +1419,321 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/z-score/#webpage",
-            "name": "Z-Score Calculator | Standard Score Interpretation",
-            "url": "https://calchowmuch.com/math/z-score/",
-            "description": "Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": { "@id": "https://calchowmuch.com/math/z-score/#softwareapplication" },
-            "mainEntity": { "@id": "https://calchowmuch.com/math/z-score/#softwareapplication" },
-            "breadcrumb": { "@id": "https://calchowmuch.com/math/z-score/#breadcrumbs" }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/z-score/#softwareapplication",
-            "name": "Z-Score Calculator",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/z-score/",
-            "description": "Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/z-score/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What does a z-score of 0 mean?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means the value is exactly equal to the mean."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does a positive z-score mean?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means the value is above the mean."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does a negative z-score mean?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means the value is below the mean."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why does a larger absolute z-score matter?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Because it shows the value is further from average and may be more unusual."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I use decimals?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. The route accepts decimal values for the score, mean, and standard deviation."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if the standard deviation is zero?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The route blocks that input because dividing by zero would make the z-score invalid."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/z-score/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Z-Score Calculator",
-                "item": "https://calchowmuch.com/math/z-score/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/z-score/#webpage","name":"Z-Score Calculator | Standard Score Interpretation","url":"https://calchowmuch.com/math/z-score/","description":"Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/z-score/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/z-score/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/z-score/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/z-score/#softwareapplication","name":"Z-Score Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/z-score/","description":"Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/z-score/#faq","mainEntity":[{"@type":"Question","name":"What does a z-score of 0 mean?","acceptedAnswer":{"@type":"Answer","text":"It means the value is exactly equal to the mean."}},{"@type":"Question","name":"What does a positive z-score mean?","acceptedAnswer":{"@type":"Answer","text":"It means the value is above the mean."}},{"@type":"Question","name":"What does a negative z-score mean?","acceptedAnswer":{"@type":"Answer","text":"It means the value is below the mean."}},{"@type":"Question","name":"Why does a larger absolute z-score matter?","acceptedAnswer":{"@type":"Answer","text":"Because it shows the value is further from average and may be more unusual."}},{"@type":"Question","name":"Can I use decimals?","acceptedAnswer":{"@type":"Answer","text":"Yes. The route accepts decimal values for the score, mean, and standard deviation."}},{"@type":"Question","name":"What if the standard deviation is zero?","acceptedAnswer":{"@type":"Answer","text":"The route blocks that input because dividing by zero would make the z-score invalid."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/z-score/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Z-Score Calculator","item":"https://calchowmuch.com/math/z-score/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Z-Score Calculator</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Z-Score Calculator</h1>
-              <p class="math-cluster-page-intro">
-                Convert a raw value into a z-score and plain-language interpretation in a light
-                answer-first statistics layout built for quick standard-score checks.
-              </p>
-            </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-z-score">
-                <div class="stats-shell">
-                  <section class="stats-card stats-hero-card" aria-label="Z-score overview">
-                    <div class="stats-hero-copy">
-                      <p class="stats-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="stats-title">
-                        See how far one value sits above or below the mean in standard-deviation
-                        units.
-                      </h2>
-                      <p class="stats-subtitle">
-                        Enter the value, mean, and standard deviation once. The answer card keeps
-                        the z-score, formula, and plain-language interpretation together without
-                        extra shell clutter.
-                      </p>
-                    </div>
-                    <ul class="stats-hero-points">
-                      <li>Best for fast standard-score interpretation.</li>
-                      <li>
-                        The answer card surfaces the z-score first, then explains whether the value
-                        is above or below the mean.
-                      </li>
-                      <li>
-                        The full workflow stays visible on the first screen on desktop and mobile.
-                      </li>
-                    </ul>
-                  </section>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Z-Score Calculator</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Z-Score Calculator</h1>
+    <p class="math-cluster-page-intro">Convert a raw value into a z-score and plain-language interpretation in a light answer-first statistics layout built for quick standard-score checks.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-z-score">
+  <div class="stats-shell">
+    <section class="stats-card stats-hero-card" aria-label="Z-score overview">
+      <div class="stats-hero-copy">
+        <p class="stats-eyebrow">Simple Smooth Wow</p>
+        <h2 class="stats-title">See how far one value sits above or below the mean in standard-deviation units.</h2>
+        <p class="stats-subtitle">
+          Enter the value, mean, and standard deviation once. The answer card keeps the z-score,
+          formula, and plain-language interpretation together without extra shell clutter.
+        </p>
+      </div>
+      <ul class="stats-hero-points">
+        <li>Best for fast standard-score interpretation.</li>
+        <li>The answer card surfaces the z-score first, then explains whether the value is above or below the mean.</li>
+        <li>The full workflow stays visible on the first screen on desktop and mobile.</li>
+      </ul>
+    </section>
 
-                  <div class="stats-workbench">
-                    <section class="stats-card stats-input-card" aria-label="Z-score inputs">
-                      <div class="stats-card-head">
-                        <div>
-                          <p class="stats-section-label">Inputs</p>
-                          <p class="stats-card-title">
-                            Set the value, mean, and standard deviation
-                          </p>
-                        </div>
-                        <span class="stats-chip">Answer-first</span>
-                      </div>
-
-                      <div class="stats-field-grid">
-                        <label class="stats-field" for="zscore-x">
-                          <span>Value (x)</span>
-                          <input id="zscore-x" type="number" value="85" step="any" />
-                        </label>
-                        <label class="stats-field" for="zscore-mean">
-                          <span>Mean (mu)</span>
-                          <input id="zscore-mean" type="number" value="75" step="any" />
-                        </label>
-                        <label class="stats-field" for="zscore-stddev">
-                          <span>Standard deviation (sigma)</span>
-                          <input
-                            id="zscore-stddev"
-                            type="number"
-                            value="10"
-                            min="0.0001"
-                            step="any"
-                          />
-                        </label>
-                      </div>
-
-                      <button
-                        class="calculator-button stats-calc-button"
-                        type="button"
-                        id="zscore-calculate"
-                      >
-                        Calculate z-score
-                      </button>
-                    </section>
-
-                    <section class="stats-card stats-answer-card" aria-label="Z-score answer">
-                      <div class="stats-card-head">
-                        <div>
-                          <p class="stats-section-label">Answer</p>
-                          <p class="stats-card-title">
-                            Standard score, formula, and interpretation
-                          </p>
-                        </div>
-                        <span class="stats-chip stats-chip--answer">Standard score</span>
-                      </div>
-
-                      <div
-                        class="result stats-result-card"
-                        id="zscore-result"
-                        aria-live="polite"
-                      ></div>
-                      <div
-                        class="result-detail stats-detail-card"
-                        id="zscore-detail"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="stats-snapshot-grid" aria-label="Z-score workflow snapshot">
-                        <article class="stats-snapshot-card">
-                          <span>Output</span>
-                          <strong>Z-score value</strong>
-                        </article>
-                        <article class="stats-snapshot-card">
-                          <span>Interpretation</span>
-                          <strong>Above or below mean</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <div id="zscore-explanation">
-                <section class="stats-exp-section">
-                  <h2>Z-Score Calculator Practical Guide</h2>
-                  <p>
-                    Use this calculator to convert one raw value into a z-score and read how far it
-                    sits above or below the mean. The answer-first result keeps the standard score,
-                    formula, and interpretation together so you can assess the value quickly.
-                  </p>
-                  <ul class="stats-summary-list">
-                    <li>
-                      <strong>Best for:</strong> quick standard-score interpretation on one value.
-                    </li>
-                    <li>
-                      <strong>Quick answer flow:</strong> enter x, mean, and standard deviation,
-                      then calculate once.
-                    </li>
-                    <li>
-                      <strong>Output includes:</strong> z-score, formula substitution, and
-                      above/below-mean interpretation.
-                    </li>
-                  </ul>
-                </section>
-
-                <section class="stats-exp-section">
-                  <h3>How to Guide</h3>
-                  <ol>
-                    <li>Enter the raw value, the mean, and the standard deviation.</li>
-                    <li>Click <strong>Calculate z-score</strong> to update the answer card.</li>
-                    <li>
-                      Read the z-score first, then use the interpretation line to see whether the
-                      value is above or below the mean.
-                    </li>
-                    <li>
-                      Use the formula block when you want to verify the substitution manually.
-                    </li>
-                  </ol>
-                </section>
-
-                <section class="stats-exp-section">
-                  <h3>Quick Answer Table</h3>
-                  <div class="stats-table-wrap">
-                    <table class="stats-summary-table">
-                      <caption class="math-cluster-visually-hidden">
-                        Quick answer table for the z-score calculator
-                      </caption>
-                      <thead>
-                        <tr>
-                          <th scope="col">Z-score</th>
-                          <th scope="col">What it means</th>
-                          <th scope="col">Quick interpretation</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">0</th>
-                          <td>The value equals the mean</td>
-                          <td>The observation is exactly average for that distribution.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Positive</th>
-                          <td>The value is above the mean</td>
-                          <td>The larger the score, the further above average it sits.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Negative</th>
-                          <td>The value is below the mean</td>
-                          <td>The smaller the score, the further below average it sits.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Large absolute value</th>
-                          <td>The value is far from the mean</td>
-                          <td>Useful when you want to spot unusual observations quickly.</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </section>
-
-                <section class="stats-exp-section">
-                  <h3>Formula Guide</h3>
-                  <p>
-                    The route uses <strong>z = (x - mu) / sigma</strong>. It subtracts the mean from
-                    the raw value, then divides the difference by the standard deviation to show how
-                    many standard deviations away the value sits.
-                  </p>
-                </section>
-
-                <section class="stats-exp-section">
-                  <h3>Worked Example</h3>
-                  <div class="stats-example-grid">
-                    <article class="stats-example-card">
-                      <h4>Default example</h4>
-                      <p>
-                        With x = <strong>85</strong>, mean = <strong>75</strong>, and sigma =
-                        <strong>10</strong>, the z-score is <strong>1</strong>.
-                      </p>
-                      <p>That means the value is one standard deviation above the mean.</p>
-                    </article>
-                    <article class="stats-example-card">
-                      <h4>Below-mean example</h4>
-                      <p>
-                        If you change the value to <strong>65</strong> while keeping the same mean
-                        and sigma, the z-score becomes <strong>-1</strong>.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="stats-exp-section" id="zscore-faq">
-                  <h3>FAQ</h3>
-                  <div class="stats-faq-grid">
-                    <article class="faq-card">
-                      <h4>What does a z-score of 0 mean?</h4>
-                      <p>It means the value is exactly equal to the mean.</p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What does a positive z-score mean?</h4>
-                      <p>It means the value is above the mean.</p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What does a negative z-score mean?</h4>
-                      <p>It means the value is below the mean.</p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Why does a larger absolute z-score matter?</h4>
-                      <p>
-                        Because it shows the value is further from average and may be more unusual.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Can I use decimals?</h4>
-                      <p>
-                        Yes. The route accepts decimal values for the score, mean, and standard
-                        deviation.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What if the standard deviation is zero?</h4>
-                      <p>
-                        The route blocks that input because dividing by zero would make the z-score
-                        invalid.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="stats-exp-section">
-                  <h3>Related Calculators</h3>
-                  <div class="stats-related-grid">
-                    <a class="stats-related-card" href="/math/standard-deviation/">
-                      <strong>Standard Deviation Calculator</strong>
-                      <span>Check the spread input before standardizing a value.</span>
-                    </a>
-                    <a class="stats-related-card" href="/math/confidence-interval/">
-                      <strong>Confidence Interval Calculator</strong>
-                      <span>See the same z-based idea used in interval estimation.</span>
-                    </a>
-                    <a class="stats-related-card" href="/math/mean-median-mode-range/">
-                      <strong>Mean Median Mode Range Calculator</strong>
-                      <span
-                        >Start with the basic summary values before standardizing one
-                        observation.</span
-                      >
-                    </a>
-                  </div>
-                </section>
-
-                <section class="stats-exp-section">
-                  <h3>Important Notes</h3>
-                  <ul class="stats-notes-list">
-                    <li><strong>Last updated:</strong> March 2026</li>
-                    <li>
-                      <strong>Formula rule:</strong> The route uses the standard z-score formula
-                      with one value, one mean, and one standard deviation.
-                    </li>
-                    <li>
-                      <strong>Validation rule:</strong> Standard deviation must be greater than
-                      zero.
-                    </li>
-                    <li>
-                      <strong>Use case:</strong> This route is built for quick interpretation, not
-                      percentile table lookup.
-                    </li>
-                  </ul>
-                </section>
-              </div>
-            </div>
+    <div class="stats-workbench">
+      <section class="stats-card stats-input-card" aria-label="Z-score inputs">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Inputs</p>
+            <p class="stats-card-title">Set the value, mean, and standard deviation</p>
           </div>
+          <span class="stats-chip">Answer-first</span>
+        </div>
+
+        <div class="stats-field-grid">
+          <label class="stats-field" for="zscore-x">
+            <span>Value (x)</span>
+            <input id="zscore-x" type="number" value="85" step="any" />
+          </label>
+          <label class="stats-field" for="zscore-mean">
+            <span>Mean (mu)</span>
+            <input id="zscore-mean" type="number" value="75" step="any" />
+          </label>
+          <label class="stats-field" for="zscore-stddev">
+            <span>Standard deviation (sigma)</span>
+            <input id="zscore-stddev" type="number" value="10" min="0.0001" step="any" />
+          </label>
+        </div>
+
+        <button class="calculator-button stats-calc-button" type="button" id="zscore-calculate">
+          Calculate z-score
+        </button>
+      </section>
+
+      <section class="stats-card stats-answer-card" aria-label="Z-score answer">
+        <div class="stats-card-head">
+          <div>
+            <p class="stats-section-label">Answer</p>
+            <p class="stats-card-title">Standard score, formula, and interpretation</p>
+          </div>
+          <span class="stats-chip stats-chip--answer">Standard score</span>
+        </div>
+
+        <div class="result stats-result-card" id="zscore-result" aria-live="polite"></div>
+        <div class="result-detail stats-detail-card" id="zscore-detail" aria-live="polite"></div>
+
+        <div class="stats-snapshot-grid" aria-label="Z-score workflow snapshot">
+          <article class="stats-snapshot-card">
+            <span>Output</span>
+            <strong>Z-score value</strong>
+          </article>
+          <article class="stats-snapshot-card">
+            <span>Interpretation</span>
+            <strong>Above or below mean</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+    <div id="zscore-explanation">
+  <section class="stats-exp-section">
+    <h2>Z-Score Calculator Practical Guide</h2>
+    <p>
+      Use this calculator to convert one raw value into a z-score and read how far it sits above or
+      below the mean. The answer-first result keeps the standard score, formula, and interpretation
+      together so you can assess the value quickly.
+    </p>
+    <ul class="stats-summary-list">
+      <li><strong>Best for:</strong> quick standard-score interpretation on one value.</li>
+      <li>
+        <strong>Quick answer flow:</strong> enter x, mean, and standard deviation, then calculate
+        once.
+      </li>
+      <li>
+        <strong>Output includes:</strong> z-score, formula substitution, and above/below-mean
+        interpretation.
+      </li>
+    </ul>
+  </section>
+
+  <section class="stats-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Enter the raw value, the mean, and the standard deviation.</li>
+      <li>Click <strong>Calculate z-score</strong> to update the answer card.</li>
+      <li>
+        Read the z-score first, then use the interpretation line to see whether the value is above
+        or below the mean.
+      </li>
+      <li>Use the formula block when you want to verify the substitution manually.</li>
+    </ol>
+  </section>
+
+  <section class="stats-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="stats-table-wrap">
+      <table class="stats-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the z-score calculator
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Z-score</th>
+            <th scope="col">What it means</th>
+            <th scope="col">Quick interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">0</th>
+            <td>The value equals the mean</td>
+            <td>The observation is exactly average for that distribution.</td>
+          </tr>
+          <tr>
+            <th scope="row">Positive</th>
+            <td>The value is above the mean</td>
+            <td>The larger the score, the further above average it sits.</td>
+          </tr>
+          <tr>
+            <th scope="row">Negative</th>
+            <td>The value is below the mean</td>
+            <td>The smaller the score, the further below average it sits.</td>
+          </tr>
+          <tr>
+            <th scope="row">Large absolute value</th>
+            <td>The value is far from the mean</td>
+            <td>Useful when you want to spot unusual observations quickly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="stats-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      The route uses <strong>z = (x - mu) / sigma</strong>. It subtracts the mean from the raw
+      value, then divides the difference by the standard deviation to show how many standard
+      deviations away the value sits.
+    </p>
+  </section>
+
+  <section class="stats-exp-section">
+    <h3>Worked Example</h3>
+    <div class="stats-example-grid">
+      <article class="stats-example-card">
+        <h4>Default example</h4>
+        <p>
+          With x = <strong>85</strong>, mean = <strong>75</strong>, and sigma = <strong>10</strong>,
+          the z-score is <strong>1</strong>.
+        </p>
+        <p>That means the value is one standard deviation above the mean.</p>
+      </article>
+      <article class="stats-example-card">
+        <h4>Below-mean example</h4>
+        <p>
+          If you change the value to <strong>65</strong> while keeping the same mean and sigma, the
+          z-score becomes <strong>-1</strong>.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="stats-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current z-score calculator problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="stats-exp-section" id="zscore-faq">
+    <h3>FAQ</h3>
+    <div class="stats-faq-grid">
+      <article class="faq-card">
+        <h4>What does a z-score of 0 mean?</h4>
+        <p>It means the value is exactly equal to the mean.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What does a positive z-score mean?</h4>
+        <p>It means the value is above the mean.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What does a negative z-score mean?</h4>
+        <p>It means the value is below the mean.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why does a larger absolute z-score matter?</h4>
+        <p>Because it shows the value is further from average and may be more unusual.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can I use decimals?</h4>
+        <p>Yes. The route accepts decimal values for the score, mean, and standard deviation.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if the standard deviation is zero?</h4>
+        <p>The route blocks that input because dividing by zero would make the z-score invalid.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="stats-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="stats-related-grid">
+      <a class="stats-related-card" href="/math/standard-deviation/">
+        <strong>Standard Deviation Calculator</strong>
+        <span>Check the spread input before standardizing a value.</span>
+      </a>
+      <a class="stats-related-card" href="/math/confidence-interval/">
+        <strong>Confidence Interval Calculator</strong>
+        <span>See the same z-based idea used in interval estimation.</span>
+      </a>
+      <a class="stats-related-card" href="/math/mean-median-mode-range/">
+        <strong>Mean Median Mode Range Calculator</strong>
+        <span>Start with the basic summary values before standardizing one observation.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="stats-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="stats-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li>
+        <strong>Formula rule:</strong> The route uses the standard z-score formula with one value,
+        one mean, and one standard deviation.
+      </li>
+      <li><strong>Validation rule:</strong> Standard deviation must be greater than zero.</li>
+      <li>
+        <strong>Use case:</strong> This route is built for quick interpretation, not percentile
+        table lookup.
+      </li>
+        <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this z-score calculator tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+  </section>
+</div>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
     <script type="module" src="/calculators/math/z-score/module.js?v=20260224"></script>
   </body>

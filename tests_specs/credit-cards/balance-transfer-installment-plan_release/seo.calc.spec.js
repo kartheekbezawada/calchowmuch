@@ -3,9 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('Balance Transfer Credit Card Calculator SEO', () => {
   test('BALANCE-TRANSFER-SEO-1: metadata, social tags, schema, and sitemap', async ({ page }) => {
     const route = '/credit-card-calculators/balance-transfer-credit-card-calculator/';
-    const expectedTitle = 'Balance Transfer Calculator | Fees, Promo APR & Savings';
+    const expectedTitle = 'Balance Transfer Calculator | Promo APR, Fee & Savings';
     const expectedDescription =
-      'Compare transfer fee, promo months, post-promo APR, payoff time, and total cost to see whether a balance transfer saves money.';
+      'Compare transfer fees, promo APR, revert APR, payoff timing, and total cost to see whether a balance transfer saves money.';
 
     await page.goto(route);
     await expect(page).toHaveTitle(expectedTitle);

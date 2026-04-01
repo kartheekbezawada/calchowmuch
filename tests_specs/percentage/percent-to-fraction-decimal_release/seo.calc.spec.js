@@ -4,11 +4,11 @@ test.describe('Percent to Fraction/Decimal Converter SEO', () => {
   test('PTFD-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
     await page.goto('/percentage-calculators/percent-to-fraction-decimal-calculator/');
 
-    await expect(page).toHaveTitle('Percent to Fraction and Decimal Calculator | Convert %');
+    await expect(page).toHaveTitle('Percent to Fraction & Decimal Calculator | Convert a Percentage');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.'
+      'Convert a percentage into a decimal and simplified fraction, then check the divide-by-100 steps and final forms side by side.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

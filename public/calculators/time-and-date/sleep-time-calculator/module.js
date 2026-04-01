@@ -170,9 +170,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Sleep Time Calculator | Bedtime and Wake-Up Cycles',
+  title: 'Sleep Time Calculator | Best Bedtime & Wake-Up Times',
   description:
-    'Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.',
+    'Find the best bedtime or wake-up time using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options for workdays, travel, or shift schedules.',
   canonical: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,

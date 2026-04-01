@@ -4,11 +4,11 @@ test.describe('Monthly Savings Needed Calculator SEO', () => {
   test('MSN-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/monthly-savings-needed-calculator');
 
-    await expect(page).toHaveTitle('Monthly Savings Needed Calculator | Reach Your Goal');
+    await expect(page).toHaveTitle('Monthly Savings Needed Calculator | Savings Goal Planner');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.'
+      'Calculate the monthly savings needed to reach a target balance using current savings, time horizon, rate, compounding, and deposit timing.'
     );
 
     const h1 = page.locator('h1');

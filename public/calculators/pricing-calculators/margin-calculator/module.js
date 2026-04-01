@@ -1,6 +1,6 @@
-import { calculateMargin } from '../../assets/js/core/math.js';
-import { formatNumber } from '../../assets/js/core/format.js';
-import { setPageMetadata } from '../../assets/js/core/ui.js';
+import { calculateMargin } from '/assets/js/core/math.js';
+import { formatNumber } from '/assets/js/core/format.js';
+import { setPageMetadata } from '/assets/js/core/ui.js';
 
 const costMarginToggle = document.querySelector('#margin-cost-margin-toggle');
 const costPriceModeLabel = document.querySelector('[data-margin-mode-label="cost-price"]');
@@ -123,9 +123,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Margin Calculator | Profit Margin and Selling Price',
+  title: 'Margin Calculator | Gross Margin %, Profit & Selling Price',
   description:
-    'Calculate gross margin, profit, or selling price from cost and margin percentage.',
+    'Calculate gross margin percentage, profit, or target selling price from cost so you can price products and protect profitability.',
   canonical: 'https://calchowmuch.com/pricing-calculators/margin-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -134,10 +134,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Margin Calculator | Profit Margin and Selling Price',
+        name: 'Margin Calculator | Gross Margin %, Profit & Selling Price',
         url: 'https://calchowmuch.com/pricing-calculators/margin-calculator/',
         description:
-          'Calculate gross margin, profit, or selling price from cost and margin percentage.',
+          'Calculate gross margin percentage, profit, or target selling price from cost so you can price products and protect profitability.',
         inLanguage: 'en',
       },
       {
@@ -147,7 +147,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/pricing-calculators/margin-calculator/',
         description:
-          'Free margin calculator for gross margin, profit, and target selling price from cost.',
+          'Free gross margin calculator for profit planning, target margin checks, and selling-price decisions from cost.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {
@@ -291,8 +291,8 @@ function calculate() {
   resultOutput.textContent = formatPercent(result.marginPercent);
   resultDetail.textContent =
     mode === 'cost-price'
-      ? `Profit is ${formatCurrency(result.profit)} on a ${formatCurrency(result.price)} selling price.`
-      : `You need ${formatCurrency(result.price)} in selling price to hold this margin.`;
+      ? `Selling Price: ${formatCurrency(result.price)} | Profit: ${formatCurrency(result.profit)}`
+      : `Selling Price: ${formatCurrency(result.price)} | Profit: ${formatCurrency(result.profit)}`;
   updateNode(resultContext, `Formula: ${result.formula}`);
   updateNode(snapMode, modeLabel);
   updateNode(snapCost, formatCurrency(result.cost));

@@ -178,9 +178,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Present Value of Annuity Calculator | Ordinary or Due',
+  title: 'Present Value of Annuity Calculator | Payment Stream Value',
   description:
-    'Estimate the present value of an annuity using payment amount, discount rate, periods, and annuity timing.',
+    'Find the present value of recurring payments using discount rate, number of periods, and ordinary or due annuity timing.',
   canonical: 'https://calchowmuch.com/finance-calculators/present-value-of-annuity-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -189,10 +189,10 @@ setPageMetadata({
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Present Value of Annuity Calculator | Ordinary or Due',
+        name: 'Present Value of Annuity Calculator | Payment Stream Value',
         url: 'https://calchowmuch.com/finance-calculators/present-value-of-annuity-calculator/',
         description:
-          'Estimate the present value of an annuity using payment amount, discount rate, periods, and annuity timing.',
+          'Find the present value of recurring payments using discount rate, number of periods, and ordinary or due annuity timing.',
         inLanguage: 'en',
       },
       {
@@ -203,7 +203,7 @@ setPageMetadata({
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/present-value-of-annuity-calculator/',
         description:
-          'Free present value of annuity calculator for ordinary annuity and annuity due. Calculates present value using payment amount, rate, and timing.',
+          'Find the present value of recurring payments and compare ordinary annuity versus annuity due.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

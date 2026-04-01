@@ -165,9 +165,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Present Value Calculator | Discount Future Money',
+  title: 'Present Value Calculator | Future Cash Flow Discounting',
   description:
-    'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
+    'Discount future cash flow into today\'s value using rate, time period, and compounding to compare offers, projects, or investments.',
   canonical: 'https://calchowmuch.com/finance-calculators/present-value-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -176,10 +176,10 @@ setPageMetadata({
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Present Value Calculator | Discount Future Money',
+        name: 'Present Value Calculator | Future Cash Flow Discounting',
         url: 'https://calchowmuch.com/finance-calculators/present-value-calculator/',
         description:
-          'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
+          'Discount future cash flow into today\'s value using rate, time period, and compounding to compare offers, projects, or investments.',
         inLanguage: 'en',
       },
       {
@@ -190,7 +190,7 @@ setPageMetadata({
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/present-value-calculator/',
         description:
-          'Calculate the present value of a future amount using discount rate, time period, and compounding frequency.',
+          'Discount a future amount into today\'s value using rate, time period, and compounding frequency.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

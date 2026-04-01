@@ -3,25 +3,21 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Offset Calculator | Interest Savings &amp; Payoff | CalcHowMuch</title>
-    <meta name="description" content="See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views." />
+    <title>Offset Mortgage Calculator | Interest Savings &amp; Payoff</title>
+    <meta name="description" content="See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost." />
     <link rel="canonical" href="https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/" />
-    <meta property="og:title" content="Offset Calculator | Interest Savings &amp; Payoff | CalcHowMuch" />
-    <meta property="og:description" content="See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views." />
+    <meta property="og:title" content="Offset Mortgage Calculator | Interest Savings &amp; Payoff" />
+    <meta property="og:description" content="See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Offset Calculator | Interest Savings &amp; Payoff | CalcHowMuch" />
-    <meta name="twitter:description" content="See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views." />
+    <meta name="twitter:title" content="Offset Mortgage Calculator | Interest Savings &amp; Payoff" />
+    <meta name="twitter:description" content="See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-home-loan-cluster="true">
       /* assets/css/base.css */
-      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
-         instead of @import, to eliminate sequential CSS waterfall.
-         See known_issues.md KI-007 / KI-010. */
-
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -986,13 +982,13 @@
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-header {
-        max-width: 1100px;
+        max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-kicker {
-        display: none;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         padding: 9px 14px;
@@ -1007,17 +1003,11 @@
       }
 
       body[data-design-family='home-loan'] #calculator-title {
-        margin: 0;
-        font-size: clamp(36px, 5vw, 56px);
-        line-height: 1.04;
+        margin: 18px 0 0;
+        font-size: clamp(42px, 6vw, 58px);
+        line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--hl-text);
-        white-space: normal;
-      }
-      @media (min-width: 981px) {
-        body[data-design-family='home-loan'] #calculator-title {
-          white-space: nowrap;
-        }
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-intro {
@@ -1673,21 +1663,12 @@
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+        gap: 16px;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-        display: grid;
-        gap: 8px;
-        border: 1px solid var(--hl-line);
-        border-radius: var(--hl-radius-lg);
-        background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
-        box-shadow: var(--hl-shadow-soft);
-        padding: 16px;
-      }
-
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-related-card {
         border: 1px solid var(--hl-line);
         border-radius: var(--hl-radius-lg);
@@ -1697,22 +1678,22 @@
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-number {
-        display: none;
-      }
-
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card p {
-        margin: 0;
+      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 38px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: var(--hl-accent-soft);
+        color: var(--hl-accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-note-list,
-
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-note-list,
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-note-list {
         display: grid;
@@ -2071,13 +2052,6 @@
         body[data-design-family='home-loan'] .hl-cluster-site-footer-inner {
           padding: 22px;
         }
-
-        body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-          padding: 16px;
-        }
-}
 
         body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
         body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
@@ -2499,9 +2473,9 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#webpage","name":"Offset Calculator | Interest Savings & Payoff | CalcHowMuch","url":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/","description":"See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#softwareapplication","name":"Offset Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/","description":"Model how offset savings and monthly contributions reduce mortgage interest and payoff time.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Offset interest savings estimate","Effective mortgage balance tracking","Payoff timeline reduction","Monthly and yearly comparison tables"],"keywords":"offset calculator, offset mortgage calculator, offset savings interest, mortgage payoff calculator, effective balance calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does an offset account do?","acceptedAnswer":{"@type":"Answer","text":"It reduces the balance charged interest by linking savings to your mortgage, which lowers interest while keeping your repayment schedule active."}},{"@type":"Question","name":"Why does the payment stay the same in this model?","acceptedAnswer":{"@type":"Answer","text":"The calculator keeps baseline monthly payment fixed so savings show up as lower interest and faster principal reduction."}},{"@type":"Question","name":"What is Full Offset mode?","acceptedAnswer":{"@type":"Answer","text":"Full mode applies the entire offset savings balance against mortgage balance for interest calculations each month."}},{"@type":"Question","name":"What is Partial / Average mode?","acceptedAnswer":{"@type":"Answer","text":"Partial mode applies 50% of savings to represent daily balance fluctuations in the offset account."}},{"@type":"Question","name":"How does monthly contribution help?","acceptedAnswer":{"@type":"Answer","text":"Regular contribution grows the offset balance over time, increasing the amount shielded from interest and improving savings."}},{"@type":"Question","name":"What does effective balance mean?","acceptedAnswer":{"@type":"Answer","text":"Effective balance is the estimated balance actually accruing interest after offset savings are applied."}},{"@type":"Question","name":"Why compare monthly and yearly tables?","acceptedAnswer":{"@type":"Answer","text":"Monthly view shows precision and trend, while yearly view helps assess strategic savings over a longer horizon."}},{"@type":"Question","name":"Can offset savings reduce loan term?","acceptedAnswer":{"@type":"Answer","text":"Yes. Lower interest means more principal is repaid sooner, which can shorten payoff time."}},{"@type":"Question","name":"Does this replace lender statements?","acceptedAnswer":{"@type":"Answer","text":"No. It is a planning model. Your lender’s compounding rules, product terms, and posting timings may differ."}},{"@type":"Question","name":"How should I use this for decision-making?","acceptedAnswer":{"@type":"Answer","text":"Test several savings balances and contribution levels, then compare interest saved, payoff time reduction, and yearly trend consistency."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Offset Calculator","item":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-</head>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#webpage","name":"Offset Mortgage Calculator | Interest Savings & Payoff","url":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/","description":"See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#softwareapplication","name":"Offset Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/","description":"Model how offset savings and monthly deposits reduce mortgage interest, shorten payoff, and change total cost.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Offset interest savings estimate","Effective mortgage balance tracking","Payoff timeline reduction","Monthly and yearly comparison tables"],"keywords":"offset calculator, offset mortgage calculator, offset savings interest, mortgage payoff calculator, effective balance calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does an offset account do?","acceptedAnswer":{"@type":"Answer","text":"It reduces the balance charged interest by linking savings to your mortgage, which lowers interest while keeping your repayment schedule active."}},{"@type":"Question","name":"Why does the payment stay the same in this model?","acceptedAnswer":{"@type":"Answer","text":"The calculator keeps baseline monthly payment fixed so savings show up as lower interest and faster principal reduction."}},{"@type":"Question","name":"What is Full Offset mode?","acceptedAnswer":{"@type":"Answer","text":"Full mode applies the entire offset savings balance against mortgage balance for interest calculations each month."}},{"@type":"Question","name":"What is Partial / Average mode?","acceptedAnswer":{"@type":"Answer","text":"Partial mode applies 50% of savings to represent daily balance fluctuations in the offset account."}},{"@type":"Question","name":"How does monthly contribution help?","acceptedAnswer":{"@type":"Answer","text":"Regular contribution grows the offset balance over time, increasing the amount shielded from interest and improving savings."}},{"@type":"Question","name":"What does effective balance mean?","acceptedAnswer":{"@type":"Answer","text":"Effective balance is the estimated balance actually accruing interest after offset savings are applied."}},{"@type":"Question","name":"Why compare monthly and yearly tables?","acceptedAnswer":{"@type":"Answer","text":"Monthly view shows precision and trend, while yearly view helps assess strategic savings over a longer horizon."}},{"@type":"Question","name":"Can offset savings reduce loan term?","acceptedAnswer":{"@type":"Answer","text":"Yes. Lower interest means more principal is repaid sooner, which can shorten payoff time."}},{"@type":"Question","name":"Does this replace lender statements?","acceptedAnswer":{"@type":"Answer","text":"No. It is a planning model. Your lender’s compounding rules, product terms, and posting timings may differ."}},{"@type":"Question","name":"How should I use this for decision-making?","acceptedAnswer":{"@type":"Answer","text":"Test several savings balances and contribution levels, then compare interest saved, payoff time reduction, and yearly trend consistency."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Offset Calculator","item":"https://calchowmuch.com/loan-calculators/offset-mortgage-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="home-loan">
     <div class="page hl-cluster-page-shell">
       <header class="hl-cluster-site-header">
@@ -2521,8 +2495,9 @@
         <section class="hl-cluster-center-column">
           <div class="hl-cluster-panel">
   <div class="hl-cluster-page-header">
+    <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
     <h1 id="calculator-title">Offset Calculator</h1>
-    <p class="hl-cluster-page-intro">See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.</p>
+    <p class="hl-cluster-page-intro">See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost.</p>
   </div>
   <div class="calculator-page-single hl-cluster-flow">
     <div id="calc-offset-calculator">
@@ -3204,6 +3179,16 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <section class="mtg-exp-section" id="off-section-related">
+    <h3>Related Calculators</h3>
+    <ul class="off-notes-list">
+      <li><a href="/loan-calculators/mortgage-calculator/">Home Loan Calculator</a> for the baseline repayment schedule.</li>
+      <li><a href="/loan-calculators/remortgage-calculator/">Remortgage Calculator</a> to compare switching against offset savings.</li>
+      <li><a href="/loan-calculators/ltv-calculator/">LTV Calculator</a> to test whether equity improvements unlock better rates.</li>
+      <li><a href="/loan-calculators/how-much-can-i-borrow/">How Much Can I Borrow Calculator</a> when deposit and offset balances change affordability.</li>
+    </ul>
   </section>
 
   <section class="mtg-exp-section mtg-exp-section--notes" id="off-section-notes">

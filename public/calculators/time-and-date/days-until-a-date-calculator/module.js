@@ -97,9 +97,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Days Until a Date Calculator | Count Days to Any Date',
+  title: 'Days Until a Date Calculator | Countdown, Days Since & Weekdays',
   description:
-    'Count how many days remain until a future date or how many days have passed since a past date.',
+    'Count days until a future date, days since a past date, or weekdays between two dates with countdown, range, and inclusive-count options.',
   canonical: 'https://calchowmuch.com/time-and-date/days-until-a-date-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

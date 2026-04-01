@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('PCP Calculator SEO', () => {
   test('PCP-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
-    const expectedTitle = 'PCP Calculator | Monthly Payment, GFV & Cost';
+    const expectedTitle = 'PCP Calculator | Payment, GFV & Total Cost';
     const expectedDescription =
-      'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.';
+      'Estimate PCP monthly payment, GFV, option fee, total interest, and total payable using vehicle price, deposit, APR, and term.';
 
     await page.goto('/car-loan-calculators/pcp-calculator');
 
@@ -63,7 +63,7 @@ test.describe('PCP Calculator SEO', () => {
     const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(webpageSchema?.name).toBe('PCP Calculator | Monthly Payment, GFV & Cost');
+    expect(webpageSchema?.name).toBe('PCP Calculator | Payment, GFV & Total Cost');
     expect(webpageSchema?.primaryImageOfPage?.url).toBe(
       'https://calchowmuch.com/assets/images/og-default.png'
     );

@@ -4,16 +4,16 @@ test.describe('Commission Calculator SEO', () => {
   test('COMM-TEST-SEO-1: metadata, schema, sitemap', async ({ page }) => {
     await page.goto('/pricing-calculators/commission-calculator');
 
-    await expect(page).toHaveTitle('Commission Calculator | Sales and Tiered Rates');
+    await expect(page).toHaveTitle('Sales Commission Calculator | Flat & Tiered Commission on Sales');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate commission from sales using flat or tiered rates and see the effective commission percentage.'
+      'Calculate commission on sales using flat or tiered rates, compare the effective commission %, and model payout scenarios for pricing or sales plans.'
     );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Commission Calculator');
+    await expect(h1).toHaveText('Sales Commission Calculator');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);

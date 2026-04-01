@@ -4,25 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Trigonometric Functions Calculator | sin, cos, tan</title>
-    <meta
-      name="description"
-      content="Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout."
-    />
+    <meta name="description" content="Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout." />
     <link rel="canonical" href="https://calchowmuch.com/math/trigonometry/trig-functions/" />
     <meta property="og:title" content="Trigonometric Functions Calculator | sin, cos, tan" />
-    <meta
-      property="og:description"
-      content="Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout."
-    />
+    <meta property="og:description" content="Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/trigonometry/trig-functions/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Trigonometric Functions Calculator | sin, cos, tan" />
-    <meta
-      name="twitter:description"
-      content="Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout."
-    />
+    <meta name="twitter:description" content="Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1547,764 +1618,440 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/trigonometry/trig-functions/#webpage",
-            "name": "Trigonometric Functions Calculator | sin, cos, tan",
-            "url": "https://calchowmuch.com/math/trigonometry/trig-functions/",
-            "description": "Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/trigonometry/trig-functions/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/trigonometry/trig-functions/#softwareapplication"
-            },
-            "breadcrumb": {
-              "@id": "https://calchowmuch.com/math/trigonometry/trig-functions/#breadcrumbs"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/trigonometry/trig-functions/#softwareapplication",
-            "name": "Trigonometric Functions Calculator",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/trigonometry/trig-functions/",
-            "description": "Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/trigonometry/trig-functions/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What functions does this route calculate?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It calculates sin, cos, tan, sec, csc, and cot for one angle."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I enter radians instead of degrees?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Switch the angle unit control to radians and enter the angle there."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does the route show exact values?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Special angles such as 30°, 45°, and 60° show exact labels alongside decimal values."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why can tangent be undefined?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Tangent is sine divided by cosine, so it becomes undefined when cosine equals zero."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does amplitude change?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Amplitude stretches the graph vertically, which matters most for sine and cosine style waves."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does period change?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Period changes how wide one cycle appears on the graph."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why do reciprocal functions have gaps?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "They are undefined where the matching sine or cosine value is zero, so the graph breaks there."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I use this for unit-circle review?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. The angle pair, quadrant, and special-angle note make it useful for unit-circle study too."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does the graph use the same unit as the angle input?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The entered angle can use degrees or radians, but the graph period field is displayed on a radian scale."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is this route good for homework checking?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. It is designed for quick verification, not formal symbolic proof work."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/trigonometry/trig-functions/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Trigonometric Functions Calculator",
-                "item": "https://calchowmuch.com/math/trigonometry/trig-functions/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/trigonometry/trig-functions/#webpage","name":"Trigonometric Functions Calculator | sin, cos, tan","url":"https://calchowmuch.com/math/trigonometry/trig-functions/","description":"Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/trigonometry/trig-functions/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/trigonometry/trig-functions/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/trigonometry/trig-functions/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/trigonometry/trig-functions/#softwareapplication","name":"Trigonometric Functions Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/trigonometry/trig-functions/","description":"Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/trigonometry/trig-functions/#faq","mainEntity":[{"@type":"Question","name":"What functions does this route calculate?","acceptedAnswer":{"@type":"Answer","text":"It calculates sin, cos, tan, sec, csc, and cot for one angle."}},{"@type":"Question","name":"Can I enter radians instead of degrees?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch the angle unit control to radians and enter the angle there."}},{"@type":"Question","name":"Does the route show exact values?","acceptedAnswer":{"@type":"Answer","text":"Yes. Special angles such as 30°, 45°, and 60° show exact labels alongside decimal values."}},{"@type":"Question","name":"Why can tangent be undefined?","acceptedAnswer":{"@type":"Answer","text":"Tangent is sine divided by cosine, so it becomes undefined when cosine equals zero."}},{"@type":"Question","name":"What does amplitude change?","acceptedAnswer":{"@type":"Answer","text":"Amplitude stretches the graph vertically, which matters most for sine and cosine style waves."}},{"@type":"Question","name":"What does period change?","acceptedAnswer":{"@type":"Answer","text":"Period changes how wide one cycle appears on the graph."}},{"@type":"Question","name":"Why do reciprocal functions have gaps?","acceptedAnswer":{"@type":"Answer","text":"They are undefined where the matching sine or cosine value is zero, so the graph breaks there."}},{"@type":"Question","name":"Can I use this for unit-circle review?","acceptedAnswer":{"@type":"Answer","text":"Yes. The angle pair, quadrant, and special-angle note make it useful for unit-circle study too."}},{"@type":"Question","name":"Does the graph use the same unit as the angle input?","acceptedAnswer":{"@type":"Answer","text":"The entered angle can use degrees or radians, but the graph period field is displayed on a radian scale."}},{"@type":"Question","name":"Is this route good for homework checking?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is designed for quick verification, not formal symbolic proof work."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/trigonometry/trig-functions/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Trigonometric Functions Calculator","item":"https://calchowmuch.com/math/trigonometry/trig-functions/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Trigonometric Functions Calculator</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Trigonometric Functions Calculator</h1>
-              <p class="math-cluster-page-intro">
-                Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph
-                controls, worked examples, and a light answer-first trig layout.
-              </p>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Trigonometric Functions Calculator</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Trigonometric Functions Calculator</h1>
+    <p class="math-cluster-page-intro">Check sin, cos, tan, sec, csc, and cot at one angle with special-angle labels, graph controls, worked examples, and a light answer-first trig layout.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-trig-functions">
+  <div class="trig-shell">
+    <section class="trig-card trig-hero-card" aria-label="Trigonometric functions overview">
+      <div class="trig-hero-copy">
+        <p class="trig-eyebrow">Simple Smooth Wow</p>
+        <h2 class="trig-title">Check all six trig functions, exact special-angle values, and a live graph in one answer-first trigonometry workspace.</h2>
+        <p class="trig-subtitle">
+          Enter an angle in degrees or radians, choose the function you want to graph, and adjust
+          amplitude or period only when you need it. The answer card stays dominant while the graph
+          and identity notes support quick trig review.
+        </p>
+      </div>
+      <ul class="trig-hero-points">
+        <li>Best for checking sine, cosine, tangent, and reciprocal trig values at one angle.</li>
+        <li>The answer card shows the angle pair, special-angle status, quadrant, and six outputs first.</li>
+        <li>The graph panel stays nearby so wave shape and undefined regions stay easy to confirm.</li>
+      </ul>
+    </section>
+
+    <div class="trig-workbench">
+      <div class="trig-left-stack">
+        <section class="trig-card trig-input-card" aria-label="Trigonometric function inputs">
+          <div class="trig-card-head">
+            <div>
+              <p class="trig-section-label">Inputs</p>
+              <p class="trig-card-title">Set the angle, unit, graph function, and graph scale</p>
             </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-trig-functions">
-                <div class="trig-shell">
-                  <section
-                    class="trig-card trig-hero-card"
-                    aria-label="Trigonometric functions overview"
-                  >
-                    <div class="trig-hero-copy">
-                      <p class="trig-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="trig-title">
-                        Check all six trig functions, exact special-angle values, and a live graph
-                        in one answer-first trigonometry workspace.
-                      </h2>
-                      <p class="trig-subtitle">
-                        Enter an angle in degrees or radians, choose the function you want to graph,
-                        and adjust amplitude or period only when you need it. The answer card stays
-                        dominant while the graph and identity notes support quick trig review.
-                      </p>
-                    </div>
-                    <ul class="trig-hero-points">
-                      <li>
-                        Best for checking sine, cosine, tangent, and reciprocal trig values at one
-                        angle.
-                      </li>
-                      <li>
-                        The answer card shows the angle pair, special-angle status, quadrant, and
-                        six outputs first.
-                      </li>
-                      <li>
-                        The graph panel stays nearby so wave shape and undefined regions stay easy
-                        to confirm.
-                      </li>
-                    </ul>
-                  </section>
+            <span class="trig-chip">Answer-first</span>
+          </div>
 
-                  <div class="trig-workbench">
-                    <div class="trig-left-stack">
-                      <section
-                        class="trig-card trig-input-card"
-                        aria-label="Trigonometric function inputs"
-                      >
-                        <div class="trig-card-head">
-                          <div>
-                            <p class="trig-section-label">Inputs</p>
-                            <p class="trig-card-title">
-                              Set the angle, unit, graph function, and graph scale
-                            </p>
-                          </div>
-                          <span class="trig-chip">Answer-first</span>
-                        </div>
+          <p class="trig-helper">Start with the angle. Use the graph controls only when you want to see the waveform change.</p>
 
-                        <p class="trig-helper">
-                          Start with the angle. Use the graph controls only when you want to see the
-                          waveform change.
-                        </p>
+          <label class="trig-field" for="trig-angle">
+            <span>Angle value</span>
+            <input id="trig-angle" type="number" value="30" step="any" />
+          </label>
 
-                        <label class="trig-field" for="trig-angle">
-                          <span>Angle value</span>
-                          <input id="trig-angle" type="number" value="30" step="any" />
-                        </label>
-
-                        <div class="trig-toggle-section">
-                          <span id="trig-angle-unit">Angle unit</span>
-                          <div
-                            class="trig-button-group"
-                            role="group"
-                            aria-labelledby="trig-angle-unit"
-                            data-button-group="trig-angle-unit"
-                          >
-                            <button
-                              class="calculator-button trig-mode-button is-active"
-                              type="button"
-                              data-value="deg"
-                            >
-                              Degrees
-                            </button>
-                            <button
-                              class="calculator-button trig-mode-button"
-                              type="button"
-                              data-value="rad"
-                            >
-                              Radians
-                            </button>
-                          </div>
-                        </div>
-
-                        <div class="trig-input-grid">
-                          <label class="trig-field" for="trig-graph-function">
-                            <span>Graph function</span>
-                            <select id="trig-graph-function">
-                              <option value="sin">sin(x)</option>
-                              <option value="cos">cos(x)</option>
-                              <option value="tan">tan(x)</option>
-                              <option value="sec">sec(x)</option>
-                              <option value="csc">csc(x)</option>
-                              <option value="cot">cot(x)</option>
-                            </select>
-                          </label>
-                          <label class="trig-field" for="trig-amplitude">
-                            <span>Amplitude</span>
-                            <input id="trig-amplitude" type="number" value="1" step="any" />
-                          </label>
-                          <label class="trig-field" for="trig-period">
-                            <span>Period</span>
-                            <input id="trig-period" type="number" value="6.283185" step="any" />
-                          </label>
-                        </div>
-
-                        <div class="trig-hint-row">
-                          <span class="trig-inline-note"
-                            >Period uses radians on the graph scale, so one full sine cycle is about
-                            6.283185.</span
-                          >
-                        </div>
-
-                        <button
-                          class="calculator-button trig-calc-button"
-                          type="button"
-                          id="trig-calc"
-                        >
-                          Calculate Functions
-                        </button>
-                      </section>
-
-                      <section class="trig-card trig-graph-card" aria-label="Trigonometric graph">
-                        <div class="trig-card-head">
-                          <div>
-                            <p class="trig-section-label">Graph</p>
-                            <p class="trig-card-title">
-                              Live wave preview for the selected trig function
-                            </p>
-                          </div>
-                          <span class="trig-chip trig-chip--graph">Waveform</span>
-                        </div>
-
-                        <div class="trig-graph-panel">
-                          <canvas
-                            id="trig-graph"
-                            class="trig-graph-canvas"
-                            width="360"
-                            height="240"
-                            aria-label="Trigonometric function graph"
-                          ></canvas>
-                        </div>
-                        <p id="trig-graph-note" class="trig-graph-note">
-                          The graph updates with the selected function, amplitude, and period.
-                        </p>
-                      </section>
-                    </div>
-
-                    <section
-                      class="trig-card trig-answer-card"
-                      aria-label="Trigonometric function answer summary"
-                    >
-                      <div class="trig-card-head">
-                        <div>
-                          <p class="trig-section-label">Answer</p>
-                          <p class="trig-card-title">
-                            Angle summary, six trig outputs, and identity notes
-                          </p>
-                        </div>
-                        <span class="trig-chip trig-chip--answer">Trig values</span>
-                      </div>
-
-                      <div
-                        class="result trig-result-card"
-                        id="trig-result"
-                        aria-live="polite"
-                      ></div>
-                      <div
-                        class="result-detail trig-detail-card"
-                        id="trig-detail"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="trig-snapshot-grid" aria-label="Trig snapshot">
-                        <article class="trig-snapshot-card">
-                          <span>Angle pair</span>
-                          <strong data-trig-snap="angle">-</strong>
-                        </article>
-                        <article class="trig-snapshot-card">
-                          <span>Quadrant</span>
-                          <strong data-trig-snap="quadrant">-</strong>
-                        </article>
-                        <article class="trig-snapshot-card">
-                          <span>Graph focus</span>
-                          <strong data-trig-snap="function">sin(x)</strong>
-                        </article>
-                        <article class="trig-snapshot-card">
-                          <span>Special angle</span>
-                          <strong data-trig-snap="special">-</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <style>
-                @import url('/calculators/math/trigonometry/shared.css?v=20260224');
-                @import url('/calculators/math/trigonometry/trig-functions/calculator.css?v=20260224');
-              </style>
-
-              <section class="trig-exp-section">
-                <h2>Trigonometric Functions Practical Guide</h2>
-                <p>
-                  Use this trigonometric functions calculator to check all six trig outputs for one
-                  angle while keeping the matching graph nearby. It is built for quick review, so
-                  the answer appears first, exact special-angle labels stay visible, and the graph
-                  controls remain simple enough for first-screen use.
-                </p>
-                <ul class="trig-summary-list">
-                  <li>
-                    <strong>Best for:</strong> reviewing sine, cosine, tangent, and reciprocal trig
-                    values at one angle.
-                  </li>
-                  <li>
-                    <strong>Quick answer flow:</strong> enter the angle, choose the unit, then read
-                    the answer card.
-                  </li>
-                  <li>
-                    <strong>Output includes:</strong> six trig values, angle pair, quadrant,
-                    reference angle, and graph settings.
-                  </li>
-                </ul>
-              </section>
-
-              <section class="trig-exp-section">
-                <h3>How to Guide</h3>
-                <ol>
-                  <li>Enter the angle value you want to evaluate.</li>
-                  <li>Choose degrees or radians.</li>
-                  <li>
-                    Select the function you want to graph and adjust amplitude or period only if
-                    needed.
-                  </li>
-                  <li>
-                    Click <strong>Calculate Functions</strong> and read the answer card before
-                    checking the graph.
-                  </li>
-                </ol>
-              </section>
-
-              <section class="trig-exp-section">
-                <h3>Quick Answer Table</h3>
-                <div class="trig-table-wrap">
-                  <table class="trig-summary-table">
-                    <caption class="math-cluster-visually-hidden">
-                      Quick answer table for the trigonometric functions calculator
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Function</th>
-                        <th scope="col">What it uses</th>
-                        <th scope="col">Common issue to watch</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">sin(x) and cos(x)</th>
-                        <td>Unit-circle y and x coordinates.</td>
-                        <td>Signs change by quadrant even when the reference angle matches.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">tan(x)</th>
-                        <td><strong>sin(x) / cos(x)</strong></td>
-                        <td>Undefined when cosine is zero.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">sec(x), csc(x), cot(x)</th>
-                        <td>Reciprocals of cos, sin, and tan-related ratios.</td>
-                        <td>Undefined anywhere the matching base value is zero.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              <section class="trig-exp-section">
-                <h3>Formula Guide</h3>
-                <p>
-                  The route evaluates the six standard trig relationships from one angle. The core
-                  identity is
-                  <strong>sin^2(x) + cos^2(x) = 1</strong>, and tangent follows from
-                  <strong>tan(x) = sin(x) / cos(x)</strong>.
-                </p>
-                <p>
-                  The reciprocal functions use the same base angle:
-                  <strong>sec(x) = 1 / cos(x)</strong>, <strong>csc(x) = 1 / sin(x)</strong>, and
-                  <strong>cot(x) = cos(x) / sin(x)</strong>. Undefined outputs usually point to a
-                  zero denominator rather than a broken route.
-                </p>
-              </section>
-
-              <section class="trig-exp-section">
-                <h3>Worked Example</h3>
-                <div class="trig-example-grid">
-                  <article class="trig-example-card">
-                    <h4>30 degree special angle</h4>
-                    <p>Enter <strong>30°</strong> with the default graph settings.</p>
-                    <p>
-                      The route shows <strong>sin = 0.5 (1/2)</strong>,
-                      <strong>cos = 0.866025 (sqrt(3)/2)</strong>, and
-                      <strong>tan = 0.57735 (1/sqrt(3))</strong>.
-                    </p>
-                  </article>
-                  <article class="trig-example-card">
-                    <h4>Radian input</h4>
-                    <p>Switch to radians and enter <strong>1.047198</strong>.</p>
-                    <p>
-                      That angle is close to <strong>60°</strong>, so the route keeps the same trig
-                      relationships while showing the angle pair in both units.
-                    </p>
-                  </article>
-                </div>
-              </section>
-
-              <section class="trig-exp-section">
-                <h3>FAQ</h3>
-                <div class="trig-faq-grid">
-                  <div class="faq-card">
-                    <h4>What functions does this route calculate?</h4>
-                    <p>It calculates sin, cos, tan, sec, csc, and cot for one angle.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can I enter radians instead of degrees?</h4>
-                    <p>Yes. Switch the angle unit control to radians and enter the angle there.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Does the route show exact values?</h4>
-                    <p>
-                      Yes. Special angles such as 30°, 45°, and 60° show exact labels alongside
-                      decimal values.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why can tangent be undefined?</h4>
-                    <p>
-                      Tangent is sine divided by cosine, so it becomes undefined when cosine equals
-                      zero.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What does amplitude change?</h4>
-                    <p>
-                      Amplitude stretches the graph vertically, which matters most for sine and
-                      cosine style waves.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What does period change?</h4>
-                    <p>Period changes how wide one cycle appears on the graph.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why do reciprocal functions have gaps?</h4>
-                    <p>
-                      They are undefined where the matching sine or cosine value is zero, so the
-                      graph breaks there.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can I use this for unit-circle review?</h4>
-                    <p>
-                      Yes. The angle pair, quadrant, and special-angle note make it useful for
-                      unit-circle study too.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Does the graph use the same unit as the angle input?</h4>
-                    <p>
-                      The entered angle can use degrees or radians, but the graph period field is
-                      displayed on a radian scale.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Is this route good for homework checking?</h4>
-                    <p>
-                      Yes. It is designed for quick verification, not formal symbolic proof work.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section class="trig-exp-section">
-                <h3>Related Calculators</h3>
-                <div class="trig-related-grid">
-                  <a class="trig-related-card" href="/math/trigonometry/unit-circle/">
-                    <strong>Unit Circle Calculator</strong>
-                    <span
-                      >Review quadrant signs and special-angle coordinates when you need the
-                      geometric picture behind trig values.</span
-                    >
-                  </a>
-                  <a class="trig-related-card" href="/math/trigonometry/inverse-trig/">
-                    <strong>Inverse Trig Functions</strong>
-                    <span
-                      >Reverse the workflow when you need the angle from a sine, cosine, or tangent
-                      value.</span
-                    >
-                  </a>
-                  <a class="trig-related-card" href="/math/trigonometry/triangle-solver/">
-                    <strong>Triangle Solver</strong>
-                    <span
-                      >Move from pure function values to full triangle side and angle solving with
-                      the same trig foundations.</span
-                    >
-                  </a>
-                </div>
-              </section>
-
-              <section class="trig-exp-section">
-                <h3>Important Notes</h3>
-                <ul class="trig-notes-list">
-                  <li><strong>Last updated:</strong> March 2026</li>
-                  <li>
-                    <strong>Special angles:</strong> Exact-value labels appear for common
-                    unit-circle angles where the route can prove them cleanly.
-                  </li>
-                  <li>
-                    <strong>Undefined values:</strong> Tangent, secant, cosecant, or cotangent can
-                    be undefined when their denominators are zero.
-                  </li>
-                  <li>
-                    <strong>Graph scaling:</strong> Period controls the horizontal cycle length and
-                    amplitude controls the vertical stretch.
-                  </li>
-                  <li>
-                    <strong>Use case:</strong> This tool is built for quick trig review, not
-                    symbolic derivation work.
-                  </li>
-                </ul>
-              </section>
+          <div class="trig-toggle-section">
+            <span id="trig-angle-unit">Angle unit</span>
+            <div
+              class="trig-button-group"
+              role="group"
+              aria-labelledby="trig-angle-unit"
+              data-button-group="trig-angle-unit"
+            >
+              <button class="calculator-button trig-mode-button is-active" type="button" data-value="deg">
+                Degrees
+              </button>
+              <button class="calculator-button trig-mode-button" type="button" data-value="rad">
+                Radians
+              </button>
             </div>
           </div>
+
+          <div class="trig-input-grid">
+            <label class="trig-field" for="trig-graph-function">
+              <span>Graph function</span>
+              <select id="trig-graph-function">
+                <option value="sin">sin(x)</option>
+                <option value="cos">cos(x)</option>
+                <option value="tan">tan(x)</option>
+                <option value="sec">sec(x)</option>
+                <option value="csc">csc(x)</option>
+                <option value="cot">cot(x)</option>
+              </select>
+            </label>
+            <label class="trig-field" for="trig-amplitude">
+              <span>Amplitude</span>
+              <input id="trig-amplitude" type="number" value="1" step="any" />
+            </label>
+            <label class="trig-field" for="trig-period">
+              <span>Period</span>
+              <input id="trig-period" type="number" value="6.283185" step="any" />
+            </label>
+          </div>
+
+          <div class="trig-hint-row">
+            <span class="trig-inline-note">Period uses radians on the graph scale, so one full sine cycle is about 6.283185.</span>
+          </div>
+
+          <button class="calculator-button trig-calc-button" type="button" id="trig-calc">
+            Calculate Functions
+          </button>
+        </section>
+
+        <section class="trig-card trig-graph-card" aria-label="Trigonometric graph">
+          <div class="trig-card-head">
+            <div>
+              <p class="trig-section-label">Graph</p>
+              <p class="trig-card-title">Live wave preview for the selected trig function</p>
+            </div>
+            <span class="trig-chip trig-chip--graph">Waveform</span>
+          </div>
+
+          <div class="trig-graph-panel">
+            <canvas
+              id="trig-graph"
+              class="trig-graph-canvas"
+              width="360"
+              height="240"
+              aria-label="Trigonometric function graph"
+            ></canvas>
+          </div>
+          <p id="trig-graph-note" class="trig-graph-note">The graph updates with the selected function, amplitude, and period.</p>
+        </section>
+      </div>
+
+      <section class="trig-card trig-answer-card" aria-label="Trigonometric function answer summary">
+        <div class="trig-card-head">
+          <div>
+            <p class="trig-section-label">Answer</p>
+            <p class="trig-card-title">Angle summary, six trig outputs, and identity notes</p>
+          </div>
+          <span class="trig-chip trig-chip--answer">Trig values</span>
+        </div>
+
+        <div class="result trig-result-card" id="trig-result" aria-live="polite"></div>
+        <div class="result-detail trig-detail-card" id="trig-detail" aria-live="polite"></div>
+
+        <div class="trig-snapshot-grid" aria-label="Trig snapshot">
+          <article class="trig-snapshot-card">
+            <span>Angle pair</span>
+            <strong data-trig-snap="angle">-</strong>
+          </article>
+          <article class="trig-snapshot-card">
+            <span>Quadrant</span>
+            <strong data-trig-snap="quadrant">-</strong>
+          </article>
+          <article class="trig-snapshot-card">
+            <span>Graph focus</span>
+            <strong data-trig-snap="function">sin(x)</strong>
+          </article>
+          <article class="trig-snapshot-card">
+            <span>Special angle</span>
+            <strong data-trig-snap="special">-</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/trigonometry/shared.css?v=20260224');
+  @import url('/calculators/math/trigonometry/trig-functions/calculator.css?v=20260224');
+</style>
+
+    <section class="trig-exp-section">
+  <h2>Trigonometric Functions Practical Guide</h2>
+  <p>
+    Use this trigonometric functions calculator to check all six trig outputs for one angle while
+    keeping the matching graph nearby. It is built for quick review, so the answer appears first,
+    exact special-angle labels stay visible, and the graph controls remain simple enough for
+    first-screen use.
+  </p>
+  <ul class="trig-summary-list">
+    <li>
+      <strong>Best for:</strong> reviewing sine, cosine, tangent, and reciprocal trig values at one
+      angle.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> enter the angle, choose the unit, then read the answer
+      card.
+    </li>
+    <li>
+      <strong>Output includes:</strong> six trig values, angle pair, quadrant, reference angle, and
+      graph settings.
+    </li>
+  </ul>
+</section>
+
+<section class="trig-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter the angle value you want to evaluate.</li>
+    <li>Choose degrees or radians.</li>
+    <li>Select the function you want to graph and adjust amplitude or period only if needed.</li>
+    <li>
+      Click <strong>Calculate Functions</strong> and read the answer card before checking the graph.
+    </li>
+  </ol>
+</section>
+
+<section class="trig-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="trig-table-wrap">
+    <table class="trig-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the trigonometric functions calculator
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Function</th>
+          <th scope="col">What it uses</th>
+          <th scope="col">Common issue to watch</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">sin(x) and cos(x)</th>
+          <td>Unit-circle y and x coordinates.</td>
+          <td>Signs change by quadrant even when the reference angle matches.</td>
+        </tr>
+        <tr>
+          <th scope="row">tan(x)</th>
+          <td><strong>sin(x) / cos(x)</strong></td>
+          <td>Undefined when cosine is zero.</td>
+        </tr>
+        <tr>
+          <th scope="row">sec(x), csc(x), cot(x)</th>
+          <td>Reciprocals of cos, sin, and tan-related ratios.</td>
+          <td>Undefined anywhere the matching base value is zero.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="trig-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The route evaluates the six standard trig relationships from one angle. The core identity is
+    <strong>sin^2(x) + cos^2(x) = 1</strong>, and tangent follows from
+    <strong>tan(x) = sin(x) / cos(x)</strong>.
+  </p>
+  <p>
+    The reciprocal functions use the same base angle:
+    <strong>sec(x) = 1 / cos(x)</strong>, <strong>csc(x) = 1 / sin(x)</strong>, and
+    <strong>cot(x) = cos(x) / sin(x)</strong>. Undefined outputs usually point to a zero denominator
+    rather than a broken route.
+  </p>
+</section>
+
+<section class="trig-exp-section">
+  <h3>Worked Example</h3>
+  <div class="trig-example-grid">
+    <article class="trig-example-card">
+      <h4>30 degree special angle</h4>
+      <p>Enter <strong>30°</strong> with the default graph settings.</p>
+      <p>
+        The route shows <strong>sin = 0.5 (1/2)</strong>,
+        <strong>cos = 0.866025 (sqrt(3)/2)</strong>, and <strong>tan = 0.57735 (1/sqrt(3))</strong>.
+      </p>
+    </article>
+    <article class="trig-example-card">
+      <h4>Radian input</h4>
+      <p>Switch to radians and enter <strong>1.047198</strong>.</p>
+      <p>
+        That angle is close to <strong>60°</strong>, so the route keeps the same trig relationships
+        while showing the angle pair in both units.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="trig-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current trigonometric functions calculator problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="trig-exp-section">
+  <h3>FAQ</h3>
+  <div class="trig-faq-grid">
+    <div class="faq-card">
+      <h4>What functions does this route calculate?</h4>
+      <p>It calculates sin, cos, tan, sec, csc, and cot for one angle.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I enter radians instead of degrees?</h4>
+      <p>Yes. Switch the angle unit control to radians and enter the angle there.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does the route show exact values?</h4>
+      <p>
+        Yes. Special angles such as 30°, 45°, and 60° show exact labels alongside decimal values.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Why can tangent be undefined?</h4>
+      <p>Tangent is sine divided by cosine, so it becomes undefined when cosine equals zero.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does amplitude change?</h4>
+      <p>
+        Amplitude stretches the graph vertically, which matters most for sine and cosine style
+        waves.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>What does period change?</h4>
+      <p>Period changes how wide one cycle appears on the graph.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why do reciprocal functions have gaps?</h4>
+      <p>
+        They are undefined where the matching sine or cosine value is zero, so the graph breaks
+        there.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I use this for unit-circle review?</h4>
+      <p>
+        Yes. The angle pair, quadrant, and special-angle note make it useful for unit-circle study
+        too.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Does the graph use the same unit as the angle input?</h4>
+      <p>
+        The entered angle can use degrees or radians, but the graph period field is displayed on a
+        radian scale.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Is this route good for homework checking?</h4>
+      <p>Yes. It is designed for quick verification, not formal symbolic proof work.</p>
+    </div>
+  </div>
+</section>
+
+<section class="trig-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="trig-related-grid">
+    <a class="trig-related-card" href="/math/trigonometry/unit-circle/">
+      <strong>Unit Circle Calculator</strong>
+      <span
+        >Review quadrant signs and special-angle coordinates when you need the geometric picture
+        behind trig values.</span
+      >
+    </a>
+    <a class="trig-related-card" href="/math/trigonometry/inverse-trig/">
+      <strong>Inverse Trig Functions</strong>
+      <span
+        >Reverse the workflow when you need the angle from a sine, cosine, or tangent value.</span
+      >
+    </a>
+    <a class="trig-related-card" href="/math/trigonometry/triangle-solver/">
+      <strong>Triangle Solver</strong>
+      <span
+        >Move from pure function values to full triangle side and angle solving with the same trig
+        foundations.</span
+      >
+    </a>
+  </div>
+</section>
+
+<section class="trig-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="trig-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li>
+      <strong>Special angles:</strong> Exact-value labels appear for common unit-circle angles where
+      the route can prove them cleanly.
+    </li>
+    <li>
+      <strong>Undefined values:</strong> Tangent, secant, cosecant, or cotangent can be undefined
+      when their denominators are zero.
+    </li>
+    <li>
+      <strong>Graph scaling:</strong> Period controls the horizontal cycle length and amplitude
+      controls the vertical stretch.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool is built for quick trig review, not symbolic derivation
+      work.
+    </li>
+      <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this trigonometric functions calculator tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+</section>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
-    <script
-      type="module"
-      src="/calculators/math/trigonometry/trig-functions/module.js?v=20260224"
-    ></script>
+    <script type="module" src="/calculators/math/trigonometry/trig-functions/module.js?v=20260224"></script>
   </body>
 </html>

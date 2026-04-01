@@ -27,7 +27,7 @@ test.describe('math/slope-distance seo', () => {
   test('metadata, explanation contract, FAQ depth, schema parity, and sitemap', async ({ page }) => {
     await page.goto('/math/algebra/slope-distance/');
 
-    await expect(page).toHaveTitle('Slope and Distance Calculator | CalcHowMuch');
+    await expect(page).toHaveTitle('Slope and Distance Calculator | Midpoint, Line Equation & Distance');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);

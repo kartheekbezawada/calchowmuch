@@ -132,9 +132,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Percentage Composition Calculator | Share of Total',
+  title: 'Percentage Composition Calculator | Percent Share of a Total',
   description:
-    "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
+    "Calculate each item's percentage share of a total, compare components, and see any remainder percentage from a known or calculated total.",
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-composition-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

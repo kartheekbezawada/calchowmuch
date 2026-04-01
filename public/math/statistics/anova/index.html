@@ -4,25 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>ANOVA Calculator | One-Way F-Test &amp; Effect Size</title>
-    <meta
-      name="description"
-      content="Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout."
-    />
+    <meta name="description" content="Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout." />
     <link rel="canonical" href="https://calchowmuch.com/math/statistics/anova/" />
     <meta property="og:title" content="ANOVA Calculator | One-Way F-Test &amp; Effect Size" />
-    <meta
-      property="og:description"
-      content="Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout."
-    />
+    <meta property="og:description" content="Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/statistics/anova/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ANOVA Calculator | One-Way F-Test &amp; Effect Size" />
-    <meta
-      name="twitter:description"
-      content="Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout."
-    />
+    <meta name="twitter:description" content="Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1381,661 +1452,362 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/statistics/anova/#webpage",
-            "name": "ANOVA Calculator | One-Way F-Test & Effect Size",
-            "url": "https://calchowmuch.com/math/statistics/anova/",
-            "description": "Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/statistics/anova/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/statistics/anova/#softwareapplication"
-            },
-            "breadcrumb": { "@id": "https://calchowmuch.com/math/statistics/anova/#breadcrumbs" }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/statistics/anova/#softwareapplication",
-            "name": "ANOVA Calculator",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/statistics/anova/",
-            "description": "Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/statistics/anova/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Can I use ANOVA with only two groups?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "You can, but a dedicated two-sample test is usually simpler when only two groups are involved."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does a large F-statistic mean?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means the group means are spread apart more than you would expect from within-group variation alone."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why do I need independent groups?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The one-way ANOVA formula assumes each observation belongs to one group without paired or repeated-measure dependence."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if the group variances are very different?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The standard ANOVA assumptions become weaker, so you may need a more robust alternative outside this route."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does eta-squared tell me?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It estimates how much of the total variation is explained by the group split."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does a non-significant result prove the means are equal?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. It only means the data did not supply enough evidence to reject equality at the chosen alpha."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/statistics/anova/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "ANOVA Calculator",
-                "item": "https://calchowmuch.com/math/statistics/anova/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/statistics/anova/#webpage","name":"ANOVA Calculator | One-Way F-Test & Effect Size","url":"https://calchowmuch.com/math/statistics/anova/","description":"Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/statistics/anova/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/statistics/anova/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/statistics/anova/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/statistics/anova/#softwareapplication","name":"ANOVA Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/statistics/anova/","description":"Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/statistics/anova/#faq","mainEntity":[{"@type":"Question","name":"Can I use ANOVA with only two groups?","acceptedAnswer":{"@type":"Answer","text":"You can, but a dedicated two-sample test is usually simpler when only two groups are involved."}},{"@type":"Question","name":"What does a large F-statistic mean?","acceptedAnswer":{"@type":"Answer","text":"It means the group means are spread apart more than you would expect from within-group variation alone."}},{"@type":"Question","name":"Why do I need independent groups?","acceptedAnswer":{"@type":"Answer","text":"The one-way ANOVA formula assumes each observation belongs to one group without paired or repeated-measure dependence."}},{"@type":"Question","name":"What if the group variances are very different?","acceptedAnswer":{"@type":"Answer","text":"The standard ANOVA assumptions become weaker, so you may need a more robust alternative outside this route."}},{"@type":"Question","name":"What does eta-squared tell me?","acceptedAnswer":{"@type":"Answer","text":"It estimates how much of the total variation is explained by the group split."}},{"@type":"Question","name":"Does a non-significant result prove the means are equal?","acceptedAnswer":{"@type":"Answer","text":"No. It only means the data did not supply enough evidence to reject equality at the chosen alpha."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/statistics/anova/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"ANOVA Calculator","item":"https://calchowmuch.com/math/statistics/anova/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>ANOVA Calculator</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">ANOVA Calculator</h1>
-              <p class="math-cluster-page-intro">
-                Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect
-                sizes in a light answer-first statistics layout.
-              </p>
-            </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-anova">
-                <div class="analysis-shell">
-                  <section class="analysis-card analysis-hero-card" aria-label="ANOVA overview">
-                    <div class="analysis-hero-copy">
-                      <p class="analysis-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="analysis-title">
-                        Compare several group means in one answer-first ANOVA panel before you
-                        decide whether post-hoc work is worth doing.
-                      </h2>
-                      <p class="analysis-subtitle">
-                        Paste each group, choose the significance level, and keep the F-statistic,
-                        p-value, degrees of freedom, and effect sizes together so the decision is
-                        visible without scanning a legacy results stack.
-                      </p>
-                    </div>
-                    <ul class="analysis-hero-points">
-                      <li>
-                        Keeps the decision, sums of squares, and group means in one answer card.
-                      </li>
-                      <li>
-                        Lets you expand from two groups to several groups without changing routes.
-                      </li>
-                      <li>Removes the old split-shell chrome from one-way ANOVA workflow.</li>
-                    </ul>
-                  </section>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>ANOVA Calculator</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">ANOVA Calculator</h1>
+    <p class="math-cluster-page-intro">Compare multiple group means with one-way ANOVA, F-statistic, p-value, and effect sizes in a light answer-first statistics layout.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-anova">
+  <div class="analysis-shell">
+    <section class="analysis-card analysis-hero-card" aria-label="ANOVA overview">
+      <div class="analysis-hero-copy">
+        <p class="analysis-eyebrow">Simple Smooth Wow</p>
+        <h2 class="analysis-title">Compare several group means in one answer-first ANOVA panel before you decide whether post-hoc work is worth doing.</h2>
+        <p class="analysis-subtitle">
+          Paste each group, choose the significance level, and keep the F-statistic, p-value,
+          degrees of freedom, and effect sizes together so the decision is visible without scanning
+          a legacy results stack.
+        </p>
+      </div>
+      <ul class="analysis-hero-points">
+        <li>Keeps the decision, sums of squares, and group means in one answer card.</li>
+        <li>Lets you expand from two groups to several groups without changing routes.</li>
+        <li>Removes the old split-shell chrome from one-way ANOVA workflow.</li>
+      </ul>
+    </section>
 
-                  <div class="analysis-workbench">
-                    <section class="analysis-card analysis-input-card" aria-label="ANOVA inputs">
-                      <div class="analysis-card-head">
-                        <div>
-                          <p class="analysis-section-label">Inputs</p>
-                          <p class="analysis-card-title">
-                            Set the number of groups and paste each group dataset
-                          </p>
-                        </div>
-                        <span class="analysis-chip">Group comparison</span>
-                      </div>
-
-                      <label class="analysis-field" for="anova-groups">
-                        <span>Number of groups</span>
-                        <input
-                          id="anova-groups"
-                          type="number"
-                          value="3"
-                          min="2"
-                          max="10"
-                          step="1"
-                        />
-                        <small
-                          >Use two to ten independent groups. Each group must contain numeric
-                          values.</small
-                        >
-                      </label>
-
-                      <div class="analysis-group-grid" id="anova-group-inputs">
-                        <label class="analysis-field" for="anova-group-1">
-                          <span>Group 1</span>
-                          <textarea
-                            id="anova-group-1"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-23, 25, 27, 22, 24</textarea
-                          >
-                        </label>
-                        <label class="analysis-field" for="anova-group-2">
-                          <span>Group 2</span>
-                          <textarea
-                            id="anova-group-2"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-30, 32, 28, 31, 29</textarea
-                          >
-                        </label>
-                        <label class="analysis-field" for="anova-group-3">
-                          <span>Group 3</span>
-                          <textarea
-                            id="anova-group-3"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-18, 20, 22, 19, 21</textarea
-                          >
-                        </label>
-                      </div>
-
-                      <div class="analysis-field">
-                        <span>Significance level (alpha)</span>
-                        <div
-                          class="button-group analysis-button-group"
-                          role="group"
-                          data-button-group="anova-alpha"
-                        >
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="0.01"
-                          >
-                            0.01
-                          </button>
-                          <button
-                            class="calculator-button secondary is-active"
-                            type="button"
-                            data-value="0.05"
-                          >
-                            0.05
-                          </button>
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="0.10"
-                          >
-                            0.10
-                          </button>
-                        </div>
-                      </div>
-
-                      <button
-                        class="calculator-button analysis-calc-button"
-                        type="button"
-                        id="anova-calculate"
-                      >
-                        Run ANOVA
-                      </button>
-                    </section>
-
-                    <section class="analysis-card analysis-answer-card" aria-label="ANOVA answer">
-                      <div class="analysis-card-head">
-                        <div>
-                          <p class="analysis-section-label">Answer</p>
-                          <p class="analysis-card-title">
-                            F-statistic, p-value, and variance breakdown
-                          </p>
-                        </div>
-                        <span class="analysis-chip analysis-chip--answer">F-test</span>
-                      </div>
-
-                      <div
-                        class="result analysis-result-card"
-                        id="anova-result"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="analysis-snapshot-grid" aria-label="ANOVA workflow summary">
-                        <article class="analysis-snapshot-card">
-                          <span>Primary output</span>
-                          <strong>Significant or not significant</strong>
-                        </article>
-                        <article class="analysis-snapshot-card">
-                          <span>Verification</span>
-                          <strong>Effect size and group means</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <div id="anova-explanation">
-                <section class="analysis-exp-section">
-                  <h2>ANOVA Calculator Practical Guide</h2>
-                  <p>
-                    Use this route when you need to compare three or more group means and want the
-                    decision, variance breakdown, and effect size in one answer-first place. It
-                    helps you see whether the groups differ enough to justify post-hoc work instead
-                    of reading raw group averages alone.
-                  </p>
-                  <ul class="analysis-summary-list">
-                    <li>
-                      <strong>Best for:</strong> one-way comparisons of several independent group
-                      means.
-                    </li>
-                    <li>
-                      <strong>Quick answer flow:</strong> paste each group, choose alpha, and read
-                      the ANOVA summary card first.
-                    </li>
-                    <li>
-                      <strong>Output includes:</strong> F-statistic, p-value, degrees of freedom,
-                      sums of squares, and effect sizes.
-                    </li>
-                  </ul>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>How to Guide</h3>
-                  <ol>
-                    <li>
-                      Set the number of groups and paste each group as a comma-separated list.
-                    </li>
-                    <li>
-                      Pick an alpha level that matches how strict you want the decision rule to be.
-                    </li>
-                    <li>
-                      Click <strong>Run ANOVA</strong> and read the F-statistic, p-value, and
-                      significance result together.
-                    </li>
-                    <li>
-                      If the route reports significance, use that as a signal to continue into
-                      post-hoc comparison outside this page.
-                    </li>
-                  </ol>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Quick Answer Table</h3>
-                  <div class="analysis-table-wrap">
-                    <table class="analysis-summary-table">
-                      <caption class="math-cluster-visually-hidden">
-                        Quick answer table for the ANOVA calculator
-                      </caption>
-                      <thead>
-                        <tr>
-                          <th scope="col">Output</th>
-                          <th scope="col">What it tells you</th>
-                          <th scope="col">How to use it</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">F-statistic</th>
-                          <td>Between-group variation relative to within-group noise</td>
-                          <td>Large values suggest stronger evidence of mean differences</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">p-value</th>
-                          <td>
-                            How surprising the observed F-statistic would be under equal means
-                          </td>
-                          <td>Compare it with alpha to make the decision</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Eta-squared / Omega-squared</th>
-                          <td>Effect size of the group split</td>
-                          <td>Use it to judge practical size, not only statistical significance</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Formula Guide</h3>
-                  <p>
-                    One-way ANOVA compares the variance explained by group membership with the
-                    variance that remains inside the groups. The core ratio is
-                    <strong>F = MSB / MSW</strong>, where <strong>MSB</strong> is mean square
-                    between groups and <strong>MSW</strong> is mean square within groups.
-                  </p>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Worked Example</h3>
-                  <div class="analysis-example-grid">
-                    <article class="analysis-example-card">
-                      <h4>Default groups</h4>
-                      <p>
-                        The default groups are centred around noticeably different means, so the
-                        route returns a strong F-statistic and a small p-value.
-                      </p>
-                      <p>
-                        That makes the example a clear demonstration of how between-group separation
-                        can dominate within-group noise.
-                      </p>
-                    </article>
-                    <article class="analysis-example-card">
-                      <h4>Why does significance not tell me which groups differ?</h4>
-                      <p>
-                        ANOVA only says that at least one group differs. You still need a post-hoc
-                        method to identify the specific pairs.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section" id="anova-faq">
-                  <h3>FAQ</h3>
-                  <div class="analysis-faq-grid">
-                    <article class="faq-card">
-                      <h4>Can I use ANOVA with only two groups?</h4>
-                      <p>
-                        You can, but a dedicated two-sample test is usually simpler when only two
-                        groups are involved.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What does a large F-statistic mean?</h4>
-                      <p>
-                        It means the group means are spread apart more than you would expect from
-                        within-group variation alone.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Why do I need independent groups?</h4>
-                      <p>
-                        The one-way ANOVA formula assumes each observation belongs to one group
-                        without paired or repeated-measure dependence.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What if the group variances are very different?</h4>
-                      <p>
-                        The standard ANOVA assumptions become weaker, so you may need a more robust
-                        alternative outside this route.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What does eta-squared tell me?</h4>
-                      <p>
-                        It estimates how much of the total variation is explained by the group
-                        split.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Does a non-significant result prove the means are equal?</h4>
-                      <p>
-                        No. It only means the data did not supply enough evidence to reject equality
-                        at the chosen alpha.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Related Calculators</h3>
-                  <div class="analysis-related-grid">
-                    <a class="analysis-related-card" href="/math/statistics/hypothesis-testing/">
-                      <strong>Hypothesis Testing</strong>
-                      <span
-                        >Use focused t-tests or chi-square checks when your question is narrower
-                        than a multi-group ANOVA.</span
-                      >
-                    </a>
-                    <a class="analysis-related-card" href="/math/statistics/distribution/">
-                      <strong>Distribution Calculator</strong>
-                      <span
-                        >Look up F-distribution probabilities and critical values that support ANOVA
-                        interpretation.</span
-                      >
-                    </a>
-                    <a class="analysis-related-card" href="/math/statistics/">
-                      <strong>Statistics Calculator</strong>
-                      <span>Profile each group separately before comparing them together.</span>
-                    </a>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Important Notes</h3>
-                  <ul class="analysis-notes-list">
-                    <li><strong>Last updated:</strong> March 2026</li>
-                    <li>
-                      <strong>Input rule:</strong> Every group must contain numeric values, and at
-                      least two groups are required.
-                    </li>
-                    <li>
-                      <strong>Assumption rule:</strong> Independence and roughly similar group
-                      variances matter for reliable interpretation.
-                    </li>
-                    <li>
-                      <strong>Decision rule:</strong> Significance tells you that some group
-                      difference exists, not which pair caused it.
-                    </li>
-                  </ul>
-                </section>
-              </div>
-            </div>
+    <div class="analysis-workbench">
+      <section class="analysis-card analysis-input-card" aria-label="ANOVA inputs">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Inputs</p>
+            <p class="analysis-card-title">Set the number of groups and paste each group dataset</p>
           </div>
+          <span class="analysis-chip">Group comparison</span>
+        </div>
+
+        <label class="analysis-field" for="anova-groups">
+          <span>Number of groups</span>
+          <input id="anova-groups" type="number" value="3" min="2" max="10" step="1" />
+          <small>Use two to ten independent groups. Each group must contain numeric values.</small>
+        </label>
+
+        <div class="analysis-group-grid" id="anova-group-inputs">
+          <label class="analysis-field" for="anova-group-1">
+            <span>Group 1</span>
+            <textarea id="anova-group-1" rows="3" placeholder="Enter values separated by commas">23, 25, 27, 22, 24</textarea>
+          </label>
+          <label class="analysis-field" for="anova-group-2">
+            <span>Group 2</span>
+            <textarea id="anova-group-2" rows="3" placeholder="Enter values separated by commas">30, 32, 28, 31, 29</textarea>
+          </label>
+          <label class="analysis-field" for="anova-group-3">
+            <span>Group 3</span>
+            <textarea id="anova-group-3" rows="3" placeholder="Enter values separated by commas">18, 20, 22, 19, 21</textarea>
+          </label>
+        </div>
+
+        <div class="analysis-field">
+          <span>Significance level (alpha)</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="anova-alpha">
+            <button class="calculator-button secondary" type="button" data-value="0.01">0.01</button>
+            <button class="calculator-button secondary is-active" type="button" data-value="0.05">0.05</button>
+            <button class="calculator-button secondary" type="button" data-value="0.10">0.10</button>
+          </div>
+        </div>
+
+        <button class="calculator-button analysis-calc-button" type="button" id="anova-calculate">
+          Run ANOVA
+        </button>
+      </section>
+
+      <section class="analysis-card analysis-answer-card" aria-label="ANOVA answer">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Answer</p>
+            <p class="analysis-card-title">F-statistic, p-value, and variance breakdown</p>
+          </div>
+          <span class="analysis-chip analysis-chip--answer">F-test</span>
+        </div>
+
+        <div class="result analysis-result-card" id="anova-result" aria-live="polite"></div>
+
+        <div class="analysis-snapshot-grid" aria-label="ANOVA workflow summary">
+          <article class="analysis-snapshot-card">
+            <span>Primary output</span>
+            <strong>Significant or not significant</strong>
+          </article>
+          <article class="analysis-snapshot-card">
+            <span>Verification</span>
+            <strong>Effect size and group means</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+    <div id="anova-explanation">
+  <section class="analysis-exp-section">
+    <h2>ANOVA Calculator Practical Guide</h2>
+    <p>
+      Use this route when you need to compare three or more group means and want the decision,
+      variance breakdown, and effect size in one answer-first place. It helps you see whether the
+      groups differ enough to justify post-hoc work instead of reading raw group averages alone.
+    </p>
+    <ul class="analysis-summary-list">
+      <li><strong>Best for:</strong> one-way comparisons of several independent group means.</li>
+      <li>
+        <strong>Quick answer flow:</strong> paste each group, choose alpha, and read the ANOVA
+        summary card first.
+      </li>
+      <li>
+        <strong>Output includes:</strong> F-statistic, p-value, degrees of freedom, sums of squares,
+        and effect sizes.
+      </li>
+    </ul>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Set the number of groups and paste each group as a comma-separated list.</li>
+      <li>Pick an alpha level that matches how strict you want the decision rule to be.</li>
+      <li>
+        Click <strong>Run ANOVA</strong> and read the F-statistic, p-value, and significance result
+        together.
+      </li>
+      <li>
+        If the route reports significance, use that as a signal to continue into post-hoc comparison
+        outside this page.
+      </li>
+    </ol>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="analysis-table-wrap">
+      <table class="analysis-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the ANOVA calculator
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Output</th>
+            <th scope="col">What it tells you</th>
+            <th scope="col">How to use it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">F-statistic</th>
+            <td>Between-group variation relative to within-group noise</td>
+            <td>Large values suggest stronger evidence of mean differences</td>
+          </tr>
+          <tr>
+            <th scope="row">p-value</th>
+            <td>How surprising the observed F-statistic would be under equal means</td>
+            <td>Compare it with alpha to make the decision</td>
+          </tr>
+          <tr>
+            <th scope="row">Eta-squared / Omega-squared</th>
+            <td>Effect size of the group split</td>
+            <td>Use it to judge practical size, not only statistical significance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      One-way ANOVA compares the variance explained by group membership with the variance that
+      remains inside the groups. The core ratio is <strong>F = MSB / MSW</strong>, where
+      <strong>MSB</strong> is mean square between groups and <strong>MSW</strong> is mean square
+      within groups.
+    </p>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Worked Example</h3>
+    <div class="analysis-example-grid">
+      <article class="analysis-example-card">
+        <h4>Default groups</h4>
+        <p>
+          The default groups are centred around noticeably different means, so the route returns a
+          strong F-statistic and a small p-value.
+        </p>
+        <p>
+          That makes the example a clear demonstration of how between-group separation can dominate
+          within-group noise.
+        </p>
+      </article>
+      <article class="analysis-example-card">
+        <h4>Why does significance not tell me which groups differ?</h4>
+        <p>
+          ANOVA only says that at least one group differs. You still need a post-hoc method to
+          identify the specific pairs.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current anova calculator problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="analysis-exp-section" id="anova-faq">
+    <h3>FAQ</h3>
+    <div class="analysis-faq-grid">
+      <article class="faq-card">
+        <h4>Can I use ANOVA with only two groups?</h4>
+        <p>
+          You can, but a dedicated two-sample test is usually simpler when only two groups are
+          involved.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What does a large F-statistic mean?</h4>
+        <p>
+          It means the group means are spread apart more than you would expect from within-group
+          variation alone.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>Why do I need independent groups?</h4>
+        <p>
+          The one-way ANOVA formula assumes each observation belongs to one group without paired or
+          repeated-measure dependence.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What if the group variances are very different?</h4>
+        <p>
+          The standard ANOVA assumptions become weaker, so you may need a more robust alternative
+          outside this route.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What does eta-squared tell me?</h4>
+        <p>It estimates how much of the total variation is explained by the group split.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does a non-significant result prove the means are equal?</h4>
+        <p>
+          No. It only means the data did not supply enough evidence to reject equality at the chosen
+          alpha.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="analysis-related-grid">
+      <a class="analysis-related-card" href="/math/statistics/hypothesis-testing/">
+        <strong>Hypothesis Testing</strong>
+        <span
+          >Use focused t-tests or chi-square checks when your question is narrower than a
+          multi-group ANOVA.</span
+        >
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/distribution/">
+        <strong>Distribution Calculator</strong>
+        <span
+          >Look up F-distribution probabilities and critical values that support ANOVA
+          interpretation.</span
+        >
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/">
+        <strong>Statistics Calculator</strong>
+        <span>Profile each group separately before comparing them together.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="analysis-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li>
+        <strong>Input rule:</strong> Every group must contain numeric values, and at least two
+        groups are required.
+      </li>
+      <li>
+        <strong>Assumption rule:</strong> Independence and roughly similar group variances matter
+        for reliable interpretation.
+      </li>
+      <li>
+        <strong>Decision rule:</strong> Significance tells you that some group difference exists,
+        not which pair caused it.
+      </li>
+        <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this anova calculator tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+  </section>
+</div>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
     <script type="module" src="/calculators/math/statistics/anova/module.js?v=20260224"></script>
   </body>

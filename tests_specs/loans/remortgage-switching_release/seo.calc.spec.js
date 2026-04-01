@@ -5,11 +5,11 @@ test.describe('Remortgage / Switching Calculator SEO', () => {
     await page.goto('/loan-calculators/remortgage-calculator/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#calculator-title')).toHaveText('Remortgage Calculator (Switching)');
 
-    await expect(page).toHaveTitle('Remortgage Calculator (Switching) | Break-even | CalcHowMuch');
+    await expect(page).toHaveTitle('Remortgage Calculator | Break-Even, Payment & Savings');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon.'
+      'Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

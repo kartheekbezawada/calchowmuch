@@ -4,11 +4,11 @@ test.describe('Future Value of Annuity Calculator SEO', () => {
   test('FVA-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/future-value-of-annuity-calculator');
 
-    await expect(page).toHaveTitle('Future Value of Annuity Calculator | Ordinary or Due');
+    await expect(page).toHaveTitle('Future Value of Annuity Calculator | Savings Plan Growth');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.'
+      'Project how recurring payments could grow using return rate, payment periods, and ordinary or due annuity timing.'
     );
 
     const h1 = page.locator('h1');
@@ -21,11 +21,11 @@ test.describe('Future Value of Annuity Calculator SEO', () => {
     expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/future-value-of-annuity-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBe('Future Value of Annuity Calculator | Ordinary or Due');
+    expect(ogTitle).toBe('Future Value of Annuity Calculator | Savings Plan Growth');
 
     const ogDescription = await page.locator('meta[property="og:description"]').getAttribute('content');
     expect(ogDescription).toBe(
-      'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.'
+      'Project how recurring payments could grow using return rate, payment periods, and ordinary or due annuity timing.'
     );
 
     const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');

@@ -4,11 +4,11 @@ test.describe('Age Calculator SEO', () => {
   test('AGE-TEST-SEO-1: metadata, headings, FAQ schema, and sitemap', async ({ page }) => {
     await page.goto('/time-and-date/age-calculator/');
 
-    await expect(page).toHaveTitle('Age Calculator | Exact Age, Total Days & Next Birthday');
+    await expect(page).toHaveTitle('Age Calculator | Exact Age in Years, Months, Days & Next Birthday');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find exact age in years, months, and days from a birth date or any as-of date. See total days, total weeks, and your next birthday countdown.'
+      'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.'
     );
 
     const h1 = page.locator('h1');
@@ -44,11 +44,30 @@ test.describe('Age Calculator SEO', () => {
     );
 
     const explanation = page.locator('#age-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation).toContainText('How old am I on a specific date?');
-    await expect(explanation).toContainText('How to Guide');
-    await expect(explanation).toContainText('FAQ');
-    await expect(explanation).toContainText('Important Notes');
+    await expect(
+      explanation.getByRole('heading', {
+        level: 2,
+        name: 'How old am I on a specific date?',
+      })
+    ).toBeVisible();
+    await expect(
+      explanation.getByRole('heading', {
+        level: 3,
+        name: 'How to Guide',
+      })
+    ).toBeVisible();
+    await expect(
+      explanation.getByRole('heading', {
+        level: 3,
+        name: 'FAQ',
+      })
+    ).toBeVisible();
+    await expect(
+      explanation.getByRole('heading', {
+        level: 3,
+        name: 'Important Notes',
+      })
+    ).toBeVisible();
     await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
     await expect(explanation.locator('.age-faq-item')).toHaveCount(10);
 

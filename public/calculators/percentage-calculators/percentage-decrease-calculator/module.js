@@ -125,9 +125,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Percentage Decrease Calculator | Drop from Original',
+  title: 'Percentage Decrease Calculator | Percentage Drop from Original',
   description:
-    'Calculate how much a value decreased from its original amount using the standard percentage drop formula.',
+    'Calculate percentage decrease from an original value to a lower value and see the drop amount, direction, and formula in one step.',
   canonical: 'https://calchowmuch.com/percentage-calculators/percentage-decrease-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

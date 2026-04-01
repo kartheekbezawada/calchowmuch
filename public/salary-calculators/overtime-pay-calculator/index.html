@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Overtime Pay Calculator – Estimate Extra Earnings</title>
-    <meta name="description" content="Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output." />
+    <title>Overtime Pay Calculator | Extra Pay and Total Gross Earnings</title>
+    <meta name="description" content="Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/overtime-pay-calculator/" />
-    <meta property="og:title" content="Overtime Pay Calculator – Estimate Extra Earnings" />
-    <meta property="og:description" content="Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output." />
+    <meta property="og:title" content="Overtime Pay Calculator | Extra Pay and Total Gross Earnings" />
+    <meta property="og:description" content="Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/overtime-pay-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Overtime Pay Calculator – Estimate Extra Earnings" />
-    <meta name="twitter:description" content="Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output." />
+    <meta name="twitter:title" content="Overtime Pay Calculator | Extra Pay and Total Gross Earnings" />
+    <meta name="twitter:description" content="Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -975,11 +975,16 @@
 
       .sal-cluster-layout-main {
         padding: 40px 0 64px;
+        min-width: 0;
       }
 
       .sal-cluster-panel {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 28px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-page-shell #calculator-title {
@@ -1009,7 +1014,19 @@
 
       .sal-cluster-flow {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
+      .sal-cluster-panel > *,
+      .sal-cluster-flow > * {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-section {
@@ -1125,6 +1142,9 @@
       .sal-support-grid {
         display: grid;
         gap: 16px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-shell {
@@ -1139,6 +1159,8 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: rgba(255, 255, 255, 0.94);
         box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-card {
@@ -1505,8 +1527,8 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#webpage","name":"Overtime Pay Calculator – Estimate Extra Earnings","url":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/","description":"Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#softwareapplication","name":"Overtime Pay Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/","description":"Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate overtime pay?","acceptedAnswer":{"@type":"Answer","text":"Multiply the hourly rate by overtime hours and the overtime multiplier."}},{"@type":"Question","name":"Why is the overtime multiplier editable?","acceptedAnswer":{"@type":"Answer","text":"Overtime treatment can vary by employer or situation, so you need to enter the multiplier that matches your case."}},{"@type":"Question","name":"Can I include total pay with overtime?","acceptedAnswer":{"@type":"Answer","text":"Yes. If base pay is entered, the calculator can show total pay plus overtime."}},{"@type":"Question","name":"Does this route assume a legal overtime rule?","acceptedAnswer":{"@type":"Answer","text":"No. It is a user-input calculator and does not imply one legal overtime standard."}},{"@type":"Question","name":"Does the result include tax deductions?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross overtime pay only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Overtime Pay Calculator","item":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#webpage","name":"Overtime Pay Calculator | Extra Pay and Total Gross Earnings","url":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/","description":"Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#softwareapplication","name":"Overtime Pay Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/","description":"Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate overtime pay?","acceptedAnswer":{"@type":"Answer","text":"Multiply the hourly rate by overtime hours and the overtime multiplier."}},{"@type":"Question","name":"Why is the overtime multiplier editable?","acceptedAnswer":{"@type":"Answer","text":"Overtime treatment can vary by employer or situation, so you need to enter the multiplier that matches your case."}},{"@type":"Question","name":"Can I include total pay with overtime?","acceptedAnswer":{"@type":"Answer","text":"Yes. If base pay is entered, the calculator can show total pay plus overtime."}},{"@type":"Question","name":"Does this route assume a legal overtime rule?","acceptedAnswer":{"@type":"Answer","text":"No. It is a user-input calculator and does not imply one legal overtime standard."}},{"@type":"Question","name":"Does the result include tax deductions?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross overtime pay only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Overtime Pay Calculator","item":"https://calchowmuch.com/salary-calculators/overtime-pay-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page sal-cluster-page-shell">
@@ -1529,7 +1551,7 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Overtime Pay Calculator</h1>
-    <p class="sal-cluster-page-intro">Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.</p>
+    <p class="sal-cluster-page-intro">Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-overtime-pay" class="sal-calc-shell">
@@ -1683,20 +1705,20 @@
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/inflation-calculator/">Inflation Calculator</a></h3>
-        <p>Check whether extra income is truly improving your buying power.</p>
+        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
+        <p>See how overtime changes total weekly gross pay instead of looking at overtime in isolation.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/future-value-calculator/">Future Value Calculator</a></h3>
-        <p>Project what irregular extra savings could become over time.</p>
+        <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
+        <p>Compare a higher base salary with overtime-heavy pay when deciding which increase matters more.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
-        <p>See how investing part of overtime pay can compound.</p>
+        <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
+        <p>Measure another kind of variable pay when the question is bonus income instead of extra hours.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/time-to-savings-goal-calculator/">Savings Goal Calculator</a></h3>
-        <p>Estimate how long extra overtime contributions may take to hit a goal.</p>
+        <h3><a href="/salary-calculators/commission-calculator/">Commission Earnings Calculator</a></h3>
+        <p>Compare overtime-driven income with another variable-pay route based on sales performance.</p>
       </article>
     </div>
   </section>

@@ -4,11 +4,11 @@ test.describe('Percentage Difference Calculator SEO', () => {
   test('PDIFF-TEST-SEO-1: metadata, schema, sitemap, and explanation parity', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-difference-calculator/');
 
-    await expect(page).toHaveTitle('Percentage Difference Calculator | Compare Two Values');
+    await expect(page).toHaveTitle('Percentage Difference Calculator | Compare Two Values Fairly');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate the symmetric percentage difference between two values using their average as the baseline.'
+      'Compare two values with the symmetric percentage difference formula that uses their average as the baseline when neither number is the original.'
     );
 
     const h1 = page.locator('h1');

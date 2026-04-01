@@ -72,9 +72,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Nap Time Calculator | Quick, Power or Afternoon Nap',
+  title: 'Nap Time Calculator | Best Nap Wake-Up Time',
   description:
-    'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.',
+    'Choose a quick, power, or longer nap and get the best wake-up time from your start time, nap length, and optional wake buffer.',
   canonical: 'https://calchowmuch.com/time-and-date/nap-time-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

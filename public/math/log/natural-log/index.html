@@ -3,26 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch</title>
-    <meta
-      name="description"
-      content="Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout."
-    />
+    <title>Natural Log Calculator | ln(x), e^x and Natural Log Rules</title>
+    <meta name="description" content="Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output." />
     <link rel="canonical" href="https://calchowmuch.com/math/log/natural-log/" />
-    <meta property="og:title" content="Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch" />
-    <meta
-      property="og:description"
-      content="Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout."
-    />
+    <meta property="og:title" content="Natural Log Calculator | ln(x), e^x and Natural Log Rules" />
+    <meta property="og:description" content="Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/log/natural-log/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch" />
-    <meta
-      name="twitter:description"
-      content="Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout."
-    />
+    <meta name="twitter:title" content="Natural Log Calculator | ln(x), e^x and Natural Log Rules" />
+    <meta name="twitter:description" content="Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1478,699 +1549,387 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/log/natural-log/#webpage",
-            "name": "Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch",
-            "url": "https://calchowmuch.com/math/log/natural-log/",
-            "description": "Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": { "@id": "https://calchowmuch.com/math/log/natural-log/#softwareapplication" },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/log/natural-log/#softwareapplication"
-            },
-            "breadcrumb": { "@id": "https://calchowmuch.com/math/log/natural-log/#breadcrumbs" }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/log/natural-log/#softwareapplication",
-            "name": "Natural Log Calculator",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/log/natural-log/",
-            "description": "Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/log/natural-log/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is a natural logarithm?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is the logarithm with base e, where e is about 2.718281828."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why does ln(e) equal 1?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Because e raised to the power of 1 is exactly e."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why does ln(1) equal 0?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Any positive base raised to the power of 0 equals 1."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can x be negative?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. For real-number output, natural logs only accept positive inputs."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why is ln(x) negative for values below 1?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Because e must be raised to a negative power to produce numbers between 0 and 1."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why does the graph rise slowly?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The natural log keeps increasing, but it grows much more slowly than a straight line."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does the exponential check mean?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It shows the inverse relationship by rewriting ln(x) as e raised to the solved value."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Should I increase decimal places?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Use more decimals when you need a tighter numeric check or a more exact rounded answer."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is this the same as log base 10?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. Natural logs use base e, while common logs use base 10."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "When is ln(x) useful?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is useful in growth models, continuous compounding, decay problems, and algebraic solving."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/log/natural-log/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Natural Log Calculator",
-                "item": "https://calchowmuch.com/math/log/natural-log/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/log/natural-log/#webpage","name":"Natural Log Calculator | ln(x), e^x and Natural Log Rules","url":"https://calchowmuch.com/math/log/natural-log/","description":"Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/log/natural-log/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/log/natural-log/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/log/natural-log/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/log/natural-log/#softwareapplication","name":"Natural Log Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/log/natural-log/","description":"Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/log/natural-log/#faq","mainEntity":[{"@type":"Question","name":"What is a natural logarithm?","acceptedAnswer":{"@type":"Answer","text":"It is the logarithm with base e, where e is about 2.718281828."}},{"@type":"Question","name":"Why does ln(e) equal 1?","acceptedAnswer":{"@type":"Answer","text":"Because e raised to the power of 1 is exactly e."}},{"@type":"Question","name":"Why does ln(1) equal 0?","acceptedAnswer":{"@type":"Answer","text":"Any positive base raised to the power of 0 equals 1."}},{"@type":"Question","name":"Can x be negative?","acceptedAnswer":{"@type":"Answer","text":"No. For real-number output, natural logs only accept positive inputs."}},{"@type":"Question","name":"Why is ln(x) negative for values below 1?","acceptedAnswer":{"@type":"Answer","text":"Because e must be raised to a negative power to produce numbers between 0 and 1."}},{"@type":"Question","name":"Why does the graph rise slowly?","acceptedAnswer":{"@type":"Answer","text":"The natural log keeps increasing, but it grows much more slowly than a straight line."}},{"@type":"Question","name":"What does the exponential check mean?","acceptedAnswer":{"@type":"Answer","text":"It shows the inverse relationship by rewriting ln(x) as e raised to the solved value."}},{"@type":"Question","name":"Should I increase decimal places?","acceptedAnswer":{"@type":"Answer","text":"Use more decimals when you need a tighter numeric check or a more exact rounded answer."}},{"@type":"Question","name":"Is this the same as log base 10?","acceptedAnswer":{"@type":"Answer","text":"No. Natural logs use base e, while common logs use base 10."}},{"@type":"Question","name":"When is ln(x) useful?","acceptedAnswer":{"@type":"Answer","text":"It is useful in growth models, continuous compounding, decay problems, and algebraic solving."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/log/natural-log/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Natural Log Calculator","item":"https://calchowmuch.com/math/log/natural-log/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Natural Log Calculator</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Natural Log Calculator</h1>
-              <p class="math-cluster-page-intro">
-                Compute ln(x), confirm the matching e^y = x statement, and read the natural log
-                curve in a light answer-first calculator layout.
-              </p>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Natural Log Calculator</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Natural Log Calculator</h1>
+    <p class="math-cluster-page-intro">Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="natural-log-calculator">
+  <div class="ln-shell">
+    <section class="ln-card ln-hero-card" aria-label="Natural log overview">
+      <div class="ln-hero-copy">
+        <p class="ln-eyebrow">Simple Smooth Wow</p>
+        <h2 class="ln-title">Find ln(x), check the matching exponential form, and see the log curve in one answer-first view.</h2>
+        <p class="ln-subtitle">
+          Enter any positive value, choose the precision you need, and calculate once. The answer
+          card keeps the ln value, sign, and exponential check visible while the graph card shows
+          where your input sits on the natural log curve.
+        </p>
+      </div>
+      <ul class="ln-hero-points">
+        <li>Best for quick ln(x) checks, exponential inversion, and interpreting values below or above 1.</li>
+        <li>The answer card surfaces ln(x), the equivalent exponential statement, and a sign summary first.</li>
+        <li>The graph card stays nearby so the curve behavior stays visible without leaving the first screen.</li>
+      </ul>
+    </section>
+
+    <div class="ln-workbench">
+      <div class="ln-left-stack">
+        <section class="ln-card ln-input-card" aria-label="Natural log inputs">
+          <div class="ln-card-head">
+            <div>
+              <p class="ln-section-label">Inputs</p>
+              <p class="ln-card-title">Set the value and precision</p>
             </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="natural-log-calculator">
-                <div class="ln-shell">
-                  <section class="ln-card ln-hero-card" aria-label="Natural log overview">
-                    <div class="ln-hero-copy">
-                      <p class="ln-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="ln-title">
-                        Find ln(x), check the matching exponential form, and see the log curve in
-                        one answer-first view.
-                      </h2>
-                      <p class="ln-subtitle">
-                        Enter any positive value, choose the precision you need, and calculate once.
-                        The answer card keeps the ln value, sign, and exponential check visible
-                        while the graph card shows where your input sits on the natural log curve.
-                      </p>
-                    </div>
-                    <ul class="ln-hero-points">
-                      <li>
-                        Best for quick ln(x) checks, exponential inversion, and interpreting values
-                        below or above 1.
-                      </li>
-                      <li>
-                        The answer card surfaces ln(x), the equivalent exponential statement, and a
-                        sign summary first.
-                      </li>
-                      <li>
-                        The graph card stays nearby so the curve behavior stays visible without
-                        leaving the first screen.
-                      </li>
-                    </ul>
-                  </section>
-
-                  <div class="ln-workbench">
-                    <div class="ln-left-stack">
-                      <section class="ln-card ln-input-card" aria-label="Natural log inputs">
-                        <div class="ln-card-head">
-                          <div>
-                            <p class="ln-section-label">Inputs</p>
-                            <p class="ln-card-title">Set the value and precision</p>
-                          </div>
-                          <span class="ln-chip">Answer-first</span>
-                        </div>
-
-                        <p class="ln-helper">
-                          Natural logs only work for positive values, so enter x greater than zero
-                          before you calculate.
-                        </p>
-
-                        <label class="ln-field" for="ln-value">
-                          <span>Value (x)</span>
-                          <input
-                            id="ln-value"
-                            type="number"
-                            step="any"
-                            min="0.0001"
-                            value="2.71828"
-                          />
-                        </label>
-
-                        <label class="ln-field" for="ln-decimals">
-                          <span>Decimal places</span>
-                          <select id="ln-decimals">
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4" selected="">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                          </select>
-                        </label>
-
-                        <div class="ln-hint-row">
-                          <span class="ln-inline-note"
-                            >Higher precision helps when you want a tighter exponential check or
-                            cleaner graph readout.</span
-                          >
-                        </div>
-
-                        <button
-                          id="ln-calculate"
-                          class="calculator-button ln-calc-button"
-                          type="button"
-                        >
-                          Compute ln(x)
-                        </button>
-                      </section>
-
-                      <section class="ln-card ln-graph-card" aria-label="Natural log graph">
-                        <div class="ln-card-head">
-                          <div>
-                            <p class="ln-section-label">Graph</p>
-                            <p class="ln-card-title">
-                              Natural log curve with your input highlighted
-                            </p>
-                          </div>
-                          <span class="ln-chip ln-chip--graph">Curve view</span>
-                        </div>
-
-                        <div class="ln-graph-panel">
-                          <canvas
-                            id="ln-graph"
-                            class="ln-graph-canvas"
-                            width="360"
-                            height="240"
-                            aria-label="Natural log graph"
-                          ></canvas>
-                        </div>
-                        <p id="ln-graph-note" class="ln-graph-note">
-                          Graph updates after you compute ln(x).
-                        </p>
-                      </section>
-                    </div>
-
-                    <section class="ln-card ln-answer-card" aria-label="Natural log answer summary">
-                      <div class="ln-card-head">
-                        <div>
-                          <p class="ln-section-label">Answer</p>
-                          <p class="ln-card-title">
-                            Natural log value, exponential check, and quick interpretation
-                          </p>
-                        </div>
-                        <span class="ln-chip ln-chip--answer">ln(x) result</span>
-                      </div>
-
-                      <div class="result ln-result-card" id="ln-result" aria-live="polite"></div>
-                      <div
-                        class="result-detail ln-detail-card"
-                        id="ln-detail"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="ln-snapshot-grid" aria-label="Natural log snapshot">
-                        <article class="ln-snapshot-card">
-                          <span>Input</span>
-                          <strong data-ln-snap="value">-</strong>
-                        </article>
-                        <article class="ln-snapshot-card">
-                          <span>ln(x)</span>
-                          <strong data-ln-snap="result">-</strong>
-                        </article>
-                        <article class="ln-snapshot-card">
-                          <span>Decimals</span>
-                          <strong data-ln-snap="decimals">4</strong>
-                        </article>
-                        <article class="ln-snapshot-card">
-                          <span>Sign</span>
-                          <strong data-ln-snap="sign">-</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <style>
-                @import url('/calculators/math/log/shared.css?v=20260224');
-                @import url('/calculators/math/log/natural-log/calculator.css?v=20260224');
-              </style>
-
-              <section class="ln-exp-section">
-                <h2>Natural Log Calculator Practical Guide</h2>
-                <p>
-                  Use this natural log calculator to find <strong>ln(x)</strong>, confirm the
-                  matching exponential statement, and see where your input sits on the log curve. It
-                  is built for quick interpretation, so the answer card shows the ln value, sign,
-                  and graph context without burying the basics under dense notation.
-                </p>
-                <ul class="ln-summary-list">
-                  <li>
-                    <strong>Best for:</strong> checking ln(x), interpreting values below or above 1,
-                    and verifying exponential inverses.
-                  </li>
-                  <li>
-                    <strong>Quick answer flow:</strong> enter a positive x value, choose precision,
-                    then calculate once.
-                  </li>
-                  <li>
-                    <strong>Output includes:</strong> ln(x), the equivalent
-                    <strong>e^y = x</strong> form, sign summary, and a graph highlight.
-                  </li>
-                </ul>
-              </section>
-
-              <section class="ln-exp-section">
-                <h3>How to Guide</h3>
-                <ol>
-                  <li>Enter a positive number for <strong>x</strong>.</li>
-                  <li>Choose the number of decimal places you want in the result.</li>
-                  <li>Click <strong>Compute ln(x)</strong> to calculate the natural log.</li>
-                  <li>
-                    Read the answer card first, then use the graph to see where the input sits on
-                    the ln curve.
-                  </li>
-                </ol>
-              </section>
-
-              <section class="ln-exp-section">
-                <h3>Quick Answer Table</h3>
-                <div class="ln-table-wrap">
-                  <table class="ln-summary-table">
-                    <caption class="math-cluster-visually-hidden">
-                      Quick answer table for the natural log calculator
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Input pattern</th>
-                        <th scope="col">What ln(x) looks like</th>
-                        <th scope="col">Quick interpretation</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">x = 1</th>
-                        <td>ln(1) = 0</td>
-                        <td>The natural log crosses zero at 1.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">0 &lt; x &lt; 1</th>
-                        <td>Negative output</td>
-                        <td>The curve sits below the x-axis for inputs smaller than 1.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">x = e</th>
-                        <td>ln(e) = 1</td>
-                        <td>The natural log and the exponential base align cleanly here.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">x &gt; 1</th>
-                        <td>Positive output</td>
-                        <td>The curve grows slowly as x increases.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              <section class="ln-exp-section">
-                <h3>Formula Guide</h3>
-                <p>
-                  The natural logarithm answers the question,
-                  <strong>what power of e gives x?</strong> That means <strong>y = ln(x)</strong> is
-                  equivalent to <strong>e^y = x</strong>.
-                </p>
-                <p>
-                  Because <strong>e^x</strong> and <strong>ln(x)</strong> are inverse functions, the
-                  route also shows the exponential check directly in the answer card. That makes it
-                  easy to see whether the rounded ln result still maps back to the original x value.
-                </p>
-              </section>
-
-              <section class="ln-exp-section">
-                <h3>Worked Example</h3>
-                <div class="ln-example-grid">
-                  <article class="ln-example-card">
-                    <h4>ln(e) example</h4>
-                    <p>Enter <strong>2.718281828</strong> and keep the default precision.</p>
-                    <p>
-                      The route returns a value close to <strong>1</strong>, then confirms it with
-                      the equivalent exponential statement <strong>e^1 = 2.718282</strong>.
-                    </p>
-                  </article>
-                  <article class="ln-example-card">
-                    <h4>ln(0.5) example</h4>
-                    <p>Enter <strong>0.5</strong> to see a number below 1.</p>
-                    <p>
-                      The route returns a negative result close to <strong>-0.6931</strong>, which
-                      matches the fact that the natural log curve sits below zero between 0 and 1.
-                    </p>
-                  </article>
-                </div>
-              </section>
-
-              <section class="ln-exp-section">
-                <h3>FAQ</h3>
-                <div class="ln-faq-grid">
-                  <div class="faq-card">
-                    <h4>What is a natural logarithm?</h4>
-                    <p>It is the logarithm with base e, where e is about 2.718281828.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why does ln(e) equal 1?</h4>
-                    <p>Because e raised to the power of 1 is exactly e.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why does ln(1) equal 0?</h4>
-                    <p>Any positive base raised to the power of 0 equals 1.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can x be negative?</h4>
-                    <p>No. For real-number output, natural logs only accept positive inputs.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why is ln(x) negative for values below 1?</h4>
-                    <p>
-                      Because e must be raised to a negative power to produce numbers between 0 and
-                      1.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why does the graph rise slowly?</h4>
-                    <p>
-                      The natural log keeps increasing, but it grows much more slowly than a
-                      straight line.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What does the exponential check mean?</h4>
-                    <p>
-                      It shows the inverse relationship by rewriting ln(x) as e raised to the solved
-                      value.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Should I increase decimal places?</h4>
-                    <p>
-                      Use more decimals when you need a tighter numeric check or a more exact
-                      rounded answer.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Is this the same as log base 10?</h4>
-                    <p>No. Natural logs use base e, while common logs use base 10.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>When is ln(x) useful?</h4>
-                    <p>
-                      It is useful in growth models, continuous compounding, decay problems, and
-                      algebraic solving.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section class="ln-exp-section">
-                <h3>Related Calculators</h3>
-                <div class="ln-related-grid">
-                  <a class="ln-related-card" href="/math/log/common-log/">
-                    <strong>Common Log Calculator</strong>
-                    <span
-                      >Switch to base-10 logs when you want scientific notation and decibel-style
-                      reasoning.</span
-                    >
-                  </a>
-                  <a class="ln-related-card" href="/math/log/exponential-equations/">
-                    <strong>Exponential Equations Solver</strong>
-                    <span>Move from ln(x) values into solving exponential equations directly.</span>
-                  </a>
-                  <a class="ln-related-card" href="/math/log/log-properties/">
-                    <strong>Logarithm Properties</strong>
-                    <span
-                      >Review product, quotient, and power rules when you need symbolic log
-                      manipulation.</span
-                    >
-                  </a>
-                </div>
-              </section>
-
-              <section class="ln-exp-section">
-                <h3>Important Notes</h3>
-                <ul class="ln-notes-list">
-                  <li><strong>Last updated:</strong> March 2026</li>
-                  <li>
-                    <strong>Domain:</strong> Natural logs only accept positive inputs for
-                    real-number output.
-                  </li>
-                  <li><strong>Key anchor points:</strong> ln(1) = 0 and ln(e) = 1.</li>
-                  <li>
-                    <strong>Graph rule:</strong> The curve has a vertical asymptote at x = 0 and
-                    rises slowly for larger x.
-                  </li>
-                  <li>
-                    <strong>Use case:</strong> This tool is built for quick numeric interpretation,
-                    not symbolic proof writing.
-                  </li>
-                </ul>
-              </section>
-            </div>
+            <span class="ln-chip">Answer-first</span>
           </div>
+
+          <p class="ln-helper">Natural logs only work for positive values, so enter x greater than zero before you calculate.</p>
+
+          <label class="ln-field" for="ln-value">
+            <span>Value (x)</span>
+            <input id="ln-value" type="number" step="any" min="0.0001" value="2.71828" />
+          </label>
+
+          <label class="ln-field" for="ln-decimals">
+            <span>Decimal places</span>
+            <select id="ln-decimals">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </label>
+
+          <div class="ln-hint-row">
+            <span class="ln-inline-note">Higher precision helps when you want a tighter exponential check or cleaner graph readout.</span>
+          </div>
+
+          <button id="ln-calculate" class="calculator-button ln-calc-button" type="button">Compute ln(x)</button>
+        </section>
+
+        <section class="ln-card ln-graph-card" aria-label="Natural log graph">
+          <div class="ln-card-head">
+            <div>
+              <p class="ln-section-label">Graph</p>
+              <p class="ln-card-title">Natural log curve with your input highlighted</p>
+            </div>
+            <span class="ln-chip ln-chip--graph">Curve view</span>
+          </div>
+
+          <div class="ln-graph-panel">
+            <canvas id="ln-graph" class="ln-graph-canvas" width="360" height="240" aria-label="Natural log graph"></canvas>
+          </div>
+          <p id="ln-graph-note" class="ln-graph-note">Graph updates after you compute ln(x).</p>
+        </section>
+      </div>
+
+      <section class="ln-card ln-answer-card" aria-label="Natural log answer summary">
+        <div class="ln-card-head">
+          <div>
+            <p class="ln-section-label">Answer</p>
+            <p class="ln-card-title">Natural log value, exponential check, and quick interpretation</p>
+          </div>
+          <span class="ln-chip ln-chip--answer">ln(x) result</span>
+        </div>
+
+        <div class="result ln-result-card" id="ln-result" aria-live="polite"></div>
+        <div class="result-detail ln-detail-card" id="ln-detail" aria-live="polite"></div>
+
+        <div class="ln-snapshot-grid" aria-label="Natural log snapshot">
+          <article class="ln-snapshot-card">
+            <span>Input</span>
+            <strong data-ln-snap="value">-</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>ln(x)</span>
+            <strong data-ln-snap="result">-</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>Decimals</span>
+            <strong data-ln-snap="decimals">4</strong>
+          </article>
+          <article class="ln-snapshot-card">
+            <span>Sign</span>
+            <strong data-ln-snap="sign">-</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/log/shared.css?v=20260224');
+  @import url('/calculators/math/log/natural-log/calculator.css?v=20260224');
+</style>
+
+    <section class="ln-exp-section">
+  <h2>Natural Log Calculator Practical Guide</h2>
+  <p>
+    Use this natural log calculator to find <strong>ln(x)</strong>, confirm the matching exponential
+    statement, and see where your input sits on the log curve. It is built for quick interpretation,
+    so the answer card shows the ln value, sign, and graph context without burying the basics under
+    dense notation.
+  </p>
+  <ul class="ln-summary-list">
+    <li>
+      <strong>Best for:</strong> checking ln(x), interpreting values below or above 1, and verifying
+      exponential inverses.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> enter a positive x value, choose precision, then calculate
+      once.
+    </li>
+    <li>
+      <strong>Output includes:</strong> ln(x), the equivalent <strong>e^y = x</strong> form, sign
+      summary, and a graph highlight.
+    </li>
+  </ul>
+</section>
+
+<section class="ln-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Enter a positive number for <strong>x</strong>.</li>
+    <li>Choose the number of decimal places you want in the result.</li>
+    <li>Click <strong>Compute ln(x)</strong> to calculate the natural log.</li>
+    <li>
+      Read the answer card first, then use the graph to see where the input sits on the ln curve.
+    </li>
+  </ol>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="ln-table-wrap">
+    <table class="ln-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the natural log calculator
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Input pattern</th>
+          <th scope="col">What ln(x) looks like</th>
+          <th scope="col">Quick interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">x = 1</th>
+          <td>ln(1) = 0</td>
+          <td>The natural log crosses zero at 1.</td>
+        </tr>
+        <tr>
+          <th scope="row">0 &lt; x &lt; 1</th>
+          <td>Negative output</td>
+          <td>The curve sits below the x-axis for inputs smaller than 1.</td>
+        </tr>
+        <tr>
+          <th scope="row">x = e</th>
+          <td>ln(e) = 1</td>
+          <td>The natural log and the exponential base align cleanly here.</td>
+        </tr>
+        <tr>
+          <th scope="row">x &gt; 1</th>
+          <td>Positive output</td>
+          <td>The curve grows slowly as x increases.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The natural logarithm answers the question, <strong>what power of e gives x?</strong> That means
+    <strong>y = ln(x)</strong> is equivalent to <strong>e^y = x</strong>.
+  </p>
+  <p>
+    Because <strong>e^x</strong> and <strong>ln(x)</strong> are inverse functions, the route also
+    shows the exponential check directly in the answer card. That makes it easy to see whether the
+    rounded ln result still maps back to the original x value.
+  </p>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Worked Example</h3>
+  <div class="ln-example-grid">
+    <article class="ln-example-card">
+      <h4>ln(e) example</h4>
+      <p>Enter <strong>2.718281828</strong> and keep the default precision.</p>
+      <p>
+        The route returns a value close to <strong>1</strong>, then confirms it with the equivalent
+        exponential statement <strong>e^1 = 2.718282</strong>.
+      </p>
+    </article>
+    <article class="ln-example-card">
+      <h4>ln(0.5) example</h4>
+      <p>Enter <strong>0.5</strong> to see a number below 1.</p>
+      <p>
+        The route returns a negative result close to <strong>-0.6931</strong>, which matches the
+        fact that the natural log curve sits below zero between 0 and 1.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current natural log calculator problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="ln-exp-section">
+  <h3>FAQ</h3>
+  <div class="ln-faq-grid">
+    <div class="faq-card">
+      <h4>What is a natural logarithm?</h4>
+      <p>It is the logarithm with base e, where e is about 2.718281828.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does ln(e) equal 1?</h4>
+      <p>Because e raised to the power of 1 is exactly e.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does ln(1) equal 0?</h4>
+      <p>Any positive base raised to the power of 0 equals 1.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can x be negative?</h4>
+      <p>No. For real-number output, natural logs only accept positive inputs.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why is ln(x) negative for values below 1?</h4>
+      <p>Because e must be raised to a negative power to produce numbers between 0 and 1.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does the graph rise slowly?</h4>
+      <p>The natural log keeps increasing, but it grows much more slowly than a straight line.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does the exponential check mean?</h4>
+      <p>It shows the inverse relationship by rewriting ln(x) as e raised to the solved value.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Should I increase decimal places?</h4>
+      <p>Use more decimals when you need a tighter numeric check or a more exact rounded answer.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Is this the same as log base 10?</h4>
+      <p>No. Natural logs use base e, while common logs use base 10.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When is ln(x) useful?</h4>
+      <p>
+        It is useful in growth models, continuous compounding, decay problems, and algebraic
+        solving.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="ln-related-grid">
+    <a class="ln-related-card" href="/math/log/common-log/">
+      <strong>Common Log Calculator</strong>
+      <span
+        >Switch to base-10 logs when you want scientific notation and decibel-style reasoning.</span
+      >
+    </a>
+    <a class="ln-related-card" href="/math/log/exponential-equations/">
+      <strong>Exponential Equations Solver</strong>
+      <span>Move from ln(x) values into solving exponential equations directly.</span>
+    </a>
+    <a class="ln-related-card" href="/math/log/log-properties/">
+      <strong>Logarithm Properties</strong>
+      <span
+        >Review product, quotient, and power rules when you need symbolic log manipulation.</span
+      >
+    </a>
+  </div>
+</section>
+
+<section class="ln-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="ln-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li>
+      <strong>Domain:</strong> Natural logs only accept positive inputs for real-number output.
+    </li>
+    <li><strong>Key anchor points:</strong> ln(1) = 0 and ln(e) = 1.</li>
+    <li>
+      <strong>Graph rule:</strong> The curve has a vertical asymptote at x = 0 and rises slowly for
+      larger x.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool is built for quick numeric interpretation, not symbolic
+      proof writing.
+    </li>
+      <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this natural log calculator tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+</section>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
     <script type="module" src="/calculators/math/log/natural-log/module.js?v=20260224"></script>
   </body>

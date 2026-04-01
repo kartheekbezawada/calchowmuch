@@ -4,11 +4,11 @@ test.describe('Wake-Up Time Calculator SEO', () => {
   test('WAKEUP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/wake-up-time-calculator/');
 
-    await expect(page).toHaveTitle('Wake-Up Time Calculator | Sleep Cycle Wake Times');
+    await expect(page).toHaveTitle('Wake-Up Time Calculator | Best Alarm Times by Sleep Cycle');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find wake-up times based on 90-minute sleep cycles and compare 4, 5, or 6 cycle options.'
+      'Calculate the best wake-up times from a target bedtime using 90-minute sleep cycles, then compare 4, 5, or 6 cycle options before you set an alarm.'
     );
 
     const h1 = page.locator('h1');

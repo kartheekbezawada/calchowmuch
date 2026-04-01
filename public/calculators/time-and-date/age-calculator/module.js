@@ -72,9 +72,9 @@ export const pageSchema = {
 };
 
 const metadata = {
-  title: 'Age Calculator | Exact Age, Total Days & Next Birthday',
+  title: 'Age Calculator | Exact Age in Years, Months, Days & Next Birthday',
   description:
-    'Find exact age in years, months, and days from a birth date or any as-of date. See total days, total weeks, and your next birthday countdown.',
+    'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.',
   canonical: 'https://calchowmuch.com/time-and-date/age-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -83,10 +83,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Age Calculator | Exact Age, Total Days & Next Birthday',
+        name: 'Age Calculator | Exact Age in Years, Months, Days & Next Birthday',
         url: 'https://calchowmuch.com/time-and-date/age-calculator/',
         description:
-          'Find exact age in years, months, and days from a birth date or any as-of date. See total days, total weeks, and your next birthday countdown.',
+          'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.',
         inLanguage: 'en',
       },
       {

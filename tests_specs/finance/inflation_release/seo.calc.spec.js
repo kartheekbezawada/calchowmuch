@@ -5,12 +5,12 @@ test.describe('Inflation Calculator SEO', () => {
     await page.goto('/finance-calculators/inflation-calculator/');
 
     await expect(page).toHaveTitle(
-      'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch'
+      'Inflation Calculator | CPI Purchasing Power'
     );
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.'
+      'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.'
     );
 
     const h1 = page.locator('h1');
@@ -26,11 +26,11 @@ test.describe('Inflation Calculator SEO', () => {
 
     await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
       'content',
-      'Inflation Calculator – CPI-Based Value & Purchasing Power Over Time | CalcHowMuch'
+      'Inflation Calculator | CPI Purchasing Power'
     );
     await expect(page.locator('meta[property="og:description"]')).toHaveAttribute(
       'content',
-      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.'
+      'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.'
     );
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');

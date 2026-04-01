@@ -4,11 +4,11 @@ test.describe('Effective Annual Rate Calculator SEO', () => {
   test('EAR-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/effective-annual-rate-calculator');
 
-    await expect(page).toHaveTitle('Effective Annual Rate Calculator | True Annual Rate');
+    await expect(page).toHaveTitle('Effective Annual Rate Calculator | APR to EAR');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.'
+      'Convert a nominal rate or APR into effective annual rate so you can compare the true yearly borrowing cost or return.'
     );
 
     const h1 = page.locator('h1');
@@ -21,7 +21,7 @@ test.describe('Effective Annual Rate Calculator SEO', () => {
     expect(canonicalHref).toBe('https://calchowmuch.com/finance-calculators/effective-annual-rate-calculator/');
 
     const ogTitle = await page.locator('meta[property="og:title"]').getAttribute('content');
-    expect(ogTitle).toBe('Effective Annual Rate Calculator | True Annual Rate');
+    expect(ogTitle).toBe('Effective Annual Rate Calculator | APR to EAR');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);

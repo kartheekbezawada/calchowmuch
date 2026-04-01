@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Car Loan Calculator SEO', () => {
   test('CAR-LOAN-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
-    const expectedTitle = 'Car Loan Calculator | Monthly Payment & Cost';
+    const expectedTitle = 'Car Loan Calculator | Payment, APR & Total Cost';
     const expectedDescription =
-      'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.';
+      'Estimate car loan monthly payment, amount financed, total interest, and total cost using price, deposit, trade-in, fees, tax, APR, and term.';
 
     await page.goto('/car-loan-calculators/car-loan-calculator');
 
@@ -63,7 +63,7 @@ test.describe('Car Loan Calculator SEO', () => {
     const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(webpageSchema?.name).toBe('Car Loan Calculator | Monthly Payment & Cost');
+    expect(webpageSchema?.name).toBe('Car Loan Calculator | Payment, APR & Total Cost');
     expect(webpageSchema?.primaryImageOfPage?.url).toBe(
       'https://calchowmuch.com/assets/images/og-default.png'
     );

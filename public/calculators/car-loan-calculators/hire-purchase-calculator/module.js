@@ -142,9 +142,9 @@ const CALCULATOR_STRUCTURED_DATA = {
       '@type': 'WebPage',
       '@id': 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/#webpage',
       url: 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/',
-      name: 'Hire Purchase Calculator | Monthly Payment & Cost',
+      name: 'Hire Purchase Calculator | Payment, Balloon & Total Cost',
       description:
-        'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.',
+        'Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://calchowmuch.com/#website',
@@ -164,7 +164,7 @@ const CALCULATOR_STRUCTURED_DATA = {
       operatingSystem: 'Any',
       url: 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/',
       description:
-        'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.',
+        'Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.',
     },
     {
       '@type': 'BreadcrumbList',
@@ -194,9 +194,9 @@ const CALCULATOR_STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Hire Purchase Calculator | Monthly Payment & Cost',
+  title: 'Hire Purchase Calculator | Payment, Balloon & Total Cost',
   description:
-    'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.',
+    'Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.',
   canonical: 'https://calchowmuch.com/car-loan-calculators/hire-purchase-calculator/',
   structuredData: CALCULATOR_STRUCTURED_DATA,
 };

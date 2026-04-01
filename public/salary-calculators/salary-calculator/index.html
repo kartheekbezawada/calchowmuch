@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Salary Calculator – Convert Pay Across Time Periods</title>
-    <meta name="description" content="Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions." />
+    <title>Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay</title>
+    <meta name="description" content="Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/salary-calculator/" />
-    <meta property="og:title" content="Salary Calculator – Convert Pay Across Time Periods" />
-    <meta property="og:description" content="Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions." />
+    <meta property="og:title" content="Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay" />
+    <meta property="og:description" content="Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/salary-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Salary Calculator – Convert Pay Across Time Periods" />
-    <meta name="twitter:description" content="Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions." />
+    <meta name="twitter:title" content="Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay" />
+    <meta name="twitter:description" content="Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -975,11 +975,16 @@
 
       .sal-cluster-layout-main {
         padding: 40px 0 64px;
+        min-width: 0;
       }
 
       .sal-cluster-panel {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 28px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-page-shell #calculator-title {
@@ -1009,7 +1014,19 @@
 
       .sal-cluster-flow {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
+      .sal-cluster-panel > *,
+      .sal-cluster-flow > * {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-section {
@@ -1125,6 +1142,9 @@
       .sal-support-grid {
         display: grid;
         gap: 16px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-shell {
@@ -1139,6 +1159,8 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: rgba(255, 255, 255, 0.94);
         box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-card {
@@ -1505,8 +1527,8 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator – Convert Pay Across Time Periods","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does a salary calculator show?","acceptedAnswer":{"@type":"Answer","text":"It converts one pay amount into hourly, daily, weekly, biweekly, monthly, and annual views using your schedule inputs."}},{"@type":"Question","name":"Can I convert hourly pay to annual salary?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter an hourly rate plus hours per week and weeks per year to estimate annual pay."}},{"@type":"Question","name":"Can I compare daily and weekly pay too?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator shows daily and weekly pay alongside the other converted results."}},{"@type":"Question","name":"Do schedule assumptions change the result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Hours per week, weeks per year, and days per week can change the converted values a lot."}},{"@type":"Question","name":"Does this include taxes or deductions?","acceptedAnswer":{"@type":"Answer","text":"No. The calculator estimates gross pay only and does not include taxes, deductions, bonuses, or overtime."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does a salary calculator show?","acceptedAnswer":{"@type":"Answer","text":"It converts one pay amount into hourly, daily, weekly, biweekly, monthly, and annual views using your schedule inputs."}},{"@type":"Question","name":"Can I convert hourly pay to annual salary?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter an hourly rate plus hours per week and weeks per year to estimate annual pay."}},{"@type":"Question","name":"Can I compare daily and weekly pay too?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator shows daily and weekly pay alongside the other converted results."}},{"@type":"Question","name":"Do schedule assumptions change the result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Hours per week, weeks per year, and days per week can change the converted values a lot."}},{"@type":"Question","name":"Does this include taxes or deductions?","acceptedAnswer":{"@type":"Answer","text":"No. The calculator estimates gross pay only and does not include taxes, deductions, bonuses, or overtime."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page sal-cluster-page-shell">
@@ -1529,7 +1551,7 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Salary Calculator</h1>
-    <p class="sal-cluster-page-intro">Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.</p>
+    <p class="sal-cluster-page-intro">Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-salary-calculator" class="sal-calc-shell">
@@ -1718,20 +1740,20 @@
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/inflation-calculator/">Inflation Calculator</a></h3>
-        <p>Check whether rising prices are reducing the buying power behind your pay.</p>
+        <h3><a href="/salary-calculators/hourly-to-salary-calculator/">Hourly to Salary Calculator</a></h3>
+        <p>Start with an hourly wage when you need to convert a quoted rate into annual and monthly gross pay.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/future-value-calculator/">Future Value Calculator</a></h3>
-        <p>Project how much today’s savings could grow over time.</p>
+        <h3><a href="/salary-calculators/salary-to-hourly-calculator/">Salary to Hourly Calculator</a></h3>
+        <p>Reverse the comparison when you want to judge a salary offer by the hourly rate it implies.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
-        <p>See how regular investing can turn extra income into long-term growth.</p>
+        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
+        <p>Focus on weekly gross pay when budgeting around hours worked and overtime instead of annual totals.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/time-to-savings-goal-calculator/">Savings Goal Calculator</a></h3>
-        <p>Estimate how long it could take to reach a target with steady contributions.</p>
+        <h3><a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Salary Calculator</a></h3>
+        <p>Check whether the gross pay you convert here is still improving real buying power after inflation.</p>
       </article>
     </div>
   </section>

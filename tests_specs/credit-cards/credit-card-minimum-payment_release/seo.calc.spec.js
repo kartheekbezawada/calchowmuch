@@ -3,9 +3,9 @@ import { expect, test } from '@playwright/test';
 test.describe('Credit Card Minimum Payment Calculator SEO', () => {
   test('MINPAY-TEST-SEO-1: metadata, schema, FAQ parity, and sitemap', async ({ page }) => {
     const route = '/credit-card-calculators/credit-card-minimum-payment-calculator/';
-    const expectedTitle = 'Credit Card Minimum Payment Calculator | Payoff Cost';
+    const expectedTitle = 'Credit Card Minimum Payment Calculator | Payoff Time & Interest';
     const expectedDescription =
-      'See how long minimum-only credit card payments take, what your first payment may be, and how much interest you could pay overall.';
+      'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.';
 
     await page.goto(route);
 

@@ -6,11 +6,11 @@ test.describe('Birthday Day-of-Week SEO', () => {
   }) => {
     await page.goto('/time-and-date/birthday-day-of-week');
 
-    await expect(page).toHaveTitle('Birthday Day-of-Week Calculator | Find Your Birth Weekday');
+    await expect(page).toHaveTitle('Birthday Day-of-Week Calculator | Find the Day You Were Born');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.'
+      'Find the weekday you were born on, preview future birthday weekdays, and spot upcoming Friday, Saturday, or Sunday birthdays for planning.'
     );
 
     const h1 = page.locator('h1');

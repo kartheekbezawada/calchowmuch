@@ -116,9 +116,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Discount Calculator | Sale Price and Savings',
+  title: 'Discount Calculator | Sale Price, Savings & Percent Off',
   description:
-    'Calculate the sale price after a percentage discount and see exactly how much you save.',
+    'Calculate sale price, discount amount, and savings from percent-off deals so you can compare coupons, promotions, and marked-down prices.',
   canonical: 'https://calchowmuch.com/pricing-calculators/discount-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -127,10 +127,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Discount Calculator | Sale Price and Savings',
+        name: 'Discount Calculator | Sale Price, Savings & Percent Off',
         url: 'https://calchowmuch.com/pricing-calculators/discount-calculator/',
         description:
-          'Calculate the sale price after a percentage discount and see exactly how much you save.',
+          'Calculate sale price, discount amount, and savings from percent-off deals so you can compare coupons, promotions, and marked-down prices.',
         inLanguage: 'en',
       },
       {
@@ -140,7 +140,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/pricing-calculators/discount-calculator/',
         description:
-          'Free discount calculator for sale price, discount amount, and savings after a percentage discount.',
+          'Free discount calculator for sale price, discount amount, and savings from percent-off deals and promotional pricing.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {

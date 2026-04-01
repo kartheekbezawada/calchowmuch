@@ -23,7 +23,7 @@ setPageMetadata(
   buildSalaryMetadata({
     title: 'Inflation Adjusted Salary Calculator | Real Raise vs Inflation',
     description:
-      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise keeps up with inflation.',
+      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise beats inflation in real terms.',
     canonical: 'https://calchowmuch.com/salary-calculators/inflation-adjusted-salary-calculator/',
     name: 'Inflation Adjusted Salary Calculator',
     appDescription:

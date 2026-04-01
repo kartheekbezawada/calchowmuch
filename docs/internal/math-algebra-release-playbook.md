@@ -77,9 +77,8 @@ Run exactly:
 3. `CLUSTER=math CALC=<calc> npm run test:calc:e2e`
 4. `CLUSTER=math CALC=<calc> npm run test:calc:seo`
 5. `CLUSTER=math CALC=<calc> npm run test:calc:cwv`
-6. `CLUSTER=math CALC=<calc> npm run test:schema:dedupe -- --scope=calc`
-7. `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` (only when shared files changed)
-8. `npm run test:cluster:contracts`
+6. `ALLOW_SHARED_CONTRACT_CHANGE=1 npm run test:isolation:scope` (only when shared files changed)
+7. `npm run test:cluster:contracts`
 
 If in-scope failures happen, fix and re-run.
 

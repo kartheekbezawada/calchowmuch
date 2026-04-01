@@ -123,9 +123,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Reverse Percentage Calculator – Find Original Value',
+  title: 'Reverse Percentage Calculator | Find the Original Value',
   description:
-    'Calculate reverse percentages instantly. Find the original value from a percentage with clear results, examples, and step-by-step explanations.',
+    'Find the original value before a percentage was applied when you know the final value and the percentage rate.',
   canonical: 'https://calchowmuch.com/percentage-calculators/reverse-percentage-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

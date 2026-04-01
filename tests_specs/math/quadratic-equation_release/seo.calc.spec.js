@@ -27,7 +27,7 @@ test.describe('math/quadratic-equation seo', () => {
   test('metadata, explanation order, FAQ depth, schema parity, and sitemap', async ({ page }) => {
     await page.goto('/math/algebra/quadratic-equation/');
 
-    await expect(page).toHaveTitle('Quadratic Equation Solver Calculator | CalcHowMuch');
+    await expect(page).toHaveTitle('Quadratic Equation Solver | Roots, Discriminant & Vertex');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);

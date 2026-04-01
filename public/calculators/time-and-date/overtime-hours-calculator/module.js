@@ -168,9 +168,9 @@ const placeholderElements = Array.from(document.querySelectorAll('[data-placehol
 );
 
 const metadata = {
-  title: 'Overtime Hours Calculator | Daily, Weekly and Night',
+  title: 'Overtime Hours Calculator | Daily, Weekly & Night Overtime',
   description:
-    'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.',
+    'Calculate regular and overtime hours with daily or weekly thresholds, split shifts, rounding rules, and night-hour tracking for scheduling and payroll checks.',
   canonical: 'https://calchowmuch.com/time-and-date/overtime-hours-calculator/',
   structuredData: {
     '@context': 'https://schema.org',

@@ -88,9 +88,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 const metadata = {
-  title: 'Power Nap Calculator | Best Wake-Up Times',
+  title: 'Power Nap Calculator | Compare 10, 20, 30, 60 & 90 Minutes',
   description:
-    'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.',
+    'Compare 10, 20, 30, 60, and 90-minute power nap options and see the best wake-up time for each nap length before you set an alarm.',
   canonical: 'https://calchowmuch.com/time-and-date/power-nap-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,

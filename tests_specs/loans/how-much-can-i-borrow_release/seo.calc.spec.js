@@ -4,11 +4,11 @@ test.describe('How Much Can I Borrow Calculator SEO', () => {
   test('BOR-TEST-SEO-1: metadata, schema, FAQ parity, sitemap', async ({ page }) => {
     await page.goto('/loan-calculators/how-much-can-i-borrow/');
 
-    await expect(page).toHaveTitle('How Much Can I Borrow | Mortgage Affordability | CalcHowMuch');
+    await expect(page).toHaveTitle('How Much Can I Borrow Calculator | Mortgage Affordability');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.'
+      'Estimate mortgage affordability from income, debts, deposit, rate, and term, then compare borrowing power with likely monthly payments.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

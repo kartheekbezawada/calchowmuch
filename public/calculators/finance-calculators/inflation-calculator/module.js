@@ -64,9 +64,9 @@ const CALCULATOR_FAQ_ENTRIES = [
 ];
 
 const metadata = {
-  title: 'Inflation Calculator – CPI Value & Purchasing Power',
+  title: 'Inflation Calculator | CPI Purchasing Power',
   description:
-    'Calculate inflation-adjusted value with U.S. CPI data. Compare purchasing power across years with equivalent value and inflation rates.',
+    'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.',
   canonical: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
@@ -94,7 +94,7 @@ const metadata = {
         url: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
         name: 'Inflation Calculator',
         description:
-          'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+          'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.',
         inLanguage: 'en',
         isPartOf: {
           '@id': 'https://calchowmuch.com/#website',
@@ -124,7 +124,7 @@ const metadata = {
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/inflation-calculator/',
         description:
-          'Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.',
+          'Calculate inflation-adjusted value using U.S. CPI data to compare purchasing power across months and years.',
         inLanguage: 'en',
         provider: {
           '@id': 'https://calchowmuch.com/#organization',

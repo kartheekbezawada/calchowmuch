@@ -3,26 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>System of Equations Solver | 2x2 and 3x3 | CalcHowMuch</title>
-    <meta
-      name="description"
-      content="Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics."
-    />
+    <title>System of Equations Solver | 2x2, 3x3 and Matrix Methods</title>
+    <meta name="description" content="Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks." />
     <link rel="canonical" href="https://calchowmuch.com/math/algebra/system-of-equations/" />
-    <meta property="og:title" content="System of Equations Solver | 2x2 and 3x3 | CalcHowMuch" />
-    <meta
-      property="og:description"
-      content="Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics."
-    />
+    <meta property="og:title" content="System of Equations Solver | 2x2, 3x3 and Matrix Methods" />
+    <meta property="og:description" content="Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/algebra/system-of-equations/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="System of Equations Solver | 2x2 and 3x3 | CalcHowMuch" />
-    <meta
-      name="twitter:description"
-      content="Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics."
-    />
+    <meta name="twitter:title" content="System of Equations Solver | 2x2, 3x3 and Matrix Methods" />
+    <meta name="twitter:description" content="Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1496,10 +1567,7 @@
         display: grid;
         gap: 8px;
         text-decoration: none;
-        transition:
-          transform 160ms ease,
-          box-shadow 160ms ease,
-          border-color 160ms ease;
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
       }
 
       .system-related-card:hover,
@@ -1543,883 +1611,428 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/algebra/system-of-equations/#webpage",
-            "name": "System of Equations Solver | 2x2 and 3x3 | CalcHowMuch",
-            "url": "https://calchowmuch.com/math/algebra/system-of-equations/",
-            "description": "Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/algebra/system-of-equations/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/algebra/system-of-equations/#softwareapplication"
-            },
-            "breadcrumb": {
-              "@id": "https://calchowmuch.com/math/algebra/system-of-equations/#breadcrumbs"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/algebra/system-of-equations/#softwareapplication",
-            "name": "System of Equations Solver",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/algebra/system-of-equations/",
-            "description": "Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/algebra/system-of-equations/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What system sizes are supported?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "This solver supports both 2x2 and 3x3 linear systems."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What methods can I choose?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "You can choose elimination, substitution, or matrix-based solving approaches."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does determinant indicate?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "A non-zero determinant indicates a unique solution for the system."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can the solver detect no-solution cases?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. It identifies inconsistent systems where equations do not share a common solution."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can it detect infinite solutions?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Dependent systems with overlapping equations are reported as infinite solutions or no unique solution."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Are decimal coefficients allowed?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Decimal and negative coefficients are supported."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why does 3x3 often use matrix logic?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Matrix and determinant methods scale better for three variables and keep the explanation more readable."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does method choice change the final solution?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. Valid solving methods should produce the same final result when a unique solution exists."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I use this to verify homework?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. The route is useful for checking final answers and intermediate method direction."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if my system is nearly singular?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Near-zero determinants can indicate numerical sensitivity, so review the inputs and interpret the result with care."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/algebra/system-of-equations/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "System of Equations Solver",
-                "item": "https://calchowmuch.com/math/algebra/system-of-equations/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/algebra/system-of-equations/#webpage","name":"System of Equations Solver | 2x2, 3x3 and Matrix Methods","url":"https://calchowmuch.com/math/algebra/system-of-equations/","description":"Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/algebra/system-of-equations/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/algebra/system-of-equations/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/algebra/system-of-equations/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/algebra/system-of-equations/#softwareapplication","name":"System of Equations Solver","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/algebra/system-of-equations/","description":"Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/algebra/system-of-equations/#faq","mainEntity":[{"@type":"Question","name":"What system sizes are supported?","acceptedAnswer":{"@type":"Answer","text":"This solver supports both 2x2 and 3x3 linear systems."}},{"@type":"Question","name":"What methods can I choose?","acceptedAnswer":{"@type":"Answer","text":"You can choose elimination, substitution, or matrix-based solving approaches."}},{"@type":"Question","name":"What does determinant indicate?","acceptedAnswer":{"@type":"Answer","text":"A non-zero determinant indicates a unique solution for the system."}},{"@type":"Question","name":"Can the solver detect no-solution cases?","acceptedAnswer":{"@type":"Answer","text":"Yes. It identifies inconsistent systems where equations do not share a common solution."}},{"@type":"Question","name":"Can it detect infinite solutions?","acceptedAnswer":{"@type":"Answer","text":"Yes. Dependent systems with overlapping equations are reported as infinite solutions or no unique solution."}},{"@type":"Question","name":"Are decimal coefficients allowed?","acceptedAnswer":{"@type":"Answer","text":"Yes. Decimal and negative coefficients are supported."}},{"@type":"Question","name":"Why does 3x3 often use matrix logic?","acceptedAnswer":{"@type":"Answer","text":"Matrix and determinant methods scale better for three variables and keep the explanation more readable."}},{"@type":"Question","name":"Does method choice change the final solution?","acceptedAnswer":{"@type":"Answer","text":"No. Valid solving methods should produce the same final result when a unique solution exists."}},{"@type":"Question","name":"Can I use this to verify homework?","acceptedAnswer":{"@type":"Answer","text":"Yes. The route is useful for checking final answers and intermediate method direction."}},{"@type":"Question","name":"What if my system is nearly singular?","acceptedAnswer":{"@type":"Answer","text":"Near-zero determinants can indicate numerical sensitivity, so review the inputs and interpret the result with care."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/algebra/system-of-equations/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"System of Equations Solver","item":"https://calchowmuch.com/math/algebra/system-of-equations/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>System of Equations Solver</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">System of Equations Solver</h1>
-              <p class="math-cluster-page-intro">
-                Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods
-                with unique/no-solution diagnostics.
-              </p>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>System of Equations Solver</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">System of Equations Solver</h1>
+    <p class="math-cluster-page-intro">Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-system-equations">
+  <div class="system-shell">
+    <section class="system-card system-hero-card" aria-label="System solver overview">
+      <div class="system-hero-copy">
+        <p class="system-eyebrow">Simple Smooth Wow</p>
+        <h2 class="system-title">Solve 2x2 or 3x3 linear systems in one answer-first view with determinant and method context kept close to the result.</h2>
+        <p class="system-subtitle">
+          Choose the system size, enter the coefficients, and solve once. The answer card stays
+          dominant, while the detail panel explains the path and the snapshot cards keep the system
+          size, method, determinant, and status easy to scan.
+        </p>
+      </div>
+      <ul class="system-hero-points">
+        <li>Best for algebra homework checks, determinant review, and comparing 2x2 versus 3x3 systems.</li>
+        <li>The answer card surfaces solution status first, then the variables and method detail.</li>
+        <li>System size and solving method stay visible on first screen without crowding the result area.</li>
+      </ul>
+    </section>
+
+    <div class="system-workbench">
+      <section class="system-card system-input-card" aria-label="System of equations inputs">
+        <div class="system-card-head">
+          <div>
+            <p class="system-section-label">Inputs</p>
+            <p class="system-card-title">Set the system size, coefficients, and solving method</p>
+          </div>
+          <span class="system-chip">Answer-first</span>
+        </div>
+
+        <p class="system-helper">Solve a linear system and review determinant behavior, status, and worked steps in one place.</p>
+
+        <div class="system-toggle-section">
+          <span>System size</span>
+          <div class="system-button-group" role="group" data-button-group="system-size" aria-label="System size">
+            <button class="calculator-button system-mode-button is-active" type="button" data-value="2x2" aria-pressed="true">
+              2x2
+            </button>
+            <button class="calculator-button system-mode-button" type="button" data-value="3x3" aria-pressed="false">
+              3x3
+            </button>
+          </div>
+        </div>
+
+        <div id="equations-input">
+          <div class="system-matrix-card system-2x2" id="system-2x2">
+            <h3>2x2 coefficients</h3>
+            <div class="equation-row">
+              <input type="number" id="a11" value="1" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a12" value="2" step="any" class="coeff-input" />
+              <span>y =</span>
+              <input type="number" id="b1" value="5" step="any" class="coeff-input" />
             </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-system-equations">
-                <div class="system-shell">
-                  <section class="system-card system-hero-card" aria-label="System solver overview">
-                    <div class="system-hero-copy">
-                      <p class="system-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="system-title">
-                        Solve 2x2 or 3x3 linear systems in one answer-first view with determinant
-                        and method context kept close to the result.
-                      </h2>
-                      <p class="system-subtitle">
-                        Choose the system size, enter the coefficients, and solve once. The answer
-                        card stays dominant, while the detail panel explains the path and the
-                        snapshot cards keep the system size, method, determinant, and status easy to
-                        scan.
-                      </p>
-                    </div>
-                    <ul class="system-hero-points">
-                      <li>
-                        Best for algebra homework checks, determinant review, and comparing 2x2
-                        versus 3x3 systems.
-                      </li>
-                      <li>
-                        The answer card surfaces solution status first, then the variables and
-                        method detail.
-                      </li>
-                      <li>
-                        System size and solving method stay visible on first screen without crowding
-                        the result area.
-                      </li>
-                    </ul>
-                  </section>
-
-                  <div class="system-workbench">
-                    <section
-                      class="system-card system-input-card"
-                      aria-label="System of equations inputs"
-                    >
-                      <div class="system-card-head">
-                        <div>
-                          <p class="system-section-label">Inputs</p>
-                          <p class="system-card-title">
-                            Set the system size, coefficients, and solving method
-                          </p>
-                        </div>
-                        <span class="system-chip">Answer-first</span>
-                      </div>
-
-                      <p class="system-helper">
-                        Solve a linear system and review determinant behavior, status, and worked
-                        steps in one place.
-                      </p>
-
-                      <div class="system-toggle-section">
-                        <span>System size</span>
-                        <div
-                          class="system-button-group"
-                          role="group"
-                          data-button-group="system-size"
-                          aria-label="System size"
-                        >
-                          <button
-                            class="calculator-button system-mode-button is-active"
-                            type="button"
-                            data-value="2x2"
-                            aria-pressed="true"
-                          >
-                            2x2
-                          </button>
-                          <button
-                            class="calculator-button system-mode-button"
-                            type="button"
-                            data-value="3x3"
-                            aria-pressed="false"
-                          >
-                            3x3
-                          </button>
-                        </div>
-                      </div>
-
-                      <div id="equations-input">
-                        <div class="system-matrix-card system-2x2" id="system-2x2">
-                          <h3>2x2 coefficients</h3>
-                          <div class="equation-row">
-                            <input
-                              type="number"
-                              id="a11"
-                              value="1"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>x +</span>
-                            <input
-                              type="number"
-                              id="a12"
-                              value="2"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>y =</span>
-                            <input type="number" id="b1" value="5" step="any" class="coeff-input" />
-                          </div>
-                          <div class="equation-row">
-                            <input
-                              type="number"
-                              id="a21"
-                              value="3"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>x +</span>
-                            <input
-                              type="number"
-                              id="a22"
-                              value="4"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>y =</span>
-                            <input
-                              type="number"
-                              id="b2"
-                              value="11"
-                              step="any"
-                              class="coeff-input"
-                            />
-                          </div>
-                        </div>
-
-                        <div
-                          class="system-matrix-card system-3x3"
-                          id="system-3x3"
-                          style="display: none"
-                        >
-                          <h3>3x3 coefficients</h3>
-                          <div class="equation-row">
-                            <input
-                              type="number"
-                              id="a11-3x3"
-                              value="1"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>x +</span>
-                            <input
-                              type="number"
-                              id="a12-3x3"
-                              value="2"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>y +</span>
-                            <input
-                              type="number"
-                              id="a13-3x3"
-                              value="3"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>z =</span>
-                            <input
-                              type="number"
-                              id="b1-3x3"
-                              value="14"
-                              step="any"
-                              class="coeff-input"
-                            />
-                          </div>
-                          <div class="equation-row">
-                            <input
-                              type="number"
-                              id="a21-3x3"
-                              value="4"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>x +</span>
-                            <input
-                              type="number"
-                              id="a22-3x3"
-                              value="5"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>y +</span>
-                            <input
-                              type="number"
-                              id="a23-3x3"
-                              value="6"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>z =</span>
-                            <input
-                              type="number"
-                              id="b2-3x3"
-                              value="32"
-                              step="any"
-                              class="coeff-input"
-                            />
-                          </div>
-                          <div class="equation-row">
-                            <input
-                              type="number"
-                              id="a31-3x3"
-                              value="7"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>x +</span>
-                            <input
-                              type="number"
-                              id="a32-3x3"
-                              value="8"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>y +</span>
-                            <input
-                              type="number"
-                              id="a33-3x3"
-                              value="9"
-                              step="any"
-                              class="coeff-input"
-                            />
-                            <span>z =</span>
-                            <input
-                              type="number"
-                              id="b3-3x3"
-                              value="50"
-                              step="any"
-                              class="coeff-input"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="system-toggle-section">
-                        <span>Solution method</span>
-                        <div
-                          class="system-button-group system-button-group--wide"
-                          role="group"
-                          data-button-group="solution-method"
-                          aria-label="Solution method"
-                        >
-                          <button
-                            class="calculator-button system-mode-button is-active"
-                            type="button"
-                            data-value="elimination"
-                            aria-pressed="true"
-                          >
-                            Elimination
-                          </button>
-                          <button
-                            class="calculator-button system-mode-button"
-                            type="button"
-                            data-value="substitution"
-                            aria-pressed="false"
-                          >
-                            Substitution
-                          </button>
-                          <button
-                            class="calculator-button system-mode-button"
-                            type="button"
-                            data-value="matrix"
-                            aria-pressed="false"
-                          >
-                            Matrix
-                          </button>
-                        </div>
-                      </div>
-
-                      <button
-                        class="calculator-button system-solve-button"
-                        type="button"
-                        id="solve-system"
-                      >
-                        Solve System
-                      </button>
-                    </section>
-
-                    <section
-                      class="system-card system-answer-card"
-                      aria-label="System of equations answer summary"
-                    >
-                      <div class="system-card-head">
-                        <div>
-                          <p class="system-section-label">Answer</p>
-                          <p class="system-card-title">
-                            Solution status, determinant, and worked detail
-                          </p>
-                        </div>
-                        <span class="system-chip system-chip--answer">Linear systems</span>
-                      </div>
-
-                      <div class="result system-result-card" id="system-result" aria-live="polite">
-                        Results will appear after you click <strong>Solve System</strong>.
-                      </div>
-                      <div
-                        class="result-detail system-summary-card"
-                        id="system-detail"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="system-snapshot-grid" aria-label="System snapshot">
-                        <article class="system-snapshot-card">
-                          <span>System size</span>
-                          <strong data-system-snap="size">2x2</strong>
-                        </article>
-                        <article class="system-snapshot-card">
-                          <span>Method</span>
-                          <strong data-system-snap="method">Elimination</strong>
-                        </article>
-                        <article class="system-snapshot-card">
-                          <span>Determinant</span>
-                          <strong data-system-snap="determinant">-</strong>
-                        </article>
-                        <article class="system-snapshot-card">
-                          <span>Solution status</span>
-                          <strong data-system-snap="status">-</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <section class="system-exp-section">
-                <h2>System of Equations Solver Practical Guide</h2>
-                <p>
-                  Use this system of equations solver to work through 2x2 and 3x3 linear systems
-                  with determinant checks and solution-status feedback. It is built for practical
-                  algebra review, so the answer appears first and the supporting method detail stays
-                  readable for homework, tutoring, or classroom verification.
-                </p>
-                <ul class="system-summary-list">
-                  <li>
-                    <strong>Best for:</strong> solving linear systems and checking whether a system
-                    has a unique solution.
-                  </li>
-                  <li>
-                    <strong>Quick answer flow:</strong> choose the system size, enter coefficients,
-                    then solve.
-                  </li>
-                  <li>
-                    <strong>Output includes:</strong> variable values, determinant, solution status,
-                    and method-specific steps.
-                  </li>
-                </ul>
-              </section>
-
-              <section class="system-exp-section">
-                <h3>How to Guide</h3>
-                <ol>
-                  <li>Select the system size: <strong>2x2</strong> or <strong>3x3</strong>.</li>
-                  <li>Enter the coefficients and constants for each equation row.</li>
-                  <li>Choose the method you want to display.</li>
-                  <li>
-                    Click <strong>Solve System</strong> and read the answer card before reviewing
-                    the worked detail.
-                  </li>
-                </ol>
-              </section>
-
-              <section class="system-exp-section">
-                <h3>Quick Answer Table</h3>
-                <div class="system-table-wrap">
-                  <table class="system-summary-table">
-                    <caption class="math-cluster-visually-hidden">
-                      Quick answer table for the system of equations calculator
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Case</th>
-                        <th scope="col">What the determinant means</th>
-                        <th scope="col">What the route reports</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Non-zero determinant</th>
-                        <td>The system has one unique solution.</td>
-                        <td>Variable values plus a determinant snapshot.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Zero determinant, dependent</th>
-                        <td>The equations collapse into the same relationship.</td>
-                        <td>Infinite-solution or no-unique-solution messaging.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Zero determinant, inconsistent</th>
-                        <td>The equations do not intersect in one valid point.</td>
-                        <td>No-solution or no-unique-solution messaging.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              <section class="system-exp-section">
-                <h3>Method Notes</h3>
-                <p>
-                  For <strong>2x2</strong> systems, the route can present elimination, substitution,
-                  or matrix-style reasoning while still reaching the same final solution when the
-                  determinant is non-zero. For <strong>3x3</strong> systems, the route summarizes
-                  the matrix or determinant path because that stays more stable and readable than
-                  long symbolic substitution.
-                </p>
-                <p>
-                  A determinant near zero can signal numerical sensitivity, so close-call systems
-                  should be checked carefully, especially when decimal coefficients are involved.
-                </p>
-              </section>
-
-              <section class="system-exp-section">
-                <h3>Worked Example</h3>
-                <div class="system-example-grid">
-                  <article class="system-example-card">
-                    <h4>2x2 unique solution</h4>
-                    <p>Use <strong>x + 2y = 5</strong> and <strong>3x + 4y = 11</strong>.</p>
-                    <p>
-                      The route returns <strong>x = 1</strong> and <strong>y = 2</strong>, so the
-                      system has a unique intersection point.
-                    </p>
-                  </article>
-                  <article class="system-example-card">
-                    <h4>3x3 no unique solution</h4>
-                    <p>Use the default 3x3 example coefficients.</p>
-                    <p>
-                      The determinant is effectively zero, so the route reports that the system does
-                      not have a unique solution.
-                    </p>
-                  </article>
-                </div>
-              </section>
-
-              <section class="system-exp-section">
-                <h3>FAQ</h3>
-                <div class="system-faq-grid">
-                  <div class="faq-card">
-                    <h4>What system sizes are supported?</h4>
-                    <p>This solver supports both 2x2 and 3x3 linear systems.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What methods can I choose?</h4>
-                    <p>
-                      You can choose elimination, substitution, or matrix-based solving approaches.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What does determinant indicate?</h4>
-                    <p>A non-zero determinant indicates a unique solution for the system.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can the solver detect no-solution cases?</h4>
-                    <p>
-                      Yes. It identifies inconsistent systems where equations do not share a common
-                      solution.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can it detect infinite solutions?</h4>
-                    <p>
-                      Yes. Dependent systems with overlapping equations are reported as infinite
-                      solutions or no unique solution.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Are decimal coefficients allowed?</h4>
-                    <p>Yes. Decimal and negative coefficients are supported.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why does 3x3 often use matrix logic?</h4>
-                    <p>
-                      Matrix and determinant methods scale better for three variables and keep the
-                      explanation more readable.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Does method choice change the final solution?</h4>
-                    <p>
-                      No. Valid solving methods should produce the same final result when a unique
-                      solution exists.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can I use this to verify homework?</h4>
-                    <p>
-                      Yes. The route is useful for checking final answers and intermediate method
-                      direction.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What if my system is nearly singular?</h4>
-                    <p>
-                      Near-zero determinants can indicate numerical sensitivity, so review the
-                      inputs and interpret the result with care.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section class="system-exp-section">
-                <h3>Related Calculators</h3>
-                <div class="system-related-grid">
-                  <a class="system-related-card" href="/math/algebra/slope-distance/">
-                    <strong>Slope and Distance Calculator</strong>
-                    <span
-                      >Use a line-based route when you want to compare two points instead of solving
-                      a full linear system.</span
-                    >
-                  </a>
-                  <a class="system-related-card" href="/math/algebra/polynomial-operations/">
-                    <strong>Polynomial Operations Calculator</strong>
-                    <span
-                      >Clean up algebra expressions before or after you solve a system of linear
-                      equations.</span
-                    >
-                  </a>
-                  <a class="system-related-card" href="/math/basic/">
-                    <strong>Basic Calculator</strong>
-                    <span
-                      >Check arithmetic quickly before you return to determinant or elimination
-                      work.</span
-                    >
-                  </a>
-                </div>
-              </section>
-
-              <section class="system-exp-section">
-                <h3>Important Notes</h3>
-                <ul class="system-notes-list">
-                  <li><strong>Last updated:</strong> March 2026</li>
-                  <li>
-                    <strong>Determinant rule:</strong> A determinant near zero usually means the
-                    system does not have one clean unique solution.
-                  </li>
-                  <li>
-                    <strong>2x2 methods:</strong> Elimination, substitution, and matrix views are
-                    available for the 2x2 workflow.
-                  </li>
-                  <li>
-                    <strong>3x3 workflow:</strong> The route summarizes the determinant-based
-                    solution path for three-variable systems.
-                  </li>
-                  <li>
-                    <strong>Use case:</strong> This tool is designed for fast algebra checking and
-                    learning support, not formal proof writing.
-                  </li>
-                </ul>
-              </section>
+            <div class="equation-row">
+              <input type="number" id="a21" value="3" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a22" value="4" step="any" class="coeff-input" />
+              <span>y =</span>
+              <input type="number" id="b2" value="11" step="any" class="coeff-input" />
             </div>
           </div>
+
+          <div class="system-matrix-card system-3x3" id="system-3x3" style="display: none">
+            <h3>3x3 coefficients</h3>
+            <div class="equation-row">
+              <input type="number" id="a11-3x3" value="1" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a12-3x3" value="2" step="any" class="coeff-input" />
+              <span>y +</span>
+              <input type="number" id="a13-3x3" value="3" step="any" class="coeff-input" />
+              <span>z =</span>
+              <input type="number" id="b1-3x3" value="14" step="any" class="coeff-input" />
+            </div>
+            <div class="equation-row">
+              <input type="number" id="a21-3x3" value="4" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a22-3x3" value="5" step="any" class="coeff-input" />
+              <span>y +</span>
+              <input type="number" id="a23-3x3" value="6" step="any" class="coeff-input" />
+              <span>z =</span>
+              <input type="number" id="b2-3x3" value="32" step="any" class="coeff-input" />
+            </div>
+            <div class="equation-row">
+              <input type="number" id="a31-3x3" value="7" step="any" class="coeff-input" />
+              <span>x +</span>
+              <input type="number" id="a32-3x3" value="8" step="any" class="coeff-input" />
+              <span>y +</span>
+              <input type="number" id="a33-3x3" value="9" step="any" class="coeff-input" />
+              <span>z =</span>
+              <input type="number" id="b3-3x3" value="50" step="any" class="coeff-input" />
+            </div>
+          </div>
+        </div>
+
+        <div class="system-toggle-section">
+          <span>Solution method</span>
+          <div class="system-button-group system-button-group--wide" role="group" data-button-group="solution-method" aria-label="Solution method">
+            <button class="calculator-button system-mode-button is-active" type="button" data-value="elimination" aria-pressed="true">
+              Elimination
+            </button>
+            <button class="calculator-button system-mode-button" type="button" data-value="substitution" aria-pressed="false">
+              Substitution
+            </button>
+            <button class="calculator-button system-mode-button" type="button" data-value="matrix" aria-pressed="false">
+              Matrix
+            </button>
+          </div>
+        </div>
+
+        <button class="calculator-button system-solve-button" type="button" id="solve-system">
+          Solve System
+        </button>
+      </section>
+
+      <section class="system-card system-answer-card" aria-label="System of equations answer summary">
+        <div class="system-card-head">
+          <div>
+            <p class="system-section-label">Answer</p>
+            <p class="system-card-title">Solution status, determinant, and worked detail</p>
+          </div>
+          <span class="system-chip system-chip--answer">Linear systems</span>
+        </div>
+
+        <div class="result system-result-card" id="system-result" aria-live="polite">
+          Results will appear after you click <strong>Solve System</strong>.
+        </div>
+        <div class="result-detail system-summary-card" id="system-detail" aria-live="polite"></div>
+
+        <div class="system-snapshot-grid" aria-label="System snapshot">
+          <article class="system-snapshot-card">
+            <span>System size</span>
+            <strong data-system-snap="size">2x2</strong>
+          </article>
+          <article class="system-snapshot-card">
+            <span>Method</span>
+            <strong data-system-snap="method">Elimination</strong>
+          </article>
+          <article class="system-snapshot-card">
+            <span>Determinant</span>
+            <strong data-system-snap="determinant">-</strong>
+          </article>
+          <article class="system-snapshot-card">
+            <span>Solution status</span>
+            <strong data-system-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+    <section class="system-exp-section">
+  <h2>System of Equations Solver Practical Guide</h2>
+  <p>
+    Use this system of equations solver to work through 2x2 and 3x3 linear systems with determinant
+    checks and solution-status feedback. It is built for practical algebra review, so the answer
+    appears first and the supporting method detail stays readable for homework, tutoring, or
+    classroom verification.
+  </p>
+  <ul class="system-summary-list">
+    <li>
+      <strong>Best for:</strong> solving linear systems and checking whether a system has a unique
+      solution.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> choose the system size, enter coefficients, then solve.
+    </li>
+    <li>
+      <strong>Output includes:</strong> variable values, determinant, solution status, and
+      method-specific steps.
+    </li>
+  </ul>
+</section>
+
+<section class="system-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Select the system size: <strong>2x2</strong> or <strong>3x3</strong>.</li>
+    <li>Enter the coefficients and constants for each equation row.</li>
+    <li>Choose the method you want to display.</li>
+    <li>
+      Click <strong>Solve System</strong> and read the answer card before reviewing the worked
+      detail.
+    </li>
+  </ol>
+</section>
+
+<section class="system-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="system-table-wrap">
+    <table class="system-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the system of equations calculator
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Case</th>
+          <th scope="col">What the determinant means</th>
+          <th scope="col">What the route reports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Non-zero determinant</th>
+          <td>The system has one unique solution.</td>
+          <td>Variable values plus a determinant snapshot.</td>
+        </tr>
+        <tr>
+          <th scope="row">Zero determinant, dependent</th>
+          <td>The equations collapse into the same relationship.</td>
+          <td>Infinite-solution or no-unique-solution messaging.</td>
+        </tr>
+        <tr>
+          <th scope="row">Zero determinant, inconsistent</th>
+          <td>The equations do not intersect in one valid point.</td>
+          <td>No-solution or no-unique-solution messaging.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="system-exp-section">
+  <h3>Method Notes</h3>
+  <p>
+    For <strong>2x2</strong> systems, the route can present elimination, substitution, or
+    matrix-style reasoning while still reaching the same final solution when the determinant is
+    non-zero. For <strong>3x3</strong> systems, the route summarizes the matrix or determinant path
+    because that stays more stable and readable than long symbolic substitution.
+  </p>
+  <p>
+    A determinant near zero can signal numerical sensitivity, so close-call systems should be
+    checked carefully, especially when decimal coefficients are involved.
+  </p>
+</section>
+
+<section class="system-exp-section">
+  <h3>Worked Example</h3>
+  <div class="system-example-grid">
+    <article class="system-example-card">
+      <h4>2x2 unique solution</h4>
+      <p>Use <strong>x + 2y = 5</strong> and <strong>3x + 4y = 11</strong>.</p>
+      <p>
+        The route returns <strong>x = 1</strong> and <strong>y = 2</strong>, so the system has a
+        unique intersection point.
+      </p>
+    </article>
+    <article class="system-example-card">
+      <h4>3x3 no unique solution</h4>
+      <p>Use the default 3x3 example coefficients.</p>
+      <p>
+        The determinant is effectively zero, so the route reports that the system does not have a
+        unique solution.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="system-exp-section">
+  <h3>FAQ</h3>
+  <div class="system-faq-grid">
+    <div class="faq-card">
+      <h4>What system sizes are supported?</h4>
+      <p>This solver supports both 2x2 and 3x3 linear systems.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What methods can I choose?</h4>
+      <p>You can choose elimination, substitution, or matrix-based solving approaches.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does determinant indicate?</h4>
+      <p>A non-zero determinant indicates a unique solution for the system.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can the solver detect no-solution cases?</h4>
+      <p>Yes. It identifies inconsistent systems where equations do not share a common solution.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can it detect infinite solutions?</h4>
+      <p>
+        Yes. Dependent systems with overlapping equations are reported as infinite solutions or no
+        unique solution.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Are decimal coefficients allowed?</h4>
+      <p>Yes. Decimal and negative coefficients are supported.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does 3x3 often use matrix logic?</h4>
+      <p>
+        Matrix and determinant methods scale better for three variables and keep the explanation
+        more readable.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Does method choice change the final solution?</h4>
+      <p>
+        No. Valid solving methods should produce the same final result when a unique solution
+        exists.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I use this to verify homework?</h4>
+      <p>Yes. The route is useful for checking final answers and intermediate method direction.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What if my system is nearly singular?</h4>
+      <p>
+        Near-zero determinants can indicate numerical sensitivity, so review the inputs and
+        interpret the result with care.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="system-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="system-related-grid">
+    <a class="system-related-card" href="/math/algebra/slope-distance/">
+      <strong>Slope and Distance Calculator</strong>
+      <span
+        >Use a line-based route when you want to compare two points instead of solving a full linear
+        system.</span
+      >
+    </a>
+    <a class="system-related-card" href="/math/algebra/polynomial-operations/">
+      <strong>Polynomial Operations Calculator</strong>
+      <span
+        >Clean up algebra expressions before or after you solve a system of linear equations.</span
+      >
+    </a>
+    <a class="system-related-card" href="/math/basic/">
+      <strong>Basic Calculator</strong>
+      <span>Check arithmetic quickly before you return to determinant or elimination work.</span>
+    </a>
+  </div>
+</section>
+
+<section class="system-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="system-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li>
+      <strong>Determinant rule:</strong> A determinant near zero usually means the system does not
+      have one clean unique solution.
+    </li>
+    <li>
+      <strong>2x2 methods:</strong> Elimination, substitution, and matrix views are available for
+      the 2x2 workflow.
+    </li>
+    <li>
+      <strong>3x3 workflow:</strong> The route summarizes the determinant-based solution path for
+      three-variable systems.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool is designed for fast algebra checking and learning
+      support, not formal proof writing.
+    </li>
+      <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this system of equations solver tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+</section>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
-    <script
-      type="module"
-      src="/calculators/math/algebra/system-of-equations/module.js?v=20260224"
-    ></script>
+    <script type="module" src="/calculators/math/algebra/system-of-equations/module.js?v=20260224"></script>
   </body>
 </html>

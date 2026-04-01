@@ -9,11 +9,11 @@ test.describe('Interest Rate Change Calculator SEO', () => {
     });
     await expect(page.locator('#calculator-title')).toHaveText('Interest Rate Change Calculator');
 
-    await expect(page).toHaveTitle('Interest Rate Change Calculator | Rate Impact | CalcHowMuch');
+    await expect(page).toHaveTitle('Interest Rate Change Calculator | Mortgage Payment Impact');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.'
+      'Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

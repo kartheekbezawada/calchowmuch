@@ -209,9 +209,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   investment: {
-    title: 'Investment Calculator | Growth, Contributions & Returns',
+    title: 'Investment Calculator | Growth, Inflation & Contributions',
     description:
-      'Estimate ending value, total contributions, simple vs compound growth, and inflation-adjusted value for a long-term investment plan.',
+      'Project ending value, total contributions, compound growth, and inflation-adjusted purchasing power for a broad investment plan.',
     h1: 'Investment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -257,185 +257,185 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'home-loan': {
-    title: 'Home Loan Calculator | Payment & Amortization',
+    title: 'Home Loan Calculator | Mortgage Payment, Interest & Amortization',
     description:
-      'Estimate monthly mortgage payments, amortization, payoff timeline, and interest savings from extra payments with our free Home Loan Calculator.',
+      'Estimate monthly mortgage payment, total interest, amortization, and payoff impact from deposit, rate, term, taxes, and extra payments.',
     h1: 'Home Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'how-much-can-i-borrow': {
-    title: 'How Much Can I Borrow | Mortgage Affordability | CalcHowMuch',
+    title: 'How Much Can I Borrow Calculator | Mortgage Affordability',
     description:
-      'Estimate your maximum mortgage borrowing using income multiples or payment-to-income checks, then compare monthly payments and total property budget.',
+      'Estimate mortgage affordability from income, debts, deposit, rate, and term, then compare borrowing power with likely monthly payments.',
     h1: 'How Much Can I Borrow Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'remortgage-switching': {
-    title: 'Remortgage Calculator (Switching) | Break-even | CalcHowMuch',
+    title: 'Remortgage Calculator | Break-Even, Payment & Savings',
     description:
-      'Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon.',
+      'Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings.',
     h1: 'Remortgage Calculator (Switching)',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'buy-to-let': {
-    title: 'Buy-to-Let (Yield, Cashflow & Coverage) | CalcHowMuch',
+    title: 'Buy-to-Let Mortgage Calculator | Yield, Cash Flow & Cover',
     description:
-      'Estimate buy-to-let yield, cashflow, and stress coverage using rent, property price, deposit, rate, and mortgage type inputs.',
+      'Estimate buy-to-let yield, monthly cash flow, stress coverage, and financing impact from rent, deposit, rate, and costs.',
     h1: 'Buy-to-Let Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'car-loan': {
-    title: 'Car Loan Calculator | Monthly Payment & Cost',
+    title: 'Car Loan Calculator | Payment, APR & Total Cost',
     description:
-      'Estimate car loan payments, total interest, and total cost using vehicle price, deposit, trade-in, fees, tax, APR, and term.',
+      'Estimate car loan monthly payment, amount financed, total interest, and total cost using price, deposit, trade-in, fees, tax, APR, and term.',
     h1: 'Car Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hire-purchase': {
-    title: 'Hire Purchase Calculator | Monthly Payment & Cost',
+    title: 'Hire Purchase Calculator | Payment, Balloon & Total Cost',
     description:
-      'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.',
+      'Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.',
     h1: 'Hire Purchase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'pcp-calculator': {
-    title: 'PCP Calculator | Monthly Payment, GFV & Cost',
+    title: 'PCP Calculator | Payment, GFV & Total Cost',
     description:
-      'Estimate PCP payments, GFV, option fee, total interest, and total payable using price, deposit, APR, and term.',
+      'Estimate PCP monthly payment, GFV, option fee, total interest, and total payable using vehicle price, deposit, APR, and term.',
     h1: 'PCP Car Finance Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'leasing-calculator': {
-    title: 'Car Lease Calculator | Payment, Residual & Cost',
+    title: 'Car Lease Calculator | Payment, Residual & Lease Cost',
     description:
-      'Estimate car lease payments, residual value, finance charge, and total lease cost using price, money factor, upfront payment, and term.',
+      'Estimate car lease monthly payment, residual value, finance charge, and total lease cost from price, money factor, upfront payment, and term.',
     h1: 'Car Lease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'multiple-car-loan': {
-    title: 'Auto Loan Comparison Calculator | Compare 2 Loans',
+    title: 'Auto Loan Comparison Calculator | APR, Payment & Cost',
     description:
-      'Compare two auto loans by monthly payment, total interest, total paid, and payoff timing to see which offer costs less.',
+      'Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.',
     h1: 'Auto Loan Comparison Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'offset-calculator': {
-    title: 'Offset Calculator | Interest Savings & Payoff | CalcHowMuch',
+    title: 'Offset Mortgage Calculator | Interest Savings & Payoff',
     description:
-      'See how offset savings balances and monthly contributions reduce mortgage interest, shorten payoff time, and improve total cost over monthly and yearly views.',
+      'See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost.',
     h1: 'Offset Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'loan-to-value': {
-    title: 'Loan-to-Value (LTV) Calculator | LTV Bands | CalcHowMuch',
+    title: 'LTV Calculator | Loan-to-Value Ratio & Deposit Bands',
     description:
-      'Calculate mortgage loan-to-value instantly using property value and either loan amount or deposit, then view risk bands and target LTV levels.',
+      'Calculate loan-to-value from property value and loan amount or deposit, then compare mortgage risk bands and target deposit levels.',
     h1: 'Loan-to-Value (LTV) Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'personal-loan': {
-    title: 'Personal Loan Calculator | Payments & Interest',
+    title: 'Personal Loan Calculator | Monthly Payment, Interest & Payoff',
     description:
-      'Calculate personal loan monthly payments, total interest, and payoff time. Add extra monthly payments to see interest savings and early payoff.',
+      'Estimate personal loan monthly payment, total interest, total cost, and extra-payment savings from amount, APR, fees, and term.',
     h1: 'Personal Loan Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'interest-rate-change-calculator': {
-    title: 'Interest Rate Change Calculator | Rate Impact | CalcHowMuch',
+    title: 'Interest Rate Change Calculator | Mortgage Payment Impact',
     description:
-      'Compare current and new mortgage rates to estimate monthly payment differences, total interest impact, and scenario timing over your remaining term.',
+      'Estimate how a mortgage rate increase or decrease changes monthly payment, total interest, and budget pressure over the remaining term.',
     h1: 'Interest Rate Change Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'salary-calculators-hub': {
-    title: 'Salary Calculators – Pay Conversion & Raise Tools',
+    title: 'Salary Calculators | Pay Conversion, Overtime, Raise, Bonus & Commission',
     description:
-      'Explore salary calculators for hourly to salary conversion, annual and monthly pay, overtime, raises, bonuses, and commission estimates.',
+      'Browse salary calculators to convert pay, compare overtime, model raises, estimate bonuses, and plan commission-based earnings with gross-pay assumptions.',
     h1: 'Salary Calculators',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'salary-calculator': {
-    title: 'Salary Calculator – Convert Pay Across Time Periods',
+    title: 'Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay',
     description:
-      'Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.',
+      'Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions.',
     h1: 'Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hourly-to-salary-calculator': {
-    title: 'Hourly to Salary Calculator – Annual Pay Converter',
+    title: 'Hourly to Salary Calculator | Convert Hourly Pay to Annual Salary',
     description:
-      'Convert an hourly wage into annual salary, monthly pay, biweekly pay, and weekly pay using your hours worked and weeks per year.',
+      'Convert hourly pay into annual salary, monthly pay, biweekly pay, and weekly earnings using hours worked and weeks per year.',
     h1: 'Hourly to Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'salary-to-hourly-calculator': {
-    title: 'Salary to Hourly Calculator – Annual to Hourly Pay',
+    title: 'Salary to Hourly Calculator | Convert Annual Salary to Hourly Pay',
     description:
-      'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly pay using your hours worked and weeks per year.',
+      'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly earnings using your hours worked and weeks per year.',
     h1: 'Salary to Hourly Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'annual-to-monthly-salary-calculator': {
-    title: 'Annual to Monthly Salary Calculator – Pay Converter',
+    title: 'Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly Income',
     description:
-      'Convert annual salary into monthly pay, with optional biweekly and weekly estimates based on your yearly income.',
+      'Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.',
     h1: 'Annual to Monthly Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'monthly-to-annual-salary-calculator': {
-    title: 'Monthly to Annual Salary Calculator – Pay Converter',
+    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
     description:
-      'Convert monthly salary into annual pay, with optional biweekly and weekly estimates based on your monthly income.',
+      'Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.',
     h1: 'Monthly to Annual Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'weekly-pay-calculator': {
-    title: 'Weekly Pay Calculator – Estimate Earnings from Hours',
+    title: 'Weekly Pay Calculator | Weekly Earnings From Hours, Rate and Overtime',
     description:
-      'Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.',
+      'Estimate weekly gross pay from hourly rate, regular hours, overtime hours, and overtime multiplier, then annualize the result.',
     h1: 'Weekly Pay Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'overtime-pay-calculator': {
-    title: 'Overtime Pay Calculator – Estimate Extra Earnings',
+    title: 'Overtime Pay Calculator | Extra Pay and Total Gross Earnings',
     description:
-      'Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.',
+      'Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings.',
     h1: 'Overtime Pay Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'raise-calculator': {
-    title: 'Raise Calculator | Calculate New Salary After a Pay Raise',
+    title: 'Raise Calculator | New Salary, Raise Amount and Raise Percentage',
     description:
-      'Calculate a new salary after a raise using either a percentage increase or a flat raise amount.',
+      'Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.',
     h1: 'Raise Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'bonus-calculator': {
-    title: 'Bonus Calculator – Salary Bonus Amount or Percent',
+    title: 'Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay',
     description:
-      'Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.',
+      'Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.',
     h1: 'Bonus Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -451,7 +451,7 @@ const CALCULATOR_OVERRIDES = {
   'inflation-adjusted-salary-calculator': {
     title: 'Inflation Adjusted Salary Calculator | Real Raise vs Inflation',
     description:
-      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise keeps up with inflation.',
+      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise beats inflation in real terms.',
     h1: 'Inflation Adjusted Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -473,9 +473,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'triangle-solver': {
-    title: 'Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch',
+    title: 'Triangle Solver | Solve SSS, SAS, ASA, AAS and SSA Triangles',
     description:
-      'Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram.',
+      'Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary.',
     h1: 'Triangle Solver',
     explanationHeading: '',
     paneLayout: 'single',
@@ -505,9 +505,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'natural-log': {
-    title: 'Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch',
+    title: 'Natural Log Calculator | ln(x), e^x and Natural Log Rules',
     description:
-      'Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.',
+      'Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output.',
     h1: 'Natural Log Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -569,47 +569,47 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'credit-card-minimum-payment': {
-    title: 'Credit Card Minimum Payment Calculator | Payoff Cost',
+    title: 'Credit Card Minimum Payment Calculator | Payoff Time & Interest',
     description:
-      'See how long minimum-only credit card payments take, what your first payment may be, and how much interest you could pay overall.',
+      'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
     h1: 'Credit Card Minimum Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'balance-transfer-installment-plan': {
-    title: 'Balance Transfer Calculator | Fees, Promo APR & Savings',
+    title: 'Balance Transfer Calculator | Promo APR, Fee & Savings',
     description:
-      'Compare transfer fee, promo months, post-promo APR, payoff time, and total cost to see whether a balance transfer saves money.',
+      'Compare transfer fees, promo APR, revert APR, payoff timing, and total cost to see whether a balance transfer saves money.',
     h1: 'Balance Transfer Credit Card Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-repayment-payoff': {
-    title: 'Credit Card Payment Calculator | Payoff & Interest',
+    title: 'Credit Card Payoff Calculator | Payment Plan & Interest',
     description:
-      'Estimate credit card payoff time, monthly payment impact, total interest, and total repaid from your balance, APR, and payment plan.',
+      'Estimate how long credit card repayment could take, total interest, and total paid from your balance, APR, monthly payment, and extra amount.',
     h1: 'Credit Card Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'credit-card-consolidation': {
-    title: 'Credit Card Consolidation Calculator | Loan vs Cards',
+    title: 'Credit Card Consolidation Calculator | Loan vs Card Payoff',
     description:
-      'Compare card repayment versus a consolidation loan by monthly payment, payoff time, fees, total interest, and total repaid.',
+      'Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.',
     h1: 'Credit Card Consolidation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'quadratic-equation': {
-    title: 'Quadratic Equation Solver Calculator | CalcHowMuch',
+    title: 'Quadratic Equation Solver | Roots, Discriminant & Vertex',
     description:
-      'Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output.',
+      'Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers.',
     h1: 'Quadratic Equation Solver',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'slope-distance': {
-    title: 'Slope and Distance Calculator | CalcHowMuch',
+    title: 'Slope and Distance Calculator | Midpoint, Line Equation & Distance',
     description:
       'Calculate slope, midpoint, distance, and line equations from two points with clear outputs for vertical, horizontal, and diagonal lines.',
     h1: 'Slope and Distance Calculator',
@@ -633,298 +633,298 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'system-of-equations': {
-    title: 'System of Equations Solver | 2x2 and 3x3 | CalcHowMuch',
+    title: 'System of Equations Solver | 2x2, 3x3 and Matrix Methods',
     description:
-      'Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics.',
+      'Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks.',
     h1: 'System of Equations Solver',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'unit-circle': {
-    title: 'Unit Circle Calculator | Angles & Trig Values',
+    title: 'Unit Circle Calculator | Trig Values, Reference Angles & Quadrants',
     description:
-      'Explore unit circle angles in degrees or radians with quadrant, reference angle, and exact sine, cosine, and tangent values.',
+      'Explore unit circle angles in degrees or radians, reference angles, quadrants, and exact sine, cosine, and tangent values for trig review.',
     h1: 'Unit Circle Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'overtime-hours-calculator': {
-    title: 'Overtime Hours Calculator | Daily, Weekly and Night',
+    title: 'Overtime Hours Calculator | Daily, Weekly & Night Overtime',
     description:
-      'Calculate regular and overtime hours using daily or weekly limits, split shifts, rounding, and night-hour tracking.',
+      'Calculate regular and overtime hours with daily or weekly thresholds, split shifts, rounding rules, and night-hour tracking for scheduling and payroll checks.',
     h1: 'Overtime Hours Calculator',
   },
   'work-hours-calculator': {
-    title: 'Work Hours Calculator | Shifts, Breaks and Totals',
+    title: 'Work Hours Calculator | Shift, Break & Weekly Hour Totals',
     description:
-      'Calculate single, split, or weekly work hours, subtract unpaid breaks, and view totals in HH:MM and decimal hours.',
+      'Calculate shift hours, split shifts, unpaid breaks, and weekly totals in HH:MM and decimal hours for timesheets, rotas, and payroll checks.',
     h1: 'Work Hours Calculator',
   },
   'time-between-two-dates-calculator': {
-    title: 'Time Between Dates Calculator – Days & Business Days',
+    title: 'Time Between Two Dates Calculator | Days, Weeks, Months & Hours',
     description:
-      'Find days, weeks, months, business days, and exact hours between two dates. Use date-only or date-time mode, inclusive counting, and copy-ready summaries.',
+      'Find the exact time between two dates in days, weeks, months, business days, and hours with date-only or date-time mode, inclusive counting, and copy-ready summaries.',
     h1: 'Time Between Two Dates Calculator',
   },
   'sleep-time-calculator': {
-    title: 'Sleep Time Calculator | Bedtime and Wake-Up Cycles',
+    title: 'Sleep Time Calculator | Best Bedtime & Wake-Up Times',
     description:
-      'Find bedtime or wake-up times based on 90-minute sleep cycles and a fall-asleep buffer.',
+      'Find the best bedtime or wake-up time using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options for workdays, travel, or shift schedules.',
     h1: 'Sleep Time Calculator',
   },
   'wake-up-time-calculator': {
-    title: 'Wake-Up Time Calculator | Sleep Cycle Wake Times',
+    title: 'Wake-Up Time Calculator | Best Alarm Times by Sleep Cycle',
     description:
-      'Find wake-up times based on 90-minute sleep cycles and compare 4, 5, or 6 cycle options.',
+      'Calculate the best wake-up times from a target bedtime using 90-minute sleep cycles, then compare 4, 5, or 6 cycle options before you set an alarm.',
     h1: 'Wake-Up Time Calculator',
   },
   'nap-time-calculator': {
-    title: 'Nap Time Calculator | Quick, Power or Afternoon Nap',
+    title: 'Nap Time Calculator | Best Nap Wake-Up Time',
     description:
-      'Choose a nap type and start time to get a suggested wake-up time with an optional wake buffer.',
+      'Choose a quick, power, or longer nap and get the best wake-up time from your start time, nap length, and optional wake buffer.',
     h1: 'Nap Time Calculator',
   },
   'power-nap-calculator': {
-    title: 'Power Nap Calculator | Best Wake-Up Times',
+    title: 'Power Nap Calculator | Compare 10, 20, 30, 60 & 90 Minutes',
     description:
-      'Compare 10, 20, 30, 60, and 90-minute nap options and get wake-up times for each one.',
+      'Compare 10, 20, 30, 60, and 90-minute power nap options and see the best wake-up time for each nap length before you set an alarm.',
     h1: 'Power Nap Calculator',
   },
   'energy-based-nap-selector': {
-    title: 'Energy-Based Nap Selector | Quick, Strong or Full',
+    title: 'Energy-Based Nap Selector | Best Nap Length for Energy Goals',
     description:
-      'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.',
+      'Choose Quick, Strong, or Full energy goals to get the best nap length, wake-up time, and practical alternatives for daytime or late-night naps.',
     h1: 'Energy-Based Nap Selector',
   },
   'birthday-day-of-week': {
-    title: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
+    title: 'Birthday Day-of-Week Calculator | Find the Day You Were Born',
     description:
-      'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
+      'Find the weekday you were born on, preview future birthday weekdays, and spot upcoming Friday, Saturday, or Sunday birthdays for planning.',
     h1: 'Birthday Day-of-Week Calculator',
   },
   'countdown-timer-generator': {
-    title: 'Countdown Timer | Live Time Left to Any Date',
+    title: 'Countdown Timer | Live Countdown to Any Date or Event',
     description:
-      'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.',
+      'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.',
     h1: 'Countdown Timer',
   },
   'days-until-a-date-calculator': {
-    title: 'Days Until a Date Calculator | Count Days to Any Date',
+    title: 'Days Until a Date Calculator | Countdown, Days Since & Weekdays',
     description:
-      'Count how many days remain until a future date or how many days have passed since a past date.',
+      'Count days until a future date, days since a past date, or weekdays between two dates with countdown, range, and inclusive-count options.',
     h1: 'Days Until a Date Calculator',
   },
   'age-calculator': {
-    title: 'Age Calculator | Years, Months and Days',
+    title: 'Age Calculator | Exact Age in Years, Months, Days & Next Birthday',
     description:
-      'Calculate exact age in years, months, and days from a date of birth and an optional as-of date.',
+      'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.',
     h1: 'Age Calculator',
   },
   'discount-calculator': {
-    title: 'Discount Calculator | Sale Price and Savings',
+    title: 'Discount Calculator | Sale Price, Savings & Percent Off',
     description:
-      'Calculate the sale price after a percentage discount and see exactly how much you save.',
+      'Calculate sale price, discount amount, and savings from percent-off deals so you can compare coupons, promotions, and marked-down prices.',
     h1: 'Discount Calculator',
   },
   'markup-calculator': {
-    title: 'Markup Calculator | Cost to Selling Price',
+    title: 'Markup Calculator | Selling Price From Cost & Markup %',
     description:
-      'Calculate selling price from cost and markup, or find markup percentage from cost and price.',
+      'Calculate selling price from cost and markup percentage, or work backward from cost and selling price to find markup %.',
     h1: 'Markup Calculator',
   },
-  'percentage-finder-calculator': {
-    title: 'What Percent Is X of Y – Percentage Calculator',
+  'what-percent-is-x-of-y': {
+    title: 'What Percent Is X of Y Calculator | Find the Share of a Total',
     description:
-      'Find what percent one number is of another using the simple X divided by Y times 100 formula.',
+      'Find what percent one number is of another using X divided by Y times 100, then use the result for scores, budgets, ratios, or completion rates.',
     h1: 'What Percent Is X of Y',
   },
   'percentage-of-a-number-calculator': {
-    title: 'Percentage of a Number Calculator | Find X% of Y',
+    title: 'Percentage of a Number Calculator | Calculate X% of Y',
     description:
-      'Calculate what X percent of Y equals using the standard percent-to-decimal formula.',
+      'Calculate what X% of Y equals with the standard percent-to-decimal formula for discounts, tax, tips, commission, and quick percentage checks.',
     h1: 'Find Percentage of a Number Calculator',
   },
-  'reverse-percentage-calculator': {
-    title: 'Reverse Percentage Calculator – Find Original Value',
+  'reverse-percentage': {
+    title: 'Reverse Percentage Calculator | Find the Original Value',
     description:
-      'Calculate reverse percentages instantly. Find the original value from a percentage with clear results, examples, and step-by-step explanations.',
+      'Find the original value before a percentage was applied when you know the final value and the percentage rate.',
     h1: 'Reverse Percentage',
   },
   'present-value': {
-    title: 'Present Value Calculator | Discount Future Money',
+    title: 'Present Value Calculator | Future Cash Flow Discounting',
     description:
-      'Estimate the present value of future money using discount rate, time period, and compounding frequency.',
+      'Discount future cash flow into today\'s value using rate, time period, and compounding to compare offers, projects, or investments.',
     h1: 'Present Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value': {
-    title: 'Future Value Calculator | Growth Over Time',
+    title: 'Future Value Calculator | Savings & Investment Projection',
     description:
-      'Estimate the future value of money using starting amount, rate, time period, compounding, and optional recurring contributions.',
+      'Project how a lump sum or recurring deposits could grow using return rate, time period, and compounding assumptions.',
     h1: 'Future Value Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'present-value-of-annuity': {
-    title: 'Present Value of Annuity Calculator | Ordinary or Due',
+    title: 'Present Value of Annuity Calculator | Payment Stream Value',
     description:
-      'Estimate the present value of an annuity using payment amount, discount rate, periods, and annuity timing.',
+      'Find the present value of recurring payments using discount rate, number of periods, and ordinary or due annuity timing.',
     h1: 'Present Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'future-value-of-annuity': {
-    title: 'Future Value of Annuity Calculator | Ordinary or Due',
+    title: 'Future Value of Annuity Calculator | Savings Plan Growth',
     description:
-      'Estimate the future value of an annuity using payment amount, growth rate, periods, and annuity timing.',
+      'Project how recurring payments could grow using return rate, payment periods, and ordinary or due annuity timing.',
     h1: 'Future Value of Annuity Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator | Interest & Final Amount',
+    title: 'Simple Interest Calculator | Interest Earned & Final Balance',
     description:
-      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
+      'Calculate simple interest, total interest earned, and ending balance from principal, rate, and time for loans or savings.',
     h1: 'Simple Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'effective-annual-rate': {
-    title: 'Effective Annual Rate Calculator | True Annual Rate',
+    title: 'Effective Annual Rate Calculator | APR to EAR',
     description:
-      'Estimate the effective annual rate from a nominal rate and compounding frequency to compare the true yearly cost or return.',
+      'Convert a nominal rate or APR into effective annual rate so you can compare the true yearly borrowing cost or return.',
     h1: 'Effective Annual Rate Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   inflation: {
-    title: 'Inflation Calculator – CPI Value & Purchasing Power',
+    title: 'Inflation Calculator | CPI Purchasing Power',
     description:
-      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+      'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.',
     h1: 'Inflation Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'time-to-savings-goal': {
-    title: 'Time to Savings Goal Calculator | Reach Your Target',
+    title: 'Time to Savings Goal Calculator | Months to Reach Target',
     description:
-      'Estimate how long it could take to reach a savings goal using current balance, contributions, interest rate, and compounding.',
+      'Estimate how many months it could take to reach a savings goal using current balance, recurring deposits, interest rate, and compounding.',
     h1: 'Time to Savings Goal Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'monthly-savings-needed': {
-    title: 'Monthly Savings Needed Calculator | Reach Your Goal',
+    title: 'Monthly Savings Needed Calculator | Savings Goal Planner',
     description:
-      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
+      'Calculate the monthly savings needed to reach a target balance using current savings, time horizon, rate, compounding, and deposit timing.',
     h1: 'Monthly Savings Needed Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'compound-interest': {
-    title: 'Compound Interest Calculator | Ending Balance & Growth',
+    title: 'Compound Interest Calculator | Savings Growth & Ending Balance',
     description:
-      'Estimate ending balance, total contributions, and compound growth using starting amount, rate, time, and compounding.',
+      'Project ending balance, interest earned, and contribution impact from principal, return rate, time, and compounding frequency.',
     h1: 'Compound Interest Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'simple-interest': {
-    title: 'Simple Interest Calculator | Interest & Final Amount',
+    title: 'Simple Interest Calculator | Interest Earned & Final Balance',
     description:
-      'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
+      'Calculate simple interest, total interest earned, and ending balance from principal, rate, and time for loans or savings.',
     h1: 'Simple Interest Calculator',
   },
   'investment-growth': {
-    title: 'Investment Growth Calculator | Future Value Projection',
+    title: 'Investment Growth Calculator | Future Value & Real Return',
     description:
-      'Estimate future value, total contributions, and total gains using return rate, time horizon, and optional inflation adjustment.',
+      'Project future value, total contributions, total gains, and inflation-adjusted balance from expected return and time horizon.',
     h1: 'Investment Growth Calculator',
   },
   'investment-return': {
-    title: 'Investment Return Calculator | CAGR, Profit & Growth',
+    title: 'Investment Return Calculator | CAGR, Profit & Real Return',
     description:
-      'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.',
+      'Estimate ending value, profit, CAGR, and real return with recurring deposits, tax assumptions, inflation, and scenario testing.',
     h1: 'Investment Return Calculator',
     paneLayout: 'single',
     explanationHeading: '',
   },
   'commission-calculator': {
-    title: 'Commission Calculator – CalcHowMuch',
+    title: 'Sales Commission Calculator | Flat & Tiered Commission on Sales',
     description:
-      'Calculate commission from sales using a flat rate or optional tiers. Free commission calculator for commission % on sales and earnings.',
-    h1: 'Commission Calculator',
+      'Calculate commission on sales using flat or tiered rates, compare the effective commission %, and model payout scenarios for pricing or sales plans.',
+    h1: 'Sales Commission Calculator',
     paneLayout: 'single',
     suppressAdsColumn: true,
     calculatorPanelClass: 'panel--shellless',
     layoutMainClass: 'layout-main--no-ads',
   },
   'margin-calculator': {
-    title: 'Margin Calculator – CalcHowMuch',
+    title: 'Margin Calculator | Gross Margin %, Profit & Selling Price',
     description:
-      'Calculate gross margin %, profit, and selling price instantly. Use our free margin calculator with simple formulas for pricing and profit.',
+      'Calculate gross margin percentage, profit, or target selling price from cost so you can price products and protect profitability.',
     h1: 'Margin Calculator',
   },
   'percent-change': {
-    title: 'Percent Change Calculator – CalcHowMuch',
+    title: 'Percent Change Calculator | Percentage Increase or Decrease',
     description:
-      'Calculate percent change from A to B with the correct +/− sign. Use our free percentage change calculator and formula instantly.',
+      'Calculate percent change between an original and new value, show increase or decrease, and see the signed result, raw change, and formula in one step.',
     h1: 'Percent Change Calculator',
     explanationHeading: '',
   },
   'percentage-difference': {
-    title: 'Percentage Difference Calculator | Compare Two Values',
+    title: 'Percentage Difference Calculator | Compare Two Values Fairly',
     description:
-      'Calculate the symmetric percentage difference between two values using their average as the baseline.',
+      'Compare two values with the symmetric percentage difference formula that uses their average as the baseline when neither number is the original.',
     h1: 'Percentage Difference Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-increase': {
-    title: 'Percentage Increase Calculator | Growth from Original',
+    title: 'Percentage Increase Calculator | Growth from Original Value',
     description:
-      'Calculate how much a value increased from its original amount using the standard percentage growth formula.',
+      'Calculate percentage increase from an original value to a new value and see the growth amount, direction, and formula in one step.',
     h1: 'Percentage Increase Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-decrease': {
-    title: 'Percentage Decrease Calculator | Drop from Original',
+    title: 'Percentage Decrease Calculator | Percentage Drop from Original',
     description:
-      'Calculate how much a value decreased from its original amount using the standard percentage drop formula.',
+      'Calculate percentage decrease from an original value to a lower value and see the drop amount, direction, and formula in one step.',
     h1: 'Percentage Decrease Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percentage-composition': {
-    title: 'Percentage Composition Calculator | Share of Total',
+    title: 'Percentage Composition Calculator | Percent Share of a Total',
     description:
-      "Calculate each item's share of a total and the remainder percentage from a known or calculated total.",
+      "Calculate each item's percentage share of a total, compare components, and see any remainder percentage from a known or calculated total.",
     h1: 'Percentage Composition Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'percent-to-fraction-decimal': {
-    title: 'Percent to Fraction and Decimal Calculator | Convert %',
+    title: 'Percent to Fraction & Decimal Calculator | Convert a Percentage',
     description:
-      'Convert a percentage into a decimal and simplified fraction using the standard divide-by-100 method.',
+      'Convert a percentage into a decimal and simplified fraction, then check the divide-by-100 steps and final forms side by side.',
     h1: 'Percent to Fraction & Decimal Converter',
   },
   'percentage-of-a-number': {
-    title: 'Find Percentage of a Number Calculator – CalcHowMuch',
+    title: 'Percentage of a Number Calculator | Calculate X% of Y',
     description:
-      'Calculate what X% of Y is instantly. Use our free Find Percentage of a Number calculator for fast, accurate results.',
+      'Calculate what X% of Y equals with the standard percent-to-decimal formula for discounts, tax, tips, commission, and quick percentage checks.',
     h1: 'Find Percentage of a Number Calculator',
   },
 };
 
 const ROUTE_SPECIFIC_OVERRIDES = {
   '/salary-calculators/commission-calculator/': {
-    title: 'Commission Calculator | Calculate Earnings From Sales Commission',
+    title: 'Commission Earnings Calculator | Sales Commission Pay & Base Pay',
     description:
-      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
-    h1: 'Commission Calculator',
+      'Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.',
+    h1: 'Commission Earnings Calculator',
     paneLayout: 'single',
   },
 };
@@ -934,7 +934,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Home Loan',
     softwareName: 'Home Loan Calculator',
     softwareDescription:
-      'Estimate monthly mortgage payments, amortization schedule, payoff timeline, and interest savings from extra payments.',
+      'Estimate monthly mortgage payment, total interest, amortization schedule, and payoff impact from deposit, rate, term, taxes, and extra payments.',
     featureList: [
       'Monthly mortgage payment estimate',
       'Amortization schedule (monthly and yearly)',
@@ -953,7 +953,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'How Much Can I Borrow',
     softwareName: 'How Much Can I Borrow Calculator',
     softwareDescription:
-      'Estimate your borrowing power using income multiples or payment-to-income affordability checks.',
+      'Estimate mortgage affordability from income, debts, deposit, rate, and term using income multiple and payment-to-income checks.',
     featureList: [
       'Income multiple borrowing estimate',
       'Payment-to-income affordability mode',
@@ -972,7 +972,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Remortgage / Switching',
     softwareName: 'Remortgage Calculator (Switching)',
     softwareDescription:
-      'Compare your current mortgage against a new rate and term to measure break-even and total savings.',
+      'Compare your current mortgage against a new rate or term to estimate payment change, break-even timing, and total savings.',
     featureList: [
       'Monthly and annual savings',
       'Break-even month tracking',
@@ -991,7 +991,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Buy-to-Let Calculator',
     softwareName: 'Buy-to-Let Calculator',
     softwareDescription:
-      'Estimate rental yield, cashflow, and lender stress coverage for buy-to-let mortgage scenarios.',
+      'Estimate buy-to-let yield, monthly cash flow, and lender stress coverage for rental property financing scenarios.',
     featureList: [
       'Gross and net rental yield',
       'Monthly and annual cashflow',
@@ -1010,7 +1010,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Offset Calculator',
     softwareName: 'Offset Calculator',
     softwareDescription:
-      'Model how offset savings and monthly contributions reduce mortgage interest and payoff time.',
+      'Model how offset savings and monthly deposits reduce mortgage interest, shorten payoff, and change total cost.',
     featureList: [
       'Offset interest savings estimate',
       'Effective mortgage balance tracking',
@@ -1029,7 +1029,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Interest Rate Change Calculator',
     softwareName: 'Interest Rate Change Calculator',
     softwareDescription:
-      'Compare payment and total interest impact when mortgage rates change now or after a selected period.',
+      'Estimate monthly payment and total interest impact when a mortgage rate changes now or after a selected period.',
     featureList: [
       'Current versus new rate comparison',
       'Immediate or delayed rate-change timing',
@@ -1048,7 +1048,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Loan-to-Value (LTV) Calculator',
     softwareName: 'Loan-to-Value (LTV) Calculator',
     softwareDescription:
-      'Calculate mortgage LTV and review risk bands using property value with loan or deposit inputs.',
+      'Calculate mortgage loan-to-value and review deposit bands using property value with loan or deposit inputs.',
     featureList: [
       'Loan-to-value percentage calculator',
       'Loan or deposit input modes',
@@ -1067,7 +1067,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Personal Loan Calculator',
     softwareName: 'Personal Loan Calculator',
     softwareDescription:
-      'Estimate personal loan monthly payment, total interest, and payoff impact of extra monthly payments across a fixed-rate term.',
+      'Estimate personal loan monthly payment, total interest, total cost, and the payoff impact of extra monthly payments across a fixed-rate term.',
     featureList: [
       'Fixed-rate monthly payment estimate',
       'Total repayment and interest breakdown',
@@ -1089,7 +1089,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Monthly Savings Needed',
     softwareName: 'Monthly Savings Needed Calculator',
     softwareDescription:
-      'Estimate the monthly savings needed to reach a goal using current balance, time horizon, interest rate, and compounding.',
+      'Calculate the monthly savings needed to reach a target balance using current savings, time horizon, interest rate, and compounding.',
     featureList: [
       'Required monthly savings calculation',
       'Total contributions breakdown',
@@ -1107,7 +1107,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Compound Interest',
     softwareName: 'Compound Interest Calculator',
     softwareDescription:
-      'Calculate compound interest to estimate your ending balance, total interest earned, and growth over time.',
+      'Project ending balance, interest earned, and contribution impact from principal, return rate, time, and compounding frequency.',
     featureList: [
       'Ending balance estimate',
       'Total interest earned',
@@ -1125,7 +1125,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Time to Savings Goal',
     softwareName: 'Time to Savings Goal Calculator',
     softwareDescription:
-      'Estimate how long it will take to reach your savings target with regular contributions, interest, and compounding.',
+      'Estimate how many months it could take to reach your savings target with regular contributions, interest, and compounding.',
     featureList: [
       'Time to goal estimate',
       'Total interest earned',
@@ -1138,7 +1138,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Effective Annual Rate',
     softwareName: 'Effective Annual Rate Calculator',
     softwareDescription:
-      'Convert a nominal interest rate into an effective annual rate using compounding frequency.',
+      'Convert a nominal rate or APR into effective annual rate using compounding frequency.',
     featureList: [
       'Nominal to EAR conversion',
       'Compounding frequency options',
@@ -1157,10 +1157,10 @@ const FINANCE_SCHEMA_CONFIG = {
     softwareName: 'Inflation Calculator',
     webPageName: 'Inflation Calculator',
     webPageDescription:
-      'Compare how much an amount from one month and year is worth in another using U.S. CPI data. See equivalent value, cumulative inflation, and annualized inflation.',
+      'Compare what money from one U.S. CPI month is worth in another and see equivalent value, cumulative inflation, and annualized inflation.',
     linkWebPageToSoftwareApplication: true,
     softwareDescription:
-      'Calculate inflation-adjusted value using U.S. CPI data. Compare purchasing power across months and years, and view equivalent value, cumulative inflation, and annualized inflation.',
+      'Calculate inflation-adjusted value using U.S. CPI data to compare purchasing power across months and years.',
     featureList: [
       'Inflation-adjusted value comparison',
       'Equivalent value in target month',
@@ -1180,7 +1180,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Future Value (FV)',
     softwareName: 'Future Value (FV) Calculator',
     softwareDescription:
-      'Calculate how much your money could grow over time using interest rate and compounding.',
+      'Project how a lump sum or recurring deposits could grow over time using return rate and compounding.',
     featureList: [
       'Future value estimate',
       'Total growth breakdown',
@@ -1198,7 +1198,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Future Value of Annuity',
     softwareName: 'Future Value of Annuity Calculator',
     softwareDescription:
-      'Calculate the future value of an annuity and compare ordinary annuity vs annuity due.',
+      'Project how recurring payments could grow and compare ordinary annuity versus annuity due.',
     featureList: [
       'Ordinary vs Annuity Due',
       'Future value estimate',
@@ -1212,11 +1212,29 @@ const FINANCE_SCHEMA_CONFIG = {
       'time value of money',
     ],
   },
+  investment: {
+    breadcrumbLabel: 'Investment Calculator',
+    softwareName: 'Investment Calculator',
+    softwareDescription:
+      'Project ending value, total contributions, compound growth, and inflation-adjusted purchasing power for a broad investment plan.',
+    featureList: [
+      'Ending value projection',
+      'Contribution breakdown',
+      'Inflation-adjusted purchasing power',
+      'Compound growth comparison',
+    ],
+    keywords: [
+      'investment calculator',
+      'investment growth calculator',
+      'compound growth calculator',
+      'inflation adjusted investment calculator',
+    ],
+  },
   'investment-growth': {
     breadcrumbLabel: 'Investment Growth',
     softwareName: 'Investment Growth Calculator',
     softwareDescription:
-      'Calculate how your investments will grow over time with compound interest, regular contributions, and inflation adjustments.',
+      'Project future value, total contributions, total gains, and inflation-adjusted balance from expected return and time horizon.',
     featureList: [
       'Investment growth projection',
       'Inflation adjustment',
@@ -1234,7 +1252,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Investment Return',
     softwareName: 'Investment Return Calculator',
     softwareDescription:
-      'Estimate portfolio growth with lump sum and recurring contributions, with optional tax and inflation adjustment.',
+      'Estimate ending value, profit, CAGR, and real return with recurring deposits, tax assumptions, and inflation adjustments.',
     featureList: [
       'Future value from lump sum and recurring contributions',
       'Annual and monthly breakdowns',
@@ -1251,7 +1269,8 @@ const FINANCE_SCHEMA_CONFIG = {
   'present-value': {
     breadcrumbLabel: 'Present Value (PV)',
     softwareName: 'Present Value (PV) Calculator',
-    softwareDescription: 'Calculate the present value of future cash using discount rate and time.',
+    softwareDescription:
+      'Discount future cash flow into today\'s value using rate, time period, and compounding.',
     featureList: ['Present value estimate', 'Discount lost breakdown', 'Compounding options'],
     keywords: [
       'present value calculator',
@@ -1264,7 +1283,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Present Value of Annuity',
     softwareName: 'Present Value of Annuity Calculator',
     softwareDescription:
-      'Calculate the present value of an annuity. Compare ordinary annuity vs annuity due.',
+      'Find the present value of recurring payments and compare ordinary annuity versus annuity due.',
     featureList: ['Ordinary vs Annuity Due', 'Present value estimate', 'Discount saved breakdown'],
     keywords: [
       'present value of annuity calculator',
@@ -1277,7 +1296,7 @@ const FINANCE_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Simple Interest',
     softwareName: 'Simple Interest Calculator',
     softwareDescription:
-      'Calculate simple interest to find total interest and ending amount using principal, rate, and time.',
+      'Calculate simple interest to find total interest earned and ending balance using principal, rate, and time.',
     featureList: [
       'Total interest calculation',
       'Ending amount estimate',
@@ -2227,10 +2246,34 @@ function buildHomepageStructuredData({ title, description, canonical }) {
   const faqEntries = [
     {
       '@type': 'Question',
+      name: 'What calculators are available?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'CalcHowMuch covers mortgage, loan, credit card, finance, pricing, salary, time, percentage, and math calculators.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How should I choose the right calculator?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Start with the closest calculator cluster, then choose the route that matches your exact question such as margin, markup, overtime, age, or mortgage payment.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are the results accurate?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Calculations use standard formulas and are designed for planning, comparison, and educational use.',
+      },
+    },
+    {
+      '@type': 'Question',
       name: 'Are the calculators free to use?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. All calculators on CalcHowMuch are free to use. You can use them as often as you like without creating an account.',
+        text: 'Yes. All calculators on CalcHowMuch are free to use.',
       },
     },
     {
@@ -2238,7 +2281,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Do I need to sign up to use the calculators?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. You do not need to register or sign in. Our calculators are available instantly in your browser.',
+        text: 'No. The calculators are available instantly in your browser without registration.',
       },
     },
     {
@@ -2246,15 +2289,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Do you store my inputs or calculation results?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. Calculator inputs and results stay in your browser and are not stored by us. We do not save the values you enter into calculator fields.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are the calculator results accurate?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The calculators are designed to provide accurate estimates based on the inputs and assumptions shown on each page. However, actual results may vary depending on rounding, timing, institution-specific rules, or real-world conditions.',
+        text: 'No. Calculator inputs and results stay in your browser and are not stored as personal calculation records.',
       },
     },
     {
@@ -2262,7 +2297,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Can I use these calculator results for financial, legal, or tax decisions?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Calculator results are for informational and planning purposes only. They should not be treated as financial, legal, tax, or professional advice. For important decisions, consult a qualified professional or official source.',
+        text: 'No. Calculator results are for informational and planning purposes only and should not replace professional advice.',
       },
     },
     {
@@ -2270,15 +2305,7 @@ function buildHomepageStructuredData({ title, description, canonical }) {
       name: 'Why do results sometimes differ from banks, lenders, or other websites?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Results can differ because different tools may use different assumptions, rounding methods, compounding frequency, date handling, or fee/tax rules. We recommend checking the explanation and assumptions section on each calculator page.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What assumptions do your calculators use?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Each calculator includes its own assumptions and methodology. Common assumptions may include fixed interest rates, regular payment intervals, standard compounding periods, and simplified timing rules. Always review the page-specific explanation for details.',
+        text: 'Results can differ because other tools may use different assumptions, rounding methods, timing rules, fees, or tax treatments.',
       },
     },
     {
@@ -2291,98 +2318,10 @@ function buildHomepageStructuredData({ title, description, canonical }) {
     },
     {
       '@type': 'Question',
-      name: 'Can I use CalcHowMuch calculators for business or professional planning?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You can use them for planning and estimation. However, because calculators simplify some real-world variables, final decisions should be verified with official documents, providers, or professionals.',
-      },
-    },
-    {
-      '@type': 'Question',
       name: 'Do your calculators include fees, taxes, or penalties?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It depends on the calculator. Some calculators include optional fields for fees, taxes, or extra costs, while others focus on the core calculation only. Check the inputs and explanation section for what is included.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How often are the calculators updated?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'We review and improve calculators regularly to keep formulas, explanations, and usability clear and reliable. The “Last updated” date on each page shows when that calculator was most recently reviewed.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I trust the formulas used on the site?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. We aim to use standard formulas and clearly explain how each calculator works. Where relevant, we also provide formula sections, assumptions, and examples so you can verify the logic.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Why does the same input sometimes produce different results after changing options?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Some options (such as compounding frequency, payment timing, rounding, or contribution intervals) can significantly affect the output. Even small changes in settings can change the final result.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are your calculators suitable for students and learning?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Many users use CalcHowMuch calculators for learning, homework support, and understanding formulas. The explanation and FAQ sections are designed to make the calculations easier to understand.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do you provide professional advice or recommendations?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. CalcHowMuch provides tools and explanations, not personalized advice. We do not recommend specific financial products, legal actions, or tax strategies.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What should I do if I think a calculator result is wrong?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'First, recheck your inputs (especially dates, rates, and frequencies). Then review the assumptions and explanation section on the calculator page. If something still looks incorrect, contact us and include the inputs you used so we can review it.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I share calculator results with someone else?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. You can share the calculator page and inputs, but remember that results are estimates and should be independently verified before making important decisions.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Are the calculators available worldwide?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. Most calculators can be used from anywhere. However, some results may vary by country because local laws, taxes, lending rules, and financial products differ.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do you use cookies or analytics?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'We may use basic analytics and site tools to improve performance and usability. Calculator inputs themselves are not stored as personal calculation records. For full details, see our Privacy Policy.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Where can I learn more about how a calculator works?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Each calculator page includes an explanation section, formula details, and FAQs. You can also visit our About page and site policies for more information about how CalcHowMuch works.',
+        text: 'It depends on the route. Some calculators include optional fee or tax inputs, while others focus on the core formula only.',
       },
     },
   ];
@@ -3392,18 +3331,30 @@ const FINANCE_RELATED_CARD_COPY = {
 };
 
 const TIME_AND_DATE_RELATED_CARD_COPY = {
-  'sleep-time-calculator': 'Plan bedtime or wake-up options around familiar sleep cycles.',
-  'wake-up-time-calculator': 'Compare wake-up windows that line up with sleep-cycle timing.',
-  'nap-time-calculator': 'Pick a nap type and see practical wake-up targets fast.',
-  'power-nap-calculator': 'Compare short and long nap lengths side by side.',
-  'energy-based-nap-selector': 'Match nap length to the kind of energy reset you need.',
-  'work-hours-calculator': 'Track daily, split, or weekly hours with unpaid breaks included.',
-  'overtime-hours-calculator': 'Separate standard and overtime hours with clearer thresholds.',
-  'time-between-two-dates-calculator': 'Measure exact distance between dates or date-times.',
-  'days-until-a-date-calculator': 'Count days remaining to a deadline or milestone.',
-  'countdown-timer-generator': 'Create a live countdown for launches, trips, birthdays, or events.',
-  'age-calculator': 'See exact age, total days, and the next birthday in one view.',
-  'birthday-day-of-week': 'Find the weekday of birth and compare upcoming birthday years.',
+  'sleep-time-calculator': 'Plan better bedtimes or wake-up targets around 90-minute sleep cycles.',
+  'wake-up-time-calculator': 'Compare alarm times that line up with 4, 5, or 6 sleep cycles.',
+  'nap-time-calculator': 'Turn a nap type and start time into a practical wake-up target.',
+  'power-nap-calculator': 'Compare 10 to 90-minute nap options before you set an alarm.',
+  'energy-based-nap-selector': 'Match nap length to the kind of energy reset you need right now.',
+  'work-hours-calculator': 'Track shift totals, breaks, and weekly hours for timesheets or rotas.',
+  'overtime-hours-calculator': 'Separate standard and overtime hours with clearer daily or weekly rules.',
+  'time-between-two-dates-calculator': 'Measure exact distance between dates, date-times, or business days.',
+  'days-until-a-date-calculator': 'Count down to a deadline, measure days since, or switch to weekdays only.',
+  'countdown-timer-generator': 'Create a live countdown for launches, trips, birthdays, or deadline tracking.',
+  'age-calculator': 'See exact age, total days, and the next birthday in one planning view.',
+  'birthday-day-of-week': 'Find the weekday of birth and compare future birthday patterns quickly.',
+};
+
+const PERCENTAGE_RELATED_CARD_COPY = {
+  'percent-change': 'Measure signed increase or decrease from an original baseline.',
+  'percentage-difference': 'Compare two values fairly when neither one is the official starting point.',
+  'percentage-increase': 'Show how much a value grew from its original amount.',
+  'percentage-decrease': 'Show how much a value dropped from its original amount.',
+  'percentage-composition': 'Break a total into item shares and remaining percentage.',
+  'reverse-percentage': 'Work backward from a final value and percentage to the original base.',
+  'percent-to-fraction-decimal': 'Convert a percentage into decimal and fraction forms side by side.',
+  'what-percent-is-x-of-y': 'Find the share a part represents out of a known whole.',
+  'percentage-of-a-number': 'Calculate the amount created when a rate is applied to a base value.',
 };
 
 function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
@@ -3582,7 +3533,7 @@ function buildPercentageRelatedCalculatorsHtml(subcategory, activeCalculatorId) 
     ${calculators
       .map((calculator) => {
         const isActive = calculator.id === activeCalculatorId;
-        return `<a class="pct-cluster-switch-chip${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        return `<a class="pct-cluster-switch-chip nav-item${isActive ? ' is-active' : ''}" href="${calculator.url}"${
           isActive ? ' aria-current="page"' : ''
         }>${calculator.name}</a>`;
       })
@@ -3603,11 +3554,14 @@ function buildPercentageRelatedCalculatorsHtml(subcategory, activeCalculatorId) 
     ${calculators
       .map((calculator) => {
         const isActive = calculator.id === activeCalculatorId;
+        const description =
+          PERCENTAGE_RELATED_CARD_COPY[calculator.id] ||
+          'Open the same answer-first shell for this percentage scenario.';
         return `<a class="pct-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
           isActive ? ' aria-current="page"' : ''
         }>
       <span class="pct-cluster-related-card-title">${calculator.name}</span>
-      <span class="pct-cluster-related-card-copy">Open the same answer-first shell for this percentage scenario.</span>
+      <span class="pct-cluster-related-card-copy">${description}</span>
       <span class="pct-cluster-related-card-meta">Percentage Core</span>
     </a>`;
       })
@@ -3681,9 +3635,9 @@ function buildPricingClusterLandingPage(category) {
   const calculators = Array.isArray(category?.subcategories)
     ? category.subcategories.flatMap((subcategory) => subcategory.calculators || [])
     : [];
-  const title = 'Pricing Calculators – Discount, Margin & Markup Tools';
+  const title = 'Pricing Calculators | Margin, Markup, Discount & Commission';
   const description =
-    'Browse pricing calculators for discount, markup, margin, and commission with the shared answer-first shell.';
+    'Browse pricing calculators for margin, markup, discount, and sales commission so you can protect profit, set prices, and compare pricing scenarios.';
   const canonical = buildCanonical('/pricing-calculators/');
   const headMetaHtml = generateHeadMeta({
     canonicalUrl: canonical,
@@ -3722,7 +3676,7 @@ ${renderManagedHeadAdsenseBlock()}    <!-- Cloudflare Web Analytics (manual beac
           <section class="pct-cluster-panel panel-span-all">
             <div class="pct-cluster-page-header">
               <h1>Pricing Calculators</h1>
-              <p class="pct-cluster-page-intro">Pick a pricing workflow and get to margin, markup, discount, or commission answers without going through generic percentage routes.</p>
+              <p class="pct-cluster-page-intro">Use this pricing calculator hub when you need to move from cost to price, check profitability, compare discount impact, or estimate sales commission without bouncing between generic percentage tools.</p>
             </div>
             <section class="pct-cluster-related" aria-labelledby="pricing-cluster-list-title">
               <div class="pct-cluster-related-head">
@@ -3733,6 +3687,61 @@ ${renderManagedHeadAdsenseBlock()}    <!-- Cloudflare Web Analytics (manual beac
               </div>
               <div class="pct-cluster-related-links">
                 ${cardsHtml}
+              </div>
+            </section>
+            <section class="pct-cluster-related" aria-labelledby="pricing-cluster-use-cases-title">
+              <div class="pct-cluster-related-head">
+                <div>
+                  <span class="pct-cluster-switch-kicker">Use cases</span>
+                  <h2 id="pricing-cluster-use-cases-title">When to use each pricing calculator</h2>
+                </div>
+              </div>
+              <div class="pct-cluster-related-links">
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Margin calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use margin when you manage gross profit as a share of selling price and need to protect profitability after discounts or channel changes.</span>
+                  <span class="pct-cluster-related-card-meta">Profitability view</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Markup calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use markup when your pricing rule starts from cost and you need to turn cost into a consistent selling price or quote.</span>
+                  <span class="pct-cluster-related-card-meta">Cost-based pricing</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Discount calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use discount when you need to see sale price, savings, and the immediate revenue impact of a markdown or promotional offer.</span>
+                  <span class="pct-cluster-related-card-meta">Promotion planning</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Sales commission calculator</span>
+                  <span class="pct-cluster-related-card-copy">Use commission when you want to test flat or tiered sales payouts and understand the effective commission rate on a deal or period of sales.</span>
+                  <span class="pct-cluster-related-card-meta">Sales payouts</span>
+                </article>
+              </div>
+            </section>
+            <section class="pct-cluster-related" aria-labelledby="pricing-cluster-guide-title">
+              <div class="pct-cluster-related-head">
+                <div>
+                  <span class="pct-cluster-switch-kicker">Planning guide</span>
+                  <h2 id="pricing-cluster-guide-title">How this pricing cluster helps</h2>
+                </div>
+              </div>
+              <div class="pct-cluster-related-links">
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Protect margin before discounting</span>
+                  <span class="pct-cluster-related-card-copy">Check how much room you really have before a discount or negotiated price starts to erode gross margin more than expected.</span>
+                  <span class="pct-cluster-related-card-meta">Margin control</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Translate cost into a sellable price</span>
+                  <span class="pct-cluster-related-card-copy">Move from a supplier cost or landed cost into a target price with markup rules that are easier to standardize across products.</span>
+                  <span class="pct-cluster-related-card-meta">Quote building</span>
+                </article>
+                <article class="pct-cluster-related-link">
+                  <span class="pct-cluster-related-card-title">Compare adjacent pricing questions</span>
+                  <span class="pct-cluster-related-card-copy">Jump between markup, margin, discount, and commission routes when one pricing question turns into another during planning.</span>
+                  <span class="pct-cluster-related-card-meta">Internal linking</span>
+                </article>
               </div>
             </section>
           </section>
@@ -3771,7 +3780,7 @@ function injectBeforeFaq(explanationHtml, injectedHtml) {
     return explanationHtml;
   }
 
-  const faqHeadingRe = /<h3>\s*FAQ\s*<\/h3>/i;
+  const faqHeadingRe = /<h3>\s*(FAQ|Frequently Asked Questions)\s*<\/h3>/i;
   const headingMatch = explanationHtml.match(faqHeadingRe);
 
   if (!headingMatch || typeof headingMatch.index !== 'number') {
@@ -3785,6 +3794,254 @@ function injectBeforeFaq(explanationHtml, injectedHtml) {
   }
 
   return `${explanationHtml.slice(0, sectionStart)}${injectedHtml}\n\n${explanationHtml.slice(sectionStart)}`;
+}
+
+function getExplanationSectionClassName(explanationHtml) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return '';
+  }
+
+  const match = explanationHtml.match(/<section\b[^>]*class="([^"]+)"/i);
+  return match?.[1]?.trim() || '';
+}
+
+function buildMathInterpretationSection(explanationHtml, calculatorTitle) {
+  const sectionClass = getExplanationSectionClassName(explanationHtml);
+  const classAttr = sectionClass ? ` class="${sectionClass}"` : '';
+  const calculatorLabel = typeof calculatorTitle === 'string' ? calculatorTitle.toLowerCase() : 'calculator';
+
+  return `<section${classAttr}>
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current ${calculatorLabel} problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>`;
+}
+
+function ensureMathInterpretationGuidance(explanationHtml, calculatorTitle) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  if (/(what this result means|result means|\binterpret\b)/i.test(explanationHtml)) {
+    return explanationHtml;
+  }
+
+  return injectBeforeFaq(explanationHtml, buildMathInterpretationSection(explanationHtml, calculatorTitle));
+}
+
+function buildMathImportantNotesItems(calculatorTitle) {
+  const calculatorLabel = typeof calculatorTitle === 'string' ? calculatorTitle.toLowerCase() : 'calculator';
+
+  return {
+    accuracy:
+      `<li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this ${calculatorLabel} tool.</li>`,
+    disclaimer:
+      '<li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>',
+    assumptions:
+      '<li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>',
+    privacy:
+      '<li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>',
+    lastUpdated: '<li><strong>Last updated:</strong> April 2026</li>',
+  };
+}
+
+function enrichMathImportantNotesSection(sectionHtml, calculatorTitle) {
+  const items = buildMathImportantNotesItems(calculatorTitle);
+  let updatedSection = sectionHtml;
+
+  if (!/\blast updated\s*:/i.test(updatedSection)) {
+    if (/<ul\b[^>]*>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<ul\b[^>]*>/i, (match) => `${match}\n    ${items.lastUpdated}`);
+    }
+  }
+
+  const missingItems = [];
+  if (!/\baccuracy\s*:/i.test(updatedSection)) missingItems.push(items.accuracy);
+  if (!/\bassumptions\s*:/i.test(updatedSection)) missingItems.push(items.assumptions);
+  if (!/\b[a-z ]*disclaimer\s*:/i.test(updatedSection)) missingItems.push(items.disclaimer);
+
+  if (/\bprivacy\s*:/i.test(updatedSection)) {
+    updatedSection = updatedSection.replace(
+      /<li[^>]*>\s*(?:<strong>)?\s*Privacy\s*:\s*[\s\S]*?<\/li>/i,
+      items.privacy
+    );
+  } else {
+    missingItems.push(items.privacy);
+  }
+
+  if (missingItems.length) {
+    if (/<\/ul>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<\/ul>/i, `    ${missingItems.join('\n    ')}\n  </ul>`);
+    } else {
+      updatedSection = updatedSection.replace(
+        /(<h3>\s*Important Notes\s*<\/h3>)/i,
+        `$1\n  <ul>\n    ${missingItems.join('\n    ')}\n  </ul>`
+      );
+    }
+  }
+
+  return updatedSection;
+}
+
+function buildMathImportantNotesSection(explanationHtml, calculatorTitle) {
+  const sectionClass = getExplanationSectionClassName(explanationHtml);
+  const classAttr = sectionClass ? ` class="${sectionClass}"` : '';
+  const items = buildMathImportantNotesItems(calculatorTitle);
+
+  return `<section${classAttr}>
+  <h3>Important Notes</h3>
+  <ul>
+    ${items.lastUpdated}
+    ${items.accuracy}
+    ${items.disclaimer}
+    ${items.assumptions}
+    ${items.privacy}
+  </ul>
+</section>`;
+}
+
+function ensureMathImportantNotesContract(explanationHtml, calculatorTitle) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const sectionBounds = findSectionBoundsForHeading(explanationHtml, /<h3>\s*Important Notes\s*<\/h3>/i);
+
+  if (!sectionBounds) {
+    return `${explanationHtml}\n\n${buildMathImportantNotesSection(explanationHtml, calculatorTitle)}`;
+  }
+
+  const originalSection = explanationHtml.slice(sectionBounds.start, sectionBounds.end);
+  const enrichedSection = enrichMathImportantNotesSection(originalSection, calculatorTitle);
+
+  return `${explanationHtml.slice(0, sectionBounds.start)}${enrichedSection}${explanationHtml.slice(sectionBounds.end)}`;
+}
+
+function normalizeMathExplanationHtml(explanationHtml, calculatorTitle) {
+  return ensureMathImportantNotesContract(
+    ensureMathInterpretationGuidance(explanationHtml, calculatorTitle),
+    calculatorTitle
+  );
+}
+
+function buildPricingImportantNotesItems(calculatorTitle) {
+  const calculatorLabel = typeof calculatorTitle === 'string' ? calculatorTitle.toLowerCase() : 'calculator';
+
+  return {
+    lastUpdated: '<li><strong>Last updated:</strong> April 2026</li>',
+    accuracy:
+      `<li><strong>Accuracy:</strong> Results are estimated from the values you enter and the pricing formulas used by this ${calculatorLabel} tool.</li>`,
+    disclaimer:
+      '<li><strong>Pricing disclaimer:</strong> This calculator is for planning and quoting support only; confirm live pricing, taxes, and commercial terms separately.</li>',
+    assumptions:
+      '<li><strong>Assumptions:</strong> Outputs assume the entered price, rate, margin, or discount values match your current scenario and that extra fees are handled separately unless included in the inputs.</li>',
+    privacy:
+      '<li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>',
+  };
+}
+
+function enrichPricingImportantNotesSection(sectionHtml, calculatorTitle) {
+  const items = buildPricingImportantNotesItems(calculatorTitle);
+  let updatedSection = sectionHtml.replace(/<h4>\s*Important Notes\s*<\/h4>/i, '<h3>Important Notes</h3>');
+
+  if (!/\blast updated\s*:/i.test(updatedSection)) {
+    if (/<ul\b[^>]*>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<ul\b[^>]*>/i, (match) => `${match}\n    ${items.lastUpdated}`);
+    }
+  }
+
+  const missingItems = [];
+  if (!/\baccuracy\s*:/i.test(updatedSection)) missingItems.push(items.accuracy);
+  if (!/\bassumptions\s*:/i.test(updatedSection)) missingItems.push(items.assumptions);
+  if (!/\b[a-z ]*disclaimer\s*:/i.test(updatedSection)) missingItems.push(items.disclaimer);
+
+  if (/\bprivacy\s*:/i.test(updatedSection)) {
+    updatedSection = updatedSection.replace(
+      /<li[^>]*>\s*(?:<strong>)?\s*Privacy\s*:\s*[\s\S]*?<\/li>/i,
+      items.privacy
+    );
+  } else {
+    missingItems.push(items.privacy);
+  }
+
+  if (missingItems.length) {
+    if (/<\/ul>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<\/ul>/i, `    ${missingItems.join('\n    ')}\n  </ul>`);
+    } else {
+      updatedSection = updatedSection.replace(
+        /(<h3>\s*Important Notes\s*<\/h3>)/i,
+        `$1\n  <ul>\n    ${missingItems.join('\n    ')}\n  </ul>`
+      );
+    }
+  }
+
+  return updatedSection;
+}
+
+function buildPricingImportantNotesSection(explanationHtml, calculatorTitle) {
+  const sectionClass = getExplanationSectionClassName(explanationHtml);
+  const classAttr = sectionClass ? ` class="${sectionClass}"` : '';
+  const items = buildPricingImportantNotesItems(calculatorTitle);
+
+  return `<section${classAttr}>
+  <h3>Important Notes</h3>
+  <ul>
+    ${items.lastUpdated}
+    ${items.accuracy}
+    ${items.disclaimer}
+    ${items.assumptions}
+    ${items.privacy}
+  </ul>
+</section>`;
+}
+
+function ensurePricingImportantNotesContract(explanationHtml, calculatorTitle) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const sectionBounds = findSectionBoundsForHeading(explanationHtml, /<h[34]>\s*Important Notes\s*<\/h[34]>/i);
+
+  if (!sectionBounds) {
+    return `${explanationHtml}\n\n${buildPricingImportantNotesSection(explanationHtml, calculatorTitle)}`;
+  }
+
+  const originalSection = explanationHtml.slice(sectionBounds.start, sectionBounds.end);
+  const enrichedSection = enrichPricingImportantNotesSection(originalSection, calculatorTitle);
+
+  return `${explanationHtml.slice(0, sectionBounds.start)}${enrichedSection}${explanationHtml.slice(sectionBounds.end)}`;
+}
+
+function findSectionBoundsForHeading(explanationHtml, headingRe) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return null;
+  }
+
+  const match = explanationHtml.match(headingRe);
+  if (!match || typeof match.index !== 'number') {
+    return null;
+  }
+
+  const sectionStart = explanationHtml.lastIndexOf('<section', match.index);
+  if (sectionStart === -1) {
+    return null;
+  }
+
+  const sectionEnd = explanationHtml.indexOf('</section>', match.index);
+  if (sectionEnd === -1) {
+    return null;
+  }
+
+  return {
+    start: sectionStart,
+    end: sectionEnd + '</section>'.length,
+  };
 }
 
 function injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) {
@@ -4342,7 +4599,7 @@ function buildPageHtml({
   </div>
         </div>`
         : isMigratedPercentageClusterRoute
-        ? `<div class="pct-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
+        ? `<div class="pct-cluster-panel panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <div class="pct-cluster-page-header">
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="pct-cluster-page-intro">${description}</p>
@@ -4350,6 +4607,20 @@ function buildPageHtml({
   <div class="calculator-page-single pct-cluster-flow">
     ${sanitizedCalculatorHtml}
     ${injectPercentageSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
+  </div>
+</div>`
+        : isMigratedPricingClusterRoute
+        ? `<div class="pct-cluster-panel panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
+  <div class="pct-cluster-page-header">
+    <h1 id="calculator-title">${calculatorTitle}</h1>
+    <p class="pct-cluster-page-intro">${description}</p>
+  </div>
+  <nav class="pct-cluster-switch-chips" aria-label="Current pricing route">
+    <a class="pct-cluster-switch-chip nav-item is-active" href="${canonical}" aria-current="page">${calculatorTitle}</a>
+  </nav>
+  <div class="calculator-page-single pct-cluster-flow">
+    ${sanitizedCalculatorHtml}
+    ${injectPricingSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml)}
   </div>
 </div>`
         : isMigratedFinanceClusterRoute
@@ -4856,9 +5127,9 @@ function buildCalculatorIndex(categories) {
     })
     .join('');
 
-  const title = 'All Calculators | Calculate How Much Online Calculator Hub';
+  const title = 'All Online Calculators by Category | Finance, Salary, Pricing & Math';
   const description =
-    'Browse every calculator on Calculate How Much, organized by category with direct links to launch each tool and explore related finance or math topics.';
+    'Browse every CalcHowMuch calculator by category, including finance, loans, credit cards, pricing, salary, time, percentage, and math tools.';
   const canonical = buildCanonical('/calculators/');
   const adsenseHeadScript = renderManagedHeadAdsenseBlock();
   const staticStructuredData = buildCollectionPageStructuredData({
@@ -4899,20 +5170,20 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <div class="panel panel-scroll">
             <h1>All Calculators</h1>
             <p class="helper">
-              Browse calculators by category. Select a calculator to launch it in the main
-              calculator shell.
+              Browse every public calculator by category so you can jump straight into the right
+              tool for finance, pricing, salary, time, percentage, or math questions.
             </p>
             <p class="helper">
-              This directory groups every public calculator route in one place so you can move from
-              quick everyday percentage checks to deeper mortgage, loan, finance, salary, and time
-              planning tools without hunting through separate menus. If you already know the type of
-              problem you want to solve, jump straight into the matching category below.
+              This master hub is designed for discovery as well as navigation. Use it when you know
+              the problem you want to solve, when you want to compare adjacent calculators before
+              choosing one, or when you need to find a more specific route than a general-purpose
+              percentage or finance tool.
             </p>
             <p class="helper">
-              Each calculator is designed to give a direct result first, then support that answer
-              with explanations, examples, formulas, and related tools where useful. Use this page
-              as a hub when you want to compare calculators, discover adjacent routes, or find the
-              right starting point before running a more detailed scenario.
+              Each route is built to answer one calculation clearly, then support that answer with
+              formulas, worked examples, and related calculators. Start with the category that best
+              matches your intent, then move deeper into the cluster when you need a more precise
+              scenario.
             </p>
             <p id="all-calculators-no-results" class="helper" hidden>
               No calculator matches your search.
@@ -5007,7 +5278,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           });
 
           if (noResultsNode) {
-            noResultsNode.hidden = visibleItemCount > 0;
+            noResultsNode.hidden = !query || visibleItemCount > 0;
           }
         }
 
@@ -5065,8 +5336,9 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         <div class="hero-inner">
           <h1 id="homepage-hero-title">All Calculators — Finance, Loan, Mortgage &amp; Math Tools</h1>
           <p>
-            Explore mortgage, loan, credit card, finance, percentage, and time
-            calculators. Get instant results with simple and accurate tools.
+            Browse calculators for mortgages, loans, credit cards, pricing, salary, percentages,
+            time, and math. Use the homepage as a search-first hub to compare routes, jump into a
+            specific workflow, and get answer-first tools with supporting explanations.
           </p>
           <div class="search" role="search">
             <div class="search-bar">
@@ -5121,6 +5393,11 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         <div class="section-head">
           <div>
             <h2 id="homepage-clusters-title">Browse Calculator Clusters</h2>
+            <p>
+              Start with the cluster that matches your problem, then narrow into the exact
+              calculator you need for budgeting, borrowing, pricing, pay planning, date math, or
+              classroom-style calculations.
+            </p>
           </div>
         </div>
         <div id="homepage-empty" class="empty-state" hidden>No calculator matches your search.</div>
@@ -5135,40 +5412,46 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         </div>
         <div class="seo-grid">
           <section class="seo-block">
-            <h3>Mortgage &amp; Loan Calculators</h3>
+            <h3>Borrowing &amp; Mortgage Planning</h3>
             <p>
-              Estimate monthly payments and total interest using our
-              <a href="/loan-calculators/mortgage-calculator/">mortgage calculator</a>, compare borrowing costs with the
-              <a href="/loan-calculators/personal-loan-calculator/">loan calculator</a>, or analyse rate changes using the
+              Estimate monthly payments, compare borrowing costs, and model affordability with the
+              <a href="/loan-calculators/mortgage-calculator/">mortgage calculator</a>,
+              <a href="/loan-calculators/personal-loan-calculator/">loan calculator</a>, and
               <a href="/loan-calculators/interest-rate-change-calculator/">interest rate change calculator</a>.
             </p>
           </section>
 
           <section class="seo-block">
-            <h3>Credit Card Calculators</h3>
+            <h3>Pricing &amp; Profitability</h3>
             <p>
-              Compare payoff plans with the <a href="/credit-card-calculators/credit-card-payment-calculator/">credit card repayment tool</a>,
-              review minimum payment costs, and explore
-              <a href="/credit-card-calculators/balance-transfer-savings-calculator/">balance transfer calculators</a>.
+              Compare
+              <a href="/pricing-calculators/margin-calculator/">margin</a>,
+              <a href="/pricing-calculators/markup-calculator/">markup</a>,
+              <a href="/pricing-calculators/discount-calculator/">discount</a>, and
+              <a href="/pricing-calculators/commission-calculator/">sales commission</a>
+              calculators when you need to protect profit while still pricing competitively.
             </p>
           </section>
 
           <section class="seo-block">
-            <h3>Finance &amp; Savings Calculators</h3>
+            <h3>Salary, Earnings &amp; Pay Conversion</h3>
             <p>
-              Forecast growth with the <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>,
-              compare purchasing power with the <a href="/finance-calculators/inflation-calculator/">inflation calculator</a>,
-              plan targets using the <a href="/finance-calculators/time-to-savings-goal-calculator/">time to savings goal calculator</a>,
-              and compare scenarios with future value tools.
+              Convert hourly and annual pay, compare overtime, and estimate commission-driven
+              earnings with the
+              <a href="/salary-calculators/salary-calculator/">salary calculator</a>,
+              <a href="/salary-calculators/hourly-to-salary-calculator/">hourly to salary calculator</a>,
+              and <a href="/salary-calculators/commission-calculator/">commission earnings calculator</a>.
             </p>
           </section>
 
           <section class="seo-block">
-            <h3>Percentage &amp; Time Calculators</h3>
+            <h3>Time, Percentage &amp; Everyday Math</h3>
             <p>
-              Solve everyday problems with the <a href="/percentage-calculators/percent-change-calculator/">percentage calculator</a>,
-              compare dates with the <a href="/time-and-date/time-between-two-dates-calculator/">time between dates calculator</a>,
-              and use practical planning tools for daily use.
+              Solve everyday planning questions with the
+              <a href="/time-and-date/age-calculator/">age calculator</a>,
+              <a href="/time-and-date/time-between-two-dates-calculator/">time between dates calculator</a>,
+              <a href="/percentage-calculators/percent-change-calculator/">percent change calculator</a>,
+              and classroom-friendly math routes.
             </p>
           </section>
         </div>
@@ -5178,10 +5461,10 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
         <div class="trust" aria-labelledby="homepage-why-title">
           <h2 id="homepage-why-title">Why Use CalcHowMuch</h2>
           <p>
-            CalcHowMuch helps you make better financial and everyday decisions by providing
-            simple, fast, and accurate calculators. Each tool is designed to give clear
-            results, including breakdowns, formulas, and insights so you can compare scenarios
-            and understand outcomes.
+            CalcHowMuch is built as a practical calculator library rather than a thin list of
+            widgets. The goal is to give you a direct answer fast, then support that answer with
+            formulas, examples, and related tools so you can compare scenarios without restarting
+            your search from scratch.
           </p>
         </div>
       </section>
@@ -5196,15 +5479,43 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <div class="faq-list">
             <div class="faq-item">
               <h3>What calculators are available?</h3>
-              <p>We offer mortgage, loan, credit card, finance, percentage, and time calculators.</p>
+              <p>We cover mortgage, loan, credit card, finance, pricing, salary, time, percentage, and math calculators.</p>
             </div>
             <div class="faq-item">
-              <h3>Are these calculators free?</h3>
-              <p>Yes, all calculators on CalcHowMuch are free and easy to use.</p>
+              <h3>How should I choose the right calculator?</h3>
+              <p>Start with the closest cluster, then use the route that matches your exact question such as margin, markup, overtime, age, or mortgage payment.</p>
             </div>
             <div class="faq-item">
               <h3>Are the results accurate?</h3>
-              <p>Calculations are based on standard formulas and provide reliable estimates.</p>
+              <p>Calculations use standard formulas and are designed for planning, comparison, and educational use.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Are the calculators free to use?</h3>
+              <p>Yes. All calculators on CalcHowMuch are free to use.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do I need to sign up to use the calculators?</h3>
+              <p>No. The calculators are available instantly in your browser without registration.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do you store my inputs or calculation results?</h3>
+              <p>No. Calculator inputs and results stay in your browser and are not stored as personal calculation records.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can I use these calculator results for financial, legal, or tax decisions?</h3>
+              <p>No. Calculator results are for informational and planning purposes only and should not replace professional advice.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Why do results sometimes differ from banks, lenders, or other websites?</h3>
+              <p>Different tools can use different assumptions, rounding methods, timing rules, fees, or tax treatments.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do the calculators work on mobile devices?</h3>
+              <p>Yes. CalcHowMuch calculators are designed to work on mobile, tablet, and desktop devices.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do your calculators include fees, taxes, or penalties?</h3>
+              <p>It depends on the route. Some calculators include optional fee or tax inputs, while others focus on the core formula only.</p>
             </div>
           </div>
         </div>
@@ -5528,6 +5839,18 @@ function main() {
     const fragmentDir = resolveCalculatorFragmentDir(relPath);
     const override = resolveCalculatorOverride(calculator);
     const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
+    if (isMigratedMathClusterRoute && governance.routeArchetype === 'calc_exp') {
+      fragments.explanationHtml = normalizeMathExplanationHtml(
+        fragments.explanationHtml,
+        override?.h1 ?? calculator.name
+      );
+    }
+    if (isMigratedPricingClusterRoute && governance.routeArchetype === 'calc_exp') {
+      fragments.explanationHtml = ensurePricingImportantNotesContract(
+        fragments.explanationHtml,
+        override?.h1 ?? calculator.name
+      );
+    }
     const topNavHtml = buildTopNavHtml(
       navigation.categories,
       category.id,
@@ -5804,9 +6127,9 @@ function main() {
     writeFile(path.join(outputDir, 'index.html'), pageHtml);
   });
 
-  const homeTitle = 'All Calculators | Finance, Loan, Mortgage & Math';
+  const homeTitle = 'Online Calculators for Finance, Salary, Pricing, Time & Math | CalcHowMuch';
   const homeDescription =
-    'Quick calculations for everyday numbers. Explore calculator clusters and launch focused tools for math, finance, loans, time, and percentage planning.';
+    'Browse online calculators for mortgages, loans, credit cards, pricing, salary, time, percentage, and math. Compare scenarios and launch focused tools from one calculator hub.';
 
   if (shouldWriteRootHomepage) {
     writeFile(

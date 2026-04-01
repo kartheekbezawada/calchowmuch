@@ -457,6 +457,7 @@ function getVisibleRouteSet(cluster, query, expandAll = false) {
 }
 
 function renderClusterCards(clusters, query = '', expandAll = false) {
+  const normalizedQuery = normalizeQuery(query);
   const visibleClusters = clusters
     .map((cluster) => ({
       cluster,
@@ -515,7 +516,7 @@ function renderClusterCards(clusters, query = '', expandAll = false) {
     .join('');
 
   gridNode.innerHTML = cardsHtml;
-  emptyNode.hidden = visibleClusters.length > 0;
+  emptyNode.hidden = !normalizedQuery || visibleClusters.length > 0;
 }
 
 function renderLoadingPlaceholders(countOverride = null) {

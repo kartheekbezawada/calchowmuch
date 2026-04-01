@@ -167,9 +167,9 @@ const CALCULATOR_FAQ_SCHEMA = {
 };
 
 setPageMetadata({
-  title: 'Simple Interest Calculator | Interest & Final Amount',
+  title: 'Simple Interest Calculator | Interest Earned & Final Balance',
   description:
-    'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
+    'Calculate simple interest, total interest earned, and ending balance from principal, rate, and time for loans or savings.',
   canonical: 'https://calchowmuch.com/finance-calculators/simple-interest-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -178,10 +178,10 @@ setPageMetadata({
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Simple Interest Calculator | Interest & Final Amount',
+        name: 'Simple Interest Calculator | Interest Earned & Final Balance',
         url: 'https://calchowmuch.com/finance-calculators/simple-interest-calculator/',
         description:
-          'Estimate simple interest, total interest, and ending amount using principal, rate, and time period.',
+          'Calculate simple interest, total interest earned, and ending balance from principal, rate, and time for loans or savings.',
         inLanguage: 'en',
       },
       {
@@ -192,7 +192,7 @@ setPageMetadata({
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/finance-calculators/simple-interest-calculator/',
         description:
-          'Free simple interest calculator to compute total interest and ending amount using principal, rate, and time.',
+          'Calculate simple interest to compute total interest earned and ending balance using principal, rate, and time.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: { '@type': 'Organization', name: 'CalcHowMuch' },

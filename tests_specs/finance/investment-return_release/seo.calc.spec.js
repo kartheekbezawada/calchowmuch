@@ -4,11 +4,11 @@ test.describe('Investment Return Calculator SEO', () => {
   test('IR-SEO-1 metadata, structured data, and sitemap', async ({ page }) => {
     await page.goto('/finance-calculators/investment-return-calculator/');
 
-    await expect(page).toHaveTitle('Investment Return Calculator | CAGR, Profit & Growth');
+    await expect(page).toHaveTitle('Investment Return Calculator | CAGR, Profit & Real Return');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Estimate investment return, portfolio growth, profit, and CAGR using lump sums, contributions, inflation, and tax settings.'
+      'Estimate ending value, profit, CAGR, and real return with recurring deposits, tax assumptions, inflation, and scenario testing.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

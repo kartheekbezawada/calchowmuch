@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Hire Purchase Calculator SEO', () => {
   test('HIRE-PURCHASE-SEO-1: metadata, heading, FAQ schema, sitemap', async ({ page }) => {
-    const expectedTitle = 'Hire Purchase Calculator | Monthly Payment & Cost';
+    const expectedTitle = 'Hire Purchase Calculator | Payment, Balloon & Total Cost';
     const expectedDescription =
-      'Estimate hire purchase payments, balloon amount, total interest, and total payable using vehicle price, deposit, APR, and term.';
+      'Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.';
 
     await page.goto('/car-loan-calculators/hire-purchase-calculator');
 
@@ -63,7 +63,7 @@ test.describe('Hire Purchase Calculator SEO', () => {
     const breadcrumbSchema = graph.find((entry) => entry?.['@type'] === 'BreadcrumbList');
     const faqSchema = graph.find((entry) => entry?.['@type'] === 'FAQPage');
 
-    expect(webpageSchema?.name).toBe('Hire Purchase Calculator | Monthly Payment & Cost');
+    expect(webpageSchema?.name).toBe('Hire Purchase Calculator | Payment, Balloon & Total Cost');
     expect(webpageSchema?.primaryImageOfPage?.url).toBe(
       'https://calchowmuch.com/assets/images/og-default.png'
     );

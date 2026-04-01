@@ -3,25 +3,21 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Remortgage Calculator (Switching) | Break-even | CalcHowMuch</title>
-    <meta name="description" content="Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon." />
+    <title>Remortgage Calculator | Break-Even, Payment &amp; Savings</title>
+    <meta name="description" content="Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings." />
     <link rel="canonical" href="https://calchowmuch.com/loan-calculators/remortgage-calculator/" />
-    <meta property="og:title" content="Remortgage Calculator (Switching) | Break-even | CalcHowMuch" />
-    <meta property="og:description" content="Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon." />
+    <meta property="og:title" content="Remortgage Calculator | Break-Even, Payment &amp; Savings" />
+    <meta property="og:description" content="Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/loan-calculators/remortgage-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Remortgage Calculator (Switching) | Break-even | CalcHowMuch" />
-    <meta name="twitter:description" content="Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon." />
+    <meta name="twitter:title" content="Remortgage Calculator | Break-Even, Payment &amp; Savings" />
+    <meta name="twitter:description" content="Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-home-loan-cluster="true">
       /* assets/css/base.css */
-      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
-         instead of @import, to eliminate sequential CSS waterfall.
-         See known_issues.md KI-007 / KI-010. */
-
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -986,13 +982,13 @@
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-header {
-        max-width: 1100px;
+        max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-kicker {
-        display: none;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         padding: 9px 14px;
@@ -1007,17 +1003,11 @@
       }
 
       body[data-design-family='home-loan'] #calculator-title {
-        margin: 0;
-        font-size: clamp(36px, 5vw, 56px);
-        line-height: 1.04;
+        margin: 18px 0 0;
+        font-size: clamp(42px, 6vw, 58px);
+        line-height: 1.02;
         letter-spacing: -0.04em;
         color: var(--hl-text);
-        white-space: normal;
-      }
-      @media (min-width: 981px) {
-        body[data-design-family='home-loan'] #calculator-title {
-          white-space: nowrap;
-        }
       }
 
       body[data-design-family='home-loan'] .hl-cluster-page-intro {
@@ -1673,21 +1663,12 @@
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+        gap: 16px;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-        display: grid;
-        gap: 8px;
-        border: 1px solid var(--hl-line);
-        border-radius: var(--hl-radius-lg);
-        background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
-        box-shadow: var(--hl-shadow-soft);
-        padding: 16px;
-      }
-
+      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card,
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-related-card {
         border: 1px solid var(--hl-line);
         border-radius: var(--hl-radius-lg);
@@ -1697,22 +1678,22 @@
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-number {
-        display: none;
-      }
-
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card p,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card h4,
-      body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card p {
-        margin: 0;
+      body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        min-height: 38px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: var(--hl-accent-soft);
+        color: var(--hl-accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
       }
 
       body[data-design-family='home-loan'] [id$='-explanation'] .bor-note-list,
-
       body[data-design-family='home-loan'] [id$='-explanation'] .remo-note-list,
       body[data-design-family='home-loan'] [id$='-explanation'] .btl-note-list {
         display: grid;
@@ -2072,13 +2053,6 @@
           padding: 22px;
         }
 
-        body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-card,
-        body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-card {
-          padding: 16px;
-        }
-}
-
         body[data-design-family='home-loan'] [id$='-explanation'] .bor-faq-grid,
         body[data-design-family='home-loan'] [id$='-explanation'] .remo-faq-grid,
         body[data-design-family='home-loan'] [id$='-explanation'] .btl-faq-grid,
@@ -2422,9 +2396,9 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#webpage","name":"Remortgage Calculator (Switching) | Break-even | CalcHowMuch","url":"https://calchowmuch.com/loan-calculators/remortgage-calculator/","description":"Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#softwareapplication","name":"Remortgage Calculator (Switching)","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/remortgage-calculator/","description":"Compare your current mortgage against a new rate and term to measure break-even and total savings.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Monthly and annual savings","Break-even month tracking","2 to 10 year horizon comparison","Monthly and yearly cost tables"],"keywords":"remortgage calculator, mortgage switching calculator, remortgage savings, mortgage break-even calculator, compare mortgage rates","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this remortgage comparison show?","acceptedAnswer":{"@type":"Answer","text":"It compares cumulative cost of your current mortgage versus a new rate and term over your chosen horizon."}},{"@type":"Question","name":"Why is horizon length important?","acceptedAnswer":{"@type":"Answer","text":"A longer horizon shows how differences compound over time, which can change your switching decision."}},{"@type":"Question","name":"Can a lower rate still be a weak switch?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the term changes materially, short-term monthly relief may not always mean strongest long-term value. Compare the baseline repayment schedule first in the Home Loan Calculator ."}},{"@type":"Question","name":"How should I read break-even month?","acceptedAnswer":{"@type":"Answer","text":"It is the first month where cumulative new-deal cost becomes lower than the current-deal cost."}},{"@type":"Question","name":"Should I compare monthly and yearly table views?","acceptedAnswer":{"@type":"Answer","text":"Yes. Monthly reveals timing details, while yearly helps you evaluate strategy with less noise."}},{"@type":"Question","name":"What if my current payment differs from formula output?","acceptedAnswer":{"@type":"Answer","text":"This calculator computes baseline from balance, rate, and term for consistency across all scenarios."}},{"@type":"Question","name":"Can I use this for quick refinancing checks?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is designed for fast directional decisions before lender-specific fee and product validation."}},{"@type":"Question","name":"Does changing term length affect total saving?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Term length influences monthly payment profile and cumulative interest over your horizon. If your next deal depends on crossing a better risk band, also review the Loan-to-Value (LTV) Calculator ."}},{"@type":"Question","name":"Is this a lender approval or offer?","acceptedAnswer":{"@type":"Answer","text":"No. It is an estimate tool. Final terms depend on product rules, credit profile, and underwriting."}},{"@type":"Question","name":"How do I use this for better decisions?","acceptedAnswer":{"@type":"Answer","text":"Keep balance fixed, vary one input at a time, and compare outcomes across multiple horizon years. Pair it with the Home Loan Calculator for amortization detail and the Interest Rate Change Calculator for rate stress tests."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Remortgage / Switching","item":"https://calchowmuch.com/loan-calculators/remortgage-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-</head>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#webpage","name":"Remortgage Calculator | Break-Even, Payment & Savings","url":"https://calchowmuch.com/loan-calculators/remortgage-calculator/","description":"Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#softwareapplication","name":"Remortgage Calculator (Switching)","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/loan-calculators/remortgage-calculator/","description":"Compare your current mortgage against a new rate or term to estimate payment change, break-even timing, and total savings.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Monthly and annual savings","Break-even month tracking","2 to 10 year horizon comparison","Monthly and yearly cost tables"],"keywords":"remortgage calculator, mortgage switching calculator, remortgage savings, mortgage break-even calculator, compare mortgage rates","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#faq","mainEntity":[{"@type":"Question","name":"What does this remortgage comparison show?","acceptedAnswer":{"@type":"Answer","text":"It compares cumulative cost of your current mortgage versus a new rate and term over your chosen horizon."}},{"@type":"Question","name":"Why is horizon length important?","acceptedAnswer":{"@type":"Answer","text":"A longer horizon shows how differences compound over time, which can change your switching decision."}},{"@type":"Question","name":"Can a lower rate still be a weak switch?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the term changes materially, short-term monthly relief may not always mean strongest long-term value. Compare the baseline repayment schedule first in the Home Loan Calculator ."}},{"@type":"Question","name":"How should I read break-even month?","acceptedAnswer":{"@type":"Answer","text":"It is the first month where cumulative new-deal cost becomes lower than the current-deal cost."}},{"@type":"Question","name":"Should I compare monthly and yearly table views?","acceptedAnswer":{"@type":"Answer","text":"Yes. Monthly reveals timing details, while yearly helps you evaluate strategy with less noise."}},{"@type":"Question","name":"What if my current payment differs from formula output?","acceptedAnswer":{"@type":"Answer","text":"This calculator computes baseline from balance, rate, and term for consistency across all scenarios."}},{"@type":"Question","name":"Can I use this for quick refinancing checks?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is designed for fast directional decisions before lender-specific fee and product validation."}},{"@type":"Question","name":"Does changing term length affect total saving?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Term length influences monthly payment profile and cumulative interest over your horizon. If your next deal depends on crossing a better risk band, also review the Loan-to-Value (LTV) Calculator ."}},{"@type":"Question","name":"Is this a lender approval or offer?","acceptedAnswer":{"@type":"Answer","text":"No. It is an estimate tool. Final terms depend on product rules, credit profile, and underwriting."}},{"@type":"Question","name":"How do I use this for better decisions?","acceptedAnswer":{"@type":"Answer","text":"Keep balance fixed, vary one input at a time, and compare outcomes across multiple horizon years. Pair it with the Home Loan Calculator for amortization detail and the Interest Rate Change Calculator for rate stress tests."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/loan-calculators/remortgage-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Home Loan","item":"https://calchowmuch.com/loan-calculators/mortgage-calculator/"},{"@type":"ListItem","position":3,"name":"Remortgage / Switching","item":"https://calchowmuch.com/loan-calculators/remortgage-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="home-loan">
     <div class="page hl-cluster-page-shell">
       <header class="hl-cluster-site-header">
@@ -2444,8 +2418,9 @@
         <section class="hl-cluster-center-column">
           <div class="hl-cluster-panel">
   <div class="hl-cluster-page-header">
+    <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
     <h1 id="calculator-title">Remortgage Calculator (Switching)</h1>
-    <p class="hl-cluster-page-intro">Compare your current mortgage with a new rate and term to see monthly savings, break-even month, and total savings over a 2 to 10 year horizon.</p>
+    <p class="hl-cluster-page-intro">Compare your current mortgage with a new rate or term to estimate payment change, break-even timing, and total savings.</p>
   </div>
   <div class="calculator-page-single hl-cluster-flow">
     <div id="calc-remortgage-switching">

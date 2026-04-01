@@ -4,11 +4,11 @@ test.describe('Percentage Increase Calculator SEO', () => {
   test('PINC-TEST-SEO-1: metadata, schema, sitemap, and explanation parity', async ({ page }) => {
     await page.goto('/percentage-calculators/percentage-increase-calculator/');
 
-    await expect(page).toHaveTitle('Percentage Increase Calculator | Growth from Original');
+    await expect(page).toHaveTitle('Percentage Increase Calculator | Growth from Original Value');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate how much a value increased from its original amount using the standard percentage growth formula.'
+      'Calculate percentage increase from an original value to a new value and see the growth amount, direction, and formula in one step.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

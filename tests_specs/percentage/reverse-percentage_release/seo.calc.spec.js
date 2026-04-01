@@ -8,7 +8,7 @@ test.describe('Reverse Percentage Calculator SEO', () => {
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find the original number when a known value represents a given percentage of it.'
+      'Find the original value before a percentage was applied when you know the final value and the percentage rate.'
     );
 
     const h1 = page.locator('h1');

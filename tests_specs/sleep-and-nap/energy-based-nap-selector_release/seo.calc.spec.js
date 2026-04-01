@@ -4,11 +4,11 @@ test.describe('Energy-Based Nap Selector SEO', () => {
   test('ENAP-TEST-SEO-1: metadata, schema, and sitemap coverage', async ({ page }) => {
     await page.goto('/time-and-date/energy-based-nap-selector/');
 
-    await expect(page).toHaveTitle('Energy-Based Nap Selector | Quick, Strong or Full');
+    await expect(page).toHaveTitle('Energy-Based Nap Selector | Best Nap Length for Energy Goals');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.'
+      'Choose Quick, Strong, or Full energy goals to get the best nap length, wake-up time, and practical alternatives for daytime or late-night naps.'
     );
 
     const h1 = page.locator('h1');

@@ -14,6 +14,15 @@ export function parseNumericText(text) {
   return cleaned ? Number(cleaned) : Number.NaN;
 }
 
+function escapeHtml(text) {
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export function registerSalaryE2ETest(config) {
   test.describe(config.h1, () => {
     test(`${config.h1} route renders and calculates`, async ({ page }) => {
@@ -44,8 +53,10 @@ export function registerSalarySeoTest(config) {
       const sourceResponse = await page.request.get(config.route);
       expect(sourceResponse.ok()).toBeTruthy();
       const sourceHtml = await sourceResponse.text();
-      expect(sourceHtml).toContain(`<title>${config.title}</title>`);
-      expect(sourceHtml).toContain(`meta name="description" content="${config.description}"`);
+      expect(sourceHtml).toContain(`<title>${escapeHtml(config.title)}</title>`);
+      expect(sourceHtml).toContain(
+        `meta name="description" content="${escapeHtml(config.description)}"`
+      );
       expect(sourceHtml).toContain('FAQPage');
       expect(sourceHtml).toContain('BreadcrumbList');
 

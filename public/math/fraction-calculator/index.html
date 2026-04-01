@@ -4,25 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Fraction Calculator | Math Operations &amp; Simplify</title>
-    <meta
-      name="description"
-      content="Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students."
-    />
+    <meta name="description" content="Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students." />
     <link rel="canonical" href="https://calchowmuch.com/math/fraction-calculator/" />
     <meta property="og:title" content="Fraction Calculator | Math Operations &amp; Simplify" />
-    <meta
-      property="og:description"
-      content="Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students."
-    />
+    <meta property="og:description" content="Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/fraction-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Fraction Calculator | Math Operations &amp; Simplify" />
-    <meta
-      name="twitter:description"
-      content="Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students."
-    />
+    <meta name="twitter:description" content="Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1192,7 +1263,6 @@
         font-size: clamp(1.65rem, 3.2vw, 2.55rem);
         line-height: 1.06;
         letter-spacing: -0.03em;
-        overflow-wrap: anywhere;
       }
 
       #calc-fraction-calculator .fc-subtitle,
@@ -1208,7 +1278,6 @@
         margin: 12px 0 0;
         max-width: 60ch;
         font-size: 1rem;
-        overflow-wrap: anywhere;
       }
 
       #calc-fraction-calculator .fc-hero-points {
@@ -1239,6 +1308,17 @@
         min-width: 0;
       }
 
+      #calc-fraction-calculator .fc-card-head {
+        flex-wrap: wrap;
+      }
+
+      #calc-fraction-calculator .fc-title,
+      #calc-fraction-calculator .fc-subtitle,
+      #calc-fraction-calculator .fc-card-title,
+      #calc-fraction-calculator .fc-hero-points {
+        overflow-wrap: anywhere;
+      }
+
       #calc-fraction-calculator .fc-controls-card {
         display: grid;
         gap: 20px;
@@ -1261,7 +1341,6 @@
         justify-content: space-between;
         align-items: start;
         gap: 16px;
-        flex-wrap: wrap;
       }
 
       #calc-fraction-calculator .fc-card-title {
@@ -1829,1150 +1908,625 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/fraction-calculator/#webpage",
-            "name": "Fraction Calculator | Math Operations & Simplify",
-            "url": "https://calchowmuch.com/math/fraction-calculator/",
-            "description": "Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/fraction-calculator/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/fraction-calculator/#softwareapplication"
-            },
-            "breadcrumb": { "@id": "https://calchowmuch.com/math/fraction-calculator/#breadcrumbs" }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/fraction-calculator/#softwareapplication",
-            "name": "Fraction Calculator",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/fraction-calculator/",
-            "description": "Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/fraction-calculator/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is a fraction?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "A fraction shows part of a whole with a numerator on top and a denominator on the bottom."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why do denominators need to match when adding fractions?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "You can only combine parts that are measured in the same size pieces."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you need a common denominator when multiplying fractions?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. Multiply the numerators together and the denominators together, then simplify if possible."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does reciprocal mean in fraction division?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means flipping a fraction so the numerator and denominator change places."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is the simplest form of a fraction?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is the version where the numerator and denominator share no common factor greater than 1."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is an improper fraction?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is a fraction where the numerator is equal to or larger than the denominator."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is a mixed number?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is a whole number written together with a proper fraction."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can fractions be negative?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. A negative fraction means the value is below zero."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why can a denominator not be zero?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "A valid fraction cannot split a whole into zero equal parts, so the denominator must stay non-zero."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Should I simplify every final answer?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Usually yes, unless a teacher or worksheet asks for a different form."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/fraction-calculator/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Fraction Calculator",
-                "item": "https://calchowmuch.com/math/fraction-calculator/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/fraction-calculator/#webpage","name":"Fraction Calculator | Math Operations & Simplify","url":"https://calchowmuch.com/math/fraction-calculator/","description":"Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/fraction-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/fraction-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/fraction-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/fraction-calculator/#softwareapplication","name":"Fraction Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/fraction-calculator/","description":"Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/fraction-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is a fraction?","acceptedAnswer":{"@type":"Answer","text":"A fraction shows part of a whole with a numerator on top and a denominator on the bottom."}},{"@type":"Question","name":"Why do denominators need to match when adding fractions?","acceptedAnswer":{"@type":"Answer","text":"You can only combine parts that are measured in the same size pieces."}},{"@type":"Question","name":"Do you need a common denominator when multiplying fractions?","acceptedAnswer":{"@type":"Answer","text":"No. Multiply the numerators together and the denominators together, then simplify if possible."}},{"@type":"Question","name":"What does reciprocal mean in fraction division?","acceptedAnswer":{"@type":"Answer","text":"It means flipping a fraction so the numerator and denominator change places."}},{"@type":"Question","name":"What is the simplest form of a fraction?","acceptedAnswer":{"@type":"Answer","text":"It is the version where the numerator and denominator share no common factor greater than 1."}},{"@type":"Question","name":"What is an improper fraction?","acceptedAnswer":{"@type":"Answer","text":"It is a fraction where the numerator is equal to or larger than the denominator."}},{"@type":"Question","name":"What is a mixed number?","acceptedAnswer":{"@type":"Answer","text":"It is a whole number written together with a proper fraction."}},{"@type":"Question","name":"Can fractions be negative?","acceptedAnswer":{"@type":"Answer","text":"Yes. A negative fraction means the value is below zero."}},{"@type":"Question","name":"Why can a denominator not be zero?","acceptedAnswer":{"@type":"Answer","text":"A valid fraction cannot split a whole into zero equal parts, so the denominator must stay non-zero."}},{"@type":"Question","name":"Should I simplify every final answer?","acceptedAnswer":{"@type":"Answer","text":"Usually yes, unless a teacher or worksheet asks for a different form."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/fraction-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Fraction Calculator","item":"https://calchowmuch.com/math/fraction-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Fraction Calculator</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Fraction Calculator</h1>
-              <p class="math-cluster-page-intro">
-                Use this free fraction calculator to add, subtract, multiply, divide, simplify, and
-                convert fractions with clear worked steps for students.
-              </p>
-            </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-fraction-calculator">
-                <div class="fc-shell">
-                  <section class="fc-card fc-hero-card" aria-label="Fraction calculator overview">
-                    <div class="fc-hero-copy">
-                      <p class="fc-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="fc-title">
-                        Solve fraction problems and keep the answer visible while you switch
-                        methods.
-                      </h2>
-                      <p class="fc-subtitle">
-                        Add, subtract, multiply, divide, simplify, or convert fractions in one
-                        answer-first workspace with worked steps and plain-English teaching notes.
-                      </p>
-                    </div>
-                    <ul class="fc-hero-points">
-                      <li>Six fraction modes stay in one clean flow instead of separate tools.</li>
-                      <li>
-                        The answer card stays prominent while the steps explain how the result was
-                        built.
-                      </li>
-                      <li>Advanced teaching notes stay collapsed until you need the extra help.</li>
-                    </ul>
-                  </section>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Fraction Calculator</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Fraction Calculator</h1>
+    <p class="math-cluster-page-intro">Use this free fraction calculator to add, subtract, multiply, divide, simplify, and convert fractions with clear worked steps for students.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-fraction-calculator">
+  <div class="fc-shell">
+    <section class="fc-card fc-hero-card" aria-label="Fraction calculator overview">
+      <div class="fc-hero-copy">
+        <p class="fc-eyebrow">Simple Smooth Wow</p>
+        <h2 class="fc-title">Solve fraction problems and keep the answer visible while you switch methods.</h2>
+        <p class="fc-subtitle">
+          Add, subtract, multiply, divide, simplify, or convert fractions in one answer-first
+          workspace with worked steps and plain-English teaching notes.
+        </p>
+      </div>
+      <ul class="fc-hero-points">
+        <li>Six fraction modes stay in one clean flow instead of separate tools.</li>
+        <li>The answer card stays prominent while the steps explain how the result was built.</li>
+        <li>Advanced teaching notes stay collapsed until you need the extra help.</li>
+      </ul>
+    </section>
 
-                  <div class="fc-workbench">
-                    <section class="fc-card fc-controls-card" aria-label="Fraction inputs">
-                      <div class="fc-card-head">
-                        <div>
-                          <p class="fc-card-label">Inputs</p>
-                          <p class="fc-card-title">
-                            Choose the operation and enter the fraction values
-                          </p>
-                        </div>
-                        <span class="fc-chip">Single-screen flow</span>
-                      </div>
+    <div class="fc-workbench">
+      <section class="fc-card fc-controls-card" aria-label="Fraction inputs">
+        <div class="fc-card-head">
+          <div>
+            <p class="fc-card-label">Inputs</p>
+            <p class="fc-card-title">Choose the operation and enter the fraction values</p>
+          </div>
+          <span class="fc-chip">Single-screen flow</span>
+        </div>
 
-                      <section class="fc-op-selector" aria-label="Choose fraction operation">
-                        <p class="fc-card-label">Operation</p>
-                        <div
-                          class="fc-tab-strip"
-                          id="fc-mode-tabs"
-                          role="tablist"
-                          aria-label="Fraction operations"
-                        >
-                          <button
-                            type="button"
-                            class="fc-op-card is-active"
-                            role="tab"
-                            aria-selected="true"
-                            data-mode="add"
-                          >
-                            <span class="fc-op-icon">+</span>
-                            <span class="fc-op-copy"
-                              ><strong>Add</strong><small>Match denominators first</small></span
-                            >
-                          </button>
-                          <button
-                            type="button"
-                            class="fc-op-card"
-                            role="tab"
-                            aria-selected="false"
-                            data-mode="subtract"
-                          >
-                            <span class="fc-op-icon">−</span>
-                            <span class="fc-op-copy"
-                              ><strong>Subtract</strong
-                              ><small>Keep the same-size parts</small></span
-                            >
-                          </button>
-                          <button
-                            type="button"
-                            class="fc-op-card"
-                            role="tab"
-                            aria-selected="false"
-                            data-mode="multiply"
-                          >
-                            <span class="fc-op-icon">×</span>
-                            <span class="fc-op-copy"
-                              ><strong>Multiply</strong
-                              ><small>Top with top, bottom with bottom</small></span
-                            >
-                          </button>
-                          <button
-                            type="button"
-                            class="fc-op-card"
-                            role="tab"
-                            aria-selected="false"
-                            data-mode="divide"
-                          >
-                            <span class="fc-op-icon">÷</span>
-                            <span class="fc-op-copy"
-                              ><strong>Divide</strong><small>Keep, flip, multiply</small></span
-                            >
-                          </button>
-                          <button
-                            type="button"
-                            class="fc-op-card"
-                            role="tab"
-                            aria-selected="false"
-                            data-mode="simplify"
-                          >
-                            <span class="fc-op-icon">✓</span>
-                            <span class="fc-op-copy"
-                              ><strong>Simplify</strong><small>Reduce to simplest form</small></span
-                            >
-                          </button>
-                          <button
-                            type="button"
-                            class="fc-op-card"
-                            role="tab"
-                            aria-selected="false"
-                            data-mode="convert"
-                          >
-                            <span class="fc-op-icon">⇆</span>
-                            <span class="fc-op-copy"
-                              ><strong>Convert</strong
-                              ><small>Switch mixed and improper forms</small></span
-                            >
-                          </button>
-                        </div>
-                      </section>
+        <section class="fc-op-selector" aria-label="Choose fraction operation">
+          <p class="fc-card-label">Operation</p>
+          <div class="fc-tab-strip" id="fc-mode-tabs" role="tablist" aria-label="Fraction operations">
+            <button type="button" class="fc-op-card is-active" role="tab" aria-selected="true" data-mode="add">
+              <span class="fc-op-icon">+</span>
+              <span class="fc-op-copy"><strong>Add</strong><small>Match denominators first</small></span>
+            </button>
+            <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="subtract">
+              <span class="fc-op-icon">&minus;</span>
+              <span class="fc-op-copy"><strong>Subtract</strong><small>Keep the same-size parts</small></span>
+            </button>
+            <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="multiply">
+              <span class="fc-op-icon">&times;</span>
+              <span class="fc-op-copy"><strong>Multiply</strong><small>Top with top, bottom with bottom</small></span>
+            </button>
+            <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="divide">
+              <span class="fc-op-icon">&divide;</span>
+              <span class="fc-op-copy"><strong>Divide</strong><small>Keep, flip, multiply</small></span>
+            </button>
+            <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="simplify">
+              <span class="fc-op-icon">&#10003;</span>
+              <span class="fc-op-copy"><strong>Simplify</strong><small>Reduce to simplest form</small></span>
+            </button>
+            <button type="button" class="fc-op-card" role="tab" aria-selected="false" data-mode="convert">
+              <span class="fc-op-icon">&#8646;</span>
+              <span class="fc-op-copy"><strong>Convert</strong><small>Switch mixed and improper forms</small></span>
+            </button>
+          </div>
+        </section>
 
-                      <div class="fc-mode-panels">
-                        <section
-                          class="fc-mode-panel is-active"
-                          data-mode-panel="add"
-                          role="tabpanel"
-                        >
-                          <div class="fc-input-card">
-                            <p class="fc-card-label">Fractions</p>
-                            <div class="fc-input-row">
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-add-num1">Fraction 1</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-add-num1"
-                                    type="number"
-                                    value="3"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-add-den1"
-                                    type="number"
-                                    value="4"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                              <span class="fc-op-sign">+</span>
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-add-num2">Fraction 2</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-add-num2"
-                                    type="number"
-                                    value="1"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-add-den2"
-                                    type="number"
-                                    value="6"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        <section
-                          class="fc-mode-panel"
-                          data-mode-panel="subtract"
-                          role="tabpanel"
-                          hidden=""
-                        >
-                          <div class="fc-input-card">
-                            <p class="fc-card-label">Fractions</p>
-                            <div class="fc-input-row">
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-sub-num1">Fraction 1</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-sub-num1"
-                                    type="number"
-                                    value="3"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-sub-den1"
-                                    type="number"
-                                    value="4"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                              <span class="fc-op-sign">−</span>
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-sub-num2">Fraction 2</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-sub-num2"
-                                    type="number"
-                                    value="1"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-sub-den2"
-                                    type="number"
-                                    value="6"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        <section
-                          class="fc-mode-panel"
-                          data-mode-panel="multiply"
-                          role="tabpanel"
-                          hidden=""
-                        >
-                          <div class="fc-input-card">
-                            <p class="fc-card-label">Fractions</p>
-                            <div class="fc-input-row">
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-mul-num1">Fraction 1</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-mul-num1"
-                                    type="number"
-                                    value="2"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-mul-den1"
-                                    type="number"
-                                    value="3"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                              <span class="fc-op-sign">×</span>
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-mul-num2">Fraction 2</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-mul-num2"
-                                    type="number"
-                                    value="3"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-mul-den2"
-                                    type="number"
-                                    value="5"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        <section
-                          class="fc-mode-panel"
-                          data-mode-panel="divide"
-                          role="tabpanel"
-                          hidden=""
-                        >
-                          <div class="fc-input-card">
-                            <p class="fc-card-label">Fractions</p>
-                            <div class="fc-input-row">
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-div-num1">Fraction 1</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-div-num1"
-                                    type="number"
-                                    value="2"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-div-den1"
-                                    type="number"
-                                    value="3"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                              <span class="fc-op-sign">÷</span>
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-div-num2">Fraction 2</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-div-num2"
-                                    type="number"
-                                    value="4"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-div-den2"
-                                    type="number"
-                                    value="5"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        <section
-                          class="fc-mode-panel"
-                          data-mode-panel="simplify"
-                          role="tabpanel"
-                          hidden=""
-                        >
-                          <div class="fc-input-card">
-                            <p class="fc-card-label">Fraction</p>
-                            <div class="fc-input-row fc-input-row--single">
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-simp-num">Fraction</label>
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-simp-num"
-                                    type="number"
-                                    value="6"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-simp-den"
-                                    type="number"
-                                    value="8"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                                <div class="fc-input-hints">
-                                  <span>numerator</span><span>denominator</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-
-                        <section
-                          class="fc-mode-panel"
-                          data-mode-panel="convert"
-                          role="tabpanel"
-                          hidden=""
-                        >
-                          <div class="fc-input-card">
-                            <p class="fc-card-label">Conversion</p>
-                            <div class="fc-input-row fc-input-row--convert">
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-conv-imp-num"
-                                  >Improper fraction</label
-                                >
-                                <div class="fc-fraction-stack">
-                                  <input
-                                    id="fc-conv-imp-num"
-                                    type="number"
-                                    value="7"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                  <span class="fc-stack-bar" aria-hidden="true"></span>
-                                  <input
-                                    id="fc-conv-imp-den"
-                                    type="number"
-                                    value="3"
-                                    step="1"
-                                    inputmode="numeric"
-                                  />
-                                </div>
-                              </div>
-                              <span class="fc-op-sign">⇆</span>
-                              <div class="fc-fraction-input">
-                                <label class="fc-input-label" for="fc-conv-mix-whole"
-                                  >Mixed number</label
-                                >
-                                <div class="fc-mixed-stack">
-                                  <input
-                                    id="fc-conv-mix-whole"
-                                    type="number"
-                                    value="1"
-                                    step="1"
-                                    inputmode="numeric"
-                                    class="fc-whole-input"
-                                  />
-                                  <div class="fc-fraction-stack">
-                                    <input
-                                      id="fc-conv-mix-num"
-                                      type="number"
-                                      value="2"
-                                      step="1"
-                                      inputmode="numeric"
-                                    />
-                                    <span class="fc-stack-bar" aria-hidden="true"></span>
-                                    <input
-                                      id="fc-conv-mix-den"
-                                      type="number"
-                                      value="5"
-                                      step="1"
-                                      inputmode="numeric"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-                      </div>
-
-                      <button type="button" class="fc-solve-btn" id="fc-solve-btn">
-                        Show worked answer
-                      </button>
-                    </section>
-
-                    <section class="fc-card fc-answer-card" aria-label="Fraction answer summary">
-                      <div class="fc-card-head">
-                        <div>
-                          <p class="fc-card-label">Answer</p>
-                          <p class="fc-card-title">Current fraction result</p>
-                        </div>
-                        <span class="fc-chip fc-chip--answer">Step-by-step ready</span>
-                      </div>
-
-                      <div class="fc-result-box">
-                        <div class="result" id="fc-result-main" aria-live="polite"></div>
-                        <div class="result-detail" id="fc-result-sub" aria-live="polite"></div>
-                      </div>
-
-                      <div class="fc-metrics-grid">
-                        <article class="fc-metric-card">
-                          <span id="fc-metric-primary-label">Simplest form</span>
-                          <strong id="fc-metric-primary-value">11/12</strong>
-                        </article>
-                        <article class="fc-metric-card">
-                          <span id="fc-metric-secondary-label">Mixed form</span>
-                          <strong id="fc-metric-secondary-value">Not needed</strong>
-                        </article>
-                      </div>
-
-                      <div class="fc-guide-card">
-                        <p class="fc-card-label">Current lesson</p>
-                        <h3 id="fc-mode-label">Add fractions</h3>
-                        <p id="fc-mode-summary-text">
-                          To add fractions, first make the bottom numbers the same. Then add the top
-                          numbers.
-                        </p>
-                        <p class="fc-teacher-note" id="fc-teacher-note">
-                          When denominators match, the size of each part stays the same. That is why
-                          only the numerators are added.
-                        </p>
-                      </div>
-
-                      <details class="fc-advanced-details">
-                        <summary>Advanced rules and tips</summary>
-                        <div class="fc-advanced-grid">
-                          <div class="fc-advanced-card">
-                            <p class="fc-card-label">Easy rule</p>
-                            <h3 id="fc-simple-rule-title">Same-size pieces first</h3>
-                            <p id="fc-simple-rule-text">
-                              Make both bottom numbers match before you add anything.
-                            </p>
-                          </div>
-                          <div class="fc-advanced-card">
-                            <p class="fc-card-label">Watch out</p>
-                            <h3 id="fc-watch-title">Common mistake</h3>
-                            <p id="fc-watch-text">Do not add the bottom numbers together.</p>
-                          </div>
-                          <div class="fc-tip-list" aria-label="Fraction tips">
-                            <div class="fc-tip-card">
-                              <span class="fc-tip-icon">🎯</span>
-                              <strong id="fc-tip-1-title">Remember</strong>
-                              <span id="fc-tip-1-body">Denominator = bottom number</span>
-                            </div>
-                            <div class="fc-tip-card">
-                              <span class="fc-tip-icon">💡</span>
-                              <strong id="fc-tip-2-title">Tip</strong>
-                              <span id="fc-tip-2-body">LCM helps add and subtract</span>
-                            </div>
-                            <div class="fc-tip-card">
-                              <span class="fc-tip-icon">⚡</span>
-                              <strong id="fc-tip-3-title">Shortcut</strong>
-                              <span id="fc-tip-3-body">Always simplify at the end</span>
-                            </div>
-                          </div>
-                        </div>
-                      </details>
-                    </section>
+        <div class="fc-mode-panels">
+          <section class="fc-mode-panel is-active" data-mode-panel="add" role="tabpanel">
+            <div class="fc-input-card">
+              <p class="fc-card-label">Fractions</p>
+              <div class="fc-input-row">
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-add-num1">Fraction 1</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-add-num1" type="number" value="3" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-add-den1" type="number" value="4" step="1" inputmode="numeric" />
                   </div>
-
-                  <section class="fc-card fc-steps-card" aria-label="Worked fraction steps">
-                    <div class="fc-card-head">
-                      <div>
-                        <p class="fc-card-label">Worked steps</p>
-                        <p class="fc-card-title">See the exact fraction moves in order</p>
-                      </div>
-                    </div>
-                    <div id="fc-steps" class="fc-step-list"></div>
-                  </section>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+                <span class="fc-op-sign">+</span>
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-add-num2">Fraction 2</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-add-num2" type="number" value="1" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-add-den2" type="number" value="6" step="1" inputmode="numeric" />
+                  </div>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
                 </div>
               </div>
+            </div>
+          </section>
 
-              <div id="fraction-explanation" class="fc-explanation">
-                <section>
-                  <h2>Fraction Calculator Quick Guide</h2>
-                  <p>
-                    Use this fraction calculator to add, subtract, multiply, divide, simplify, or
-                    convert fractions in one clean page. The answer stays visible, the worked steps
-                    explain each move, and the lesson copy stays simple enough for homework checks,
-                    classroom practice, or quick self-study.
-                  </p>
-                  <ul class="fc-summary-list">
-                    <li>
-                      <strong>Best for:</strong> fraction arithmetic, simplification, and
-                      mixed-number conversion.
-                    </li>
-                    <li>
-                      <strong>Quick answer flow:</strong> choose a mode, enter the values, and read
-                      the answer card first.
-                    </li>
-                    <li>
-                      <strong>Extra help:</strong> open the advanced notes only when you want rule
-                      reminders and teaching tips.
-                    </li>
-                  </ul>
-                </section>
-
-                <section>
-                  <h3>Current Lesson</h3>
-                  <p id="fc-lesson-title">Adding fractions with a common denominator plan</p>
-                  <p id="fc-lesson-copy">
-                    Start by making the denominators match, then work only with the numerators, and
-                    simplify the final answer if possible.
-                  </p>
-                </section>
-
-                <section>
-                  <h3>How to Guide</h3>
-                  <ol>
-                    <li>
-                      Pick the operation tab that matches the fraction problem you want to solve.
-                    </li>
-                    <li>
-                      Enter the numerators and denominators exactly as they appear in the question.
-                    </li>
-                    <li>
-                      Click <strong>Show worked answer</strong> to refresh the answer card and the
-                      worked steps.
-                    </li>
-                    <li>
-                      Read the result line first, then review the worked steps to see how the
-                      calculator reached it.
-                    </li>
-                    <li>
-                      Open <strong>Advanced rules and tips</strong> only if you need the reminder
-                      cards.
-                    </li>
-                  </ol>
-                </section>
-
-                <section>
-                  <h3>Quick Answer Table</h3>
-                  <div class="fc-table-wrap">
-                    <table class="fc-summary-table">
-                      <caption class="math-cluster-visually-hidden">
-                        Quick answer table for the fraction calculator
-                      </caption>
-                      <thead>
-                        <tr>
-                          <th scope="col">Mode</th>
-                          <th scope="col">Rule</th>
-                          <th scope="col">What to watch</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">Add</th>
-                          <td>Find a common denominator, then add the numerators.</td>
-                          <td>Do not add the denominators together.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Subtract</th>
-                          <td>Find a common denominator, then subtract the numerators.</td>
-                          <td>Keep the same-size parts before subtracting.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Multiply</th>
-                          <td>Multiply top by top and bottom by bottom.</td>
-                          <td>No common denominator is needed first.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Divide</th>
-                          <td>Keep the first fraction, flip the second, then multiply.</td>
-                          <td>Only the second fraction is flipped.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Simplify</th>
-                          <td>
-                            Divide the numerator and denominator by the greatest common divisor.
-                          </td>
-                          <td>Use the same factor on both parts.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Convert</th>
-                          <td>
-                            Use division for mixed numbers and whole x denominator + numerator for
-                            improper fractions.
-                          </td>
-                          <td>Keep the denominator in the fractional part of the mixed number.</td>
-                        </tr>
-                      </tbody>
-                    </table>
+          <section class="fc-mode-panel" data-mode-panel="subtract" role="tabpanel" hidden>
+            <div class="fc-input-card">
+              <p class="fc-card-label">Fractions</p>
+              <div class="fc-input-row">
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-sub-num1">Fraction 1</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-sub-num1" type="number" value="3" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-sub-den1" type="number" value="4" step="1" inputmode="numeric" />
                   </div>
-                </section>
-
-                <section>
-                  <h3>Formula Notes</h3>
-                  <p>
-                    For addition and subtraction, the calculator uses
-                    <strong>a/b +/- c/d = (ad +/- bc) / bd</strong> and then simplifies the result.
-                    For multiplication, it uses <strong>a/b x c/d = ac / bd</strong>. For division,
-                    it uses <strong>a/b / c/d = a/b x d/c</strong>.
-                  </p>
-                  <p>
-                    Simplification uses the greatest common divisor, and conversion uses quotient
-                    and remainder rules to move between improper fractions and mixed numbers.
-                  </p>
-                </section>
-
-                <section>
-                  <h3>Worked Example</h3>
-                  <div class="fc-example-grid">
-                    <article class="fc-example-card">
-                      <h4>Add fractions</h4>
-                      <p>Start with <strong>3/4 + 1/6</strong>.</p>
-                      <p>
-                        Use <strong>12</strong> as the common denominator, rewrite the fractions as
-                        <strong>9/12</strong> and <strong>2/12</strong>, then add to get
-                        <strong>11/12</strong>.
-                      </p>
-                    </article>
-                    <article class="fc-example-card">
-                      <h4>Convert a mixed number</h4>
-                      <p>Start with the mixed number <strong>1 2/5</strong>.</p>
-                      <p>
-                        Multiply the whole number by the denominator, add the numerator, and keep
-                        the denominator: <strong>1 x 5 + 2 = 7</strong>, so the improper fraction is
-                        <strong>7/5</strong>.
-                      </p>
-                    </article>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+                <span class="fc-op-sign">&minus;</span>
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-sub-num2">Fraction 2</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-sub-num2" type="number" value="1" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-sub-den2" type="number" value="6" step="1" inputmode="numeric" />
                   </div>
-                </section>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                <section id="fc-faq">
-                  <h3>FAQ</h3>
-                  <div class="fc-faq-grid">
-                    <article class="faq-card">
-                      <h4>What is a fraction?</h4>
-                      <p>
-                        A fraction shows part of a whole with a numerator on top and a denominator
-                        on the bottom.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Why do denominators need to match when adding fractions?</h4>
-                      <p>You can only combine parts that are measured in the same size pieces.</p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Do you need a common denominator when multiplying fractions?</h4>
-                      <p>
-                        No. Multiply the numerators together and the denominators together, then
-                        simplify if possible.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What does reciprocal mean in fraction division?</h4>
-                      <p>
-                        It means flipping a fraction so the numerator and denominator change places.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What is the simplest form of a fraction?</h4>
-                      <p>
-                        It is the version where the numerator and denominator share no common factor
-                        greater than 1.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What is an improper fraction?</h4>
-                      <p>
-                        It is a fraction where the numerator is equal to or larger than the
-                        denominator.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What is a mixed number?</h4>
-                      <p>It is a whole number written together with a proper fraction.</p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Can fractions be negative?</h4>
-                      <p>Yes. A negative fraction means the value is below zero.</p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Why can a denominator not be zero?</h4>
-                      <p>
-                        A valid fraction cannot split a whole into zero equal parts, so the
-                        denominator must stay non-zero.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Should I simplify every final answer?</h4>
-                      <p>Usually yes, unless a teacher or worksheet asks for a different form.</p>
-                    </article>
+          <section class="fc-mode-panel" data-mode-panel="multiply" role="tabpanel" hidden>
+            <div class="fc-input-card">
+              <p class="fc-card-label">Fractions</p>
+              <div class="fc-input-row">
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-mul-num1">Fraction 1</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-mul-num1" type="number" value="2" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-mul-den1" type="number" value="3" step="1" inputmode="numeric" />
                   </div>
-                </section>
-
-                <section>
-                  <h3>Related Calculators</h3>
-                  <div class="fc-links">
-                    <a class="fc-link-card" href="/math/basic/">
-                      <strong>Basic Calculator</strong>
-                      <span
-                        >Use whole-number arithmetic first, then come back here when the problem
-                        moves into parts of a whole.</span
-                      >
-                    </a>
-                    <a class="fc-link-card" href="/math/sample-size/">
-                      <strong>Sample Size Calculator</strong>
-                      <span
-                        >Switch from arithmetic practice to research planning when your math work
-                        becomes study design.</span
-                      >
-                    </a>
-                    <a class="fc-link-card" href="/math/algebra/quadratic-equation/">
-                      <strong>Quadratic Equation Solver</strong>
-                      <span
-                        >Move into algebra once the work goes beyond arithmetic rules and into
-                        equation solving.</span
-                      >
-                    </a>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+                <span class="fc-op-sign">&times;</span>
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-mul-num2">Fraction 2</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-mul-num2" type="number" value="3" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-mul-den2" type="number" value="5" step="1" inputmode="numeric" />
                   </div>
-                </section>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                <section>
-                  <h3>Important Notes</h3>
-                  <ul class="fc-note-list">
-                    <li><strong>Last updated:</strong> March 2026</li>
-                    <li>
-                      <strong>Accuracy:</strong> Fraction results are simplified from the exact
-                      integer inputs you enter.
-                    </li>
-                    <li>
-                      <strong>Assumption:</strong> Every numerator and denominator should be a whole
-                      number.
-                    </li>
-                    <li>
-                      <strong>Validation:</strong> The calculator stops and explains the issue if
-                      any denominator is zero.
-                    </li>
-                    <li>
-                      <strong>Privacy:</strong> Inputs stay in your browser and are not stored as
-                      saved calculation records.
-                    </li>
-                  </ul>
-                </section>
+          <section class="fc-mode-panel" data-mode-panel="divide" role="tabpanel" hidden>
+            <div class="fc-input-card">
+              <p class="fc-card-label">Fractions</p>
+              <div class="fc-input-row">
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-div-num1">Fraction 1</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-div-num1" type="number" value="2" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-div-den1" type="number" value="3" step="1" inputmode="numeric" />
+                  </div>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+                <span class="fc-op-sign">&divide;</span>
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-div-num2">Fraction 2</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-div-num2" type="number" value="4" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-div-den2" type="number" value="5" step="1" inputmode="numeric" />
+                  </div>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="fc-mode-panel" data-mode-panel="simplify" role="tabpanel" hidden>
+            <div class="fc-input-card">
+              <p class="fc-card-label">Fraction</p>
+              <div class="fc-input-row fc-input-row--single">
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-simp-num">Fraction</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-simp-num" type="number" value="6" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-simp-den" type="number" value="8" step="1" inputmode="numeric" />
+                  </div>
+                  <div class="fc-input-hints"><span>numerator</span><span>denominator</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="fc-mode-panel" data-mode-panel="convert" role="tabpanel" hidden>
+            <div class="fc-input-card">
+              <p class="fc-card-label">Conversion</p>
+              <div class="fc-input-row fc-input-row--convert">
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-conv-imp-num">Improper fraction</label>
+                  <div class="fc-fraction-stack">
+                    <input id="fc-conv-imp-num" type="number" value="7" step="1" inputmode="numeric" />
+                    <span class="fc-stack-bar" aria-hidden="true"></span>
+                    <input id="fc-conv-imp-den" type="number" value="3" step="1" inputmode="numeric" />
+                  </div>
+                </div>
+                <span class="fc-op-sign">&#8646;</span>
+                <div class="fc-fraction-input">
+                  <label class="fc-input-label" for="fc-conv-mix-whole">Mixed number</label>
+                  <div class="fc-mixed-stack">
+                    <input
+                      id="fc-conv-mix-whole"
+                      type="number"
+                      value="1"
+                      step="1"
+                      inputmode="numeric"
+                      class="fc-whole-input"
+                    />
+                    <div class="fc-fraction-stack">
+                      <input id="fc-conv-mix-num" type="number" value="2" step="1" inputmode="numeric" />
+                      <span class="fc-stack-bar" aria-hidden="true"></span>
+                      <input id="fc-conv-mix-den" type="number" value="5" step="1" inputmode="numeric" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <button type="button" class="fc-solve-btn" id="fc-solve-btn">Show worked answer</button>
+      </section>
+
+      <section class="fc-card fc-answer-card" aria-label="Fraction answer summary">
+        <div class="fc-card-head">
+          <div>
+            <p class="fc-card-label">Answer</p>
+            <p class="fc-card-title">Current fraction result</p>
+          </div>
+          <span class="fc-chip fc-chip--answer">Step-by-step ready</span>
+        </div>
+
+        <div class="fc-result-box">
+          <div class="result" id="fc-result-main" aria-live="polite"></div>
+          <div class="result-detail" id="fc-result-sub" aria-live="polite"></div>
+        </div>
+
+        <div class="fc-metrics-grid">
+          <article class="fc-metric-card">
+            <span id="fc-metric-primary-label">Simplest form</span>
+            <strong id="fc-metric-primary-value">11/12</strong>
+          </article>
+          <article class="fc-metric-card">
+            <span id="fc-metric-secondary-label">Mixed form</span>
+            <strong id="fc-metric-secondary-value">Not needed</strong>
+          </article>
+        </div>
+
+        <div class="fc-guide-card">
+          <p class="fc-card-label">Current lesson</p>
+          <h3 id="fc-mode-label">Add fractions</h3>
+          <p id="fc-mode-summary-text">
+            To add fractions, first make the bottom numbers the same. Then add the top numbers.
+          </p>
+          <p class="fc-teacher-note" id="fc-teacher-note">
+            When denominators match, the size of each part stays the same. That is why only the numerators are added.
+          </p>
+        </div>
+
+        <details class="fc-advanced-details">
+          <summary>Advanced rules and tips</summary>
+          <div class="fc-advanced-grid">
+            <div class="fc-advanced-card">
+              <p class="fc-card-label">Easy rule</p>
+              <h3 id="fc-simple-rule-title">Same-size pieces first</h3>
+              <p id="fc-simple-rule-text">Make both bottom numbers match before you add anything.</p>
+            </div>
+            <div class="fc-advanced-card">
+              <p class="fc-card-label">Watch out</p>
+              <h3 id="fc-watch-title">Common mistake</h3>
+              <p id="fc-watch-text">Do not add the bottom numbers together.</p>
+            </div>
+            <div class="fc-tip-list" aria-label="Fraction tips">
+              <div class="fc-tip-card">
+                <span class="fc-tip-icon">&#127919;</span>
+                <strong id="fc-tip-1-title">Remember</strong>
+                <span id="fc-tip-1-body">Denominator = bottom number</span>
+              </div>
+              <div class="fc-tip-card">
+                <span class="fc-tip-icon">&#128161;</span>
+                <strong id="fc-tip-2-title">Tip</strong>
+                <span id="fc-tip-2-body">LCM helps add and subtract</span>
+              </div>
+              <div class="fc-tip-card">
+                <span class="fc-tip-icon">&#9889;</span>
+                <strong id="fc-tip-3-title">Shortcut</strong>
+                <span id="fc-tip-3-body">Always simplify at the end</span>
               </div>
             </div>
           </div>
+        </details>
+      </section>
+    </div>
+
+    <section class="fc-card fc-steps-card" aria-label="Worked fraction steps">
+      <div class="fc-card-head">
+        <div>
+          <p class="fc-card-label">Worked steps</p>
+          <p class="fc-card-title">See the exact fraction moves in order</p>
+        </div>
+      </div>
+      <div id="fc-steps" class="fc-step-list"></div>
+    </section>
+  </div>
+</div>
+
+
+
+
+
+    <div id="fraction-explanation" class="fc-explanation">
+  <section>
+    <h2>Fraction Calculator Quick Guide</h2>
+    <p>
+      Use this fraction calculator to add, subtract, multiply, divide, simplify, or convert
+      fractions in one clean page. The answer stays visible, the worked steps explain each move, and
+      the lesson copy stays simple enough for homework checks, classroom practice, or quick
+      self-study.
+    </p>
+    <ul class="fc-summary-list">
+      <li>
+        <strong>Best for:</strong> fraction arithmetic, simplification, and mixed-number conversion.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> choose a mode, enter the values, and read the answer
+        card first.
+      </li>
+      <li>
+        <strong>Extra help:</strong> open the advanced notes only when you want rule reminders and
+        teaching tips.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Current Lesson</h3>
+    <p id="fc-lesson-title">Adding fractions with a common denominator plan</p>
+    <p id="fc-lesson-copy">
+      Start by making the denominators match, then work only with the numerators, and simplify the
+      final answer if possible.
+    </p>
+  </section>
+
+  <section>
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Pick the operation tab that matches the fraction problem you want to solve.</li>
+      <li>Enter the numerators and denominators exactly as they appear in the question.</li>
+      <li>
+        Click <strong>Show worked answer</strong> to refresh the answer card and the worked steps.
+      </li>
+      <li>
+        Read the result line first, then review the worked steps to see how the calculator reached
+        it.
+      </li>
+      <li>Open <strong>Advanced rules and tips</strong> only if you need the reminder cards.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Quick Answer Table</h3>
+    <div class="fc-table-wrap">
+      <table class="fc-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the fraction calculator
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Mode</th>
+            <th scope="col">Rule</th>
+            <th scope="col">What to watch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Add</th>
+            <td>Find a common denominator, then add the numerators.</td>
+            <td>Do not add the denominators together.</td>
+          </tr>
+          <tr>
+            <th scope="row">Subtract</th>
+            <td>Find a common denominator, then subtract the numerators.</td>
+            <td>Keep the same-size parts before subtracting.</td>
+          </tr>
+          <tr>
+            <th scope="row">Multiply</th>
+            <td>Multiply top by top and bottom by bottom.</td>
+            <td>No common denominator is needed first.</td>
+          </tr>
+          <tr>
+            <th scope="row">Divide</th>
+            <td>Keep the first fraction, flip the second, then multiply.</td>
+            <td>Only the second fraction is flipped.</td>
+          </tr>
+          <tr>
+            <th scope="row">Simplify</th>
+            <td>Divide the numerator and denominator by the greatest common divisor.</td>
+            <td>Use the same factor on both parts.</td>
+          </tr>
+          <tr>
+            <th scope="row">Convert</th>
+            <td>
+              Use division for mixed numbers and whole x denominator + numerator for improper
+              fractions.
+            </td>
+            <td>Keep the denominator in the fractional part of the mixed number.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h3>Formula Notes</h3>
+    <p>
+      For addition and subtraction, the calculator uses
+      <strong>a/b +/- c/d = (ad +/- bc) / bd</strong> and then simplifies the result. For
+      multiplication, it uses <strong>a/b x c/d = ac / bd</strong>. For division, it uses
+      <strong>a/b / c/d = a/b x d/c</strong>.
+    </p>
+    <p>
+      Simplification uses the greatest common divisor, and conversion uses quotient and remainder
+      rules to move between improper fractions and mixed numbers.
+    </p>
+  </section>
+
+  <section>
+    <h3>Worked Example</h3>
+    <div class="fc-example-grid">
+      <article class="fc-example-card">
+        <h4>Add fractions</h4>
+        <p>Start with <strong>3/4 + 1/6</strong>.</p>
+        <p>
+          Use <strong>12</strong> as the common denominator, rewrite the fractions as
+          <strong>9/12</strong> and <strong>2/12</strong>, then add to get <strong>11/12</strong>.
+        </p>
+      </article>
+      <article class="fc-example-card">
+        <h4>Convert a mixed number</h4>
+        <p>Start with the mixed number <strong>1 2/5</strong>.</p>
+        <p>
+          Multiply the whole number by the denominator, add the numerator, and keep the denominator:
+          <strong>1 x 5 + 2 = 7</strong>, so the improper fraction is <strong>7/5</strong>.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current fraction calculator problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section id="fc-faq">
+    <h3>FAQ</h3>
+    <div class="fc-faq-grid">
+      <article class="faq-card">
+        <h4>What is a fraction?</h4>
+        <p>
+          A fraction shows part of a whole with a numerator on top and a denominator on the bottom.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>Why do denominators need to match when adding fractions?</h4>
+        <p>You can only combine parts that are measured in the same size pieces.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Do you need a common denominator when multiplying fractions?</h4>
+        <p>
+          No. Multiply the numerators together and the denominators together, then simplify if
+          possible.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What does reciprocal mean in fraction division?</h4>
+        <p>It means flipping a fraction so the numerator and denominator change places.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What is the simplest form of a fraction?</h4>
+        <p>
+          It is the version where the numerator and denominator share no common factor greater than
+          1.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What is an improper fraction?</h4>
+        <p>It is a fraction where the numerator is equal to or larger than the denominator.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What is a mixed number?</h4>
+        <p>It is a whole number written together with a proper fraction.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can fractions be negative?</h4>
+        <p>Yes. A negative fraction means the value is below zero.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why can a denominator not be zero?</h4>
+        <p>
+          A valid fraction cannot split a whole into zero equal parts, so the denominator must stay
+          non-zero.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>Should I simplify every final answer?</h4>
+        <p>Usually yes, unless a teacher or worksheet asks for a different form.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h3>Related Calculators</h3>
+    <div class="fc-links">
+      <a class="fc-link-card" href="/math/basic/">
+        <strong>Basic Calculator</strong>
+        <span
+          >Use whole-number arithmetic first, then come back here when the problem moves into parts
+          of a whole.</span
+        >
+      </a>
+      <a class="fc-link-card" href="/math/sample-size/">
+        <strong>Sample Size Calculator</strong>
+        <span
+          >Switch from arithmetic practice to research planning when your math work becomes study
+          design.</span
+        >
+      </a>
+      <a class="fc-link-card" href="/math/algebra/quadratic-equation/">
+        <strong>Quadratic Equation Solver</strong>
+        <span
+          >Move into algebra once the work goes beyond arithmetic rules and into equation
+          solving.</span
+        >
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h3>Important Notes</h3>
+    <ul class="fc-note-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li>
+        <strong>Accuracy:</strong> Fraction results are simplified from the exact integer inputs you
+        enter.
+      </li>
+      <li>
+        <strong>Assumption:</strong> Every numerator and denominator should be a whole number.
+      </li>
+      <li>
+        <strong>Validation:</strong> The calculator stops and explains the issue if any denominator
+        is zero.
+      </li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+        <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+  </ul>
+  </section>
+</div>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
     <script type="module" src="/calculators/math/fraction-calculator/module.js?v=20260224"></script>
   </body>

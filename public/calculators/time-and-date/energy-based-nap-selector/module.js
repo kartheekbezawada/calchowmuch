@@ -142,9 +142,9 @@ const STRUCTURED_DATA = {
 };
 
 setPageMetadata({
-  title: 'Energy-Based Nap Selector | Quick, Strong or Full',
+  title: 'Energy-Based Nap Selector | Best Nap Length for Energy Goals',
   description:
-    'Choose Quick, Strong, or Full to get a recommended nap length, wake-up time, and practical alternatives.',
+    'Choose Quick, Strong, or Full energy goals to get the best nap length, wake-up time, and practical alternatives for daytime or late-night naps.',
   canonical: 'https://calchowmuch.com/time-and-date/energy-based-nap-selector/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
