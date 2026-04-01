@@ -33,7 +33,7 @@ This is the only active governance file under `requirements/universal-rules/`. A
 ### 1.2 Step Definitions
 
 - **UR-FLOW-010 (P0): Build:** Implement code, sitemap coverage, local verification.
-- **UR-FLOW-011 (P0): Release Checklist:** Execute release gates per `RELEASE_CHECKLIST.md` release-mode and release-scope matrix. `SCHEMA_DEDUPE_MAINTENANCE` requires `test:schema:dedupe`. `NEW_BUILD|ONBOARDING|REDESIGN` require scoped gates for cluster/calculator releases and full global gates only for explicit full-site releases.
+- **UR-FLOW-011 (P0): Release Checklist:** Execute release gates per `RELEASE_CHECKLIST.md` release-mode and release-scope matrix. `NEW_BUILD|ONBOARDING|REDESIGN` require scoped gates for cluster/calculator releases and full global gates only for explicit full-site releases.
 - **UR-FLOW-012 (P0): Release Sign-off:** Create `release-signoffs/RELEASE_SIGNOFF_{ID}.md` per `RELEASE_SIGNOFF.md`; Master Table updates are optional historical logging.
 - **UR-FLOW-013 (P0): Ready:** Agent confirms "Ready to merge". Agent does NOT merge.
 
@@ -344,8 +344,6 @@ Applicability: `calc_exp`, `exp_only`.
 - **UR-SEO-011 (P0):** FAQ 3-way parity: JSON-LD <-> Meta <-> Visible.
 - **UR-SEO-012 (P0):** Schema types or validation failure is FAIL.
 - **UR-SEO-013 (P0):** Per-page uniqueness is mandatory for `FAQPage`, `BreadcrumbList`, and `SoftwareApplication` (max one each per URL).
-- **UR-SEO-014 (P0):** Structured-data dedupe evidence is mandatory for schema-dedupe releases: `schema_duplicates_report.md` and `schema_duplicates_report.csv`.
-- **UR-SEO-015 (P0):** Structured-data dedupe governance is defined in `requirements/universal-rules/reference/SCHEMA_DEDUPE_GUARDRAIL.md`; runtime/build behavior must conform.
 
 ### 7.3 P3/P4/P5 Governance
 
@@ -452,19 +450,15 @@ Supersedes note: `UR-SEO-040` to `UR-SEO-051` supersede older generic SEO wordin
 - **UR-TEST-004 (P0):** FAQ schema guard.
 - **UR-TEST-005 (P0):** CWV Guard: `test:cwv:target` (Targeted) or `test:cwv:all` (Global). (Fail if: CLS > 0.10, LCP > 2.5s).
 - **UR-TEST-006 (P0):** Artifact: `test-results/performance/cls-guard-all-calculators.json`.
-- **UR-TEST-007 (P0):** Structured-data dedupe guard: `npm run test:schema:dedupe`.
-- **UR-TEST-008 (P0):** `test:schema:dedupe` must support scope modes: `full-repo`, `cluster`, `single-calculator`, and optional `route`.
-- **UR-TEST-009 (P0):** `test:schema:dedupe` is mandatory for schema-dedupe maintenance releases; parse errors or unresolved duplicates are hard fail.
 
 ### 8.2 Change-Type Matrix
 
-- **UR-TEST-010 (P0):** New Calc: Unit + Route E2E + SEO + Schema + ISS-001.
+- **UR-TEST-010 (P0):** New Calc: Unit + Route E2E + SEO + ISS-001.
 - **UR-TEST-011 (P1):** Compute: Unit. E2E optional.
 - **UR-TEST-012 (P0):** Nav/Shell: Nav E2E + ISS-001.
 - **UR-TEST-013 (P0):** Finance/Trigger: Button-only regression.
 - **UR-TEST-014 (P0):** Feature Release: Targeted CWV guard (`TARGET={scope}`). Global Release: All-calc CWV guard.
-- **UR-TEST-015 (P0):** Release mode `SCHEMA_DEDUPE_MAINTENANCE`: mandatory gate is `npm run test:schema:dedupe`; other global gates are optional unless promoted by HUMAN.
-- **UR-TEST-016 (P0):** Release modes `NEW_BUILD`, `ONBOARDING`, and `REDESIGN` must follow the release-scope matrix in `RELEASE_CHECKLIST.md`: cluster/calculator releases run scoped gates (`test:cluster:*`, `test:calc:*`, scoped `test:schema:dedupe`, plus required cluster-contract/isolation checks), while explicit full-site releases run the global suite (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`, `test:schema:dedupe`).
+- **UR-TEST-016 (P0):** Release modes `NEW_BUILD`, `ONBOARDING`, and `REDESIGN` must follow the release-scope matrix in `RELEASE_CHECKLIST.md`: cluster/calculator releases run scoped gates (`test:cluster:*`, `test:calc:*`, plus required cluster-contract/isolation checks), while explicit full-site releases run the global suite (`lint`, `test`, `test:e2e`, `test:cwv:all`, `test:iss001`).
 
 ### 8.3 Evidence Recording
 

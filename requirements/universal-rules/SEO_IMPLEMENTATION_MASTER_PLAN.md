@@ -170,8 +170,6 @@ These are forbidden unless a later scope-break decision is made:
 - scoped calc generation via `node scripts/generate-mpa-pages.js --calc-id <id>`
 - `npm run lint`
 - `CLUSTER=<cluster> CALC=<calc> npm run test:calc:seo`
-- `CLUSTER=<cluster> CALC=<calc> npm run test:schema:dedupe -- --scope=calc`
-- `CLUSTER=<cluster> CALC=<calc> npm run test:seo:mojibake -- --scope=calc`
 - `CLUSTER=<cluster> CALC=<calc> npm run test:content:quality -- --scope=calc`
 - route-scoped schema checks with `--scope=route --route=/path/`
 - homepage and hub Playwright coverage
@@ -479,8 +477,6 @@ For each touched calculator route:
 
 - scoped regeneration with `node scripts/generate-mpa-pages.js --route /path/` or `--calc-id <id>`
 - `CLUSTER=<cluster> CALC=<calc> npm run test:calc:seo`
-- `CLUSTER=<cluster> CALC=<calc> npm run test:schema:dedupe -- --scope=calc`
-- `CLUSTER=<cluster> CALC=<calc> npm run test:seo:mojibake -- --scope=calc`
 - `CLUSTER=<cluster> CALC=<calc> npm run test:content:quality -- --scope=calc` when the explanation content is materially rewritten
 
 ### Signoff

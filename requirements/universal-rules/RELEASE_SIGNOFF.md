@@ -30,7 +30,6 @@
 | SEO | scoped SEO command | | |
 | CWV | `npm run test:cwv:all` or scoped equivalent | | |
 | ISS-001 | `npm run test:iss001` (if applicable) | | |
-| Schema Dedupe | `npm run test:schema:dedupe` (if applicable) | | |
 
 ---
 
@@ -41,13 +40,14 @@
 | Release checklist reference | |
 | Scoped route proof (target route + scope lock) | |
 | Homepage search verification keyword(s) | |
-| SEO/schema evidence | |
+| SEO evidence | |
 | CWV artifact (`scoped-cwv` or global) | |
 | Thin-content artifact (if `calc_exp` / `exp_only`) | |
 | Important Notes contract proof (if applicable) | |
 | Pane layout proof (for `calc_exp`) | |
 
 Notes:
+
 - Attach only evidence relevant to this release scope.
 - If an approved homepage-search exclusion is used, record `EXCLUDED` in the keyword row and cite the matching `homepageSearchExclusionEvidence` value.
 - `Release Sign-Off Master Table.md` update is optional historical logging, not a release blocker.

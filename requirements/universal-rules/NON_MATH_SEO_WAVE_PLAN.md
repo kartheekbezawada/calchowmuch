@@ -25,8 +25,6 @@ calculator must be completed, regenerated, verified, and logged before the next 
   - Important Notes
 - Default verification for SEO-first waves:
   - `CLUSTER=<cluster> CALC=<calc> npm run test:calc:seo`
-  - `CLUSTER=<cluster> CALC=<calc> npm run test:schema:dedupe -- --scope=calc`
-  - `CLUSTER=<cluster> CALC=<calc> npm run test:seo:mojibake -- --scope=calc`
 - Add `CLUSTER=<cluster> CALC=<calc> npm run test:content:quality -- --scope=calc` when the
   explanation guide is materially rewritten.
 - Escalate to full scoped calc gates only if work changes layout, CSS, JS, navigation, or route
