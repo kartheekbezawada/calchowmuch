@@ -5,7 +5,8 @@ function isIgnorableRuntimeError(message) {
   return (
     message.includes('cloudflareinsights.com/cdn-cgi/rum') ||
     message.includes('Access-Control-Allow-Origin') ||
-    message.includes('Failed to load resource: net::ERR_FAILED')
+    message.includes('Failed to load resource: net::ERR_FAILED') ||
+    message.includes('Failed to load resource: the server responded with a status of 404 (File not found)')
   );
 }
 

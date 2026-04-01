@@ -20,9 +20,9 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Monthly to Annual Salary Calculator – Pay Converter',
+    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
     description:
-      'Convert monthly salary into annual pay, with optional biweekly and weekly estimates based on your monthly income.',
+      'Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.',
     canonical: 'https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/',
     name: 'Monthly to Annual Salary Calculator',
     appDescription: 'Convert monthly pay into yearly salary and related pay-period views.',

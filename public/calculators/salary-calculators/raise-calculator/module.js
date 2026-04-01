@@ -22,9 +22,9 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Raise Calculator | Calculate New Salary After a Pay Raise',
+    title: 'Raise Calculator | New Salary, Raise Amount and Raise Percentage',
     description:
-      'Calculate a new salary after a raise using either a percentage increase or a flat raise amount.',
+      'Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.',
     canonical: 'https://calchowmuch.com/salary-calculators/raise-calculator/',
     name: 'Raise Calculator',
     appDescription: 'Estimate new pay after a raise using either a percentage or flat increase.',

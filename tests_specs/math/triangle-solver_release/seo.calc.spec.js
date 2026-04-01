@@ -28,7 +28,7 @@ test.describe('math/triangle-solver seo', () => {
     await page.goto('/math/trigonometry/triangle-solver/');
 
     await expect(page).toHaveTitle(
-      'Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch'
+      'Triangle Solver | Solve SSS, SAS, ASA, AAS and SSA Triangles'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

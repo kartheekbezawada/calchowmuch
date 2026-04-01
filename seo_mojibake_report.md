@@ -1,8 +1,8 @@
 # SEO Mojibake Report
 
-- Scope: `cluster:time-and-date`
-- HTML files scanned: **12**
-- Calculator pages scanned: **12**
+- Scope: `cluster:math`
+- HTML files scanned: **37**
+- Calculator pages scanned: **2**
 - Findings: **0**
 - Status: **PASS**
 

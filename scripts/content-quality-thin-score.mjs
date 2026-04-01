@@ -300,7 +300,13 @@ function extractCandidateExplanationRoots(document) {
 
 function pickExplanationRoot(document) {
   const candidates = extractCandidateExplanationRoots(document);
-  if (!candidates.length) return null;
+  if (!candidates.length) {
+    const mathFlow = document.querySelector('.calculator-page-single.math-cluster-flow');
+    if (mathFlow instanceof document.defaultView.HTMLElement) {
+      return mathFlow;
+    }
+    return null;
+  }
   candidates.sort((a, b) => b.wordCount - a.wordCount);
   return candidates[0].node;
 }
@@ -436,18 +442,31 @@ function matchCount(text, patterns) {
 
 function collectFaqQuestions(root) {
   if (!root) return [];
+  const faqSectionRoots = [...root.querySelectorAll('section, article, div')].filter((node) => {
+    const firstHeading = node.querySelector('h2,h3,h4');
+    return firstHeading && headingMatchesFaq(normalizeHeading(firstHeading.textContent));
+  });
   const candidates = [
     ...root.querySelectorAll('section[id*="faq"] h4'),
+    ...root.querySelectorAll('section[id*="faq"] h3'),
     ...root.querySelectorAll('section[id*="faq"] strong'),
     ...root.querySelectorAll('section[id*="faq"] summary'),
     ...root.querySelectorAll('.bor-faq-card h4'),
     ...root.querySelectorAll('.faq-box strong'),
+    ...root.querySelectorAll('.faq-card h4'),
+    ...root.querySelectorAll('.faq-card strong'),
+    ...faqSectionRoots.flatMap((node) => [
+      ...node.querySelectorAll('h3'),
+      ...node.querySelectorAll('h4'),
+      ...node.querySelectorAll('strong'),
+      ...node.querySelectorAll('summary'),
+    ]),
   ];
 
   const unique = new Set();
   candidates.forEach((node) => {
     const text = normalizeText(node.textContent).replace(/\?$/, '');
-    if (text) {
+    if (text && !headingMatchesFaq(normalizeHeading(text))) {
       unique.add(text);
     }
   });

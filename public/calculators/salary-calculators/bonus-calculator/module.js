@@ -22,9 +22,9 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Bonus Calculator – Salary Bonus Amount or Percent',
+    title: 'Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay',
     description:
-      'Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.',
+      'Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.',
     canonical: 'https://calchowmuch.com/salary-calculators/bonus-calculator/',
     name: 'Bonus Calculator',
     appDescription: 'Estimate a bonus and total compensation from either a bonus percentage or flat amount.',

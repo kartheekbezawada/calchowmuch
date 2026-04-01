@@ -4,25 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Series Convergence Calculator – Tests &amp; Analysis</title>
-    <meta
-      name="description"
-      content="Test whether an infinite series converges using ratio, root, and comparison tests, with a clear verdict, limit estimate, and steps."
-    />
+    <meta name="description" content="Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together." />
     <link rel="canonical" href="https://calchowmuch.com/math/calculus/series-convergence/" />
     <meta property="og:title" content="Series Convergence Calculator – Tests &amp; Analysis" />
-    <meta
-      property="og:description"
-      content="Test whether an infinite series converges using ratio, root, and comparison tests, with a clear verdict, limit estimate, and steps."
-    />
+    <meta property="og:description" content="Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/calculus/series-convergence/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Series Convergence Calculator – Tests &amp; Analysis" />
-    <meta
-      name="twitter:description"
-      content="Test whether an infinite series converges using ratio, root, and comparison tests, with a clear verdict, limit estimate, and steps."
-    />
+    <meta name="twitter:description" content="Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1274,10 +1345,7 @@
         cursor: pointer;
         font: inherit;
         font-weight: 600;
-        transition:
-          background-color 0.2s ease,
-          border-color 0.2s ease,
-          color 0.2s ease;
+        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
       }
 
       #calc-series .test-button:hover {
@@ -1466,680 +1534,387 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/calculus/series-convergence/#webpage",
-            "name": "Series Convergence Calculator – Tests & Analysis",
-            "url": "https://calchowmuch.com/math/calculus/series-convergence/",
-            "description": "Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/calculus/series-convergence/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/calculus/series-convergence/#softwareapplication"
-            },
-            "breadcrumb": {
-              "@id": "https://calchowmuch.com/math/calculus/series-convergence/#breadcrumbs"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/calculus/series-convergence/#softwareapplication",
-            "name": "Series Convergence Calculator",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/calculus/series-convergence/",
-            "description": "Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/calculus/series-convergence/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What does convergence mean for a series?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means the partial sums approach a finite value instead of growing without bound or oscillating forever."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why can one test be inconclusive?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Some tests only give a clear answer when the limit is strictly below or above 1, so a borderline value needs another method."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "When should I use the ratio test?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is especially useful for factorials, exponentials, and expressions where successive terms simplify neatly."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "When is the root test better?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is useful when the term already contains an n-th power or when the ratio is awkward to simplify."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is a p-series?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It is a family of series of the form 1 / n^p, which converges for p greater than 1 and diverges otherwise."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does the route prove convergence for every possible series?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. It is a practical calculator for common series forms, not a full symbolic analysis system."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/calculus/series-convergence/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Series Convergence Calculator",
-                "item": "https://calchowmuch.com/math/calculus/series-convergence/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/calculus/series-convergence/#webpage","name":"Series Convergence Calculator – Tests & Analysis","url":"https://calchowmuch.com/math/calculus/series-convergence/","description":"Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/calculus/series-convergence/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/calculus/series-convergence/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/calculus/series-convergence/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/calculus/series-convergence/#softwareapplication","name":"Series Convergence Calculator","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/calculus/series-convergence/","description":"Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/calculus/series-convergence/#faq","mainEntity":[{"@type":"Question","name":"What does convergence mean for a series?","acceptedAnswer":{"@type":"Answer","text":"It means the partial sums approach a finite value instead of growing without bound or oscillating forever."}},{"@type":"Question","name":"Why can one test be inconclusive?","acceptedAnswer":{"@type":"Answer","text":"Some tests only give a clear answer when the limit is strictly below or above 1, so a borderline value needs another method."}},{"@type":"Question","name":"When should I use the ratio test?","acceptedAnswer":{"@type":"Answer","text":"It is especially useful for factorials, exponentials, and expressions where successive terms simplify neatly."}},{"@type":"Question","name":"When is the root test better?","acceptedAnswer":{"@type":"Answer","text":"It is useful when the term already contains an n-th power or when the ratio is awkward to simplify."}},{"@type":"Question","name":"What is a p-series?","acceptedAnswer":{"@type":"Answer","text":"It is a family of series of the form 1 / n^p, which converges for p greater than 1 and diverges otherwise."}},{"@type":"Question","name":"Does the route prove convergence for every possible series?","acceptedAnswer":{"@type":"Answer","text":"No. It is a practical calculator for common series forms, not a full symbolic analysis system."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/calculus/series-convergence/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Series Convergence Calculator","item":"https://calchowmuch.com/math/calculus/series-convergence/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Series Convergence Calculator</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Series Convergence Calculator</h1>
-              <p class="math-cluster-page-intro">
-                Check whether an infinite series converges with ratio, root, and comparison tests in
-                a light answer-first calculus layout that keeps the verdict and reasoning together.
-              </p>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Series Convergence Calculator</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Series Convergence Calculator</h1>
+    <p class="math-cluster-page-intro">Check whether an infinite series converges with ratio, root, and comparison tests in a light answer-first calculus layout that keeps the verdict and reasoning together.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-series">
+  <div class="series-shell">
+    <section class="series-card series-hero-card" aria-label="Series convergence overview">
+      <div class="series-hero-copy">
+        <p class="series-eyebrow">Simple Smooth Wow</p>
+        <h2 class="series-title">Check whether an infinite series converges, see which test answered it, and keep the reasoning on the same screen.</h2>
+        <p class="series-subtitle">
+          Enter the general term, pick the preferred convergence test, and calculate once. The
+          answer card keeps the convergence call visible first while the steps card shows the ratio,
+          root, or comparison trail without a split legacy layout.
+        </p>
+      </div>
+      <ul class="series-hero-points">
+        <li>Best for quick ratio, root, and comparison test checks on common calculus series.</li>
+        <li>The answer card surfaces the verdict, chosen test, and limit estimate first.</li>
+        <li>The steps card remains nearby so you can verify the reasoning without scrolling through clutter.</li>
+      </ul>
+    </section>
+
+    <div class="series-workbench">
+      <div class="series-left-stack">
+        <section class="series-card series-input-card" aria-label="Series convergence inputs">
+          <div class="series-card-head">
+            <div>
+              <p class="series-section-label">Inputs</p>
+              <p class="series-card-title">Set the term, pick the test, and define the start index</p>
             </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-series">
-                <div class="series-shell">
-                  <section
-                    class="series-card series-hero-card"
-                    aria-label="Series convergence overview"
-                  >
-                    <div class="series-hero-copy">
-                      <p class="series-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="series-title">
-                        Check whether an infinite series converges, see which test answered it, and
-                        keep the reasoning on the same screen.
-                      </h2>
-                      <p class="series-subtitle">
-                        Enter the general term, pick the preferred convergence test, and calculate
-                        once. The answer card keeps the convergence call visible first while the
-                        steps card shows the ratio, root, or comparison trail without a split legacy
-                        layout.
-                      </p>
-                    </div>
-                    <ul class="series-hero-points">
-                      <li>
-                        Best for quick ratio, root, and comparison test checks on common calculus
-                        series.
-                      </li>
-                      <li>
-                        The answer card surfaces the verdict, chosen test, and limit estimate first.
-                      </li>
-                      <li>
-                        The steps card remains nearby so you can verify the reasoning without
-                        scrolling through clutter.
-                      </li>
-                    </ul>
-                  </section>
-
-                  <div class="series-workbench">
-                    <div class="series-left-stack">
-                      <section
-                        class="series-card series-input-card"
-                        aria-label="Series convergence inputs"
-                      >
-                        <div class="series-card-head">
-                          <div>
-                            <p class="series-section-label">Inputs</p>
-                            <p class="series-card-title">
-                              Set the term, pick the test, and define the start index
-                            </p>
-                          </div>
-                          <span class="series-chip">Answer-first</span>
-                        </div>
-
-                        <p class="series-helper">
-                          Use <strong>n</strong> as the series variable. Examples such as
-                          <strong>1/n^2</strong>, <strong>n/2^n</strong>, and
-                          <strong>1/n!</strong> work well in this route.
-                        </p>
-
-                        <label class="series-field" for="series-term">
-                          <span>General term a_n</span>
-                          <input
-                            id="series-term"
-                            type="text"
-                            value="1/n^2"
-                            placeholder="e.g., 1/n^2, n/2^n, 1/n!"
-                          />
-                        </label>
-
-                        <div
-                          class="button-group series-test-grid"
-                          aria-label="Convergence test selection"
-                        >
-                          <button class="test-button active" data-test="auto" type="button">
-                            Auto-detect
-                          </button>
-                          <button class="test-button" data-test="ratio" type="button">
-                            Ratio test
-                          </button>
-                          <button class="test-button" data-test="root" type="button">
-                            Root test
-                          </button>
-                          <button class="test-button" data-test="comparison" type="button">
-                            Comparison
-                          </button>
-                        </div>
-
-                        <label class="series-field" for="series-start">
-                          <span>Starting index</span>
-                          <input id="series-start" type="number" value="1" min="0" />
-                        </label>
-
-                        <button
-                          class="calculator-button series-calc-button"
-                          type="button"
-                          id="series-calculate"
-                        >
-                          Test convergence
-                        </button>
-                      </section>
-
-                      <section
-                        class="series-card series-steps-card"
-                        aria-label="Series analysis steps"
-                      >
-                        <div class="series-card-head">
-                          <div>
-                            <p class="series-section-label">Steps</p>
-                            <p class="series-card-title">Limit estimates and comparison notes</p>
-                          </div>
-                          <span class="series-chip series-chip--steps">Convergence logic</span>
-                        </div>
-
-                        <div
-                          class="result-detail series-steps-output"
-                          id="series-steps"
-                          aria-live="polite"
-                        ></div>
-                      </section>
-                    </div>
-
-                    <section
-                      class="series-card series-answer-card"
-                      aria-label="Series convergence answer summary"
-                    >
-                      <div class="series-card-head">
-                        <div>
-                          <p class="series-section-label">Answer</p>
-                          <p class="series-card-title">
-                            Verdict, test used, and quick interpretation
-                          </p>
-                        </div>
-                        <span class="series-chip series-chip--answer">Convergence result</span>
-                      </div>
-
-                      <div
-                        class="result series-result-card"
-                        id="series-result"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="series-snapshot-grid" aria-label="Series snapshot">
-                        <article class="series-snapshot-card">
-                          <span>Default term</span>
-                          <strong>1 / n^2</strong>
-                        </article>
-                        <article class="series-snapshot-card">
-                          <span>Primary test</span>
-                          <strong>Auto-detect</strong>
-                        </article>
-                        <article class="series-snapshot-card">
-                          <span>Typical output</span>
-                          <strong>Converges or diverges</strong>
-                        </article>
-                        <article class="series-snapshot-card">
-                          <span>Reasoning</span>
-                          <strong>Limit-based steps</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <div id="series-explanation">
-                <section class="series-exp-section">
-                  <h2>Series Convergence Calculator Practical Guide</h2>
-                  <p>
-                    Use this series convergence calculator to test whether an infinite series
-                    converges or diverges in a clean answer-first layout. It keeps the verdict,
-                    chosen test, and step-by-step limit reasoning on the same page so you can
-                    confirm the conclusion without working through a legacy split shell.
-                  </p>
-                  <ul class="series-summary-list">
-                    <li>
-                      <strong>Best for:</strong> quick ratio, root, and comparison test checks.
-                    </li>
-                    <li>
-                      <strong>Quick answer flow:</strong> enter the general term, pick a test, then
-                      calculate once.
-                    </li>
-                    <li>
-                      <strong>Output includes:</strong> convergence verdict, test used, limit
-                      estimate, and written steps.
-                    </li>
-                  </ul>
-                </section>
-
-                <section class="series-exp-section">
-                  <h3>How to Guide</h3>
-                  <ol>
-                    <li>Enter the general term using <strong>n</strong> as the index variable.</li>
-                    <li>
-                      Choose auto-detect if you want the route to try the clearest test first.
-                    </li>
-                    <li>
-                      Click <strong>Test convergence</strong> and read the answer card before
-                      opening the full step list.
-                    </li>
-                    <li>
-                      If one test is inconclusive, switch tests and rerun without changing the term.
-                    </li>
-                  </ol>
-                </section>
-
-                <section class="series-exp-section">
-                  <h3>Quick Answer Table</h3>
-                  <div class="series-table-wrap">
-                    <table class="series-summary-table">
-                      <caption class="math-cluster-visually-hidden">
-                        Quick answer table for the series convergence calculator
-                      </caption>
-                      <thead>
-                        <tr>
-                          <th scope="col">Test</th>
-                          <th scope="col">Best fit</th>
-                          <th scope="col">Quick interpretation</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">Ratio test</th>
-                          <td>Factorials, exponentials, and fast-growth terms</td>
-                          <td>
-                            If the limit is below 1, the series converges; above 1, it diverges.
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Root test</th>
-                          <td>Terms raised to the n-th power</td>
-                          <td>It asks whether the long-run n-th root settles below or above 1.</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Comparison test</th>
-                          <td>p-series style behaviour such as 1/n^p</td>
-                          <td>
-                            It compares your term with a known family to suggest convergence or
-                            divergence.
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Auto-detect</th>
-                          <td>Quick first pass</td>
-                          <td>
-                            The route tries the cleanest built-in test sequence automatically.
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </section>
-
-                <section class="series-exp-section">
-                  <h3>Formula Guide</h3>
-                  <p>
-                    The ratio test estimates <strong>L = lim |a_(n+1) / a_n|</strong>. The root test
-                    estimates <strong>L = lim n-th root of |a_n|</strong>. The comparison test
-                    estimates whether the term behaves like a familiar
-                    <strong>1 / n^p</strong> pattern.
-                  </p>
-                  <p>
-                    A limit below <strong>1</strong> suggests convergence for ratio and root tests,
-                    while a limit above <strong>1</strong> suggests divergence. A value near
-                    <strong>1</strong> usually means that test alone is inconclusive.
-                  </p>
-                </section>
-
-                <section class="series-exp-section">
-                  <h3>Worked Example</h3>
-                  <div class="series-example-grid">
-                    <article class="series-example-card">
-                      <h4>Convergent example</h4>
-                      <p>Enter <strong>n / 2^n</strong> and use the ratio test.</p>
-                      <p>
-                        The ratio settles below 1, so the route reports that the series converges
-                        and explains the limit estimate in the steps panel.
-                      </p>
-                    </article>
-                    <article class="series-example-card">
-                      <h4>Divergent example</h4>
-                      <p>Enter <strong>2^n</strong> and use the ratio test.</p>
-                      <p>
-                        The ratio stays above 1, so the route reports divergence and shows why the
-                        terms grow too fast for the series to settle.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="series-exp-section" id="series-faq">
-                  <h3>FAQ</h3>
-                  <div class="series-faq-grid">
-                    <article class="faq-card">
-                      <h4>What does convergence mean for a series?</h4>
-                      <p>
-                        It means the partial sums approach a finite value instead of growing without
-                        bound or oscillating forever.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Why can one test be inconclusive?</h4>
-                      <p>
-                        Some tests only give a clear answer when the limit is strictly below or
-                        above 1, so a borderline value needs another method.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>When should I use the ratio test?</h4>
-                      <p>
-                        It is especially useful for factorials, exponentials, and expressions where
-                        successive terms simplify neatly.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>When is the root test better?</h4>
-                      <p>
-                        It is useful when the term already contains an n-th power or when the ratio
-                        is awkward to simplify.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What is a p-series?</h4>
-                      <p>
-                        It is a family of series of the form 1 / n^p, which converges for p greater
-                        than 1 and diverges otherwise.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Does the route prove convergence for every possible series?</h4>
-                      <p>
-                        No. It is a practical calculator for common series forms, not a full
-                        symbolic analysis system.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="series-exp-section">
-                  <h3>Related Calculators</h3>
-                  <div class="series-related-grid">
-                    <a class="series-related-card" href="/math/calculus/limit/">
-                      <strong>Limit Calculator</strong>
-                      <span
-                        >Check the underlying limit behaviour that often drives a convergence
-                        test.</span
-                      >
-                    </a>
-                    <a class="series-related-card" href="/math/calculus/derivative/">
-                      <strong>Derivative Calculator</strong>
-                      <span
-                        >Stay in calculus mode when the next step is a rate-of-change check.</span
-                      >
-                    </a>
-                    <a class="series-related-card" href="/math/calculus/critical-points/">
-                      <strong>Critical Points Finder</strong>
-                      <span
-                        >Switch from infinite-series behaviour to turning-point analysis on ordinary
-                        functions.</span
-                      >
-                    </a>
-                  </div>
-                </section>
-
-                <section class="series-exp-section">
-                  <h3>Important Notes</h3>
-                  <ul class="series-notes-list">
-                    <li><strong>Last updated:</strong> March 2026</li>
-                    <li>
-                      <strong>Scope rule:</strong> This route is built for practical convergence
-                      checking on common textbook-style series.
-                    </li>
-                    <li>
-                      <strong>Interpretation rule:</strong> An inconclusive result does not mean the
-                      series diverges; it means a different test is needed.
-                    </li>
-                    <li>
-                      <strong>Input rule:</strong> Use n as the index variable and keep the term in
-                      a parser-friendly form.
-                    </li>
-                  </ul>
-                </section>
-              </div>
-            </div>
+            <span class="series-chip">Answer-first</span>
           </div>
+
+          <p class="series-helper">
+            Use <strong>n</strong> as the series variable. Examples such as <strong>1/n^2</strong>,
+            <strong>n/2^n</strong>, and <strong>1/n!</strong> work well in this route.
+          </p>
+
+          <label class="series-field" for="series-term">
+            <span>General term a_n</span>
+            <input
+              id="series-term"
+              type="text"
+              value="1/n^2"
+              placeholder="e.g., 1/n^2, n/2^n, 1/n!"
+            />
+          </label>
+
+          <div class="button-group series-test-grid" aria-label="Convergence test selection">
+            <button class="test-button active" data-test="auto" type="button">Auto-detect</button>
+            <button class="test-button" data-test="ratio" type="button">Ratio test</button>
+            <button class="test-button" data-test="root" type="button">Root test</button>
+            <button class="test-button" data-test="comparison" type="button">Comparison</button>
+          </div>
+
+          <label class="series-field" for="series-start">
+            <span>Starting index</span>
+            <input id="series-start" type="number" value="1" min="0" />
+          </label>
+
+          <button class="calculator-button series-calc-button" type="button" id="series-calculate">
+            Test convergence
+          </button>
+        </section>
+
+        <section class="series-card series-steps-card" aria-label="Series analysis steps">
+          <div class="series-card-head">
+            <div>
+              <p class="series-section-label">Steps</p>
+              <p class="series-card-title">Limit estimates and comparison notes</p>
+            </div>
+            <span class="series-chip series-chip--steps">Convergence logic</span>
+          </div>
+
+          <div class="result-detail series-steps-output" id="series-steps" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <section class="series-card series-answer-card" aria-label="Series convergence answer summary">
+        <div class="series-card-head">
+          <div>
+            <p class="series-section-label">Answer</p>
+            <p class="series-card-title">Verdict, test used, and quick interpretation</p>
+          </div>
+          <span class="series-chip series-chip--answer">Convergence result</span>
+        </div>
+
+        <div class="result series-result-card" id="series-result" aria-live="polite"></div>
+
+        <div class="series-snapshot-grid" aria-label="Series snapshot">
+          <article class="series-snapshot-card">
+            <span>Default term</span>
+            <strong>1 / n^2</strong>
+          </article>
+          <article class="series-snapshot-card">
+            <span>Primary test</span>
+            <strong>Auto-detect</strong>
+          </article>
+          <article class="series-snapshot-card">
+            <span>Typical output</span>
+            <strong>Converges or diverges</strong>
+          </article>
+          <article class="series-snapshot-card">
+            <span>Reasoning</span>
+            <strong>Limit-based steps</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+    <div id="series-explanation">
+  <section class="series-exp-section">
+    <h2>Series Convergence Calculator Practical Guide</h2>
+    <p>
+      Use this series convergence calculator to test whether an infinite series converges or
+      diverges in a clean answer-first layout. It keeps the verdict, chosen test, and step-by-step
+      limit reasoning on the same page so you can confirm the conclusion without working through a
+      legacy split shell.
+    </p>
+    <ul class="series-summary-list">
+      <li><strong>Best for:</strong> quick ratio, root, and comparison test checks.</li>
+      <li>
+        <strong>Quick answer flow:</strong> enter the general term, pick a test, then calculate
+        once.
+      </li>
+      <li>
+        <strong>Output includes:</strong> convergence verdict, test used, limit estimate, and
+        written steps.
+      </li>
+    </ul>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Enter the general term using <strong>n</strong> as the index variable.</li>
+      <li>Choose auto-detect if you want the route to try the clearest test first.</li>
+      <li>
+        Click <strong>Test convergence</strong> and read the answer card before opening the full
+        step list.
+      </li>
+      <li>If one test is inconclusive, switch tests and rerun without changing the term.</li>
+    </ol>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="series-table-wrap">
+      <table class="series-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the series convergence calculator
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Test</th>
+            <th scope="col">Best fit</th>
+            <th scope="col">Quick interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Ratio test</th>
+            <td>Factorials, exponentials, and fast-growth terms</td>
+            <td>If the limit is below 1, the series converges; above 1, it diverges.</td>
+          </tr>
+          <tr>
+            <th scope="row">Root test</th>
+            <td>Terms raised to the n-th power</td>
+            <td>It asks whether the long-run n-th root settles below or above 1.</td>
+          </tr>
+          <tr>
+            <th scope="row">Comparison test</th>
+            <td>p-series style behaviour such as 1/n^p</td>
+            <td>It compares your term with a known family to suggest convergence or divergence.</td>
+          </tr>
+          <tr>
+            <th scope="row">Auto-detect</th>
+            <td>Quick first pass</td>
+            <td>The route tries the cleanest built-in test sequence automatically.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      The ratio test estimates <strong>L = lim |a_(n+1) / a_n|</strong>. The root test estimates
+      <strong>L = lim n-th root of |a_n|</strong>. The comparison test estimates whether the term
+      behaves like a familiar <strong>1 / n^p</strong> pattern.
+    </p>
+    <p>
+      A limit below <strong>1</strong> suggests convergence for ratio and root tests, while a limit
+      above <strong>1</strong> suggests divergence. A value near <strong>1</strong> usually means
+      that test alone is inconclusive.
+    </p>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>Worked Example</h3>
+    <div class="series-example-grid">
+      <article class="series-example-card">
+        <h4>Convergent example</h4>
+        <p>Enter <strong>n / 2^n</strong> and use the ratio test.</p>
+        <p>
+          The ratio settles below 1, so the route reports that the series converges and explains the
+          limit estimate in the steps panel.
+        </p>
+      </article>
+      <article class="series-example-card">
+        <h4>Divergent example</h4>
+        <p>Enter <strong>2^n</strong> and use the ratio test.</p>
+        <p>
+          The ratio stays above 1, so the route reports divergence and shows why the terms grow too
+          fast for the series to settle.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="series-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current series convergence calculator problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="series-exp-section" id="series-faq">
+    <h3>FAQ</h3>
+    <div class="series-faq-grid">
+      <article class="faq-card">
+        <h4>What does convergence mean for a series?</h4>
+        <p>
+          It means the partial sums approach a finite value instead of growing without bound or
+          oscillating forever.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>Why can one test be inconclusive?</h4>
+        <p>
+          Some tests only give a clear answer when the limit is strictly below or above 1, so a
+          borderline value needs another method.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use the ratio test?</h4>
+        <p>
+          It is especially useful for factorials, exponentials, and expressions where successive
+          terms simplify neatly.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>When is the root test better?</h4>
+        <p>
+          It is useful when the term already contains an n-th power or when the ratio is awkward to
+          simplify.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What is a p-series?</h4>
+        <p>
+          It is a family of series of the form 1 / n^p, which converges for p greater than 1 and
+          diverges otherwise.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>Does the route prove convergence for every possible series?</h4>
+        <p>
+          No. It is a practical calculator for common series forms, not a full symbolic analysis
+          system.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="series-related-grid">
+      <a class="series-related-card" href="/math/calculus/limit/">
+        <strong>Limit Calculator</strong>
+        <span>Check the underlying limit behaviour that often drives a convergence test.</span>
+      </a>
+      <a class="series-related-card" href="/math/calculus/derivative/">
+        <strong>Derivative Calculator</strong>
+        <span>Stay in calculus mode when the next step is a rate-of-change check.</span>
+      </a>
+      <a class="series-related-card" href="/math/calculus/critical-points/">
+        <strong>Critical Points Finder</strong>
+        <span
+          >Switch from infinite-series behaviour to turning-point analysis on ordinary
+          functions.</span
+        >
+      </a>
+    </div>
+  </section>
+
+  <section class="series-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="series-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li>
+        <strong>Scope rule:</strong> This route is built for practical convergence checking on
+        common textbook-style series.
+      </li>
+      <li>
+        <strong>Interpretation rule:</strong> An inconclusive result does not mean the series
+        diverges; it means a different test is needed.
+      </li>
+      <li>
+        <strong>Input rule:</strong> Use n as the index variable and keep the term in a
+        parser-friendly form.
+      </li>
+        <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this series convergence calculator tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+  </section>
+</div>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
-    <script
-      type="module"
-      src="/calculators/math/calculus/series-convergence/module.js?v=20260224"
-    ></script>
+    <script type="module" src="/calculators/math/calculus/series-convergence/module.js?v=20260224"></script>
   </body>
 </html>

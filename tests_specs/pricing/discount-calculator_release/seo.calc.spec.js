@@ -4,11 +4,11 @@ test.describe('Discount Calculator SEO', () => {
   test('DISC-TEST-SEO-1: metadata, structured data, sitemap', async ({ page }) => {
     await page.goto('/pricing-calculators/discount-calculator/');
 
-    await expect(page).toHaveTitle('Discount Calculator | Sale Price and Savings');
+    await expect(page).toHaveTitle('Discount Calculator | Sale Price, Savings & Percent Off');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate the sale price after a percentage discount and see exactly how much you save.'
+      'Calculate sale price, discount amount, and savings from percent-off deals so you can compare coupons, promotions, and marked-down prices.'
     );
 
     const h1 = page.locator('h1');

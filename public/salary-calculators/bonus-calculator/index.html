@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Bonus Calculator – Salary Bonus Amount or Percent</title>
-    <meta name="description" content="Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation." />
+    <title>Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay</title>
+    <meta name="description" content="Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/bonus-calculator/" />
-    <meta property="og:title" content="Bonus Calculator – Salary Bonus Amount or Percent" />
-    <meta property="og:description" content="Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation." />
+    <meta property="og:title" content="Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay" />
+    <meta property="og:description" content="Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/bonus-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bonus Calculator – Salary Bonus Amount or Percent" />
-    <meta name="twitter:description" content="Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation." />
+    <meta name="twitter:title" content="Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay" />
+    <meta name="twitter:description" content="Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -975,11 +975,16 @@
 
       .sal-cluster-layout-main {
         padding: 40px 0 64px;
+        min-width: 0;
       }
 
       .sal-cluster-panel {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 28px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-page-shell #calculator-title {
@@ -1009,7 +1014,19 @@
 
       .sal-cluster-flow {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
+      .sal-cluster-panel > *,
+      .sal-cluster-flow > * {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-section {
@@ -1125,6 +1142,9 @@
       .sal-support-grid {
         display: grid;
         gap: 16px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-shell {
@@ -1139,6 +1159,8 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: rgba(255, 255, 255, 0.94);
         box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-card {
@@ -1505,8 +1527,8 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#webpage","name":"Bonus Calculator – Salary Bonus Amount or Percent","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication","name":"Bonus Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate a bonus from salary?","acceptedAnswer":{"@type":"Answer","text":"Multiply salary by the bonus percentage, or enter a known bonus amount directly."}},{"@type":"Question","name":"Can I use a percentage or a flat amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator supports both a percent-based bonus and a flat bonus amount."}},{"@type":"Question","name":"Does this show total compensation?","acceptedAnswer":{"@type":"Answer","text":"Yes. Total compensation is the base salary plus bonus amount."}},{"@type":"Question","name":"Can I reverse the bonus percent from a known bonus amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator also shows the effective bonus percentage when salary and bonus are known."}},{"@type":"Question","name":"Does this include tax on bonuses?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross bonus and total compensation only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Bonus Calculator","item":"https://calchowmuch.com/salary-calculators/bonus-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#webpage","name":"Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication","name":"Bonus Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate a bonus from salary?","acceptedAnswer":{"@type":"Answer","text":"Multiply salary by the bonus percentage, or enter a known bonus amount directly."}},{"@type":"Question","name":"Can I use a percentage or a flat amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator supports both a percent-based bonus and a flat bonus amount."}},{"@type":"Question","name":"Does this show total compensation?","acceptedAnswer":{"@type":"Answer","text":"Yes. Total compensation is the base salary plus bonus amount."}},{"@type":"Question","name":"Can I reverse the bonus percent from a known bonus amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator also shows the effective bonus percentage when salary and bonus are known."}},{"@type":"Question","name":"Does this include tax on bonuses?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross bonus and total compensation only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Bonus Calculator","item":"https://calchowmuch.com/salary-calculators/bonus-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page sal-cluster-page-shell">
@@ -1529,7 +1551,7 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Bonus Calculator</h1>
-    <p class="sal-cluster-page-intro">Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.</p>
+    <p class="sal-cluster-page-intro">Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-bonus" class="sal-calc-shell">
@@ -1693,20 +1715,20 @@
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/inflation-calculator/">Inflation Calculator</a></h3>
-        <p>See whether bonus-led pay growth is beating rising costs.</p>
+        <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
+        <p>Compare a one-time or percentage bonus with a permanent increase in base salary.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/future-value-calculator/">Future Value Calculator</a></h3>
-        <p>Project what investing part of a bonus could become.</p>
+        <h3><a href="/salary-calculators/commission-calculator/">Commission Earnings Calculator</a></h3>
+        <p>Check another variable-pay route when compensation depends on sales instead of bonus structure.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
-        <p>Estimate long-term growth from recurring bonus investing.</p>
+        <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
+        <p>Turn total gross compensation into hourly, weekly, monthly, and annual views for easier comparison.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/time-to-savings-goal-calculator/">Savings Goal Calculator</a></h3>
-        <p>Check how a one-time bonus or steady bonus plan could speed up a goal.</p>
+        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
+        <p>Pair bonus planning with regular weekly gross pay when total compensation changes across the year.</p>
       </article>
     </div>
   </section>

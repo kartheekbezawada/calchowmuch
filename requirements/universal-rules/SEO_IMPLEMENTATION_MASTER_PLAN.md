@@ -56,7 +56,9 @@ This program does **not** include Search Console operations, Bing review, indexi
   - `/percentage-calculators/percentage-finder-calculator/`
 - Wave 4 implementation note:
   - `/time-and-date/` and `/percentage-calculators/` hub pages are not currently governed as active public routes in this repo, so Wave 4 remained route-level rather than hub-level.
-- `Wave 2` queue currently resolves to:
+- `Wave 2`: Completed on `2026-04-01`
+- Release evidence: `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_RELEASE-20260401-SEO-WAVE2.md`
+- Wave 2 routes completed:
   - `/pricing-calculators/discount-calculator/`
   - `/salary-calculators/salary-calculator/`
   - `/salary-calculators/hourly-to-salary-calculator/`
@@ -68,6 +70,15 @@ This program does **not** include Search Console operations, Bing review, indexi
   - `/salary-calculators/raise-calculator/`
   - `/salary-calculators/bonus-calculator/`
   - `/salary-calculators/inflation-adjusted-salary-calculator/`
+- `Wave 5`: Completed on `2026-04-01`
+- Release evidence: `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_RELEASE-20260401-SEO-WAVE5.md`
+- Wave 5 routes completed:
+  - all governed `/math/**` public calculator routes, including `/math/trigonometry/unit-circle/`
+- `Wave 6`: Completed on `2026-04-01`
+- Release evidence: `requirements/universal-rules/release-signoffs/RELEASE_SIGNOFF_RELEASE-20260401-SEO-WAVE6.md`
+- Final program status:
+  - all six SEO waves are complete
+  - final consolidation gates passed for the Wave 2 and Wave 5 route families
 
 ## Master Pre-Approval and Stop Rules
 

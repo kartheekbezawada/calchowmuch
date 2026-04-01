@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Raise Calculator | Calculate New Salary After a Pay Raise</title>
-    <meta name="description" content="Calculate a new salary after a raise using either a percentage increase or a flat raise amount." />
+    <title>Raise Calculator | New Salary, Raise Amount and Raise Percentage</title>
+    <meta name="description" content="Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/raise-calculator/" />
-    <meta property="og:title" content="Raise Calculator | Calculate New Salary After a Pay Raise" />
-    <meta property="og:description" content="Calculate a new salary after a raise using either a percentage increase or a flat raise amount." />
+    <meta property="og:title" content="Raise Calculator | New Salary, Raise Amount and Raise Percentage" />
+    <meta property="og:description" content="Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/raise-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Raise Calculator | Calculate New Salary After a Pay Raise" />
-    <meta name="twitter:description" content="Calculate a new salary after a raise using either a percentage increase or a flat raise amount." />
+    <meta name="twitter:title" content="Raise Calculator | New Salary, Raise Amount and Raise Percentage" />
+    <meta name="twitter:description" content="Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -975,11 +975,16 @@
 
       .sal-cluster-layout-main {
         padding: 40px 0 64px;
+        min-width: 0;
       }
 
       .sal-cluster-panel {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 28px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-page-shell #calculator-title {
@@ -1009,7 +1014,19 @@
 
       .sal-cluster-flow {
         display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
+      .sal-cluster-panel > *,
+      .sal-cluster-flow > * {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-cluster-section {
@@ -1125,6 +1142,9 @@
       .sal-support-grid {
         display: grid;
         gap: 16px;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-shell {
@@ -1139,6 +1159,8 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: rgba(255, 255, 255, 0.94);
         box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+        min-width: 0;
+        max-width: 100%;
       }
 
       .sal-calc-card {
@@ -1505,8 +1527,8 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#webpage","name":"Raise Calculator | Calculate New Salary After a Pay Raise","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise using either a percentage increase or a flat raise amount.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication","name":"Raise Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise using either a percentage increase or a flat raise amount.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate a raise?","acceptedAnswer":{"@type":"Answer","text":"You can either add a flat raise amount to current salary or multiply current salary by the raise percentage."}},{"@type":"Question","name":"Can I use a percent raise or a flat raise amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator supports both modes."}},{"@type":"Question","name":"Does this show my new salary after the raise?","acceptedAnswer":{"@type":"Answer","text":"Yes. The main result is the new salary after applying the raise."}},{"@type":"Question","name":"Can I see the raise amount separately?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator also shows the raise amount and the resulting percent increase."}},{"@type":"Question","name":"Does this include taxes?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross pay changes only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Raise Calculator","item":"https://calchowmuch.com/salary-calculators/raise-calculator/"}]}]}</script>
-<!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#webpage","name":"Raise Calculator | New Salary, Raise Amount and Raise Percentage","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication","name":"Raise Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate a raise?","acceptedAnswer":{"@type":"Answer","text":"You can either add a flat raise amount to current salary or multiply current salary by the raise percentage."}},{"@type":"Question","name":"Can I use a percent raise or a flat raise amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator supports both modes."}},{"@type":"Question","name":"Does this show my new salary after the raise?","acceptedAnswer":{"@type":"Answer","text":"Yes. The main result is the new salary after applying the raise."}},{"@type":"Question","name":"Can I see the raise amount separately?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator also shows the raise amount and the resulting percent increase."}},{"@type":"Question","name":"Does this include taxes?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross pay changes only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Raise Calculator","item":"https://calchowmuch.com/salary-calculators/raise-calculator/"}]}]}</script>
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page sal-cluster-page-shell">
@@ -1529,7 +1551,7 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Raise Calculator</h1>
-    <p class="sal-cluster-page-intro">Calculate a new salary after a raise using either a percentage increase or a flat raise amount.</p>
+    <p class="sal-cluster-page-intro">Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-raise" class="sal-calc-shell">
@@ -1692,20 +1714,20 @@
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/inflation-calculator/">Inflation Calculator</a></h3>
-        <p>Check whether the raise is actually improving buying power.</p>
+        <h3><a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Salary Calculator</a></h3>
+        <p>Check whether the raise you model here is still improving real buying power after inflation.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/future-value-calculator/">Future Value Calculator</a></h3>
-        <p>Project what investing part of the raise could become.</p>
+        <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
+        <p>Compare a raise in base pay with one-off or percentage bonus income.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
-        <p>See how repeated investing from higher pay can compound.</p>
+        <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
+        <p>Translate the new salary into hourly, weekly, monthly, and annual gross-pay views.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/finance-calculators/time-to-savings-goal-calculator/">Savings Goal Calculator</a></h3>
-        <p>Estimate how much faster a raise could help you reach a target.</p>
+        <h3><a href="/salary-calculators/commission-calculator/">Commission Earnings Calculator</a></h3>
+        <p>Compare a higher fixed salary with compensation plans that rely more on commission upside.</p>
       </article>
     </div>
   </section>

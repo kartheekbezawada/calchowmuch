@@ -3,26 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Quadratic Equation Solver Calculator | CalcHowMuch</title>
-    <meta
-      name="description"
-      content="Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output."
-    />
+    <title>Quadratic Equation Solver | Roots, Discriminant &amp; Vertex</title>
+    <meta name="description" content="Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers." />
     <link rel="canonical" href="https://calchowmuch.com/math/algebra/quadratic-equation/" />
-    <meta property="og:title" content="Quadratic Equation Solver Calculator | CalcHowMuch" />
-    <meta
-      property="og:description"
-      content="Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output."
-    />
+    <meta property="og:title" content="Quadratic Equation Solver | Roots, Discriminant &amp; Vertex" />
+    <meta property="og:description" content="Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/algebra/quadratic-equation/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Quadratic Equation Solver Calculator | CalcHowMuch" />
-    <meta
-      name="twitter:description"
-      content="Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output."
-    />
+    <meta name="twitter:title" content="Quadratic Equation Solver | Roots, Discriminant &amp; Vertex" />
+    <meta name="twitter:description" content="Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1477,683 +1548,368 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/algebra/quadratic-equation/#webpage",
-            "name": "Quadratic Equation Solver Calculator | CalcHowMuch",
-            "url": "https://calchowmuch.com/math/algebra/quadratic-equation/",
-            "description": "Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/algebra/quadratic-equation/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/algebra/quadratic-equation/#softwareapplication"
-            },
-            "breadcrumb": {
-              "@id": "https://calchowmuch.com/math/algebra/quadratic-equation/#breadcrumbs"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/algebra/quadratic-equation/#softwareapplication",
-            "name": "Quadratic Equation Solver",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/algebra/quadratic-equation/",
-            "description": "Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/algebra/quadratic-equation/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What happens if a is zero?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The equation becomes linear, so this quadratic solver returns an error."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why do I sometimes get two answers?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Most quadratics intersect the x-axis at two points, giving two roots."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can this calculator handle decimal inputs?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, all three coefficients accept decimal values."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How is the discriminant used?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The discriminant determines whether roots are real, repeated, or complex."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does it show solving steps?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, it shows formula substitution and discriminant evaluation in order."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does a negative discriminant mean?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means there are no real roots, only complex conjugate roots."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Are repeated roots shown clearly?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, when &Delta; = 0, the result card reports one repeated real solution."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I use this for homework checking?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, it is useful for verifying manual work and final roots."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why is the method fixed to quadratic formula?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The solver uses a consistent method that works for all valid quadratics."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do large coefficients affect output precision?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Results are formatted to readable precision while preserving key accuracy."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/algebra/quadratic-equation/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Quadratic Equation Solver",
-                "item": "https://calchowmuch.com/math/algebra/quadratic-equation/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/algebra/quadratic-equation/#webpage","name":"Quadratic Equation Solver | Roots, Discriminant & Vertex","url":"https://calchowmuch.com/math/algebra/quadratic-equation/","description":"Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/algebra/quadratic-equation/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/algebra/quadratic-equation/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/algebra/quadratic-equation/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/algebra/quadratic-equation/#softwareapplication","name":"Quadratic Equation Solver","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/algebra/quadratic-equation/","description":"Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/algebra/quadratic-equation/#faq","mainEntity":[{"@type":"Question","name":"What happens if a is zero?","acceptedAnswer":{"@type":"Answer","text":"The equation becomes linear, so this quadratic solver returns an error."}},{"@type":"Question","name":"Why do I sometimes get two answers?","acceptedAnswer":{"@type":"Answer","text":"Most quadratics intersect the x-axis at two points, giving two roots."}},{"@type":"Question","name":"Can this calculator handle decimal inputs?","acceptedAnswer":{"@type":"Answer","text":"Yes, all three coefficients accept decimal values."}},{"@type":"Question","name":"How is the discriminant used?","acceptedAnswer":{"@type":"Answer","text":"The discriminant determines whether roots are real, repeated, or complex."}},{"@type":"Question","name":"Does it show solving steps?","acceptedAnswer":{"@type":"Answer","text":"Yes, it shows formula substitution and discriminant evaluation in order."}},{"@type":"Question","name":"What does a negative discriminant mean?","acceptedAnswer":{"@type":"Answer","text":"It means there are no real roots, only complex conjugate roots."}},{"@type":"Question","name":"Are repeated roots shown clearly?","acceptedAnswer":{"@type":"Answer","text":"Yes, when Δ = 0, the result card reports one repeated real solution."}},{"@type":"Question","name":"Can I use this for homework checking?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is useful for verifying manual work and final roots."}},{"@type":"Question","name":"Why is the method fixed to quadratic formula?","acceptedAnswer":{"@type":"Answer","text":"The solver uses a consistent method that works for all valid quadratics."}},{"@type":"Question","name":"Do large coefficients affect output precision?","acceptedAnswer":{"@type":"Answer","text":"Results are formatted to readable precision while preserving key accuracy."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/algebra/quadratic-equation/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Quadratic Equation Solver","item":"https://calchowmuch.com/math/algebra/quadratic-equation/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Quadratic Equation Solver</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Quadratic Equation Solver</h1>
-              <p class="math-cluster-page-intro">
-                Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots,
-                discriminant details, and step-by-step output.
-              </p>
-            </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-quadratic">
-                <div class="quad-shell">
-                  <section
-                    class="quad-card quad-hero-card"
-                    aria-label="Quadratic equation overview"
-                  >
-                    <div class="quad-hero-copy">
-                      <p class="quad-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="quad-title">
-                        Solve a quadratic fast and keep the root type, discriminant, and steps in
-                        one view.
-                      </h2>
-                      <p class="quad-subtitle">
-                        Enter coefficients for <strong>ax^2 + bx + c = 0</strong>, solve once, and
-                        use the answer card to see whether the roots are real, repeated, or complex
-                        before you read the full working.
-                      </p>
-                    </div>
-                    <ul class="quad-hero-points">
-                      <li>
-                        Best for classroom checks, algebra homework review, and quick root
-                        classification.
-                      </li>
-                      <li>
-                        The answer card shows the roots first, then the discriminant snapshot and
-                        worked detail.
-                      </li>
-                      <li>
-                        All coefficients accept decimals, but the method stays consistent: quadratic
-                        formula.
-                      </li>
-                    </ul>
-                  </section>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Quadratic Equation Solver</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Quadratic Equation Solver</h1>
+    <p class="math-cluster-page-intro">Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-quadratic">
+  <div class="quad-shell">
+    <section class="quad-card quad-hero-card" aria-label="Quadratic equation overview">
+      <div class="quad-hero-copy">
+        <p class="quad-eyebrow">Simple Smooth Wow</p>
+        <h2 class="quad-title">Solve a quadratic fast and keep the root type, discriminant, and steps in one view.</h2>
+        <p class="quad-subtitle">
+          Enter coefficients for <strong>ax^2 + bx + c = 0</strong>, solve once, and use the
+          answer card to see whether the roots are real, repeated, or complex before you read the
+          full working.
+        </p>
+      </div>
+      <ul class="quad-hero-points">
+        <li>Best for classroom checks, algebra homework review, and quick root classification.</li>
+        <li>The answer card shows the roots first, then the discriminant snapshot and worked detail.</li>
+        <li>All coefficients accept decimals, but the method stays consistent: quadratic formula.</li>
+      </ul>
+    </section>
 
-                  <div class="quad-workbench">
-                    <section class="quad-card quad-input-card" aria-label="Quadratic coefficients">
-                      <div class="quad-card-head">
-                        <div>
-                          <p class="quad-section-label">Inputs</p>
-                          <p class="quad-card-title">Set the coefficients and solve the equation</p>
-                        </div>
-                        <span class="quad-chip">Answer-first</span>
-                      </div>
-
-                      <p class="quad-helper">
-                        Solve equations in the form <strong>ax^2 + bx + c = 0</strong>.
-                      </p>
-
-                      <div class="quad-input-grid">
-                        <label class="quad-field" for="quad-a">
-                          <span>Coefficient a</span>
-                          <input
-                            id="quad-a"
-                            type="number"
-                            value="1"
-                            step="any"
-                            inputmode="decimal"
-                          />
-                        </label>
-                        <label class="quad-field" for="quad-b">
-                          <span>Coefficient b</span>
-                          <input
-                            id="quad-b"
-                            type="number"
-                            value="0"
-                            step="any"
-                            inputmode="decimal"
-                          />
-                        </label>
-                        <label class="quad-field" for="quad-c">
-                          <span>Coefficient c</span>
-                          <input
-                            id="quad-c"
-                            type="number"
-                            value="0"
-                            step="any"
-                            inputmode="decimal"
-                          />
-                        </label>
-                      </div>
-
-                      <div class="quad-equation-card" id="quad-equation">
-                        <span class="quad-equation-label">Current equation</span>
-                        <strong id="equation-text">x^2 + 0x + 0 = 0</strong>
-                      </div>
-
-                      <button
-                        class="calculator-button quad-solve-button"
-                        type="button"
-                        id="quad-solve"
-                      >
-                        Solve Equation
-                      </button>
-                    </section>
-
-                    <section
-                      class="quad-card quad-answer-card"
-                      aria-label="Quadratic answer summary"
-                    >
-                      <div class="quad-card-head">
-                        <div>
-                          <p class="quad-section-label">Answer</p>
-                          <p class="quad-card-title">Roots and root type</p>
-                        </div>
-                        <span class="quad-chip quad-chip--answer">Quadratic formula</span>
-                      </div>
-
-                      <div class="result quad-result-card" id="quad-result" aria-live="polite">
-                        Enter coefficients and click <strong>Solve Equation</strong>.
-                      </div>
-                      <div
-                        class="result-detail quad-summary-card"
-                        id="quad-detail"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="quad-snapshot-grid" aria-label="Quadratic snapshot">
-                        <article class="quad-snapshot-card">
-                          <span>Equation</span>
-                          <strong data-quad-snap="equation">x^2 + 0x + 0 = 0</strong>
-                        </article>
-                        <article class="quad-snapshot-card">
-                          <span>Root type</span>
-                          <strong data-quad-snap="root-type">-</strong>
-                        </article>
-                        <article class="quad-snapshot-card">
-                          <span>Discriminant</span>
-                          <strong data-quad-snap="discriminant">-</strong>
-                        </article>
-                        <article class="quad-snapshot-card">
-                          <span>Method</span>
-                          <strong data-quad-snap="method">Quadratic formula</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <section class="quad-exp-section">
-                <h2>Quadratic Equation Solver Practical Guide</h2>
-                <p>
-                  Use this quadratic equation solver to find real or complex roots from the
-                  coefficients in
-                  <strong>ax^2 + bx + c = 0</strong>. It shows the answer first, then the
-                  discriminant, worked steps, and root type so you can check algebra homework or
-                  verify a classroom example quickly.
-                </p>
-                <ul class="quad-summary-list">
-                  <li>
-                    <strong>Best for:</strong> solving quadratic equations, checking discriminants,
-                    and confirming root type.
-                  </li>
-                  <li>
-                    <strong>Quick answer flow:</strong> enter <strong>a</strong>,
-                    <strong>b</strong>, and <strong>c</strong>, then read the answer card.
-                  </li>
-                  <li>
-                    <strong>Output includes:</strong> roots, discriminant, root classification, and
-                    formula substitution steps.
-                  </li>
-                </ul>
-              </section>
-
-              <section class="quad-exp-section">
-                <h3>How to Guide</h3>
-                <ol>
-                  <li>
-                    Enter the coefficients for <strong>a</strong>, <strong>b</strong>, and
-                    <strong>c</strong>.
-                  </li>
-                  <li>Click <strong>Solve Equation</strong> to apply the quadratic formula.</li>
-                  <li>Read the answer card to see the roots and the root type immediately.</li>
-                  <li>
-                    Use the worked detail section to review the discriminant and substitution steps.
-                  </li>
-                </ol>
-              </section>
-
-              <section class="quad-exp-section">
-                <h3>Quick Answer Table</h3>
-                <div class="quad-table-wrap">
-                  <table class="quad-summary-table">
-                    <caption class="math-cluster-visually-hidden">
-                      Quick answer table for the quadratic equation calculator
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Discriminant</th>
-                        <th scope="col">What it means</th>
-                        <th scope="col">Output type</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Δ &gt; 0</th>
-                        <td>The parabola crosses the x-axis twice.</td>
-                        <td>Two distinct real roots</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Δ = 0</th>
-                        <td>The parabola touches the x-axis once.</td>
-                        <td>One repeated real root</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Δ &lt; 0</th>
-                        <td>The parabola does not cross the x-axis.</td>
-                        <td>Two complex conjugate roots</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              <section class="quad-exp-section">
-                <h3>Formula Notes</h3>
-                <p>
-                  The solver uses the quadratic formula
-                  <strong>x = (-b +/- sqrt(b^2 - 4ac)) / 2a</strong>. The discriminant
-                  <strong>Δ = b^2 - 4ac</strong> tells you how many roots exist and whether those
-                  roots are real or complex.
-                </p>
-                <p>
-                  The value of <strong>a</strong> must not be zero. If <strong>a = 0</strong>, the
-                  equation is no longer quadratic and this solver stops with an error.
-                </p>
-              </section>
-
-              <section class="quad-exp-section">
-                <h3>Worked Example</h3>
-                <div class="quad-example-grid">
-                  <article class="quad-example-card">
-                    <h4>Two real roots</h4>
-                    <p>
-                      Use <strong>x^2 - 5x + 6 = 0</strong>, so <strong>a = 1</strong>,
-                      <strong>b = -5</strong>, and <strong>c = 6</strong>.
-                    </p>
-                    <p>
-                      The discriminant is <strong>1</strong>, so the roots are real and distinct:
-                      <strong>x = 3</strong> and <strong>x = 2</strong>.
-                    </p>
-                  </article>
-                  <article class="quad-example-card">
-                    <h4>Repeated root</h4>
-                    <p>Use <strong>x^2 - 2x + 1 = 0</strong>.</p>
-                    <p>
-                      The discriminant is <strong>0</strong>, so the equation has one repeated real
-                      root: <strong>x = 1</strong>.
-                    </p>
-                  </article>
-                </div>
-              </section>
-
-              <section class="quad-exp-section">
-                <h3>FAQ</h3>
-                <div class="quad-faq-grid">
-                  <div class="faq-card">
-                    <h4>What happens if a is zero?</h4>
-                    <p>The equation becomes linear, so this quadratic solver returns an error.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why do I sometimes get two answers?</h4>
-                    <p>Most quadratics intersect the x-axis at two points, giving two roots.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can this calculator handle decimal inputs?</h4>
-                    <p>Yes, all three coefficients accept decimal values.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>How is the discriminant used?</h4>
-                    <p>The discriminant determines whether roots are real, repeated, or complex.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Does it show solving steps?</h4>
-                    <p>Yes, it shows formula substitution and discriminant evaluation in order.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What does a negative discriminant mean?</h4>
-                    <p>It means there are no real roots, only complex conjugate roots.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Are repeated roots shown clearly?</h4>
-                    <p>Yes, when Δ = 0, the result card reports one repeated real solution.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can I use this for homework checking?</h4>
-                    <p>Yes, it is useful for verifying manual work and final roots.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why is the method fixed to quadratic formula?</h4>
-                    <p>The solver uses a consistent method that works for all valid quadratics.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Do large coefficients affect output precision?</h4>
-                    <p>
-                      Results are formatted to readable precision while preserving key accuracy.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section class="quad-exp-section">
-                <h3>Related Calculators</h3>
-                <div class="quad-related-grid">
-                  <a class="quad-related-card" href="/math/algebra/system-of-equations/">
-                    <strong>System of Equations</strong>
-                    <span
-                      >Move from single quadratic equations to solving multiple equations
-                      together.</span
-                    >
-                  </a>
-                  <a class="quad-related-card" href="/math/algebra/factoring/">
-                    <strong>Factoring Calculator</strong>
-                    <span
-                      >Check whether a quadratic can be solved by factoring before using the
-                      formula.</span
-                    >
-                  </a>
-                  <a class="quad-related-card" href="/math/basic/">
-                    <strong>Basic Calculator</strong>
-                    <span
-                      >Use a simpler arithmetic tool when you only need quick coefficient checks or
-                      substitutions.</span
-                    >
-                  </a>
-                </div>
-              </section>
-
-              <section class="quad-exp-section">
-                <h3>Important Notes</h3>
-                <ul class="quad-notes-list">
-                  <li><strong>Last updated:</strong> March 2026</li>
-                  <li>
-                    <strong>Accuracy:</strong> Roots are calculated directly from the entered
-                    coefficients using the quadratic formula.
-                  </li>
-                  <li>
-                    <strong>Assumption:</strong> The solver expects a true quadratic, so
-                    <strong>a</strong> must not equal zero.
-                  </li>
-                  <li>
-                    <strong>Complex roots:</strong> Negative discriminants are shown as complex
-                    conjugate pairs.
-                  </li>
-                  <li>
-                    <strong>Use case:</strong> This tool helps with algebra checking and learning,
-                    not formal symbolic proof.
-                  </li>
-                </ul>
-              </section>
-            </div>
+    <div class="quad-workbench">
+      <section class="quad-card quad-input-card" aria-label="Quadratic coefficients">
+        <div class="quad-card-head">
+          <div>
+            <p class="quad-section-label">Inputs</p>
+            <p class="quad-card-title">Set the coefficients and solve the equation</p>
           </div>
+          <span class="quad-chip">Answer-first</span>
+        </div>
+
+        <p class="quad-helper">Solve equations in the form <strong>ax^2 + bx + c = 0</strong>.</p>
+
+        <div class="quad-input-grid">
+          <label class="quad-field" for="quad-a">
+            <span>Coefficient a</span>
+            <input id="quad-a" type="number" value="1" step="any" inputmode="decimal" />
+          </label>
+          <label class="quad-field" for="quad-b">
+            <span>Coefficient b</span>
+            <input id="quad-b" type="number" value="0" step="any" inputmode="decimal" />
+          </label>
+          <label class="quad-field" for="quad-c">
+            <span>Coefficient c</span>
+            <input id="quad-c" type="number" value="0" step="any" inputmode="decimal" />
+          </label>
+        </div>
+
+        <div class="quad-equation-card" id="quad-equation">
+          <span class="quad-equation-label">Current equation</span>
+          <strong id="equation-text">x^2 + 0x + 0 = 0</strong>
+        </div>
+
+        <button class="calculator-button quad-solve-button" type="button" id="quad-solve">
+          Solve Equation
+        </button>
+      </section>
+
+      <section class="quad-card quad-answer-card" aria-label="Quadratic answer summary">
+        <div class="quad-card-head">
+          <div>
+            <p class="quad-section-label">Answer</p>
+            <p class="quad-card-title">Roots and root type</p>
+          </div>
+          <span class="quad-chip quad-chip--answer">Quadratic formula</span>
+        </div>
+
+        <div class="result quad-result-card" id="quad-result" aria-live="polite">
+          Enter coefficients and click <strong>Solve Equation</strong>.
+        </div>
+        <div class="result-detail quad-summary-card" id="quad-detail" aria-live="polite"></div>
+
+        <div class="quad-snapshot-grid" aria-label="Quadratic snapshot">
+          <article class="quad-snapshot-card">
+            <span>Equation</span>
+            <strong data-quad-snap="equation">x^2 + 0x + 0 = 0</strong>
+          </article>
+          <article class="quad-snapshot-card">
+            <span>Root type</span>
+            <strong data-quad-snap="root-type">-</strong>
+          </article>
+          <article class="quad-snapshot-card">
+            <span>Discriminant</span>
+            <strong data-quad-snap="discriminant">-</strong>
+          </article>
+          <article class="quad-snapshot-card">
+            <span>Method</span>
+            <strong data-quad-snap="method">Quadratic formula</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+    <section class="quad-exp-section">
+  <h2>Quadratic Equation Solver Practical Guide</h2>
+  <p>
+    Use this quadratic equation solver to find real or complex roots from the coefficients in
+    <strong>ax^2 + bx + c = 0</strong>. It shows the answer first, then the discriminant, worked
+    steps, and root type so you can check algebra homework or verify a classroom example quickly.
+  </p>
+  <ul class="quad-summary-list">
+    <li>
+      <strong>Best for:</strong> solving quadratic equations, checking discriminants, and confirming
+      root type.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> enter <strong>a</strong>, <strong>b</strong>, and
+      <strong>c</strong>, then read the answer card.
+    </li>
+    <li>
+      <strong>Output includes:</strong> roots, discriminant, root classification, and formula
+      substitution steps.
+    </li>
+  </ul>
+</section>
+
+<section class="quad-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>
+      Enter the coefficients for <strong>a</strong>, <strong>b</strong>, and <strong>c</strong>.
+    </li>
+    <li>Click <strong>Solve Equation</strong> to apply the quadratic formula.</li>
+    <li>Read the answer card to see the roots and the root type immediately.</li>
+    <li>Use the worked detail section to review the discriminant and substitution steps.</li>
+  </ol>
+</section>
+
+<section class="quad-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="quad-table-wrap">
+    <table class="quad-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the quadratic equation calculator
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Discriminant</th>
+          <th scope="col">What it means</th>
+          <th scope="col">Output type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Δ &gt; 0</th>
+          <td>The parabola crosses the x-axis twice.</td>
+          <td>Two distinct real roots</td>
+        </tr>
+        <tr>
+          <th scope="row">Δ = 0</th>
+          <td>The parabola touches the x-axis once.</td>
+          <td>One repeated real root</td>
+        </tr>
+        <tr>
+          <th scope="row">Δ &lt; 0</th>
+          <td>The parabola does not cross the x-axis.</td>
+          <td>Two complex conjugate roots</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="quad-exp-section">
+  <h3>Formula Notes</h3>
+  <p>
+    The solver uses the quadratic formula
+    <strong>x = (-b +/- sqrt(b^2 - 4ac)) / 2a</strong>. The discriminant
+    <strong>Δ = b^2 - 4ac</strong> tells you how many roots exist and whether those roots are real
+    or complex.
+  </p>
+  <p>
+    The value of <strong>a</strong> must not be zero. If <strong>a = 0</strong>, the equation is no
+    longer quadratic and this solver stops with an error.
+  </p>
+</section>
+
+<section class="quad-exp-section">
+  <h3>Worked Example</h3>
+  <div class="quad-example-grid">
+    <article class="quad-example-card">
+      <h4>Two real roots</h4>
+      <p>
+        Use <strong>x^2 - 5x + 6 = 0</strong>, so <strong>a = 1</strong>, <strong>b = -5</strong>,
+        and <strong>c = 6</strong>.
+      </p>
+      <p>
+        The discriminant is <strong>1</strong>, so the roots are real and distinct:
+        <strong>x = 3</strong> and <strong>x = 2</strong>.
+      </p>
+    </article>
+    <article class="quad-example-card">
+      <h4>Repeated root</h4>
+      <p>Use <strong>x^2 - 2x + 1 = 0</strong>.</p>
+      <p>
+        The discriminant is <strong>0</strong>, so the equation has one repeated real root:
+        <strong>x = 1</strong>.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="quad-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current quadratic equation solver problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="quad-exp-section">
+  <h3>FAQ</h3>
+  <div class="quad-faq-grid">
+    <div class="faq-card">
+      <h4>What happens if a is zero?</h4>
+      <p>The equation becomes linear, so this quadratic solver returns an error.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why do I sometimes get two answers?</h4>
+      <p>Most quadratics intersect the x-axis at two points, giving two roots.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can this calculator handle decimal inputs?</h4>
+      <p>Yes, all three coefficients accept decimal values.</p>
+    </div>
+    <div class="faq-card">
+      <h4>How is the discriminant used?</h4>
+      <p>The discriminant determines whether roots are real, repeated, or complex.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does it show solving steps?</h4>
+      <p>Yes, it shows formula substitution and discriminant evaluation in order.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What does a negative discriminant mean?</h4>
+      <p>It means there are no real roots, only complex conjugate roots.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Are repeated roots shown clearly?</h4>
+      <p>Yes, when Δ = 0, the result card reports one repeated real solution.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I use this for homework checking?</h4>
+      <p>Yes, it is useful for verifying manual work and final roots.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why is the method fixed to quadratic formula?</h4>
+      <p>The solver uses a consistent method that works for all valid quadratics.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Do large coefficients affect output precision?</h4>
+      <p>Results are formatted to readable precision while preserving key accuracy.</p>
+    </div>
+  </div>
+</section>
+
+<section class="quad-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="quad-related-grid">
+    <a class="quad-related-card" href="/math/algebra/system-of-equations/">
+      <strong>System of Equations</strong>
+      <span>Move from single quadratic equations to solving multiple equations together.</span>
+    </a>
+    <a class="quad-related-card" href="/math/algebra/factoring/">
+      <strong>Factoring Calculator</strong>
+      <span>Check whether a quadratic can be solved by factoring before using the formula.</span>
+    </a>
+    <a class="quad-related-card" href="/math/basic/">
+      <strong>Basic Calculator</strong>
+      <span
+        >Use a simpler arithmetic tool when you only need quick coefficient checks or
+        substitutions.</span
+      >
+    </a>
+  </div>
+</section>
+
+<section class="quad-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="quad-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li>
+      <strong>Accuracy:</strong> Roots are calculated directly from the entered coefficients using
+      the quadratic formula.
+    </li>
+    <li>
+      <strong>Assumption:</strong> The solver expects a true quadratic, so <strong>a</strong> must
+      not equal zero.
+    </li>
+    <li>
+      <strong>Complex roots:</strong> Negative discriminants are shown as complex conjugate pairs.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool helps with algebra checking and learning, not formal
+      symbolic proof.
+    </li>
+      <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+</section>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
-    <script
-      type="module"
-      src="/calculators/math/algebra/quadratic-equation/module.js?v=20260224"
-    ></script>
+    <script type="module" src="/calculators/math/algebra/quadratic-equation/module.js?v=20260224"></script>
   </body>
 </html>

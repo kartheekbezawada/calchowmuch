@@ -27,7 +27,7 @@ test.describe('math/system-of-equations seo', () => {
   test('metadata, explanation contract, FAQ depth, schema parity, and sitemap', async ({ page }) => {
     await page.goto('/math/algebra/system-of-equations/');
 
-    await expect(page).toHaveTitle('System of Equations Solver | 2x2 and 3x3 | CalcHowMuch');
+    await expect(page).toHaveTitle('System of Equations Solver | 2x2, 3x3 and Matrix Methods');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);

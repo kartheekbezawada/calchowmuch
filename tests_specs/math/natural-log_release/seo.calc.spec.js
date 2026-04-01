@@ -28,7 +28,7 @@ test.describe('math/natural-log seo', () => {
     await page.goto('/math/log/natural-log/');
 
     await expect(page).toHaveTitle(
-      'Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch'
+      'Natural Log Calculator | ln(x), e^x and Natural Log Rules'
     );
 
     const canonical = page.locator('link[rel="canonical"]');

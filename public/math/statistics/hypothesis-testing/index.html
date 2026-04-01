@@ -4,25 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Hypothesis Testing | t-Tests, Chi-Square &amp; p-Value</title>
-    <meta
-      name="description"
-      content="Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout."
-    />
+    <meta name="description" content="Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout." />
     <link rel="canonical" href="https://calchowmuch.com/math/statistics/hypothesis-testing/" />
     <meta property="og:title" content="Hypothesis Testing | t-Tests, Chi-Square &amp; p-Value" />
-    <meta
-      property="og:description"
-      content="Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout."
-    />
+    <meta property="og:description" content="Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/statistics/hypothesis-testing/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hypothesis Testing | t-Tests, Chi-Square &amp; p-Value" />
-    <meta
-      name="twitter:description"
-      content="Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout."
-    />
+    <meta name="twitter:description" content="Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -376,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -996,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1076,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1086,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1378,767 +1449,398 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/statistics/hypothesis-testing/#webpage",
-            "name": "Hypothesis Testing | t-Tests, Chi-Square & p-Value",
-            "url": "https://calchowmuch.com/math/statistics/hypothesis-testing/",
-            "description": "Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/statistics/hypothesis-testing/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/statistics/hypothesis-testing/#softwareapplication"
-            },
-            "breadcrumb": {
-              "@id": "https://calchowmuch.com/math/statistics/hypothesis-testing/#breadcrumbs"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/statistics/hypothesis-testing/#softwareapplication",
-            "name": "Hypothesis Testing",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/statistics/hypothesis-testing/",
-            "description": "Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/statistics/hypothesis-testing/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What does reject H0 actually mean?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means the observed data would be unlikely enough under the null assumption that you choose the alternative explanation instead."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if the result is not significant?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It means the data did not supply strong enough evidence against the null at the chosen alpha, not that the null is proven true."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "When should I use a paired test?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Use a paired test when each value in one sample is naturally matched to a value in the other sample, such as before-and-after measurements."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why do one-sided and two-sided tests matter?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "They change how the evidence is allocated across the tails, so the p-value and decision can differ even with the same sample data."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What does Cohen&apos;s d add to the result?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It gives a scale-free effect size so you can judge whether the difference is tiny, moderate, or large in practical terms."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can a statistically significant result still be unimportant?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Large samples can make small effects significant, so you should read the effect size and interval as well as the p-value."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/statistics/hypothesis-testing/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Hypothesis Testing",
-                "item": "https://calchowmuch.com/math/statistics/hypothesis-testing/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/statistics/hypothesis-testing/#webpage","name":"Hypothesis Testing | t-Tests, Chi-Square & p-Value","url":"https://calchowmuch.com/math/statistics/hypothesis-testing/","description":"Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/statistics/hypothesis-testing/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/statistics/hypothesis-testing/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/statistics/hypothesis-testing/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/statistics/hypothesis-testing/#softwareapplication","name":"Hypothesis Testing","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/statistics/hypothesis-testing/","description":"Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/statistics/hypothesis-testing/#faq","mainEntity":[{"@type":"Question","name":"What does reject H0 actually mean?","acceptedAnswer":{"@type":"Answer","text":"It means the observed data would be unlikely enough under the null assumption that you choose the alternative explanation instead."}},{"@type":"Question","name":"What if the result is not significant?","acceptedAnswer":{"@type":"Answer","text":"It means the data did not supply strong enough evidence against the null at the chosen alpha, not that the null is proven true."}},{"@type":"Question","name":"When should I use a paired test?","acceptedAnswer":{"@type":"Answer","text":"Use a paired test when each value in one sample is naturally matched to a value in the other sample, such as before-and-after measurements."}},{"@type":"Question","name":"Why do one-sided and two-sided tests matter?","acceptedAnswer":{"@type":"Answer","text":"They change how the evidence is allocated across the tails, so the p-value and decision can differ even with the same sample data."}},{"@type":"Question","name":"What does Cohen's d add to the result?","acceptedAnswer":{"@type":"Answer","text":"It gives a scale-free effect size so you can judge whether the difference is tiny, moderate, or large in practical terms."}},{"@type":"Question","name":"Can a statistically significant result still be unimportant?","acceptedAnswer":{"@type":"Answer","text":"Yes. Large samples can make small effects significant, so you should read the effect size and interval as well as the p-value."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/statistics/hypothesis-testing/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Hypothesis Testing","item":"https://calchowmuch.com/math/statistics/hypothesis-testing/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Hypothesis Testing</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Hypothesis Testing</h1>
-              <p class="math-cluster-page-intro">
-                Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values,
-                intervals, and effect sizes in a light answer-first statistics layout.
-              </p>
-            </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-hypothesis">
-                <div class="analysis-shell">
-                  <section
-                    class="analysis-card analysis-hero-card"
-                    aria-label="Hypothesis testing overview"
-                  >
-                    <div class="analysis-hero-copy">
-                      <p class="analysis-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="analysis-title">
-                        Run the test, read the decision, and keep the effect size and interval
-                        context in one answer-first workflow.
-                      </h2>
-                      <p class="analysis-subtitle">
-                        Switch between one-sample, two-sample, paired, and chi-square tests without
-                        leaving the page, then review the test statistic, p-value, confidence
-                        interval, and decision in a single stable answer card.
-                      </p>
-                    </div>
-                    <ul class="analysis-hero-points">
-                      <li>
-                        Keeps the decision rule, p-value, and sample summary in one answer-first
-                        layout.
-                      </li>
-                      <li>
-                        Supports common classroom and practical significance checks without separate
-                        routes.
-                      </li>
-                      <li>
-                        Removes the legacy shell and thin explanation from the advanced testing
-                        route.
-                      </li>
-                    </ul>
-                  </section>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Hypothesis Testing</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Hypothesis Testing</h1>
+    <p class="math-cluster-page-intro">Run one-sample, two-sample, paired, and chi-square hypothesis tests with p-values, intervals, and effect sizes in a light answer-first statistics layout.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-hypothesis">
+  <div class="analysis-shell">
+    <section class="analysis-card analysis-hero-card" aria-label="Hypothesis testing overview">
+      <div class="analysis-hero-copy">
+        <p class="analysis-eyebrow">Simple Smooth Wow</p>
+        <h2 class="analysis-title">Run the test, read the decision, and keep the effect size and interval context in one answer-first workflow.</h2>
+        <p class="analysis-subtitle">
+          Switch between one-sample, two-sample, paired, and chi-square tests without leaving the
+          page, then review the test statistic, p-value, confidence interval, and decision in a
+          single stable answer card.
+        </p>
+      </div>
+      <ul class="analysis-hero-points">
+        <li>Keeps the decision rule, p-value, and sample summary in one answer-first layout.</li>
+        <li>Supports common classroom and practical significance checks without separate routes.</li>
+        <li>Removes the legacy shell and thin explanation from the advanced testing route.</li>
+      </ul>
+    </section>
 
-                  <div class="analysis-workbench">
-                    <section
-                      class="analysis-card analysis-input-card"
-                      aria-label="Hypothesis testing inputs"
-                    >
-                      <div class="analysis-card-head">
-                        <div>
-                          <p class="analysis-section-label">Inputs</p>
-                          <p class="analysis-card-title">
-                            Choose the test family, paste the data, and set alpha
-                          </p>
-                        </div>
-                        <span class="analysis-chip">Decision test</span>
-                      </div>
-
-                      <div class="analysis-field">
-                        <span>Test type</span>
-                        <div
-                          class="button-group analysis-button-group"
-                          role="group"
-                          data-button-group="hyp-test-type"
-                        >
-                          <button
-                            class="calculator-button secondary is-active"
-                            type="button"
-                            data-value="one-sample-t"
-                          >
-                            One-Sample t
-                          </button>
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="two-sample-t"
-                          >
-                            Two-Sample t
-                          </button>
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="paired-t"
-                          >
-                            Paired t
-                          </button>
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="chi-square"
-                          >
-                            Chi-Square
-                          </button>
-                        </div>
-                      </div>
-
-                      <div class="analysis-param-stack" id="hyp-one-sample-inputs">
-                        <label class="analysis-field" for="hyp-sample-data">
-                          <span>Sample data</span>
-                          <textarea
-                            id="hyp-sample-data"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-105, 98, 102, 110, 95, 103, 107, 101</textarea
-                          >
-                        </label>
-                        <label class="analysis-field" for="hyp-mu0">
-                          <span>Hypothesized mean (mu0)</span>
-                          <input id="hyp-mu0" type="number" value="100" step="any" />
-                        </label>
-                      </div>
-
-                      <div class="analysis-two-up" id="hyp-two-sample-inputs" style="display: none">
-                        <label class="analysis-field" for="hyp-sample1-data">
-                          <span>Sample 1 data</span>
-                          <textarea
-                            id="hyp-sample1-data"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-23, 25, 27, 22, 24, 26</textarea
-                          >
-                        </label>
-                        <label class="analysis-field" for="hyp-sample2-data">
-                          <span>Sample 2 data</span>
-                          <textarea
-                            id="hyp-sample2-data"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-30, 32, 28, 31, 29, 33</textarea
-                          >
-                        </label>
-                      </div>
-
-                      <div class="analysis-two-up" id="hyp-chi-square-inputs" style="display: none">
-                        <label class="analysis-field" for="hyp-observed">
-                          <span>Observed frequencies</span>
-                          <textarea
-                            id="hyp-observed"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-50, 30, 20</textarea
-                          >
-                        </label>
-                        <label class="analysis-field" for="hyp-expected">
-                          <span>Expected frequencies</span>
-                          <textarea
-                            id="hyp-expected"
-                            rows="3"
-                            placeholder="Enter values separated by commas"
-                          >
-40, 35, 25</textarea
-                          >
-                        </label>
-                      </div>
-
-                      <div class="analysis-field" id="hyp-alternative-row">
-                        <span>Alternative hypothesis</span>
-                        <div
-                          class="button-group analysis-button-group"
-                          role="group"
-                          data-button-group="hyp-alternative"
-                        >
-                          <button
-                            class="calculator-button secondary is-active"
-                            type="button"
-                            data-value="two-sided"
-                          >
-                            Two-Sided
-                          </button>
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="greater"
-                          >
-                            Greater
-                          </button>
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="less"
-                          >
-                            Less
-                          </button>
-                        </div>
-                      </div>
-
-                      <div class="analysis-field">
-                        <span>Significance level (alpha)</span>
-                        <div
-                          class="button-group analysis-button-group"
-                          role="group"
-                          data-button-group="hyp-alpha"
-                        >
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="0.01"
-                          >
-                            0.01
-                          </button>
-                          <button
-                            class="calculator-button secondary is-active"
-                            type="button"
-                            data-value="0.05"
-                          >
-                            0.05
-                          </button>
-                          <button
-                            class="calculator-button secondary"
-                            type="button"
-                            data-value="0.10"
-                          >
-                            0.10
-                          </button>
-                        </div>
-                      </div>
-
-                      <button
-                        class="calculator-button analysis-calc-button"
-                        type="button"
-                        id="hyp-calculate"
-                      >
-                        Run test
-                      </button>
-                    </section>
-
-                    <section
-                      class="analysis-card analysis-answer-card"
-                      aria-label="Hypothesis testing answer"
-                    >
-                      <div class="analysis-card-head">
-                        <div>
-                          <p class="analysis-section-label">Answer</p>
-                          <p class="analysis-card-title">
-                            Decision, p-value, and supporting sample summary
-                          </p>
-                        </div>
-                        <span class="analysis-chip analysis-chip--answer"
-                          >Reject / fail to reject</span
-                        >
-                      </div>
-
-                      <div
-                        class="result analysis-result-card"
-                        id="hyp-result"
-                        aria-live="polite"
-                      ></div>
-
-                      <div
-                        class="analysis-snapshot-grid"
-                        aria-label="Hypothesis testing workflow summary"
-                      >
-                        <article class="analysis-snapshot-card">
-                          <span>Primary output</span>
-                          <strong>Decision at chosen alpha</strong>
-                        </article>
-                        <article class="analysis-snapshot-card">
-                          <span>Verification</span>
-                          <strong>Effect size and interval context</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <div id="hypothesis-explanation">
-                <section class="analysis-exp-section">
-                  <h2>Hypothesis Testing Practical Guide</h2>
-                  <p>
-                    Use this route when you need a clean test decision with the p-value, test
-                    statistic, and supporting sample summary in one place. It helps you move from
-                    raw numbers to a structured reject-versus-fail-to-reject call without bouncing
-                    between separate t-test and chi-square pages.
-                  </p>
-                  <ul class="analysis-summary-list">
-                    <li>
-                      <strong>Best for:</strong> one-sample, two-sample, paired, and chi-square
-                      significance checks.
-                    </li>
-                    <li>
-                      <strong>Quick answer flow:</strong> choose the test, paste the data, set
-                      alpha, and read the answer card first.
-                    </li>
-                    <li>
-                      <strong>Output includes:</strong> test statistic, p-value, degrees of freedom,
-                      decision, interval, and effect size where applicable.
-                    </li>
-                  </ul>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>How to Guide</h3>
-                  <ol>
-                    <li>Select the test family that matches your data structure.</li>
-                    <li>
-                      Paste the required sample or frequency values and choose the alternative
-                      hypothesis when relevant.
-                    </li>
-                    <li>Choose alpha based on how strict the decision rule should be.</li>
-                    <li>
-                      Click <strong>Run test</strong> and read the decision line together with the
-                      p-value and interval context.
-                    </li>
-                  </ol>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Quick Answer Table</h3>
-                  <div class="analysis-table-wrap">
-                    <table class="analysis-summary-table">
-                      <caption class="math-cluster-visually-hidden">
-                        Quick answer table for the hypothesis testing calculator
-                      </caption>
-                      <thead>
-                        <tr>
-                          <th scope="col">Test type</th>
-                          <th scope="col">Best use</th>
-                          <th scope="col">Main question</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">One-sample t</th>
-                          <td>Compare one sample mean with a target value</td>
-                          <td>Is this sample mean different from mu0?</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Two-sample or paired t</th>
-                          <td>Compare two mean patterns</td>
-                          <td>Do the groups or paired differences differ enough to matter?</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Chi-square</th>
-                          <td>Observed versus expected category counts</td>
-                          <td>Do the observed frequencies match the expected pattern?</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Formula Guide</h3>
-                  <p>
-                    The t-family compares a mean difference with the noise around that difference,
-                    while the chi-square test compares observed and expected frequencies using
-                    <strong>sum((O - E)^2 / E)</strong>. In plain terms, the route asks whether the
-                    observed gap is large enough relative to normal variation to justify rejecting
-                    the null idea.
-                  </p>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Worked Example</h3>
-                  <div class="analysis-example-grid">
-                    <article class="analysis-example-card">
-                      <h4>Default one-sample test</h4>
-                      <p>
-                        The default sample is centred slightly above <strong>100</strong>, so the
-                        route checks whether that gap is large relative to the sample spread.
-                      </p>
-                      <p>
-                        The answer card then tells you if the observed difference is strong enough
-                        to reject the null at the chosen alpha.
-                      </p>
-                    </article>
-                    <article class="analysis-example-card">
-                      <h4>Why keep the confidence interval in view?</h4>
-                      <p>
-                        The interval gives scale to the decision, which helps you judge not only
-                        significance but also the plausible size of the effect.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section" id="hypothesis-faq">
-                  <h3>FAQ</h3>
-                  <div class="analysis-faq-grid">
-                    <article class="faq-card">
-                      <h4>What does reject H0 actually mean?</h4>
-                      <p>
-                        It means the observed data would be unlikely enough under the null
-                        assumption that you choose the alternative explanation instead.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What if the result is not significant?</h4>
-                      <p>
-                        It means the data did not supply strong enough evidence against the null at
-                        the chosen alpha, not that the null is proven true.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>When should I use a paired test?</h4>
-                      <p>
-                        Use a paired test when each value in one sample is naturally matched to a
-                        value in the other sample, such as before-and-after measurements.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Why do one-sided and two-sided tests matter?</h4>
-                      <p>
-                        They change how the evidence is allocated across the tails, so the p-value
-                        and decision can differ even with the same sample data.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>What does Cohen's d add to the result?</h4>
-                      <p>
-                        It gives a scale-free effect size so you can judge whether the difference is
-                        tiny, moderate, or large in practical terms.
-                      </p>
-                    </article>
-                    <article class="faq-card">
-                      <h4>Can a statistically significant result still be unimportant?</h4>
-                      <p>
-                        Yes. Large samples can make small effects significant, so you should read
-                        the effect size and interval as well as the p-value.
-                      </p>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Related Calculators</h3>
-                  <div class="analysis-related-grid">
-                    <a class="analysis-related-card" href="/math/statistics/distribution/">
-                      <strong>Distribution Calculator</strong>
-                      <span
-                        >Look up supporting critical values and probabilities behind test
-                        decisions.</span
-                      >
-                    </a>
-                    <a class="analysis-related-card" href="/math/statistics/anova/">
-                      <strong>ANOVA Calculator</strong>
-                      <span
-                        >Use the multi-group route when the question involves more than two mean
-                        groups.</span
-                      >
-                    </a>
-                    <a class="analysis-related-card" href="/math/confidence-interval/">
-                      <strong>Confidence Interval Calculator</strong>
-                      <span
-                        >Estimate bounds directly when interval interpretation matters more than the
-                        formal reject decision.</span
-                      >
-                    </a>
-                  </div>
-                </section>
-
-                <section class="analysis-exp-section">
-                  <h3>Important Notes</h3>
-                  <ul class="analysis-notes-list">
-                    <li><strong>Last updated:</strong> March 2026</li>
-                    <li>
-                      <strong>Input rule:</strong> Samples must contain numeric values, and paired
-                      tests require equal sample lengths.
-                    </li>
-                    <li>
-                      <strong>Decision rule:</strong> Compare p-value with alpha, then read interval
-                      and effect size before making a practical conclusion.
-                    </li>
-                    <li>
-                      <strong>Interpretation rule:</strong> Statistical significance does not
-                      automatically mean the effect is large or important.
-                    </li>
-                  </ul>
-                </section>
-              </div>
-            </div>
+    <div class="analysis-workbench">
+      <section class="analysis-card analysis-input-card" aria-label="Hypothesis testing inputs">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Inputs</p>
+            <p class="analysis-card-title">Choose the test family, paste the data, and set alpha</p>
           </div>
+          <span class="analysis-chip">Decision test</span>
+        </div>
+
+        <div class="analysis-field">
+          <span>Test type</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="hyp-test-type">
+            <button class="calculator-button secondary is-active" type="button" data-value="one-sample-t">One-Sample t</button>
+            <button class="calculator-button secondary" type="button" data-value="two-sample-t">Two-Sample t</button>
+            <button class="calculator-button secondary" type="button" data-value="paired-t">Paired t</button>
+            <button class="calculator-button secondary" type="button" data-value="chi-square">Chi-Square</button>
+          </div>
+        </div>
+
+        <div class="analysis-param-stack" id="hyp-one-sample-inputs">
+          <label class="analysis-field" for="hyp-sample-data">
+            <span>Sample data</span>
+            <textarea id="hyp-sample-data" rows="3" placeholder="Enter values separated by commas">105, 98, 102, 110, 95, 103, 107, 101</textarea>
+          </label>
+          <label class="analysis-field" for="hyp-mu0">
+            <span>Hypothesized mean (mu0)</span>
+            <input id="hyp-mu0" type="number" value="100" step="any" />
+          </label>
+        </div>
+
+        <div class="analysis-two-up" id="hyp-two-sample-inputs" style="display: none">
+          <label class="analysis-field" for="hyp-sample1-data">
+            <span>Sample 1 data</span>
+            <textarea id="hyp-sample1-data" rows="3" placeholder="Enter values separated by commas">23, 25, 27, 22, 24, 26</textarea>
+          </label>
+          <label class="analysis-field" for="hyp-sample2-data">
+            <span>Sample 2 data</span>
+            <textarea id="hyp-sample2-data" rows="3" placeholder="Enter values separated by commas">30, 32, 28, 31, 29, 33</textarea>
+          </label>
+        </div>
+
+        <div class="analysis-two-up" id="hyp-chi-square-inputs" style="display: none">
+          <label class="analysis-field" for="hyp-observed">
+            <span>Observed frequencies</span>
+            <textarea id="hyp-observed" rows="3" placeholder="Enter values separated by commas">50, 30, 20</textarea>
+          </label>
+          <label class="analysis-field" for="hyp-expected">
+            <span>Expected frequencies</span>
+            <textarea id="hyp-expected" rows="3" placeholder="Enter values separated by commas">40, 35, 25</textarea>
+          </label>
+        </div>
+
+        <div class="analysis-field" id="hyp-alternative-row">
+          <span>Alternative hypothesis</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="hyp-alternative">
+            <button class="calculator-button secondary is-active" type="button" data-value="two-sided">Two-Sided</button>
+            <button class="calculator-button secondary" type="button" data-value="greater">Greater</button>
+            <button class="calculator-button secondary" type="button" data-value="less">Less</button>
+          </div>
+        </div>
+
+        <div class="analysis-field">
+          <span>Significance level (alpha)</span>
+          <div class="button-group analysis-button-group" role="group" data-button-group="hyp-alpha">
+            <button class="calculator-button secondary" type="button" data-value="0.01">0.01</button>
+            <button class="calculator-button secondary is-active" type="button" data-value="0.05">0.05</button>
+            <button class="calculator-button secondary" type="button" data-value="0.10">0.10</button>
+          </div>
+        </div>
+
+        <button class="calculator-button analysis-calc-button" type="button" id="hyp-calculate">
+          Run test
+        </button>
+      </section>
+
+      <section class="analysis-card analysis-answer-card" aria-label="Hypothesis testing answer">
+        <div class="analysis-card-head">
+          <div>
+            <p class="analysis-section-label">Answer</p>
+            <p class="analysis-card-title">Decision, p-value, and supporting sample summary</p>
+          </div>
+          <span class="analysis-chip analysis-chip--answer">Reject / fail to reject</span>
+        </div>
+
+        <div class="result analysis-result-card" id="hyp-result" aria-live="polite"></div>
+
+        <div class="analysis-snapshot-grid" aria-label="Hypothesis testing workflow summary">
+          <article class="analysis-snapshot-card">
+            <span>Primary output</span>
+            <strong>Decision at chosen alpha</strong>
+          </article>
+          <article class="analysis-snapshot-card">
+            <span>Verification</span>
+            <strong>Effect size and interval context</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+    <div id="hypothesis-explanation">
+  <section class="analysis-exp-section">
+    <h2>Hypothesis Testing Practical Guide</h2>
+    <p>
+      Use this route when you need a clean test decision with the p-value, test statistic, and
+      supporting sample summary in one place. It helps you move from raw numbers to a structured
+      reject-versus-fail-to-reject call without bouncing between separate t-test and chi-square
+      pages.
+    </p>
+    <ul class="analysis-summary-list">
+      <li>
+        <strong>Best for:</strong> one-sample, two-sample, paired, and chi-square significance
+        checks.
+      </li>
+      <li>
+        <strong>Quick answer flow:</strong> choose the test, paste the data, set alpha, and read the
+        answer card first.
+      </li>
+      <li>
+        <strong>Output includes:</strong> test statistic, p-value, degrees of freedom, decision,
+        interval, and effect size where applicable.
+      </li>
+    </ul>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>How to Guide</h3>
+    <ol>
+      <li>Select the test family that matches your data structure.</li>
+      <li>
+        Paste the required sample or frequency values and choose the alternative hypothesis when
+        relevant.
+      </li>
+      <li>Choose alpha based on how strict the decision rule should be.</li>
+      <li>
+        Click <strong>Run test</strong> and read the decision line together with the p-value and
+        interval context.
+      </li>
+    </ol>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Quick Answer Table</h3>
+    <div class="analysis-table-wrap">
+      <table class="analysis-summary-table">
+        <caption class="math-cluster-visually-hidden">
+          Quick answer table for the hypothesis testing calculator
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Test type</th>
+            <th scope="col">Best use</th>
+            <th scope="col">Main question</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">One-sample t</th>
+            <td>Compare one sample mean with a target value</td>
+            <td>Is this sample mean different from mu0?</td>
+          </tr>
+          <tr>
+            <th scope="row">Two-sample or paired t</th>
+            <td>Compare two mean patterns</td>
+            <td>Do the groups or paired differences differ enough to matter?</td>
+          </tr>
+          <tr>
+            <th scope="row">Chi-square</th>
+            <td>Observed versus expected category counts</td>
+            <td>Do the observed frequencies match the expected pattern?</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Formula Guide</h3>
+    <p>
+      The t-family compares a mean difference with the noise around that difference, while the
+      chi-square test compares observed and expected frequencies using
+      <strong>sum((O - E)^2 / E)</strong>. In plain terms, the route asks whether the observed gap
+      is large enough relative to normal variation to justify rejecting the null idea.
+    </p>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Worked Example</h3>
+    <div class="analysis-example-grid">
+      <article class="analysis-example-card">
+        <h4>Default one-sample test</h4>
+        <p>
+          The default sample is centred slightly above <strong>100</strong>, so the route checks
+          whether that gap is large relative to the sample spread.
+        </p>
+        <p>
+          The answer card then tells you if the observed difference is strong enough to reject the
+          null at the chosen alpha.
+        </p>
+      </article>
+      <article class="analysis-example-card">
+        <h4>Why keep the confidence interval in view?</h4>
+        <p>
+          The interval gives scale to the decision, which helps you judge not only significance but
+          also the plausible size of the effect.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current hypothesis testing problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="analysis-exp-section" id="hypothesis-faq">
+    <h3>FAQ</h3>
+    <div class="analysis-faq-grid">
+      <article class="faq-card">
+        <h4>What does reject H0 actually mean?</h4>
+        <p>
+          It means the observed data would be unlikely enough under the null assumption that you
+          choose the alternative explanation instead.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What if the result is not significant?</h4>
+        <p>
+          It means the data did not supply strong enough evidence against the null at the chosen
+          alpha, not that the null is proven true.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>When should I use a paired test?</h4>
+        <p>
+          Use a paired test when each value in one sample is naturally matched to a value in the
+          other sample, such as before-and-after measurements.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>Why do one-sided and two-sided tests matter?</h4>
+        <p>
+          They change how the evidence is allocated across the tails, so the p-value and decision
+          can differ even with the same sample data.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>What does Cohen's d add to the result?</h4>
+        <p>
+          It gives a scale-free effect size so you can judge whether the difference is tiny,
+          moderate, or large in practical terms.
+        </p>
+      </article>
+      <article class="faq-card">
+        <h4>Can a statistically significant result still be unimportant?</h4>
+        <p>
+          Yes. Large samples can make small effects significant, so you should read the effect size
+          and interval as well as the p-value.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Related Calculators</h3>
+    <div class="analysis-related-grid">
+      <a class="analysis-related-card" href="/math/statistics/distribution/">
+        <strong>Distribution Calculator</strong>
+        <span>Look up supporting critical values and probabilities behind test decisions.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/statistics/anova/">
+        <strong>ANOVA Calculator</strong>
+        <span>Use the multi-group route when the question involves more than two mean groups.</span>
+      </a>
+      <a class="analysis-related-card" href="/math/confidence-interval/">
+        <strong>Confidence Interval Calculator</strong>
+        <span
+          >Estimate bounds directly when interval interpretation matters more than the formal reject
+          decision.</span
+        >
+      </a>
+    </div>
+  </section>
+
+  <section class="analysis-exp-section">
+    <h3>Important Notes</h3>
+    <ul class="analysis-notes-list">
+      <li><strong>Last updated:</strong> March 2026</li>
+      <li>
+        <strong>Input rule:</strong> Samples must contain numeric values, and paired tests require
+        equal sample lengths.
+      </li>
+      <li>
+        <strong>Decision rule:</strong> Compare p-value with alpha, then read interval and effect
+        size before making a practical conclusion.
+      </li>
+      <li>
+        <strong>Interpretation rule:</strong> Statistical significance does not automatically mean
+        the effect is large or important.
+      </li>
+        <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this hypothesis testing tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+  </section>
+</div>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
-    <script
-      type="module"
-      src="/calculators/math/statistics/hypothesis-testing/module.js?v=20260224"
-    ></script>
+    <script type="module" src="/calculators/math/statistics/hypothesis-testing/module.js?v=20260224"></script>
   </body>
 </html>

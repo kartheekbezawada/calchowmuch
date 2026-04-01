@@ -3,32 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch</title>
-    <meta
-      name="description"
-      content="Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram."
-    />
+    <title>Triangle Solver | Solve SSS, SAS, ASA, AAS and SSA Triangles</title>
+    <meta name="description" content="Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary." />
     <link rel="canonical" href="https://calchowmuch.com/math/trigonometry/triangle-solver/" />
-    <meta
-      property="og:title"
-      content="Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch"
-    />
-    <meta
-      property="og:description"
-      content="Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram."
-    />
+    <meta property="og:title" content="Triangle Solver | Solve SSS, SAS, ASA, AAS and SSA Triangles" />
+    <meta property="og:description" content="Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/math/trigonometry/triangle-solver/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch"
-    />
-    <meta
-      name="twitter:description"
-      content="Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram."
-    />
+    <meta name="twitter:title" content="Triangle Solver | Solve SSS, SAS, ASA, AAS and SSA Triangles" />
+    <meta name="twitter:description" content="Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-math-cluster="true">
@@ -382,10 +367,7 @@
         transform: translateX(30px);
       }
 
-      #calc-percentage-composition
-        .composition-toggle
-        input:focus-visible
-        + .composition-toggle-track {
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
@@ -1002,11 +984,7 @@
         padding: 28px;
         border: 1px solid var(--math-shell-border);
         border-radius: 28px;
-        background: linear-gradient(
-          180deg,
-          var(--math-shell-surface-strong),
-          var(--math-shell-surface)
-        );
+        background: linear-gradient(180deg, var(--math-shell-surface-strong), var(--math-shell-surface));
         box-shadow: var(--math-shell-shadow);
         min-width: 0;
       }
@@ -1082,6 +1060,81 @@
         font-size: 0.92rem;
       }
 
+      .math-cluster-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      [class$='-table-wrap'],
+      [class*='-table-wrap '],
+      .ss-sensitivity-wrap {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border: 1px solid var(--math-shell-border);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      [class$='-table-wrap'] > table,
+      [class*='-table-wrap '] > table,
+      .ss-sensitivity-wrap > table {
+        width: max(100%, 34rem);
+      }
+
+      [class$='-table-wrap'] table,
+      [class*='-table-wrap '] table,
+      .ss-sensitivity-wrap table {
+        margin: 0;
+      }
+
+      [class$='-table-wrap'] th,
+      [class$='-table-wrap'] td,
+      [class*='-table-wrap '] th,
+      [class*='-table-wrap '] td,
+      .ss-sensitivity-wrap th,
+      .ss-sensitivity-wrap td {
+        vertical-align: top;
+      }
+
+      [class$='-table-wrap'] thead th,
+      [class*='-table-wrap '] thead th,
+      .ss-sensitivity-wrap thead th {
+        position: sticky;
+        top: 0;
+        background: rgba(239, 252, 248, 0.98);
+        z-index: 1;
+      }
+
+      [class$='-table-wrap'] tbody th[scope='row'],
+      [class*='-table-wrap '] tbody th[scope='row'],
+      .ss-sensitivity-wrap tbody th[scope='row'] {
+        color: var(--math-shell-text) !important;
+        font-size: inherit !important;
+        font-weight: 700 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        background: rgba(15, 23, 42, 0.02);
+      }
+
+      [class$='-table-wrap'] tbody tr:last-child th,
+      [class$='-table-wrap'] tbody tr:last-child td,
+      [class*='-table-wrap '] tbody tr:last-child th,
+      [class*='-table-wrap '] tbody tr:last-child td,
+      .ss-sensitivity-wrap tbody tr:last-child th,
+      .ss-sensitivity-wrap tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
       @media (max-width: 900px) {
         .math-cluster-site-header-inner,
         .math-cluster-site-footer-inner {
@@ -1092,6 +1145,18 @@
         .math-cluster-panel {
           padding: 22px 18px;
           border-radius: 22px;
+        }
+
+        [class$='-table-wrap'],
+        [class*='-table-wrap '],
+        .ss-sensitivity-wrap {
+          border-radius: 16px;
+        }
+
+        [class$='-table-wrap'] > table,
+        [class*='-table-wrap '] > table,
+        .ss-sensitivity-wrap > table {
+          width: max(100%, 32rem);
         }
       }
 
@@ -1572,769 +1637,446 @@
         }
       }
     </style>
-
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://calchowmuch.com/#website",
-            "url": "https://calchowmuch.com/",
-            "name": "CalcHowMuch",
-            "inLanguage": "en"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://calchowmuch.com/#organization",
-            "name": "CalcHowMuch",
-            "url": "https://calchowmuch.com/",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            }
-          },
-          {
-            "@type": "WebPage",
-            "@id": "https://calchowmuch.com/math/trigonometry/triangle-solver/#webpage",
-            "name": "Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch",
-            "url": "https://calchowmuch.com/math/trigonometry/triangle-solver/",
-            "description": "Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram.",
-            "isPartOf": { "@id": "https://calchowmuch.com/#website" },
-            "publisher": { "@id": "https://calchowmuch.com/#organization" },
-            "inLanguage": "en",
-            "primaryImageOfPage": {
-              "@type": "ImageObject",
-              "url": "https://calchowmuch.com/assets/images/og-default.png"
-            },
-            "about": {
-              "@id": "https://calchowmuch.com/math/trigonometry/triangle-solver/#softwareapplication"
-            },
-            "mainEntity": {
-              "@id": "https://calchowmuch.com/math/trigonometry/triangle-solver/#softwareapplication"
-            },
-            "breadcrumb": {
-              "@id": "https://calchowmuch.com/math/trigonometry/triangle-solver/#breadcrumbs"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "@id": "https://calchowmuch.com/math/trigonometry/triangle-solver/#softwareapplication",
-            "name": "Triangle Solver",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web",
-            "url": "https://calchowmuch.com/math/trigonometry/triangle-solver/",
-            "description": "Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram.",
-            "inLanguage": "en",
-            "provider": { "@id": "https://calchowmuch.com/#organization" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "@id": "https://calchowmuch.com/math/trigonometry/triangle-solver/#faq",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What triangle types does this solver support?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "It supports SSS, SAS, ASA, AAS, and SSA triangle setups."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "When should I use the Law of Sines?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Use it when you know a matching side-angle pair, especially in ASA, AAS, or SSA cases."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "When should I use the Law of Cosines?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Use it for SSS and SAS cases where the included angle or all three sides are known."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is the SSA ambiguous case?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "SSA can produce two valid triangles because one side-angle combination may swing into two shapes."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can the route show two solutions?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. When SSA creates two valid triangles, both solutions appear in the answer card."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I enter radians?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Switch the angle unit control to radians before you solve."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does the route calculate area too?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. The answer card includes area for each valid solved triangle."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if my inputs do not form a triangle?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The route shows a clear error state when the triangle inequality or angle rules fail."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why does the diagram show only one triangle?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The diagram shows the first valid solution so the page stays stable, while the answer card still lists all valid solutions."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is this useful outside classwork?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. It is also useful for layout checks, surveying estimates, and quick trigonometry verification."
-                }
-              }
-            ]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://calchowmuch.com/math/trigonometry/triangle-solver/#breadcrumbs",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://calchowmuch.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Math",
-                "item": "https://calchowmuch.com/math/basic/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Triangle Solver",
-                "item": "https://calchowmuch.com/math/trigonometry/triangle-solver/"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+ 
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/math/trigonometry/triangle-solver/#webpage","name":"Triangle Solver | Solve SSS, SAS, ASA, AAS and SSA Triangles","url":"https://calchowmuch.com/math/trigonometry/triangle-solver/","description":"Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/math/trigonometry/triangle-solver/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/math/trigonometry/triangle-solver/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/math/trigonometry/triangle-solver/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/math/trigonometry/triangle-solver/#softwareapplication","name":"Triangle Solver","applicationCategory":"EducationalApplication","operatingSystem":"Web","url":"https://calchowmuch.com/math/trigonometry/triangle-solver/","description":"Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/math/trigonometry/triangle-solver/#faq","mainEntity":[{"@type":"Question","name":"What triangle types does this solver support?","acceptedAnswer":{"@type":"Answer","text":"It supports SSS, SAS, ASA, AAS, and SSA triangle setups."}},{"@type":"Question","name":"When should I use the Law of Sines?","acceptedAnswer":{"@type":"Answer","text":"Use it when you know a matching side-angle pair, especially in ASA, AAS, or SSA cases."}},{"@type":"Question","name":"When should I use the Law of Cosines?","acceptedAnswer":{"@type":"Answer","text":"Use it for SSS and SAS cases where the included angle or all three sides are known."}},{"@type":"Question","name":"What is the SSA ambiguous case?","acceptedAnswer":{"@type":"Answer","text":"SSA can produce two valid triangles because one side-angle combination may swing into two shapes."}},{"@type":"Question","name":"Can the route show two solutions?","acceptedAnswer":{"@type":"Answer","text":"Yes. When SSA creates two valid triangles, both solutions appear in the answer card."}},{"@type":"Question","name":"Can I enter radians?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch the angle unit control to radians before you solve."}},{"@type":"Question","name":"Does the route calculate area too?","acceptedAnswer":{"@type":"Answer","text":"Yes. The answer card includes area for each valid solved triangle."}},{"@type":"Question","name":"What if my inputs do not form a triangle?","acceptedAnswer":{"@type":"Answer","text":"The route shows a clear error state when the triangle inequality or angle rules fail."}},{"@type":"Question","name":"Why does the diagram show only one triangle?","acceptedAnswer":{"@type":"Answer","text":"The diagram shows the first valid solution so the page stays stable, while the answer card still lists all valid solutions."}},{"@type":"Question","name":"Is this useful outside classwork?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is also useful for layout checks, surveying estimates, and quick trigonometry verification."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/math/trigonometry/triangle-solver/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Math","item":"https://calchowmuch.com/math/basic/"},{"@type":"ListItem","position":3,"name":"Triangle Solver","item":"https://calchowmuch.com/math/trigonometry/triangle-solver/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
-    <style data-math-table-remediation="true">
-      .math-cluster-visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      [class$='-table-wrap'],
-      [class*='-table-wrap '],
-      .ss-sensitivity-wrap,
-      #calc-critical-points .points-table-wrap {
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
-        -webkit-overflow-scrolling: touch;
-      }
-      [class$='-table-wrap'] > table,
-      [class*='-table-wrap '] > table,
-      .ss-sensitivity-wrap > table,
-      #calc-critical-points .points-table-wrap > table {
-        width: max(100%, 34rem);
-      }
-      [class$='-table-wrap'] tbody th[scope='row'],
-      [class*='-table-wrap '] tbody th[scope='row'],
-      .ss-sensitivity-wrap tbody th[scope='row'] {
-        color: #132238 !important;
-        font-size: inherit !important;
-        font-weight: 700 !important;
-        letter-spacing: normal !important;
-        text-transform: none !important;
-        background: rgba(15, 23, 42, 0.02);
-      }
-      [class$='-table-wrap'] tbody tr:last-child th,
-      [class$='-table-wrap'] tbody tr:last-child td,
-      [class*='-table-wrap '] tbody tr:last-child th,
-      [class*='-table-wrap '] tbody tr:last-child td,
-      .ss-sensitivity-wrap tbody tr:last-child th,
-      .ss-sensitivity-wrap tbody tr:last-child td,
-      #calc-critical-points .points-table tbody tr:last-child td {
-        border-bottom: 0;
-      }
-      [class$='-table-wrap'] thead th,
-      [class*='-table-wrap '] thead th,
-      .ss-sensitivity-wrap thead th,
-      #calc-critical-points .points-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th,
-      #calc-sample-size .ss-sensitivity-table td {
-        padding: 11px 12px;
-        border-bottom: 1px solid var(--ss-line);
-        vertical-align: top;
-      }
-      #calc-sample-size .ss-sensitivity-table tbody th {
-        color: var(--ss-ink);
-        font-family: inherit;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: normal;
-        text-transform: none;
-      }
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) th,
-      #calc-sample-size .ss-sensitivity-table tr:nth-child(even) td {
-        background: rgba(248, 252, 255, 0.75);
-      }
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active th,
-      #calc-sample-size .ss-sensitivity-table tr.ss-row-active td {
-        background: linear-gradient(180deg, rgba(14, 161, 183, 0.16), rgba(14, 161, 183, 0.08));
-        border-bottom-color: rgba(14, 161, 183, 0.26);
-      }
-      #calc-critical-points .points-table thead th {
-        background: rgba(219, 230, 243, 0.45);
-      }
-      @media (max-width: 900px) {
-        [class$='-table-wrap'],
-        [class*='-table-wrap '],
-        .ss-sensitivity-wrap,
-        #calc-critical-points .points-table-wrap {
-          border-radius: 16px;
-        }
-        [class$='-table-wrap'] > table,
-        [class*='-table-wrap '] > table,
-        .ss-sensitivity-wrap > table,
-        #calc-critical-points .points-table-wrap > table {
-          width: max(100%, 32rem);
-        }
-      }
-    </style>
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
     <div class="page math-cluster-page-shell">
       <header class="math-cluster-site-header">
-        <div class="math-cluster-wrap math-cluster-site-header-inner">
-          <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
-            <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
-            <span>CalcHowMuch</span>
-          </a>
-          <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
-          <nav class="math-cluster-site-links" aria-label="Site links">
-            <a href="/">All Calculators</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/faq/">FAQs</a>
-          </nav>
-        </div>
-      </header>
+  <div class="math-cluster-wrap math-cluster-site-header-inner">
+    <a class="math-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="math-cluster-brand-mark" aria-hidden="true">MATH</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="math-cluster-site-label" aria-label="Cluster label">Math Calculators</div>
+    <nav class="math-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
       <main class="math-cluster-layout-main">
         <section class="math-cluster-center-column">
           <div class="math-cluster-panel panel-span-all">
-            <div class="math-cluster-page-header">
-              <div class="math-cluster-breadcrumbs">
-                <a href="/">Home</a>
-                <span>/</span>
-                <a href="/math/basic/">Math</a>
-                <span>/</span>
-                <span>Triangle Solver</span>
-              </div>
-              <span class="math-cluster-page-kicker">Math Calculator</span>
-              <h1 id="calculator-title">Triangle Solver</h1>
-              <p class="math-cluster-page-intro">
-                Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked
-                examples, formula notes, and an instant triangle diagram.
-              </p>
+  <div class="math-cluster-page-header">
+    <div class="math-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/math/basic/">Math</a>
+      <span>/</span>
+      <span>Triangle Solver</span>
+    </div>
+    <span class="math-cluster-page-kicker">Math Calculator</span>
+    <h1 id="calculator-title">Triangle Solver</h1>
+    <p class="math-cluster-page-intro">Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary.</p>
+  </div>
+  <div class="calculator-page-single math-cluster-flow">
+    <div id="calc-triangle-solver">
+  <div class="tri-shell">
+    <section class="tri-card tri-hero-card" aria-label="Triangle solver overview">
+      <div class="tri-hero-copy">
+        <p class="tri-eyebrow">Simple Smooth Wow</p>
+        <h2 class="tri-title">Solve SSS, SAS, ASA, AAS, or SSA triangles in one answer-first view with the diagram and method notes kept close to the result.</h2>
+        <p class="tri-subtitle">
+          Pick the known triangle setup, enter the required sides or angles, and solve once. The
+          answer card stays dominant while the diagram and solver notes help you check whether the
+          triangle is unique, ambiguous, or invalid.
+        </p>
+      </div>
+      <ul class="tri-hero-points">
+        <li>Best for homework checks, survey-style triangle solving, and quick Law of Sines or Cosines review.</li>
+        <li>The answer card surfaces solved sides, angles, area, and ambiguous-case status first.</li>
+        <li>The diagram card keeps the triangle shape visible without pushing the result below the fold.</li>
+      </ul>
+    </section>
+
+    <div class="tri-workbench">
+      <div class="tri-left-stack">
+        <section class="tri-card tri-input-card" aria-label="Triangle solver inputs">
+          <div class="tri-card-head">
+            <div>
+              <p class="tri-section-label">Inputs</p>
+              <p class="tri-card-title">Set the triangle type, angle unit, and known values</p>
             </div>
-            <div class="calculator-page-single math-cluster-flow">
-              <div id="calc-triangle-solver">
-                <div class="tri-shell">
-                  <section class="tri-card tri-hero-card" aria-label="Triangle solver overview">
-                    <div class="tri-hero-copy">
-                      <p class="tri-eyebrow">Simple Smooth Wow</p>
-                      <h2 class="tri-title">
-                        Solve SSS, SAS, ASA, AAS, or SSA triangles in one answer-first view with the
-                        diagram and method notes kept close to the result.
-                      </h2>
-                      <p class="tri-subtitle">
-                        Pick the known triangle setup, enter the required sides or angles, and solve
-                        once. The answer card stays dominant while the diagram and solver notes help
-                        you check whether the triangle is unique, ambiguous, or invalid.
-                      </p>
-                    </div>
-                    <ul class="tri-hero-points">
-                      <li>
-                        Best for homework checks, survey-style triangle solving, and quick Law of
-                        Sines or Cosines review.
-                      </li>
-                      <li>
-                        The answer card surfaces solved sides, angles, area, and ambiguous-case
-                        status first.
-                      </li>
-                      <li>
-                        The diagram card keeps the triangle shape visible without pushing the result
-                        below the fold.
-                      </li>
-                    </ul>
-                  </section>
+            <span class="tri-chip">Answer-first</span>
+          </div>
 
-                  <div class="tri-workbench">
-                    <div class="tri-left-stack">
-                      <section class="tri-card tri-input-card" aria-label="Triangle solver inputs">
-                        <div class="tri-card-head">
-                          <div>
-                            <p class="tri-section-label">Inputs</p>
-                            <p class="tri-card-title">
-                              Set the triangle type, angle unit, and known values
-                            </p>
-                          </div>
-                          <span class="tri-chip">Answer-first</span>
-                        </div>
+          <p class="tri-helper">Choose the triangle configuration, fill only the required fields, and solve once.</p>
 
-                        <p class="tri-helper">
-                          Choose the triangle configuration, fill only the required fields, and
-                          solve once.
-                        </p>
+          <label class="tri-field" for="triangle-type">
+            <span>Triangle configuration</span>
+            <select id="triangle-type">
+              <option value="SSS">SSS (three sides)</option>
+              <option value="SAS">SAS (sides a, b and included angle C)</option>
+              <option value="ASA">ASA (angles A, B and side c)</option>
+              <option value="AAS">AAS (angles A, B and side a)</option>
+              <option value="SSA">SSA (sides a, b and angle A)</option>
+            </select>
+          </label>
 
-                        <label class="tri-field" for="triangle-type">
-                          <span>Triangle configuration</span>
-                          <select id="triangle-type">
-                            <option value="SSS">SSS (three sides)</option>
-                            <option value="SAS">SAS (sides a, b and included angle C)</option>
-                            <option value="ASA">ASA (angles A, B and side c)</option>
-                            <option value="AAS">AAS (angles A, B and side a)</option>
-                            <option value="SSA">SSA (sides a, b and angle A)</option>
-                          </select>
-                        </label>
-
-                        <div class="tri-toggle-section">
-                          <span id="triangle-angle-unit">Angle unit</span>
-                          <div
-                            class="tri-button-group"
-                            role="group"
-                            aria-labelledby="triangle-angle-unit"
-                            data-button-group="triangle-angle-unit"
-                          >
-                            <button
-                              class="calculator-button tri-mode-button is-active"
-                              type="button"
-                              data-value="deg"
-                            >
-                              Degrees
-                            </button>
-                            <button
-                              class="calculator-button tri-mode-button"
-                              type="button"
-                              data-value="rad"
-                            >
-                              Radians
-                            </button>
-                          </div>
-                        </div>
-
-                        <div class="tri-input-grid">
-                          <label class="tri-field" data-field="a" for="triangle-a">
-                            <span>Side a</span>
-                            <input id="triangle-a" type="number" value="7" step="any" />
-                          </label>
-                          <label class="tri-field" data-field="b" for="triangle-b">
-                            <span>Side b</span>
-                            <input id="triangle-b" type="number" value="9" step="any" />
-                          </label>
-                          <label class="tri-field" data-field="c" for="triangle-c">
-                            <span>Side c</span>
-                            <input id="triangle-c" type="number" value="12" step="any" />
-                          </label>
-                          <label class="tri-field" data-field="A" for="triangle-A">
-                            <span>Angle A</span>
-                            <input id="triangle-A" type="number" value="35" step="any" />
-                          </label>
-                          <label class="tri-field" data-field="B" for="triangle-B">
-                            <span>Angle B</span>
-                            <input id="triangle-B" type="number" value="60" step="any" />
-                          </label>
-                          <label class="tri-field" data-field="C" for="triangle-C">
-                            <span>Angle C</span>
-                            <input id="triangle-C" type="number" value="85" step="any" />
-                          </label>
-                        </div>
-
-                        <div class="tri-hint-row">
-                          <span class="tri-inline-note" id="triangle-hint"></span>
-                        </div>
-
-                        <button
-                          class="calculator-button tri-solve-button"
-                          type="button"
-                          id="triangle-solve"
-                        >
-                          Solve Triangle
-                        </button>
-                      </section>
-
-                      <section class="tri-card tri-diagram-card" aria-label="Triangle diagram">
-                        <div class="tri-card-head">
-                          <div>
-                            <p class="tri-section-label">Diagram</p>
-                            <p class="tri-card-title">Scaled preview of the first valid solution</p>
-                          </div>
-                          <span class="tri-chip tri-chip--diagram">Shape check</span>
-                        </div>
-
-                        <div class="tri-diagram-panel">
-                          <canvas
-                            id="triangle-canvas"
-                            class="tri-diagram-canvas"
-                            width="320"
-                            height="240"
-                            aria-label="Triangle diagram"
-                          ></canvas>
-                        </div>
-                        <p id="triangle-diagram-note" class="tri-diagram-note">
-                          Diagram updates after the triangle is solved.
-                        </p>
-                      </section>
-                    </div>
-
-                    <section class="tri-card tri-answer-card" aria-label="Triangle answer summary">
-                      <div class="tri-card-head">
-                        <div>
-                          <p class="tri-section-label">Answer</p>
-                          <p class="tri-card-title">Solved dimensions, area, and method notes</p>
-                        </div>
-                        <span class="tri-chip tri-chip--answer">Triangle results</span>
-                      </div>
-
-                      <div
-                        class="result tri-result-card"
-                        id="triangle-result"
-                        aria-live="polite"
-                      ></div>
-                      <div
-                        class="result-detail tri-detail-card"
-                        id="triangle-detail"
-                        aria-live="polite"
-                      ></div>
-
-                      <div class="tri-snapshot-grid" aria-label="Triangle snapshot">
-                        <article class="tri-snapshot-card">
-                          <span>Type</span>
-                          <strong data-triangle-snap="type">SSS</strong>
-                        </article>
-                        <article class="tri-snapshot-card">
-                          <span>Angle unit</span>
-                          <strong data-triangle-snap="unit">Degrees</strong>
-                        </article>
-                        <article class="tri-snapshot-card">
-                          <span>Solutions</span>
-                          <strong data-triangle-snap="solutions">-</strong>
-                        </article>
-                        <article class="tri-snapshot-card">
-                          <span>Status</span>
-                          <strong data-triangle-snap="status">-</strong>
-                        </article>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-
-              <style>
-                @import url('/calculators/math/trigonometry/shared.css?v=20260224');
-                @import url('/calculators/math/trigonometry/triangle-solver/calculator.css?v=20260224');
-              </style>
-
-              <section class="tri-exp-section">
-                <h2>Triangle Solver Practical Guide</h2>
-                <p>
-                  Use this triangle solver to work through SSS, SAS, ASA, AAS, or SSA cases with a
-                  diagram and answer-first summary in the same view. It is built for fast checking,
-                  so you can confirm side lengths, angles, area, and ambiguous-case outcomes without
-                  digging through dense trig notes.
-                </p>
-                <ul class="tri-summary-list">
-                  <li>
-                    <strong>Best for:</strong> solving classroom, construction, or surveying-style
-                    triangles from partial data.
-                  </li>
-                  <li>
-                    <strong>Quick answer flow:</strong> choose the triangle type, enter the required
-                    values, then solve.
-                  </li>
-                  <li>
-                    <strong>Output includes:</strong> solved sides, solved angles, area, solution
-                    count, and method notes.
-                  </li>
-                </ul>
-              </section>
-
-              <section class="tri-exp-section">
-                <h3>How to Guide</h3>
-                <ol>
-                  <li>
-                    Select the triangle configuration that matches the values you already know.
-                  </li>
-                  <li>Choose degrees or radians for angle entry.</li>
-                  <li>Fill only the active side or angle fields shown for that configuration.</li>
-                  <li>
-                    Click <strong>Solve Triangle</strong> and read the answer card before checking
-                    the diagram and notes.
-                  </li>
-                </ol>
-              </section>
-
-              <section class="tri-exp-section">
-                <h3>Quick Answer Table</h3>
-                <div class="tri-table-wrap">
-                  <table class="tri-summary-table">
-                    <caption class="math-cluster-visually-hidden">
-                      Quick answer table for the triangle solver calculator
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Triangle type</th>
-                        <th scope="col">Best formula path</th>
-                        <th scope="col">What the route returns</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">SSS</th>
-                        <td>Start with the Law of Cosines to find an angle.</td>
-                        <td>All three angles plus area from the solved sides.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">SAS</th>
-                        <td>Use the included angle with the Law of Cosines first.</td>
-                        <td>The missing side, the remaining angles, and area.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">ASA or AAS</th>
-                        <td>Finish the missing angle, then use the Law of Sines.</td>
-                        <td>The remaining side lengths and total area.</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">SSA</th>
-                        <td>Use the Law of Sines and check for the ambiguous case.</td>
-                        <td>One or two valid triangles, or an invalid-input message.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              <section class="tri-exp-section">
-                <h3>Formula Guide</h3>
-                <p>
-                  The route switches between the two standard triangle formulas instead of forcing
-                  one method for every case. The <strong>Law of Sines</strong> is useful when you
-                  know a side-angle pair: <strong>a / sin(A) = b / sin(B) = c / sin(C)</strong>.
-                </p>
-                <p>
-                  The <strong>Law of Cosines</strong> is the better fit when you know two sides and
-                  the included angle or all three sides:
-                  <strong>c^2 = a^2 + b^2 - 2ab cos(C)</strong>. The area card then helps confirm
-                  whether the solved triangle size makes sense.
-                </p>
-              </section>
-
-              <section class="tri-exp-section">
-                <h3>Worked Example</h3>
-                <div class="tri-example-grid">
-                  <article class="tri-example-card">
-                    <h4>SSS example</h4>
-                    <p>
-                      Enter <strong>a = 7</strong>, <strong>b = 9</strong>, and
-                      <strong>c = 12</strong>.
-                    </p>
-                    <p>
-                      The route solves one triangle with angles close to <strong>35.43°</strong>,
-                      <strong>48.19°</strong>, and <strong>96.38°</strong>, then shows the area and
-                      the matching diagram.
-                    </p>
-                  </article>
-                  <article class="tri-example-card">
-                    <h4>SSA ambiguous example</h4>
-                    <p>
-                      Enter <strong>a = 7</strong>, <strong>b = 9</strong>, and
-                      <strong>A = 35°</strong>.
-                    </p>
-                    <p>
-                      The route reports <strong>two valid triangles</strong>, so you can compare the
-                      short and long third-side outcomes.
-                    </p>
-                  </article>
-                </div>
-              </section>
-
-              <section class="tri-exp-section">
-                <h3>FAQ</h3>
-                <div class="tri-faq-grid">
-                  <div class="faq-card">
-                    <h4>What triangle types does this solver support?</h4>
-                    <p>It supports SSS, SAS, ASA, AAS, and SSA triangle setups.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>When should I use the Law of Sines?</h4>
-                    <p>
-                      Use it when you know a matching side-angle pair, especially in ASA, AAS, or
-                      SSA cases.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>When should I use the Law of Cosines?</h4>
-                    <p>
-                      Use it for SSS and SAS cases where the included angle or all three sides are
-                      known.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What is the SSA ambiguous case?</h4>
-                    <p>
-                      SSA can produce two valid triangles because one side-angle combination may
-                      swing into two shapes.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can the route show two solutions?</h4>
-                    <p>
-                      Yes. When SSA creates two valid triangles, both solutions appear in the answer
-                      card.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Can I enter radians?</h4>
-                    <p>Yes. Switch the angle unit control to radians before you solve.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Does the route calculate area too?</h4>
-                    <p>Yes. The answer card includes area for each valid solved triangle.</p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>What if my inputs do not form a triangle?</h4>
-                    <p>
-                      The route shows a clear error state when the triangle inequality or angle
-                      rules fail.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Why does the diagram show only one triangle?</h4>
-                    <p>
-                      The diagram shows the first valid solution so the page stays stable, while the
-                      answer card still lists all valid solutions.
-                    </p>
-                  </div>
-                  <div class="faq-card">
-                    <h4>Is this useful outside classwork?</h4>
-                    <p>
-                      Yes. It is also useful for layout checks, surveying estimates, and quick
-                      trigonometry verification.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <section class="tri-exp-section">
-                <h3>Related Calculators</h3>
-                <div class="tri-related-grid">
-                  <a class="tri-related-card" href="/math/trigonometry/law-of-sines-cosines/">
-                    <strong>Law of Sines and Cosines Calculator</strong>
-                    <span
-                      >Go deeper into the exact formulas when you want to compare triangle-solving
-                      methods directly.</span
-                    >
-                  </a>
-                  <a class="tri-related-card" href="/math/trigonometry/trig-functions/">
-                    <strong>Trigonometric Functions</strong>
-                    <span
-                      >Check sine, cosine, and tangent values separately when you need direct
-                      trig-function output.</span
-                    >
-                  </a>
-                  <a class="tri-related-card" href="/math/trigonometry/unit-circle/">
-                    <strong>Unit Circle Calculator</strong>
-                    <span
-                      >Review reference angles and quadrant signs before returning to triangle
-                      problems.</span
-                    >
-                  </a>
-                </div>
-              </section>
-
-              <section class="tri-exp-section">
-                <h3>Important Notes</h3>
-                <ul class="tri-notes-list">
-                  <li><strong>Last updated:</strong> March 2026</li>
-                  <li>
-                    <strong>Notation:</strong> Side a is opposite angle A, side b is opposite angle
-                    B, and side c is opposite angle C.
-                  </li>
-                  <li>
-                    <strong>Angle rule:</strong> Every solved triangle still obeys A + B + C = 180
-                    degrees.
-                  </li>
-                  <li>
-                    <strong>Diagram rule:</strong> The diagram is a scaled preview for checking
-                    shape, not a drafting-grade measurement tool.
-                  </li>
-                  <li>
-                    <strong>Use case:</strong> This tool is built for fast problem checking, not
-                    symbolic proof writing.
-                  </li>
-                </ul>
-              </section>
+          <div class="tri-toggle-section">
+            <span id="triangle-angle-unit">Angle unit</span>
+            <div
+              class="tri-button-group"
+              role="group"
+              aria-labelledby="triangle-angle-unit"
+              data-button-group="triangle-angle-unit"
+            >
+              <button class="calculator-button tri-mode-button is-active" type="button" data-value="deg">
+                Degrees
+              </button>
+              <button class="calculator-button tri-mode-button" type="button" data-value="rad">
+                Radians
+              </button>
             </div>
           </div>
+
+          <div class="tri-input-grid">
+            <label class="tri-field" data-field="a" for="triangle-a">
+              <span>Side a</span>
+              <input id="triangle-a" type="number" value="7" step="any" />
+            </label>
+            <label class="tri-field" data-field="b" for="triangle-b">
+              <span>Side b</span>
+              <input id="triangle-b" type="number" value="9" step="any" />
+            </label>
+            <label class="tri-field" data-field="c" for="triangle-c">
+              <span>Side c</span>
+              <input id="triangle-c" type="number" value="12" step="any" />
+            </label>
+            <label class="tri-field" data-field="A" for="triangle-A">
+              <span>Angle A</span>
+              <input id="triangle-A" type="number" value="35" step="any" />
+            </label>
+            <label class="tri-field" data-field="B" for="triangle-B">
+              <span>Angle B</span>
+              <input id="triangle-B" type="number" value="60" step="any" />
+            </label>
+            <label class="tri-field" data-field="C" for="triangle-C">
+              <span>Angle C</span>
+              <input id="triangle-C" type="number" value="85" step="any" />
+            </label>
+          </div>
+
+          <div class="tri-hint-row">
+            <span class="tri-inline-note" id="triangle-hint"></span>
+          </div>
+
+          <button class="calculator-button tri-solve-button" type="button" id="triangle-solve">
+            Solve Triangle
+          </button>
+        </section>
+
+        <section class="tri-card tri-diagram-card" aria-label="Triangle diagram">
+          <div class="tri-card-head">
+            <div>
+              <p class="tri-section-label">Diagram</p>
+              <p class="tri-card-title">Scaled preview of the first valid solution</p>
+            </div>
+            <span class="tri-chip tri-chip--diagram">Shape check</span>
+          </div>
+
+          <div class="tri-diagram-panel">
+            <canvas
+              id="triangle-canvas"
+              class="tri-diagram-canvas"
+              width="320"
+              height="240"
+              aria-label="Triangle diagram"
+            ></canvas>
+          </div>
+          <p id="triangle-diagram-note" class="tri-diagram-note">Diagram updates after the triangle is solved.</p>
+        </section>
+      </div>
+
+      <section class="tri-card tri-answer-card" aria-label="Triangle answer summary">
+        <div class="tri-card-head">
+          <div>
+            <p class="tri-section-label">Answer</p>
+            <p class="tri-card-title">Solved dimensions, area, and method notes</p>
+          </div>
+          <span class="tri-chip tri-chip--answer">Triangle results</span>
+        </div>
+
+        <div class="result tri-result-card" id="triangle-result" aria-live="polite"></div>
+        <div class="result-detail tri-detail-card" id="triangle-detail" aria-live="polite"></div>
+
+        <div class="tri-snapshot-grid" aria-label="Triangle snapshot">
+          <article class="tri-snapshot-card">
+            <span>Type</span>
+            <strong data-triangle-snap="type">SSS</strong>
+          </article>
+          <article class="tri-snapshot-card">
+            <span>Angle unit</span>
+            <strong data-triangle-snap="unit">Degrees</strong>
+          </article>
+          <article class="tri-snapshot-card">
+            <span>Solutions</span>
+            <strong data-triangle-snap="solutions">-</strong>
+          </article>
+          <article class="tri-snapshot-card">
+            <span>Status</span>
+            <strong data-triangle-snap="status">-</strong>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('/calculators/math/trigonometry/shared.css?v=20260224');
+  @import url('/calculators/math/trigonometry/triangle-solver/calculator.css?v=20260224');
+</style>
+
+    <section class="tri-exp-section">
+  <h2>Triangle Solver Practical Guide</h2>
+  <p>
+    Use this triangle solver to work through SSS, SAS, ASA, AAS, or SSA cases with a diagram and
+    answer-first summary in the same view. It is built for fast checking, so you can confirm side
+    lengths, angles, area, and ambiguous-case outcomes without digging through dense trig notes.
+  </p>
+  <ul class="tri-summary-list">
+    <li>
+      <strong>Best for:</strong> solving classroom, construction, or surveying-style triangles from
+      partial data.
+    </li>
+    <li>
+      <strong>Quick answer flow:</strong> choose the triangle type, enter the required values, then
+      solve.
+    </li>
+    <li>
+      <strong>Output includes:</strong> solved sides, solved angles, area, solution count, and
+      method notes.
+    </li>
+  </ul>
+</section>
+
+<section class="tri-exp-section">
+  <h3>How to Guide</h3>
+  <ol>
+    <li>Select the triangle configuration that matches the values you already know.</li>
+    <li>Choose degrees or radians for angle entry.</li>
+    <li>Fill only the active side or angle fields shown for that configuration.</li>
+    <li>
+      Click <strong>Solve Triangle</strong> and read the answer card before checking the diagram and
+      notes.
+    </li>
+  </ol>
+</section>
+
+<section class="tri-exp-section">
+  <h3>Quick Answer Table</h3>
+  <div class="tri-table-wrap">
+    <table class="tri-summary-table">
+      <caption class="math-cluster-visually-hidden">
+        Quick answer table for the triangle solver calculator
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Triangle type</th>
+          <th scope="col">Best formula path</th>
+          <th scope="col">What the route returns</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">SSS</th>
+          <td>Start with the Law of Cosines to find an angle.</td>
+          <td>All three angles plus area from the solved sides.</td>
+        </tr>
+        <tr>
+          <th scope="row">SAS</th>
+          <td>Use the included angle with the Law of Cosines first.</td>
+          <td>The missing side, the remaining angles, and area.</td>
+        </tr>
+        <tr>
+          <th scope="row">ASA or AAS</th>
+          <td>Finish the missing angle, then use the Law of Sines.</td>
+          <td>The remaining side lengths and total area.</td>
+        </tr>
+        <tr>
+          <th scope="row">SSA</th>
+          <td>Use the Law of Sines and check for the ambiguous case.</td>
+          <td>One or two valid triangles, or an invalid-input message.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="tri-exp-section">
+  <h3>Formula Guide</h3>
+  <p>
+    The route switches between the two standard triangle formulas instead of forcing one method for
+    every case. The <strong>Law of Sines</strong> is useful when you know a side-angle pair:
+    <strong>a / sin(A) = b / sin(B) = c / sin(C)</strong>.
+  </p>
+  <p>
+    The <strong>Law of Cosines</strong> is the better fit when you know two sides and the included
+    angle or all three sides: <strong>c^2 = a^2 + b^2 - 2ab cos(C)</strong>. The area card then
+    helps confirm whether the solved triangle size makes sense.
+  </p>
+</section>
+
+<section class="tri-exp-section">
+  <h3>Worked Example</h3>
+  <div class="tri-example-grid">
+    <article class="tri-example-card">
+      <h4>SSS example</h4>
+      <p>Enter <strong>a = 7</strong>, <strong>b = 9</strong>, and <strong>c = 12</strong>.</p>
+      <p>
+        The route solves one triangle with angles close to <strong>35.43°</strong>,
+        <strong>48.19°</strong>, and <strong>96.38°</strong>, then shows the area and the matching
+        diagram.
+      </p>
+    </article>
+    <article class="tri-example-card">
+      <h4>SSA ambiguous example</h4>
+      <p>Enter <strong>a = 7</strong>, <strong>b = 9</strong>, and <strong>A = 35°</strong>.</p>
+      <p>
+        The route reports <strong>two valid triangles</strong>, so you can compare the short and
+        long third-side outcomes.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="tri-exp-section">
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current triangle solver problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>
+
+<section class="tri-exp-section">
+  <h3>FAQ</h3>
+  <div class="tri-faq-grid">
+    <div class="faq-card">
+      <h4>What triangle types does this solver support?</h4>
+      <p>It supports SSS, SAS, ASA, AAS, and SSA triangle setups.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When should I use the Law of Sines?</h4>
+      <p>Use it when you know a matching side-angle pair, especially in ASA, AAS, or SSA cases.</p>
+    </div>
+    <div class="faq-card">
+      <h4>When should I use the Law of Cosines?</h4>
+      <p>Use it for SSS and SAS cases where the included angle or all three sides are known.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What is the SSA ambiguous case?</h4>
+      <p>
+        SSA can produce two valid triangles because one side-angle combination may swing into two
+        shapes.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Can the route show two solutions?</h4>
+      <p>Yes. When SSA creates two valid triangles, both solutions appear in the answer card.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Can I enter radians?</h4>
+      <p>Yes. Switch the angle unit control to radians before you solve.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Does the route calculate area too?</h4>
+      <p>Yes. The answer card includes area for each valid solved triangle.</p>
+    </div>
+    <div class="faq-card">
+      <h4>What if my inputs do not form a triangle?</h4>
+      <p>The route shows a clear error state when the triangle inequality or angle rules fail.</p>
+    </div>
+    <div class="faq-card">
+      <h4>Why does the diagram show only one triangle?</h4>
+      <p>
+        The diagram shows the first valid solution so the page stays stable, while the answer card
+        still lists all valid solutions.
+      </p>
+    </div>
+    <div class="faq-card">
+      <h4>Is this useful outside classwork?</h4>
+      <p>
+        Yes. It is also useful for layout checks, surveying estimates, and quick trigonometry
+        verification.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="tri-exp-section">
+  <h3>Related Calculators</h3>
+  <div class="tri-related-grid">
+    <a class="tri-related-card" href="/math/trigonometry/law-of-sines-cosines/">
+      <strong>Law of Sines and Cosines Calculator</strong>
+      <span
+        >Go deeper into the exact formulas when you want to compare triangle-solving methods
+        directly.</span
+      >
+    </a>
+    <a class="tri-related-card" href="/math/trigonometry/trig-functions/">
+      <strong>Trigonometric Functions</strong>
+      <span
+        >Check sine, cosine, and tangent values separately when you need direct trig-function
+        output.</span
+      >
+    </a>
+    <a class="tri-related-card" href="/math/trigonometry/unit-circle/">
+      <strong>Unit Circle Calculator</strong>
+      <span>Review reference angles and quadrant signs before returning to triangle problems.</span>
+    </a>
+  </div>
+</section>
+
+<section class="tri-exp-section">
+  <h3>Important Notes</h3>
+  <ul class="tri-notes-list">
+    <li><strong>Last updated:</strong> March 2026</li>
+    <li>
+      <strong>Notation:</strong> Side a is opposite angle A, side b is opposite angle B, and side c
+      is opposite angle C.
+    </li>
+    <li><strong>Angle rule:</strong> Every solved triangle still obeys A + B + C = 180 degrees.</li>
+    <li>
+      <strong>Diagram rule:</strong> The diagram is a scaled preview for checking shape, not a
+      drafting-grade measurement tool.
+    </li>
+    <li>
+      <strong>Use case:</strong> This tool is built for fast problem checking, not symbolic proof
+      writing.
+    </li>
+      <li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this triangle solver tool.</li>
+    <li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>
+    <li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>
+    <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+  </ul>
+</section>
+
+  </div>
+</div>
         </section>
       </main>
       <footer class="math-cluster-site-footer">
-        <div class="math-cluster-wrap math-cluster-site-footer-inner">
-          <nav class="math-cluster-footer-links" aria-label="Footer links">
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-            <a href="/contact-us/">Contact</a>
-            <a href="/about-us/">About Us</a>
-            <a href="/faq/">FAQs</a>
-            <a href="/sitemap.xml">Sitemap</a>
-          </nav>
-          <span class="math-cluster-footer-copy">© 2026 CalcHowMuch</span>
-        </div>
-      </footer>
+  <div class="math-cluster-wrap math-cluster-site-footer-inner">
+    <nav class="math-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="math-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
     </div>
-    <script
-      type="module"
-      src="/calculators/math/trigonometry/triangle-solver/module.js?v=20260224"
-    ></script>
+    <script type="module" src="/calculators/math/trigonometry/triangle-solver/module.js?v=20260224"></script>
   </body>
 </html>

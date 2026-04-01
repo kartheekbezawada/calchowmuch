@@ -361,81 +361,81 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-calculators-hub': {
-    title: 'Salary Calculators | Pay Conversion, Overtime, Raises & Commission',
+    title: 'Salary Calculators | Pay Conversion, Overtime, Raise, Bonus & Commission',
     description:
-      'Browse salary calculators to convert pay, compare overtime, plan raises, estimate bonuses, and model commission-based earnings with gross-pay assumptions.',
+      'Browse salary calculators to convert pay, compare overtime, model raises, estimate bonuses, and plan commission-based earnings with gross-pay assumptions.',
     h1: 'Salary Calculators',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'salary-calculator': {
-    title: 'Salary Calculator – Convert Pay Across Time Periods',
+    title: 'Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay',
     description:
-      'Convert a salary or pay rate across hourly, daily, weekly, biweekly, monthly, and annual amounts using your work schedule assumptions.',
+      'Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions.',
     h1: 'Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hourly-to-salary-calculator': {
-    title: 'Hourly to Salary Calculator – Annual Pay Converter',
+    title: 'Hourly to Salary Calculator | Convert Hourly Pay to Annual Salary',
     description:
-      'Convert an hourly wage into annual salary, monthly pay, biweekly pay, and weekly pay using your hours worked and weeks per year.',
+      'Convert hourly pay into annual salary, monthly pay, biweekly pay, and weekly earnings using hours worked and weeks per year.',
     h1: 'Hourly to Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'salary-to-hourly-calculator': {
-    title: 'Salary to Hourly Calculator – Annual to Hourly Pay',
+    title: 'Salary to Hourly Calculator | Convert Annual Salary to Hourly Pay',
     description:
-      'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly pay using your hours worked and weeks per year.',
+      'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly earnings using your hours worked and weeks per year.',
     h1: 'Salary to Hourly Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'annual-to-monthly-salary-calculator': {
-    title: 'Annual to Monthly Salary Calculator – Pay Converter',
+    title: 'Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly Income',
     description:
-      'Convert annual salary into monthly pay, with optional biweekly and weekly estimates based on your yearly income.',
+      'Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.',
     h1: 'Annual to Monthly Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'monthly-to-annual-salary-calculator': {
-    title: 'Monthly to Annual Salary Calculator – Pay Converter',
+    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
     description:
-      'Convert monthly salary into annual pay, with optional biweekly and weekly estimates based on your monthly income.',
+      'Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.',
     h1: 'Monthly to Annual Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'weekly-pay-calculator': {
-    title: 'Weekly Pay Calculator – Estimate Earnings from Hours',
+    title: 'Weekly Pay Calculator | Weekly Earnings From Hours, Rate and Overtime',
     description:
-      'Estimate weekly pay from your hourly rate and hours worked, with optional support for regular and overtime hour splits.',
+      'Estimate weekly gross pay from hourly rate, regular hours, overtime hours, and overtime multiplier, then annualize the result.',
     h1: 'Weekly Pay Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'overtime-pay-calculator': {
-    title: 'Overtime Pay Calculator – Estimate Extra Earnings',
+    title: 'Overtime Pay Calculator | Extra Pay and Total Gross Earnings',
     description:
-      'Estimate overtime pay from your hourly rate, overtime hours, and overtime multiplier, with optional total-pay output.',
+      'Estimate overtime pay from hourly rate, overtime hours, and multiplier, then compare overtime-only pay with total gross earnings.',
     h1: 'Overtime Pay Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'raise-calculator': {
-    title: 'Raise Calculator | Calculate New Salary After a Pay Raise',
+    title: 'Raise Calculator | New Salary, Raise Amount and Raise Percentage',
     description:
-      'Calculate a new salary after a raise using either a percentage increase or a flat raise amount.',
+      'Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.',
     h1: 'Raise Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'bonus-calculator': {
-    title: 'Bonus Calculator – Salary Bonus Amount or Percent',
+    title: 'Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay',
     description:
-      'Calculate a bonus as a percentage of salary or as a flat amount, and estimate total compensation.',
+      'Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.',
     h1: 'Bonus Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -451,7 +451,7 @@ const CALCULATOR_OVERRIDES = {
   'inflation-adjusted-salary-calculator': {
     title: 'Inflation Adjusted Salary Calculator | Real Raise vs Inflation',
     description:
-      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise keeps up with inflation.',
+      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise beats inflation in real terms.',
     h1: 'Inflation Adjusted Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -473,9 +473,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'triangle-solver': {
-    title: 'Triangle Solver | SSS, SAS, ASA, AAS and SSA | CalcHowMuch',
+    title: 'Triangle Solver | Solve SSS, SAS, ASA, AAS and SSA Triangles',
     description:
-      'Solve SSS, SAS, ASA, AAS, and SSA triangles with a clear answer-first layout, worked examples, formula notes, and an instant triangle diagram.',
+      'Solve SSS, SAS, ASA, AAS, and SSA triangles with side and angle results, area, and a clear worked-triangle summary.',
     h1: 'Triangle Solver',
     explanationHeading: '',
     paneLayout: 'single',
@@ -505,9 +505,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'natural-log': {
-    title: 'Natural Log Calculator | ln(x) and e^y = x | CalcHowMuch',
+    title: 'Natural Log Calculator | ln(x), e^x and Natural Log Rules',
     description:
-      'Compute ln(x), confirm the matching e^y = x statement, and read the natural log curve in a light answer-first calculator layout.',
+      'Calculate ln(x), check the matching exponential relationship, and review natural log values with clear answer-first output.',
     h1: 'Natural Log Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -601,15 +601,15 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'quadratic-equation': {
-    title: 'Quadratic Equation Solver Calculator | CalcHowMuch',
+    title: 'Quadratic Equation Solver | Roots, Discriminant & Vertex',
     description:
-      'Solve quadratic equations of the form ax² + bx + c = 0 with real or complex roots, discriminant details, and step-by-step output.',
+      'Solve quadratic equations, view roots, discriminant, vertex details, and factor-form guidance for real or complex answers.',
     h1: 'Quadratic Equation Solver',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'slope-distance': {
-    title: 'Slope and Distance Calculator | CalcHowMuch',
+    title: 'Slope and Distance Calculator | Midpoint, Line Equation & Distance',
     description:
       'Calculate slope, midpoint, distance, and line equations from two points with clear outputs for vertical, horizontal, and diagonal lines.',
     h1: 'Slope and Distance Calculator',
@@ -633,17 +633,17 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'system-of-equations': {
-    title: 'System of Equations Solver | 2x2 and 3x3 | CalcHowMuch',
+    title: 'System of Equations Solver | 2x2, 3x3 and Matrix Methods',
     description:
-      'Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique/no-solution diagnostics.',
+      'Solve 2x2 and 3x3 linear systems using elimination, substitution, and matrix methods with unique, infinite, or no-solution checks.',
     h1: 'System of Equations Solver',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'unit-circle': {
-    title: 'Unit Circle Calculator | Angles & Trig Values',
+    title: 'Unit Circle Calculator | Trig Values, Reference Angles & Quadrants',
     description:
-      'Explore unit circle angles in degrees or radians with quadrant, reference angle, and exact sine, cosine, and tangent values.',
+      'Explore unit circle angles in degrees or radians, reference angles, quadrants, and exact sine, cosine, and tangent values for trig review.',
     h1: 'Unit Circle Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -721,9 +721,9 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Age Calculator',
   },
   'discount-calculator': {
-    title: 'Discount Calculator | Sale Price and Savings',
+    title: 'Discount Calculator | Sale Price, Savings & Percent Off',
     description:
-      'Calculate the sale price after a percentage discount and see exactly how much you save.',
+      'Calculate sale price, discount amount, and savings from percent-off deals so you can compare coupons, promotions, and marked-down prices.',
     h1: 'Discount Calculator',
   },
   'markup-calculator': {
@@ -3796,6 +3796,254 @@ function injectBeforeFaq(explanationHtml, injectedHtml) {
   return `${explanationHtml.slice(0, sectionStart)}${injectedHtml}\n\n${explanationHtml.slice(sectionStart)}`;
 }
 
+function getExplanationSectionClassName(explanationHtml) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return '';
+  }
+
+  const match = explanationHtml.match(/<section\b[^>]*class="([^"]+)"/i);
+  return match?.[1]?.trim() || '';
+}
+
+function buildMathInterpretationSection(explanationHtml, calculatorTitle) {
+  const sectionClass = getExplanationSectionClassName(explanationHtml);
+  const classAttr = sectionClass ? ` class="${sectionClass}"` : '';
+  const calculatorLabel = typeof calculatorTitle === 'string' ? calculatorTitle.toLowerCase() : 'calculator';
+
+  return `<section${classAttr}>
+  <h3>What This Result Means</h3>
+  <p>
+    After you calculate, review what this result means for your current ${calculatorLabel} problem
+    before moving on to the next step.
+  </p>
+  <p>
+    Compare the returned value, equation, graph, or geometry measure with your original inputs so
+    you can confirm the route matched the question you intended to solve.
+  </p>
+</section>`;
+}
+
+function ensureMathInterpretationGuidance(explanationHtml, calculatorTitle) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  if (/(what this result means|result means|\binterpret\b)/i.test(explanationHtml)) {
+    return explanationHtml;
+  }
+
+  return injectBeforeFaq(explanationHtml, buildMathInterpretationSection(explanationHtml, calculatorTitle));
+}
+
+function buildMathImportantNotesItems(calculatorTitle) {
+  const calculatorLabel = typeof calculatorTitle === 'string' ? calculatorTitle.toLowerCase() : 'calculator';
+
+  return {
+    accuracy:
+      `<li><strong>Accuracy:</strong> Results are calculated from the values you enter and the formulas supported by this ${calculatorLabel} tool.</li>`,
+    disclaimer:
+      '<li><strong>Math disclaimer:</strong> This calculator is for learning, checking, and quick verification; confirm graded or formal work with your course method when needed.</li>',
+    assumptions:
+      '<li><strong>Assumptions:</strong> Outputs assume valid numeric or algebraic input and the standard formulas or rules used by this route.</li>',
+    privacy:
+      '<li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>',
+    lastUpdated: '<li><strong>Last updated:</strong> April 2026</li>',
+  };
+}
+
+function enrichMathImportantNotesSection(sectionHtml, calculatorTitle) {
+  const items = buildMathImportantNotesItems(calculatorTitle);
+  let updatedSection = sectionHtml;
+
+  if (!/\blast updated\s*:/i.test(updatedSection)) {
+    if (/<ul\b[^>]*>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<ul\b[^>]*>/i, (match) => `${match}\n    ${items.lastUpdated}`);
+    }
+  }
+
+  const missingItems = [];
+  if (!/\baccuracy\s*:/i.test(updatedSection)) missingItems.push(items.accuracy);
+  if (!/\bassumptions\s*:/i.test(updatedSection)) missingItems.push(items.assumptions);
+  if (!/\b[a-z ]*disclaimer\s*:/i.test(updatedSection)) missingItems.push(items.disclaimer);
+
+  if (/\bprivacy\s*:/i.test(updatedSection)) {
+    updatedSection = updatedSection.replace(
+      /<li[^>]*>\s*(?:<strong>)?\s*Privacy\s*:\s*[\s\S]*?<\/li>/i,
+      items.privacy
+    );
+  } else {
+    missingItems.push(items.privacy);
+  }
+
+  if (missingItems.length) {
+    if (/<\/ul>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<\/ul>/i, `    ${missingItems.join('\n    ')}\n  </ul>`);
+    } else {
+      updatedSection = updatedSection.replace(
+        /(<h3>\s*Important Notes\s*<\/h3>)/i,
+        `$1\n  <ul>\n    ${missingItems.join('\n    ')}\n  </ul>`
+      );
+    }
+  }
+
+  return updatedSection;
+}
+
+function buildMathImportantNotesSection(explanationHtml, calculatorTitle) {
+  const sectionClass = getExplanationSectionClassName(explanationHtml);
+  const classAttr = sectionClass ? ` class="${sectionClass}"` : '';
+  const items = buildMathImportantNotesItems(calculatorTitle);
+
+  return `<section${classAttr}>
+  <h3>Important Notes</h3>
+  <ul>
+    ${items.lastUpdated}
+    ${items.accuracy}
+    ${items.disclaimer}
+    ${items.assumptions}
+    ${items.privacy}
+  </ul>
+</section>`;
+}
+
+function ensureMathImportantNotesContract(explanationHtml, calculatorTitle) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const sectionBounds = findSectionBoundsForHeading(explanationHtml, /<h3>\s*Important Notes\s*<\/h3>/i);
+
+  if (!sectionBounds) {
+    return `${explanationHtml}\n\n${buildMathImportantNotesSection(explanationHtml, calculatorTitle)}`;
+  }
+
+  const originalSection = explanationHtml.slice(sectionBounds.start, sectionBounds.end);
+  const enrichedSection = enrichMathImportantNotesSection(originalSection, calculatorTitle);
+
+  return `${explanationHtml.slice(0, sectionBounds.start)}${enrichedSection}${explanationHtml.slice(sectionBounds.end)}`;
+}
+
+function normalizeMathExplanationHtml(explanationHtml, calculatorTitle) {
+  return ensureMathImportantNotesContract(
+    ensureMathInterpretationGuidance(explanationHtml, calculatorTitle),
+    calculatorTitle
+  );
+}
+
+function buildPricingImportantNotesItems(calculatorTitle) {
+  const calculatorLabel = typeof calculatorTitle === 'string' ? calculatorTitle.toLowerCase() : 'calculator';
+
+  return {
+    lastUpdated: '<li><strong>Last updated:</strong> April 2026</li>',
+    accuracy:
+      `<li><strong>Accuracy:</strong> Results are estimated from the values you enter and the pricing formulas used by this ${calculatorLabel} tool.</li>`,
+    disclaimer:
+      '<li><strong>Pricing disclaimer:</strong> This calculator is for planning and quoting support only; confirm live pricing, taxes, and commercial terms separately.</li>',
+    assumptions:
+      '<li><strong>Assumptions:</strong> Outputs assume the entered price, rate, margin, or discount values match your current scenario and that extra fees are handled separately unless included in the inputs.</li>',
+    privacy:
+      '<li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>',
+  };
+}
+
+function enrichPricingImportantNotesSection(sectionHtml, calculatorTitle) {
+  const items = buildPricingImportantNotesItems(calculatorTitle);
+  let updatedSection = sectionHtml.replace(/<h4>\s*Important Notes\s*<\/h4>/i, '<h3>Important Notes</h3>');
+
+  if (!/\blast updated\s*:/i.test(updatedSection)) {
+    if (/<ul\b[^>]*>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<ul\b[^>]*>/i, (match) => `${match}\n    ${items.lastUpdated}`);
+    }
+  }
+
+  const missingItems = [];
+  if (!/\baccuracy\s*:/i.test(updatedSection)) missingItems.push(items.accuracy);
+  if (!/\bassumptions\s*:/i.test(updatedSection)) missingItems.push(items.assumptions);
+  if (!/\b[a-z ]*disclaimer\s*:/i.test(updatedSection)) missingItems.push(items.disclaimer);
+
+  if (/\bprivacy\s*:/i.test(updatedSection)) {
+    updatedSection = updatedSection.replace(
+      /<li[^>]*>\s*(?:<strong>)?\s*Privacy\s*:\s*[\s\S]*?<\/li>/i,
+      items.privacy
+    );
+  } else {
+    missingItems.push(items.privacy);
+  }
+
+  if (missingItems.length) {
+    if (/<\/ul>/i.test(updatedSection)) {
+      updatedSection = updatedSection.replace(/<\/ul>/i, `    ${missingItems.join('\n    ')}\n  </ul>`);
+    } else {
+      updatedSection = updatedSection.replace(
+        /(<h3>\s*Important Notes\s*<\/h3>)/i,
+        `$1\n  <ul>\n    ${missingItems.join('\n    ')}\n  </ul>`
+      );
+    }
+  }
+
+  return updatedSection;
+}
+
+function buildPricingImportantNotesSection(explanationHtml, calculatorTitle) {
+  const sectionClass = getExplanationSectionClassName(explanationHtml);
+  const classAttr = sectionClass ? ` class="${sectionClass}"` : '';
+  const items = buildPricingImportantNotesItems(calculatorTitle);
+
+  return `<section${classAttr}>
+  <h3>Important Notes</h3>
+  <ul>
+    ${items.lastUpdated}
+    ${items.accuracy}
+    ${items.disclaimer}
+    ${items.assumptions}
+    ${items.privacy}
+  </ul>
+</section>`;
+}
+
+function ensurePricingImportantNotesContract(explanationHtml, calculatorTitle) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return explanationHtml;
+  }
+
+  const sectionBounds = findSectionBoundsForHeading(explanationHtml, /<h[34]>\s*Important Notes\s*<\/h[34]>/i);
+
+  if (!sectionBounds) {
+    return `${explanationHtml}\n\n${buildPricingImportantNotesSection(explanationHtml, calculatorTitle)}`;
+  }
+
+  const originalSection = explanationHtml.slice(sectionBounds.start, sectionBounds.end);
+  const enrichedSection = enrichPricingImportantNotesSection(originalSection, calculatorTitle);
+
+  return `${explanationHtml.slice(0, sectionBounds.start)}${enrichedSection}${explanationHtml.slice(sectionBounds.end)}`;
+}
+
+function findSectionBoundsForHeading(explanationHtml, headingRe) {
+  if (typeof explanationHtml !== 'string' || !explanationHtml.trim()) {
+    return null;
+  }
+
+  const match = explanationHtml.match(headingRe);
+  if (!match || typeof match.index !== 'number') {
+    return null;
+  }
+
+  const sectionStart = explanationHtml.lastIndexOf('<section', match.index);
+  if (sectionStart === -1) {
+    return null;
+  }
+
+  const sectionEnd = explanationHtml.indexOf('</section>', match.index);
+  if (sectionEnd === -1) {
+    return null;
+  }
+
+  return {
+    start: sectionStart,
+    end: sectionEnd + '</section>'.length,
+  };
+}
+
 function injectTimeAndDateSupportSections(explanationHtml, routeSwitchHtml, relatedCalculatorsHtml) {
   return injectBeforeImportantNotes(
     injectBeforeFaq(explanationHtml, routeSwitchHtml),
@@ -5591,6 +5839,18 @@ function main() {
     const fragmentDir = resolveCalculatorFragmentDir(relPath);
     const override = resolveCalculatorOverride(calculator);
     const fragments = loadRouteFragments(fragmentDir, calculator.id, governance.routeArchetype);
+    if (isMigratedMathClusterRoute && governance.routeArchetype === 'calc_exp') {
+      fragments.explanationHtml = normalizeMathExplanationHtml(
+        fragments.explanationHtml,
+        override?.h1 ?? calculator.name
+      );
+    }
+    if (isMigratedPricingClusterRoute && governance.routeArchetype === 'calc_exp') {
+      fragments.explanationHtml = ensurePricingImportantNotesContract(
+        fragments.explanationHtml,
+        override?.h1 ?? calculator.name
+      );
+    }
     const topNavHtml = buildTopNavHtml(
       navigation.categories,
       category.id,
