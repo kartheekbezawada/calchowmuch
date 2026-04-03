@@ -927,7 +927,7 @@
               "paneLayout": "split"
             },
             {
-              "id": "countdown-timer-generator",
+              "id": "countdown-timer",
               "name": "Countdown Timer",
               "url": "/time-and-date/countdown-timer/",
               "keywords": [

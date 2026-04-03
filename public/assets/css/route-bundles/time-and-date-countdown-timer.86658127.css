@@ -388,7 +388,6 @@
     grid-template-columns: 1fr;
     gap: 8px;
   }
-
   .calculator-ui .mode-switch-toggle {
     justify-self: center;
   }
@@ -2151,7 +2150,7 @@
 
 }
 
-/* source: /calculators/time-and-date/countdown-timer-generator/calculator.css */
+/* source: /calculators/time-and-date/countdown-timer/calculator.css */
 /* Shared calculator styles live in /assets/css/calculator.css */
 
 #calculator-title {

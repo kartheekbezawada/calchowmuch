@@ -192,21 +192,21 @@
     },
     "/time-and-date/countdown-timer/": {
       "route": "/time-and-date/countdown-timer/",
-      "calculatorId": "countdown-timer-generator",
+      "calculatorId": "countdown-timer",
       "clusterId": "time-and-date",
       "buildId": "wave0-20260220",
       "isolationBoundary": "route",
       "css": {
         "core": [],
         "route": [
-          "/calculators/time-and-date/countdown-timer-generator/calculator.css"
+          "/calculators/time-and-date/countdown-timer/calculator.css"
         ],
         "critical": null
       },
       "js": {
         "core": [],
         "route": [
-          "/calculators/time-and-date/countdown-timer-generator/module.js"
+          "/calculators/time-and-date/countdown-timer/module.js"
         ]
       }
     },

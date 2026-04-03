@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { calculateCountdown } from '../../../public/assets/js/core/date-diff-utils.js';
 
-describe('Countdown Timer Generator', () => {
+describe('Countdown Timer', () => {
   it('should calculate countdown breakdown for a future target', () => {
     const reference = new Date(2026, 0, 1, 0, 0, 0);
     const target = new Date(2026, 0, 2, 3, 4, 5);

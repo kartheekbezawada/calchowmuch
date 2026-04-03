@@ -6,10 +6,11 @@ test.describe('Percentage Composition Calculator', () => {
 
     await expect(page.locator('.panel.panel-scroll.panel-span-all')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
-    await expect(page.locator('#composition-explanation .pv-results-table')).toHaveCount(1);
-    await expect(page.locator('#composition-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#composition-explanation .pv-results-table')).toHaveCount(0);
+    await expect(page.locator('#composition-explanation .bor-faq-card')).toHaveCount(6);
     await expect(page.locator('#composition-explanation .faq-box')).toHaveCount(0);
     await expect(page.locator('#composition-explanation')).not.toContainText('Scenario Summary');
+    await expect(page.locator('#composition-explanation')).toContainText('Frequently Asked Questions');
 
     await page.click('#composition-calc', { force: true });
     await expect(page.locator('#composition-result')).toContainText('Item A: 300.00 (30.00%)');
@@ -41,5 +42,8 @@ test.describe('Percentage Composition Calculator', () => {
     await page.click('#composition-calc', { force: true });
 
     await expect(page.locator('#composition-result')).toContainText('undefined');
+    await expect(page.locator('#composition-result-detail')).toContainText(
+      'Composition percentages are undefined when the total is 0.'
+    );
   });
 });
