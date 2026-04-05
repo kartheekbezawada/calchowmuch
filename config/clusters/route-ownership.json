@@ -83,7 +83,7 @@
     },
     {
       "route": "/time-and-date/countdown-timer/",
-      "calculatorId": "countdown-timer-generator",
+      "calculatorId": "countdown-timer",
       "activeOwnerClusterId": "time-and-date",
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-time-and-date-wave0-20260220",

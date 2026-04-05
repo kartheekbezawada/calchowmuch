@@ -46,7 +46,7 @@ const PANE_LAYOUTS = new Set(['single', 'split']);
 const FORCED_SINGLE_PANE_CALCULATOR_IDS = new Set(['what-percent-is-x-of-y']);
 const ROUTE_BUNDLE_PILOT_IDS = new Set([
   'birthday-day-of-week',
-  'countdown-timer-generator',
+  'countdown-timer',
   'fraction-calculator',
   'quadratic-equation',
   'slope-distance',
@@ -702,7 +702,7 @@ const CALCULATOR_OVERRIDES = {
       'Find the weekday you were born on, preview future birthday weekdays, and spot upcoming Friday, Saturday, or Sunday birthdays for planning.',
     h1: 'Birthday Day-of-Week Calculator',
   },
-  'countdown-timer-generator': {
+  'countdown-timer': {
     title: 'Countdown Timer | Live Countdown to Any Date or Event',
     description:
       'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.',
@@ -2720,7 +2720,7 @@ const TIME_AND_DATE_CLUSTER_REDESIGN_ORDER = [
   'birthday-day-of-week',
   'days-until-a-date-calculator',
   'time-between-two-dates-calculator',
-  'countdown-timer-generator',
+  'countdown-timer',
   'work-hours-calculator',
   'overtime-hours-calculator',
   'sleep-time-calculator',
@@ -2736,7 +2736,7 @@ const TIME_AND_DATE_CLUSTER_REDESIGN_IDS = new Set([
   'birthday-day-of-week',
   'days-until-a-date-calculator',
   'time-between-two-dates-calculator',
-  'countdown-timer-generator',
+  'countdown-timer',
   'work-hours-calculator',
   'overtime-hours-calculator',
   'sleep-time-calculator',
@@ -3340,7 +3340,7 @@ const TIME_AND_DATE_RELATED_CARD_COPY = {
   'overtime-hours-calculator': 'Separate standard and overtime hours with clearer daily or weekly rules.',
   'time-between-two-dates-calculator': 'Measure exact distance between dates, date-times, or business days.',
   'days-until-a-date-calculator': 'Count down to a deadline, measure days since, or switch to weekdays only.',
-  'countdown-timer-generator': 'Create a live countdown for launches, trips, birthdays, or deadline tracking.',
+  'countdown-timer': 'Create a live countdown for launches, trips, birthdays, or deadline tracking.',
   'age-calculator': 'See exact age, total days, and the next birthday in one planning view.',
   'birthday-day-of-week': 'Find the weekday of birth and compare future birthday patterns quickly.',
 };
@@ -4235,7 +4235,7 @@ const TIME_AND_DATE_CALCULATOR_ICONS = {
   'overtime-hours-calculator': '⌛',
   'time-between-two-dates-calculator': '🗓️',
   'days-until-a-date-calculator': '📆',
-  'countdown-timer-generator': '⏳',
+  'countdown-timer': '⏳',
   'age-calculator': '🧬',
   'birthday-day-of-week': '🎉',
 };

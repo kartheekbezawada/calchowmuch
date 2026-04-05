@@ -642,7 +642,7 @@
     },
     "/time-and-date/countdown-timer/": {
       "route": "/time-and-date/countdown-timer/",
-      "calculatorId": "countdown-timer-generator",
+      "calculatorId": "countdown-timer",
       "isolationBoundary": "route",
       "css": {
         "core": [],
@@ -656,7 +656,7 @@
           "/assets/js/core-shell.js"
         ],
         "route": [
-          "/calculators/time-and-date/countdown-timer-generator/module.js"
+          "/calculators/time-and-date/countdown-timer/module.js"
         ]
       },
       "options": {

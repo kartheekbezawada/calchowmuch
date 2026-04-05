@@ -18,7 +18,7 @@ Ownership: cluster release owner.
 Routes:
 - /time-and-date/age-calculator/
 - /time-and-date/birthday-day-of-week/
-- /time-and-date/countdown-timer-generator/
+- /time-and-date/countdown-timer/
 - /time-and-date/days-until-a-date-calculator/
 - /time-and-date/overtime-hours-calculator/
 - /time-and-date/time-between-two-dates-calculator/

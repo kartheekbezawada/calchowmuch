@@ -58,6 +58,7 @@
     "lint:fix": "eslint public/assets/js --ext .js --fix",
     "format": "prettier --write \"public/**/*.{js,html,css,json}\"",
     "format:check": "prettier --check \"public/**/*.{js,html,css,json}\"",
+    "audit:internal-links": "node scripts/audit-internal-links.mjs",
     "audit:local-seo": "node scripts/local-seo-performance-audit.mjs",
     "serve": "python -m http.server 8000 --directory public",
     "validate": "npm run lint && npm run lint:css-import && npm run test && npm run test:beacon:dedupe && npm run format:check"

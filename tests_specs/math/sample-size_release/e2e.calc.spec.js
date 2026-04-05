@@ -30,7 +30,10 @@ test.describe('Sample Size Calculator', () => {
     const answerBox = await page.locator('#ss-answer-section').boundingBox();
     const presetsBox = await page.locator('.ss-presets-card').boundingBox();
     const studyBox = await page.locator('.ss-sensitivity-card').boundingBox();
-    const explanationBox = await page.locator('#sample-size-explanation .ss-exp-intro').boundingBox();
+    const explanationBox = await page
+      .locator('#sample-size-explanation .ss-exp-intro')
+      .first()
+      .boundingBox();
 
     expect(modeBox).toBeTruthy();
     expect(inputBox).toBeTruthy();

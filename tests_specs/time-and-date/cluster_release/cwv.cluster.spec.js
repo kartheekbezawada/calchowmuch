@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { assertCwv, measureRouteCwv } from '../../infrastructure/e2e/cwv-scope-helper.js';
 
-const ROUTES = ["/time-and-date/age-calculator/","/time-and-date/birthday-day-of-week/","/time-and-date/countdown-timer-generator/"];
+const ROUTES = ["/time-and-date/age-calculator/","/time-and-date/birthday-day-of-week/","/time-and-date/countdown-timer/"];
 
 test.describe('time-and-date cluster cwv guard', () => {
   test('cluster routes satisfy CLS/LCP thresholds', async ({ page }) => {

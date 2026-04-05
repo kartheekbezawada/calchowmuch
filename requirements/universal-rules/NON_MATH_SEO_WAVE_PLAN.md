@@ -93,7 +93,7 @@ calculator must be completed, regenerated, verified, and logged before the next 
 | Calculator | Route | CLUSTER | CALC | SEO Issues | Content Scope | Verification | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Birthday Day-of-Week Calculator | `/time-and-date/birthday-day-of-week/` | `time-and-date` | `birthday-day-of-week` | `MISSING_JSONLD` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
-| Countdown Timer Generator | `/time-and-date/countdown-timer-generator/` | `time-and-date` | `countdown-timer-generator` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `MISSING_JSONLD` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
+| Countdown Timer | `/time-and-date/countdown-timer/` | `time-and-date` | `countdown-timer` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `MISSING_JSONLD` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 | Days Until a Date Calculator | `/time-and-date/days-until-a-date-calculator/` | `time-and-date` | `days-until-a-date-calculator` | `TITLE_TOO_LONG`; `DESC_TOO_LONG`; `LOW_WORD_COUNT` | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 | Age Calculator | `/time-and-date/age-calculator/` | `time-and-date` | `age-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
 | Work Hours Calculator | `/time-and-date/work-hours-calculator/` | `time-and-date` | `work-hours-calculator` | baseline review | metadata + schema + intro guide cleanup + notes | SEO + schema + mojibake + content quality | complete (`content quality: warn`) |
@@ -121,7 +121,7 @@ calculator must be completed, regenerated, verified, and logged before the next 
 
 ### Time & Date
 
-- `time-and-date`: `birthday-day-of-week`, `countdown-timer-generator`,
+- `time-and-date`: `birthday-day-of-week`, `countdown-timer`,
   `days-until-a-date-calculator`, `age-calculator`, `work-hours-calculator`,
   `overtime-hours-calculator`, `time-between-two-dates-calculator`
 - `sleep-and-nap`: `sleep-time-calculator`, `wake-up-time-calculator`,

@@ -425,9 +425,9 @@
           "route": "/time-and-date/days-until-a-date-calculator/",
           "releaseDir": "tests_specs/time-and-date/days-until-a-date-calculator_release"
         },
-        "countdown-timer-generator": {
+        "countdown-timer": {
           "route": "/time-and-date/countdown-timer/",
-          "releaseDir": "tests_specs/time-and-date/countdown-timer-generator_release"
+          "releaseDir": "tests_specs/time-and-date/countdown-timer_release"
         },
         "age-calculator": {
           "route": "/time-and-date/age-calculator/",

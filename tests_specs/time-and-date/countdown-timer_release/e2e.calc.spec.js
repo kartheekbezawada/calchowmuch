@@ -10,7 +10,7 @@ test.describe('Countdown Timer', () => {
     await expect(page.locator('.left-nav')).toHaveCount(0);
     await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
-      'Countdown Timer Generator'
+      'Countdown Timer'
     );
 
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(

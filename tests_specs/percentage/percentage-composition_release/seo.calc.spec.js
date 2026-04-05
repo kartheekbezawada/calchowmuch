@@ -20,10 +20,11 @@ test.describe('Percentage Composition Calculator SEO', () => {
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe('https://calchowmuch.com/percentage-calculators/percentage-composition-calculator/');
 
-    await expect(page.locator('#composition-explanation .pv-results-table')).toHaveCount(1);
-    await expect(page.locator('#composition-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#composition-explanation .pv-results-table')).toHaveCount(0);
+    await expect(page.locator('#composition-explanation .bor-faq-card')).toHaveCount(6);
     await expect(page.locator('#composition-explanation .faq-box')).toHaveCount(0);
     await expect(page.locator('#composition-explanation')).not.toContainText('Scenario Summary');
+    await expect(page.locator('#composition-explanation')).toContainText('Frequently Asked Questions');
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);

@@ -868,7 +868,7 @@
       "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-birthday-day-of-week.critical.ba24061b.css"
     },
     "/time-and-date/countdown-timer/": {
-      "calculatorId": "countdown-timer-generator",
+      "calculatorId": "countdown-timer",
       "relPath": "time-and-date/countdown-timer",
       "mode": "inline-critical-deferred-bundle",
       "href": "/assets/css/route-bundles/time-and-date-countdown-timer.86658127.css",
@@ -881,7 +881,7 @@
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",
-        "/calculators/time-and-date/countdown-timer-generator/calculator.css"
+        "/calculators/time-and-date/countdown-timer/calculator.css"
       ],
       "outputFile": "public/assets/css/route-bundles/time-and-date-countdown-timer.86658127.css",
       "criticalOutputFile": "public/assets/css/route-bundles/time-and-date-countdown-timer.critical.61b53e12.css"
