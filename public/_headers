@@ -29,28 +29,5 @@
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 
 /calculators/*
-  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
-
-/calculators/math/sample-size
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/calculators/math/sample-size/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/calculators/time-and-date/countdown-timer
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/calculators/time-and-date/countdown-timer/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/calculators/time-and-date/countdown-timer-generator
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/calculators/time-and-date/countdown-timer-generator/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/calculators/percentage-calculators/percentage-composition-calculator
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/calculators/percentage-calculators/percentage-composition-calculator/*
+  Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: noindex, nofollow, noarchive
