@@ -1,9 +1,10 @@
-import {
-  formatCurrency as coreFormatCurrency,
-  formatPercent as coreFormatPercent,
-} from '../../../assets/js/core/format.js';
+import { formatPercent as coreFormatPercent } from '../../../assets/js/core/format.js';
 
 const SITE_URL = 'https://calchowmuch.com';
+const SALARY_NUMBER_FORMATTER = new Intl.NumberFormat(undefined, {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 export function parseNumber(value) {
   const parsed = Number(value);
@@ -19,7 +20,11 @@ export function isNonNegativeNumber(value) {
 }
 
 export function formatCurrency(value) {
-  return coreFormatCurrency(value, 'USD');
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return '—';
+  }
+
+  return SALARY_NUMBER_FORMATTER.format(Number(value));
 }
 
 export function formatPercent(value, maximumFractionDigits = 2) {

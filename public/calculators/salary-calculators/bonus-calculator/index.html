@@ -9,7 +9,7 @@
 
     <div class="sal-input-row">
       <label for="bonus-salary-amount">Salary amount</label>
-      <input id="bonus-salary-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="bonus-salary-amount" type="number" min="0" step="0.01" inputmode="decimal" value="60000" />
     </div>
 
     <div class="sal-input-row">
@@ -31,12 +31,12 @@
 
     <div class="sal-input-row" id="bonus-percent-row">
       <label for="bonus-percent">Bonus percent</label>
-      <input id="bonus-percent" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="bonus-percent" type="number" min="0" step="0.01" inputmode="decimal" value="10" />
     </div>
 
     <div class="sal-input-row" id="bonus-amount-row" hidden aria-hidden="true">
       <label for="bonus-amount">Bonus amount</label>
-      <input id="bonus-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="bonus-amount" type="number" min="0" step="0.01" inputmode="decimal" value="8000" />
     </div>
 
     <p class="sal-calc-error" id="bonus-error" hidden></p>
@@ -45,17 +45,17 @@
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Bonus calculator results">
     <p class="sal-answer-title">Bonus amount</p>
-    <p class="sal-answer-hero" id="bonus-amount-output">—</p>
-    <p class="sal-answer-note" id="bonus-note">Calculate to see the bonus amount first, then total compensation and effective bonus percent.</p>
-    <p class="sal-answer-context" id="bonus-context">The route will show whether the bonus came from a percent-of-salary input or a flat dollar amount.</p>
+    <p class="sal-answer-hero" id="bonus-amount-output">6,000.00</p>
+    <p class="sal-answer-note" id="bonus-note">That bonus lifts total compensation to 66,000.00 before taxes.</p>
+    <p class="sal-answer-context" id="bonus-context">Used percent-of-salary mode to calculate the bonus from base salary.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Total compensation</span>
-        <strong id="bonus-total-compensation">—</strong>
+        <strong id="bonus-total-compensation">66,000.00</strong>
       </div>
       <div class="sal-support-card">
         <span>Bonus percent</span>
-        <strong id="bonus-percent-output">—</strong>
+        <strong id="bonus-percent-output">10%</strong>
       </div>
     </div>
     <div class="sal-breakdown-card">

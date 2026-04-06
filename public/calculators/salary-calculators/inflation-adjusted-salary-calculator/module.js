@@ -173,3 +173,5 @@ function calculate() {
 }
 
 document.querySelector('#inflation-salary-button')?.addEventListener('click', calculate);
+
+calculate();

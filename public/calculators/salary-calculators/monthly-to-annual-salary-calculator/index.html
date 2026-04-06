@@ -5,7 +5,7 @@
     <p class="sal-calc-lead">Keep the annual answer first, then use weekly and biweekly views as supporting context.</p>
     <div class="sal-input-row">
       <label for="monthly-salary-input">Monthly salary</label>
-      <input id="monthly-salary-input" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="monthly-salary-input" type="number" min="0" step="0.01" inputmode="decimal" value="5000" />
     </div>
     <div class="sal-input-row">
       <label for="monthly-weeks-input">Weeks per year</label>
@@ -17,12 +17,12 @@
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Monthly to annual salary results">
     <p class="sal-answer-title">Annual salary</p>
-    <p class="sal-answer-hero" id="monthly-annual-result">—</p>
-    <p class="sal-answer-note" id="monthly-annual-note">Calculate to see the annual answer first, with weekly and biweekly pay as support values.</p>
-    <p class="sal-answer-context" id="monthly-annual-context">When weekly pay is shown, the route will state the weeks-per-year assumption used.</p>
+    <p class="sal-answer-hero" id="monthly-annual-result">60,000.00</p>
+    <p class="sal-answer-note" id="monthly-annual-note">That equals about 1,153.85 per week before taxes.</p>
+    <p class="sal-answer-context" id="monthly-annual-context">Based on 52 weeks/year for the weekly view.</p>
     <div class="sal-support-grid">
-      <div class="sal-support-card"><span>Biweekly pay</span><strong id="monthly-biweekly-result">—</strong></div>
-      <div class="sal-support-card"><span>Weekly pay</span><strong id="monthly-weekly-result">—</strong></div>
+      <div class="sal-support-card"><span>Biweekly pay</span><strong id="monthly-biweekly-result">2,307.69</strong></div>
+      <div class="sal-support-card"><span>Weekly pay</span><strong id="monthly-weekly-result">1,153.85</strong></div>
     </div>
     <div class="sal-breakdown-card">
       <h3>Calculation basis</h3>

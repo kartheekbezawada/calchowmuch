@@ -93,3 +93,5 @@ function calculate() {
 }
 
 document.querySelector('#overtime-pay-button')?.addEventListener('click', calculate);
+
+calculate();

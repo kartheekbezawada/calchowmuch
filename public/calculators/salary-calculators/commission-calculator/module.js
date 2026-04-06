@@ -118,3 +118,5 @@ function calculate() {
 }
 
 document.querySelector('#commission-button')?.addEventListener('click', calculate);
+
+calculate();
