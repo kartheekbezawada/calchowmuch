@@ -4,16 +4,16 @@ test.describe('Sleep Time Calculator SEO', () => {
   test('SLEEP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/sleep-time-calculator/');
 
-    await expect(page).toHaveTitle('Sleep Time Calculator | Best Bedtime & Wake-Up Times');
+    await expect(page).toHaveTitle('Sleep Time Calculator (90-Minute Cycles) | Bedtime and Wake-Up Times');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find the best bedtime or wake-up time using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options for workdays, travel, or shift schedules.'
+      'Find bedtime or wake-up times using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options in a clearer answer-first layout.'
     );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Sleep Time Calculator');
+    await expect(h1).toHaveText('Sleep Time Calculator (90-Minute Cycles)');
 
     await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);

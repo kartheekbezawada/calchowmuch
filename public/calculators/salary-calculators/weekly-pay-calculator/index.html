@@ -1,15 +1,12 @@
 <div id="calc-weekly-pay" class="sal-calc-shell">
   <section class="sal-calc-card sal-calc-form-card" aria-label="Weekly pay inputs">
-    <p class="sal-calc-kicker">Weekly earnings</p>
-    <h2 class="sal-calc-form-title">Estimate weekly pay from your hourly rate and workweek</h2>
-    <p class="sal-calc-lead">
-      Stay in a simple total-hours flow by default, or switch to split hours when you want to
-      model overtime separately.
-    </p>
+    <p class="sal-calc-kicker">Gross pay conversion</p>
+    <h2 class="sal-calc-form-title">Estimate weekly earnings from hours, rate, and overtime, then annualize it</h2>
+    <p class="sal-calc-lead">Gross pay only. Stay in a simple total-hours flow by default, or open overtime only when you need it.</p>
 
     <div class="sal-input-row">
       <label for="weekly-hourly-rate">Hourly rate</label>
-      <input id="weekly-hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="weekly-hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" value="25" />
     </div>
 
     <div class="sal-input-row">
@@ -31,7 +28,7 @@
 
     <div class="sal-input-row" id="weekly-total-hours-row">
       <label for="weekly-total-hours">Total weekly hours</label>
-      <input id="weekly-total-hours" type="number" min="0" step="0.1" />
+      <input id="weekly-total-hours" type="number" min="0" step="0.1" value="40" />
     </div>
 
     <div class="sal-input-stack" id="weekly-split-hours-group" hidden aria-hidden="true">
@@ -61,24 +58,35 @@
   </section>
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Weekly pay results">
-    <p class="sal-answer-title">Weekly pay</p>
-    <p class="sal-answer-hero" id="weekly-pay-result">—</p>
-    <p class="sal-answer-note" id="weekly-pay-note">Calculate to see the weekly answer first, then annualized pay if you entered weeks per year.</p>
-    <p class="sal-answer-context" id="weekly-pay-context">The route will show whether it used total hours or regular plus overtime hours.</p>
+    <div class="sal-answer-top">
+      <div>
+        <p class="sal-answer-title">Weekly gross pay</p>
+        <p class="sal-answer-eyebrow">Gross (before tax)</p>
+      </div>
+      <span class="sal-status-chip" id="weekly-dirty-chip">Up to date</span>
+    </div>
+    <p class="sal-answer-hero" id="weekly-pay-result">$1,000.00</p>
+    <p class="sal-answer-note" id="weekly-pay-note">Gross (before tax), that equals about $1,000.00 per week and $52,000.00 annualized.</p>
+    <p class="sal-answer-context" id="weekly-pay-context">Assumptions: standard mode · 40 total weekly hours · 52 weeks/year.</p>
+    <div class="sal-action-row">
+      <button class="sal-secondary-action" id="weekly-copy-summary" type="button">Copy summary</button>
+      <span class="sal-copy-feedback" id="weekly-copy-feedback" aria-live="polite"></span>
+    </div>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Annualized pay</span>
-        <strong id="weekly-annualized-pay">—</strong>
+        <strong id="weekly-annualized-pay">$52,000.00</strong>
       </div>
     </div>
     <div class="sal-breakdown-card">
       <h3>Calculation basis</h3>
-      <p id="weekly-pay-breakdown">Standard mode uses hourly rate × total weekly hours. Split mode adds regular hours and overtime hours using your multiplier.</p>
+      <p id="weekly-pay-breakdown">Weekly pay = hourly rate x total weekly hours. Annualized pay = weekly pay x weeks per year.</p>
     </div>
     <div class="sal-method-card">
       <h3>How we calculate this</h3>
       <p>Gross pay only. The overtime multiplier is user-controlled and annualized pay is only a simple weekly-to-yearly projection.</p>
     </div>
+    <p class="sal-results-proof">Calculated locally in your browser - no data stored.</p>
     <p class="sal-results-disclaimer">
       Gross-pay estimate only. Split-hours mode is optional and uses the multiplier you enter.
     </p>

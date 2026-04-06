@@ -876,8 +876,8 @@
       "criticalCss": "/assets/css/route-bundles/time-and-date-countdown-timer.critical.61b53e12.css",
       "hash": "86658127",
       "criticalHash": "61b53e12",
-      "fullBytes": 61577,
-      "criticalBytes": 99168,
+      "fullBytes": 61566,
+      "criticalBytes": 99158,
       "sources": [
         "/assets/css/calculator.css",
         "/assets/css/shared-calculator-ui.css",

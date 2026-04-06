@@ -4,11 +4,11 @@ test.describe('Time Between Two Dates Calculator SEO', () => {
   test('DATE-DIFF-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/time-between-two-dates-calculator/');
 
-    await expect(page).toHaveTitle('Time Between Two Dates Calculator | Days, Weeks, Months & Hours');
+    await expect(page).toHaveTitle('Time Between Two Dates Calculator | Days, Business Days, Weeks and Hours');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Find the exact time between two dates in days, weeks, months, business days, and hours with date-only or date-time mode, inclusive counting, and copy-ready summaries.'
+      'Find the exact time between two dates in total days, business days, weeks, months, and hours with date-only or date-time mode and copy-ready summaries.'
     );
 
     const h1 = page.locator('h1');
@@ -38,16 +38,17 @@ test.describe('Time Between Two Dates Calculator SEO', () => {
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
-    expect(faqNode.mainEntity).toHaveLength(6);
+    expect(faqNode.mainEntity).toHaveLength(10);
     expect(faqNode.mainEntity[0].name).toBe('How do I calculate the days between two dates?');
 
     const explanation = page.locator('#date-diff-explanation');
-    await expect(explanation.locator('h2')).toHaveCount(1);
-    await expect(explanation).toContainText('How much time is between two dates?');
+    await expect(
+      explanation.getByRole('heading', { level: 2, name: 'How much time is between two dates?' })
+    ).toBeVisible();
     await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');
-    await expect(explanation.locator('.td-faq-item')).toHaveCount(6);
+    await expect(explanation.locator('.td-faq-item')).toHaveCount(10);
     await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');

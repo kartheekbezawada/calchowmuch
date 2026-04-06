@@ -65,6 +65,41 @@ export function getInputNumber(input) {
   return parseNumber(input?.value ?? '');
 }
 
+export function formatInputValue(input, fallback) {
+  const value = String(input?.value ?? '').trim();
+  return value || fallback;
+}
+
+export async function copyTextToClipboard(text) {
+  if (!text) {
+    return false;
+  }
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (_error) {
+    // Fall through to the textarea fallback.
+  }
+
+  try {
+    const helper = document.createElement('textarea');
+    helper.value = text;
+    helper.setAttribute('readonly', 'true');
+    helper.style.position = 'absolute';
+    helper.style.left = '-9999px';
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand('copy');
+    helper.remove();
+    return copied;
+  } catch (_error) {
+    return false;
+  }
+}
+
 export function getInputMode(group, fallback) {
   const active = group?.querySelector('button.is-active[data-value]');
   return active?.dataset.value ?? fallback;

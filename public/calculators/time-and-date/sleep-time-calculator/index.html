@@ -2,7 +2,7 @@
   <div class="sleep-shell">
     <section class="sleep-surface">
       <div class="sleep-lead">
-        <p class="sleep-intro">Plan a bedtime or wake-up time around 90-minute sleep cycles.</p>
+        <p class="sleep-intro">Best bedtimes or wake-up times in 4, 5, or 6 sleep cycles.</p>
       </div>
 
       <div class="sleep-planner-grid">
@@ -41,7 +41,7 @@
               <span class="sleep-field-label" id="sleep-field-label">I want to wake up at...</span>
             </label>
             <div class="sleep-time-input-wrap">
-              <input id="sleep-time-primary" class="sleep-time-input" type="time" step="900" />
+              <input id="sleep-time-primary" class="sleep-time-input" type="time" step="900" value="07:00" />
             </div>
           </div>
 
@@ -78,13 +78,38 @@
           </div>
 
           <div class="result" id="sleep-results" aria-live="polite">
-            <p class="placeholder" id="sleep-placeholder">Select a time and click Calculate.</p>
-            <div class="sleep-results-list" id="sleep-results-list"></div>
+            <p class="placeholder is-hidden" id="sleep-placeholder">Enter a time and click Calculate to refresh the cycle options.</p>
+            <div class="sleep-results-list" id="sleep-results-list">
+              <div class="sleep-result">
+                <div class="sleep-result-info">
+                  <div class="cycle-label">4 cycles</div>
+                  <div class="sleep-result-hours">About 6 hours of sleep</div>
+                </div>
+                <div class="sleep-result-time">12:45 AM</div>
+                <span class="sleep-recommended-badge">Option</span>
+              </div>
+              <div class="sleep-result is-primary">
+                <div class="sleep-result-info">
+                  <div class="cycle-label">5 cycles</div>
+                  <div class="sleep-result-hours">About 7 hours 30 minutes of sleep</div>
+                </div>
+                <div class="sleep-result-time">11:15 PM</div>
+                <span class="sleep-recommended-badge">Recommended</span>
+              </div>
+              <div class="sleep-result">
+                <div class="sleep-result-info">
+                  <div class="cycle-label">6 cycles</div>
+                  <div class="sleep-result-hours">About 9 hours of sleep</div>
+                </div>
+                <div class="sleep-result-time">9:45 PM</div>
+                <span class="sleep-recommended-badge">Option</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <p class="sleep-footer-note">Based on 90-minute sleep cycles with a short fall-asleep buffer.</p>
+    <p class="sleep-footer-note">Based on 90-minute sleep cycles with a short fall-asleep buffer. Planning tool only - not medical advice. Calculated locally in your browser - no data stored.</p>
   </div>
 </div>

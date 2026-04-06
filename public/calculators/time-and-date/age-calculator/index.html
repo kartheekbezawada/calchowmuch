@@ -2,18 +2,25 @@
   <div class="age-workbench">
     <section class="age-card age-input-card" aria-labelledby="age-input-title">
       <div class="age-card-head">
-        <h2 id="age-input-title">Choose Dates</h2>
+        <div>
+          <p class="age-kicker">Exact age + next birthday</p>
+          <h2 id="age-input-title">Check exact age.</h2>
+          <p class="age-intro">
+            Enter a birth date and any as-of date, then get the exact answer, totals, and next
+            birthday countdown in one clean view.
+          </p>
+        </div>
       </div>
 
       <div class="age-field-grid">
         <label class="age-field" for="age-dob">
           <span>Date of birth</span>
-          <input id="age-dob" type="date" />
+          <input id="age-dob" type="date" value="1990-06-15" />
         </label>
 
         <label class="age-field" for="age-as-of">
           <span>Age as of</span>
-          <input id="age-as-of" type="date" />
+          <input id="age-as-of" type="date" value="2026-04-06" />
         </label>
       </div>
 
@@ -35,59 +42,61 @@
       <div class="age-answer-head">
         <div class="age-answer-copy">
           <p class="age-kicker">Exact age</p>
-          <h2 id="age-headline">0 years, 0 months, 0 days</h2>
+          <h2 id="age-headline">35 years, 9 months, 22 days</h2>
+          <p class="age-context-line" id="age-summary">As of Apr 6, 2026. Born on Friday.</p>
         </div>
+        <button class="calculator-button age-copy-button" type="button" id="age-copy-summary">
+          Copy summary
+        </button>
       </div>
+
+      <div class="age-hero-grid">
+        <section class="age-highlight-card" aria-labelledby="age-next-birthday-label">
+          <p class="age-section-label" id="age-next-birthday-label">Next birthday</p>
+          <strong id="age-next-birthday-headline">In 70 days</strong>
+          <p id="age-next-birthday-detail">Turns 36 on Monday, Jun 15, 2026</p>
+        </section>
+
+        <section class="age-highlight-card" aria-labelledby="age-born-label">
+          <p class="age-section-label" id="age-born-label">Born on</p>
+          <strong id="age-born-weekday">Friday</strong>
+          <p id="age-born-detail">Jun 15, 1990</p>
+        </section>
+      </div>
+
+      <p class="age-proof-line">Date-based result. Calculated locally in your browser - no data stored.</p>
     </section>
 
     <section class="age-card age-overview-card" aria-labelledby="age-overview-title">
-      <h2 class="age-overview-title" id="age-overview-title">Context, Totals, and Life Events</h2>
+      <h2 class="age-overview-title" id="age-overview-title">Reference details</h2>
 
       <div class="age-answer-sections">
-        <section class="age-answer-section age-context-section" aria-labelledby="age-context-label">
-          <p class="age-section-label" id="age-context-label">Context</p>
-          <p class="age-context-line" id="age-summary">As of today.</p>
-        </section>
-
         <section class="age-answer-section age-totals-section" aria-labelledby="age-totals-label">
           <p class="age-section-label" id="age-totals-label">Totals</p>
           <dl class="age-data-list">
             <div class="age-data-row">
               <dt>Total months</dt>
-              <dd><strong id="age-total-months">0</strong></dd>
+              <dd><strong id="age-total-months">429</strong></dd>
             </div>
 
             <div class="age-data-row">
               <dt>Total weeks</dt>
-              <dd><strong id="age-total-weeks">0</strong></dd>
+              <dd><strong id="age-total-weeks">1,868.4</strong></dd>
             </div>
 
             <div class="age-data-row">
               <dt>Total days</dt>
-              <dd><strong id="age-total-days">0</strong></dd>
+              <dd><strong id="age-total-days">13,079</strong></dd>
             </div>
           </dl>
         </section>
 
-        <section class="age-answer-section age-events-section" aria-labelledby="age-events-label">
-          <p class="age-section-label" id="age-events-label">Life events</p>
-          <dl class="age-data-list age-life-list">
-            <div class="age-data-row age-data-row-rich">
-              <dt>Next birthday</dt>
-              <dd>
-                <strong id="age-next-birthday-headline">In 0 days</strong>
-                <p id="age-next-birthday-detail">Turns 0 on Jan 1, 2000</p>
-              </dd>
-            </div>
-
-            <div class="age-data-row age-data-row-rich">
-              <dt>Weekday of birth</dt>
-              <dd>
-                <strong id="age-born-weekday">Friday</strong>
-                <p id="age-born-detail">Jun 15, 1990</p>
-              </dd>
-            </div>
-          </dl>
+        <section class="age-answer-section age-context-section" aria-labelledby="age-context-label">
+          <p class="age-section-label" id="age-context-label">How to read it</p>
+          <p class="age-context-line">
+            Calendar age uses full years, months, and days. Totals give you the longer-span view
+            for planning, records, and milestone checks.
+          </p>
         </section>
       </div>
     </section>

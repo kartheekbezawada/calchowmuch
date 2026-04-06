@@ -21,6 +21,7 @@ const yearsOutput = document.querySelector('#date-diff-years');
 const monthsOutput = document.querySelector('#date-diff-months');
 const daysOutput = document.querySelector('#date-diff-days');
 const totalDaysOutput = document.querySelector('#date-diff-total-days');
+const totalDaysA11yOutput = document.querySelector('#date-diff-total-days-a11y');
 const totalWeeksOutput = document.querySelector('#date-diff-total-weeks');
 const businessDaysOutput = document.querySelector('#date-diff-business-days');
 const totalHoursOutput = document.querySelector('#date-diff-total-hours');
@@ -101,6 +102,41 @@ const CALCULATOR_FAQ_SCHEMA = {
           'Yes. Date and time mode uses your local device clock, so clock changes can affect total hours and minutes.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Why are business days shown near the top?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Business days are often the first planning question for work, delivery, and schedule decisions, so the page keeps them close to the headline answer.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I copy a summary for notes or email?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Yes. Copy summary gives you a clean text version of the main range and the most useful supporting numbers.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'When should I use a preset?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Presets are useful when you want a fast example or a common planning range before you fine-tune the dates yourself.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are my dates stored?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. All calculations run locally in your browser and nothing is stored.',
+      },
+    },
   ],
 };
 
@@ -148,9 +184,9 @@ const STRUCTURED_DATA = {
 };
 
 setPageMetadata({
-  title: 'Time Between Two Dates Calculator | Days, Weeks, Months & Hours',
+  title: 'Time Between Two Dates Calculator | Days, Business Days, Weeks and Hours',
   description:
-    'Find the exact time between two dates in days, weeks, months, business days, and hours with date-only or date-time mode, inclusive counting, and copy-ready summaries.',
+    'Find the exact time between two dates in total days, business days, weeks, months, and hours with date-only or date-time mode and copy-ready summaries.',
   canonical: 'https://calchowmuch.com/time-and-date/time-between-two-dates-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
@@ -334,9 +370,12 @@ updateTimeVisibility(modeButtons?.getValue() ?? 'date');
 function buildShortSummary(viewModel) {
   const range = `${viewModel.startLabel} to ${viewModel.endLabel}`;
   if (viewModel.mode === 'datetime') {
-    return `${range}. ${formatSmartNumber(viewModel.elapsed.totalHours, 2)} hours.`;
+    return `${range}. ${formatSmartNumber(viewModel.elapsed.totalHours, 2)} total hours.`;
   }
-  return `${range}. ${formatNumber(viewModel.counts.businessDays)} business days.`;
+  return `${range}. ${formatNumber(viewModel.counts.businessDays)} business days and ${formatSmartNumber(
+    viewModel.elapsed.totalDays,
+    0
+  )} total days.`;
 }
 
 function renderViewModel(viewModel) {
@@ -362,6 +401,12 @@ function renderViewModel(viewModel) {
   }
   if (totalDaysOutput) {
     totalDaysOutput.textContent = formatSmartNumber(
+      viewModel.elapsed.totalDays,
+      viewModel.mode === 'datetime' ? 2 : 0
+    );
+  }
+  if (totalDaysA11yOutput) {
+    totalDaysA11yOutput.textContent = formatSmartNumber(
       viewModel.elapsed.totalDays,
       viewModel.mode === 'datetime' ? 2 : 0
     );
