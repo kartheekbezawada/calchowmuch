@@ -37,6 +37,14 @@
         --font-semibold: 600;
         --font-medium: 500;
         --font-normal: 400;
+        --border-color: rgba(19, 34, 47, 0.12);
+        --accent: #166534;
+        --header-text: #13222f;
+        --muted-text: #5d6f67;
+        --page-bg: #f6fbf7;
+        --panel-bg: #ffffff;
+        --panel-shadow: 0 2px 8px rgba(19, 34, 47, 0.06);
+        --pill-bg: #f0f4f1;
         --header-height: 80px;
         --nav-height: 64px;
         --footer-height: 72px;
@@ -631,6 +639,7 @@
         border: 1px solid var(--border-color);
         font-size: 15px;
         min-width: 400px;
+        margin-bottom: 4px;
       }
 
       .calculator-table th,
@@ -1618,9 +1627,47 @@
           padding: 18px;
         }
       }
+
+      .sal-key-insight {
+        margin: 20px 0;
+        padding: 20px 24px;
+        border-left: 4px solid #265d90;
+        border-radius: 0 16px 16px 0;
+        background: rgba(38, 93, 144, 0.06);
+      }
+
+      .sal-key-insight strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #265d90;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .sal-key-insight p {
+        margin: 0;
+        color: #22353f;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .sal-table-caption {
+        margin: 32px 0 10px;
+        color: #22353f;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .sal-table-note {
+        margin: 8px 0 16px;
+        color: #6b7e77;
+        font-size: 13px;
+        font-style: italic;
+      }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#webpage","name":"Commission Earnings Calculator | Sales Commission Pay & Base Pay","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication","name":"Commission Earnings Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate commission?","acceptedAnswer":{"@type":"Answer","text":"Multiply the sales amount by the commission rate to estimate commission earned."}},{"@type":"Question","name":"Can I use a commission rate or a known commission amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator can support either a rate-based input or a known commission amount."}},{"@type":"Question","name":"Can I include base pay?","acceptedAnswer":{"@type":"Answer","text":"Yes. If base pay is entered, total earnings can be shown as base pay plus commission."}},{"@type":"Question","name":"Does this show effective commission rate?","acceptedAnswer":{"@type":"Answer","text":"Yes. If commission and sales are known, the calculator can also show the effective commission percentage."}},{"@type":"Question","name":"Does this include tax deductions?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross commission earnings only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Earnings Calculator","item":"https://calchowmuch.com/salary-calculators/commission-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#webpage","name":"Commission Earnings Calculator | Sales Commission Pay & Base Pay","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication","name":"Commission Earnings Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate commission?","acceptedAnswer":{"@type":"Answer","text":"Multiply the sales amount by the commission rate. For example, $80,000 in sales at 6% = $4,800 commission."}},{"@type":"Question","name":"Is commission better than a fixed salary?","acceptedAnswer":{"@type":"Answer","text":"It depends on your risk tolerance and sales consistency. Commission has higher upside but also higher downside. Strong sellers in stable markets often prefer it."}},{"@type":"Question","name":"What is a good commission rate?","acceptedAnswer":{"@type":"Answer","text":"Rates vary by industry: 5–10% is common in real estate and SaaS, 1–3% in high-volume retail, and 15–25% or more in specialized services."}},{"@type":"Question","name":"How do I budget on commission income?","acceptedAnswer":{"@type":"Answer","text":"Base your fixed expenses on your worst realistic month, not your average. Treat above-average months as savings or debt-payoff opportunities."}},{"@type":"Question","name":"Can I add base pay to see total earnings?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter base pay in the optional field and the calculator adds it to commission for total earnings."}},{"@type":"Question","name":"What is the effective commission rate?","acceptedAnswer":{"@type":"Answer","text":"It is the commission amount divided by sales. Useful when comparing different pay plans that use different payout structures."}},{"@type":"Question","name":"Does this include taxes?","acceptedAnswer":{"@type":"Answer","text":"No. All figures are gross. Commission income is taxed as ordinary income in most cases."}},{"@type":"Question","name":"Is my data saved or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser. Nothing is stored or transmitted."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Earnings Calculator","item":"https://calchowmuch.com/salary-calculators/commission-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -1728,153 +1775,179 @@
     <div id="commission-calculator-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
     <p class="sal-explanation-kicker">Sales earnings guide</p>
-    <h2>How a commission calculator turns sales into commission and total earnings</h2>
+    <h2>See exactly what your sales are worth in commission and total pay</h2>
     <p>
-      This commission earnings calculator estimates commission from sales and rate inputs, or works
-      backward from a known commission amount. It also shows total earnings and effective rate so
-      salary-plus-commission pay is easier to judge in one place.
-    </p>
-    <p>
-      Commission-heavy pay can look strong but fluctuate more than fixed salary. Seeing commission
-      and total earnings together makes that trade-off easier to read when you are comparing pay
-      plans, roles, or months of uneven performance.
+      Commission pay can be exciting or stressful — the math is the same either way. Enter your
+      sales volume, commission rate, and optional base pay to see commission earned, total earnings,
+      and the effective rate in one view.
     </p>
   </section>
+
   <section class="sal-explanation-card">
     <h3>How to Guide</h3>
 
     <h4>What This Calculator Does</h4>
     <p>
-      The calculator estimates commission from either a rate or a flat commission amount. If you add
-      base pay, it also shows total earnings for the period.
+      The calculator estimates commission from a sales amount and rate (or flat amount), adds any base
+      pay, and shows total earnings with the effective commission rate.
     </p>
 
     <h4>How to Use This Calculator</h4>
     <ol class="sal-explanation-list">
-      <li>Enter the sales amount.</li>
-      <li>Choose rate mode or amount mode.</li>
-      <li>Enter the commission rate or commission amount.</li>
-      <li>Optional: add base pay if you want total earnings.</li>
+      <li>Enter the sales amount for the period.</li>
+      <li>Choose rate mode (e.g., 6%) or amount mode (e.g., $4,800).</li>
+      <li>Enter the commission value.</li>
+      <li>Optional: enter base pay to see total earnings.</li>
       <li>Click <strong>Calculate</strong> to see commission, total earnings, and effective rate.</li>
     </ol>
 
     <h4>How to Interpret Results</h4>
+    <p class="sal-table-caption">Commission earned at common sales volumes and rates</p>
     <table class="calculator-table">
       <thead>
         <tr>
-          <th scope="col">Result</th>
-          <th scope="col">What it tells you</th>
+          <th scope="col">Sales Volume</th>
+          <th scope="col">3% Rate</th>
+          <th scope="col">5% Rate</th>
+          <th scope="col">8% Rate</th>
+          <th scope="col">10% Rate</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Commission earned</td>
-          <td>The gross variable-pay amount from the entered sales.</td>
-        </tr>
-        <tr>
-          <td>Total earnings</td>
-          <td>Base pay plus commission for the same period.</td>
-        </tr>
-        <tr>
-          <td>Effective rate</td>
-          <td>The commission amount as a share of sales.</td>
-        </tr>
+        <tr><td data-label="Sales Volume">$25,000</td><td data-label="3% Rate">$750</td><td data-label="5% Rate">$1,250</td><td data-label="8% Rate">$2,000</td><td data-label="10% Rate">$2,500</td></tr>
+        <tr><td data-label="Sales Volume">$50,000</td><td data-label="3% Rate">$1,500</td><td data-label="5% Rate">$2,500</td><td data-label="8% Rate">$4,000</td><td data-label="10% Rate">$5,000</td></tr>
+        <tr><td data-label="Sales Volume">$75,000</td><td data-label="3% Rate">$2,250</td><td data-label="5% Rate">$3,750</td><td data-label="8% Rate">$6,000</td><td data-label="10% Rate">$7,500</td></tr>
+        <tr><td data-label="Sales Volume">$100,000</td><td data-label="3% Rate">$3,000</td><td data-label="5% Rate">$5,000</td><td data-label="8% Rate">$8,000</td><td data-label="10% Rate">$10,000</td></tr>
+        <tr><td data-label="Sales Volume">$150,000</td><td data-label="3% Rate">$4,500</td><td data-label="5% Rate">$7,500</td><td data-label="8% Rate">$12,000</td><td data-label="10% Rate">$15,000</td></tr>
+        <tr><td data-label="Sales Volume">$200,000</td><td data-label="3% Rate">$6,000</td><td data-label="5% Rate">$10,000</td><td data-label="8% Rate">$16,000</td><td data-label="10% Rate">$20,000</td></tr>
       </tbody>
     </table>
-    <p>
-      Use commission earned to judge sales performance and total earnings to judge cash flow. The
-      effective rate is useful when you want to compare plans that use different payout styles.
-    </p>
-    <p>
-      Formula breakdown: in rate mode, commission equals sales amount times commission rate. In amount
-      mode, the entered commission amount is used directly, and effective rate equals commission divided by sales amount.
-    </p>
+    <p class="sal-table-note">All figures are gross commission = sales × rate.</p>
 
-    <h4>When to Use This Calculator</h4>
-    <ul class="sal-explanation-list">
-      <li>Compare a salary-plus-commission role against a fixed-salary offer.</li>
-      <li>Check how much base pay changes total earnings when commission is variable.</li>
-      <li>Translate a known payout amount into an effective commission rate.</li>
-      <li>Stress-test whether high-sales months are carrying too much of your income plan.</li>
-    </ul>
+    <p class="sal-table-caption">Monthly total earnings with $3,500 base pay and 6% commission</p>
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Monthly Sales</th>
+          <th scope="col">Commission</th>
+          <th scope="col">Total Monthly</th>
+          <th scope="col">Annualized</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td data-label="Monthly Sales">$20,000</td><td data-label="Commission">$1,200</td><td data-label="Total Monthly">$4,700</td><td data-label="Annualized">$56,400</td></tr>
+        <tr><td data-label="Monthly Sales">$40,000</td><td data-label="Commission">$2,400</td><td data-label="Total Monthly">$5,900</td><td data-label="Annualized">$70,800</td></tr>
+        <tr><td data-label="Monthly Sales">$60,000</td><td data-label="Commission">$3,600</td><td data-label="Total Monthly">$7,100</td><td data-label="Annualized">$85,200</td></tr>
+        <tr><td data-label="Monthly Sales">$80,000</td><td data-label="Commission">$4,800</td><td data-label="Total Monthly">$8,300</td><td data-label="Annualized">$99,600</td></tr>
+        <tr><td data-label="Monthly Sales">$100,000</td><td data-label="Commission">$6,000</td><td data-label="Total Monthly">$9,500</td><td data-label="Annualized">$114,000</td></tr>
+      </tbody>
+    </table>
+    <p class="sal-table-note">Annualized = total monthly × 12. Assumes consistent monthly sales.</p>
+
+    <div class="sal-key-insight">
+      <strong>Key Insight</strong>
+      <p>
+        Commission pay amplifies good months AND bad months. At a 6% rate with $3,500 base, a
+        $60K sales month earns $7,100. But a $15K slump month earns only $4,400. If your fixed
+        expenses are $5,500, one slow month creates a $1,100 shortfall. Always stress-test the
+        worst-case month, not just the average.
+      </p>
+    </div>
 
     <h4>Real-World Example</h4>
     <p>
-      With <strong>$80,000.00</strong> in sales and a <strong>6%</strong> commission rate, commission
-      earned is <strong>$4,800.00</strong>. If base pay is <strong>$3,000.00</strong>, total earnings
-      become <strong>$7,800.00</strong>.
+      Reena is a SaaS account executive with a <strong>$42,000</strong> base
+      (<strong>$3,500/month</strong>) and a <strong>6%</strong> commission on closed deals. In her
+      best quarter, she closed <strong>$210,000</strong> in deals — <strong>$12,600</strong> in
+      commission, for total quarterly earnings of <strong>$23,100</strong>.
+    </p>
+    <p>
+      But in Q1, she closed only <strong>$45,000</strong> — just <strong>$2,700</strong> in
+      commission, dropping quarterly earnings to <strong>$13,200</strong>. Her income swung by
+      nearly <strong>$10,000 per quarter</strong> based on pipeline alone. She uses the calculator
+      to model best-case, average, and worst-case months before committing to a budget.
+    </p>
+    <p>
+      Once you know your average month, translate that variable income into steadier budget numbers with the
+      <a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a>
+      and the <a href="/salary-calculators/salary-calculator/">Salary Calculator</a>. For the broader set of pay tools,
+      browse the <a href="/salary-calculators/">Salary Calculators hub</a>.
     </p>
 
-    <h4>Commission Variability</h4>
-    <p>
-      Commission pay is driven by both performance and payout structure. A strong rate can still produce
-      uneven income if sales are seasonal or unpredictable.
-    </p>
-    <p>
-      That is why total earnings should be read with caution when base pay is small. Variable pay often
-      works best when your budget has room for swings.
-    </p>
-
-    <h4>Reading Commission Alongside Salary</h4>
-    <p>
-      Use the total-earnings output to understand gross cash flow, but use the commission-only output
-      to judge how dependent your pay is on performance. That split makes it easier to compare a
-      high-base role with a higher-upside role that carries more month-to-month risk.
-    </p>
+    <h4>What to Do Next</h4>
+    <ol class="sal-explanation-list">
+      <li>Compare commission pay with a fixed <a href="/salary-calculators/raise-calculator/">raise</a> to see which adds more stability.</li>
+      <li>Use the <a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a> to model a bonus-based alternative to pure commission.</li>
+      <li>Convert your average total earnings into a <a href="/salary-calculators/salary-to-hourly-calculator/">hourly rate</a> to see what you truly earn per hour of work.</li>
+    </ol>
 
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>Compare commission-driven earnings with equivalent hourly, monthly, or annual gross pay views.</p>
+        <p>Convert total earnings into hourly, weekly, monthly, and annual views.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
-        <p>Estimate another form of variable pay when the compensation question is bonus rather than commission.</p>
+        <p>Compare commission pay with bonus-based variable compensation.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
-        <p>Check whether a higher base salary changes total compensation more reliably than variable commission.</p>
+        <p>See whether a higher base salary beats commission upside for your situation.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/salary-calculators/overtime-pay-calculator/">Overtime Pay Calculator</a></h3>
-        <p>Compare commission-driven income with another variable-pay route based on extra hours rather than sales.</p>
+        <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
+        <p>Turn average annualized commission earnings into a monthly planning number for budgeting.</p>
       </article>
     </div>
   </section>
+
   <section class="sal-explanation-card">
     <h3>Frequently Asked Questions</h3>
     <div class="sal-faq-grid">
       <article class="sal-related-card">
-        <h3>How do you calculate commission?</h3>
-        <p>Multiply the sales amount by the commission rate to estimate commission earned.</p>
+        <h3>How do I calculate commission?</h3>
+        <p>Multiply the sales amount by the commission rate. For example, $80,000 in sales at 6% = $4,800 commission.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I use a commission rate or a known commission amount?</h3>
-        <p>Yes. The calculator can support either a rate-based input or a known commission amount.</p>
+        <h3>Is commission better than a fixed salary?</h3>
+        <p>It depends on your risk tolerance and sales consistency. Commission has higher upside but also higher downside. Strong sellers in stable markets often prefer it.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I include base pay?</h3>
-        <p>Yes. If base pay is entered, total earnings can be shown as base pay plus commission.</p>
+        <h3>What is a good commission rate?</h3>
+        <p>Rates vary by industry: 5–10% is common in real estate and SaaS, 1–3% in high-volume retail, and 15–25% or more in specialized services.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this show effective commission rate?</h3>
-        <p>Yes. If commission and sales are known, the calculator can also show the effective commission percentage.</p>
+        <h3>How do I budget on commission income?</h3>
+        <p>Base your fixed expenses on your worst realistic month, not your average. Treat above-average months as savings or debt-payoff opportunities.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this include tax deductions?</h3>
-        <p>No. It estimates gross commission earnings only.</p>
+        <h3>Can I add base pay to see total earnings?</h3>
+        <p>Yes. Enter base pay in the optional field and the calculator adds it to commission for total earnings.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>What is the effective commission rate?</h3>
+        <p>It is the commission amount divided by sales. Useful when comparing different pay plans that use different payout structures.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Does this include taxes?</h3>
+        <p>No. All figures are gross. Commission income is taxed as ordinary income in most cases.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Is my data saved or sent anywhere?</h3>
+        <p>No. All calculations run locally in your browser. Nothing is stored or transmitted.</p>
       </article>
     </div>
   </section>
+
   <section class="sal-explanation-card sal-important-notes">
     <h3>Important Notes</h3>
     <ul class="sal-important-notes-list">
-      <li><span class="sal-note-key">Last updated:</span> March 2026</li>
-      <li><span class="sal-note-key">Accuracy:</span> Results use the sales amount, commission value, and optional base pay that you enter.</li>
+      <li><span class="sal-note-key">Last updated:</span> April 2026</li>
+      <li><span class="sal-note-key">Accuracy:</span> Results use the sales amount, commission rate or amount, and optional base pay you enter.</li>
       <li><span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does not provide payroll, tax, or legal advice.</li>
-      <li><span class="sal-note-key">Assumptions:</span> Commission and base pay are treated as gross pay, and each calculation models one sales period at a time.</li>
-      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no data is stored.</li>
+      <li><span class="sal-note-key">Assumptions:</span> Commission and base pay are gross. Each calculation models one sales period at a time.</li>
+      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser — no data is stored.</li>
     </ul>
   </section>
 </div>
