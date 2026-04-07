@@ -111,3 +111,5 @@ function calculate() {
 }
 
 document.querySelector('#bonus-button')?.addEventListener('click', calculate);
+
+calculate();

@@ -78,3 +78,5 @@ function calculate() {
 }
 
 document.querySelector('#monthly-to-annual-button')?.addEventListener('click', calculate);
+
+calculate();

@@ -113,3 +113,5 @@ function calculate() {
 }
 
 document.querySelector('#raise-button')?.addEventListener('click', calculate);
+
+calculate();

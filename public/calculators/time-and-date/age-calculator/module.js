@@ -72,9 +72,9 @@ export const pageSchema = {
 };
 
 const metadata = {
-  title: 'Age Calculator | Exact Age in Years, Months, Days & Next Birthday',
+  title: 'Age Calculator (Exact) | Exact Age and Next Birthday Countdown',
   description:
-    'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.',
+    'Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown.',
   canonical: 'https://calchowmuch.com/time-and-date/age-calculator/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -83,20 +83,20 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Age Calculator | Exact Age in Years, Months, Days & Next Birthday',
+        name: 'Age Calculator (Exact) | Exact Age and Next Birthday Countdown',
         url: 'https://calchowmuch.com/time-and-date/age-calculator/',
         description:
-          'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.',
+          'Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown.',
         inLanguage: 'en',
       },
       {
         '@type': 'SoftwareApplication',
-        name: 'Age Calculator',
+        name: 'Age Calculator (Exact)',
         applicationCategory: 'UtilityApplication',
         operatingSystem: 'Web',
         url: 'https://calchowmuch.com/time-and-date/age-calculator/',
         description:
-          'Free age calculator to find exact age, total days, total weeks, and the next birthday from a date of birth.',
+          'Free age calculator to find exact age, total months, total days, and the next birthday from a date of birth.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '2.0',
         creator: {
@@ -159,13 +159,19 @@ let copyResetTimer = null;
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');
-  if (!title || title.tagName === 'H1') {
+  if (!title) {
+    return;
+  }
+  const desired = 'Age Calculator (Exact)';
+
+  if (title.tagName === 'H1') {
+    title.textContent = desired;
     return;
   }
 
   const h1 = document.createElement('h1');
   h1.id = 'calculator-title';
-  h1.textContent = 'Age Calculator';
+  h1.textContent = desired;
   title.replaceWith(h1);
 }
 

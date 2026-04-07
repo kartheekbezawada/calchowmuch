@@ -369,26 +369,26 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-calculator': {
-    title: 'Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay',
+    title: 'Salary Calculator (Gross Pay) | Hourly, Weekly, Monthly and Annual Pay',
     description:
-      'Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions.',
-    h1: 'Salary Calculator',
+      'Convert one gross pay amount into hourly, daily, weekly, biweekly, monthly, and annual pay with schedule assumptions that stay visible.',
+    h1: 'Salary Calculator (Gross Pay)',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'hourly-to-salary-calculator': {
-    title: 'Hourly to Salary Calculator | Convert Hourly Pay to Annual Salary',
+    title: 'Hourly to Salary Calculator (Gross Pay) | Annual, Monthly and Weekly Pay',
     description:
-      'Convert hourly pay into annual salary, monthly pay, biweekly pay, and weekly earnings using hours worked and weeks per year.',
-    h1: 'Hourly to Salary Calculator',
+      'Estimate gross annual salary from an hourly rate, then see monthly, biweekly, and weekly pay using your hours per week and paid weeks per year.',
+    h1: 'Hourly to Salary Calculator (Gross Pay)',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'salary-to-hourly-calculator': {
-    title: 'Salary to Hourly Calculator | Convert Annual Salary to Hourly Pay',
+    title: 'Salary to Hourly Calculator (Gross Pay) | Hourly, Weekly and Monthly Pay',
     description:
-      'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly earnings using your hours worked and weeks per year.',
-    h1: 'Salary to Hourly Calculator',
+      'Convert annual gross salary into hourly, weekly, biweekly, and monthly pay using your hours worked and paid weeks per year.',
+    h1: 'Salary to Hourly Calculator (Gross Pay)',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -409,10 +409,10 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'weekly-pay-calculator': {
-    title: 'Weekly Pay Calculator | Weekly Earnings From Hours, Rate and Overtime',
+    title: 'Weekly Pay Calculator (Gross Pay) | Weekly Earnings and Annualized Pay',
     description:
       'Estimate weekly gross pay from hourly rate, regular hours, overtime hours, and overtime multiplier, then annualize the result.',
-    h1: 'Weekly Pay Calculator',
+    h1: 'Weekly Pay Calculator (Gross Pay)',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -661,16 +661,16 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Work Hours Calculator',
   },
   'time-between-two-dates-calculator': {
-    title: 'Time Between Two Dates Calculator | Days, Weeks, Months & Hours',
+    title: 'Time Between Two Dates Calculator | Days, Business Days, Weeks and Hours',
     description:
-      'Find the exact time between two dates in days, weeks, months, business days, and hours with date-only or date-time mode, inclusive counting, and copy-ready summaries.',
+      'Find the exact time between two dates in total days, business days, weeks, months, and hours with date-only or date-time mode and copy-ready summaries.',
     h1: 'Time Between Two Dates Calculator',
   },
   'sleep-time-calculator': {
-    title: 'Sleep Time Calculator | Best Bedtime & Wake-Up Times',
+    title: 'Sleep Time Calculator (90-Minute Cycles) | Bedtime and Wake-Up Times',
     description:
-      'Find the best bedtime or wake-up time using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options for workdays, travel, or shift schedules.',
-    h1: 'Sleep Time Calculator',
+      'Find bedtime or wake-up times using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options in a clearer answer-first layout.',
+    h1: 'Sleep Time Calculator (90-Minute Cycles)',
   },
   'wake-up-time-calculator': {
     title: 'Wake-Up Time Calculator | Best Alarm Times by Sleep Cycle',
@@ -703,10 +703,10 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Birthday Day-of-Week Calculator',
   },
   'countdown-timer': {
-    title: 'Countdown Timer | Live Countdown to Any Date or Event',
+    title: 'Countdown Timer (Live) | Live Countdown to Any Date or Event',
     description:
-      'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.',
-    h1: 'Countdown Timer',
+      'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar.',
+    h1: 'Countdown Timer (Live)',
   },
   'days-until-a-date-calculator': {
     title: 'Days Until a Date Calculator | Countdown, Days Since & Weekdays',
@@ -715,10 +715,10 @@ const CALCULATOR_OVERRIDES = {
     h1: 'Days Until a Date Calculator',
   },
   'age-calculator': {
-    title: 'Age Calculator | Exact Age in Years, Months, Days & Next Birthday',
+    title: 'Age Calculator (Exact) | Exact Age and Next Birthday Countdown',
     description:
-      'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.',
-    h1: 'Age Calculator',
+      'Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown.',
+    h1: 'Age Calculator (Exact)',
   },
   'discount-calculator': {
     title: 'Discount Calculator | Sale Price, Savings & Percent Off',

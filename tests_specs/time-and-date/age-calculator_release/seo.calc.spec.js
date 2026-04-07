@@ -4,16 +4,16 @@ test.describe('Age Calculator SEO', () => {
   test('AGE-TEST-SEO-1: metadata, headings, FAQ schema, and sitemap', async ({ page }) => {
     await page.goto('/time-and-date/age-calculator/');
 
-    await expect(page).toHaveTitle('Age Calculator | Exact Age in Years, Months, Days & Next Birthday');
+    await expect(page).toHaveTitle('Age Calculator (Exact) | Exact Age and Next Birthday Countdown');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.'
+      'Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown.'
     );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Age Calculator');
+    await expect(h1).toHaveText('Age Calculator (Exact)');
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveCount(1);

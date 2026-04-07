@@ -10,11 +10,11 @@
     <div class="sal-input-grid">
       <div class="sal-input-row">
         <label for="overtime-hourly-rate">Hourly rate</label>
-        <input id="overtime-hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+        <input id="overtime-hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" value="25" />
       </div>
       <div class="sal-input-row">
         <label for="overtime-hours">Overtime hours</label>
-        <input id="overtime-hours" type="number" min="0" step="0.1" />
+        <input id="overtime-hours" type="number" min="0" step="0.1" value="10" />
       </div>
     </div>
 
@@ -25,7 +25,7 @@
       </div>
       <div class="sal-input-row">
         <label for="overtime-base-pay">Base pay for the same period</label>
-        <input id="overtime-base-pay" type="number" min="0" step="0.01" inputmode="decimal" />
+        <input id="overtime-base-pay" type="number" min="0" step="0.01" inputmode="decimal" value="1000" />
       </div>
     </div>
 
@@ -36,13 +36,13 @@
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Overtime pay results">
     <p class="sal-answer-title">Overtime pay</p>
-    <p class="sal-answer-hero" id="overtime-pay-result">—</p>
-    <p class="sal-answer-note" id="overtime-pay-note">Calculate to isolate the overtime portion first, then see total pay if base pay is included.</p>
-    <p class="sal-answer-context" id="overtime-pay-context">The route will show the overtime hours and multiplier used to produce the extra-pay amount.</p>
+    <p class="sal-answer-hero" id="overtime-pay-result">375.00</p>
+    <p class="sal-answer-note" id="overtime-pay-note">The overtime portion adds 375.00 before taxes.</p>
+    <p class="sal-answer-context" id="overtime-pay-context">Based on 10 overtime hours at 1.5x.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Total pay</span>
-        <strong id="overtime-total-pay">—</strong>
+        <strong id="overtime-total-pay">1,375.00</strong>
       </div>
     </div>
     <div class="sal-breakdown-card">

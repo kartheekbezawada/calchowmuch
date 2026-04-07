@@ -106,12 +106,12 @@ test.describe('Sleep Time Calculator', () => {
     await expect(explanation.locator('.sleep-explanation-card h2')).toHaveText(
       'When should you go to sleep or wake up?'
     );
-    await expect(explanation.locator('.sleep-explanation-card h3')).toHaveCount(3);
+    await expect(explanation.locator('.sleep-explanation-card h3')).toHaveCount(4);
     await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');
     await expect(explanation.locator('.sleep-faq-item')).toHaveCount(10);
-    await expect(explanation.locator('.sleep-notes li')).toHaveCount(5);
+    await expect(explanation.locator('.sleep-explanation-card:last-child .sleep-notes li')).toHaveCount(5);
     await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
   });
 });

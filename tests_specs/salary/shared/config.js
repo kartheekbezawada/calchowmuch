@@ -7,10 +7,10 @@ export const SALARY_HUB_DESCRIPTION =
 export const SALARY_CALCULATOR_CONFIGS = {
   'salary-calculator': {
     route: '/salary-calculators/salary-calculator/',
-    h1: 'Salary Calculator',
-    title: 'Salary Calculator | Convert Hourly, Daily, Weekly, Monthly and Annual Pay',
+    h1: 'Salary Calculator (Gross Pay)',
+    title: 'Salary Calculator (Gross Pay) | Hourly, Weekly, Monthly and Annual Pay',
     description:
-      'Convert gross pay across hourly, daily, weekly, biweekly, monthly, and annual views using your work schedule assumptions.',
+      'Convert one gross pay amount into hourly, daily, weekly, biweekly, monthly, and annual pay with schedule assumptions that stay visible.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       await page.click('button[data-value="hourly"]');
       await page.click('#salary-assumptions summary');
@@ -22,15 +22,15 @@ export const SALARY_CALCULATOR_CONFIGS = {
 
       expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(52000, 2);
       expect(parseNumericText(await page.locator('#salary-daily-pay').textContent())).toBeCloseTo(200, 2);
-      await expect(page.locator('#salary-answer-context')).toContainText('from hourly pay');
+      await expect(page.locator('#salary-answer-context')).toContainText('source hourly pay');
     },
   },
   'hourly-to-salary-calculator': {
     route: '/salary-calculators/hourly-to-salary-calculator/',
-    h1: 'Hourly to Salary Calculator',
-    title: 'Hourly to Salary Calculator | Convert Hourly Pay to Annual Salary',
+    h1: 'Hourly to Salary Calculator (Gross Pay)',
+    title: 'Hourly to Salary Calculator (Gross Pay) | Annual, Monthly and Weekly Pay',
     description:
-      'Convert hourly pay into annual salary, monthly pay, biweekly pay, and weekly earnings using hours worked and weeks per year.',
+      'Estimate gross annual salary from an hourly rate, then see monthly, biweekly, and weekly pay using your hours per week and paid weeks per year.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#hourly-rate', '25');
       await page.fill('#hourly-hours-per-week', '40');
@@ -43,10 +43,10 @@ export const SALARY_CALCULATOR_CONFIGS = {
   },
   'salary-to-hourly-calculator': {
     route: '/salary-calculators/salary-to-hourly-calculator/',
-    h1: 'Salary to Hourly Calculator',
-    title: 'Salary to Hourly Calculator | Convert Annual Salary to Hourly Pay',
+    h1: 'Salary to Hourly Calculator (Gross Pay)',
+    title: 'Salary to Hourly Calculator (Gross Pay) | Hourly, Weekly and Monthly Pay',
     description:
-      'Convert annual salary into hourly pay, weekly pay, biweekly pay, and monthly earnings using your hours worked and weeks per year.',
+      'Convert annual gross salary into hourly, weekly, biweekly, and monthly pay using your hours worked and paid weeks per year.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#salary-annual-input', '52000');
       await page.fill('#salary-hours-input', '40');
@@ -89,8 +89,8 @@ export const SALARY_CALCULATOR_CONFIGS = {
   },
   'weekly-pay-calculator': {
     route: '/salary-calculators/weekly-pay-calculator/',
-    h1: 'Weekly Pay Calculator',
-    title: 'Weekly Pay Calculator | Weekly Earnings From Hours, Rate and Overtime',
+    h1: 'Weekly Pay Calculator (Gross Pay)',
+    title: 'Weekly Pay Calculator (Gross Pay) | Weekly Earnings and Annualized Pay',
     description:
       'Estimate weekly gross pay from hourly rate, regular hours, overtime hours, and overtime multiplier, then annualize the result.',
     runE2E: async ({ page, expect, parseNumericText }) => {

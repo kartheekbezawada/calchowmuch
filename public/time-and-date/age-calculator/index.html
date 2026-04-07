@@ -3,20 +3,20 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Age Calculator | Exact Age in Years, Months, Days &amp; Next Birthday</title>
-    <meta name="description" content="Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown." />
+    <title>Age Calculator (Exact) | Exact Age and Next Birthday Countdown</title>
+    <meta name="description" content="Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/age-calculator/" />
-    <meta property="og:title" content="Age Calculator | Exact Age in Years, Months, Days &amp; Next Birthday" />
-    <meta property="og:description" content="Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown." />
+    <meta property="og:title" content="Age Calculator (Exact) | Exact Age and Next Birthday Countdown" />
+    <meta property="og:description" content="Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/time-and-date/age-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Age Calculator | Exact Age in Years, Months, Days &amp; Next Birthday" />
-    <meta name="twitter:description" content="Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown." />
+    <meta name="twitter:title" content="Age Calculator (Exact) | Exact Age and Next Birthday Countdown" />
+    <meta name="twitter:description" content="Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/time-and-date/age-calculator/#softwareapplication","name":"Age Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/time-and-date/age-calculator/","description":"Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/time-and-date/age-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Time And Date","item":"https://calchowmuch.com/time-and-date/"},{"@type":"ListItem","position":3,"name":"Age Calculator","item":"https://calchowmuch.com/time-and-date/age-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/time-and-date/age-calculator/#softwareapplication","name":"Age Calculator (Exact)","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/time-and-date/age-calculator/","description":"Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/time-and-date/age-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Time And Date","item":"https://calchowmuch.com/time-and-date/"},{"@type":"ListItem","position":3,"name":"Age Calculator (Exact)","item":"https://calchowmuch.com/time-and-date/age-calculator/"}]}]}</script>
     <style data-time-and-date-cluster="true">
       /* assets/css/base.css */
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
@@ -1318,8 +1318,8 @@
       }
 
       #calc-age .age-input-card .age-card-head {
-        justify-content: center;
-        text-align: center;
+        justify-content: flex-start;
+        text-align: left;
       }
 
       #calc-age .age-card-head,
@@ -1332,9 +1332,9 @@
 
       #calc-age .age-answer-card {
         display: grid;
-        align-content: center;
-        justify-items: center;
-        gap: 20px;
+        align-content: start;
+        justify-items: stretch;
+        gap: 24px;
         padding: 32px;
       }
 
@@ -1380,7 +1380,6 @@
 
       #calc-age .age-answer-copy h2 {
         max-width: none;
-        white-space: nowrap;
         font-size: clamp(26px, 3.2vw, 52px);
         font-weight: 500;
         font-family: Georgia, 'Times New Roman', serif;
@@ -1389,14 +1388,15 @@
 
       #calc-age .age-answer-head {
         width: 100%;
-        justify-content: center;
-        align-items: center;
+        justify-content: space-between;
+        align-items: flex-start;
       }
 
       #calc-age .age-answer-copy {
         display: grid;
-        justify-items: center;
-        text-align: center;
+        gap: 10px;
+        justify-items: flex-start;
+        text-align: left;
       }
 
       #calc-age .age-summary,
@@ -1412,6 +1412,37 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
         margin-top: 24px;
+      }
+
+      #calc-age .age-hero-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        width: 100%;
+      }
+
+      #calc-age .age-highlight-card {
+        display: grid;
+        gap: 8px;
+        padding: 18px 20px;
+        border: 1px solid rgba(109, 119, 130, 0.14);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      #calc-age .age-highlight-card strong {
+        color: var(--age-text);
+        font-size: clamp(24px, 2.8vw, 34px);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        line-height: 1.1;
+      }
+
+      #calc-age .age-proof-line {
+        margin: 0;
+        color: var(--age-muted);
+        font-size: 13px;
+        line-height: 1.6;
       }
 
       #calc-age .age-field {
@@ -1512,7 +1543,7 @@
 
       #calc-age .age-answer-sections {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
         gap: 24px 28px;
       }
 
@@ -1532,9 +1563,9 @@
       }
 
       #calc-age .age-context-line {
-        max-width: 24ch;
+        max-width: 44ch;
         color: var(--age-text);
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.7;
       }
 
@@ -1610,21 +1641,6 @@
 
       #age-explanation .age-explanation-card {
         padding: 24px 28px;
-      }
-
-      #age-explanation .age-utility-card {
-        gap: 16px;
-      }
-
-      #age-explanation .age-utility-head {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 18px;
-      }
-
-      #age-explanation .age-utility-note {
-        max-width: 56ch;
       }
 
       #age-explanation .age-explanation-card h2 {
@@ -1748,12 +1764,9 @@
           grid-template-columns: minmax(0, 1fr);
         }
 
+        #calc-age .age-hero-grid,
         #calc-age .age-answer-sections {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        #calc-age .age-events-section {
-          grid-column: 1 / -1;
+          grid-template-columns: minmax(0, 1fr);
         }
 
         #calc-age .age-action-row,
@@ -1772,14 +1785,8 @@
         }
 
         #calc-age .age-copy-button,
-        #calc-age .age-secondary-button,
-        #age-explanation .age-copy-button {
+        #calc-age .age-secondary-button {
           width: 100%;
-        }
-
-        #age-explanation .age-utility-head {
-          grid-template-columns: minmax(0, 1fr);
-          display: grid;
         }
       }
 
@@ -1808,13 +1815,12 @@
           gap: 24px;
         }
 
-        #calc-age .age-overview-card {
-          padding: 22px 18px;
+        #calc-age .age-hero-grid {
+          gap: 14px;
         }
 
-        #calc-age .age-answer-sections {
-          grid-template-columns: minmax(0, 1fr);
-          gap: 20px;
+        #calc-age .age-overview-card {
+          padding: 22px 18px;
         }
 
         #calc-age .age-context-line {
@@ -1850,26 +1856,33 @@
         <section class="td-cluster-center-column">
           <div class="td-cluster-panel panel-span-all">
   <div class="td-cluster-page-header">
-    <h1 id="calculator-title">Age Calculator</h1>
-    <p class="td-cluster-page-intro">Calculate exact age in years, months, and days from a date of birth or any as-of date, then see total days, total weeks, and your next birthday countdown.</p>
+    <h1 id="calculator-title">Age Calculator (Exact)</h1>
+    <p class="td-cluster-page-intro">Calculate exact age in years, months, and days for any birth date and as-of date, then see total months, total days, and the next birthday countdown.</p>
   </div>
   <div class="calculator-page-single td-cluster-flow">
     <div id="calc-age" class="age-page">
   <div class="age-workbench">
     <section class="age-card age-input-card" aria-labelledby="age-input-title">
       <div class="age-card-head">
-        <h2 id="age-input-title">Choose Dates</h2>
+        <div>
+          <p class="age-kicker">Exact age + next birthday</p>
+          <h2 id="age-input-title">Check exact age.</h2>
+          <p class="age-intro">
+            Enter a birth date and any as-of date, then get the exact answer, totals, and next
+            birthday countdown in one clean view.
+          </p>
+        </div>
       </div>
 
       <div class="age-field-grid">
         <label class="age-field" for="age-dob">
           <span>Date of birth</span>
-          <input id="age-dob" type="date" />
+          <input id="age-dob" type="date" value="1990-06-15" />
         </label>
 
         <label class="age-field" for="age-as-of">
           <span>Age as of</span>
-          <input id="age-as-of" type="date" />
+          <input id="age-as-of" type="date" value="2026-04-06" />
         </label>
       </div>
 
@@ -1891,59 +1904,61 @@
       <div class="age-answer-head">
         <div class="age-answer-copy">
           <p class="age-kicker">Exact age</p>
-          <h2 id="age-headline">0 years, 0 months, 0 days</h2>
+          <h2 id="age-headline">35 years, 9 months, 22 days</h2>
+          <p class="age-context-line" id="age-summary">As of Apr 6, 2026. Born on Friday.</p>
         </div>
+        <button class="calculator-button age-copy-button" type="button" id="age-copy-summary">
+          Copy summary
+        </button>
       </div>
+
+      <div class="age-hero-grid">
+        <section class="age-highlight-card" aria-labelledby="age-next-birthday-label">
+          <p class="age-section-label" id="age-next-birthday-label">Next birthday</p>
+          <strong id="age-next-birthday-headline">In 70 days</strong>
+          <p id="age-next-birthday-detail">Turns 36 on Monday, Jun 15, 2026</p>
+        </section>
+
+        <section class="age-highlight-card" aria-labelledby="age-born-label">
+          <p class="age-section-label" id="age-born-label">Born on</p>
+          <strong id="age-born-weekday">Friday</strong>
+          <p id="age-born-detail">Jun 15, 1990</p>
+        </section>
+      </div>
+
+      <p class="age-proof-line">Date-based result. Calculated locally in your browser - no data stored.</p>
     </section>
 
     <section class="age-card age-overview-card" aria-labelledby="age-overview-title">
-      <h2 class="age-overview-title" id="age-overview-title">Context, Totals, and Life Events</h2>
+      <h2 class="age-overview-title" id="age-overview-title">Reference details</h2>
 
       <div class="age-answer-sections">
-        <section class="age-answer-section age-context-section" aria-labelledby="age-context-label">
-          <p class="age-section-label" id="age-context-label">Context</p>
-          <p class="age-context-line" id="age-summary">As of today.</p>
-        </section>
-
         <section class="age-answer-section age-totals-section" aria-labelledby="age-totals-label">
           <p class="age-section-label" id="age-totals-label">Totals</p>
           <dl class="age-data-list">
             <div class="age-data-row">
               <dt>Total months</dt>
-              <dd><strong id="age-total-months">0</strong></dd>
+              <dd><strong id="age-total-months">429</strong></dd>
             </div>
 
             <div class="age-data-row">
               <dt>Total weeks</dt>
-              <dd><strong id="age-total-weeks">0</strong></dd>
+              <dd><strong id="age-total-weeks">1,868.4</strong></dd>
             </div>
 
             <div class="age-data-row">
               <dt>Total days</dt>
-              <dd><strong id="age-total-days">0</strong></dd>
+              <dd><strong id="age-total-days">13,079</strong></dd>
             </div>
           </dl>
         </section>
 
-        <section class="age-answer-section age-events-section" aria-labelledby="age-events-label">
-          <p class="age-section-label" id="age-events-label">Life events</p>
-          <dl class="age-data-list age-life-list">
-            <div class="age-data-row age-data-row-rich">
-              <dt>Next birthday</dt>
-              <dd>
-                <strong id="age-next-birthday-headline">In 0 days</strong>
-                <p id="age-next-birthday-detail">Turns 0 on Jan 1, 2000</p>
-              </dd>
-            </div>
-
-            <div class="age-data-row age-data-row-rich">
-              <dt>Weekday of birth</dt>
-              <dd>
-                <strong id="age-born-weekday">Friday</strong>
-                <p id="age-born-detail">Jun 15, 1990</p>
-              </dd>
-            </div>
-          </dl>
+        <section class="age-answer-section age-context-section" aria-labelledby="age-context-label">
+          <p class="age-section-label" id="age-context-label">How to read it</p>
+          <p class="age-context-line">
+            Calendar age uses full years, months, and days. Totals give you the longer-span view
+            for planning, records, and milestone checks.
+          </p>
         </section>
       </div>
     </section>
@@ -1951,36 +1966,18 @@
 </div>
 
     <div id="age-explanation">
-  <section class="age-explanation-card age-utility-card" aria-labelledby="age-utility-title">
-    <div class="age-utility-head">
-      <div>
-        <p class="age-kicker">Sharing and exporting</p>
-        <h2 id="age-utility-title">Share this age summary</h2>
-      </div>
-
-      <button class="calculator-button age-copy-button" type="button" id="age-copy-summary">
-        Copy summary
-      </button>
-    </div>
-
-    <p class="age-utility-note">
-      Copy the current result before the planning guide below so it is ready for notes, messages,
-      or any export workflow.
-    </p>
-  </section>
-
   <section class="age-explanation-card">
-    <p class="age-kicker">Age planning</p>
+    <p class="age-kicker">Exact age planning</p>
     <h2>How old am I on a specific date?</h2>
     <p>
       This age calculator shows exact age in years, months, and days for any birth date and any
-      as-of date. It also summarizes total months, weeks, and days, then shows the next birthday
-      countdown so you can answer the practical question first without manual calendar math.
+      as-of date. It brings the headline answer, next birthday countdown, and total-duration views
+      together so you can answer the practical question first without manual calendar math.
     </p>
     <p>
       Use it when you need age today, age on a future event date, or age on a past reference date.
       The result stays date-based and calendar-aware, which keeps it aligned with how age is
-      usually stated in planning, school, benefits, and milestone scenarios.
+      usually stated in planning, school, benefits, milestone, and record-keeping scenarios.
     </p>
     <div class="age-example-grid">
       <article class="age-example-item">
@@ -2006,11 +2003,11 @@
     <ol class="age-guide-steps">
       <li>Enter the date of birth.</li>
       <li>Keep the as-of date on today or choose any other calendar date.</li>
-      <li>Click Calculate age to refresh the answer cards and supporting totals.</li>
+      <li>Click Calculate age to refresh the answer card, totals, and next-birthday panel.</li>
     </ol>
     <p>
-      The main answer gives the calendar age first, while the supporting cards show the birth
-      weekday, next birthday, and total-duration views that help with planning.
+      The main answer gives the calendar age first, while the supporting cards show the next
+      birthday, birth weekday, and total-duration views that help with planning.
     </p>
     <table class="age-guide-table">
       <thead>
@@ -2064,7 +2061,7 @@
   </section>
 
   <section class="age-explanation-card">
-    <h3>Why Exact Age and Total Days Both Matter</h3>
+    <h3>Why exact age and total days both matter</h3>
     <p>
       Calendar age in years, months, and days is the format most people expect, but total days and
       total weeks can be more useful when you are comparing long spans, building reminders, or
@@ -2088,7 +2085,7 @@
         <p>Switch to a future-date countdown when the next milestone matters more than the age breakdown.</p>
       </div>
       <div class="age-example-item">
-        <p><strong><a href="/time-and-date/birthday-day-of-week-calculator/">Birthday Day-of-Week Calculator</a></strong></p>
+        <p><strong><a href="/time-and-date/birthday-day-of-week/">Birthday Day-of-Week Calculator</a></strong></p>
         <p>Check what weekday a birthday lands on when you are planning celebrations or age milestones.</p>
       </div>
       <div class="age-example-item">
@@ -2133,8 +2130,8 @@
       <div class="age-faq-item">
         <p><strong>What happens for a February 29 birthday in a non-leap year?</strong></p>
         <p>
-          For the next-birthday panel, the route standard is to use February 28 when the target year
-          is not a leap year.
+          For the next-birthday panel, the route standard is to use February 28 when the target
+          year is not a leap year.
         </p>
       </div>
 
@@ -2241,7 +2238,7 @@
 <section class="age-explanation-card">
     <h3>Important Notes</h3>
     <ul class="age-notes">
-      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Last updated:</strong> April 2026</li>
       <li><strong>Accuracy:</strong> Results use real calendar month lengths and leap-year rules.</li>
       <li><strong>Disclaimer:</strong> This calculator is for planning and reference, not legal or medical decisions.</li>
       <li><strong>Assumptions:</strong> Results are date-based only and do not use time of birth, hours, or time zones.</li>

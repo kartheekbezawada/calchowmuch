@@ -83,6 +83,16 @@ const countdownSeconds = document.querySelector('#countdown-seconds');
 const eventTypeButtons = Array.from(document.querySelectorAll('[data-event-type]'));
 const themeButtons = Array.from(document.querySelectorAll('#countdown-theme-group [data-theme]'));
 const optionsDetails = document.querySelector('#countdown-options');
+const shareButtons = [
+  copySummaryButton,
+  copyDateButton,
+  addGoogleButton,
+  addOutlookButton,
+  downloadIcsButton,
+  generateShareCardButton,
+  downloadSharePngButton,
+  copyShareImageButton,
+].filter(Boolean);
 
 function openOptions() {
   if (optionsDetails && !optionsDetails.open) {
@@ -95,44 +105,65 @@ export const pageSchema = {
   globalFAQ: false,
 };
 
+const FAQ_ITEMS = [
+  {
+    question: 'How do I make a countdown timer for a future date?',
+    answer:
+      'Enter the event name, choose the future date and time, then start the timer to see the live countdown.',
+  },
+  {
+    question: 'Does the countdown use my local time zone?',
+    answer: 'Yes. The timer follows your device clock and local time zone.',
+  },
+  {
+    question: 'Can I add the event to Google Calendar or Outlook?',
+    answer:
+      'Yes. After starting the timer, you can send the event to Google Calendar, Outlook, or download an .ics file.',
+  },
+  {
+    question: 'What happens when the timer reaches zero?',
+    answer: 'The countdown reaches zero and the page marks the event as live.',
+  },
+  {
+    question: 'Can I keep the advanced sharing tools hidden?',
+    answer:
+      'Yes. The page keeps the copy-summary and Google Calendar actions first, then places the rest under Advanced sharing.',
+  },
+  {
+    question: 'Can I copy a simple text summary?',
+    answer:
+      'Yes. After you start the countdown, Copy summary gives you a clean text version of the event and remaining time.',
+  },
+  {
+    question: 'Can I switch between custom events and presets?',
+    answer:
+      'Yes. You can type your own event or open Quick presets to fill a regional event and then edit it if needed.',
+  },
+  {
+    question: 'Why does the countdown depend on my device clock?',
+    answer:
+      'The timer is calculated locally in your browser, so it follows the time and time zone reported by your device.',
+  },
+  {
+    question: 'Can I stop and restart the live countdown?',
+    answer: 'Yes. Stop pauses the live updates and Start rebuilds the timer from the current inputs.',
+  },
+  {
+    question: 'Are my countdown details stored?',
+    answer: 'No. All calculations run locally in your browser - no data is stored.',
+  },
+];
+
 const CALCULATOR_FAQ_SCHEMA = {
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'How do I make a countdown timer for a future date?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text:
-          'Enter an event name, choose the future date and time, then start the countdown to see the live time remaining.',
-      },
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
     },
-    {
-      '@type': 'Question',
-      name: 'Does the countdown use my local time zone?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. The countdown follows your device clock and local time zone.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Can I add the event to Google Calendar or Outlook?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text:
-          'Yes. After you start the countdown, you can copy the summary or send the event to Google Calendar, Outlook, or an .ics file.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What happens when the timer reaches zero?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'The countdown reaches zero and shows that the event is live.',
-      },
-    },
-  ],
+  })),
 };
 
 const STRUCTURED_DATA = {
@@ -140,19 +171,19 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Countdown Timer | Live Time Left to Any Date',
+      name: 'Countdown Timer (Live) | Live Countdown to Any Date or Event',
       url: 'https://calchowmuch.com/time-and-date/countdown-timer/',
       description:
-        'Create a live countdown timer for birthdays, launches, trips, deadlines, and holidays. Set a future date, track time left, and add the event to your calendar.',
+        'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar.',
       inLanguage: 'en',
     },
   ],
 };
 
 const metadata = {
-  title: 'Countdown Timer | Live Countdown to Any Date or Event',
+  title: 'Countdown Timer (Live) | Live Countdown to Any Date or Event',
   description:
-    'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.',
+    'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar.',
   canonical: 'https://calchowmuch.com/time-and-date/countdown-timer/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
@@ -166,7 +197,7 @@ function ensureH1Title() {
   if (!title) {
     return;
   }
-  const desired = 'Countdown Timer';
+  const desired = 'Countdown Timer (Live)';
   if (title.tagName !== 'H1') {
     const h1 = document.createElement('h1');
     h1.id = 'calculator-title';
@@ -379,6 +410,13 @@ let selectedTheme = 'launch';
 let activeBuild = null;
 let countdownInterval = null;
 let shareCardCache = null;
+let countdownStarted = false;
+
+function setActionAvailability(isReady) {
+  shareButtons.forEach((button) => {
+    button.disabled = !isReady;
+  });
+}
 
 function updateHolidayFieldVisibility() {
   const showHoliday = selectedEventType === 'holiday';
@@ -536,26 +574,46 @@ function renderMilestones(totalSeconds, isComplete = false) {
 function setPreviewWaitingState() {
   clearShareCardCache();
   previewCard?.setAttribute('data-theme', selectedTheme);
-  previewCard?.classList.add('is-hidden');
-  actionsWrap?.classList.add('is-hidden');
+  previewCard?.classList.remove('is-hidden');
+  actionsWrap?.classList.remove('is-hidden');
   milestonesSection?.classList.add('is-hidden');
   expiredBanner?.classList.add('is-hidden');
+  setActionAvailability(countdownStarted);
+  const target = getTargetDate();
+  const targetIsReady = target && target.getTime() > Date.now();
+  const eventName = getEventName();
   if (previewBadge) {
-    previewBadge.textContent = 'Ready';
+    previewBadge.textContent = countdownStarted ? 'Live' : 'Ready to start';
   }
   if (previewKicker) {
-    previewKicker.textContent = 'Counting down to';
+    previewKicker.textContent = countdownStarted ? 'Counting down to' : 'Live countdown preview';
   }
   if (previewTitle) {
-    previewTitle.textContent = 'Your event countdown';
+    previewTitle.textContent = eventName;
   }
   if (previewSummary) {
-    previewSummary.textContent = 'Live countdown appears after Start.';
+    if (targetIsReady) {
+      const countdown = calculateCountdown(target, new Date());
+      previewSummary.textContent = countdown
+        ? `${formatCountdownSummary(countdown)} left until ${eventName} on ${formatTargetLabel(
+            target
+          )}.`
+        : 'Set a future date and time, then press Start.';
+      if (countdown) {
+        updateCountdownTiles(countdown);
+      } else {
+        updateCountdownTiles({ days: '--', hours: '--', minutes: '--', seconds: '--' });
+      }
+    } else {
+      previewSummary.textContent = 'Set a future date and time, then press Start.';
+      updateCountdownTiles({ days: '--', hours: '--', minutes: '--', seconds: '--' });
+    }
   }
   if (statusMessage) {
-    statusMessage.textContent = 'Live updates Every Second';
+    statusMessage.textContent = countdownStarted
+      ? 'Live updates every second using your local time zone.'
+      : 'Press Start to begin live updates using your local time zone.';
   }
-  updateCountdownTiles({ days: '--', hours: '--', minutes: '--', seconds: '--' });
   renderMilestones();
 }
 
@@ -603,7 +661,7 @@ function renderPreview(target, countdown, isComplete = false) {
   if (statusMessage) {
     statusMessage.textContent = isComplete
       ? 'This moment has arrived.'
-      : 'Live updates Every Second';
+      : 'Live updates every second using your local time zone.';
   }
 
   updateCountdownTiles(countdown);
@@ -654,24 +712,21 @@ function markPreviewStale() {
   clearError();
   clearCopyFeedback();
   clearShareCardCache();
-  if (!activeBuild) {
-    return;
-  }
-  if (previewBadge) {
-    previewBadge.textContent = 'Needs update';
-  }
-  if (statusMessage) {
-    statusMessage.textContent = 'Inputs changed. Press Start to update.';
-  }
+  clearCountdownInterval();
+  countdownStarted = false;
+  activeBuild = null;
+  setPreviewWaitingState();
 }
 
 function stopCountdown() {
   clearCountdownInterval();
+  countdownStarted = false;
+  setActionAvailability(true);
   if (previewBadge) {
     previewBadge.textContent = 'Paused';
   }
   if (statusMessage) {
-    statusMessage.textContent = 'Countdown stopped.';
+    statusMessage.textContent = 'Countdown stopped. Press Start to resume live updates.';
   }
 }
 
@@ -698,12 +753,17 @@ function calculate(startTimer = true) {
     target,
   };
 
-  updateCountdown(target);
+  clearCountdownInterval();
+  countdownStarted = Boolean(startTimer);
+  setActionAvailability(countdownStarted);
 
-  if (startTimer) {
-    clearCountdownInterval();
+  if (countdownStarted) {
+    updateCountdown(target);
     countdownInterval = window.setInterval(() => updateCountdown(target), 1000);
+    return;
   }
+
+  setPreviewWaitingState();
 }
 
 async function copyText(text, successMessage) {
@@ -1121,10 +1181,12 @@ function downloadIcsFile() {
 const defaultTarget = roundToMinute(new Date());
 defaultTarget.setDate(defaultTarget.getDate() + 30);
 defaultTarget.setHours(9, 0, 0, 0);
-if (eventNameInput) {
+if (eventNameInput && !eventNameInput.value) {
   eventNameInput.value = EVENT_TYPES.launch.defaultName;
 }
-setTargetInputs(defaultTarget);
+if (!getTargetDate()) {
+  setTargetInputs(defaultTarget);
+}
 
 startButton?.addEventListener('click', () => calculate(true));
 stopButton?.addEventListener('click', stopCountdown);
@@ -1195,4 +1257,3 @@ if (regionInput && !regionInput.value) {
 populateRegionEventOptions();
 updateHolidayFieldVisibility();
 setPreviewWaitingState();
-calculate(true);

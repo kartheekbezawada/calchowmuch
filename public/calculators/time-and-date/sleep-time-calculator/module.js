@@ -117,20 +117,20 @@ const STRUCTURED_DATA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Sleep Time Calculator',
+      name: 'Sleep Time Calculator (90-Minute Cycles) | Bedtime and Wake-Up Times',
       url: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
       description:
-        'Calculate the best time to sleep or wake up based on natural 90-minute sleep cycles.',
+        'Find bedtime or wake-up times using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options in a clearer answer-first layout.',
       inLanguage: 'en',
     },
     {
       '@type': 'SoftwareApplication',
-      name: 'Sleep Time Calculator',
+      name: 'Sleep Time Calculator (90-Minute Cycles)',
       applicationCategory: 'HealthApplication',
       operatingSystem: 'Web',
       url: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
       description:
-        'Free sleep time calculator that suggests bedtimes and wake-up times aligned with natural sleep cycles for better rest.',
+        'Free sleep time calculator that suggests bedtimes and wake-up times aligned with 90-minute sleep cycles for a faster answer-first plan.',
       browserRequirements: 'Requires JavaScript enabled',
       softwareVersion: '1.0',
       creator: {
@@ -170,9 +170,9 @@ const STRUCTURED_DATA = {
 };
 
 const metadata = {
-  title: 'Sleep Time Calculator | Best Bedtime & Wake-Up Times',
+  title: 'Sleep Time Calculator (90-Minute Cycles) | Bedtime and Wake-Up Times',
   description:
-    'Find the best bedtime or wake-up time using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options for workdays, travel, or shift schedules.',
+    'Find bedtime or wake-up times using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options in a clearer answer-first layout.',
   canonical: 'https://calchowmuch.com/time-and-date/sleep-time-calculator/',
   structuredData: STRUCTURED_DATA,
   pageSchema,
@@ -183,12 +183,18 @@ setPageMetadata(metadata);
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');
-  if (!title || title.tagName === 'H1') {
+  if (!title) {
+    return;
+  }
+  const desired = 'Sleep Time Calculator (90-Minute Cycles)';
+
+  if (title.tagName === 'H1') {
+    title.textContent = desired;
     return;
   }
   const h1 = document.createElement('h1');
   h1.id = 'calculator-title';
-  h1.textContent = 'Sleep Time Calculator';
+  h1.textContent = desired;
   title.replaceWith(h1);
 }
 
@@ -235,7 +241,20 @@ function formatTimeValue(date) {
 }
 
 function formatTime(date) {
-  return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+  return date.toLocaleTimeString(undefined, {
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+}
+
+function formatCycleDuration(cycles) {
+  const totalMinutes = cycles * CYCLE_MINUTES;
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  if (!minutes) {
+    return `About ${hours} hours of sleep`;
+  }
+  return `About ${hours} hours ${minutes} minutes of sleep`;
 }
 
 function timeValueToMinutes(value) {
@@ -344,7 +363,7 @@ function showResults(recommendations) {
 
     const hours = document.createElement('div');
     hours.className = 'sleep-result-hours';
-    hours.textContent = `${(rec.cycles * CYCLE_MINUTES) / 60} hours of sleep`;
+    hours.textContent = formatCycleDuration(rec.cycles);
 
     left.append(cycle, hours);
 
@@ -354,7 +373,7 @@ function showResults(recommendations) {
 
     const badge = document.createElement('span');
     badge.className = 'sleep-recommended-badge';
-    badge.textContent = 'Best';
+    badge.textContent = rec.cycles === 5 ? 'Recommended' : 'Option';
 
     item.append(left, right, badge);
     resultsList.appendChild(item);
@@ -405,7 +424,8 @@ const modeButtons = setupButtonGroup(modeGroup, {
 });
 
 const defaultDate = roundToNextQuarterHour(new Date());
-if (primaryTimeInput) {
+defaultDate.setHours(7, 0, 0, 0);
+if (primaryTimeInput && !primaryTimeInput.value) {
   primaryTimeInput.value = formatTimeValue(defaultDate);
 }
 if (dateInput) {

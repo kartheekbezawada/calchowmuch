@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Countdown Timer | Live Countdown to Any Date or Event</title>
-    <meta name="description" content="Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar." />
+    <title>Countdown Timer (Live) | Live Countdown to Any Date or Event</title>
+    <meta name="description" content="Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar." />
     <link rel="canonical" href="https://calchowmuch.com/time-and-date/countdown-timer/" />
-    <meta property="og:title" content="Countdown Timer | Live Countdown to Any Date or Event" />
-    <meta property="og:description" content="Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar." />
+    <meta property="og:title" content="Countdown Timer (Live) | Live Countdown to Any Date or Event" />
+    <meta property="og:description" content="Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/time-and-date/countdown-timer/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Countdown Timer | Live Countdown to Any Date or Event" />
-    <meta name="twitter:description" content="Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar." />
+    <meta name="twitter:title" content="Countdown Timer (Live) | Live Countdown to Any Date or Event" />
+    <meta name="twitter:description" content="Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-time-and-date-cluster="true">
@@ -1299,6 +1299,25 @@
         align-content: start;
       }
 
+      #calc-countdown-timer .cd-builder-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      #calc-countdown-timer .cd-options {
+        border-top: 1px solid rgba(24, 34, 45, 0.08);
+        padding-top: 14px;
+      }
+
+      #calc-countdown-timer .cd-options summary {
+        cursor: pointer;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
       #calc-countdown-timer .cd-field-full {
         grid-column: 1 / -1;
       }
@@ -1479,6 +1498,36 @@
         text-transform: uppercase;
         letter-spacing: 0.18em;
         color: var(--muted);
+      }
+
+      #calc-countdown-timer .cd-preview-badge,
+      #calc-countdown-timer .cd-preview-summary {
+        margin: 0;
+      }
+
+      #calc-countdown-timer .cd-preview-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        justify-self: center;
+        min-height: 30px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(35, 70, 99, 0.1);
+        color: #e6eef6;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      #calc-countdown-timer .cd-preview-summary {
+        max-width: 40ch;
+        justify-self: center;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
       }
 
       #calc-countdown-timer .cd-title {
@@ -1685,6 +1734,13 @@
         box-shadow: 0 10px 20px rgba(35, 70, 99, 0.06);
       }
 
+      #calc-countdown-timer .cd-btn[disabled] {
+        cursor: not-allowed;
+        opacity: 0.55;
+        transform: none;
+        box-shadow: none;
+      }
+
       #calc-countdown-timer .cd-actions .cd-btn-share-primary {
         border-color: rgba(35, 70, 99, 0.16);
         background: linear-gradient(180deg, rgba(35, 70, 99, 0.14), rgba(35, 70, 99, 0.1));
@@ -1713,6 +1769,18 @@
         font-size: 12px;
         font-weight: 600;
         color: var(--success);
+      }
+
+      #calc-countdown-timer .cd-advanced-share {
+        display: grid;
+        gap: 12px;
+      }
+
+      #calc-countdown-timer .cd-advanced-share summary {
+        cursor: pointer;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 700;
       }
 
       #calc-countdown-timer .is-hidden {
@@ -1829,10 +1897,6 @@
         #calc-countdown-timer .cd-main-cards {
           grid-template-columns: 1fr;
           gap: 22px;
-        }
-
-        #calc-countdown-timer .cd-countdown-card {
-          order: -1;
         }
 
         #calc-countdown-timer .cd-title {
@@ -1963,31 +2027,14 @@
         <section class="td-cluster-center-column">
           <div class="td-cluster-panel panel-span-all">
   <div class="td-cluster-page-header">
-    <h1 id="calculator-title">Countdown Timer</h1>
-    <p class="td-cluster-page-intro">Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then track time left and export the event to your calendar.</p>
+    <h1 id="calculator-title">Countdown Timer (Live)</h1>
+    <p class="td-cluster-page-intro">Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar.</p>
   </div>
   <div class="calculator-page-single td-cluster-flow">
     <div id="calc-countdown-timer">
   <div class="cd-main-cards">
     <section class="cd-input-card">
       <div class="cd-input-grid">
-        <div class="cd-fallback">
-          <label class="cd-field-label">
-            Region
-            <select id="countdown-region" aria-label="Region" class="cd-field">
-              <option value="United States" selected>United States</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Canada">Canada</option>
-            </select>
-          </label>
-          <label class="cd-field-label">
-            Event
-            <select id="countdown-region-event" aria-label="Event" class="cd-field">
-              <option value="">Custom event</option>
-            </select>
-          </label>
-        </div>
-
         <label class="cd-field-label cd-field-full">
           Event name
           <input
@@ -1998,17 +2045,18 @@
             autocomplete="off"
             aria-label="Event name"
             class="cd-field"
+            value="Product launch"
           />
         </label>
 
         <div class="cd-fallback" id="countdown-fallback">
           <label class="cd-field-label">
             Target date
-            <input id="countdown-date" type="date" aria-label="Date" class="cd-field" />
+            <input id="countdown-date" type="date" aria-label="Date" class="cd-field" value="2026-05-06" />
           </label>
           <label class="cd-field-label">
             Time
-            <input id="countdown-time" type="time" step="60" aria-label="Time" class="cd-field" />
+            <input id="countdown-time" type="time" step="60" aria-label="Time" class="cd-field" value="09:00" />
           </label>
         </div>
 
@@ -2016,22 +2064,46 @@
           <button class="cd-btn cd-btn-primary" type="button" id="countdown-start">Start countdown</button>
           <button class="cd-btn cd-btn-secondary" type="button" id="countdown-stop">Stop countdown</button>
         </div>
+
+        <p class="cd-builder-note">Uses your device clock and local time zone. Calculated locally in your browser - no data stored.</p>
+
+        <details class="cd-options" id="countdown-options">
+          <summary>Quick presets</summary>
+          <div class="cd-fallback">
+            <label class="cd-field-label">
+              Region
+              <select id="countdown-region" aria-label="Region" class="cd-field">
+                <option value="United States" selected>United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Canada">Canada</option>
+              </select>
+            </label>
+            <label class="cd-field-label">
+              Event
+              <select id="countdown-region-event" aria-label="Event" class="cd-field">
+                <option value="">Custom event</option>
+              </select>
+            </label>
+          </div>
+        </details>
       </div>
       <p class="cd-error is-hidden" id="countdown-error"></p>
     </section>
 
-    <section class="cd-countdown-card is-hidden" id="countdown-preview-card" data-theme="launch">
+    <section class="cd-countdown-card" id="countdown-preview-card" data-theme="launch">
       <div class="cd-countdown-body">
         <header class="cd-countdown-header">
+          <p class="cd-preview-badge" id="countdown-preview-badge">Ready to start</p>
           <p class="cd-kicker" id="countdown-preview-heading">Counting down to</p>
-          <h3 class="cd-title" id="countdown-preview-title">Your countdown timer</h3>
+          <h3 class="cd-title" id="countdown-preview-title">Product launch</h3>
+          <p class="cd-preview-summary" id="countdown-preview-summary">30 days left until Product launch. Press Start to begin live updates using your local time zone.</p>
         </header>
 
         <div class="cd-tiles" id="countdown-preview-grid" aria-live="polite">
-          <div class="cd-tile"><span class="cd-num" id="countdown-days">--</span><span class="cd-unit">Days</span></div>
-          <div class="cd-tile"><span class="cd-num" id="countdown-hours">--</span><span class="cd-unit">Hrs</span></div>
-          <div class="cd-tile"><span class="cd-num" id="countdown-minutes">--</span><span class="cd-unit">Min</span></div>
-          <div class="cd-tile"><span class="cd-num" id="countdown-seconds">--</span><span class="cd-unit">Sec</span></div>
+          <div class="cd-tile"><span class="cd-num" id="countdown-days">30</span><span class="cd-unit">Days</span></div>
+          <div class="cd-tile"><span class="cd-num" id="countdown-hours">00</span><span class="cd-unit">Hrs</span></div>
+          <div class="cd-tile"><span class="cd-num" id="countdown-minutes">00</span><span class="cd-unit">Min</span></div>
+          <div class="cd-tile"><span class="cd-num" id="countdown-seconds">00</span><span class="cd-unit">Sec</span></div>
         </div>
 
         <p class="cd-expired is-hidden" id="countdown-expired">This moment has arrived.</p>
@@ -2039,7 +2111,7 @@
         <footer class="cd-countdown-footer">
           <span class="cd-live">
             <span class="cd-live-dot" aria-hidden="true"></span>
-            <span id="countdown-status">Live updates Every Second</span>
+            <span id="countdown-status">Press Start to begin live updates using your local time zone.</span>
           </span>
         </footer>
 
@@ -2051,18 +2123,23 @@
     </section>
   </div>
 
-  <div class="cd-actions is-hidden" id="countdown-actions" aria-labelledby="countdown-actions-heading">
+  <div class="cd-actions" id="countdown-actions" aria-labelledby="countdown-actions-heading">
     <span class="cd-actions-label" id="countdown-actions-heading">Share</span>
     <div class="cd-actions-group">
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-primary" type="button" id="countdown-copy-summary">Copy summary</button>
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-copy-date">Copy date</button>
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-primary" type="button" id="countdown-add-google">Google Calendar</button>
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-add-outlook">Outlook</button>
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-download-ics">Download .ics</button>
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-primary" type="button" id="countdown-generate-share-card">Generate share card</button>
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-download-share-png">Download PNG</button>
-      <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-copy-share-image">Copy image</button>
+      <button class="cd-btn cd-btn-tertiary cd-btn-share-primary" type="button" id="countdown-copy-summary" disabled>Copy summary</button>
+      <button class="cd-btn cd-btn-tertiary cd-btn-share-primary" type="button" id="countdown-add-google" disabled>Google Calendar</button>
     </div>
+    <details class="cd-advanced-share" id="countdown-advanced-sharing">
+      <summary>Advanced sharing</summary>
+      <div class="cd-actions-group">
+        <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-copy-date" disabled>Copy date</button>
+        <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-add-outlook" disabled>Outlook</button>
+        <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-download-ics" disabled>Download .ics</button>
+        <button class="cd-btn cd-btn-tertiary cd-btn-share-primary" type="button" id="countdown-generate-share-card" disabled>Generate share card</button>
+        <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-download-share-png" disabled>Download PNG</button>
+        <button class="cd-btn cd-btn-tertiary cd-btn-share-secondary" type="button" id="countdown-copy-share-image" disabled>Copy image</button>
+      </div>
+    </details>
     <span class="cd-copy-msg is-hidden" id="countdown-copy-feedback"></span>
   </div>
 </div>
@@ -2072,8 +2149,13 @@
     <p class="countdown-explanation-kicker">Live countdowns</p>
     <h2>How long until an event starts?</h2>
     <p>
-      Use this timer to count down to launches, birthdays, trips, exams, deadlines, or holiday
-      events with live second-by-second updates, milestone markers, and calendar-share actions.
+      Create a live countdown timer for any event - birthdays, launches, holidays, trips, or
+      deadlines. Set the date and time, start the timer, and the page updates every second with
+      days, hours, minutes, and seconds remaining.
+    </p>
+    <p>
+      After starting, you can copy a clean summary, send the event to Google Calendar, or open
+      advanced sharing tools only when you need them.
     </p>
   </section>
 
@@ -2166,6 +2248,30 @@
         <p><strong>What happens when the timer reaches zero?</strong></p>
         <p>The countdown reaches zero and the page marks the event as live.</p>
       </article>
+      <article class="countdown-faq-item">
+        <p><strong>Can I keep the advanced sharing tools hidden?</strong></p>
+        <p>Yes. The page keeps the copy-summary and Google Calendar actions first, then places the rest under Advanced sharing.</p>
+      </article>
+      <article class="countdown-faq-item">
+        <p><strong>Can I copy a simple text summary?</strong></p>
+        <p>Yes. After you start the countdown, Copy summary gives you a clean text version of the event and remaining time.</p>
+      </article>
+      <article class="countdown-faq-item">
+        <p><strong>Can I switch between custom events and presets?</strong></p>
+        <p>Yes. You can type your own event or open Quick presets to fill a regional event and then edit it if needed.</p>
+      </article>
+      <article class="countdown-faq-item">
+        <p><strong>Why does the countdown depend on my device clock?</strong></p>
+        <p>The timer is calculated locally in your browser, so it follows the time and time zone reported by your device.</p>
+      </article>
+      <article class="countdown-faq-item">
+        <p><strong>Can I stop and restart the live countdown?</strong></p>
+        <p>Yes. Stop pauses the live updates and Start rebuilds the timer from the current inputs.</p>
+      </article>
+      <article class="countdown-faq-item">
+        <p><strong>Are my countdown details stored?</strong></p>
+        <p>No. All calculations run locally in your browser - no data is stored.</p>
+      </article>
     </div>
   </section>
 
@@ -2231,7 +2337,7 @@
 <section class="countdown-explanation-card">
     <h3>Important Notes</h3>
     <ul class="countdown-notes">
-      <li><strong>Last updated:</strong> March 2026</li>
+      <li><strong>Last updated:</strong> April 2026</li>
       <li><strong>Accuracy:</strong> The timer depends on your device clock and local time zone, so results are only as accurate as your device settings.</li>
       <li><strong>Disclaimer:</strong> Use official schedules or calendar confirmations for flights, exams, launches, and other events where exact timing matters.</li>
       <li><strong>Assumptions:</strong> Region-based presets are convenience examples and may change from year to year, so review the auto-filled date and time before relying on them.</li>

@@ -1,12 +1,12 @@
 <div id="calc-hourly-to-salary" class="sal-calc-shell">
   <section class="sal-calc-card sal-calc-form-card" aria-label="Hourly to salary inputs">
-    <p class="sal-calc-kicker">Direct conversion</p>
-    <h2 class="sal-calc-form-title">Turn an hourly wage into annual, monthly, and weekly pay</h2>
-    <p class="sal-calc-lead">Keep the work schedule assumptions visible so the salary estimate stays easy to trust.</p>
+    <p class="sal-calc-kicker">Gross pay conversion</p>
+    <h2 class="sal-calc-form-title">Turn an hourly rate into annual, monthly, biweekly, and weekly pay</h2>
+    <p class="sal-calc-lead">Gross pay only. Keep the schedule visible so the annual salary estimate stays easy to trust.</p>
     <div class="sal-input-grid">
       <div class="sal-input-row">
         <label for="hourly-rate">Hourly rate</label>
-        <input id="hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+        <input id="hourly-rate" type="number" min="0" step="0.01" inputmode="decimal" value="25" />
       </div>
       <div class="sal-input-row">
         <label for="hourly-hours-per-week">Hours per week</label>
@@ -22,14 +22,24 @@
   </section>
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Hourly to salary results">
-    <p class="sal-answer-title">Annual salary</p>
-    <p class="sal-answer-hero" id="hourly-annual-result">—</p>
-    <p class="sal-answer-note" id="hourly-result-note">Calculate to see the annual answer first, then monthly, biweekly, and weekly pay.</p>
-    <p class="sal-answer-context" id="hourly-result-context">The result will show the exact hours-per-week and weeks-per-year assumptions used.</p>
+    <div class="sal-answer-top">
+      <div>
+        <p class="sal-answer-title">Annual gross pay</p>
+        <p class="sal-answer-eyebrow">Gross (before tax)</p>
+      </div>
+      <span class="sal-status-chip" id="hourly-dirty-chip">Up to date</span>
+    </div>
+    <p class="sal-answer-hero" id="hourly-annual-result">52,000.00</p>
+    <p class="sal-answer-note" id="hourly-result-note">Gross (before tax), that works out to about 1,000.00 per week.</p>
+    <p class="sal-answer-context" id="hourly-result-context">Assumptions: 40 hrs/week · 52 weeks/year.</p>
+    <div class="sal-action-row">
+      <button class="sal-secondary-action" id="hourly-copy-summary" type="button">Copy summary</button>
+      <span class="sal-copy-feedback" id="hourly-copy-feedback" aria-live="polite"></span>
+    </div>
     <div class="sal-support-grid">
-      <div class="sal-support-card"><span>Monthly pay</span><strong id="hourly-monthly-result">—</strong></div>
-      <div class="sal-support-card"><span>Biweekly pay</span><strong id="hourly-biweekly-result">—</strong></div>
-      <div class="sal-support-card"><span>Weekly pay</span><strong id="hourly-weekly-result">—</strong></div>
+      <div class="sal-support-card"><span>Monthly pay</span><strong id="hourly-monthly-result">4,333.33</strong></div>
+      <div class="sal-support-card"><span>Biweekly pay</span><strong id="hourly-biweekly-result">2,000.00</strong></div>
+      <div class="sal-support-card"><span>Weekly pay</span><strong id="hourly-weekly-result">1,000.00</strong></div>
     </div>
     <div class="sal-breakdown-card">
       <h3>Calculation basis</h3>
@@ -39,6 +49,7 @@
       <h3>How we calculate this</h3>
       <p>Gross pay only. Overtime, bonuses, deductions, and payroll timing are not included in this route.</p>
     </div>
+    <p class="sal-results-proof">Calculated locally in your browser - no data stored.</p>
     <p class="sal-results-disclaimer">Gross-pay estimate only. Overtime is not included in this route.</p>
   </aside>
 </div>

@@ -1,9 +1,10 @@
-import {
-  formatCurrency as coreFormatCurrency,
-  formatPercent as coreFormatPercent,
-} from '../../../assets/js/core/format.js';
+import { formatPercent as coreFormatPercent } from '../../../assets/js/core/format.js';
 
 const SITE_URL = 'https://calchowmuch.com';
+const SALARY_NUMBER_FORMATTER = new Intl.NumberFormat(undefined, {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 export function parseNumber(value) {
   const parsed = Number(value);
@@ -19,7 +20,11 @@ export function isNonNegativeNumber(value) {
 }
 
 export function formatCurrency(value) {
-  return coreFormatCurrency(value, 'USD');
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return '—';
+  }
+
+  return SALARY_NUMBER_FORMATTER.format(Number(value));
 }
 
 export function formatPercent(value, maximumFractionDigits = 2) {
@@ -63,6 +68,41 @@ export function updateTokens(root, attribute, values) {
 
 export function getInputNumber(input) {
   return parseNumber(input?.value ?? '');
+}
+
+export function formatInputValue(input, fallback) {
+  const value = String(input?.value ?? '').trim();
+  return value || fallback;
+}
+
+export async function copyTextToClipboard(text) {
+  if (!text) {
+    return false;
+  }
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (_error) {
+    // Fall through to the textarea fallback.
+  }
+
+  try {
+    const helper = document.createElement('textarea');
+    helper.value = text;
+    helper.setAttribute('readonly', 'true');
+    helper.style.position = 'absolute';
+    helper.style.left = '-9999px';
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand('copy');
+    helper.remove();
+    return copied;
+  } catch (_error) {
+    return false;
+  }
 }
 
 export function getInputMode(group, fallback) {

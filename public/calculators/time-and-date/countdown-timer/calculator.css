@@ -53,6 +53,25 @@
   align-content: start;
 }
 
+#calc-countdown-timer .cd-builder-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+#calc-countdown-timer .cd-options {
+  border-top: 1px solid rgba(24, 34, 45, 0.08);
+  padding-top: 14px;
+}
+
+#calc-countdown-timer .cd-options summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 #calc-countdown-timer .cd-field-full {
   grid-column: 1 / -1;
 }
@@ -233,6 +252,36 @@
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--muted);
+}
+
+#calc-countdown-timer .cd-preview-badge,
+#calc-countdown-timer .cd-preview-summary {
+  margin: 0;
+}
+
+#calc-countdown-timer .cd-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  justify-self: center;
+  min-height: 30px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(35, 70, 99, 0.1);
+  color: #e6eef6;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+#calc-countdown-timer .cd-preview-summary {
+  max-width: 40ch;
+  justify-self: center;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 #calc-countdown-timer .cd-title {
@@ -439,6 +488,13 @@
   box-shadow: 0 10px 20px rgba(35, 70, 99, 0.06);
 }
 
+#calc-countdown-timer .cd-btn[disabled] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+}
+
 #calc-countdown-timer .cd-actions .cd-btn-share-primary {
   border-color: rgba(35, 70, 99, 0.16);
   background: linear-gradient(180deg, rgba(35, 70, 99, 0.14), rgba(35, 70, 99, 0.1));
@@ -467,6 +523,18 @@
   font-size: 12px;
   font-weight: 600;
   color: var(--success);
+}
+
+#calc-countdown-timer .cd-advanced-share {
+  display: grid;
+  gap: 12px;
+}
+
+#calc-countdown-timer .cd-advanced-share summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 #calc-countdown-timer .is-hidden {
@@ -583,10 +651,6 @@
   #calc-countdown-timer .cd-main-cards {
     grid-template-columns: 1fr;
     gap: 22px;
-  }
-
-  #calc-countdown-timer .cd-countdown-card {
-    order: -1;
   }
 
   #calc-countdown-timer .cd-title {

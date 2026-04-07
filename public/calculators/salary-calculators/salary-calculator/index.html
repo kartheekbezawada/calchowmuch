@@ -1,15 +1,12 @@
 <div id="calc-salary-calculator" class="sal-calc-shell">
   <section class="sal-calc-card sal-calc-form-card" aria-label="Salary calculator inputs">
-    <p class="sal-calc-kicker">Answer-first pay conversion</p>
-    <h2 class="sal-calc-form-title">Convert one pay figure into every major pay frequency</h2>
-    <p class="sal-calc-lead">
-      Enter one pay amount, choose the source frequency, then open schedule assumptions only when
-      you need them for reverse conversions.
-    </p>
+    <p class="sal-calc-kicker">Gross pay conversion</p>
+    <h2 class="sal-calc-form-title">Convert one pay amount into hourly, weekly, monthly, and annual pay</h2>
+    <p class="sal-calc-lead">Gross pay only. Start with one pay amount, then compare every major pay view side by side.</p>
 
     <div class="sal-input-row">
-      <label for="salary-pay-amount">Pay amount</label>
-      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+      <label for="salary-pay-amount">Gross pay amount</label>
+      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" value="60000" />
     </div>
 
     <div class="sal-input-row">
@@ -53,40 +50,51 @@
   </section>
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
-    <p class="sal-answer-title">Annual pay</p>
-    <p class="sal-answer-hero" id="salary-annual-pay">—</p>
-    <p class="sal-answer-note" id="salary-answer-note">Calculate to see annual, monthly, biweekly, weekly, daily, and hourly pay together.</p>
-    <p class="sal-answer-context" id="salary-answer-context">When assumptions matter, the route will show the exact hours, weeks, and days used.</p>
+    <div class="sal-answer-top">
+      <div>
+        <p class="sal-answer-title">Annual gross pay</p>
+        <p class="sal-answer-eyebrow">Gross (before tax)</p>
+      </div>
+      <span class="sal-status-chip" id="salary-dirty-chip">Up to date</span>
+    </div>
+    <p class="sal-answer-hero" id="salary-annual-pay">60,000.00</p>
+    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,153.85 per week.</p>
+    <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual pay · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
+    <div class="sal-action-row">
+      <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
+      <span class="sal-copy-feedback" id="salary-copy-feedback" aria-live="polite"></span>
+    </div>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Monthly pay</span>
-        <strong id="salary-monthly-pay">—</strong>
+        <strong id="salary-monthly-pay">5,000.00</strong>
       </div>
       <div class="sal-support-card">
         <span>Biweekly pay</span>
-        <strong id="salary-biweekly-pay">—</strong>
+        <strong id="salary-biweekly-pay">2,307.69</strong>
       </div>
       <div class="sal-support-card">
         <span>Weekly pay</span>
-        <strong id="salary-weekly-pay">—</strong>
+        <strong id="salary-weekly-pay">1,153.85</strong>
       </div>
       <div class="sal-support-card">
         <span>Daily pay</span>
-        <strong id="salary-daily-pay">—</strong>
+        <strong id="salary-daily-pay">230.77</strong>
       </div>
       <div class="sal-support-card">
         <span>Hourly pay</span>
-        <strong id="salary-hourly-pay">—</strong>
+        <strong id="salary-hourly-pay">28.85</strong>
       </div>
     </div>
     <div class="sal-breakdown-card">
       <h3>Calculation basis</h3>
-      <p id="salary-breakdown">Start with one pay amount, convert it into an annual figure, then map the annual pay into the other pay periods.</p>
+      <p id="salary-breakdown">Annual pay starts from the amount you entered. Monthly = annual / 12, biweekly = annual / 26, weekly = annual / weeks per year, and hourly uses weekly / hours per week.</p>
     </div>
     <div class="sal-method-card">
       <h3>How we calculate this</h3>
       <p>Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.</p>
     </div>
+    <p class="sal-results-proof">Calculated locally in your browser - no data stored.</p>
     <p class="sal-results-disclaimer">Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.</p>
   </aside>
 </div>

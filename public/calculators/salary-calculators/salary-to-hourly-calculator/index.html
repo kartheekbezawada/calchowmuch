@@ -1,12 +1,12 @@
 <div id="calc-salary-to-hourly" class="sal-calc-shell">
   <section class="sal-calc-card sal-calc-form-card" aria-label="Salary to hourly inputs">
-    <p class="sal-calc-kicker">Reverse conversion</p>
-    <h2 class="sal-calc-form-title">Turn annual salary into an hourly rate and supporting pay views</h2>
-    <p class="sal-calc-lead">The hourly rate depends on your schedule assumptions, so keep both hours and weeks editable.</p>
+    <p class="sal-calc-kicker">Gross pay conversion</p>
+    <h2 class="sal-calc-form-title">See what a salary pays per hour based on your schedule</h2>
+    <p class="sal-calc-lead">Gross pay only. Keep hours and weeks visible so the implied hourly rate stays easy to trust.</p>
     <div class="sal-input-grid">
       <div class="sal-input-row">
         <label for="salary-annual-input">Annual salary</label>
-        <input id="salary-annual-input" type="number" min="0" step="0.01" inputmode="decimal" />
+        <input id="salary-annual-input" type="number" min="0" step="0.01" inputmode="decimal" value="60000" />
       </div>
       <div class="sal-input-row">
         <label for="salary-hours-input">Hours per week</label>
@@ -22,23 +22,34 @@
   </section>
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary to hourly results">
-    <p class="sal-answer-title">Hourly rate</p>
-    <p class="sal-answer-hero" id="salary-hourly-result">—</p>
-    <p class="sal-answer-note" id="salary-hourly-note">Calculate to see the hourly rate first, then weekly, biweekly, and monthly pay.</p>
-    <p class="sal-answer-context" id="salary-hourly-context">The result will show the exact schedule assumptions used to convert annual salary into hourly pay.</p>
+    <div class="sal-answer-top">
+      <div>
+        <p class="sal-answer-title">Hourly gross pay</p>
+        <p class="sal-answer-eyebrow">Gross (before tax)</p>
+      </div>
+      <span class="sal-status-chip" id="salary-hourly-dirty-chip">Up to date</span>
+    </div>
+    <p class="sal-answer-hero" id="salary-hourly-result">28.85</p>
+    <p class="sal-answer-note" id="salary-hourly-note">Gross (before tax), that equals about 1,153.85 per week.</p>
+    <p class="sal-answer-context" id="salary-hourly-context">Assumptions: 40 hrs/week · 52 weeks/year.</p>
+    <div class="sal-action-row">
+      <button class="sal-secondary-action" id="salary-hourly-copy-summary" type="button">Copy summary</button>
+      <span class="sal-copy-feedback" id="salary-hourly-copy-feedback" aria-live="polite"></span>
+    </div>
     <div class="sal-support-grid">
-      <div class="sal-support-card"><span>Weekly pay</span><strong id="salary-weekly-result">—</strong></div>
-      <div class="sal-support-card"><span>Biweekly pay</span><strong id="salary-biweekly-result">—</strong></div>
-      <div class="sal-support-card"><span>Monthly pay</span><strong id="salary-monthly-result">—</strong></div>
+      <div class="sal-support-card"><span>Weekly pay</span><strong id="salary-weekly-result">1,153.85</strong></div>
+      <div class="sal-support-card"><span>Biweekly pay</span><strong id="salary-biweekly-result">2,307.69</strong></div>
+      <div class="sal-support-card"><span>Monthly pay</span><strong id="salary-monthly-result">5,000.00</strong></div>
     </div>
     <div class="sal-breakdown-card">
       <h3>Calculation basis</h3>
-      <p id="salary-hourly-breakdown">Hourly rate = annual salary ÷ weeks per year ÷ hours per week. Weekly, biweekly, and monthly views come from the same annual salary input.</p>
+      <p id="salary-hourly-breakdown">Hourly pay = annual salary / weeks per year / hours per week. Weekly, biweekly, and monthly views come from the same annual salary input.</p>
     </div>
     <div class="sal-method-card">
       <h3>How we calculate this</h3>
       <p>Gross pay only. This route relies on your own hours-per-week and weeks-per-year assumptions instead of fixed payroll rules.</p>
     </div>
+    <p class="sal-results-proof">Calculated locally in your browser - no data stored.</p>
     <p class="sal-results-disclaimer">Gross-pay estimate only. Taxes and deductions are excluded.</p>
   </aside>
 </div>

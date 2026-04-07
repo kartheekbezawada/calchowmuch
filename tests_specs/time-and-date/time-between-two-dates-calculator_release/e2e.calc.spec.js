@@ -86,8 +86,10 @@ test.describe('Time Between Two Dates Calculator', () => {
     expect(resultBox.y).toBeGreaterThanOrEqual(inputBox.y + inputBox.height - 1);
     expect(detailsBox.y).toBeGreaterThanOrEqual(resultBox.y + resultBox.height - 1);
     expect(explanationBox.y).toBeGreaterThanOrEqual(detailsBox.y + detailsBox.height - 1);
-    await expect(page.locator('#date-diff-explanation h2')).toHaveText(
-      'How much time is between two dates?'
-    );
+    await expect(
+      page
+        .locator('#date-diff-explanation')
+        .getByRole('heading', { level: 2, name: 'How much time is between two dates?' })
+    ).toBeVisible();
   });
 });

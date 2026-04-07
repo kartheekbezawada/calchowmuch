@@ -9,7 +9,7 @@
 
     <div class="sal-input-row">
       <label for="commission-sales-amount">Sales amount</label>
-      <input id="commission-sales-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="commission-sales-amount" type="number" min="0" step="0.01" inputmode="decimal" value="50000" />
     </div>
 
     <div class="sal-input-row">
@@ -31,17 +31,17 @@
 
     <div class="sal-input-row" id="commission-rate-row">
       <label for="commission-rate">Commission rate</label>
-      <input id="commission-rate" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="commission-rate" type="number" min="0" step="0.01" inputmode="decimal" value="8" />
     </div>
 
     <div class="sal-input-row" id="commission-amount-row" hidden aria-hidden="true">
       <label for="commission-amount">Commission amount</label>
-      <input id="commission-amount" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="commission-amount" type="number" min="0" step="0.01" inputmode="decimal" value="4000" />
     </div>
 
     <div class="sal-input-row">
       <label for="commission-base-pay">Base pay</label>
-      <input id="commission-base-pay" type="number" min="0" step="0.01" inputmode="decimal" />
+      <input id="commission-base-pay" type="number" min="0" step="0.01" inputmode="decimal" value="3000" />
     </div>
 
     <p class="sal-calc-helper">Base pay is optional and only affects the total-earnings support value.</p>
@@ -51,17 +51,17 @@
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Commission calculator results">
     <p class="sal-answer-title">Commission earned</p>
-    <p class="sal-answer-hero" id="commission-earned-output">—</p>
-    <p class="sal-answer-note" id="commission-note">Calculate to see commission earned first, then total earnings and effective commission rate.</p>
-    <p class="sal-answer-context" id="commission-context">The route will show whether commission came from a commission-rate input or a flat commission amount.</p>
+    <p class="sal-answer-hero" id="commission-earned-output">4,000.00</p>
+    <p class="sal-answer-note" id="commission-note">That commission brings total earnings to 7,000.00 before taxes.</p>
+    <p class="sal-answer-context" id="commission-context">Used commission-rate mode to calculate commission from the sales amount.</p>
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Total earnings</span>
-        <strong id="commission-total-earnings">—</strong>
+        <strong id="commission-total-earnings">7,000.00</strong>
       </div>
       <div class="sal-support-card">
         <span>Effective rate</span>
-        <strong id="commission-effective-rate">—</strong>
+        <strong id="commission-effective-rate">8%</strong>
       </div>
     </div>
     <div class="sal-breakdown-card">
