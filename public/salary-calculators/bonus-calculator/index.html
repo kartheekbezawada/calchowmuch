@@ -37,6 +37,14 @@
         --font-semibold: 600;
         --font-medium: 500;
         --font-normal: 400;
+        --border-color: rgba(19, 34, 47, 0.12);
+        --accent: #166534;
+        --header-text: #13222f;
+        --muted-text: #5d6f67;
+        --page-bg: #f6fbf7;
+        --panel-bg: #ffffff;
+        --panel-shadow: 0 2px 8px rgba(19, 34, 47, 0.06);
+        --pill-bg: #f0f4f1;
         --header-height: 80px;
         --nav-height: 64px;
         --footer-height: 72px;
@@ -631,6 +639,7 @@
         border: 1px solid var(--border-color);
         font-size: 15px;
         min-width: 400px;
+        margin-bottom: 4px;
       }
 
       .calculator-table th,
@@ -1618,9 +1627,47 @@
           padding: 18px;
         }
       }
+
+      .sal-key-insight {
+        margin: 20px 0;
+        padding: 20px 24px;
+        border-left: 4px solid #265d90;
+        border-radius: 0 16px 16px 0;
+        background: rgba(38, 93, 144, 0.06);
+      }
+
+      .sal-key-insight strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #265d90;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .sal-key-insight p {
+        margin: 0;
+        color: #22353f;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .sal-table-caption {
+        margin: 32px 0 10px;
+        color: #22353f;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .sal-table-note {
+        margin: 8px 0 16px;
+        color: #6b7e77;
+        font-size: 13px;
+        font-style: italic;
+      }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#webpage","name":"Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication","name":"Bonus Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate a bonus from salary?","acceptedAnswer":{"@type":"Answer","text":"Multiply salary by the bonus percentage, or enter a known bonus amount directly."}},{"@type":"Question","name":"Can I use a percentage or a flat amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator supports both a percent-based bonus and a flat bonus amount."}},{"@type":"Question","name":"Does this show total compensation?","acceptedAnswer":{"@type":"Answer","text":"Yes. Total compensation is the base salary plus bonus amount."}},{"@type":"Question","name":"Can I reverse the bonus percent from a known bonus amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator also shows the effective bonus percentage when salary and bonus are known."}},{"@type":"Question","name":"Does this include tax on bonuses?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross bonus and total compensation only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Bonus Calculator","item":"https://calchowmuch.com/salary-calculators/bonus-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#webpage","name":"Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#softwareapplication","name":"Bonus Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/bonus-calculator/","description":"Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate a bonus from salary?","acceptedAnswer":{"@type":"Answer","text":"Multiply your base salary by the bonus percentage. For example, $80,000 × 10% = $8,000 bonus."}},{"@type":"Question","name":"Is a bonus better than a raise?","acceptedAnswer":{"@type":"Answer","text":"A raise increases your salary permanently, while a bonus is usually one-time or annual. Over multiple years, a raise compounds; a bonus does not."}},{"@type":"Question","name":"What if my bonus is not guaranteed?","acceptedAnswer":{"@type":"Answer","text":"Model multiple scenarios (50%, 70%, 100% of target) to see the realistic range. Do not plan fixed expenses around an at-risk bonus."}},{"@type":"Question","name":"How do I compare two offers with different bonus structures?","acceptedAnswer":{"@type":"Answer","text":"Calculate total compensation for each (base + bonus) and compare. Also check whether each bonus is guaranteed or performance-based."}},{"@type":"Question","name":"What is a typical bonus percentage?","acceptedAnswer":{"@type":"Answer","text":"Target bonuses range widely: 5–10% for individual contributors, 15–25% for managers, and 30%+ for senior executives at many companies."}},{"@type":"Question","name":"Should I include the bonus in my monthly budget?","acceptedAnswer":{"@type":"Answer","text":"Only if it is guaranteed. For at-risk bonuses, budget on base salary alone and treat the bonus as savings or extra."}},{"@type":"Question","name":"Does this include taxes on bonuses?","acceptedAnswer":{"@type":"Answer","text":"No. All figures are gross. Bonuses are often withheld at a higher rate, so your net bonus may be smaller than expected."}},{"@type":"Question","name":"Is my data saved or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser. Nothing is stored or transmitted."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/bonus-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Bonus Calculator","item":"https://calchowmuch.com/salary-calculators/bonus-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -1722,142 +1769,194 @@
     <div id="bonus-calculator-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
     <p class="sal-explanation-kicker">Incentive pay guide</p>
-    <h2>How a bonus calculator shows the value of bonus pay in total compensation</h2>
+    <h2>Find out what a bonus is really worth inside your total compensation</h2>
     <p>
-      This bonus calculator estimates bonus amount, total compensation, and effective bonus percent
-      from either a salary percentage or a flat bonus amount. It gives a direct gross-pay answer when
-      a compensation package includes bonus pay.
-    </p>
-    <p>
-      The bonus figure matters on its own, but total compensation is usually the real decision number.
-      Looking at both keeps the package easier to judge.
+      A 10% bonus sounds great — but how much money is that? And how does it change when you
+      compare offers with different bonus structures? Enter your base salary and bonus details to see
+      the dollar amount and total compensation instantly.
     </p>
   </section>
+
   <section class="sal-explanation-card">
     <h3>How to Guide</h3>
 
     <h4>What This Calculator Does</h4>
     <p>
-      The calculator turns a bonus assumption into a dollar amount. It then adds that figure to salary
-      so you can see total compensation and the effective bonus percentage together.
+      The calculator converts a bonus (as a percentage or flat amount) into a dollar figure, adds it
+      to your base salary, and shows total compensation with the effective bonus percentage.
     </p>
 
     <h4>How to Use This Calculator</h4>
     <ol class="sal-explanation-list">
-      <li>Enter the base salary.</li>
-      <li>Choose percent mode or amount mode.</li>
-      <li>Enter the bonus percentage or flat bonus amount.</li>
-      <li>Click <strong>Calculate</strong> to see bonus amount and total compensation.</li>
-      <li>Compare the result with your savings and spending goals.</li>
+      <li>Enter your base annual salary.</li>
+      <li>Choose percent mode (e.g., 10%) or amount mode (e.g., $8,000).</li>
+      <li>Enter the bonus value.</li>
+      <li>Click <strong>Calculate</strong> to see bonus amount, total compensation, and bonus percentage.</li>
     </ol>
 
     <h4>How to Interpret Results</h4>
+    <p class="sal-table-caption">Bonus amounts at common salary and bonus-percentage levels</p>
     <table class="calculator-table">
       <thead>
         <tr>
-          <th scope="col">Result</th>
-          <th scope="col">What it means</th>
+          <th scope="col">Base Salary</th>
+          <th scope="col">5% Bonus</th>
+          <th scope="col">10% Bonus</th>
+          <th scope="col">15% Bonus</th>
+          <th scope="col">20% Bonus</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Bonus amount</td>
-          <td>The gross value of the bonus alone.</td>
-        </tr>
-        <tr>
-          <td>Total compensation</td>
-          <td>Your salary plus the bonus amount.</td>
-        </tr>
-        <tr>
-          <td>Bonus percent</td>
-          <td>The size of the bonus relative to salary.</td>
-        </tr>
+        <tr><td data-label="Base Salary">$50,000</td><td data-label="5% Bonus">$2,500</td><td data-label="10% Bonus">$5,000</td><td data-label="15% Bonus">$7,500</td><td data-label="20% Bonus">$10,000</td></tr>
+        <tr><td data-label="Base Salary">$65,000</td><td data-label="5% Bonus">$3,250</td><td data-label="10% Bonus">$6,500</td><td data-label="15% Bonus">$9,750</td><td data-label="20% Bonus">$13,000</td></tr>
+        <tr><td data-label="Base Salary">$80,000</td><td data-label="5% Bonus">$4,000</td><td data-label="10% Bonus">$8,000</td><td data-label="15% Bonus">$12,000</td><td data-label="20% Bonus">$16,000</td></tr>
+        <tr><td data-label="Base Salary">$100,000</td><td data-label="5% Bonus">$5,000</td><td data-label="10% Bonus">$10,000</td><td data-label="15% Bonus">$15,000</td><td data-label="20% Bonus">$20,000</td></tr>
+        <tr><td data-label="Base Salary">$120,000</td><td data-label="5% Bonus">$6,000</td><td data-label="10% Bonus">$12,000</td><td data-label="15% Bonus">$18,000</td><td data-label="20% Bonus">$24,000</td></tr>
       </tbody>
     </table>
-    <p>
-      Read total compensation first when you compare packages. Then use the bonus amount to judge how
-      much of the package is fixed pay versus incentive pay.
-    </p>
-    <p>
-      Formula breakdown: in percent mode, bonus amount equals salary times bonus percent. In amount mode,
-      the bonus amount is the number you enter, and total compensation equals salary plus bonus amount.
-    </p>
+    <p class="sal-table-note">All figures are gross. Bonus amounts = base salary × bonus percentage.</p>
+
+    <p class="sal-table-caption">Total compensation at $80,000 base salary by bonus level</p>
+    <table class="calculator-table">
+      <thead>
+        <tr>
+          <th scope="col">Bonus %</th>
+          <th scope="col">Bonus Amount</th>
+          <th scope="col">Total Comp</th>
+          <th scope="col">Monthly Equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td data-label="Bonus %">5%</td><td data-label="Bonus Amount">$4,000</td><td data-label="Total Comp">$84,000</td><td data-label="Monthly Equivalent">$7,000</td></tr>
+        <tr><td data-label="Bonus %">10%</td><td data-label="Bonus Amount">$8,000</td><td data-label="Total Comp">$88,000</td><td data-label="Monthly Equivalent">$7,333</td></tr>
+        <tr><td data-label="Bonus %">15%</td><td data-label="Bonus Amount">$12,000</td><td data-label="Total Comp">$92,000</td><td data-label="Monthly Equivalent">$7,667</td></tr>
+        <tr><td data-label="Bonus %">20%</td><td data-label="Bonus Amount">$16,000</td><td data-label="Total Comp">$96,000</td><td data-label="Monthly Equivalent">$8,000</td></tr>
+      </tbody>
+    </table>
+    <p class="sal-table-note">Monthly equivalent = total comp ÷ 12. Assumes bonus is paid in full.</p>
+
+    <div class="sal-key-insight">
+      <strong>Key Insight</strong>
+      <p>
+        A 10% bonus looks generous, but if it replaces stable base pay, it is riskier. Compare two
+        offers: $85K base vs. $78K + 15% bonus ($89,700 total). If the bonus hits only 50% of
+        target, the second offer drops to $83,850 — less than the guaranteed salary. Always ask
+        whether a bonus is guaranteed or at-risk before counting on it.
+      </p>
+    </div>
 
     <h4>Real-World Example</h4>
     <p>
-      With a salary of <strong>$70,000.00</strong> and a <strong>10%</strong> bonus, the bonus amount
-      is <strong>$7,000.00</strong>. Total compensation becomes <strong>$77,000.00</strong>.
+      Aisha is evaluating two offers. Offer A: <strong>$85,000</strong> base with no bonus.
+      Offer B: <strong>$78,000</strong> base with a target <strong>15%</strong> bonus. At full
+      target, Offer B pays <strong>$89,700</strong> — nearly $5K more.
+    </p>
+    <p>
+      But her research shows the company’s average bonus payout is 70% of target. At 70%,
+      the bonus drops to <strong>$8,190</strong>, making total comp <strong>$86,190</strong> —
+      only $1,190 more than the guaranteed $85K. She uses the calculator to model 50%, 70%, and
+      100% scenarios before deciding.
+    </p>
+    <p>
+      Once you have a realistic total-comp number, convert it into a monthly planning figure with the
+      <a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a>.
+      If you want every pay period in one place, use the
+      <a href="/salary-calculators/salary-calculator/">Salary Calculator</a> or browse the
+      <a href="/salary-calculators/">Salary Calculators hub</a>.
     </p>
 
-    <h4>Bonus Planning</h4>
-    <p>
-      Bonuses can make an offer look stronger, but they are not always as stable as base salary. That is
-      why the bonus amount and total compensation should be read together.
-    </p>
-    <p>
-      If the package depends heavily on bonus pay, think about whether that pay is predictable enough to
-      count on for monthly spending. Fixed costs are usually safer when they are covered by base salary.
-    </p>
-
-    <h4>Grow Your Wealth</h4>
-    <p>
-      Bonus pay is often the easiest money to save because it does not always feel part of your normal
-      spending pattern. Using part of it for investing or debt payoff can create outsized progress.
-    </p>
+    <h4>What to Do Next</h4>
+    <ol class="sal-explanation-list">
+      <li>Compare the bonus with a permanent <a href="/salary-calculators/raise-calculator/">raise</a> to see which adds more over time.</li>
+      <li>Use the <a href="/salary-calculators/salary-calculator/">Salary Calculator</a> to break total compensation into monthly, weekly, and hourly views.</li>
+      <li>Model commission alternatives with the <a href="/salary-calculators/commission-calculator/">Commission Calculator</a> if variable pay is an option.</li>
+    </ol>
 
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
-        <p>Compare a one-time or percentage bonus with a permanent increase in base salary.</p>
+        <p>Compare a one-time bonus with a permanent increase in base salary.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/commission-calculator/">Commission Earnings Calculator</a></h3>
-        <p>Check another variable-pay route when compensation depends on sales instead of bonus structure.</p>
+        <p>Explore commission-based pay as another variable compensation path.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>Turn total gross compensation into hourly, weekly, monthly, and annual views for easier comparison.</p>
+        <p>Convert total compensation into hourly, weekly, monthly, and annual breakdowns.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
-        <p>Pair bonus planning with regular weekly gross pay when total compensation changes across the year.</p>
+        <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
+        <p>Translate total compensation into a monthly budget number once you know the realistic annual figure.</p>
       </article>
+      <article class="sal-related-card">
+        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
+        <p>See how investing your bonus grows over time instead of spending it immediately.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
+        <p>Quickly calculate what a bonus percentage means in dollar terms at any salary level.</p>
+      </article>
+    
+      <article class="sal-related-card">
+        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
+        <p>See how investing your bonus grows over time instead of spending it immediately.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
+        <p>Quickly calculate what a bonus percentage means in dollar terms at any salary level.</p>
+      </article>
+    
     </div>
   </section>
+
   <section class="sal-explanation-card">
     <h3>Frequently Asked Questions</h3>
     <div class="sal-faq-grid">
       <article class="sal-related-card">
-        <h3>How do you calculate a bonus from salary?</h3>
-        <p>Multiply salary by the bonus percentage, or enter a known bonus amount directly.</p>
+        <h3>How do I calculate a bonus from salary?</h3>
+        <p>Multiply your base salary by the bonus percentage. For example, $80,000 × 10% = $8,000 bonus.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I use a percentage or a flat amount?</h3>
-        <p>Yes. The calculator supports both a percent-based bonus and a flat bonus amount.</p>
+        <h3>Is a bonus better than a raise?</h3>
+        <p>A raise increases your salary permanently, while a bonus is usually one-time or annual. Over multiple years, a raise compounds; a bonus does not.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this show total compensation?</h3>
-        <p>Yes. Total compensation is the base salary plus bonus amount.</p>
+        <h3>What if my bonus is not guaranteed?</h3>
+        <p>Model multiple scenarios (50%, 70%, 100% of target) to see the realistic range. Do not plan fixed expenses around an at-risk bonus.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I reverse the bonus percent from a known bonus amount?</h3>
-        <p>Yes. The calculator also shows the effective bonus percentage when salary and bonus are known.</p>
+        <h3>How do I compare two offers with different bonus structures?</h3>
+        <p>Calculate total compensation for each (base + bonus) and compare. Also check whether each bonus is guaranteed or performance-based.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this include tax on bonuses?</h3>
-        <p>No. It estimates gross bonus and total compensation only.</p>
+        <h3>What is a typical bonus percentage?</h3>
+        <p>Target bonuses range widely: 5–10% for individual contributors, 15–25% for managers, and 30%+ for senior executives at many companies.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Should I include the bonus in my monthly budget?</h3>
+        <p>Only if it is guaranteed. For at-risk bonuses, budget on base salary alone and treat the bonus as savings or extra.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Does this include taxes on bonuses?</h3>
+        <p>No. All figures are gross. Bonuses are often withheld at a higher rate, so your net bonus may be smaller than expected.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Is my data saved or sent anywhere?</h3>
+        <p>No. All calculations run locally in your browser. Nothing is stored or transmitted.</p>
       </article>
     </div>
   </section>
+
   <section class="sal-explanation-card sal-important-notes">
     <h3>Important Notes</h3>
     <ul class="sal-important-notes-list">
-      <li><span class="sal-note-key">Last updated:</span> March 2026</li>
+      <li><span class="sal-note-key">Last updated:</span> April 2026</li>
       <li><span class="sal-note-key">Accuracy:</span> Results use your salary plus the bonus percentage or flat bonus amount you enter.</li>
       <li><span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does not provide payroll, tax, or legal advice.</li>
-      <li><span class="sal-note-key">Assumptions:</span> Salary and bonus are treated as gross pay, and the calculator models one bonus input at a time.</li>
-      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no data is stored.</li>
+      <li><span class="sal-note-key">Assumptions:</span> Salary and bonus are treated as gross pay. The calculator models one bonus input at a time.</li>
+      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser — no data is stored.</li>
     </ul>
   </section>
 </div>

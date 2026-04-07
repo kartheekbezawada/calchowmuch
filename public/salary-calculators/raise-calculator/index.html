@@ -37,6 +37,14 @@
         --font-semibold: 600;
         --font-medium: 500;
         --font-normal: 400;
+        --border-color: rgba(19, 34, 47, 0.12);
+        --accent: #166534;
+        --header-text: #13222f;
+        --muted-text: #5d6f67;
+        --page-bg: #f6fbf7;
+        --panel-bg: #ffffff;
+        --panel-shadow: 0 2px 8px rgba(19, 34, 47, 0.06);
+        --pill-bg: #f0f4f1;
         --header-height: 80px;
         --nav-height: 64px;
         --footer-height: 72px;
@@ -631,6 +639,7 @@
         border: 1px solid var(--border-color);
         font-size: 15px;
         min-width: 400px;
+        margin-bottom: 4px;
       }
 
       .calculator-table th,
@@ -1618,9 +1627,47 @@
           padding: 18px;
         }
       }
+
+      .sal-key-insight {
+        margin: 20px 0;
+        padding: 20px 24px;
+        border-left: 4px solid #265d90;
+        border-radius: 0 16px 16px 0;
+        background: rgba(38, 93, 144, 0.06);
+      }
+
+      .sal-key-insight strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #265d90;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .sal-key-insight p {
+        margin: 0;
+        color: #22353f;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .sal-table-caption {
+        margin: 32px 0 10px;
+        color: #22353f;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .sal-table-note {
+        margin: 8px 0 16px;
+        color: #6b7e77;
+        font-size: 13px;
+        font-style: italic;
+      }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#webpage","name":"Raise Calculator | New Salary, Raise Amount and Raise Percentage","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication","name":"Raise Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate a raise?","acceptedAnswer":{"@type":"Answer","text":"You can either add a flat raise amount to current salary or multiply current salary by the raise percentage."}},{"@type":"Question","name":"Can I use a percent raise or a flat raise amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator supports both modes."}},{"@type":"Question","name":"Does this show my new salary after the raise?","acceptedAnswer":{"@type":"Answer","text":"Yes. The main result is the new salary after applying the raise."}},{"@type":"Question","name":"Can I see the raise amount separately?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator also shows the raise amount and the resulting percent increase."}},{"@type":"Question","name":"Does this include taxes?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross pay changes only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Raise Calculator","item":"https://calchowmuch.com/salary-calculators/raise-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#webpage","name":"Raise Calculator | New Salary, Raise Amount and Raise Percentage","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#softwareapplication","name":"Raise Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/raise-calculator/","description":"Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate a raise?","acceptedAnswer":{"@type":"Answer","text":"Multiply your current salary by the raise percentage (e.g., $65,000 × 5% = $3,250 raise). Or enter a flat dollar amount directly."}},{"@type":"Question","name":"Is a 3% raise good?","acceptedAnswer":{"@type":"Answer","text":"It depends on inflation. If inflation is also around 3%, a 3% raise keeps your purchasing power flat. You need to beat inflation to get ahead."}},{"@type":"Question","name":"How do I compare a raise with a new job offer?","acceptedAnswer":{"@type":"Answer","text":"Enter your current salary and the raise to get the new salary, then compare it with the other offer. Do not forget to factor in bonuses, benefits, and commute costs."}},{"@type":"Question","name":"What is a typical annual raise?","acceptedAnswer":{"@type":"Answer","text":"Annual merit raises in the U.S. typically range from 3–5%. Promotions and job changes often produce 10–20% increases."}},{"@type":"Question","name":"Should I save 100% of my raise?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily, but saving at least half of a raise before adjusting your lifestyle is a common strategy to build wealth without feeling restricted."}},{"@type":"Question","name":"Can I model both percentage and flat raises?","acceptedAnswer":{"@type":"Answer","text":"Yes. Toggle between percent mode and amount mode to see how each approach affects your new salary."}},{"@type":"Question","name":"Does this include taxes?","acceptedAnswer":{"@type":"Answer","text":"No. All figures are gross pay. Your take-home increase will be smaller after taxes and deductions."}},{"@type":"Question","name":"Is my data saved or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser. Nothing is stored or transmitted."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/raise-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Raise Calculator","item":"https://calchowmuch.com/salary-calculators/raise-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -1721,142 +1768,170 @@
     <div id="raise-calculator-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
     <p class="sal-explanation-kicker">Pay increase guide</p>
-    <h2>How a raise calculator shows the real size of your next pay increase</h2>
+    <h2>See exactly how much a raise changes your paycheck</h2>
     <p>
-      This raise calculator compares your current salary, raise amount, and new salary in one view.
-      It works with either a percentage raise or a flat amount, so you can check the impact before
-      a review, offer, or negotiation.
-    </p>
-    <p>
-      The main value is clarity. A percentage can sound large, but the dollar change shows whether
-      the raise is actually meaningful for your budget.
+      A percentage raise can sound impressive or disappointing — until you see the actual dollar
+      amount. Enter your current salary and the raise (as a percentage or flat amount) to see your
+      new salary, the dollar increase, and what it means per month.
     </p>
   </section>
+
   <section class="sal-explanation-card">
     <h3>How to Guide</h3>
 
     <h4>What This Calculator Does</h4>
     <p>
-      The calculator turns a raise into two clear answers: the raise amount and the new salary. It
-      also shows the resulting percent increase for context.
+      The calculator compares your current salary with the proposed raise and shows the new salary,
+      the dollar increase, and the resulting percentage change. It works with either a percentage
+      raise or a flat dollar amount.
     </p>
 
     <h4>How to Use This Calculator</h4>
     <ol class="sal-explanation-list">
-      <li>Enter your current salary.</li>
-      <li>Choose percent mode or amount mode.</li>
-      <li>Enter the raise percentage or flat raise amount.</li>
-      <li>Click <strong>Calculate</strong> to see the raise amount and new salary.</li>
-      <li>Compare the result with your monthly budget and longer-term goals.</li>
+      <li>Enter your current annual salary.</li>
+      <li>Choose percent mode (e.g., 5%) or amount mode (e.g., $3,000).</li>
+      <li>Enter the raise value.</li>
+      <li>Click <strong>Calculate</strong> to see the raise amount, new salary, and percentage change.</li>
     </ol>
 
     <h4>How to Interpret Results</h4>
+    <p class="sal-table-caption">Annual raise and monthly impact at common salary levels</p>
     <table class="calculator-table">
       <thead>
         <tr>
-          <th scope="col">Result</th>
-          <th scope="col">How to use it</th>
+          <th scope="col">Current Salary</th>
+          <th scope="col">3% Raise</th>
+          <th scope="col">5% Raise</th>
+          <th scope="col">8% Raise</th>
+          <th scope="col">5% Monthly Impact</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Raise amount</td>
-          <td>Shows the direct dollar increase in gross pay.</td>
-        </tr>
-        <tr>
-          <td>New salary</td>
-          <td>Shows your updated gross annual pay.</td>
-        </tr>
-        <tr>
-          <td>Percent increase</td>
-          <td>Helps compare offers with different raise styles.</td>
-        </tr>
+        <tr><td data-label="Current Salary">$45,000</td><td data-label="3% Raise">$1,350</td><td data-label="5% Raise">$2,250</td><td data-label="8% Raise">$3,600</td><td data-label="5% Monthly Impact">$188</td></tr>
+        <tr><td data-label="Current Salary">$55,000</td><td data-label="3% Raise">$1,650</td><td data-label="5% Raise">$2,750</td><td data-label="8% Raise">$4,400</td><td data-label="5% Monthly Impact">$229</td></tr>
+        <tr><td data-label="Current Salary">$65,000</td><td data-label="3% Raise">$1,950</td><td data-label="5% Raise">$3,250</td><td data-label="8% Raise">$5,200</td><td data-label="5% Monthly Impact">$271</td></tr>
+        <tr><td data-label="Current Salary">$80,000</td><td data-label="3% Raise">$2,400</td><td data-label="5% Raise">$4,000</td><td data-label="8% Raise">$6,400</td><td data-label="5% Monthly Impact">$333</td></tr>
+        <tr><td data-label="Current Salary">$100,000</td><td data-label="3% Raise">$3,000</td><td data-label="5% Raise">$5,000</td><td data-label="8% Raise">$8,000</td><td data-label="5% Monthly Impact">$417</td></tr>
+        <tr><td data-label="Current Salary">$120,000</td><td data-label="3% Raise">$3,600</td><td data-label="5% Raise">$6,000</td><td data-label="8% Raise">$9,600</td><td data-label="5% Monthly Impact">$500</td></tr>
       </tbody>
     </table>
-    <p>
-      Use the raise amount to judge immediate impact and the new salary to review the bigger picture.
-      If two offers use different raise formats, the percent result makes comparison easier.
-    </p>
-    <p>
-      Formula breakdown: in percent mode, raise amount equals current salary times raise percent. In
-      amount mode, the raise amount is the number you enter, and new salary equals current salary plus raise amount.
-    </p>
+    <p class="sal-table-note">All figures are gross annual increases. Monthly impact = annual raise ÷ 12.</p>
+
+    <div class="sal-key-insight">
+      <strong>Key Insight</strong>
+      <p>
+        A 3% raise on a typical salary barely keeps pace with inflation. If prices rose 3% and
+        your raise was also 3%, your purchasing power stayed flat — you did not actually get
+        ahead. Run both the Raise and <a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted</a>
+        calculators to see whether a raise is a real improvement or just treading water.
+      </p>
+    </div>
 
     <h4>Real-World Example</h4>
     <p>
-      With a current salary of <strong>$60,000.00</strong> and a <strong>5%</strong> raise, the raise
-      amount is <strong>$3,000.00</strong>. The new salary becomes <strong>$63,000.00</strong>.
+      Troy earns <strong>$68,000</strong> and his current employer offers a 4% annual raise —
+      <strong>$2,720</strong> more, for a new salary of <strong>$70,720</strong>. Meanwhile, a
+      recruiter pitches a role at <strong>$76,000</strong> — roughly a 12% jump.
+    </p>
+    <p>
+      The dollar difference between the two options is <strong>$5,280/year</strong> or
+      <strong>$440/month</strong>. But Troy’s current job has a $5,000 annual bonus and
+      better benefits. He uses the calculator to see that the raise alone is not the whole
+      picture — total compensation matters more than base salary alone.
     </p>
 
-    <h4>Raise Impact</h4>
-    <p>
-      Percent mode grows with your current salary, so the same percentage can mean very different money
-      for two people. Flat raises do the reverse and change the effective percentage based on where you start.
-    </p>
-    <p>
-      That is why both the dollar amount and the percentage matter. One tells you what hits your budget,
-      while the other helps you compare with other offers.
-    </p>
-
-    <h4>Grow Your Wealth</h4>
-    <p>
-      Raises work best when part of the increase is captured early. Moving a slice of the extra pay to
-      savings or investing can improve your finances without changing your baseline lifestyle much.
-    </p>
+    <h4>What to Do Next</h4>
+    <ol class="sal-explanation-list">
+      <li>Run the <a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Calculator</a> to check whether your raise actually beats inflation.</li>
+      <li>Use the <a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a> to add bonus pay on top and compare total compensation across offers.</li>
+      <li>Convert your new salary into <a href="/salary-calculators/annual-to-monthly-salary-calculator/">monthly pay</a> to see the real-world budget impact.</li>
+    </ol>
 
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Salary Calculator</a></h3>
-        <p>Check whether the raise you model here is still improving real buying power after inflation.</p>
+        <p>Check whether the raise actually improves purchasing power after accounting for inflation.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
-        <p>Compare a raise in base pay with one-off or percentage bonus income.</p>
+        <p>Compare a permanent raise with one-time or percentage bonus income.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>Translate the new salary into hourly, weekly, monthly, and annual gross-pay views.</p>
+        <p>Translate the new salary into hourly, weekly, monthly, and annual views.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/commission-calculator/">Commission Earnings Calculator</a></h3>
-        <p>Compare a higher fixed salary with compensation plans that rely more on commission upside.</p>
+        <p>Compare a higher fixed salary with commission-based compensation.</p>
       </article>
+      <article class="sal-related-card">
+        <h3><a href="/percentage-calculators/percentage-increase-calculator/">Percentage Increase Calculator</a></h3>
+        <p>A raise is a percentage increase — use this to double-check the math or compare different raise formats.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/finance-calculators/inflation-calculator/">Inflation Calculator</a></h3>
+        <p>Check whether your raise actually beats inflation or just keeps pace with rising prices.</p>
+      </article>
+    
+      <article class="sal-related-card">
+        <h3><a href="/percentage-calculators/percentage-increase-calculator/">Percentage Increase Calculator</a></h3>
+        <p>A raise is a percentage increase — use this to double-check the math or compare different raise formats.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/finance-calculators/inflation-calculator/">Inflation Calculator</a></h3>
+        <p>Check whether your raise actually beats inflation or just keeps pace with rising prices.</p>
+      </article>
+    
     </div>
   </section>
+
   <section class="sal-explanation-card">
     <h3>Frequently Asked Questions</h3>
     <div class="sal-faq-grid">
       <article class="sal-related-card">
-        <h3>How do you calculate a raise?</h3>
-        <p>You can either add a flat raise amount to current salary or multiply current salary by the raise percentage.</p>
+        <h3>How do I calculate a raise?</h3>
+        <p>Multiply your current salary by the raise percentage (e.g., $65,000 × 5% = $3,250 raise). Or enter a flat dollar amount directly.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I use a percent raise or a flat raise amount?</h3>
-        <p>Yes. The calculator supports both modes.</p>
+        <h3>Is a 3% raise good?</h3>
+        <p>It depends on inflation. If inflation is also around 3%, a 3% raise keeps your purchasing power flat. You need to beat inflation to get ahead.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this show my new salary after the raise?</h3>
-        <p>Yes. The main result is the new salary after applying the raise.</p>
+        <h3>How do I compare a raise with a new job offer?</h3>
+        <p>Enter your current salary and the raise to get the new salary, then compare it with the other offer. Do not forget to factor in bonuses, benefits, and commute costs.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I see the raise amount separately?</h3>
-        <p>Yes. The calculator also shows the raise amount and the resulting percent increase.</p>
+        <h3>What is a typical annual raise?</h3>
+        <p>Annual merit raises in the U.S. typically range from 3–5%. Promotions and job changes often produce 10–20% increases.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Should I save 100% of my raise?</h3>
+        <p>Not necessarily, but saving at least half of a raise before adjusting your lifestyle is a common strategy to build wealth without feeling restricted.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Can I model both percentage and flat raises?</h3>
+        <p>Yes. Toggle between percent mode and amount mode to see how each approach affects your new salary.</p>
       </article>
       <article class="sal-related-card">
         <h3>Does this include taxes?</h3>
-        <p>No. It estimates gross pay changes only.</p>
+        <p>No. All figures are gross pay. Your take-home increase will be smaller after taxes and deductions.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Is my data saved or sent anywhere?</h3>
+        <p>No. All calculations run locally in your browser. Nothing is stored or transmitted.</p>
       </article>
     </div>
   </section>
+
   <section class="sal-explanation-card sal-important-notes">
     <h3>Important Notes</h3>
     <ul class="sal-important-notes-list">
-      <li><span class="sal-note-key">Last updated:</span> March 2026</li>
-      <li><span class="sal-note-key">Accuracy:</span> Results use your current salary plus the raise percentage or raise amount you enter.</li>
+      <li><span class="sal-note-key">Last updated:</span> April 2026</li>
+      <li><span class="sal-note-key">Accuracy:</span> Results use your current salary plus the raise percentage or flat amount you enter.</li>
       <li><span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does not provide payroll, tax, or legal advice.</li>
-      <li><span class="sal-note-key">Assumptions:</span> Salary is treated as gross annual pay, and the calculator applies one raise input at a time.</li>
-      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no data is stored.</li>
+      <li><span class="sal-note-key">Assumptions:</span> Salary is gross annual pay. The calculator applies one raise input at a time.</li>
+      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser — no data is stored.</li>
     </ul>
   </section>
 </div>

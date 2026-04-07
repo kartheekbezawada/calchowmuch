@@ -37,6 +37,14 @@
         --font-semibold: 600;
         --font-medium: 500;
         --font-normal: 400;
+        --border-color: rgba(19, 34, 47, 0.12);
+        --accent: #166534;
+        --header-text: #13222f;
+        --muted-text: #5d6f67;
+        --page-bg: #f6fbf7;
+        --panel-bg: #ffffff;
+        --panel-shadow: 0 2px 8px rgba(19, 34, 47, 0.06);
+        --pill-bg: #f0f4f1;
         --header-height: 80px;
         --nav-height: 64px;
         --footer-height: 72px;
@@ -631,6 +639,7 @@
         border: 1px solid var(--border-color);
         font-size: 15px;
         min-width: 400px;
+        margin-bottom: 4px;
       }
 
       .calculator-table th,
@@ -1618,9 +1627,47 @@
           padding: 18px;
         }
       }
+
+      .sal-key-insight {
+        margin: 20px 0;
+        padding: 20px 24px;
+        border-left: 4px solid #265d90;
+        border-radius: 0 16px 16px 0;
+        background: rgba(38, 93, 144, 0.06);
+      }
+
+      .sal-key-insight strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #265d90;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .sal-key-insight p {
+        margin: 0;
+        color: #22353f;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .sal-table-caption {
+        margin: 32px 0 10px;
+        color: #22353f;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .sal-table-note {
+        margin: 8px 0 16px;
+        color: #6b7e77;
+        font-size: 13px;
+        font-style: italic;
+      }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#webpage","name":"Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly Income","url":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/","description":"Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#softwareapplication","name":"Annual to Monthly Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/","description":"Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you convert annual salary to monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Divide the annual salary by 12 to estimate monthly pay."}},{"@type":"Question","name":"Is monthly pay just annual salary divided by 12?","acceptedAnswer":{"@type":"Answer","text":"For a simple gross-pay estimate, yes. Payroll deductions and irregular payments are not included here."}},{"@type":"Question","name":"Can I also estimate biweekly pay?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator also shows biweekly and weekly pay from the same annual salary input."}},{"@type":"Question","name":"Does this show net monthly income?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross monthly salary before taxes and deductions."}},{"@type":"Question","name":"Why might my paycheck differ from the monthly estimate?","acceptedAnswer":{"@type":"Answer","text":"Actual paychecks can differ because of pay schedule timing, deductions, benefits, bonuses, and other payroll adjustments."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Annual to Monthly Salary Calculator","item":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#webpage","name":"Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly Income","url":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/","description":"Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#softwareapplication","name":"Annual to Monthly Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/","description":"Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do I convert my annual salary to monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Divide annual salary by 12. For example, $60,000/year ÷ 12 = $5,000/month gross."}},{"@type":"Question","name":"Why is my actual paycheck different from the monthly estimate?","acceptedAnswer":{"@type":"Answer","text":"Paychecks reflect deductions (taxes, insurance, retirement) and payroll timing. This shows gross pay — the amount before any deductions."}},{"@type":"Question","name":"What percentage of my monthly gross should go to rent?","acceptedAnswer":{"@type":"Answer","text":"A common guideline is 30% of gross monthly income. On a $5,000/month salary, that means a maximum of about $1,500 for housing."}},{"@type":"Question","name":"How do I plan bills around biweekly paychecks?","acceptedAnswer":{"@type":"Answer","text":"Biweekly pay means 26 checks per year, not 24. Two months will have three paychecks — those are good months to boost savings or pay down debt."}},{"@type":"Question","name":"Why do some months feel tighter on the same salary?","acceptedAnswer":{"@type":"Answer","text":"If you are paid biweekly, most months have two paychecks but your monthly bills stay the same. The three-paycheck months balance it out over the year."}},{"@type":"Question","name":"Can I use this to compare two job offers by monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Yes. Convert both annual salaries to monthly, then compare them against your actual monthly expenses to see which gives more breathing room."}},{"@type":"Question","name":"Does this include taxes or deductions?","acceptedAnswer":{"@type":"Answer","text":"No. This is a gross-pay conversion. Your take-home will be lower depending on tax bracket, benefits, and retirement contributions."}},{"@type":"Question","name":"Is my data saved or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs locally in your browser. Nothing is stored or transmitted."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Annual to Monthly Salary Calculator","item":"https://calchowmuch.com/salary-calculators/annual-to-monthly-salary-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -1688,144 +1735,203 @@
     <div id="annual-to-monthly-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
     <p class="sal-explanation-kicker">Budget guide</p>
-    <h2>How an annual to monthly salary calculator helps with monthly planning</h2>
+    <h2>Know exactly what your annual salary means each month</h2>
     <p>
-      This annual to monthly salary calculator converts yearly pay into monthly, biweekly, and weekly
-      estimates. It gives you a clearer monthly planning number when a job offer, raise, or budget
-      starts with annual salary but your bills land every month.
-    </p>
-    <p>
-      The monthly result is a simple average, not a payroll stub. Use it to plan spending and savings,
-      then remember that real paycheck timing can still differ.
+      You have an annual salary number — from an offer letter, a raise, or your current pay — but
+      your rent, groceries, and bills arrive every month. This calculator converts your yearly
+      salary into the monthly, biweekly, and weekly amounts you actually need for budgeting.
     </p>
   </section>
+
   <section class="sal-explanation-card">
     <h3>How to Guide</h3>
 
     <h4>What This Calculator Does</h4>
     <p>
-      The calculator divides annual salary into smaller pay periods. It shows the monthly figure first,
-      then adds biweekly and weekly views for extra context.
+      You enter an annual salary and the calculator divides it into monthly, biweekly, and weekly
+      gross pay. The monthly figure is what most people need first — it directly matches the rhythm
+      of rent, utility bills, and savings transfers.
     </p>
 
     <h4>How to Use This Calculator</h4>
     <ol class="sal-explanation-list">
-      <li>Enter your annual salary.</li>
-      <li>Add weeks per year if you want the weekly view.</li>
-      <li>Click <strong>Calculate</strong> to generate monthly, biweekly, and weekly pay.</li>
-      <li>Use the monthly result for budgeting and the weekly result for schedule checks.</li>
-      <li>Compare the outputs with your actual payroll rhythm before making a final decision.</li>
+      <li>Enter your annual salary from an offer letter, pay stub, or current contract.</li>
+      <li>Confirm weeks per year if you want an accurate weekly estimate (default is 52).</li>
+      <li>Click <strong>Calculate</strong> and use the monthly result as the starting point for your budget.</li>
+      <li>Check biweekly pay if your employer pays every two weeks — it affects when money lands in your account.</li>
     </ol>
 
     <h4>How to Interpret Results</h4>
+    <p class="sal-table-caption">Common annual salaries broken into monthly, biweekly, and weekly pay</p>
     <table class="calculator-table">
       <thead>
         <tr>
-          <th scope="col">Output</th>
-          <th scope="col">Best use</th>
+          <th scope="col">Annual Salary</th>
+          <th scope="col">Monthly</th>
+          <th scope="col">Biweekly</th>
+          <th scope="col">Weekly</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Monthly pay</td>
-          <td>Budgeting rent, bills, and savings targets.</td>
+          <td data-label="Annual Salary">$35,000</td>
+          <td data-label="Monthly">$2,917</td>
+          <td data-label="Biweekly">$1,346</td>
+          <td data-label="Weekly">$673</td>
         </tr>
         <tr>
-          <td>Biweekly pay</td>
-          <td>Comparing with two-paycheck payroll schedules.</td>
+          <td data-label="Annual Salary">$50,000</td>
+          <td data-label="Monthly">$4,167</td>
+          <td data-label="Biweekly">$1,923</td>
+          <td data-label="Weekly">$962</td>
         </tr>
         <tr>
-          <td>Weekly pay</td>
-          <td>Checking the pace of earnings across the year.</td>
+          <td data-label="Annual Salary">$65,000</td>
+          <td data-label="Monthly">$5,417</td>
+          <td data-label="Biweekly">$2,500</td>
+          <td data-label="Weekly">$1,250</td>
+        </tr>
+        <tr>
+          <td data-label="Annual Salary">$80,000</td>
+          <td data-label="Monthly">$6,667</td>
+          <td data-label="Biweekly">$3,077</td>
+          <td data-label="Weekly">$1,538</td>
+        </tr>
+        <tr>
+          <td data-label="Annual Salary">$100,000</td>
+          <td data-label="Monthly">$8,333</td>
+          <td data-label="Biweekly">$3,846</td>
+          <td data-label="Weekly">$1,923</td>
+        </tr>
+        <tr>
+          <td data-label="Annual Salary">$125,000</td>
+          <td data-label="Monthly">$10,417</td>
+          <td data-label="Biweekly">$4,808</td>
+          <td data-label="Weekly">$2,404</td>
         </tr>
       </tbody>
     </table>
+    <p class="sal-table-note">Gross pay before taxes and deductions. Weekly assumes 52 weeks/year.</p>
+
     <p>
-      A higher monthly number means more room in your regular budget, but it does not tell you when
-      paychecks arrive. Weekly and biweekly views help bridge that gap.
+      Use the monthly column for rent and savings decisions. If your employer pays biweekly (every
+      two weeks), use that column instead — you will get 26 paychecks per year, not 24, which
+      means two months will have three paychecks.
     </p>
-    <p>
-      Formula breakdown: monthly salary equals annual salary divided by 12. Biweekly pay equals annual
-      salary divided by 26, and weekly pay equals annual salary divided by weeks per year.
-    </p>
+
+    <div class="sal-key-insight">
+      <strong>Key Insight</strong>
+      <p>
+        Every $10,000 increase in annual salary adds exactly $833 to your monthly gross pay. That
+        simple multiplier lets you estimate the monthly impact of any raise or job switch instantly —
+        a $5K raise means roughly $417 more per month before taxes.
+      </p>
+    </div>
 
     <h4>Real-World Example</h4>
     <p>
-      An annual salary of <strong>$72,000.00</strong> converts to <strong>$6,000.00</strong> per month.
-      It also works out to <strong>$2,769.23</strong> biweekly and <strong>$1,384.62</strong> weekly
-      when you use <strong>52 weeks</strong> per year.
+      Mia just accepted her first full-time role at <strong>$52,000 per year</strong>. Before
+      signing an apartment lease, she needs to know her monthly gross:
+      $52,000 ÷ 12 = <strong>$4,333 per month</strong>.
+    </p>
+    <p>
+      Using the common guideline of spending no more than 30% of gross income on rent, her budget
+      ceiling is about <strong>$1,300/month</strong>. The calculator also shows her biweekly paycheck
+      will be around <strong>$2,000</strong> — useful for timing bill payments around paydays.
     </p>
 
-    <h4>Monthly Budget Planning</h4>
-    <p>
-      Monthly planning becomes easier when the salary offer is translated into the same rhythm as your
-      rent, utilities, and savings transfers. The monthly view also helps you judge whether a raise will
-      feel meaningful in daily life.
-    </p>
-    <p>
-      The catch is that payroll schedules can still create uneven cash flow. Keep the biweekly number
-      nearby if your employer pays every two weeks.
-    </p>
-
-    <h4>Grow Your Wealth</h4>
-    <p>
-      Once you know the monthly figure, decide how much should move to savings on payday. A fixed transfer
-      based on monthly income can make investing and emergency-fund building more consistent.
-    </p>
+    <h4>What to Do Next</h4>
+    <ol class="sal-explanation-list">
+      <li>Multiply your monthly result by 0.30 to estimate a comfortable housing budget (the 30% guideline).</li>
+      <li>Use the <a href="/salary-calculators/raise-calculator/">Raise Calculator</a> to see how a potential raise changes your monthly number.</li>
+      <li>Check the <a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Calculator</a> to confirm your monthly income is keeping pace with rising costs.</li>
+    </ol>
 
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/monthly-to-annual-salary-calculator/">Monthly to Annual Salary Calculator</a></h3>
-        <p>Reverse the calculation when you want to turn a monthly figure back into yearly gross pay.</p>
+        <p>Reverse the calculation when you know a monthly figure and need the annual total.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>Compare monthly pay with hourly, weekly, biweekly, and annual views from one gross-pay input.</p>
+        <p>See your salary across every pay period — hourly, daily, weekly, biweekly, monthly, and annual — in one view.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
-        <p>Zoom in on week-level earnings when your monthly planning needs a regular-workweek check.</p>
+        <p>Zoom into the weekly view when your budget depends on shift-based or variable-hour income.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
-        <p>Add one-off or percentage bonus pay when monthly planning also depends on variable compensation.</p>
+        <p>Add a bonus on top of your base salary when planning total compensation for the year.</p>
       </article>
+      <article class="sal-related-card">
+        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
+        <p>Figure out what 30% of your monthly pay is for rent budgeting or savings goals.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed Calculator</a></h3>
+        <p>Once you know your monthly salary, calculate how much to save each month to hit a target.</p>
+      </article>
+    
+      <article class="sal-related-card">
+        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
+        <p>Figure out what 30% of your monthly pay is for rent budgeting or savings goals.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3><a href="/finance-calculators/monthly-savings-needed-calculator/">Monthly Savings Needed Calculator</a></h3>
+        <p>Once you know your monthly salary, calculate how much to save each month to hit a target.</p>
+      </article>
+    
     </div>
   </section>
+
   <section class="sal-explanation-card">
     <h3>Frequently Asked Questions</h3>
     <div class="sal-faq-grid">
       <article class="sal-related-card">
-        <h3>How do you convert annual salary to monthly pay?</h3>
-        <p>Divide the annual salary by 12 to estimate monthly pay.</p>
+        <h3>How do I convert my annual salary to monthly pay?</h3>
+        <p>Divide annual salary by 12. For example, $60,000/year ÷ 12 = $5,000/month gross.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Is monthly pay just annual salary divided by 12?</h3>
-        <p>For a simple gross-pay estimate, yes. Payroll deductions and irregular payments are not included here.</p>
+        <h3>Why is my actual paycheck different from the monthly estimate?</h3>
+        <p>Paychecks reflect deductions (taxes, insurance, retirement) and payroll timing. This shows gross pay — the amount before any deductions.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I also estimate biweekly pay?</h3>
-        <p>Yes. The calculator also shows biweekly and weekly pay from the same annual salary input.</p>
+        <h3>What percentage of my monthly gross should go to rent?</h3>
+        <p>A common guideline is 30% of gross monthly income. On a $5,000/month salary, that means a maximum of about $1,500 for housing.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this show net monthly income?</h3>
-        <p>No. It estimates gross monthly salary before taxes and deductions.</p>
+        <h3>How do I plan bills around biweekly paychecks?</h3>
+        <p>Biweekly pay means 26 checks per year, not 24. Two months will have three paychecks — those are good months to boost savings or pay down debt.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Why might my paycheck differ from the monthly estimate?</h3>
-        <p>Actual paychecks can differ because of pay schedule timing, deductions, benefits, bonuses, and other payroll adjustments.</p>
+        <h3>Why do some months feel tighter on the same salary?</h3>
+        <p>If you are paid biweekly, most months have two paychecks but your monthly bills stay the same. The three-paycheck months balance it out over the year.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Can I use this to compare two job offers by monthly pay?</h3>
+        <p>Yes. Convert both annual salaries to monthly, then compare them against your actual monthly expenses to see which gives more breathing room.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Does this include taxes or deductions?</h3>
+        <p>No. This is a gross-pay conversion. Your take-home will be lower depending on tax bracket, benefits, and retirement contributions.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Is my data saved or sent anywhere?</h3>
+        <p>No. Everything runs locally in your browser. Nothing is stored or transmitted.</p>
       </article>
     </div>
   </section>
+
   <section class="sal-explanation-card sal-important-notes">
     <h3>Important Notes</h3>
     <ul class="sal-important-notes-list">
-      <li><span class="sal-note-key">Last updated:</span> March 2026</li>
-      <li><span class="sal-note-key">Accuracy:</span> Results use standard annual-to-monthly, annual-to-biweekly, and annual-to-weekly conversion math.</li>
+      <li><span class="sal-note-key">Last updated:</span> April 2026</li>
+      <li><span class="sal-note-key">Accuracy:</span> Results use standard annual-to-monthly division (÷12), biweekly (÷26), and weekly (÷weeks per year).</li>
       <li><span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does not provide payroll, tax, or legal advice.</li>
-      <li><span class="sal-note-key">Assumptions:</span> Annual salary is treated as gross pay, and weekly estimates use the weeks-per-year value you enter.</li>
-      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no data is stored.</li>
+      <li><span class="sal-note-key">Assumptions:</span> Annual salary is gross pay. Monthly is a simple average — actual paycheck amounts may differ.</li>
+      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser — no data is stored.</li>
     </ul>
   </section>
 </div>
