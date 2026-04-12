@@ -1,0 +1,2936 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Debt Payoff Calculator | Snowball, Avalanche, Payoff Date and Interest</title>
+    <meta name="description" content="Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date." />
+    <link rel="canonical" href="https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/" />
+    <meta property="og:title" content="Debt Payoff Calculator | Snowball, Avalanche, Payoff Date and Interest" />
+    <meta property="og:description" content="Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Debt Payoff Calculator | Snowball, Avalanche, Payoff Date and Interest" />
+    <meta name="twitter:description" content="Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/#softwareapplication","name":"Debt Payoff Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/","description":"Multi-debt payoff planner with snowball and avalanche strategy comparison, payoff date, interest totals, charts, and goal-date mode.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Credit Card Calculators","item":"https://calchowmuch.com/credit-card-calculators/"},{"@type":"ListItem","position":3,"name":"Debt Payoff Calculator","item":"https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/"}]}]}</script>
+    <style data-route-critical="true">
+      /* assets/css/base.css */
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      /* (dead CSS for other calculators removed) */
+      }
+
+
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/credit-card-calculators/shared/cluster-light.css */
+      body[data-design-family='credit-cards'] {
+        --cc-bg: #ffffff;
+        --cc-surface: rgba(255, 255, 255, 0.94);
+        --cc-surface-soft: #f7f8fa;
+        --cc-surface-soft-2: #fbfbfc;
+        --cc-text: #111111;
+        --cc-muted: #5f6673;
+        --cc-line: #e6e8ed;
+        --cc-line-strong: #d6dbe4;
+        --cc-accent: #2563eb;
+        --cc-accent-soft: #eff5ff;
+        --cc-shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+        --cc-shadow-strong: 0 24px 56px rgba(17, 17, 17, 0.1);
+        --cc-table-head: #f4f7fc;
+        --cc-table-head-strong: #eef4ff;
+        --cc-table-row: rgba(255, 255, 255, 0.98);
+        --cc-table-row-alt: rgba(247, 248, 250, 0.96);
+        --cc-table-row-hover: rgba(239, 245, 255, 0.92);
+        --cc-table-caption: #4f5d70;
+        background:
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] .page {
+        min-height: 100vh;
+      }
+
+      body[data-design-family='credit-cards'] a {
+        color: var(--cc-accent);
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-wrap,
+      body[data-design-family='credit-cards'] .cc-cluster-center-column {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(18px);
+        background: rgba(255, 255, 255, 0.86);
+        border-bottom: 1px solid rgba(230, 232, 237, 0.94);
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-site-header-inner {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--cc-text);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-brand:hover {
+        text-decoration: none;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-brand-mark {
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #111111, #2b2b2b);
+        color: #fff;
+        font-size: 18px;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-site-links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 14px;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-site-links a {
+        color: var(--cc-accent);
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-layout-main {
+        padding: 54px 0 72px;
+      }
+
+      body[data-design-family='credit-cards'] .center-column.cc-cluster-center-column {
+        max-width: none;
+        padding: 0;
+        display: block;
+      }
+
+      body[data-design-family='credit-cards'] .panel.cc-cluster-panel {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+        overflow: visible;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-page-header {
+        max-width: 760px;
+        margin: 0 auto 32px;
+        text-align: center;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-page-helper {
+        margin: 10px 0 0;
+        color: var(--cc-muted);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      body[data-design-family='credit-cards'] #calculator-title {
+        margin: 0;
+        font-size: clamp(40px, 6vw, 54px);
+        line-height: 1.04;
+        letter-spacing: -0.03em;
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-flow {
+        gap: 32px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-ui {
+        gap: 24px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-hero'] {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel'] {
+        border: 1px solid var(--cc-line);
+        border-radius: 24px;
+        background: var(--cc-surface);
+        box-shadow: var(--cc-shadow);
+        padding: 28px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel']::before,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel']::after,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel']::before,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel']::after {
+        display: none;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-main'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-list'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-result-card'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-summary-card'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .result,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .result-detail {
+        border: 1px solid var(--cc-line);
+        border-radius: 20px;
+        background: #ffffff;
+        box-shadow: var(--cc-shadow);
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-main'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-list'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-summary-card'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .result-detail {
+        padding: 20px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .helper,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-note'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-label'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-kicker'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-provider-note'] {
+        color: var(--cc-muted);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .input-row {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] label {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.4;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #243043;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='number'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='text'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='search'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] textarea {
+        width: 100%;
+        min-height: 48px;
+        border-radius: 16px;
+        border: 1px solid var(--cc-line-strong);
+        background: #ffffff;
+        color: var(--cc-text);
+        padding: 12px 14px;
+        font-size: 16px;
+        line-height: 1.35;
+        box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.03);
+        transition:
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          background-color 0.18s ease;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='number']:focus-visible,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='text']:focus-visible,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='search']:focus-visible,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] textarea:focus-visible {
+        outline: 0;
+        border-color: rgba(37, 99, 235, 0.6);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .slider-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .slider-value {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--cc-accent-soft);
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        color: var(--cc-accent);
+        font-size: 13px;
+        font-weight: 700;
+        text-shadow: none;
+        box-shadow: none;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 6px;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          #2563eb 0%,
+          #2563eb var(--fill, 50%),
+          rgba(37, 99, 235, 0.14) var(--fill, 50%)
+        );
+        cursor: pointer;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid var(--cc-accent);
+        box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='range']::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid var(--cc-accent);
+        box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-button,
+      body[data-design-family='credit-cards'] #calc-cc-payoff .cc-payoff-action-row .calculator-button,
+      body[data-design-family='credit-cards'] #calc-cc-min .cc-min-action-row .calculator-button,
+      body[data-design-family='credit-cards'] #calc-cc-bt .cc-bt-action-row .calculator-button,
+      body[data-design-family='credit-cards'] #calc-cc-con .cc-con-action-row .calculator-button {
+        min-height: 52px;
+        border: 0;
+        border-radius: 16px;
+        background: #111111;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        box-shadow: 0 12px 24px rgba(17, 17, 17, 0.1);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          filter 0.18s ease;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 30px rgba(17, 17, 17, 0.14);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-button:focus-visible {
+        outline: 0;
+        box-shadow:
+          0 18px 30px rgba(17, 17, 17, 0.14),
+          0 0 0 4px rgba(37, 99, 235, 0.16);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .placeholder {
+        margin: 0;
+        border-radius: 16px;
+        border: 1px dashed var(--cc-line-strong);
+        background: linear-gradient(180deg, var(--cc-surface-soft-2), var(--cc-surface-soft));
+        color: var(--cc-muted);
+        padding: 16px 18px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .form-error {
+        margin: 0;
+        border-radius: 16px;
+        border: 1px solid rgba(239, 68, 68, 0.18);
+        background: rgba(254, 242, 242, 0.92);
+        color: #991b1b;
+        padding: 14px 16px;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-results-list'],
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-list'] {
+        display: grid;
+        gap: 10px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .result-line,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-row'] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid var(--cc-line);
+        background: linear-gradient(180deg, #ffffff, var(--cc-surface-soft-2));
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-row'] span {
+        color: var(--cc-muted);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-row'] strong {
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .table-scroll {
+        position: relative;
+        border: 1px solid var(--cc-line);
+        border-radius: 24px;
+        background:
+          linear-gradient(180deg, rgba(244, 247, 252, 0.92) 0, rgba(255, 255, 255, 0.98) 64px, #ffffff 64px);
+        box-shadow: var(--cc-shadow);
+        overflow: hidden;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .table-scroll:focus-visible {
+        outline: 0;
+        box-shadow:
+          var(--cc-shadow),
+          0 0 0 4px rgba(37, 99, 235, 0.12);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'],
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] {
+        width: 100%;
+        min-width: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: transparent;
+        table-layout: fixed;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table th,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] th,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] th,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--cc-line);
+        text-align: left;
+        color: var(--cc-text);
+        vertical-align: middle;
+        background: var(--cc-table-row);
+        overflow-wrap: anywhere;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table th,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] th,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] th {
+        position: sticky;
+        top: 0;
+        border-bottom: 1px solid var(--cc-line-strong);
+        background: linear-gradient(180deg, var(--cc-table-head-strong), var(--cc-table-head));
+        color: var(--cc-table-caption);
+        font-size: 0.77rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        z-index: 2;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table th + th,
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td + td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] th + th,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td + td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] th + th,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td + td {
+        border-left: 1px solid rgba(230, 232, 237, 0.94);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table thead th:first-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] thead th:first-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] thead th:first-child {
+        border-top-left-radius: 18px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table thead th:last-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] thead th:last-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] thead th:last-child {
+        border-top-right-radius: 18px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody td {
+        font-variant-numeric: tabular-nums;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody td:first-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody td:first-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody td:first-child {
+        font-weight: 700;
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:nth-child(even) td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:nth-child(even) td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:nth-child(even) td {
+        background: var(--cc-table-row-alt);
+      }
+
+      @media (hover: hover) {
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:hover td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:hover td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:hover td {
+          background: var(--cc-table-row-hover);
+        }
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td:first-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td:first-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 18px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td:last-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td:last-child,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 18px;
+      }
+
+      body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'] td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'] td,
+      body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] td {
+        padding: 24px 18px;
+        text-align: center;
+        color: var(--cc-muted);
+        font-weight: 600;
+        background: linear-gradient(180deg, rgba(251, 251, 252, 0.98), rgba(247, 248, 250, 0.96));
+      }
+
+      body[data-design-family='credit-cards'] #cc-payoff-table,
+      body[data-design-family='credit-cards'] #cc-min-table,
+      body[data-design-family='credit-cards'] #cc-bt-table,
+      body[data-design-family='credit-cards'] #cc-con-table-yearly {
+        min-width: 0;
+      }
+
+      body[data-design-family='credit-cards'] #cc-con-table-monthly {
+        min-width: 0;
+      }
+
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table,
+      body[data-design-family='credit-cards'] .cc-con-guide-table {
+        min-width: 0;
+      }
+
+      body[data-design-family='credit-cards'] #cc-payoff-table th:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-payoff-table td:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-min-table th:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-min-table td:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-bt-table th:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-bt-table td:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-con-table-yearly th:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-con-table-yearly td:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-con-table-monthly th:not(:first-child),
+      body[data-design-family='credit-cards'] #cc-con-table-monthly td:not(:first-child) {
+        text-align: right;
+      }
+
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table th:nth-child(2),
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2) {
+        text-align: right;
+      }
+
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2) {
+        font-weight: 700;
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(3) {
+        color: var(--cc-muted);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='credit-cards'] .cc-con-guide-table th,
+      body[data-design-family='credit-cards'] .cc-con-guide-table td {
+        white-space: normal;
+      }
+
+      body[data-design-family='credit-cards'] .cc-con-guide-table th:first-child,
+      body[data-design-family='credit-cards'] .cc-con-guide-table td:first-child {
+        width: 42%;
+      }
+
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table th:first-child,
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table td:first-child {
+        width: 38%;
+      }
+
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table th:nth-child(2),
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2) {
+        width: 34%;
+      }
+
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table th:nth-child(3),
+      body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(3) {
+        width: 28%;
+      }
+
+      body[data-design-family='credit-cards'] [id$='-explanation'] {
+        display: grid;
+        gap: 20px;
+      }
+
+      body[data-design-family='credit-cards'] [id$='-explanation'] > h3,
+      body[data-design-family='credit-cards'] [id$='-explanation'] > h2 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 36px);
+        letter-spacing: -0.03em;
+        color: var(--cc-text);
+      }
+
+      body[data-design-family='credit-cards'] [id$='-explanation'] > section,
+      body[data-design-family='credit-cards'] [id$='-explanation'] .faq-box,
+      body[data-design-family='credit-cards'] [id$='-explanation'] .cc-min-faq-item,
+      body[data-design-family='credit-cards'] [id$='-explanation'] .bor-faq-card {
+        border: 1px solid var(--cc-line);
+        border-radius: 22px;
+        background: var(--cc-surface);
+        box-shadow: var(--cc-shadow);
+        padding: 24px;
+      }
+
+      body[data-design-family='credit-cards'] [id$='-explanation'] p,
+      body[data-design-family='credit-cards'] [id$='-explanation'] li,
+      body[data-design-family='credit-cards'] [id$='-explanation'] td,
+      body[data-design-family='credit-cards'] [id$='-explanation'] th {
+        color: #2f3846;
+      }
+
+      body[data-design-family='credit-cards'] [id$='-explanation'] ul {
+        padding-left: 20px;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-related {
+        margin-top: 8px;
+        padding: 28px;
+        border: 1px solid var(--cc-line);
+        border-radius: 22px;
+        background: var(--cc-surface);
+        box-shadow: var(--cc-shadow);
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-related h2 {
+        margin: 0 0 18px;
+        font-size: clamp(28px, 4vw, 36px);
+        letter-spacing: -0.03em;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-related-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-related-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--cc-line);
+        background: linear-gradient(180deg, #ffffff, var(--cc-surface-soft));
+        color: var(--cc-text);
+        font-weight: 600;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-related-link:hover {
+        transform: translateY(-1px);
+        border-color: rgba(37, 99, 235, 0.24);
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+        text-decoration: none;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-related-link.is-active {
+        background: var(--cc-accent-soft);
+        border-color: rgba(37, 99, 235, 0.18);
+        color: var(--cc-accent);
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-site-footer {
+        padding: 0 0 56px;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-site-footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 28px;
+        border: 1px solid var(--cc-line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: var(--cc-shadow);
+        text-align: center;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      body[data-design-family='credit-cards'] .cc-cluster-footer-copy {
+        color: var(--cc-muted);
+      }
+
+      @media (max-width: 980px) {
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-hero'] {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body[data-design-family='credit-cards'] .cc-cluster-site-header-inner {
+          min-height: 64px;
+        }
+
+        body[data-design-family='credit-cards'] .cc-cluster-site-links {
+          display: none;
+        }
+
+        body[data-design-family='credit-cards'] .cc-cluster-layout-main {
+          padding: 36px 0 56px;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel'],
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel'],
+        body[data-design-family='credit-cards'] [id$='-explanation'] > section,
+        body[data-design-family='credit-cards'] [id$='-explanation'] .faq-box,
+        body[data-design-family='credit-cards'] [id$='-explanation'] .cc-min-faq-item,
+        body[data-design-family='credit-cards'] [id$='-explanation'] .bor-faq-card,
+        body[data-design-family='credit-cards'] .cc-cluster-related,
+        body[data-design-family='credit-cards'] .cc-cluster-site-footer-inner {
+          padding: 22px;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .table-scroll {
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          box-shadow: none;
+          overflow: visible;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'],
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] {
+          display: block;
+          table-layout: auto;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table thead,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] thead,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] thead {
+          display: none;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody {
+          display: grid;
+          gap: 14px;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tr,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tr,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tr {
+          display: grid;
+          gap: 10px;
+          padding: 16px;
+          border: 1px solid var(--cc-line);
+          border-radius: 20px;
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 250, 0.96));
+          box-shadow: var(--cc-shadow);
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          align-items: start;
+          gap: 14px;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          text-align: right;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td::before,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td::before,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td::before {
+          color: var(--cc-table-caption);
+          font-size: 0.74rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          text-align: left;
+          content: '';
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td + td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td + td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td + td {
+          border-left: 0;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:nth-child(even) td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:nth-child(even) td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:nth-child(even) td {
+          background: transparent;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td:first-child,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td:first-child,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:first-child,
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td:last-child,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td:last-child,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:last-child {
+          border-radius: 0;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'],
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'],
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] {
+          display: block;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          box-shadow: none;
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'] td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'] td,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] td {
+          display: block;
+          padding: 18px;
+          border-radius: 18px;
+          border: 1px dashed var(--cc-line-strong);
+          text-align: left;
+          background: linear-gradient(180deg, rgba(251, 251, 252, 0.98), rgba(247, 248, 250, 0.96));
+        }
+
+        body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'] td::before,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'] td::before,
+        body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] td::before {
+          content: none;
+        }
+
+        body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(1)::before,
+        body[data-design-family='credit-cards'] #cc-min-table td:nth-child(1)::before,
+        body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(1)::before,
+        body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(1)::before {
+          content: 'Year';
+        }
+
+        body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(2)::before,
+        body[data-design-family='credit-cards'] #cc-min-table td:nth-child(2)::before,
+        body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(2)::before {
+          content: 'Payments';
+        }
+
+        body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(3)::before,
+        body[data-design-family='credit-cards'] #cc-min-table td:nth-child(3)::before,
+        body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(3)::before {
+          content: 'Interest';
+        }
+
+        body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(4)::before,
+        body[data-design-family='credit-cards'] #cc-min-table td:nth-child(4)::before,
+        body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(4)::before,
+        body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(5)::before {
+          content: 'Ending Balance';
+        }
+
+        body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(1)::before {
+          content: 'Category';
+        }
+
+        body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2)::before {
+          content: 'Value';
+        }
+
+        body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(3)::before {
+          content: 'Source';
+        }
+
+        body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(1)::before {
+          content: 'Month';
+        }
+
+        body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(2)::before {
+          content: 'Payment';
+        }
+
+        body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(2)::before {
+          content: 'Total Paid';
+        }
+
+        body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(3)::before {
+          content: 'Principal';
+        }
+
+        body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(4)::before,
+        body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(4)::before {
+          content: 'Total Interest';
+        }
+
+        body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(5)::before {
+          content: 'Balance';
+        }
+
+        body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(3)::before {
+          content: 'Total Principal';
+        }
+
+        body[data-design-family='credit-cards'] .cc-con-guide-table--inputs tbody td:nth-child(1)::before {
+          content: 'Input';
+        }
+
+        body[data-design-family='credit-cards'] .cc-con-guide-table--inputs tbody td:nth-child(2)::before {
+          content: 'Example Value';
+        }
+
+        body[data-design-family='credit-cards'] .cc-con-guide-table--outputs tbody td:nth-child(1)::before {
+          content: 'Output';
+        }
+
+        body[data-design-family='credit-cards'] .cc-con-guide-table--outputs tbody td:nth-child(2)::before {
+          content: 'Current Cards';
+        }
+
+        body[data-design-family='credit-cards'] .cc-con-guide-table--outputs tbody td:nth-child(3)::before {
+          content: 'Consolidation Loan';
+        }
+
+        body[data-design-family='credit-cards'] .cc-con-guide-table--scenarios tbody td:nth-child(1)::before {
+          content: 'Scenario';
+        }
+
+        body[data-design-family='credit-cards'] .cc-con-guide-table--scenarios tbody td:nth-child(2)::before {
+          content: 'Likely Outcome';
+        }
+      }
+
+      /* calculators/credit-card-calculators/debt-payoff-calculator/calculator.css — cluster-aligned v2 */
+      #calc-debt-payoff {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        gap: 32px;
+        color: var(--cc-text);
+      }
+
+      #calc-debt-payoff .is-hidden,
+      #calc-debt-payoff [hidden] {
+        display: none !important;
+      }
+
+      /* ---- Cards ---- */
+      #calc-debt-payoff .dp-card,
+      #calc-debt-payoff .dp-hero-band,
+      #debt-payoff-explanation .dp-exp-card {
+        border: 1px solid var(--cc-line);
+        border-radius: 24px;
+        background: var(--cc-surface);
+        box-shadow: var(--cc-shadow);
+        padding: 32px;
+      }
+
+      /* ---- Hero band ---- */
+      #calc-debt-payoff .dp-hero-band {
+        display: grid;
+        gap: 10px;
+        text-align: center;
+        padding: 40px 32px;
+      }
+
+      /* Kickers */
+      #calc-debt-payoff .dp-kicker,
+      #calc-debt-payoff .dp-section-kicker,
+      #calc-debt-payoff .dp-table-context,
+      #debt-payoff-explanation .dp-guide-table th {
+        margin: 0;
+        color: var(--cc-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* Headings */
+      #calc-debt-payoff .dp-intro,
+      #calc-debt-payoff .dp-hero-value,
+      #calc-debt-payoff h3,
+      #calc-debt-payoff h4,
+      #debt-payoff-explanation h2,
+      #debt-payoff-explanation h3,
+      #debt-payoff-explanation h4 {
+        font-family: inherit;
+        letter-spacing: -0.02em;
+      }
+
+      #calc-debt-payoff .dp-intro {
+        margin: 0;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        line-height: 1.15;
+      }
+
+      /* Muted body text */
+      #calc-debt-payoff .dp-hero-copy,
+      #calc-debt-payoff .dp-hero-summary,
+      #calc-debt-payoff .dp-mode-note,
+      #calc-debt-payoff .dp-card-head p,
+      #calc-debt-payoff .dp-side-head p,
+      #calc-debt-payoff .dp-chart-note,
+      #calc-debt-payoff .dp-chart-caption,
+      #calc-debt-payoff .dp-table-note,
+      #calc-debt-payoff .dp-related-copy,
+      #calc-debt-payoff .dp-input-note,
+      #calc-debt-payoff .dp-kpi-card p,
+      #calc-debt-payoff .dp-delta-card p,
+      #debt-payoff-explanation p,
+      #debt-payoff-explanation li {
+        margin: 0;
+        color: var(--cc-muted);
+        line-height: 1.7;
+      }
+
+      /* ---- Planner card (merged settings + debts) ---- */
+      #calc-debt-payoff .dp-planner-card {
+        display: grid;
+        gap: 24px;
+      }
+
+      #calc-debt-payoff .dp-planner-section {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-debt-payoff .dp-divider {
+        margin: 0;
+        border: 0;
+        border-top: 1px solid var(--cc-line);
+      }
+
+      /* ---- Results card ---- */
+      #calc-debt-payoff .dp-results-card {
+        display: grid;
+        gap: 24px;
+      }
+
+      #calc-debt-payoff .dp-results-bottom {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        align-items: start;
+      }
+
+      #calc-debt-payoff .dp-results-col {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-debt-payoff .dp-results-card h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--cc-muted);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      #calc-debt-payoff .dp-insight-grid,
+      #calc-debt-payoff .dp-kpi-grid,
+      #calc-debt-payoff .dp-delta-grid,
+      #calc-debt-payoff .dp-next-steps,
+      #calc-debt-payoff .dp-debt-rows,
+      #debt-payoff-explanation,
+      #debt-payoff-explanation .dp-faq-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-debt-payoff .dp-side-section {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-debt-payoff .dp-insight-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      /* Answer main card */
+      #calc-debt-payoff .dp-answer-main {
+        gap: 24px;
+      }
+
+      /* Flex row layouts */
+      #calc-debt-payoff .dp-answer-top,
+      #calc-debt-payoff .dp-answer-actions,
+      #calc-debt-payoff .dp-card-head,
+      #calc-debt-payoff .dp-chart-head,
+      #calc-debt-payoff .dp-table-head,
+      #calc-debt-payoff .dp-side-head,
+      #calc-debt-payoff .dp-debt-row-top,
+      #calc-debt-payoff .dp-action-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      #calc-debt-payoff .dp-answer-copy {
+        display: grid;
+        gap: 12px;
+      }
+
+      #calc-debt-payoff .dp-answer-actions {
+        align-items: center;
+      }
+
+      /* Hero value */
+      #calc-debt-payoff .dp-hero-value {
+        margin: 0;
+        font-size: clamp(1.75rem, 3.5vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      /* KPI grid */
+      #calc-debt-payoff .dp-kpi-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      /* Subcards */
+      #calc-debt-payoff .dp-kpi-card,
+      #calc-debt-payoff .dp-delta-card,
+      #calc-debt-payoff .dp-goal-banner,
+      #calc-debt-payoff .dp-side-panel,
+      #calc-debt-payoff .dp-strategy-tile,
+      #calc-debt-payoff .dp-debt-row,
+      #calc-debt-payoff .dp-next-steps a {
+        border: 1px solid var(--cc-line);
+        border-radius: 16px;
+        background: linear-gradient(180deg, #ffffff, var(--cc-surface-soft));
+      }
+
+      #calc-debt-payoff .dp-kpi-card,
+      #calc-debt-payoff .dp-delta-card {
+        display: grid;
+        gap: 6px;
+        padding: 20px;
+      }
+
+      #calc-debt-payoff .dp-kpi-card strong,
+      #calc-debt-payoff .dp-delta-card strong {
+        color: var(--cc-muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      #calc-debt-payoff .dp-kpi-value,
+      #calc-debt-payoff .dp-delta-value {
+        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      #calc-debt-payoff .dp-goal-banner {
+        padding-bottom: 16px;
+      }
+
+      /* Payoff order list */
+      #calc-debt-payoff .dp-order-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        counter-reset: item;
+      }
+
+      #calc-debt-payoff .dp-order-list li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: var(--cc-surface-soft);
+        font-weight: 600;
+      }
+
+      #calc-debt-payoff .dp-order-list li::before {
+        content: counter(item);
+        counter-increment: item;
+        width: 28px;
+        height: 28px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--cc-accent-soft);
+        color: var(--cc-accent);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      /* ---- Headings inside cards ---- */
+      #calc-debt-payoff .dp-card-head {
+        align-items: flex-end;
+      }
+
+      #calc-debt-payoff .dp-card-head h3,
+      #calc-debt-payoff .dp-side-head h3,
+      #calc-debt-payoff .dp-chart-head h3,
+      #calc-debt-payoff .dp-table-head h3 {
+        margin: 0;
+        font-size: clamp(1.15rem, 2vw, 1.5rem);
+        line-height: 1.15;
+        font-weight: 700;
+      }
+
+      /* ---- Toggle controls ---- */
+      #calc-debt-payoff .dp-mode-toggle,
+      #calc-debt-payoff .dp-segmented {
+        display: inline-grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px;
+        padding: 4px;
+        border-radius: 14px;
+        border: 1px solid var(--cc-line);
+        background: var(--cc-surface-soft);
+      }
+
+      #calc-debt-payoff .dp-mode-chip,
+      #calc-debt-payoff .dp-segment,
+      #calc-debt-payoff .dp-mini-toggle,
+      #calc-debt-payoff .dp-btn,
+      #calc-debt-payoff .dp-mini-btn,
+      #calc-debt-payoff .dp-field,
+      #calc-debt-payoff .dp-strategy-tile {
+        transition:
+          border-color 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease,
+          box-shadow 0.18s ease,
+          transform 0.18s ease;
+      }
+
+      #calc-debt-payoff .dp-mode-chip,
+      #calc-debt-payoff .dp-segment,
+      #calc-debt-payoff .dp-mini-toggle {
+        min-height: 42px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--cc-muted);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 0 16px;
+      }
+
+      #calc-debt-payoff .dp-mode-chip.is-active,
+      #calc-debt-payoff .dp-segment.is-active,
+      #calc-debt-payoff .dp-mini-toggle.is-active,
+      #calc-debt-payoff .dp-mode-chip[aria-pressed='true'],
+      #calc-debt-payoff .dp-segment[aria-pressed='true'],
+      #calc-debt-payoff .dp-mini-toggle[aria-pressed='true'] {
+        background: #ffffff;
+        color: var(--cc-text);
+        border-color: var(--cc-line);
+        box-shadow: 0 2px 8px rgba(17, 17, 17, 0.06);
+      }
+
+      #calc-debt-payoff .dp-mode-note {
+        font-size: 14px;
+      }
+
+      /* ---- Input fields ---- */
+      #calc-debt-payoff .dp-input-stack,
+      #calc-debt-payoff .dp-strategy-grid,
+      #calc-debt-payoff .dp-debt-row,
+      #calc-debt-payoff .dp-debt-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      #calc-debt-payoff .dp-input-stack {
+        max-width: 380px;
+      }
+
+      #calc-debt-payoff .dp-field-label {
+        display: grid;
+        gap: 6px;
+        min-width: 0;
+        color: var(--cc-muted);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      #calc-debt-payoff .dp-field {
+        width: 100%;
+        min-height: 48px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--cc-line-strong);
+        background: #ffffff;
+        color: var(--cc-text);
+        font-size: 16px;
+        box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.03);
+      }
+
+      #calc-debt-payoff .dp-field:focus {
+        outline: 0;
+        border-color: rgba(37, 99, 235, 0.6);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+      }
+
+      /* ---- Strategy tiles ---- */
+      #calc-debt-payoff .dp-strategy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-debt-payoff .dp-strategy-tile {
+        display: grid;
+        gap: 6px;
+        padding: 18px;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      #calc-debt-payoff .dp-strategy-name {
+        color: var(--cc-text);
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      #calc-debt-payoff .dp-strategy-copy {
+        color: var(--cc-muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      #calc-debt-payoff .dp-strategy-tile.is-active,
+      #calc-debt-payoff .dp-strategy-tile[aria-pressed='true'] {
+        background: var(--cc-accent-soft);
+        border-color: rgba(37, 99, 235, 0.2);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08);
+      }
+
+      /* ---- Debt rows ---- */
+      #calc-debt-payoff .dp-debt-row {
+        padding: 18px;
+        background: linear-gradient(180deg, #ffffff, var(--cc-surface-soft));
+      }
+
+      #calc-debt-payoff .dp-row-index {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      #calc-debt-payoff .dp-debt-grid {
+        grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr));
+        align-items: end;
+      }
+
+      /* ---- Buttons ---- */
+      #calc-debt-payoff .dp-btn,
+      #calc-debt-payoff .dp-mini-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 22px;
+        border-radius: 14px;
+        border: 1px solid var(--cc-line);
+        background: #ffffff;
+        color: var(--cc-text);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      #calc-debt-payoff .dp-mini-btn {
+        min-height: 40px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      #calc-debt-payoff .dp-btn:hover,
+      #calc-debt-payoff .dp-mini-btn:hover,
+      #calc-debt-payoff .dp-mode-chip:hover,
+      #calc-debt-payoff .dp-segment:hover,
+      #calc-debt-payoff .dp-mini-toggle:hover,
+      #calc-debt-payoff .dp-strategy-tile:hover {
+        transform: translateY(-1px);
+      }
+
+      #calc-debt-payoff .dp-btn-primary {
+        background: #111111;
+        border-color: #111111;
+        color: #ffffff;
+        box-shadow: 0 12px 24px rgba(17, 17, 17, 0.1);
+      }
+
+      #calc-debt-payoff .dp-btn-primary:hover {
+        box-shadow: 0 18px 30px rgba(17, 17, 17, 0.14);
+      }
+
+      #calc-debt-payoff .dp-action-row {
+        align-items: center;
+      }
+
+      #calc-debt-payoff .dp-input-note {
+        font-size: 13px;
+      }
+
+      #calc-debt-payoff .dp-error {
+        margin: 0;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(239, 68, 68, 0.18);
+        background: rgba(254, 242, 242, 0.92);
+        color: #991b1b;
+        font-weight: 700;
+      }
+
+      #calc-debt-payoff .dp-copy-feedback {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 14px;
+        border-radius: 999px;
+        background: var(--cc-accent-soft);
+        color: var(--cc-accent);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      /* ---- Charts ---- */
+      #calc-debt-payoff .dp-chart-card,
+      #calc-debt-payoff .dp-table-card,
+      #calc-debt-payoff .dp-related-section {
+        min-width: 0;
+      }
+
+      #calc-debt-payoff .dp-chart-head,
+      #calc-debt-payoff .dp-table-head {
+        align-items: flex-end;
+      }
+
+      #calc-debt-payoff .dp-line-chart-wrap {
+        min-height: 280px;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      #calc-debt-payoff #debt-payoff-line-chart {
+        width: 100%;
+        height: 280px;
+        display: block;
+      }
+
+      #calc-debt-payoff .dp-pie-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+
+      #calc-debt-payoff .dp-donut-wrap {
+        position: relative;
+        width: min(280px, 70%);
+        aspect-ratio: 1;
+      }
+
+      #calc-debt-payoff .dp-donut {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+
+      #calc-debt-payoff .dp-donut-track {
+        fill: none;
+        stroke: var(--cc-surface-soft);
+        stroke-width: 24;
+      }
+
+      #calc-debt-payoff .dp-donut-segment {
+        fill: none;
+        stroke-width: 24;
+        stroke-linecap: butt;
+        cursor: pointer;
+        transition: opacity 0.18s ease;
+      }
+
+      #calc-debt-payoff .dp-donut-center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      #calc-debt-payoff .dp-donut-center-pct {
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--cc-text);
+      }
+
+      #calc-debt-payoff .dp-donut-center-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--cc-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-top: 4px;
+      }
+
+      #calc-debt-payoff .dp-donut-tooltip {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px 14px;
+        border-radius: 8px;
+        background: #111;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      #calc-debt-payoff .dp-pie-legend {
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+      }
+
+      #calc-debt-payoff .dp-pie-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+      }
+
+      #calc-debt-payoff .dp-pie-value {
+        color: var(--cc-muted);
+        font-size: 13px;
+      }
+
+      #calc-debt-payoff .dp-pie-swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        flex-shrink: 0;
+      }
+
+      /* ---- Schedule table ---- */
+      #calc-debt-payoff .dp-table-card {
+        display: grid;
+        gap: 16px;
+      }
+
+      #calc-debt-payoff .dp-table-wrap {
+        width: 100%;
+        max-height: 420px;
+        overflow: auto;
+        border: 1px solid var(--cc-line);
+        border-radius: 20px;
+        min-width: 0;
+        background: #ffffff;
+      }
+
+      #calc-debt-payoff .dp-table {
+        width: 100%;
+        min-width: 760px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      #calc-debt-payoff .dp-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: linear-gradient(180deg, var(--cc-table-head-strong), var(--cc-table-head));
+        color: var(--cc-table-caption);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-align: left;
+      }
+
+      #calc-debt-payoff .dp-table th,
+      #calc-debt-payoff .dp-table td {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--cc-line);
+        white-space: nowrap;
+      }
+
+      #calc-debt-payoff .dp-table td.num,
+      #calc-debt-payoff .dp-table th.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      #calc-debt-payoff .dp-table tbody tr:nth-child(even) {
+        background: var(--cc-table-row-alt);
+      }
+
+      /* ---- Next steps ---- */
+      #calc-debt-payoff .dp-next-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #calc-debt-payoff .dp-next-steps a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 72px;
+        padding: 16px;
+        color: var(--cc-text);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      /* ---- Explanation content ---- */
+      #debt-payoff-explanation {
+        display: grid;
+        gap: 24px;
+      }
+
+      #debt-payoff-explanation .dp-exp-card {
+        display: grid;
+        gap: 14px;
+      }
+
+      #debt-payoff-explanation h2 {
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      #debt-payoff-explanation h3 {
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      #debt-payoff-explanation h4 {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      #debt-payoff-explanation .dp-guide-list,
+      #debt-payoff-explanation .dp-notes-list {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 8px;
+      }
+
+      #debt-payoff-explanation .dp-formula-block {
+        justify-self: center;
+        width: min(100%, 720px);
+        padding: 16px 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(37, 99, 235, 0.14);
+        background: var(--cc-accent-soft);
+        color: var(--cc-text);
+        text-align: center;
+        font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+        font-size: 14px;
+      }
+
+      #debt-payoff-explanation .dp-guide-table-wrap {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+
+      #debt-payoff-explanation .dp-guide-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid var(--cc-line);
+        border-radius: 16px;
+        background: #ffffff;
+      }
+
+      #debt-payoff-explanation .dp-guide-table th,
+      #debt-payoff-explanation .dp-guide-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--cc-line);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      #debt-payoff-explanation .dp-faq-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #debt-payoff-explanation .faq-card {
+        display: grid;
+        gap: 8px;
+        padding: 18px;
+        border-radius: 16px;
+        border: 1px solid var(--cc-line);
+        background: #ffffff;
+      }
+
+      /* ---- Responsive ---- */
+      @media (max-width: 1120px) {
+        #calc-debt-payoff .dp-results-bottom,
+        #calc-debt-payoff .dp-insight-grid,
+        #calc-debt-payoff .dp-kpi-grid,
+        #calc-debt-payoff .dp-next-steps {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 980px) {
+        #calc-debt-payoff .dp-delta-grid,
+        #debt-payoff-explanation .dp-faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-debt-payoff .dp-debt-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #calc-debt-payoff .dp-pie-legend {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 720px) {
+        #calc-debt-payoff .dp-card,
+        #calc-debt-payoff .dp-hero-band,
+        #debt-payoff-explanation .dp-exp-card {
+          padding: 22px;
+          border-radius: 18px;
+        }
+
+        #calc-debt-payoff .dp-mode-toggle,
+        #calc-debt-payoff .dp-segmented,
+        #calc-debt-payoff .dp-strategy-grid,
+        #calc-debt-payoff .dp-delta-grid,
+        #calc-debt-payoff .dp-debt-grid,
+        #calc-debt-payoff .dp-next-steps {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-debt-payoff .dp-hero-value {
+          font-size: clamp(1.5rem, 8vw, 2.2rem);
+        }
+
+        #calc-debt-payoff .dp-table {
+          min-width: 580px;
+        }
+
+        #calc-debt-payoff .dp-input-stack {
+          max-width: 100%;
+        }
+      }
+    </style>
+ 
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="credit-cards" data-top-nav-static="true">
+    <div class="page cc-cluster-page-shell">
+      <header class="cc-cluster-site-header">
+  <div class="cc-cluster-wrap cc-cluster-site-header-inner">
+    <a class="cc-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="cc-cluster-brand-mark" aria-hidden="true">#</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <nav class="cc-cluster-site-links" aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/">All Calculators</a>
+      <a href="/faq/">FAQs</a>
+    </nav>
+  </div>
+</header>
+      <main class="layout-main cc-cluster-layout-main">
+        <section class="center-column cc-cluster-center-column">
+          <div class="panel panel-scroll panel-span-all cc-cluster-panel">
+  <div class="cc-cluster-page-header">
+    <h1 id="calculator-title">Debt Payoff Calculator</h1>
+    <p class="cc-cluster-page-helper">Know when you could be debt-free before you change a single payment.</p>
+  </div>
+  <div class="calculator-page-single cc-cluster-flow">
+    <div id="calc-debt-payoff">
+  <section class="dp-card dp-planner-card" aria-labelledby="debt-payoff-planner-title">
+    <div class="dp-card-head">
+      <div>
+        <h3 id="debt-payoff-planner-title">Build your payoff plan</h3>
+        <p>Enter your debts, choose a strategy, and see when you could be debt-free.</p>
+      </div>
+    </div>
+
+    <div class="dp-planner-section">
+      <div class="dp-mode-toggle" role="group" aria-label="Planner mode">
+        <button class="dp-mode-chip is-active" type="button" data-mode="standard" aria-pressed="true">
+          Use extra payment
+        </button>
+        <button class="dp-mode-chip" type="button" data-mode="goal-date" aria-pressed="false">
+          Hit a target date
+        </button>
+      </div>
+
+      <p class="dp-mode-note" id="debt-payoff-mode-note"></p>
+
+      <div class="dp-input-stack">
+        <label class="dp-field-label dp-mode-field" data-field-mode="standard">
+          Extra monthly amount you can add
+          <input id="debt-payoff-extra-payment" class="dp-field" type="number" min="0" step="0.01" value="120" />
+        </label>
+
+        <label class="dp-field-label dp-mode-field is-hidden" data-field-mode="goal-date" hidden>
+          Month you want to be debt-free
+          <input id="debt-payoff-target-date" class="dp-field" type="date" />
+        </label>
+      </div>
+    </div>
+
+    <hr class="dp-divider" />
+
+    <div class="dp-planner-section" aria-labelledby="debt-payoff-debts-title">
+      <div class="dp-card-head">
+        <div>
+          <h3 id="debt-payoff-debts-title">Your debts</h3>
+          <p>Add every balance you want in this plan. Names help you read the schedule later.</p>
+        </div>
+        <button class="dp-mini-btn" type="button" id="debt-payoff-add-row">Add debt</button>
+      </div>
+      <div id="debt-payoff-rows" class="dp-debt-rows"></div>
+    </div>
+
+    <hr class="dp-divider" />
+
+    <div class="dp-planner-section" aria-labelledby="debt-payoff-strategy-title">
+      <div class="dp-side-head">
+        <h3 id="debt-payoff-strategy-title">Strategy</h3>
+        <p>Choose the payoff style that fits how you make decisions.</p>
+      </div>
+      <div class="dp-strategy-grid" role="group" aria-label="Repayment strategy">
+        <button class="dp-strategy-tile is-active" type="button" data-strategy="snowball" aria-pressed="true">
+          <span class="dp-strategy-name">Snowball</span>
+          <span class="dp-strategy-copy">Pay smaller balances first so you see quick wins sooner.</span>
+        </button>
+        <button class="dp-strategy-tile" type="button" data-strategy="avalanche" aria-pressed="false">
+          <span class="dp-strategy-name">Avalanche</span>
+          <span class="dp-strategy-copy">Pay the highest APR first to cut interest faster.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="dp-action-row">
+      <button class="dp-btn dp-btn-primary" type="button" id="debt-payoff-calculate">
+        Calculate payoff plan
+      </button>
+      <button class="dp-btn dp-btn-secondary" type="button" id="debt-payoff-reset">
+        Reset example
+      </button>
+    </div>
+
+    <p class="dp-input-note">
+      All calculations run in your browser. Debt type is a label only in v1, so the math uses
+      balance, APR, minimum payment, and the chosen strategy.
+    </p>
+    <p class="dp-error is-hidden" id="debt-payoff-error" hidden></p>
+  </section>
+
+  <section class="dp-card dp-results-card" aria-live="polite">
+    <div class="dp-answer-top">
+      <div class="dp-answer-copy">
+        <p class="dp-section-kicker" id="debt-payoff-kicker">Current plan</p>
+        <p class="dp-hero-value" id="debt-payoff-headline">You could be debt-free by Apr 2029</p>
+        <p class="dp-hero-summary" id="debt-payoff-summary"></p>
+      </div>
+      <div class="dp-answer-actions">
+        <button class="dp-btn dp-btn-secondary" type="button" id="debt-payoff-copy-summary">
+          Copy summary
+        </button>
+        <span class="dp-copy-feedback is-hidden" id="debt-payoff-copy-feedback" hidden>
+          Summary copied
+        </span>
+      </div>
+    </div>
+
+    <div class="dp-kpi-grid" id="debt-payoff-kpis"></div>
+
+    <hr class="dp-divider" />
+
+    <div class="dp-results-bottom">
+      <div class="dp-results-col">
+        <div class="dp-side-section dp-goal-banner is-hidden" id="debt-payoff-goal-banner" aria-labelledby="debt-payoff-goal-title" hidden>
+          <h3 id="debt-payoff-goal-title">Target date check</h3>
+          <p id="debt-payoff-goal-copy"></p>
+          <hr class="dp-divider" />
+        </div>
+
+        <div class="dp-side-section">
+          <h3 id="debt-payoff-delta-title">Strategy comparison</h3>
+          <div class="dp-delta-grid" id="debt-payoff-deltas"></div>
+        </div>
+      </div>
+
+      <div class="dp-results-col">
+        <div class="dp-side-section">
+          <h3 id="debt-payoff-order-title">Payoff order</h3>
+          <ol class="dp-order-list" id="debt-payoff-order"></ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dp-insight-grid">
+    <section class="dp-card dp-chart-card" aria-labelledby="debt-payoff-line-title">
+      <div class="dp-chart-head">
+        <div>
+          <h3 id="debt-payoff-line-title">Balance over time</h3>
+          <p class="dp-chart-note">A clear month-by-month view of how quickly the balance falls.</p>
+        </div>
+        <div class="dp-chart-toggle" role="group" aria-label="Chart strategy view">
+          <button class="dp-mini-toggle is-active" type="button" data-series="chosen" aria-pressed="true">
+            Chosen
+          </button>
+          <button class="dp-mini-toggle" type="button" data-series="alternate" aria-pressed="false">
+            Alternate
+          </button>
+        </div>
+      </div>
+      <div class="dp-line-chart-wrap">
+        <svg id="debt-payoff-line-chart" viewBox="0 0 600 280" role="img" aria-label="Debt balance line chart"></svg>
+      </div>
+      <p class="dp-chart-caption" id="debt-payoff-line-caption"></p>
+    </section>
+
+    <section class="dp-card dp-chart-card" aria-labelledby="debt-payoff-pie-title">
+      <div class="dp-pie-layout">
+        <h3 id="debt-payoff-pie-title" style="text-align:center;margin:0;font-size:18px;font-weight:700;color:var(--cc-text)">Where your money goes</h3>
+        <div class="dp-donut-wrap">
+          <svg id="debt-payoff-pie-chart" class="dp-donut" viewBox="0 0 200 200" role="img" aria-label="Principal vs interest donut chart">
+            <circle class="dp-donut-track" cx="100" cy="100" r="80" />
+          </svg>
+          <div class="dp-donut-center" id="debt-payoff-pie-caption"></div>
+          <div class="dp-donut-tooltip is-hidden" id="debt-payoff-pie-tooltip" hidden></div>
+        </div>
+        <div class="dp-pie-legend" id="debt-payoff-pie-legend"></div>
+      </div>
+    </section>
+  </section>
+
+  <section class="dp-card dp-table-card" aria-labelledby="debt-payoff-table-title">
+    <div class="dp-table-head">
+      <div>
+        <h3 id="debt-payoff-table-title">Payoff schedule</h3>
+        <p class="dp-table-note">Switch between monthly detail and a compact yearly roll-up.</p>
+      </div>
+      <div class="dp-segmented dp-table-toggle" role="group" aria-label="Schedule table view">
+        <button class="dp-segment is-active" type="button" data-table-view="monthly" aria-pressed="true">
+          Monthly
+        </button>
+        <button class="dp-segment" type="button" data-table-view="yearly" aria-pressed="false">
+          Yearly
+        </button>
+      </div>
+    </div>
+    <p class="dp-table-context" id="debt-payoff-table-context"></p>
+    <div class="dp-table-wrap">
+      <table class="dp-table" id="debt-payoff-table">
+        <thead id="debt-payoff-table-head"></thead>
+        <tbody id="debt-payoff-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="dp-card dp-related-section" aria-labelledby="debt-payoff-next-steps-title">
+    <div class="dp-card-head">
+      <div>
+        <h3 id="debt-payoff-next-steps-title">Check other debt options</h3>
+        <p class="dp-related-copy">
+          Use these when you want to compare your direct payoff plan with minimum-only payments,
+          one-card payoff, consolidation, or a lower-rate transfer.
+        </p>
+      </div>
+    </div>
+    <div class="dp-next-steps" id="debt-payoff-next-steps"></div>
+  </section>
+</div>
+
+    <div id="debt-payoff-explanation">
+  <section class="dp-exp-card">
+    <h2>How does this debt payoff calculator help?</h2>
+    <p>
+      This page is built for the question people actually ask: <strong>when will I be debt
+      free?</strong> Instead of estimating one balance in isolation, it routes payments across
+      multiple debts, shows how strategy changes the outcome, and keeps the answer tied to months,
+      interest cost, and a practical payoff date.
+    </p>
+    <p>
+      Use it when you need a real plan, not just a formula. If your situation is only one balance,
+      you can <a href="/credit-card-calculators/credit-card-payment-calculator/">run the one-balance version</a>.
+      If you want to compare structure changes instead of payoff routing, you can
+      <a href="/credit-card-calculators/credit-card-consolidation-calculator/">test whether debt consolidation helps</a>
+      or <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">check a lower-APR transfer option</a>.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>How to Guide</h3>
+    <p>
+      Start by listing every balance that belongs in the payoff plan. Each row needs a name, a
+      simple debt-type label, the current balance, APR, and the minimum payment. Debt type is
+      descriptive in v1, not mathematical. The engine still uses the same payoff model across credit
+      cards, store balances, medical plans, and personal loans. What changes the outcome is the
+      balance size, interest rate, minimum payment, and the order in which extra money is routed.
+    </p>
+    <p>
+      After the rows are in place, set the global extra payment pool. This is the amount you can
+      send above the required minimums every month. The calculator adds minimum payments to every
+      active debt first, then routes the extra pool according to the chosen strategy. That is what
+      makes the strategy comparison real rather than decorative.
+    </p>
+    <ol class="dp-guide-list">
+      <li>Enter all active debts that belong in the plan right now.</li>
+      <li>Confirm balance, APR, and minimum payment for each row.</li>
+      <li>Set one extra monthly payment pool that can move to the current target debt.</li>
+      <li>Choose snowball or avalanche and calculate the plan.</li>
+      <li>Use goal-date mode when you need to know the payment required to finish by a deadline.</li>
+    </ol>
+    <h4>How the monthly math works</h4>
+    <p>
+      Each month begins with interest. The page converts APR into a monthly rate, adds that interest
+      to each active balance, pays every minimum, then routes the shared extra payment pool to the
+      target debt for the chosen strategy.
+    </p>
+    <div class="dp-formula-block">monthly interest = balance × (APR ÷ 12)</div>
+    <p>
+      That formula is intentionally plain because the decision is practical: higher APR balances
+      grow faster, so avalanche attacks interest cost first, while snowball attacks the smallest
+      balance first to free a payment slot sooner.
+    </p>
+    <div class="dp-formula-block">extra payment target = first active debt in strategy order</div>
+    <p>
+      Minimums still go to every balance. The strategy only decides where the flexible extra amount
+      lands after minimums have been covered.
+    </p>
+    <div class="dp-formula-block">required payment for goal date = minimum budget + extra amount that solves the target month</div>
+    <p>
+      Goal-date mode keeps the same payoff engine but searches for the extra payment level that gets
+      the full balance set to zero by the target month.
+    </p>
+
+    <h4>Example input structure</h4>
+    <p>The default example below shows why the page loads with more than one debt. It produces a real strategy comparison on first render.</p>
+    <div class="dp-guide-table-wrap">
+      <table class="dp-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Debt</th>
+            <th scope="col">Type</th>
+            <th scope="col">Balance</th>
+            <th scope="col">APR</th>
+            <th scope="col">Minimum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Travel rewards card</td>
+            <td>Credit card</td>
+            <td>$4,800</td>
+            <td>24.9%</td>
+            <td>$145</td>
+          </tr>
+          <tr>
+            <td>Store card</td>
+            <td>Credit card</td>
+            <td>$2,100</td>
+            <td>29.9%</td>
+            <td>$70</td>
+          </tr>
+          <tr>
+            <td>Medical plan</td>
+            <td>Personal loan</td>
+            <td>$3,600</td>
+            <td>11.2%</td>
+            <td>$115</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      This layout is useful because it keeps one higher-rate small balance, one large revolving
+      balance, and one lower-rate installment balance in the same plan. That is exactly the kind of
+      mix where users ask whether snowball or avalanche changes the outcome enough to matter.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>Snowball vs avalanche</h3>
+    <p>
+      Snowball ranks debts from the smallest balance to the largest. The practical advantage is
+      speed of closure. You remove an entire payment obligation sooner, which can make the plan feel
+      more manageable. Avalanche ranks debts from the highest APR to the lowest. The practical
+      advantage is cost control. More of the monthly budget goes toward balances that would
+      otherwise compound the fastest.
+    </p>
+    <p>
+      Neither method changes the fact that minimums must still be paid everywhere. The strategy only
+      changes where the flexible money goes after those minimums. If you want to compare the cost of
+      doing nothing beyond minimums, <a href="/credit-card-calculators/credit-card-minimum-payment-calculator/">see what minimum-only payments cost</a>.
+      If the debt list actually collapses to one balance, <a href="/credit-card-calculators/credit-card-payment-calculator/">compare with a single-card payoff calculator</a>.
+    </p>
+    <div class="dp-guide-table-wrap">
+      <table class="dp-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Strategy</th>
+            <th scope="col">Best fit</th>
+            <th scope="col">Main tradeoff</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Snowball</td>
+            <td>Users who want faster visible wins and faster payment simplification</td>
+            <td>May cost more interest than avalanche</td>
+          </tr>
+          <tr>
+            <td>Avalanche</td>
+            <td>Users who want the lowest total interest cost</td>
+            <td>May take longer to close the first account</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      If the real question is not payoff order but whether a structure change beats direct payoff,
+      use <a href="/credit-card-calculators/credit-card-consolidation-calculator/">compare payoff vs consolidation</a>
+      or <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">compare payoff vs balance transfer</a>.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>Worked scenarios</h3>
+
+    <h4>Scenario 1: One high-rate card dominates the plan</h4>
+    <p>
+      When a single credit card drives most of the interest, avalanche often improves the interest
+      result quickly because the extra payment moves straight to the most expensive balance. If the
+      user wants to isolate that debt and see it on its own, the next step is to
+      <a href="/credit-card-calculators/credit-card-payment-calculator/">test one card on its own</a>.
+    </p>
+
+    <h4>Scenario 2: Minimum-payment trap across several small balances</h4>
+    <p>
+      This is the classic snowball use case. The balances are not individually huge, but the
+      minimums create a drag on monthly cash flow. Snowball can close the first balance sooner and
+      free that payment for the next one. To see how bad the static version becomes, the right pivot
+      is to <a href="/credit-card-calculators/credit-card-minimum-payment-calculator/">test the minimum-payment trap</a>.
+    </p>
+
+    <h4>Scenario 3: Restructure-or-payoff decision</h4>
+    <p>
+      Sometimes the best question is not snowball versus avalanche. It is whether a lower-rate
+      structure would beat both. That is where you should <a href="/credit-card-calculators/credit-card-consolidation-calculator/">check a consolidation scenario</a>
+      and <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">test whether a transfer saves more</a>.
+      This page stays useful because it gives you the direct-payoff benchmark first.
+    </p>
+  </section>
+
+  <section class="dp-exp-card" id="debt-payoff-faq">
+    <h3>FAQ</h3>
+    <div class="dp-faq-grid">
+      <article class="faq-card">
+        <h4>What does debt payoff date mean here?</h4>
+        <p>It is the month when all modeled balances reach zero under the chosen strategy, minimum payments, and extra payment pool.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does debt type change the math?</h4>
+        <p>No in v1. Debt type is a label for readability. The engine still uses balance, APR, and payment inputs to run the payoff model.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if I only make minimum payments?</h4>
+        <p>You should <a href="/credit-card-calculators/credit-card-minimum-payment-calculator/">see what minimum-only payments cost</a> because that route isolates the downside clearly.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Should I use snowball or avalanche?</h4>
+        <p>Use snowball when quick closures improve follow-through. Use avalanche when minimizing total interest is the main decision goal.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if I only have one balance?</h4>
+        <p>The route still works, but it is cleaner to <a href="/credit-card-calculators/credit-card-payment-calculator/">run the one-balance version</a>.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can I compare against consolidation?</h4>
+        <p>Yes. Use this page as the direct-payoff benchmark, then <a href="/credit-card-calculators/credit-card-consolidation-calculator/">compare payoff vs consolidation</a>.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can a balance transfer beat avalanche?</h4>
+        <p>Sometimes. Use the direct payoff result first, then <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">check a lower-APR transfer option</a>.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does the calculator include new spending?</h4>
+        <p>No. The model assumes no new debt is added after the plan starts.</p>
+      </article>
+      <article class="faq-card">
+        <h4>How does goal-date mode work?</h4>
+        <p>It estimates the total monthly payment needed to clear the balances by the target month using the chosen strategy order.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why are there charts and a schedule table?</h4>
+        <p>The charts show the overall path, while the schedule table shows the month-by-month or year-by-year mechanics that support the answer.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="dp-exp-card dp-notes-card">
+    <h3>Important Notes</h3>
+    <ul class="dp-notes-list">
+      <li><strong>Last updated:</strong> April 2026.</li>
+      <li><strong>Assumptions:</strong> Fixed APR, no new debt, and no promotional-rate modeling in v1.</li>
+      <li><strong>Accuracy:</strong> Results are planning estimates and depend on keeping payments and rates consistent.</li>
+      <li><strong>Disclaimer:</strong> This calculator is a planning tool, not financial advice.</li>
+      <li><strong>Limitations:</strong> Debt type labels do not change payoff math in v1.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
+</div>
+
+    <section class="cc-cluster-related" aria-labelledby="cc-cluster-related-title">
+  <h2 id="cc-cluster-related-title">Related Credit Card Calculators</h2>
+  <div class="cc-cluster-related-links">
+    <a class="cc-cluster-related-link" href="/credit-card-calculators/credit-card-payment-calculator/">Repayment</a><a class="cc-cluster-related-link is-active" href="/credit-card-calculators/debt-payoff-calculator/" aria-current="page">Debt Payoff Calculator</a><a class="cc-cluster-related-link" href="/credit-card-calculators/credit-card-minimum-payment-calculator/">Minimum Payment</a><a class="cc-cluster-related-link" href="/credit-card-calculators/balance-transfer-credit-card-calculator/">Balance Transfer</a><a class="cc-cluster-related-link" href="/credit-card-calculators/credit-card-consolidation-calculator/">Card Consolidation</a>
+  </div>
+</section>
+  </div>
+        </div>
+        </section>
+      </main>
+      <footer class="cc-cluster-site-footer">
+  <div class="cc-cluster-wrap cc-cluster-site-footer-inner">
+    <nav class="cc-cluster-footer-links" aria-label="Footer links">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/faq/">FAQs</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+    <span class="cc-cluster-footer-copy">&copy; 2026 @CalcHowMuch</span>
+  </div>
+</footer>
+    </div>
+    <script type="module" src="/calculators/credit-card-calculators/debt-payoff-calculator/module.js?v=20260224"></script>
+  </body>
+</html>

@@ -1,0 +1,209 @@
+<div id="calc-debt-payoff">
+  <section class="dp-hero-band" aria-labelledby="debt-payoff-hero-title">
+    <p class="dp-kicker">Debt payoff planner</p>
+    <h2 class="dp-intro" id="debt-payoff-hero-title">
+      Know when you could be debt-free before you change a single payment.
+    </h2>
+    <p class="dp-hero-copy">
+      Build a snowball or avalanche plan, test a target date, and see the numbers that matter
+      without spreadsheet work.
+    </p>
+  </section>
+
+  <section class="dp-answer-stage" aria-live="polite">
+    <div class="dp-card dp-answer-main">
+      <div class="dp-answer-top">
+        <div class="dp-answer-copy">
+          <p class="dp-section-kicker" id="debt-payoff-kicker">Current plan</p>
+          <p class="dp-hero-value" id="debt-payoff-headline">You could be debt-free by Apr 2029</p>
+          <p class="dp-hero-summary" id="debt-payoff-summary"></p>
+        </div>
+        <div class="dp-answer-actions">
+          <button class="dp-btn dp-btn-secondary" type="button" id="debt-payoff-copy-summary">
+            Copy summary
+          </button>
+          <span class="dp-copy-feedback is-hidden" id="debt-payoff-copy-feedback" hidden>
+            Summary copied
+          </span>
+        </div>
+      </div>
+      <div class="dp-kpi-grid" id="debt-payoff-kpis"></div>
+    </div>
+
+    <aside class="dp-answer-side">
+      <section class="dp-card dp-goal-banner is-hidden" id="debt-payoff-goal-banner" aria-labelledby="debt-payoff-goal-title" hidden>
+        <div class="dp-side-head">
+          <h3 id="debt-payoff-goal-title">Target date check</h3>
+        </div>
+        <p id="debt-payoff-goal-copy"></p>
+      </section>
+
+      <section class="dp-card dp-side-panel" aria-labelledby="debt-payoff-delta-title">
+        <div class="dp-side-head">
+          <h3 id="debt-payoff-delta-title">What changes if you switch strategy?</h3>
+          <p>Plain-English tradeoffs for the other repayment path.</p>
+        </div>
+        <div class="dp-delta-grid" id="debt-payoff-deltas"></div>
+      </section>
+
+      <section class="dp-card dp-side-panel" aria-labelledby="debt-payoff-order-title">
+        <div class="dp-side-head">
+          <h3 id="debt-payoff-order-title">Likely payoff order</h3>
+          <p>Based on the selected strategy and today&apos;s balances.</p>
+        </div>
+        <ol class="dp-order-list" id="debt-payoff-order"></ol>
+      </section>
+    </aside>
+  </section>
+
+  <section class="dp-planner-grid">
+    <section class="dp-card dp-settings-card" aria-labelledby="debt-payoff-settings-title">
+      <div class="dp-card-head">
+        <div>
+          <h3 id="debt-payoff-settings-title">Plan settings</h3>
+          <p>Choose the kind of plan you want to test, then calculate once.</p>
+        </div>
+      </div>
+
+      <div class="dp-mode-toggle" role="group" aria-label="Planner mode">
+        <button class="dp-mode-chip is-active" type="button" data-mode="standard" aria-pressed="true">
+          Use extra payment
+        </button>
+        <button class="dp-mode-chip" type="button" data-mode="goal-date" aria-pressed="false">
+          Hit a target date
+        </button>
+      </div>
+
+      <p class="dp-mode-note" id="debt-payoff-mode-note"></p>
+
+      <div class="dp-input-stack">
+        <label class="dp-field-label dp-mode-field" data-field-mode="standard">
+          Extra monthly amount you can add
+          <input id="debt-payoff-extra-payment" class="dp-field" type="number" min="0" step="0.01" value="120" />
+        </label>
+
+        <label class="dp-field-label dp-mode-field is-hidden" data-field-mode="goal-date" hidden>
+          Month you want to be debt-free
+          <input id="debt-payoff-target-date" class="dp-field" type="date" />
+        </label>
+      </div>
+
+      <section class="dp-strategy-block" aria-labelledby="debt-payoff-strategy-title">
+        <div class="dp-side-head">
+          <h3 id="debt-payoff-strategy-title">Strategy</h3>
+          <p>Choose the payoff style that fits how you make decisions.</p>
+        </div>
+        <div class="dp-strategy-grid" role="group" aria-label="Repayment strategy">
+          <button class="dp-strategy-tile is-active" type="button" data-strategy="snowball" aria-pressed="true">
+            <span class="dp-strategy-name">Snowball</span>
+            <span class="dp-strategy-copy">Pay smaller balances first so you see quick wins sooner.</span>
+          </button>
+          <button class="dp-strategy-tile" type="button" data-strategy="avalanche" aria-pressed="false">
+            <span class="dp-strategy-name">Avalanche</span>
+            <span class="dp-strategy-copy">Pay the highest APR first to cut interest faster.</span>
+          </button>
+        </div>
+      </section>
+
+      <div class="dp-action-row">
+        <button class="dp-btn dp-btn-primary" type="button" id="debt-payoff-calculate">
+          Calculate payoff plan
+        </button>
+        <button class="dp-btn dp-btn-secondary" type="button" id="debt-payoff-reset">
+          Reset example
+        </button>
+      </div>
+
+      <p class="dp-input-note">
+        All calculations run in your browser. Debt type is a label only in v1, so the math uses
+        balance, APR, minimum payment, and the chosen strategy.
+      </p>
+      <p class="dp-error is-hidden" id="debt-payoff-error" hidden></p>
+    </section>
+
+    <section class="dp-card dp-debt-card" aria-labelledby="debt-payoff-debts-title">
+      <div class="dp-card-head">
+        <div>
+          <h3 id="debt-payoff-debts-title">Your debts</h3>
+          <p>Add every balance you want in this plan. Names help you read the schedule later.</p>
+        </div>
+        <button class="dp-mini-btn" type="button" id="debt-payoff-add-row">Add debt</button>
+      </div>
+      <div id="debt-payoff-rows" class="dp-debt-rows"></div>
+    </section>
+  </section>
+
+  <section class="dp-insight-grid">
+    <section class="dp-card dp-chart-card" aria-labelledby="debt-payoff-line-title">
+      <div class="dp-chart-head">
+        <div>
+          <h3 id="debt-payoff-line-title">Balance over time</h3>
+          <p class="dp-chart-note">A clear month-by-month view of how quickly the balance falls.</p>
+        </div>
+        <div class="dp-chart-toggle" role="group" aria-label="Chart strategy view">
+          <button class="dp-mini-toggle is-active" type="button" data-series="chosen" aria-pressed="true">
+            Chosen
+          </button>
+          <button class="dp-mini-toggle" type="button" data-series="alternate" aria-pressed="false">
+            Alternate
+          </button>
+        </div>
+      </div>
+      <div class="dp-line-chart-wrap">
+        <svg id="debt-payoff-line-chart" viewBox="0 0 600 280" role="img" aria-label="Debt balance line chart"></svg>
+      </div>
+      <p class="dp-chart-caption" id="debt-payoff-line-caption"></p>
+    </section>
+
+    <section class="dp-card dp-chart-card" aria-labelledby="debt-payoff-pie-title">
+      <div class="dp-chart-head">
+        <div>
+          <h3 id="debt-payoff-pie-title">Where your money goes</h3>
+          <p class="dp-chart-note">Principal and interest split for the selected plan.</p>
+        </div>
+      </div>
+      <div class="dp-pie-layout">
+        <div class="dp-pie-chart" id="debt-payoff-pie-chart" aria-hidden="true"></div>
+        <div class="dp-pie-legend" id="debt-payoff-pie-legend"></div>
+      </div>
+      <p class="dp-chart-caption" id="debt-payoff-pie-caption"></p>
+    </section>
+  </section>
+
+  <section class="dp-card dp-table-card" aria-labelledby="debt-payoff-table-title">
+    <div class="dp-table-head">
+      <div>
+        <h3 id="debt-payoff-table-title">Payoff schedule</h3>
+        <p class="dp-table-note">Switch between monthly detail and a compact yearly roll-up.</p>
+      </div>
+      <div class="dp-segmented dp-table-toggle" role="group" aria-label="Schedule table view">
+        <button class="dp-segment is-active" type="button" data-table-view="monthly" aria-pressed="true">
+          Monthly
+        </button>
+        <button class="dp-segment" type="button" data-table-view="yearly" aria-pressed="false">
+          Yearly
+        </button>
+      </div>
+    </div>
+    <p class="dp-table-context" id="debt-payoff-table-context"></p>
+    <div class="dp-table-wrap">
+      <table class="dp-table" id="debt-payoff-table">
+        <thead id="debt-payoff-table-head"></thead>
+        <tbody id="debt-payoff-table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="dp-card dp-related-section" aria-labelledby="debt-payoff-next-steps-title">
+    <div class="dp-card-head">
+      <div>
+        <h3 id="debt-payoff-next-steps-title">Check other debt options</h3>
+        <p class="dp-related-copy">
+          Use these when you want to compare your direct payoff plan with minimum-only payments,
+          one-card payoff, consolidation, or a lower-rate transfer.
+        </p>
+      </div>
+    </div>
+    <div class="dp-next-steps" id="debt-payoff-next-steps"></div>
+  </section>
+</div>

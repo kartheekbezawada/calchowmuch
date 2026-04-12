@@ -40,7 +40,8 @@
         "/credit-card-calculators/credit-card-payment-calculator/",
         "/credit-card-calculators/credit-card-minimum-payment-calculator/",
         "/credit-card-calculators/balance-transfer-credit-card-calculator/",
-        "/credit-card-calculators/credit-card-consolidation-calculator/"
+        "/credit-card-calculators/credit-card-consolidation-calculator/",
+        "/credit-card-calculators/debt-payoff-calculator/"
       ],
       "contractsEnabled": false,
       "owners": [

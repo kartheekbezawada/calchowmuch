@@ -216,6 +216,32 @@
         "deferCoreCss": true
       }
     },
+    "/credit-card-calculators/debt-payoff-calculator/": {
+      "route": "/credit-card-calculators/debt-payoff-calculator/",
+      "calculatorId": "debt-payoff-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/credit-card-calculators/debt-payoff-calculator/calculator.css",
+          "/assets/css/base.css?v=20260127",
+          "/assets/css/core-tokens.css?v=20260127"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/credit-card-calculators/debt-payoff-calculator/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": true,
+        "deferCoreCss": true
+      }
+    },
     "/credit-card-calculators/credit-card-minimum-payment-calculator/": {
       "route": "/credit-card-calculators/credit-card-minimum-payment-calculator/",
       "calculatorId": "credit-card-minimum-payment",
@@ -657,6 +683,30 @@
         ],
         "route": [
           "/calculators/time-and-date/countdown-timer/module.js"
+        ]
+      },
+      "options": {
+        "topNavStatic": false,
+        "deferCoreCss": true
+      }
+    },
+    "/time-and-date/business-days-calculator/": {
+      "route": "/time-and-date/business-days-calculator/",
+      "calculatorId": "business-days-calculator",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/business-days-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [
+          "/assets/js/core-shell.js"
+        ],
+        "route": [
+          "/calculators/time-and-date/business-days-calculator/module.js"
         ]
       },
       "options": {

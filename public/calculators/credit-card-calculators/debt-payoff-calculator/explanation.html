@@ -1,0 +1,239 @@
+<div id="debt-payoff-explanation">
+  <section class="dp-exp-card">
+    <h2>How does this debt payoff calculator help?</h2>
+    <p>
+      This page is built for the question people actually ask: <strong>when will I be debt
+      free?</strong> Instead of estimating one balance in isolation, it routes payments across
+      multiple debts, shows how strategy changes the outcome, and keeps the answer tied to months,
+      interest cost, and a practical payoff date.
+    </p>
+    <p>
+      Use it when you need a real plan, not just a formula. If your situation is only one balance,
+      you can <a href="/credit-card-calculators/credit-card-payment-calculator/">run the one-balance version</a>.
+      If you want to compare structure changes instead of payoff routing, you can
+      <a href="/credit-card-calculators/credit-card-consolidation-calculator/">test whether debt consolidation helps</a>
+      or <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">check a lower-APR transfer option</a>.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>How to Guide</h3>
+    <p>
+      Start by listing every balance that belongs in the payoff plan. Each row needs a name, a
+      simple debt-type label, the current balance, APR, and the minimum payment. Debt type is
+      descriptive in v1, not mathematical. The engine still uses the same payoff model across credit
+      cards, store balances, medical plans, and personal loans. What changes the outcome is the
+      balance size, interest rate, minimum payment, and the order in which extra money is routed.
+    </p>
+    <p>
+      After the rows are in place, set the global extra payment pool. This is the amount you can
+      send above the required minimums every month. The calculator adds minimum payments to every
+      active debt first, then routes the extra pool according to the chosen strategy. That is what
+      makes the strategy comparison real rather than decorative.
+    </p>
+    <ol class="dp-guide-list">
+      <li>Enter all active debts that belong in the plan right now.</li>
+      <li>Confirm balance, APR, and minimum payment for each row.</li>
+      <li>Set one extra monthly payment pool that can move to the current target debt.</li>
+      <li>Choose snowball or avalanche and calculate the plan.</li>
+      <li>Use goal-date mode when you need to know the payment required to finish by a deadline.</li>
+    </ol>
+    <h4>How the monthly math works</h4>
+    <p>
+      Each month begins with interest. The page converts APR into a monthly rate, adds that interest
+      to each active balance, pays every minimum, then routes the shared extra payment pool to the
+      target debt for the chosen strategy.
+    </p>
+    <div class="dp-formula-block">monthly interest = balance × (APR ÷ 12)</div>
+    <p>
+      That formula is intentionally plain because the decision is practical: higher APR balances
+      grow faster, so avalanche attacks interest cost first, while snowball attacks the smallest
+      balance first to free a payment slot sooner.
+    </p>
+    <div class="dp-formula-block">extra payment target = first active debt in strategy order</div>
+    <p>
+      Minimums still go to every balance. The strategy only decides where the flexible extra amount
+      lands after minimums have been covered.
+    </p>
+    <div class="dp-formula-block">required payment for goal date = minimum budget + extra amount that solves the target month</div>
+    <p>
+      Goal-date mode keeps the same payoff engine but searches for the extra payment level that gets
+      the full balance set to zero by the target month.
+    </p>
+
+    <h4>Example input structure</h4>
+    <p>The default example below shows why the page loads with more than one debt. It produces a real strategy comparison on first render.</p>
+    <div class="dp-guide-table-wrap">
+      <table class="dp-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Debt</th>
+            <th scope="col">Type</th>
+            <th scope="col">Balance</th>
+            <th scope="col">APR</th>
+            <th scope="col">Minimum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Travel rewards card</td>
+            <td>Credit card</td>
+            <td>$4,800</td>
+            <td>24.9%</td>
+            <td>$145</td>
+          </tr>
+          <tr>
+            <td>Store card</td>
+            <td>Credit card</td>
+            <td>$2,100</td>
+            <td>29.9%</td>
+            <td>$70</td>
+          </tr>
+          <tr>
+            <td>Medical plan</td>
+            <td>Personal loan</td>
+            <td>$3,600</td>
+            <td>11.2%</td>
+            <td>$115</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      This layout is useful because it keeps one higher-rate small balance, one large revolving
+      balance, and one lower-rate installment balance in the same plan. That is exactly the kind of
+      mix where users ask whether snowball or avalanche changes the outcome enough to matter.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>Snowball vs avalanche</h3>
+    <p>
+      Snowball ranks debts from the smallest balance to the largest. The practical advantage is
+      speed of closure. You remove an entire payment obligation sooner, which can make the plan feel
+      more manageable. Avalanche ranks debts from the highest APR to the lowest. The practical
+      advantage is cost control. More of the monthly budget goes toward balances that would
+      otherwise compound the fastest.
+    </p>
+    <p>
+      Neither method changes the fact that minimums must still be paid everywhere. The strategy only
+      changes where the flexible money goes after those minimums. If you want to compare the cost of
+      doing nothing beyond minimums, <a href="/credit-card-calculators/credit-card-minimum-payment-calculator/">see what minimum-only payments cost</a>.
+      If the debt list actually collapses to one balance, <a href="/credit-card-calculators/credit-card-payment-calculator/">compare with a single-card payoff calculator</a>.
+    </p>
+    <div class="dp-guide-table-wrap">
+      <table class="dp-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Strategy</th>
+            <th scope="col">Best fit</th>
+            <th scope="col">Main tradeoff</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Snowball</td>
+            <td>Users who want faster visible wins and faster payment simplification</td>
+            <td>May cost more interest than avalanche</td>
+          </tr>
+          <tr>
+            <td>Avalanche</td>
+            <td>Users who want the lowest total interest cost</td>
+            <td>May take longer to close the first account</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      If the real question is not payoff order but whether a structure change beats direct payoff,
+      use <a href="/credit-card-calculators/credit-card-consolidation-calculator/">compare payoff vs consolidation</a>
+      or <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">compare payoff vs balance transfer</a>.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>Worked scenarios</h3>
+
+    <h4>Scenario 1: One high-rate card dominates the plan</h4>
+    <p>
+      When a single credit card drives most of the interest, avalanche often improves the interest
+      result quickly because the extra payment moves straight to the most expensive balance. If the
+      user wants to isolate that debt and see it on its own, the next step is to
+      <a href="/credit-card-calculators/credit-card-payment-calculator/">test one card on its own</a>.
+    </p>
+
+    <h4>Scenario 2: Minimum-payment trap across several small balances</h4>
+    <p>
+      This is the classic snowball use case. The balances are not individually huge, but the
+      minimums create a drag on monthly cash flow. Snowball can close the first balance sooner and
+      free that payment for the next one. To see how bad the static version becomes, the right pivot
+      is to <a href="/credit-card-calculators/credit-card-minimum-payment-calculator/">test the minimum-payment trap</a>.
+    </p>
+
+    <h4>Scenario 3: Restructure-or-payoff decision</h4>
+    <p>
+      Sometimes the best question is not snowball versus avalanche. It is whether a lower-rate
+      structure would beat both. That is where you should <a href="/credit-card-calculators/credit-card-consolidation-calculator/">check a consolidation scenario</a>
+      and <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">test whether a transfer saves more</a>.
+      This page stays useful because it gives you the direct-payoff benchmark first.
+    </p>
+  </section>
+
+  <section class="dp-exp-card" id="debt-payoff-faq">
+    <h3>FAQ</h3>
+    <div class="dp-faq-grid">
+      <article class="faq-card">
+        <h4>What does debt payoff date mean here?</h4>
+        <p>It is the month when all modeled balances reach zero under the chosen strategy, minimum payments, and extra payment pool.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does debt type change the math?</h4>
+        <p>No in v1. Debt type is a label for readability. The engine still uses balance, APR, and payment inputs to run the payoff model.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if I only make minimum payments?</h4>
+        <p>You should <a href="/credit-card-calculators/credit-card-minimum-payment-calculator/">see what minimum-only payments cost</a> because that route isolates the downside clearly.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Should I use snowball or avalanche?</h4>
+        <p>Use snowball when quick closures improve follow-through. Use avalanche when minimizing total interest is the main decision goal.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if I only have one balance?</h4>
+        <p>The route still works, but it is cleaner to <a href="/credit-card-calculators/credit-card-payment-calculator/">run the one-balance version</a>.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can I compare against consolidation?</h4>
+        <p>Yes. Use this page as the direct-payoff benchmark, then <a href="/credit-card-calculators/credit-card-consolidation-calculator/">compare payoff vs consolidation</a>.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can a balance transfer beat avalanche?</h4>
+        <p>Sometimes. Use the direct payoff result first, then <a href="/credit-card-calculators/balance-transfer-credit-card-calculator/">check a lower-APR transfer option</a>.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Does the calculator include new spending?</h4>
+        <p>No. The model assumes no new debt is added after the plan starts.</p>
+      </article>
+      <article class="faq-card">
+        <h4>How does goal-date mode work?</h4>
+        <p>It estimates the total monthly payment needed to clear the balances by the target month using the chosen strategy order.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Why are there charts and a schedule table?</h4>
+        <p>The charts show the overall path, while the schedule table shows the month-by-month or year-by-year mechanics that support the answer.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="dp-exp-card dp-notes-card">
+    <h3>Important Notes</h3>
+    <ul class="dp-notes-list">
+      <li><strong>Last updated:</strong> April 2026.</li>
+      <li><strong>Assumptions:</strong> Fixed APR, no new debt, and no promotional-rate modeling in v1.</li>
+      <li><strong>Accuracy:</strong> Results are planning estimates and depend on keeping payments and rates consistent.</li>
+      <li><strong>Disclaimer:</strong> This calculator is a planning tool, not financial advice.</li>
+      <li><strong>Limitations:</strong> Debt type labels do not change payoff math in v1.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
+    </ul>
+  </section>
+</div>

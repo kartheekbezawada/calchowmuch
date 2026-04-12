@@ -170,6 +170,26 @@
         ]
       }
     },
+    "/time-and-date/business-days-calculator/": {
+      "route": "/time-and-date/business-days-calculator/",
+      "calculatorId": "business-days-calculator",
+      "clusterId": "time-and-date",
+      "buildId": "wave1-20260409",
+      "isolationBoundary": "route",
+      "css": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/business-days-calculator/calculator.css"
+        ],
+        "critical": null
+      },
+      "js": {
+        "core": [],
+        "route": [
+          "/calculators/time-and-date/business-days-calculator/module.js"
+        ]
+      }
+    },
     "/time-and-date/days-until-a-date-calculator/": {
       "route": "/time-and-date/days-until-a-date-calculator/",
       "calculatorId": "days-until-a-date-calculator",
