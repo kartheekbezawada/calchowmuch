@@ -2,6 +2,9 @@
 
 CalcHowMuch is a multi-page calculator website built to help people make practical decisions with clear, searchable, and easy-to-use tools.
 
+Small documentation-only updates can be made here without affecting live calculator behavior.
+Runtime changes are implemented in route source files and generated public assets, not in this README.
+
 This README is a project scope document. It explains what the project includes, how calculators are organised, and how quality is protected. It is written for people who need to understand the product and delivery model, not just the code.
 
 ## Project Purpose
