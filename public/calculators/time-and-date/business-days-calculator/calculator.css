@@ -1,0 +1,514 @@
+#calc-business-days {
+  --bd-surface: rgba(255, 255, 255, 0.98);
+  --bd-surface-soft: rgba(244, 247, 252, 0.92);
+  --bd-text: #18202a;
+  --bd-muted: #5c6776;
+  --bd-line: rgba(24, 32, 42, 0.12);
+  --bd-line-strong: rgba(24, 32, 42, 0.18);
+  --bd-accent: #1664c0;
+  --bd-accent-soft: rgba(22, 100, 192, 0.12);
+  display: grid;
+  gap: 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+  color: var(--bd-text);
+}
+
+#calc-business-days .bd-card,
+#business-days-explanation .bd-exp-card {
+  border: 1px solid var(--bd-line);
+  border-radius: 22px;
+  background: var(--bd-surface);
+  box-shadow: 0 10px 28px rgba(11, 22, 39, 0.06);
+}
+
+#calc-business-days .bd-kicker,
+#calc-business-days .bd-result-label,
+#calc-business-days .bd-section-kicker {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bd-muted);
+}
+
+#calc-business-days .bd-intro {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+#calc-business-days .bd-related-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-business-days .bd-related-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--bd-line);
+  background: var(--bd-surface-soft);
+  color: var(--bd-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-business-days .bd-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+#calc-business-days .bd-input-card,
+#calc-business-days .bd-result-card {
+  padding: 26px;
+  display: grid;
+  gap: 18px;
+  height: 100%;
+  align-content: start;
+}
+
+#calc-business-days .bd-card-head,
+#calc-business-days .bd-rule-head {
+  display: grid;
+  gap: 6px;
+}
+
+#calc-business-days .bd-card-head h2,
+#calc-business-days .bd-rule-head h3,
+#business-days-explanation h2,
+#business-days-explanation h3,
+#business-days-explanation h4 {
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+#calc-business-days .bd-rule-head p,
+#business-days-explanation p,
+#business-days-explanation li {
+  margin: 0;
+  line-height: 1.7;
+}
+
+#calc-business-days .bd-segmented,
+#calc-business-days .bd-holiday-pills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 4px;
+  border-radius: 16px;
+  border: 1px solid var(--bd-line);
+  background: var(--bd-surface-soft);
+}
+
+#calc-business-days .bd-holiday-pills {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#calc-business-days .bd-segment,
+#calc-business-days .bd-pill,
+#calc-business-days .bd-weekday,
+#calc-business-days .bd-btn,
+#calc-business-days .bd-field {
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+#calc-business-days .bd-segment,
+#calc-business-days .bd-pill,
+#calc-business-days .bd-weekday {
+  min-height: 46px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--bd-muted);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#calc-business-days .bd-segment.is-active,
+#calc-business-days .bd-pill.is-active,
+#calc-business-days .bd-weekday.is-active {
+  background: #ffffff;
+  color: var(--bd-text);
+  border-color: rgba(22, 100, 192, 0.18);
+  box-shadow: 0 4px 12px rgba(17, 24, 39, 0.06);
+}
+
+#calc-business-days .bd-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+#calc-business-days .bd-field-label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--bd-muted);
+}
+
+#calc-business-days .bd-field-label.is-hidden,
+#calc-business-days .bd-between-only.is-hidden,
+#calc-business-days .bd-shift-only.is-hidden {
+  display: none;
+}
+
+#calc-business-days .bd-field {
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--bd-line);
+  background: #ffffff;
+  color: var(--bd-text);
+  font-size: 16px;
+}
+
+#calc-business-days .bd-weekday-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+#calc-business-days .bd-action-row,
+#calc-business-days .bd-utility-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#calc-business-days .bd-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid var(--bd-line);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#calc-business-days .bd-btn-primary {
+  background: var(--bd-accent);
+  color: #ffffff;
+  border-color: var(--bd-accent);
+}
+
+#calc-business-days .bd-btn-secondary {
+  background: #ffffff;
+  color: var(--bd-text);
+}
+
+#calc-business-days .bd-input-note,
+#calc-business-days .bd-hero-summary,
+#calc-business-days .bd-card-copy,
+#calc-business-days .bd-note-item,
+#calc-business-days .bd-summary-card p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+#calc-business-days .bd-error {
+  margin: 0;
+  color: #b42318;
+  font-weight: 700;
+}
+
+#calc-business-days .bd-result-top,
+#calc-business-days .bd-section-head,
+#calc-business-days .bd-result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+#calc-business-days #business-days-direction,
+#calc-business-days .bd-result-label,
+#calc-business-days #business-days-summary,
+#calc-business-days .bd-result-meta {
+  display: none;
+}
+
+#calc-business-days .bd-hero-value {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+
+#calc-business-days .bd-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  grid-auto-rows: 1fr;
+}
+
+#calc-business-days .bd-summary-card {
+  border: 1px solid var(--bd-line);
+  border-radius: 18px;
+  background: var(--bd-surface-soft);
+  padding: 16px;
+  display: grid;
+  gap: 6px;
+  height: 100%;
+  align-content: start;
+}
+
+#calc-business-days .bd-summary-card strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bd-muted);
+}
+
+#calc-business-days .bd-summary-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+#calc-business-days .bd-note-list {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-business-days .bd-note-item {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--bd-surface-soft);
+  border: 1px solid rgba(24, 32, 42, 0.08);
+}
+
+#calc-business-days .bd-meta-chip,
+#calc-business-days .bd-copy-feedback {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--bd-accent-soft);
+  color: #0f4d98;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#business-days-explanation {
+  display: grid;
+  gap: 18px;
+}
+
+#business-days-explanation .bd-exp-card {
+  padding: 24px 26px;
+  display: grid;
+  gap: 14px;
+}
+
+#business-days-explanation .bd-guide-list,
+#business-days-explanation .bd-notes-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+#business-days-explanation .bd-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 4px;
+  table-layout: fixed;
+  border: 1px solid var(--bd-line-strong);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bd-surface);
+  box-shadow: 0 8px 22px rgba(11, 22, 39, 0.04);
+}
+
+#business-days-explanation .bd-guide-table th,
+#business-days-explanation .bd-guide-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--bd-line);
+  vertical-align: top;
+  text-align: left;
+  line-height: 1.6;
+}
+
+#business-days-explanation .bd-guide-table th {
+  background: var(--bd-surface-soft);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--bd-line-strong);
+}
+
+#business-days-explanation .bd-guide-table tbody tr:nth-child(even) {
+  background: rgba(244, 247, 252, 0.58);
+}
+
+#business-days-explanation .bd-guide-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#business-days-explanation .bd-guide-table th:nth-child(1),
+#business-days-explanation .bd-guide-table td:nth-child(1) {
+  width: 24%;
+}
+
+#business-days-explanation .bd-guide-table td:nth-child(1) {
+  font-weight: 700;
+  color: var(--bd-text);
+}
+
+#business-days-explanation .bd-guide-table th:nth-child(2),
+#business-days-explanation .bd-guide-table td:nth-child(2) {
+  width: 39%;
+}
+
+#business-days-explanation .bd-guide-table th:nth-child(3),
+#business-days-explanation .bd-guide-table td:nth-child(3) {
+  width: 37%;
+}
+
+#business-days-explanation .bd-faq-grid {
+  display: grid;
+  gap: 12px;
+}
+
+#business-days-explanation .faq-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--bd-line);
+  background: var(--bd-surface-soft);
+}
+
+#business-days-explanation .bd-bottom-links {
+  display: grid;
+  gap: 10px;
+}
+
+#business-days-explanation .bd-bottom-links a {
+  color: var(--bd-accent);
+  font-weight: 700;
+}
+
+@media (max-width: 940px) {
+  #calc-business-days .bd-workbench,
+  #calc-business-days .bd-summary-grid,
+  #calc-business-days .bd-input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-business-days .bd-weekday-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  #calc-business-days .bd-segmented,
+  #calc-business-days .bd-holiday-pills {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-business-days .bd-weekday-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #calc-business-days .bd-input-card,
+  #calc-business-days .bd-result-card,
+  #business-days-explanation .bd-exp-card {
+    padding: 20px;
+  }
+
+  #business-days-explanation .bd-guide-table {
+    min-width: 0;
+    table-layout: auto;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #business-days-explanation .bd-guide-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  #business-days-explanation .bd-guide-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  #business-days-explanation .bd-guide-table tbody tr {
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid var(--bd-line-strong);
+    border-radius: 16px;
+    background: var(--bd-surface-soft);
+    box-shadow: 0 8px 22px rgba(11, 22, 39, 0.04);
+  }
+
+  #business-days-explanation .bd-guide-table tbody tr:nth-child(even) {
+    background: var(--bd-surface-soft);
+  }
+
+  #business-days-explanation .bd-guide-table td {
+    display: grid;
+    gap: 4px;
+    width: auto;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  #business-days-explanation .bd-guide-table td::before {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bd-muted);
+  }
+
+  #business-days-explanation .bd-guide-table td:nth-child(1)::before {
+    content: "Mode";
+  }
+
+  #business-days-explanation .bd-guide-table td:nth-child(2)::before {
+    content: "Best for";
+  }
+
+  #business-days-explanation .bd-guide-table td:nth-child(3)::before {
+    content: "Main answer";
+  }
+
+  #business-days-explanation .bd-guide-table th:nth-child(1),
+  #business-days-explanation .bd-guide-table td:nth-child(1),
+  #business-days-explanation .bd-guide-table th:nth-child(2),
+  #business-days-explanation .bd-guide-table td:nth-child(2),
+  #business-days-explanation .bd-guide-table th:nth-child(3),
+  #business-days-explanation .bd-guide-table td:nth-child(3) {
+    width: auto;
+  }
+}

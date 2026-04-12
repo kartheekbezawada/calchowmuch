@@ -279,7 +279,8 @@
         "/credit-card-calculators/balance-transfer-credit-card-calculator/",
         "/credit-card-calculators/credit-card-consolidation-calculator/",
         "/credit-card-calculators/credit-card-minimum-payment-calculator/",
-        "/credit-card-calculators/credit-card-payment-calculator/"
+        "/credit-card-calculators/credit-card-payment-calculator/",
+        "/credit-card-calculators/debt-payoff-calculator/"
       ],
       "calculators": {
         "credit-card-repayment-payoff": {
@@ -297,6 +298,10 @@
         "credit-card-consolidation": {
           "route": "/credit-card-calculators/credit-card-consolidation-calculator/",
           "releaseDir": "tests_specs/credit-cards/credit-card-consolidation_release"
+        },
+        "debt-payoff-calculator": {
+          "route": "/credit-card-calculators/debt-payoff-calculator/",
+          "releaseDir": "tests_specs/credit-cards/debt-payoff-calculator_release"
         }
       }
     },
@@ -383,6 +388,7 @@
         "/time-and-date/work-hours-calculator/",
         "/time-and-date/overtime-hours-calculator/",
         "/time-and-date/time-between-two-dates-calculator/",
+        "/time-and-date/business-days-calculator/",
         "/time-and-date/days-until-a-date-calculator/",
         "/time-and-date/countdown-timer/",
         "/time-and-date/age-calculator/",
@@ -420,6 +426,10 @@
         "time-between-two-dates-calculator": {
           "route": "/time-and-date/time-between-two-dates-calculator/",
           "releaseDir": "tests_specs/time-and-date/time-between-two-dates-calculator_release"
+        },
+        "business-days-calculator": {
+          "route": "/time-and-date/business-days-calculator/",
+          "releaseDir": "tests_specs/time-and-date/business-days-calculator_release"
         },
         "days-until-a-date-calculator": {
           "route": "/time-and-date/days-until-a-date-calculator/",

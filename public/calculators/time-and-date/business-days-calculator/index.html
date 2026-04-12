@@ -1,0 +1,140 @@
+<div id="calc-business-days">
+  <nav class="bd-related-row" aria-label="Related time and date tools">
+    <a class="bd-related-chip" href="/time-and-date/time-between-two-dates-calculator/">
+      Compare total days and business days
+    </a>
+    <a class="bd-related-chip" href="/time-and-date/days-until-a-date-calculator/">
+      Count calendar days until a deadline
+    </a>
+    <a class="bd-related-chip" href="/time-and-date/countdown-timer/">
+      Start a live countdown
+    </a>
+  </nav>
+
+  <div class="bd-workbench">
+    <section class="bd-card bd-input-card" aria-labelledby="business-days-inputs-title">
+      <div class="bd-card-head">
+        <h2 id="business-days-inputs-title">Set the business-day rules.</h2>
+      </div>
+
+      <div class="bd-segmented" role="group" aria-label="Business day mode">
+        <button class="bd-segment is-active" type="button" data-mode="between" aria-pressed="true">
+          Count between dates
+        </button>
+        <button class="bd-segment" type="button" data-mode="shift" aria-pressed="false">
+          Add or subtract days
+        </button>
+      </div>
+
+      <div class="bd-input-grid">
+        <label class="bd-field-label">
+          Start date
+          <input id="business-days-start-date" class="bd-field" type="date" />
+        </label>
+        <label class="bd-field-label bd-between-only">
+          End date
+          <input id="business-days-end-date" class="bd-field" type="date" />
+        </label>
+        <label class="bd-field-label bd-shift-only is-hidden">
+          Business-day offset
+          <input
+            id="business-days-offset"
+            class="bd-field"
+            type="number"
+            value="10"
+            min="-999"
+            max="999"
+            step="1"
+          />
+        </label>
+      </div>
+
+      <section class="bd-rule-block" aria-labelledby="business-days-workweek-title">
+        <div class="bd-rule-head">
+          <h3 id="business-days-workweek-title">Working days</h3>
+          <p>Choose which weekdays count on this route.</p>
+        </div>
+        <div class="bd-weekday-grid" role="group" aria-label="Working weekdays">
+          <button type="button" class="bd-weekday" data-day="1" aria-pressed="true">Mon</button>
+          <button type="button" class="bd-weekday" data-day="2" aria-pressed="true">Tue</button>
+          <button type="button" class="bd-weekday" data-day="3" aria-pressed="true">Wed</button>
+          <button type="button" class="bd-weekday" data-day="4" aria-pressed="true">Thu</button>
+          <button type="button" class="bd-weekday" data-day="5" aria-pressed="true">Fri</button>
+          <button type="button" class="bd-weekday" data-day="6" aria-pressed="false">Sat</button>
+          <button type="button" class="bd-weekday" data-day="0" aria-pressed="false">Sun</button>
+        </div>
+      </section>
+
+      <section class="bd-rule-block" aria-labelledby="business-days-holidays-title">
+        <div class="bd-rule-head">
+          <h3 id="business-days-holidays-title">Observed holidays</h3>
+          <p>Switch between no holidays, US observed holidays, and UK observed holidays.</p>
+        </div>
+        <div class="bd-holiday-pills" role="group" aria-label="Holiday preset">
+          <button class="bd-pill is-active" type="button" data-holiday="none" aria-pressed="true">
+            None
+          </button>
+          <button class="bd-pill" type="button" data-holiday="us" aria-pressed="false">
+            United States
+          </button>
+          <button class="bd-pill" type="button" data-holiday="uk" aria-pressed="false">
+            United Kingdom
+          </button>
+        </div>
+      </section>
+
+      <div class="bd-action-row">
+        <button class="bd-btn bd-btn-primary" type="button" id="business-days-calculate">
+          Calculate business days
+        </button>
+        <button class="bd-btn bd-btn-secondary" type="button" id="business-days-reset">
+          Reset
+        </button>
+      </div>
+
+      <p class="bd-input-note" id="business-days-note">
+        Count mode includes both calendar endpoints. Shift mode moves from the start date and does
+        not count the anchor date as a moved business day.
+      </p>
+      <p class="bd-error is-hidden" id="business-days-error"></p>
+    </section>
+
+    <section class="bd-card bd-result-card" id="business-days-result-card" aria-live="polite">
+      <div class="bd-result-top">
+        <p class="bd-section-kicker" id="business-days-direction">Forward range</p>
+        <div class="bd-utility-row">
+          <button class="bd-btn bd-btn-secondary" type="button" id="business-days-copy-summary">
+            Copy summary
+          </button>
+          <a class="bd-btn bd-btn-secondary" href="#" id="business-days-export-calendar" download>
+            Calendar export
+          </a>
+        </div>
+      </div>
+
+      <div class="bd-result-primary">
+        <p class="bd-result-label">Headline answer</p>
+        <p class="bd-hero-value" id="business-days-headline">10 business days</p>
+        <p class="bd-hero-summary" id="business-days-summary">
+          Apr 9, 2026 to Apr 22, 2026 includes 10 business days using a Mon-Fri workweek and no
+          holiday exclusions.
+        </p>
+      </div>
+
+      <div class="bd-summary-grid" id="business-days-summary-grid"></div>
+
+      <section class="bd-result-section" aria-labelledby="business-days-notes-title">
+        <div class="bd-section-head">
+          <h3 id="business-days-notes-title">Planning notes</h3>
+          <span class="bd-meta-chip" id="business-days-rules-chip">Mon-Fri workweek</span>
+        </div>
+        <div class="bd-note-list" id="business-days-note-list"></div>
+      </section>
+
+      <div class="bd-result-meta">
+        <span class="bd-meta-chip" id="business-days-holiday-chip">No holidays</span>
+        <span class="bd-copy-feedback is-hidden" id="business-days-copy-feedback">Copied</span>
+      </div>
+    </section>
+  </div>
+</div>

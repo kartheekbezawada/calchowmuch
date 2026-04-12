@@ -577,6 +577,20 @@
               "paneLayout": "single"
             },
             {
+              "id": "debt-payoff-calculator",
+              "name": "Debt Payoff Calculator",
+              "url": "/credit-card-calculators/debt-payoff-calculator/",
+              "keywords": [
+                "debt payoff",
+                "snowball",
+                "avalanche",
+                "debt free"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "credit-cards",
+              "paneLayout": "single"
+            },
+            {
               "id": "credit-card-minimum-payment",
               "name": "Minimum Payment",
               "url": "/credit-card-calculators/credit-card-minimum-payment-calculator/",
@@ -911,6 +925,20 @@
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
               "paneLayout": "split"
+            },
+            {
+              "id": "business-days-calculator",
+              "name": "Business Days Calculator",
+              "url": "/time-and-date/business-days-calculator/",
+              "keywords": [
+                "business days",
+                "working days",
+                "add business days",
+                "business day count"
+              ],
+              "routeArchetype": "calc_exp",
+              "designFamily": "neutral",
+              "paneLayout": "single"
             },
             {
               "id": "days-until-a-date-calculator",

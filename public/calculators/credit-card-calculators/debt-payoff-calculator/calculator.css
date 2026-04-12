@@ -1,0 +1,851 @@
+  }
+
+  body[data-design-family='credit-cards'] .cc-con-guide-table--scenarios tbody td:nth-child(2)::before {
+    content: 'Likely Outcome';
+  }
+}
+
+/* calculators/credit-card-calculators/debt-payoff-calculator/calculator.css — cluster-aligned v2 */
+#calc-debt-payoff {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 32px;
+  color: var(--cc-text);
+}
+
+#calc-debt-payoff .is-hidden,
+#calc-debt-payoff [hidden] {
+  display: none !important;
+}
+
+/* ---- Cards ---- */
+#calc-debt-payoff .dp-card,
+#calc-debt-payoff .dp-hero-band,
+#debt-payoff-explanation .dp-exp-card {
+  border: 1px solid var(--cc-line);
+  border-radius: 24px;
+  background: var(--cc-surface);
+  box-shadow: var(--cc-shadow);
+  padding: 32px;
+}
+
+/* ---- Hero band ---- */
+#calc-debt-payoff .dp-hero-band {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+  padding: 40px 32px;
+}
+
+/* Kickers */
+#calc-debt-payoff .dp-kicker,
+#calc-debt-payoff .dp-section-kicker,
+#calc-debt-payoff .dp-table-context,
+#debt-payoff-explanation .dp-guide-table th {
+  margin: 0;
+  color: var(--cc-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Headings */
+#calc-debt-payoff .dp-intro,
+#calc-debt-payoff .dp-hero-value,
+#calc-debt-payoff h3,
+#calc-debt-payoff h4,
+#debt-payoff-explanation h2,
+#debt-payoff-explanation h3,
+#debt-payoff-explanation h4 {
+  font-family: inherit;
+  letter-spacing: -0.02em;
+}
+
+#calc-debt-payoff .dp-intro {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.15;
+}
+
+/* Muted body text */
+#calc-debt-payoff .dp-hero-copy,
+#calc-debt-payoff .dp-hero-summary,
+#calc-debt-payoff .dp-mode-note,
+#calc-debt-payoff .dp-card-head p,
+#calc-debt-payoff .dp-side-head p,
+#calc-debt-payoff .dp-chart-note,
+#calc-debt-payoff .dp-chart-caption,
+#calc-debt-payoff .dp-table-note,
+#calc-debt-payoff .dp-related-copy,
+#calc-debt-payoff .dp-input-note,
+#calc-debt-payoff .dp-kpi-card p,
+#calc-debt-payoff .dp-delta-card p,
+#debt-payoff-explanation p,
+#debt-payoff-explanation li {
+  margin: 0;
+  color: var(--cc-muted);
+  line-height: 1.7;
+}
+
+/* ---- Planner card (merged settings + debts) ---- */
+#calc-debt-payoff .dp-planner-card {
+  display: grid;
+  gap: 24px;
+}
+
+#calc-debt-payoff .dp-planner-section {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-debt-payoff .dp-divider {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--cc-line);
+}
+
+/* ---- Results card ---- */
+#calc-debt-payoff .dp-results-card {
+  display: grid;
+  gap: 24px;
+}
+
+#calc-debt-payoff .dp-results-bottom {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+#calc-debt-payoff .dp-results-col {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-debt-payoff .dp-results-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cc-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#calc-debt-payoff .dp-insight-grid,
+#calc-debt-payoff .dp-kpi-grid,
+#calc-debt-payoff .dp-delta-grid,
+#calc-debt-payoff .dp-next-steps,
+#calc-debt-payoff .dp-debt-rows,
+#debt-payoff-explanation,
+#debt-payoff-explanation .dp-faq-grid {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-debt-payoff .dp-side-section {
+  display: grid;
+  gap: 10px;
+}
+
+#calc-debt-payoff .dp-insight-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Answer main card */
+#calc-debt-payoff .dp-answer-main {
+  gap: 24px;
+}
+
+/* Flex row layouts */
+#calc-debt-payoff .dp-answer-top,
+#calc-debt-payoff .dp-answer-actions,
+#calc-debt-payoff .dp-card-head,
+#calc-debt-payoff .dp-chart-head,
+#calc-debt-payoff .dp-table-head,
+#calc-debt-payoff .dp-side-head,
+#calc-debt-payoff .dp-debt-row-top,
+#calc-debt-payoff .dp-action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+#calc-debt-payoff .dp-answer-copy {
+  display: grid;
+  gap: 12px;
+}
+
+#calc-debt-payoff .dp-answer-actions {
+  align-items: center;
+}
+
+/* Hero value */
+#calc-debt-payoff .dp-hero-value {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* KPI grid */
+#calc-debt-payoff .dp-kpi-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Subcards */
+#calc-debt-payoff .dp-kpi-card,
+#calc-debt-payoff .dp-delta-card,
+#calc-debt-payoff .dp-goal-banner,
+#calc-debt-payoff .dp-side-panel,
+#calc-debt-payoff .dp-strategy-tile,
+#calc-debt-payoff .dp-debt-row,
+#calc-debt-payoff .dp-next-steps a {
+  border: 1px solid var(--cc-line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, var(--cc-surface-soft));
+}
+
+#calc-debt-payoff .dp-kpi-card,
+#calc-debt-payoff .dp-delta-card {
+  display: grid;
+  gap: 6px;
+  padding: 20px;
+}
+
+#calc-debt-payoff .dp-kpi-card strong,
+#calc-debt-payoff .dp-delta-card strong {
+  color: var(--cc-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#calc-debt-payoff .dp-kpi-value,
+#calc-debt-payoff .dp-delta-value {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+#calc-debt-payoff .dp-goal-banner {
+  padding-bottom: 16px;
+}
+
+/* Payoff order list */
+#calc-debt-payoff .dp-order-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  counter-reset: item;
+}
+
+#calc-debt-payoff .dp-order-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--cc-surface-soft);
+  font-weight: 600;
+}
+
+#calc-debt-payoff .dp-order-list li::before {
+  content: counter(item);
+  counter-increment: item;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cc-accent-soft);
+  color: var(--cc-accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ---- Headings inside cards ---- */
+#calc-debt-payoff .dp-card-head {
+  align-items: flex-end;
+}
+
+#calc-debt-payoff .dp-card-head h3,
+#calc-debt-payoff .dp-side-head h3,
+#calc-debt-payoff .dp-chart-head h3,
+#calc-debt-payoff .dp-table-head h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* ---- Toggle controls ---- */
+#calc-debt-payoff .dp-mode-toggle,
+#calc-debt-payoff .dp-segmented {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  border: 1px solid var(--cc-line);
+  background: var(--cc-surface-soft);
+}
+
+#calc-debt-payoff .dp-mode-chip,
+#calc-debt-payoff .dp-segment,
+#calc-debt-payoff .dp-mini-toggle,
+#calc-debt-payoff .dp-btn,
+#calc-debt-payoff .dp-mini-btn,
+#calc-debt-payoff .dp-field,
+#calc-debt-payoff .dp-strategy-tile {
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+#calc-debt-payoff .dp-mode-chip,
+#calc-debt-payoff .dp-segment,
+#calc-debt-payoff .dp-mini-toggle {
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--cc-muted);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0 16px;
+}
+
+#calc-debt-payoff .dp-mode-chip.is-active,
+#calc-debt-payoff .dp-segment.is-active,
+#calc-debt-payoff .dp-mini-toggle.is-active,
+#calc-debt-payoff .dp-mode-chip[aria-pressed='true'],
+#calc-debt-payoff .dp-segment[aria-pressed='true'],
+#calc-debt-payoff .dp-mini-toggle[aria-pressed='true'] {
+  background: #ffffff;
+  color: var(--cc-text);
+  border-color: var(--cc-line);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.06);
+}
+
+#calc-debt-payoff .dp-mode-note {
+  font-size: 14px;
+}
+
+/* ---- Input fields ---- */
+#calc-debt-payoff .dp-input-stack,
+#calc-debt-payoff .dp-strategy-grid,
+#calc-debt-payoff .dp-debt-row,
+#calc-debt-payoff .dp-debt-grid {
+  display: grid;
+  gap: 14px;
+}
+
+#calc-debt-payoff .dp-input-stack {
+  max-width: 380px;
+}
+
+#calc-debt-payoff .dp-field-label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  color: var(--cc-muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+#calc-debt-payoff .dp-field {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--cc-line-strong);
+  background: #ffffff;
+  color: var(--cc-text);
+  font-size: 16px;
+  box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.03);
+}
+
+#calc-debt-payoff .dp-field:focus {
+  outline: 0;
+  border-color: rgba(37, 99, 235, 0.6);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+/* ---- Strategy tiles ---- */
+#calc-debt-payoff .dp-strategy-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-debt-payoff .dp-strategy-tile {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  text-align: left;
+  cursor: pointer;
+}
+
+#calc-debt-payoff .dp-strategy-name {
+  color: var(--cc-text);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+#calc-debt-payoff .dp-strategy-copy {
+  color: var(--cc-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#calc-debt-payoff .dp-strategy-tile.is-active,
+#calc-debt-payoff .dp-strategy-tile[aria-pressed='true'] {
+  background: var(--cc-accent-soft);
+  border-color: rgba(37, 99, 235, 0.2);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08);
+}
+
+/* ---- Debt rows ---- */
+#calc-debt-payoff .dp-debt-row {
+  padding: 18px;
+  background: linear-gradient(180deg, #ffffff, var(--cc-surface-soft));
+}
+
+#calc-debt-payoff .dp-row-index {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#calc-debt-payoff .dp-debt-grid {
+  grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr));
+  align-items: end;
+}
+
+/* ---- Buttons ---- */
+#calc-debt-payoff .dp-btn,
+#calc-debt-payoff .dp-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 14px;
+  border: 1px solid var(--cc-line);
+  background: #ffffff;
+  color: var(--cc-text);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#calc-debt-payoff .dp-mini-btn {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+
+#calc-debt-payoff .dp-btn:hover,
+#calc-debt-payoff .dp-mini-btn:hover,
+#calc-debt-payoff .dp-mode-chip:hover,
+#calc-debt-payoff .dp-segment:hover,
+#calc-debt-payoff .dp-mini-toggle:hover,
+#calc-debt-payoff .dp-strategy-tile:hover {
+  transform: translateY(-1px);
+}
+
+#calc-debt-payoff .dp-btn-primary {
+  background: #111111;
+  border-color: #111111;
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.1);
+}
+
+#calc-debt-payoff .dp-btn-primary:hover {
+  box-shadow: 0 18px 30px rgba(17, 17, 17, 0.14);
+}
+
+#calc-debt-payoff .dp-action-row {
+  align-items: center;
+}
+
+#calc-debt-payoff .dp-input-note {
+  font-size: 13px;
+}
+
+#calc-debt-payoff .dp-error {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(239, 68, 68, 0.18);
+  background: rgba(254, 242, 242, 0.92);
+  color: #991b1b;
+  font-weight: 700;
+}
+
+#calc-debt-payoff .dp-copy-feedback {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--cc-accent-soft);
+  color: var(--cc-accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ---- Charts ---- */
+#calc-debt-payoff .dp-chart-card,
+#calc-debt-payoff .dp-table-card,
+#calc-debt-payoff .dp-related-section {
+  min-width: 0;
+}
+
+#calc-debt-payoff .dp-chart-head,
+#calc-debt-payoff .dp-table-head {
+  align-items: flex-end;
+}
+
+#calc-debt-payoff .dp-line-chart-wrap {
+  min-height: 280px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+#calc-debt-payoff #debt-payoff-line-chart {
+  width: 100%;
+  height: 280px;
+  display: block;
+}
+
+#calc-debt-payoff .dp-pie-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+#calc-debt-payoff .dp-donut-wrap {
+  position: relative;
+  width: min(280px, 70%);
+  aspect-ratio: 1;
+}
+
+#calc-debt-payoff .dp-donut {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+#calc-debt-payoff .dp-donut-track {
+  fill: none;
+  stroke: var(--cc-surface-soft);
+  stroke-width: 24;
+}
+
+#calc-debt-payoff .dp-donut-segment {
+  fill: none;
+  stroke-width: 24;
+  stroke-linecap: butt;
+  cursor: pointer;
+  transition: opacity 0.18s ease;
+}
+
+#calc-debt-payoff .dp-donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#calc-debt-payoff .dp-donut-center-pct {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--cc-text);
+}
+
+#calc-debt-payoff .dp-donut-center-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cc-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}
+
+#calc-debt-payoff .dp-donut-tooltip {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#calc-debt-payoff .dp-pie-legend {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+#calc-debt-payoff .dp-pie-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+#calc-debt-payoff .dp-pie-value {
+  color: var(--cc-muted);
+  font-size: 13px;
+}
+
+#calc-debt-payoff .dp-pie-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+/* ---- Schedule table ---- */
+#calc-debt-payoff .dp-table-card {
+  display: grid;
+  gap: 16px;
+}
+
+#calc-debt-payoff .dp-table-wrap {
+  width: 100%;
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid var(--cc-line);
+  border-radius: 20px;
+  min-width: 0;
+  background: #ffffff;
+}
+
+#calc-debt-payoff .dp-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#calc-debt-payoff .dp-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, var(--cc-table-head-strong), var(--cc-table-head));
+  color: var(--cc-table-caption);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+#calc-debt-payoff .dp-table th,
+#calc-debt-payoff .dp-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--cc-line);
+  white-space: nowrap;
+}
+
+#calc-debt-payoff .dp-table td.num,
+#calc-debt-payoff .dp-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#calc-debt-payoff .dp-table tbody tr:nth-child(even) {
+  background: var(--cc-table-row-alt);
+}
+
+/* ---- Next steps ---- */
+#calc-debt-payoff .dp-next-steps {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#calc-debt-payoff .dp-next-steps a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  padding: 16px;
+  color: var(--cc-text);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* ---- Explanation content ---- */
+#debt-payoff-explanation {
+  display: grid;
+  gap: 24px;
+}
+
+#debt-payoff-explanation .dp-exp-card {
+  display: grid;
+  gap: 14px;
+}
+
+#debt-payoff-explanation h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+#debt-payoff-explanation h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+#debt-payoff-explanation h4 {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+#debt-payoff-explanation .dp-guide-list,
+#debt-payoff-explanation .dp-notes-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+#debt-payoff-explanation .dp-formula-block {
+  justify-self: center;
+  width: min(100%, 720px);
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  background: var(--cc-accent-soft);
+  color: var(--cc-text);
+  text-align: center;
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 14px;
+}
+
+#debt-payoff-explanation .dp-guide-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+#debt-payoff-explanation .dp-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid var(--cc-line);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+#debt-payoff-explanation .dp-guide-table th,
+#debt-payoff-explanation .dp-guide-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--cc-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+#debt-payoff-explanation .dp-faq-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#debt-payoff-explanation .faq-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid var(--cc-line);
+  background: #ffffff;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1120px) {
+  #calc-debt-payoff .dp-results-bottom,
+  #calc-debt-payoff .dp-insight-grid,
+  #calc-debt-payoff .dp-kpi-grid,
+  #calc-debt-payoff .dp-next-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 980px) {
+  #calc-debt-payoff .dp-delta-grid,
+  #debt-payoff-explanation .dp-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-debt-payoff .dp-debt-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #calc-debt-payoff .dp-pie-legend {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 720px) {
+  #calc-debt-payoff .dp-card,
+  #calc-debt-payoff .dp-hero-band,
+  #debt-payoff-explanation .dp-exp-card {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  #calc-debt-payoff .dp-mode-toggle,
+  #calc-debt-payoff .dp-segmented,
+  #calc-debt-payoff .dp-strategy-grid,
+  #calc-debt-payoff .dp-delta-grid,
+  #calc-debt-payoff .dp-debt-grid,
+  #calc-debt-payoff .dp-next-steps {
+    grid-template-columns: 1fr;
+  }
+
+  #calc-debt-payoff .dp-hero-value {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
+  }
+
+  #calc-debt-payoff .dp-table {
+    min-width: 580px;
+  }
+
+  #calc-debt-payoff .dp-input-stack {
+    max-width: 100%;
+  }
+}

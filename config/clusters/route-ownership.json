@@ -74,6 +74,14 @@
       "generationMode": "cluster"
     },
     {
+      "route": "/time-and-date/business-days-calculator/",
+      "calculatorId": "business-days-calculator",
+      "activeOwnerClusterId": "time-and-date",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-time-and-date-business-days-20260409",
+      "generationMode": "cluster"
+    },
+    {
       "route": "/time-and-date/days-until-a-date-calculator/",
       "calculatorId": "days-until-a-date-calculator",
       "activeOwnerClusterId": "time-and-date",
@@ -103,6 +111,14 @@
       "activeOwnerClusterId": "time-and-date",
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-time-and-date-wave0-20260220",
+      "generationMode": "cluster"
+    },
+    {
+      "route": "/credit-card-calculators/debt-payoff-calculator/",
+      "calculatorId": "debt-payoff-calculator",
+      "activeOwnerClusterId": "credit-cards",
+      "previousOwnerClusterId": "legacy-shared",
+      "rollbackTag": "pre-credit-cards-debt-payoff-20260409",
       "generationMode": "cluster"
     },
     {

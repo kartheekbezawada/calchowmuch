@@ -1,0 +1,2147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Business Days Calculator | Count Working Days and Shift Deadlines</title>
+    <meta name="description" content="Count business days between two dates or add and subtract working days with a custom workweek plus US and UK observed holiday presets." />
+    <link rel="canonical" href="https://calchowmuch.com/time-and-date/business-days-calculator/" />
+    <meta property="og:title" content="Business Days Calculator | Count Working Days and Shift Deadlines" />
+    <meta property="og:description" content="Count business days between two dates or add and subtract working days with a custom workweek plus US and UK observed holiday presets." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://calchowmuch.com/time-and-date/business-days-calculator/" />
+    <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Business Days Calculator | Count Working Days and Shift Deadlines" />
+    <meta name="twitter:description" content="Count business days between two dates or add and subtract working days with a custom workweek plus US and UK observed holiday presets." />
+    <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
+    <meta name="robots" content="index,follow" />
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/time-and-date/business-days-calculator/#softwareapplication","name":"Business Days Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/time-and-date/business-days-calculator/","description":"Count business days between two dates or add and subtract working days with a custom workweek plus US and UK observed holiday presets.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/time-and-date/business-days-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Time And Date","item":"https://calchowmuch.com/time-and-date/"},{"@type":"ListItem","position":3,"name":"Business Days Calculator","item":"https://calchowmuch.com/time-and-date/business-days-calculator/"}]}]}</script>
+    <style data-time-and-date-cluster="true">
+      /* assets/css/base.css */
+      /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
+         instead of @import, to eliminate sequential CSS waterfall.
+         See known_issues.md KI-007 / KI-010. */
+
+      :root {
+        --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: var(--font-body);
+        /* Typography scale (Tailwind-inspired) */
+        --text-4xl: 2.25rem;
+        --text-2xl: 1.5rem;
+        --text-xl: 1.25rem;
+        --text-base: 1rem;
+        --text-sm: 0.875rem;
+        --text-xs: 0.75rem;
+        /* Font weights */
+        --font-bold: 700;
+        --font-semibold: 600;
+        --font-medium: 500;
+        --font-normal: 400;
+        --header-height: 80px;
+        --nav-height: 64px;
+        --footer-height: 72px;
+      }
+
+      * {
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
+      }
+
+      body {
+        margin: 0;
+        color: var(--header-text);
+        background-color: var(--page-bg);
+        background-image: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Scrollbar styling - always visible with subtle colors */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, #f1f5f9);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb, #94a3b8);
+        border-radius: 4px;
+        border: 2px solid var(--scrollbar-track, #f1f5f9);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover, #64748b);
+      }
+
+      /* assets/css/calculator.css */
+      :root {
+        --calculator-input-padding: 10px 12px;
+        --calculator-input-radius: 10px;
+        --calculator-button-padding: 10px 12px;
+        --calculator-button-radius: 10px;
+      }
+
+      .calculator-page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+
+      .card {
+        background: var(--panel-bg);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--panel-shadow);
+        border: 1px solid var(--border-color);
+      }
+
+      .card h1,
+      .card h2 {
+        margin-top: 0;
+      }
+
+      .calculator-ui {
+        display: grid;
+        gap: 18px;
+      }
+
+      .calculator-ui label {
+        font-size: 14px;
+        color: var(--muted-text);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .calculator-ui input[type='number'],
+      .calculator-ui input[type='text'],
+      .calculator-ui input[type='email'],
+      .calculator-ui input[type='password'],
+      .calculator-ui input[type='search'],
+      .calculator-ui input[type='tel'],
+      .calculator-ui input[type='url'],
+      .calculator-ui input[type='date'],
+      .calculator-ui input[type='time'],
+      .calculator-ui input[type='datetime-local'],
+      .calculator-ui input[type='month'],
+      .calculator-ui input[type='week'],
+      .calculator-ui textarea {
+        width: 100%;
+        padding: var(--calculator-input-padding);
+        border-radius: var(--calculator-input-radius);
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: inherit;
+        background: var(--panel-bg);
+      }
+
+      .calculator-ui textarea {
+        resize: vertical;
+      }
+
+      .calculator-ui .helper {
+        color: var(--muted-text);
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .calculator-ui .input-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .calculator-ui .input-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+
+      .calculator-ui .calculator-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .calculator-ui .toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .calculator-ui .button-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculator-ui .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .calculator-ui .mode-switch-control {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 2px 0 6px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      .calculator-ui .mode-switch-label {
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        line-height: 1.3;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      .calculator-ui .mode-switch-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .calculator-ui .mode-switch-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .calculator-ui .mode-switch-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
+        transform: translateX(30px);
+      }
+
+      .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition .composition-mode-switch {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+      }
+
+      #calc-percentage-composition .composition-mode-label {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: #5b6573;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-mode-label.is-active {
+        color: #0f172a;
+        transform: translateY(-1px);
+      }
+
+      #calc-percentage-composition .composition-toggle {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      #calc-percentage-composition .composition-toggle input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #calc-percentage-composition .composition-toggle-track {
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        transition: background 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle-thumb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+        transform: translateX(0);
+        transition: transform 0.2s ease;
+      }
+
+      #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
+        background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      }
+
+      #calc-percentage-composition
+        .composition-toggle
+        input:checked
+        + .composition-toggle-track
+        .composition-toggle-thumb {
+        transform: translateX(30px);
+      }
+
+      #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
+        outline: 3px solid rgba(59, 130, 246, 0.35);
+        outline-offset: 2px;
+      }
+
+      #calc-percentage-composition #composition-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-percentage-composition .composition-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-percentage-composition .composition-row-field {
+        min-width: 0;
+      }
+
+      #calc-percentage-composition .composition-item-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-commission-calculator #comm-tier-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-commission-calculator .commission-tier-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--panel-bg);
+      }
+
+      #calc-commission-calculator .commission-tier-field {
+        min-width: 0;
+      }
+
+      #calc-commission-calculator .commission-tier-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      #calc-markup-calculator #markup-basket-rows {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-markup-calculator .markup-basket-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
+        align-items: end;
+        gap: 10px 12px;
+        margin: 0;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
+      }
+
+      #calc-markup-calculator .markup-row-field {
+        min-width: 0;
+      }
+
+      #calc-markup-calculator .markup-row-name-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-qty-field {
+        grid-column: 2;
+      }
+
+      #calc-markup-calculator .markup-remove-row {
+        grid-column: 3;
+        min-width: 104px;
+      }
+
+      #calc-markup-calculator .markup-row-cost-field {
+        grid-column: 1;
+      }
+
+      #calc-markup-calculator .markup-row-price-wrap,
+      #calc-markup-calculator .markup-row-markup-wrap {
+        grid-column: 2 / 4;
+      }
+
+      #calc-markup-calculator .markup-row-field > label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      #calc-markup-calculator .markup-basket-row .calculator-button {
+        min-height: 42px;
+        align-self: end;
+      }
+
+      @media (max-width: 720px) {
+        .calculator-ui .mode-switch-control {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .calculator-ui .mode-switch-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-mode-switch {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        #calc-percentage-composition .composition-toggle {
+          justify-self: center;
+        }
+
+        #calc-percentage-composition .composition-item-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-percentage-composition .composition-item-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-commission-calculator .commission-tier-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-commission-calculator .commission-tier-row .calculator-button {
+          width: 100%;
+        }
+
+        #calc-markup-calculator .markup-basket-row {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-markup-calculator .markup-basket-row .calculator-button {
+          width: 100%;
+        }
+      }
+
+      .calculator-button {
+        padding: var(--calculator-button-padding);
+        border-radius: var(--calculator-button-radius);
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      .calculator-button.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+
+      .calculator-button.is-active,
+      .calculator-button[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button.secondary.is-active,
+      .calculator-button.secondary[aria-pressed='true'] {
+        background: var(--button-active-bg, #1d4ed8);
+        color: #fff;
+      }
+
+      .calculator-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      .calculator-ui .result {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        min-height: 60px;
+      }
+
+      .calculator-ui .result-detail {
+        font-size: 14px;
+        color: var(--muted-text);
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      .calculator-ui .result-detail p {
+        margin: 0.25rem 0;
+      }
+
+      .calculator-ui .result-scroll {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        max-height: 280px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .calculator-ui .result-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calculator-ui .result-section h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .table-scroll {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        min-width: 0;
+        max-height: 240px;
+        scrollbar-gutter: stable;
+      }
+
+      .calculator-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        font-size: 15px;
+        min-width: 400px;
+      }
+
+      .calculator-table th,
+      .calculator-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .calculator-table th:first-child,
+      .calculator-table td:first-child {
+        text-align: left;
+      }
+
+      .calculator-table thead th {
+        background: var(--pill-bg);
+        color: var(--muted-text);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .calculator-table tfoot td {
+        background: var(--pill-bg);
+        font-weight: 600;
+      }
+
+      .graph-panel {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 12px;
+        height: 260px;
+        background: var(--panel-bg);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow: hidden;
+      }
+
+      .graph-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: var(--muted-text);
+        flex-shrink: 0;
+      }
+
+      .graph-title {
+        color: var(--header-text);
+        font-weight: 600;
+      }
+
+      .explanation-pane h2,
+      .explanation-pane h3 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        position: relative;
+      }
+
+      .explanation-pane h2 {
+        margin-top: 0;
+      }
+
+      .explanation-pane h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 2px;
+        width: 48px;
+        background: var(--accent);
+      }
+
+      .faq-box {
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .explanation-pane h3 + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box + .faq-box {
+        margin-top: 6px;
+      }
+
+      .faq-box p {
+        margin: 0;
+      }
+
+      .faq-box p + p {
+        margin-top: 6px;
+      }
+
+      .faq-box .faq-answer {
+        margin-left: 12px;
+      }
+
+      .graph-legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .graph-legend-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .graph-legend-color.principal {
+        background: var(--accent);
+      }
+
+      .graph-legend-color.interest {
+        background: #f59e0b;
+      }
+
+      .graph-legend-color.balance {
+        background: #10b981;
+      }
+
+      .graph-container {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        gap: 8px;
+      }
+
+      .graph-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: right;
+        padding: 4px 0;
+        flex-shrink: 0;
+        min-width: 50px;
+      }
+
+      .graph-y-label {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .graph-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .graph-bars-wrapper {
+        flex: 1;
+        overflow-x: auto;
+        overflow-y: hidden;
+        min-height: 0;
+        scrollbar-gutter: stable;
+      }
+
+      .graph-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        height: 100%;
+        min-height: 100px;
+        width: max-content;
+        padding-bottom: 4px;
+      }
+
+      .graph-line {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .graph-line polyline {
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .graph-line .line-primary {
+        stroke: var(--accent);
+      }
+
+      .graph-line .line-secondary {
+        stroke: #94a3b8;
+        stroke-dasharray: 6 4;
+      }
+
+      .graph-legend-color.secondary {
+        background: #94a3b8;
+      }
+
+      .graph-bar {
+        width: 8px;
+        min-width: 8px;
+        background: var(--accent);
+        border-radius: 4px 4px 2px 2px;
+        flex: 0 0 auto;
+      }
+
+      .graph-bar.interest {
+        background: #f59e0b;
+      }
+
+      .graph-bar.balance {
+        background: #10b981;
+      }
+
+      .graph-x-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted-text);
+        padding-top: 4px;
+        border-top: 1px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .graph-x-label {
+        font-size: 11px;
+        color: var(--muted-text);
+        text-align: center;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      /* calculators/time-and-date/shared/cluster-light.css */
+      body[data-design-family='neutral'] {
+        --td-bg: #f6f2ea;
+        --td-bg-soft: #efe8dc;
+        --td-surface: rgba(255, 253, 249, 0.96);
+        --td-surface-soft: #f8f3eb;
+        --td-surface-strong: #f1e9dd;
+        --td-text: #1f2730;
+        --td-muted: #60707c;
+        --td-line: rgba(109, 119, 130, 0.2);
+        --td-line-strong: rgba(39, 76, 119, 0.22);
+        --td-accent: #274c77;
+        --td-accent-soft: #e8eef4;
+        --td-accent-strong: #1d3657;
+        --td-shadow: 0 12px 32px rgba(31, 39, 48, 0.08);
+        --td-shadow-soft: 0 8px 24px rgba(31, 39, 48, 0.06);
+        --td-radius-xl: 28px;
+        --td-radius-lg: 20px;
+        --td-radius-md: 16px;
+        background:
+          radial-gradient(circle at top left, rgba(39, 76, 119, 0.08), transparent 30%),
+          radial-gradient(circle at 86% 6%, rgba(122, 166, 184, 0.12), transparent 22%),
+          linear-gradient(180deg, #fbf8f2 0%, #f6f2ea 100%);
+        color: var(--td-text);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-shell {
+        min-height: 100vh;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-wrap,
+      body[data-design-family='neutral'] .td-cluster-center-column {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(16px);
+        background: rgba(251, 248, 242, 0.82);
+        border-bottom: 1px solid rgba(216, 208, 196, 0.8);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-header-inner {
+        min-height: 72px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 18px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--td-text);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-brand-mark {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #274c77, #7aa6b8);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-label {
+        justify-self: center;
+        padding: 9px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--td-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-links,
+      body[data-design-family='neutral'] .td-cluster-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-links a,
+      body[data-design-family='neutral'] .td-cluster-footer-links a {
+        color: var(--td-muted);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-links a:hover,
+      body[data-design-family='neutral'] .td-cluster-footer-links a:hover {
+        color: var(--td-accent);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-layout-main {
+        padding: 40px 0 64px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-panel {
+        display: grid;
+        gap: 28px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-header {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-kicker,
+      body[data-design-family='neutral'] .td-cluster-switch-kicker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        margin: 0 0 14px;
+        border-radius: 999px;
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--td-muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] #calculator-title {
+        margin: 0;
+        color: var(--td-text);
+        font-size: clamp(40px, 6vw, 52px);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+
+      body[data-design-family='neutral'] #calculator-title::after {
+        display: none;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-intro,
+      body[data-design-family='neutral'] .td-cluster-page-trust {
+        margin: 14px auto 0;
+        max-width: 680px;
+        color: var(--td-muted);
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-page-trust {
+        font-size: 14px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-flow {
+        display: grid;
+        gap: 28px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-route-switch,
+      body[data-design-family='neutral'] .td-cluster-related {
+        border: 1px solid var(--td-line);
+        border-radius: var(--td-radius-xl);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 243, 235, 0.96));
+        box-shadow: var(--td-shadow-soft);
+        padding: 24px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-route-switch-head,
+      body[data-design-family='neutral'] .td-cluster-related-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-route-switch h2,
+      body[data-design-family='neutral'] .td-cluster-related h2 {
+        margin: 0;
+        color: var(--td-text);
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chips {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chip {
+        flex: 0 0 auto;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--td-text);
+        font-size: 14px;
+        font-weight: 600;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chip:hover,
+      body[data-design-family='neutral'] .td-cluster-switch-chip:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--td-line-strong);
+        box-shadow: var(--td-shadow-soft);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-switch-chip.is-active,
+      body[data-design-family='neutral'] .td-cluster-switch-chip[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(39, 76, 119, 0.1), rgba(122, 166, 184, 0.08));
+        border-color: rgba(39, 76, 119, 0.26);
+        color: var(--td-accent-strong);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-link {
+        display: grid;
+        gap: 10px;
+        min-height: 156px;
+        padding: 18px;
+        border-radius: var(--td-radius-lg);
+        border: 1px solid var(--td-line);
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--td-text);
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-link:hover,
+      body[data-design-family='neutral'] .td-cluster-related-link:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--td-line-strong);
+        box-shadow: var(--td-shadow-soft);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-link.is-active,
+      body[data-design-family='neutral'] .td-cluster-related-link[aria-current='page'] {
+        background: linear-gradient(180deg, rgba(39, 76, 119, 0.08), rgba(122, 166, 184, 0.06));
+        border-color: rgba(39, 76, 119, 0.24);
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-card-title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-card-copy,
+      body[data-design-family='neutral'] .td-cluster-related-card-meta {
+        color: var(--td-muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-related-card-meta {
+        margin-top: auto;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-footer {
+        padding: 0 0 52px;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-site-footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 28px;
+        border: 1px solid var(--td-line);
+        border-radius: var(--td-radius-lg);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: var(--td-shadow-soft);
+        text-align: center;
+      }
+
+      body[data-design-family='neutral'] .td-cluster-footer-copy {
+        color: var(--td-muted);
+      }
+
+      @media (max-width: 960px) {
+        body[data-design-family='neutral'] .td-cluster-site-header-inner {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          padding: 14px 0;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-related-links {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        body[data-design-family='neutral'] .td-cluster-wrap,
+        body[data-design-family='neutral'] .td-cluster-center-column {
+          width: min(100% - 24px, 1120px);
+        }
+
+        body[data-design-family='neutral'] .td-cluster-layout-main {
+          padding: 28px 0 48px;
+        }
+
+        body[data-design-family='neutral'] #calculator-title {
+          font-size: 36px;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-route-switch,
+        body[data-design-family='neutral'] .td-cluster-related {
+          padding: 20px;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-switch-chips {
+          flex-wrap: wrap;
+          overflow-x: visible;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-switch-chip {
+          flex: 1 1 100%;
+          min-width: 0;
+          width: 100%;
+          padding: 12px 16px;
+          white-space: normal;
+          text-align: center;
+        }
+
+        body[data-design-family='neutral'] .td-cluster-related-links {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* calculators/time-and-date/business-days-calculator/calculator.css */
+      #calc-business-days {
+        --bd-surface: rgba(255, 255, 255, 0.98);
+        --bd-surface-soft: rgba(244, 247, 252, 0.92);
+        --bd-text: #18202a;
+        --bd-muted: #5c6776;
+        --bd-line: rgba(24, 32, 42, 0.12);
+        --bd-line-strong: rgba(24, 32, 42, 0.18);
+        --bd-accent: #1664c0;
+        --bd-accent-soft: rgba(22, 100, 192, 0.12);
+        display: grid;
+        gap: 20px;
+        max-width: 1120px;
+        margin: 0 auto;
+        color: var(--bd-text);
+      }
+
+      #calc-business-days .bd-card,
+      #business-days-explanation .bd-exp-card {
+        border: 1px solid var(--bd-line);
+        border-radius: 22px;
+        background: var(--bd-surface);
+        box-shadow: 0 10px 28px rgba(11, 22, 39, 0.06);
+      }
+
+      #calc-business-days .bd-kicker,
+      #calc-business-days .bd-result-label,
+      #calc-business-days .bd-section-kicker {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--bd-muted);
+      }
+
+      #calc-business-days .bd-intro {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      #calc-business-days .bd-related-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #calc-business-days .bd-related-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid var(--bd-line);
+        background: var(--bd-surface-soft);
+        color: var(--bd-text);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      #calc-business-days .bd-workbench {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      #calc-business-days .bd-input-card,
+      #calc-business-days .bd-result-card {
+        padding: 26px;
+        display: grid;
+        gap: 18px;
+        height: 100%;
+        align-content: start;
+      }
+
+      #calc-business-days .bd-card-head,
+      #calc-business-days .bd-rule-head {
+        display: grid;
+        gap: 6px;
+      }
+
+      #calc-business-days .bd-card-head h2,
+      #calc-business-days .bd-rule-head h3,
+      #business-days-explanation h2,
+      #business-days-explanation h3,
+      #business-days-explanation h4 {
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+
+      #calc-business-days .bd-rule-head p,
+      #business-days-explanation p,
+      #business-days-explanation li {
+        margin: 0;
+        line-height: 1.7;
+      }
+
+      #calc-business-days .bd-segmented,
+      #calc-business-days .bd-holiday-pills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        padding: 4px;
+        border-radius: 16px;
+        border: 1px solid var(--bd-line);
+        background: var(--bd-surface-soft);
+      }
+
+      #calc-business-days .bd-holiday-pills {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      #calc-business-days .bd-segment,
+      #calc-business-days .bd-pill,
+      #calc-business-days .bd-weekday,
+      #calc-business-days .bd-btn,
+      #calc-business-days .bd-field {
+        transition:
+          border-color 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      #calc-business-days .bd-segment,
+      #calc-business-days .bd-pill,
+      #calc-business-days .bd-weekday {
+        min-height: 46px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--bd-muted);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      #calc-business-days .bd-segment.is-active,
+      #calc-business-days .bd-pill.is-active,
+      #calc-business-days .bd-weekday.is-active {
+        background: #ffffff;
+        color: var(--bd-text);
+        border-color: rgba(22, 100, 192, 0.18);
+        box-shadow: 0 4px 12px rgba(17, 24, 39, 0.06);
+      }
+
+      #calc-business-days .bd-input-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      #calc-business-days .bd-field-label {
+        display: grid;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--bd-muted);
+      }
+
+      #calc-business-days .bd-field-label.is-hidden,
+      #calc-business-days .bd-between-only.is-hidden,
+      #calc-business-days .bd-shift-only.is-hidden {
+        display: none;
+      }
+
+      #calc-business-days .bd-field {
+        min-height: 48px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 1px solid var(--bd-line);
+        background: #ffffff;
+        color: var(--bd-text);
+        font-size: 16px;
+      }
+
+      #calc-business-days .bd-weekday-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      #calc-business-days .bd-action-row,
+      #calc-business-days .bd-utility-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #calc-business-days .bd-btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 46px;
+        padding: 0 16px;
+        border-radius: 14px;
+        border: 1px solid var(--bd-line);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      #calc-business-days .bd-btn-primary {
+        background: var(--bd-accent);
+        color: #ffffff;
+        border-color: var(--bd-accent);
+      }
+
+      #calc-business-days .bd-btn-secondary {
+        background: #ffffff;
+        color: var(--bd-text);
+      }
+
+      #calc-business-days .bd-input-note,
+      #calc-business-days .bd-hero-summary,
+      #calc-business-days .bd-card-copy,
+      #calc-business-days .bd-note-item,
+      #calc-business-days .bd-summary-card p {
+        margin: 0;
+        line-height: 1.65;
+      }
+
+      #calc-business-days .bd-error {
+        margin: 0;
+        color: #b42318;
+        font-weight: 700;
+      }
+
+      #calc-business-days .bd-result-top,
+      #calc-business-days .bd-section-head,
+      #calc-business-days .bd-result-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
+
+      #calc-business-days #business-days-direction,
+      #calc-business-days .bd-result-label,
+      #calc-business-days #business-days-summary,
+      #calc-business-days .bd-result-meta {
+        display: none;
+      }
+
+      #calc-business-days .bd-hero-value {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+        font-weight: 800;
+      }
+
+      #calc-business-days .bd-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        grid-auto-rows: 1fr;
+      }
+
+      #calc-business-days .bd-summary-card {
+        border: 1px solid var(--bd-line);
+        border-radius: 18px;
+        background: var(--bd-surface-soft);
+        padding: 16px;
+        display: grid;
+        gap: 6px;
+        height: 100%;
+        align-content: start;
+      }
+
+      #calc-business-days .bd-summary-card strong {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--bd-muted);
+      }
+
+      #calc-business-days .bd-summary-value {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      #calc-business-days .bd-note-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      #calc-business-days .bd-note-item {
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: var(--bd-surface-soft);
+        border: 1px solid rgba(24, 32, 42, 0.08);
+      }
+
+      #calc-business-days .bd-meta-chip,
+      #calc-business-days .bd-copy-feedback {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: var(--bd-accent-soft);
+        color: #0f4d98;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #business-days-explanation {
+        display: grid;
+        gap: 18px;
+      }
+
+      #business-days-explanation .bd-exp-card {
+        padding: 24px 26px;
+        display: grid;
+        gap: 14px;
+      }
+
+      #business-days-explanation .bd-guide-list,
+      #business-days-explanation .bd-notes-list {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 8px;
+      }
+
+      #business-days-explanation .bd-guide-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-top: 4px;
+        table-layout: fixed;
+        border: 1px solid var(--bd-line-strong);
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--bd-surface);
+        box-shadow: 0 8px 22px rgba(11, 22, 39, 0.04);
+      }
+
+      #business-days-explanation .bd-guide-table th,
+      #business-days-explanation .bd-guide-table td {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--bd-line);
+        vertical-align: top;
+        text-align: left;
+        line-height: 1.6;
+      }
+
+      #business-days-explanation .bd-guide-table th {
+        background: var(--bd-surface-soft);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border-bottom: 1px solid var(--bd-line-strong);
+      }
+
+      #business-days-explanation .bd-guide-table tbody tr:nth-child(even) {
+        background: rgba(244, 247, 252, 0.58);
+      }
+
+      #business-days-explanation .bd-guide-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      #business-days-explanation .bd-guide-table th:nth-child(1),
+      #business-days-explanation .bd-guide-table td:nth-child(1) {
+        width: 24%;
+      }
+
+      #business-days-explanation .bd-guide-table td:nth-child(1) {
+        font-weight: 700;
+        color: var(--bd-text);
+      }
+
+      #business-days-explanation .bd-guide-table th:nth-child(2),
+      #business-days-explanation .bd-guide-table td:nth-child(2) {
+        width: 39%;
+      }
+
+      #business-days-explanation .bd-guide-table th:nth-child(3),
+      #business-days-explanation .bd-guide-table td:nth-child(3) {
+        width: 37%;
+      }
+
+      #business-days-explanation .bd-faq-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      #business-days-explanation .faq-card {
+        display: grid;
+        gap: 8px;
+        padding: 16px 18px;
+        border-radius: 16px;
+        border: 1px solid var(--bd-line);
+        background: var(--bd-surface-soft);
+      }
+
+      #business-days-explanation .bd-bottom-links {
+        display: grid;
+        gap: 10px;
+      }
+
+      #business-days-explanation .bd-bottom-links a {
+        color: var(--bd-accent);
+        font-weight: 700;
+      }
+
+      @media (max-width: 940px) {
+        #calc-business-days .bd-workbench,
+        #calc-business-days .bd-summary-grid,
+        #calc-business-days .bd-input-grid {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-business-days .bd-weekday-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        #calc-business-days .bd-segmented,
+        #calc-business-days .bd-holiday-pills {
+          grid-template-columns: 1fr;
+        }
+
+        #calc-business-days .bd-weekday-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #calc-business-days .bd-input-card,
+        #calc-business-days .bd-result-card,
+        #business-days-explanation .bd-exp-card {
+          padding: 20px;
+        }
+
+        #business-days-explanation .bd-guide-table {
+          min-width: 0;
+          table-layout: auto;
+          border: 0;
+          background: transparent;
+          box-shadow: none;
+        }
+
+        #business-days-explanation .bd-guide-table thead {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
+        #business-days-explanation .bd-guide-table tbody {
+          display: grid;
+          gap: 12px;
+        }
+
+        #business-days-explanation .bd-guide-table tbody tr {
+          display: grid;
+          gap: 10px;
+          padding: 16px;
+          border: 1px solid var(--bd-line-strong);
+          border-radius: 16px;
+          background: var(--bd-surface-soft);
+          box-shadow: 0 8px 22px rgba(11, 22, 39, 0.04);
+        }
+
+        #business-days-explanation .bd-guide-table tbody tr:nth-child(even) {
+          background: var(--bd-surface-soft);
+        }
+
+        #business-days-explanation .bd-guide-table td {
+          display: grid;
+          gap: 4px;
+          width: auto;
+          padding: 0;
+          border-bottom: 0;
+        }
+
+        #business-days-explanation .bd-guide-table td::before {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--bd-muted);
+        }
+
+        #business-days-explanation .bd-guide-table td:nth-child(1)::before {
+          content: "Mode";
+        }
+
+        #business-days-explanation .bd-guide-table td:nth-child(2)::before {
+          content: "Best for";
+        }
+
+        #business-days-explanation .bd-guide-table td:nth-child(3)::before {
+          content: "Main answer";
+        }
+
+        #business-days-explanation .bd-guide-table th:nth-child(1),
+        #business-days-explanation .bd-guide-table td:nth-child(1),
+        #business-days-explanation .bd-guide-table th:nth-child(2),
+        #business-days-explanation .bd-guide-table td:nth-child(2),
+        #business-days-explanation .bd-guide-table th:nth-child(3),
+        #business-days-explanation .bd-guide-table td:nth-child(3) {
+          width: auto;
+        }
+      }
+    </style>
+ 
+    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+  </head>
+  <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
+    <div class="page td-cluster-page-shell">
+      <header class="td-cluster-site-header">
+  <div class="td-cluster-wrap td-cluster-site-header-inner">
+    <a class="td-cluster-brand" href="/" aria-label="CalcHowMuch home">
+      <span class="td-cluster-brand-mark" aria-hidden="true">TD</span>
+      <span>CalcHowMuch</span>
+    </a>
+    <div class="td-cluster-site-label" aria-label="Cluster label">Time &amp; Date Calculators</div>
+    <nav class="td-cluster-site-links" aria-label="Site links">
+      <a href="/">All Calculators</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/faqs/">FAQs</a>
+    </nav>
+  </div>
+</header>
+      <main class="td-cluster-layout-main">
+        <section class="td-cluster-center-column">
+          <div class="td-cluster-panel panel-span-all">
+  <div class="td-cluster-page-header">
+    <h1 id="calculator-title">Business Days Calculator</h1>
+    <p class="td-cluster-page-intro">Count business days between two dates or add and subtract working days with a custom workweek plus US and UK observed holiday presets.</p>
+  </div>
+  <div class="calculator-page-single td-cluster-flow">
+    <div id="calc-business-days">
+  <nav class="bd-related-row" aria-label="Related time and date tools">
+    <a class="bd-related-chip" href="/time-and-date/time-between-two-dates-calculator/">
+      Compare total days and business days
+    </a>
+    <a class="bd-related-chip" href="/time-and-date/days-until-a-date-calculator/">
+      Count calendar days until a deadline
+    </a>
+    <a class="bd-related-chip" href="/time-and-date/countdown-timer/">
+      Start a live countdown
+    </a>
+  </nav>
+
+  <div class="bd-workbench">
+    <section class="bd-card bd-input-card" aria-labelledby="business-days-inputs-title">
+      <div class="bd-card-head">
+        <h2 id="business-days-inputs-title">Set the business-day rules.</h2>
+      </div>
+
+      <div class="bd-segmented" role="group" aria-label="Business day mode">
+        <button class="bd-segment is-active" type="button" data-mode="between" aria-pressed="true">
+          Count between dates
+        </button>
+        <button class="bd-segment" type="button" data-mode="shift" aria-pressed="false">
+          Add or subtract days
+        </button>
+      </div>
+
+      <div class="bd-input-grid">
+        <label class="bd-field-label">
+          Start date
+          <input id="business-days-start-date" class="bd-field" type="date" />
+        </label>
+        <label class="bd-field-label bd-between-only">
+          End date
+          <input id="business-days-end-date" class="bd-field" type="date" />
+        </label>
+        <label class="bd-field-label bd-shift-only is-hidden">
+          Business-day offset
+          <input
+            id="business-days-offset"
+            class="bd-field"
+            type="number"
+            value="10"
+            min="-999"
+            max="999"
+            step="1"
+          />
+        </label>
+      </div>
+
+      <section class="bd-rule-block" aria-labelledby="business-days-workweek-title">
+        <div class="bd-rule-head">
+          <h3 id="business-days-workweek-title">Working days</h3>
+          <p>Choose which weekdays count on this route.</p>
+        </div>
+        <div class="bd-weekday-grid" role="group" aria-label="Working weekdays">
+          <button type="button" class="bd-weekday" data-day="1" aria-pressed="true">Mon</button>
+          <button type="button" class="bd-weekday" data-day="2" aria-pressed="true">Tue</button>
+          <button type="button" class="bd-weekday" data-day="3" aria-pressed="true">Wed</button>
+          <button type="button" class="bd-weekday" data-day="4" aria-pressed="true">Thu</button>
+          <button type="button" class="bd-weekday" data-day="5" aria-pressed="true">Fri</button>
+          <button type="button" class="bd-weekday" data-day="6" aria-pressed="false">Sat</button>
+          <button type="button" class="bd-weekday" data-day="0" aria-pressed="false">Sun</button>
+        </div>
+      </section>
+
+      <section class="bd-rule-block" aria-labelledby="business-days-holidays-title">
+        <div class="bd-rule-head">
+          <h3 id="business-days-holidays-title">Observed holidays</h3>
+          <p>Switch between no holidays, US observed holidays, and UK observed holidays.</p>
+        </div>
+        <div class="bd-holiday-pills" role="group" aria-label="Holiday preset">
+          <button class="bd-pill is-active" type="button" data-holiday="none" aria-pressed="true">
+            None
+          </button>
+          <button class="bd-pill" type="button" data-holiday="us" aria-pressed="false">
+            United States
+          </button>
+          <button class="bd-pill" type="button" data-holiday="uk" aria-pressed="false">
+            United Kingdom
+          </button>
+        </div>
+      </section>
+
+      <div class="bd-action-row">
+        <button class="bd-btn bd-btn-primary" type="button" id="business-days-calculate">
+          Calculate business days
+        </button>
+        <button class="bd-btn bd-btn-secondary" type="button" id="business-days-reset">
+          Reset
+        </button>
+      </div>
+
+      <p class="bd-input-note" id="business-days-note">
+        Count mode includes both calendar endpoints. Shift mode moves from the start date and does
+        not count the anchor date as a moved business day.
+      </p>
+      <p class="bd-error is-hidden" id="business-days-error"></p>
+    </section>
+
+    <section class="bd-card bd-result-card" id="business-days-result-card" aria-live="polite">
+      <div class="bd-result-top">
+        <p class="bd-section-kicker" id="business-days-direction">Forward range</p>
+        <div class="bd-utility-row">
+          <button class="bd-btn bd-btn-secondary" type="button" id="business-days-copy-summary">
+            Copy summary
+          </button>
+          <a class="bd-btn bd-btn-secondary" href="#" id="business-days-export-calendar" download>
+            Calendar export
+          </a>
+        </div>
+      </div>
+
+      <div class="bd-result-primary">
+        <p class="bd-result-label">Headline answer</p>
+        <p class="bd-hero-value" id="business-days-headline">10 business days</p>
+        <p class="bd-hero-summary" id="business-days-summary">
+          Apr 9, 2026 to Apr 22, 2026 includes 10 business days using a Mon-Fri workweek and no
+          holiday exclusions.
+        </p>
+      </div>
+
+      <div class="bd-summary-grid" id="business-days-summary-grid"></div>
+
+      <section class="bd-result-section" aria-labelledby="business-days-notes-title">
+        <div class="bd-section-head">
+          <h3 id="business-days-notes-title">Planning notes</h3>
+          <span class="bd-meta-chip" id="business-days-rules-chip">Mon-Fri workweek</span>
+        </div>
+        <div class="bd-note-list" id="business-days-note-list"></div>
+      </section>
+
+      <div class="bd-result-meta">
+        <span class="bd-meta-chip" id="business-days-holiday-chip">No holidays</span>
+        <span class="bd-copy-feedback is-hidden" id="business-days-copy-feedback">Copied</span>
+      </div>
+    </section>
+  </div>
+</div>
+
+    <div id="business-days-explanation">
+  <section class="bd-exp-card">
+    <h2>What does this business days calculator do?</h2>
+    <p>
+      This route answers two working-day questions fast: how many business days sit inside a date
+      range, and what date you land on after adding or subtracting business days. It is built for
+      deadline planning, notice periods, leave windows, shipping estimates, and internal work
+      schedules.
+    </p>
+    <p>
+      Use it when weekends and observed holidays matter. If your real question is broader than
+      working-day logic, you can <a href="/time-and-date/time-between-two-dates-calculator/">calculate full date difference</a>
+      or <a href="/time-and-date/days-until-a-date-calculator/">switch to a days-until countdown view</a>.
+    </p>
+  </section>
+
+  <section class="bd-exp-card">
+    <h3>How to Guide</h3>
+    <p>
+      Start by choosing the job. <strong>Count between dates</strong> is for questions like “how
+      many working days are left in this delivery window?” or “how many business days sit between a
+      contract start and end date?” <strong>Add or subtract business days</strong> is for questions
+      like “what date is 15 business days after today?” or “what date is 7 business days before
+      the deadline?”
+    </p>
+    <p>
+      After picking the mode, set your dates and then define the rule set. This page treats the
+      workweek as a real input instead of assuming Monday to Friday forever. That matters for
+      support teams, clinics, retail schedules, shift calendars, and any role that works on a
+      non-standard pattern. If you work Tuesday to Saturday, the result should respect that.
+    </p>
+    <ol class="bd-guide-list">
+      <li>Choose the mode that matches your planning job.</li>
+      <li>Set the start date and either an end date or a positive or negative offset.</li>
+      <li>Select the weekdays that count as working days for this scenario.</li>
+      <li>Pick no holidays, US observed holidays, or UK observed holidays.</li>
+      <li>Click Calculate to refresh the headline answer, summary cards, copy text, and calendar export.</li>
+    </ol>
+    <table class="bd-guide-table">
+      <thead>
+        <tr>
+          <th scope="col">Mode</th>
+          <th scope="col">Best for</th>
+          <th scope="col">Main answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Count between dates</td>
+          <td>Project windows, delivery planning, leave periods, notice periods</td>
+          <td>The number of business days inside the chosen span</td>
+        </tr>
+        <tr>
+          <td>Add or subtract business days</td>
+          <td>Target dates, follow-up deadlines, service-level commitments</td>
+          <td>The resulting date after the working-day offset</td>
+        </tr>
+        <tr>
+          <td>Holiday presets</td>
+          <td>National holiday planning for US or UK schedules</td>
+          <td>Observed-holiday dates are removed when they land on working weekdays</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      The result always tells you which workweek and holiday preset were active. That trust note is
+      not optional. Business-day counts become misleading when the reader does not know whether the
+      page used a normal Monday-Friday pattern, a custom shift week, or an observed-holiday rule
+      set. This route keeps those assumptions in plain view.
+    </p>
+    <p>
+      If you need broader calendar math after checking the working-day answer, use
+      <a href="/time-and-date/time-between-two-dates-calculator/">compare total days and business days</a>.
+      If the next step is a deadline countdown rather than work scheduling, use
+      <a href="/time-and-date/countdown-timer/">a live event timer</a> or a
+      <a href="/time-and-date/days-until-a-date-calculator/">calendar days countdown</a>.
+    </p>
+  </section>
+
+  <section class="td-cluster-route-switch" aria-labelledby="td-cluster-route-switch-title">
+  <div class="td-cluster-route-switch-head">
+    <div>
+      <h3 id="td-cluster-route-switch-title">More Date & Time tools</h3>
+    </div>
+  </div>
+  <div class="td-cluster-switch-chips" data-td-switch-chips="true">
+    <a class="td-cluster-switch-chip" href="/time-and-date/time-between-two-dates-calculator/">Time Between Two Dates Calculator</a><a class="td-cluster-switch-chip is-active" href="/time-and-date/business-days-calculator/" aria-current="page">Business Days Calculator</a><a class="td-cluster-switch-chip" href="/time-and-date/days-until-a-date-calculator/">Days Until a Date Calculator</a><a class="td-cluster-switch-chip" href="/time-and-date/countdown-timer/">Countdown Timer</a>
+  </div>
+</section>
+
+<section class="bd-exp-card" id="business-days-faq">
+    <h3>FAQ</h3>
+    <div class="bd-faq-grid">
+      <article class="faq-card">
+        <h4>Does the count include the start and end dates?</h4>
+        <p>Yes in count mode. The page counts the full span, then removes weekends and observed holidays from that inclusive calendar range.</p>
+      </article>
+      <article class="faq-card">
+        <h4>How does add or subtract mode treat the start date?</h4>
+        <p>The anchor date is the reference point. The calculator moves away from it and counts only the business days that are actually traversed.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What if I need total days instead of business days?</h4>
+        <p>Use the <a href="/time-and-date/time-between-two-dates-calculator/">full date-difference calculator</a> when weekends and holidays should stay inside the answer.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Can I use this as a countdown tool?</h4>
+        <p>Use this page for schedule math first. If you want to track how many calendar days are left, switch to the <a href="/time-and-date/days-until-a-date-calculator/">days-until countdown view</a>.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="td-cluster-related" aria-labelledby="td-cluster-related-title">
+  <div class="td-cluster-related-head">
+    <div>
+      <h3 id="td-cluster-related-title">Related Time &amp; Date calculators</h3>
+    </div>
+  </div>
+  <div class="td-cluster-related-links">
+    <a class="td-cluster-related-link" href="/time-and-date/sleep-time-calculator/">
+      <span class="td-cluster-related-card-title">Sleep Time Calculator</span>
+      <span class="td-cluster-related-card-copy">Plan better bedtimes or wake-up targets around 90-minute sleep cycles.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/wake-up-time-calculator/">
+      <span class="td-cluster-related-card-title">Wake-Up Time Calculator</span>
+      <span class="td-cluster-related-card-copy">Compare alarm times that line up with 4, 5, or 6 sleep cycles.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/nap-time-calculator/">
+      <span class="td-cluster-related-card-title">Nap Time Calculator</span>
+      <span class="td-cluster-related-card-copy">Turn a nap type and start time into a practical wake-up target.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/power-nap-calculator/">
+      <span class="td-cluster-related-card-title">Power Nap Calculator</span>
+      <span class="td-cluster-related-card-copy">Compare 10 to 90-minute nap options before you set an alarm.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/energy-based-nap-selector/">
+      <span class="td-cluster-related-card-title">Energy-Based Nap Selector</span>
+      <span class="td-cluster-related-card-copy">Match nap length to the kind of energy reset you need right now.</span>
+      <span class="td-cluster-related-card-meta">Sleep Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/work-hours-calculator/">
+      <span class="td-cluster-related-card-title">Work Hours Calculator</span>
+      <span class="td-cluster-related-card-copy">Track shift totals, breaks, and weekly hours for timesheets or rotas.</span>
+      <span class="td-cluster-related-card-meta">Work Hours</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/overtime-hours-calculator/">
+      <span class="td-cluster-related-card-title">Overtime Hours Calculator</span>
+      <span class="td-cluster-related-card-copy">Separate standard and overtime hours with clearer daily or weekly rules.</span>
+      <span class="td-cluster-related-card-meta">Work Hours</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/time-between-two-dates-calculator/">
+      <span class="td-cluster-related-card-title">Time Between Two Dates Calculator</span>
+      <span class="td-cluster-related-card-copy">Measure exact distance between dates, date-times, or business days.</span>
+      <span class="td-cluster-related-card-meta">Date & Time</span>
+    </a><a class="td-cluster-related-link is-active" href="/time-and-date/business-days-calculator/" aria-current="page">
+      <span class="td-cluster-related-card-title">Business Days Calculator</span>
+      <span class="td-cluster-related-card-copy">Explore this Time & Date calculator in the shared redesign system.</span>
+      <span class="td-cluster-related-card-meta">Date & Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/days-until-a-date-calculator/">
+      <span class="td-cluster-related-card-title">Days Until a Date Calculator</span>
+      <span class="td-cluster-related-card-copy">Count down to a deadline, measure days since, or switch to weekdays only.</span>
+      <span class="td-cluster-related-card-meta">Date & Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/countdown-timer/">
+      <span class="td-cluster-related-card-title">Countdown Timer</span>
+      <span class="td-cluster-related-card-copy">Create a live countdown for launches, trips, birthdays, or deadline tracking.</span>
+      <span class="td-cluster-related-card-meta">Date & Time</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/age-calculator/">
+      <span class="td-cluster-related-card-title">Age Calculator</span>
+      <span class="td-cluster-related-card-copy">See exact age, total days, and the next birthday in one planning view.</span>
+      <span class="td-cluster-related-card-meta">Age Calculator</span>
+    </a><a class="td-cluster-related-link" href="/time-and-date/birthday-day-of-week/">
+      <span class="td-cluster-related-card-title">Birthday Day-of-Week</span>
+      <span class="td-cluster-related-card-copy">Find the weekday of birth and compare future birthday patterns quickly.</span>
+      <span class="td-cluster-related-card-meta">Age Calculator</span>
+    </a>
+  </div>
+</section>
+
+<section class="bd-exp-card bd-notes-card">
+    <h3>Important Notes</h3>
+    <ul class="bd-notes-list">
+      <li><strong>Last updated:</strong> April 2026.</li>
+      <li><strong>Accuracy:</strong> Results use your local device date and local calendar rules.</li>
+      <li><strong>Assumptions:</strong> US and UK presets follow observed holidays in v1 rather than every regional exception.</li>
+      <li><strong>Limitations:</strong> This is a planning tool, not legal, payroll, or contractual advice.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser and nothing is stored.</li>
+    </ul>
+  </section>
+
+  <section class="bd-exp-card">
+    <h3>Related tools</h3>
+    <div class="bd-bottom-links">
+      <a href="/time-and-date/time-between-two-dates-calculator/">Measure exact time between dates</a>
+      <a href="/time-and-date/days-until-a-date-calculator/">Track how many days are left</a>
+      <a href="/time-and-date/countdown-timer/">Track a deadline in real time</a>
+    </div>
+  </section>
+</div>
+
+  </div>
+</div>
+        </section>
+      </main>
+      <footer class="td-cluster-site-footer">
+  <div class="td-cluster-wrap td-cluster-site-footer-inner">
+    <nav class="td-cluster-footer-links" aria-label="Footer links">
+      <a href="/">Home</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms-and-conditions/">Terms</a>
+      <a href="/contact-us/">Contact</a>
+      <a href="/about-us/">About Us</a>
+    </nav>
+    <span class="td-cluster-footer-copy">&copy; 2026 CalcHowMuch</span>
+  </div>
+</footer>
+    </div>
+    <script type="module" src="/calculators/time-and-date/shared/cluster-ux.js"></script>
+    <script type="module" src="/calculators/time-and-date/business-days-calculator/module.js?v=20260224"></script>
+  </body>
+</html>

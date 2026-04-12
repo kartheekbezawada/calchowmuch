@@ -666,6 +666,12 @@ const CALCULATOR_OVERRIDES = {
       'Find the exact time between two dates in total days, business days, weeks, months, and hours with date-only or date-time mode and copy-ready summaries.',
     h1: 'Time Between Two Dates Calculator',
   },
+  'business-days-calculator': {
+    title: 'Business Days Calculator | Count Working Days and Shift Deadlines',
+    description:
+      'Count business days between two dates or add and subtract working days with a custom workweek plus US and UK observed holiday presets.',
+    h1: 'Business Days Calculator',
+  },
   'sleep-time-calculator': {
     title: 'Sleep Time Calculator (90-Minute Cycles) | Bedtime and Wake-Up Times',
     description:
@@ -2718,6 +2724,7 @@ FINANCE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
 const TIME_AND_DATE_CLUSTER_REDESIGN_ORDER = [
   'age-calculator',
   'birthday-day-of-week',
+  'business-days-calculator',
   'days-until-a-date-calculator',
   'time-between-two-dates-calculator',
   'countdown-timer',
@@ -2734,6 +2741,7 @@ const TIME_AND_DATE_CLUSTER_REDESIGN_ORDER = [
 const TIME_AND_DATE_CLUSTER_REDESIGN_IDS = new Set([
   'age-calculator',
   'birthday-day-of-week',
+  'business-days-calculator',
   'days-until-a-date-calculator',
   'time-between-two-dates-calculator',
   'countdown-timer',
@@ -3455,6 +3463,7 @@ function buildFinanceRelatedCalculatorsHtml(category, activeCalculatorId) {
 function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCalculatorId) {
   const subcategories = Array.isArray(category?.subcategories) ? category.subcategories : [];
   const currentGroupCalculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+  const supportHeadingTag = activeCalculatorId === 'business-days-calculator' ? 'h3' : 'h2';
   const calculators = subcategories.flatMap((group) =>
     Array.isArray(group?.calculators)
       ? group.calculators.map((calculator) => ({
@@ -3468,7 +3477,7 @@ function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCal
     ? `<section class="td-cluster-route-switch" aria-labelledby="td-cluster-route-switch-title">
   <div class="td-cluster-route-switch-head">
     <div>
-      <h2 id="td-cluster-route-switch-title">More ${subcategory.name} tools</h2>
+      <${supportHeadingTag} id="td-cluster-route-switch-title">More ${subcategory.name} tools</${supportHeadingTag}>
     </div>
   </div>
   <div class="td-cluster-switch-chips" data-td-switch-chips="true">
@@ -3488,7 +3497,7 @@ function buildTimeAndDateRelatedCalculatorsHtml(category, subcategory, activeCal
     ? `<section class="td-cluster-related" aria-labelledby="td-cluster-related-title">
   <div class="td-cluster-related-head">
     <div>
-      <h2 id="td-cluster-related-title">Related Time &amp; Date calculators</h2>
+      <${supportHeadingTag} id="td-cluster-related-title">Related Time &amp; Date calculators</${supportHeadingTag}>
     </div>
   </div>
   <div class="td-cluster-related-links">
