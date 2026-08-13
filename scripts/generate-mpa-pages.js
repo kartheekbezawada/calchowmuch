@@ -5630,7 +5630,7 @@ function buildGtepSitemap(categories) {
 }
 
 function buildSitemapXml(categories) {
-  const lastmod = '2026-03-27';
+  const lastmod = new Date().toISOString().slice(0, 10);
   const staticUrls = [
     { path: '/pricing-calculators/', changefreq: 'monthly', priority: '0.75', lastmod },
     { path: '/about-us/', changefreq: 'monthly', priority: '0.40', lastmod },
