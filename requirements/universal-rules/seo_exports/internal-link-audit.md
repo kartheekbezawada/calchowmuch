@@ -1,29 +1,30 @@
 # Internal Link Audit
 
-Generated: 2026-04-04T12:11:08.830Z
+Generated: 2026-08-14T14:55:50.388Z
 
 ## Snapshot
-- Canonical calculator pages audited: 90
-- Canonical calculator-to-calculator edges: 572
-- Orphan pages: 1
+- Canonical calculator pages audited: 92
+- Canonical calculator-to-calculator edges: 622
+- Orphan pages: 3
 - Pages linking to legacy `/calculators/*` routes: 0
 - Unique legacy `/calculators/*` targets referenced: 0
 
 ## Top Findings
-- 1 canonical calculator pages have zero inbound links from other canonical calculator pages.
-- Weakest same-cluster coverage by cluster: Math (10.72%), Salary Calculators (40.00%).
+- 3 canonical calculator pages have zero inbound links from other canonical calculator pages.
+- Weakest same-cluster coverage by cluster: Math (10.72%), Salary Calculators (50.00%), Time and Date (92.31%).
 
 ## Family Rollup
 
 | Family | Pages | Avg Same-Cluster Coverage | Orphans | Clusters |
 | --- | --- | --- | --- | --- |
+| Credit Cards | 1 | N/A | 1 | credit-cards |
 | Finance | 13 | 100.00% | 0 | finance |
 | Loans | 5 | 100.00% | 0 | auto-loans |
 | Math | 36 | 10.72% | 1 | math |
 | Percentage | 9 | 100.00% | 0 | percentage |
 | Pricing | 4 | 100.00% | 0 | pricing |
-| Salary | 11 | 40.00% | 0 | salary |
-| Time and Date | 12 | 100.00% | 0 | time-and-date |
+| Salary | 11 | 50.00% | 0 | salary |
+| Time and Date | 13 | 92.31% | 1 | time-and-date |
 
 ## Strongest Clusters
 
@@ -33,18 +34,21 @@ Generated: 2026-04-04T12:11:08.830Z
 | Finance | 13 | 100.00% | 0 |
 | Percentage | 9 | 100.00% | 0 |
 | Pricing | 4 | 100.00% | 0 |
-| Time and Date | 12 | 100.00% | 0 |
+| Time and Date | 13 | 92.31% | 1 |
 
 ## Weakest Clusters
 
 | Cluster | Pages | Avg Same-Cluster Coverage | Orphans |
 | --- | --- | --- | --- |
 | Math | 36 | 10.72% | 1 |
-| Salary Calculators | 11 | 40.00% | 0 |
+| Salary Calculators | 11 | 50.00% | 0 |
+| Time and Date | 13 | 92.31% | 1 |
 
 ## Orphan Pages
 
+- `/credit-card-calculators/debt-payoff-calculator/` (Credit Cards)
 - `/math/log/log-scale/` (Math)
+- `/time-and-date/business-days-calculator/` (Time and Date)
 
 ## Cross-Link Gaps
 

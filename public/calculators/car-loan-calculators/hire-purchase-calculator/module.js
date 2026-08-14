@@ -121,6 +121,11 @@ const FAQ_ITEMS = [
     question: 'Are these lender-specific repayments?',
     answer: 'No. These are fixed-rate estimates and may differ from lender disclosures and fees.',
   },
+  {
+    question: 'Is hire purchase a type of loan?',
+    answer:
+      'Yes. A hire purchase loan lets you pay for a car in fixed monthly installments while the finance company owns it until the final payment, including any balloon, clears. Once you have paid in full, ownership transfers to you - unlike a personal loan, where you own the car outright from day one.',
+  },
 ];
 
 const CALCULATOR_FAQ_SCHEMA = {

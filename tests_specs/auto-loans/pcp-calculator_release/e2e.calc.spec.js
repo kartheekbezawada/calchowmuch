@@ -113,7 +113,7 @@ test.describe('PCP Calculator', () => {
     await page.locator('#pcp-view-cost').click();
     await expect(page.locator('#pcp-table-cost thead')).toBeHidden();
 
-    await expect(page.locator('#pcp-auto-loan-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#pcp-auto-loan-explanation .bor-faq-card')).toHaveCount(11);
     await expect(page.locator('#pcp-auto-loan-explanation .al-decision-summary')).toHaveCount(1);
   });
 });

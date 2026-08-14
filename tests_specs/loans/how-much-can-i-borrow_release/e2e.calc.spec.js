@@ -320,17 +320,17 @@ test.describe('How Much Can I Borrow Calculator Requirements', () => {
     expect(new Set(propertyValues).size).toBeGreaterThan(1);
   });
 
-  test('BOR-TEST-E2E-10: 10 FAQ cards in grid layout', async ({ page }) => {
+  test('BOR-TEST-E2E-10: 12 FAQ cards in grid layout', async ({ page }) => {
     await page.click('#bor-calculate');
     await page.waitForTimeout(500);
 
     const faqCards = page.locator('#loan-borrow-explanation .bor-faq-card');
-    await expect(faqCards).toHaveCount(10);
+    await expect(faqCards).toHaveCount(12);
 
     const firstNumber = page.locator('.bor-faq-number').first();
     await expect(firstNumber).toHaveText('01');
 
     const lastNumber = page.locator('.bor-faq-number').last();
-    await expect(lastNumber).toHaveText('10');
+    await expect(lastNumber).toHaveText('12');
   });
 });
