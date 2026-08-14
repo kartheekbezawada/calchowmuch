@@ -1,4 +1,4 @@
-import { formatNumber, formatPercent } from '/assets/js/core/format.js';
+import { formatCurrency, formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setupButtonGroup } from '/assets/js/core/ui.js';
 import { hasMaxDigits } from '/assets/js/core/validate.js';
 import { calculateBuyToLet } from '/assets/js/core/loan-utils.js';
@@ -35,7 +35,7 @@ const resultDiv = document.querySelector('#btl-result');
 const heroValue = resultDiv?.querySelector('.btl-hero-value');
 const previewPanel = document.querySelector('#btl-results');
 const resultNote = document.querySelector('#btl-result-note');
-const formatLoanCurrency = (value) => formatNumber(value, 'GBP');
+const formatLoanCurrency = (value) => formatCurrency(value, 'GBP');
 
 const priceField = document.querySelector('#btl-price-field');
 const rentField = document.querySelector('#btl-rent-field');
