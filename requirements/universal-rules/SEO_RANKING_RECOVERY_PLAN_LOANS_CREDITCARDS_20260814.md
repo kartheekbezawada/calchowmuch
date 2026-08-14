@@ -2,7 +2,7 @@
 
 Created: 2026-08-14
 Owner: HUMAN (kartheekbezawada)
-Status: Tier 0 complete (1 of 4 original items shipped; 3 withdrawn after verification, see Section 4). Tier 1+ awaiting direction.
+Status: Tier 0 and Tier 1 complete. Tier 2+ awaiting direction.
 Data basis: Google Search Console exports `calchowmuch.com-Performance-on-Search-2026-08-14` (28-day window, 15 Jul – 11 Aug 2026 reporting period), `requirements/universal-rules/seo_exports/internal-link-audit.md` (regenerated 2026-08-14), direct codebase inspection.
 
 ## Objective
@@ -145,6 +145,7 @@ gap metadata polish can't fix — consistent with why the prior wave didn't move
 | Credit-card cluster server-rendered FAQPage/SoftwareApplication schema | 5 pages | `030e5450` | 27/28 credit-cards suite (1 unrelated pre-existing failure) |
 | Buy-to-let currency formatting bug (`formatNumber`→`formatCurrency`) | 1 page | `d2c2a978` | Visual + 10/10 buy-to-let suite |
 | Auto-loan cluster wired into server-rendered FAQPage schema (T0-3) | 5 pages | `a90095ee` | 18/18 auto-loans suite |
+| Tier 1: 6 FAQ additions closing specific query gaps (LTV x3, how-much-can-i-borrow x2, hire-purchase, pcp-calculator) | 4 pages | `78c22835` | 28/28 across all 4 pages' full suites, visual |
 | Credit-card-minimum-payment: Capital One/Chase FAQ gap + "work out" phrasing + salary-calculator internal link | 2 pages | `7620b946` | Visual + full suite |
 
 These are not re-listed in the checklist below.
@@ -201,17 +202,21 @@ alone — it's now Tier 2 item T2-5 below, for a human decision, not a mechanica
 
 ## Tier 1 — Content additions using searchers' literal phrasing (facts already exist on-page; drafting the Q&A wording is the only new authorship)
 
-Same pattern as tonight's Capital One/Chase FAQ addition — low risk, but still copy, so each
-addition will be shown before/after for confirmation rather than silently shipped.
+**Status: done (`78c22835`).** All 6 items shipped. Verified: 28/28 tests passing across all 4
+pages' full release suites (loan-to-value, how-much-can-i-borrow, hire-purchase, pcp-calculator),
+FAQ schema counts confirmed matching between static HTML and each page's test expectations
+(LTV 10→13, how-much-can-i-borrow 10→12, hire-purchase 10→11, pcp-calculator 10→11), client-side
+`CALCULATOR_FAQ_SCHEMA` in each affected `module.js` synced to match (the same runtime-overwrite
+trap hit twice earlier tonight), and each new entry visually screenshotted.
 
-| ID | Task | Page | Query evidence |
-|---|---|---|---|
-| T1-1 | Add "What is borrowing power?" / "What is my borrowing capacity?" FAQ entries | how-much-can-i-borrow | 333 impressions (H2) |
-| T1-2 | Add "How do you work out LTV?" FAQ entry (restate existing formula) | ltv-calculator | 222 impressions, positions 91-96 (H3) |
-| T1-3 | Add remortgage-LTV worked example / FAQ entry | ltv-calculator | best-positioned query in dataset, 68.2 (H4) |
-| T1-4 | Add "What is 80% LTV?" threshold FAQ entry | ltv-calculator | worst-positioned query in dataset, 96.2 (H5) |
-| T1-5 | Add "hire purchase loan" phrase naturally into intro/FAQ | hire-purchase-calculator | 109+54 impressions, #1 query in cluster (A2) |
-| T1-6 | Add "Is GFV the same as a balloon payment?" FAQ entry | pcp-calculator | A3 |
+| ID | Task | Page | Query evidence | Status |
+|---|---|---|---|---|
+| T1-1 | Add "What is borrowing power?" / "What is my borrowing capacity?" FAQ entries | how-much-can-i-borrow | 333 impressions (H2) | done |
+| T1-2 | Add "How do you work out LTV?" FAQ entry (restate existing formula) | ltv-calculator | 222 impressions, positions 91-96 (H3) | done |
+| T1-3 | Add remortgage-LTV worked example / FAQ entry | ltv-calculator | best-positioned query in dataset, 68.2 (H4) | done |
+| T1-4 | Add "What is 80% LTV?" threshold FAQ entry | ltv-calculator | worst-positioned query in dataset, 96.2 (H5) | done |
+| T1-5 | Add "hire purchase loan" phrase naturally into intro/FAQ | hire-purchase-calculator | 109+54 impressions, #1 query in cluster (A2) | done |
+| T1-6 | Add "Is GFV the same as a balloon payment?" FAQ entry | pcp-calculator | A3 | done |
 
 ## Tier 2 — Bigger content decisions (needs your direction before drafting)
 
