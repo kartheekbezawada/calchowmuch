@@ -85,6 +85,11 @@ const FAQ_ITEMS = [
     answer:
       'Compare the minimum-only outcome with a higher fixed monthly payment and use the difference in months and interest to set a faster payoff target.',
   },
+  {
+    question: 'Does this work for Capital One, Chase, or other specific card issuers?',
+    answer:
+      "Yes. The percentage-of-balance-plus-floor formula modeled here matches how most major issuers, including Capital One and Chase, structure minimum payments. Check your card's terms for the exact percentage and floor amount, then enter those values for a precise estimate.",
+  },
 ];
 
 const CALCULATOR_FAQ_SCHEMA = {
