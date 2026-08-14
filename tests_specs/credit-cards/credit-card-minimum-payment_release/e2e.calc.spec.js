@@ -20,7 +20,7 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('.cc-cluster-site-header')).toHaveCount(1);
     await expect(page.locator('.top-nav')).toHaveCount(0);
     await expect(page.locator('.left-nav')).toHaveCount(0);
-    await expect(page.locator('.cc-cluster-related-link')).toHaveCount(4);
+    await expect(page.locator('.cc-cluster-related-link')).toHaveCount(5);
     await expect(page.locator('.cc-cluster-related-link[aria-current="page"]')).toHaveText(
       'Minimum Payment'
     );

@@ -1318,6 +1318,89 @@ const FINANCE_SCHEMA_CONFIG = {
   },
 };
 
+const CREDIT_CARD_SCHEMA_CONFIG = {
+  'credit-card-minimum-payment': {
+    breadcrumbLabel: 'Credit Card Minimum Payment Calculator',
+    softwareName: 'Credit Card Minimum Payment Calculator',
+    softwareDescription:
+      'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
+    featureList: [
+      'Minimum payment estimate with lowest-payment floor',
+      'Month-by-month payoff schedule',
+      'Total interest and total paid projection',
+    ],
+    keywords: [
+      'credit card minimum payment calculator',
+      'minimum payment trap',
+      'credit card payoff time',
+    ],
+  },
+  'balance-transfer-installment-plan': {
+    breadcrumbLabel: 'Balance Transfer Credit Card Calculator',
+    softwareName: 'Balance Transfer Credit Card Calculator',
+    softwareDescription:
+      'Compare transfer fees, promo APR, revert APR, payoff timing, and total cost to see whether a balance transfer saves money.',
+    featureList: [
+      'Promo APR and revert APR comparison',
+      'Balance transfer fee impact',
+      'Total cost versus staying on the current card',
+    ],
+    keywords: [
+      'balance transfer calculator',
+      'promo apr credit card',
+      'credit card balance transfer fee',
+    ],
+  },
+  'credit-card-repayment-payoff': {
+    breadcrumbLabel: 'Credit Card Payment Calculator',
+    softwareName: 'Credit Card Payment Calculator',
+    softwareDescription:
+      'Estimate how long credit card repayment could take, total interest, and total paid from your balance, APR, monthly payment, and extra amount.',
+    featureList: [
+      'Fixed monthly payment payoff timeline',
+      'Total interest and total paid estimate',
+      'Extra payment impact on payoff time',
+    ],
+    keywords: [
+      'credit card payoff calculator',
+      'credit card payment calculator',
+      'credit card interest calculator',
+    ],
+  },
+  'credit-card-consolidation': {
+    breadcrumbLabel: 'Credit Card Consolidation Calculator',
+    softwareName: 'Credit Card Consolidation Calculator',
+    softwareDescription:
+      'Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.',
+    featureList: [
+      'Card debt versus consolidation loan comparison',
+      'Monthly payment and payoff time by option',
+      'Total interest and total repaid comparison',
+    ],
+    keywords: [
+      'credit card consolidation calculator',
+      'debt consolidation loan calculator',
+      'consolidation loan vs credit card',
+    ],
+  },
+  'debt-payoff-calculator': {
+    breadcrumbLabel: 'Debt Payoff Calculator',
+    softwareName: 'Debt Payoff Calculator',
+    softwareDescription:
+      'Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date.',
+    featureList: [
+      'Snowball and avalanche strategy comparison',
+      'Multi-debt payoff plan and payoff date',
+      'Payment needed for a target payoff date',
+    ],
+    keywords: [
+      'debt payoff calculator',
+      'debt snowball calculator',
+      'debt avalanche calculator',
+    ],
+  },
+};
+
 function getArgValue(flag) {
   const index = process.argv.indexOf(flag);
   if (index === -1) {
@@ -1825,6 +1908,69 @@ function extractCalculatorFaqEntries(explanationHtml, calculatorId) {
   }
 
   return entries;
+}
+
+function extractCreditCardFaqEntries(explanationHtml, calculatorId) {
+  const faqSectionMatch = explanationHtml.match(
+    /<section[^>]*id="[^"]*faq[^"]*"[^>]*>([\s\S]*?)<\/section>/i
+  );
+  const faqHtml = faqSectionMatch ? faqSectionMatch[1] : explanationHtml;
+  const boxRegex = /<div[^>]*class="[^"]*\bfaq-box\b[^"]*"[^>]*>([\s\S]*?)<\/div>/gi;
+  const entries = [];
+
+  for (const [, boxHtml] of faqHtml.matchAll(boxRegex)) {
+    const question = extractTagText(boxHtml, 'strong').replace(/^Q:\s*/i, '').trim();
+    const answerMatch = boxHtml.match(
+      /<p[^>]*class="[^"]*\bfaq-answer\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i
+    );
+    const answer = (answerMatch ? normalizeHtmlText(answerMatch[1]) : '')
+      .replace(/^A:\s*/i, '')
+      .trim();
+    if (!question || !answer) {
+      continue;
+    }
+    entries.push({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    });
+  }
+
+  if (entries.length >= 4) {
+    return entries;
+  }
+
+  // credit-card-consolidation uses a <details>/<summary> disclosure pattern instead.
+  const detailsRegex =
+    /<details[^>]*class="[^"]*\bbor-faq-card\b[^"]*"[^>]*>([\s\S]*?)<\/details>/gi;
+  for (const [, detailsHtml] of faqHtml.matchAll(detailsRegex)) {
+    const question = extractTagText(detailsHtml, 'summary').trim();
+    const answerMatch = detailsHtml.match(
+      /<div[^>]*class="[^"]*\bbor-faq-answer\b[^"]*"[^>]*>([\s\S]*?)<\/div>/i
+    );
+    const answer = answerMatch ? normalizeHtmlText(answerMatch[1]) : '';
+    if (!question || !answer) {
+      continue;
+    }
+    entries.push({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    });
+  }
+
+  // debt-payoff-calculator uses the shared faq-card markup instead.
+  if (entries.length >= 4) {
+    return entries;
+  }
+
+  return extractCalculatorFaqEntries(explanationHtml, calculatorId);
 }
 
 function buildHomeLoanStructuredData({
@@ -3389,6 +3535,30 @@ function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) 
 </section>`;
 }
 
+function buildHomeLoanRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
+  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+
+  if (!calculators.length) {
+    return '';
+  }
+
+  const linksHtml = calculators
+    .map((calculator) => {
+      const isActive = calculator.id === activeCalculatorId;
+      return `<a class="hl-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        isActive ? ' aria-current="page"' : ''
+      }>${calculator.name}</a>`;
+    })
+    .join('');
+
+  return `<section class="hl-cluster-related" aria-labelledby="hl-cluster-related-title">
+  <h2 id="hl-cluster-related-title">Related Home Loan Calculators</h2>
+  <div class="hl-cluster-related-links">
+    ${linksHtml}
+  </div>
+</section>`;
+}
+
 function buildAutoLoanRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
   const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
 
@@ -4710,6 +4880,7 @@ function buildPageHtml({
   <div class="calculator-page-single hl-cluster-flow">
     ${sanitizedCalculatorHtml}
     ${explanationHtml}
+    ${relatedCalculatorsHtml}
   </div>
 </div>`
         : paneLayout === 'single'
@@ -5630,7 +5801,7 @@ function buildGtepSitemap(categories) {
 }
 
 function buildSitemapXml(categories) {
-  const lastmod = '2026-03-27';
+  const lastmod = new Date().toISOString().slice(0, 10);
   const staticUrls = [
     { path: '/pricing-calculators/', changefreq: 'monthly', priority: '0.75', lastmod },
     { path: '/about-us/', changefreq: 'monthly', priority: '0.40', lastmod },
@@ -5987,6 +6158,19 @@ function main() {
       });
       injectStaticStructuredData = true;
     }
+    const creditCardSchemaConfig = CREDIT_CARD_SCHEMA_CONFIG[calculator.id];
+    if (creditCardSchemaConfig) {
+      const faqEntries = extractCreditCardFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildFinanceStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        breadcrumbSectionLabel: 'Credit Cards',
+        ...creditCardSchemaConfig,
+      });
+      injectStaticStructuredData = true;
+    }
     if (isMigratedSalaryClusterRoute && calculator.id !== 'salary-calculators-hub') {
       const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
       staticStructuredData = buildSalaryStructuredData({
@@ -6122,6 +6306,8 @@ function main() {
         ? buildFinanceRelatedCalculatorsHtml(category, calculator.id)
         : isMigratedAutoLoanClusterRoute
         ? buildAutoLoanRelatedCalculatorsHtml(subcategory, calculator.id)
+        : isMigratedHomeLoanClusterRoute
+        ? buildHomeLoanRelatedCalculatorsHtml(subcategory, calculator.id)
         : '',
       routeSwitchHtml: isMigratedPercentageClusterRoute
         ? percentageRelatedSections.switcherHtml

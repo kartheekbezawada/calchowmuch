@@ -65,7 +65,9 @@ test.describe('Credit Card Consolidation Calculator SEO', () => {
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
     expect(faqNode.mainEntity).toHaveLength(10);
 
-    const visibleQuestions = await page.locator('#cc-con-explanation .bor-faq-card h4').allTextContents();
+    const visibleQuestions = await page
+      .locator('#cc-con-explanation .bor-faq-card summary')
+      .allTextContents();
     const normalizedVisibleQuestions = visibleQuestions.map((text) => text.trim());
     const schemaQuestions = faqNode.mainEntity.map((entry) => entry.name.trim());
     expect(schemaQuestions).toEqual(normalizedVisibleQuestions);

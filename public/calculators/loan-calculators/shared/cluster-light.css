@@ -1206,3 +1206,59 @@ body[data-design-family='home-loan'] .advanced-pair {
     padding: 14px;
   }
 }
+
+body[data-design-family='home-loan'] .hl-cluster-related {
+  margin-top: 8px;
+  padding: 28px;
+  border: 1px solid var(--hl-line);
+  border-radius: var(--hl-radius-lg);
+  background: var(--hl-surface);
+  box-shadow: var(--hl-shadow-soft);
+}
+
+body[data-design-family='home-loan'] .hl-cluster-related h2 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 4vw, 36px);
+  letter-spacing: -0.03em;
+  color: var(--hl-text);
+}
+
+body[data-design-family='home-loan'] .hl-cluster-related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-related-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hl-line);
+  background: linear-gradient(180deg, #ffffff, var(--hl-surface-soft));
+  color: var(--hl-text);
+  font-weight: 600;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-related-link:hover {
+  transform: translateY(-1px);
+  border-color: var(--hl-line-strong);
+  box-shadow: var(--hl-shadow-soft);
+  text-decoration: none;
+}
+
+body[data-design-family='home-loan'] .hl-cluster-related-link.is-active {
+  background: var(--hl-accent-soft);
+  border-color: var(--hl-accent);
+  color: var(--hl-accent-strong);
+}
+
+@media (max-width: 720px) {
+  body[data-design-family='home-loan'] .hl-cluster-related {
+    padding: 22px;
+  }
+}
