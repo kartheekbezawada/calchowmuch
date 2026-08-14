@@ -112,7 +112,7 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(0);
   });
 
-  test('MINPAY-TEST-E2E-3: explanation pane contains required sections and 10 FAQs', async ({
+  test('MINPAY-TEST-E2E-3: explanation pane contains required sections and 11 FAQs', async ({
     page,
   }) => {
     await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
@@ -125,6 +125,6 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(explanation.locator('#cc-min-scenario-table')).toHaveCount(0);
     await expect(explanation).toContainText('Results Table (Yearly Payoff Snapshot)');
     await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.cc-min-faq-item')).toHaveCount(10);
+    await expect(explanation.locator('.cc-min-faq-item')).toHaveCount(11);
   });
 });
