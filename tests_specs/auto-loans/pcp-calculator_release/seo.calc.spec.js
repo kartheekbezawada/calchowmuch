@@ -69,7 +69,7 @@ test.describe('PCP Calculator SEO', () => {
     );
     expect(softwareSchema?.name).toBe('PCP Car Finance Calculator');
     expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
-    expect(faqSchema?.mainEntity).toHaveLength(10);
+    expect(faqSchema?.mainEntity).toHaveLength(11);
     expect(faqSchema?.mainEntity?.[0]?.name).toBe(
       'How does a PCP calculator estimate monthly payment?'
     );

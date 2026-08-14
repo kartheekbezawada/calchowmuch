@@ -64,13 +64,13 @@ test.describe('Loan-to-Value Calculator SEO', () => {
     const schemaQuestions = Array.isArray(faqNode?.mainEntity)
       ? faqNode.mainEntity.map((entry) => String(entry?.name || '').trim()).filter(Boolean)
       : [];
-    expect(schemaQuestions).toHaveLength(10);
+    expect(schemaQuestions).toHaveLength(13);
 
     const visibleQuestions = await page
       .locator('#loan-ltv-explanation #ltv-section-faq .bor-faq-card h4')
       .allTextContents();
     const normalizedVisibleQuestions = visibleQuestions.map((entry) => entry.trim()).filter(Boolean);
-    expect(normalizedVisibleQuestions).toHaveLength(10);
+    expect(normalizedVisibleQuestions).toHaveLength(13);
     expect(new Set(schemaQuestions)).toEqual(new Set(normalizedVisibleQuestions));
 
     const sitemapResponse = await page.request.get('/sitemap.xml');

@@ -106,7 +106,7 @@ test.describe('Loan-to-Value calculator route contract', () => {
     await expect(targetsWrap).toHaveClass(/is-hidden/);
 
     await expect(page.locator('#loan-ltv-explanation .ltv-related-grid .bor-related-card')).toHaveCount(3);
-    await expect(page.locator('#loan-ltv-explanation #ltv-section-faq .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#loan-ltv-explanation #ltv-section-faq .bor-faq-card')).toHaveCount(13);
   });
 
   test('LTV-E2E-4: sticky headers, section counts, and no horizontal overflow hold on desktop and mobile', async ({

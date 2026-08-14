@@ -37,14 +37,14 @@ test.describe('How Much Can I Borrow Calculator SEO', () => {
     const schemaQuestions = Array.isArray(faqNode?.mainEntity)
       ? faqNode.mainEntity.map((entry) => String(entry?.name || '').trim()).filter(Boolean)
       : [];
-    expect(schemaQuestions).toHaveLength(10);
+    expect(schemaQuestions).toHaveLength(12);
     expect(schemaQuestions[0]).toBe('Is this a guaranteed amount I can borrow?');
 
     const visibleQuestions = await page
       .locator('#loan-borrow-explanation .bor-faq-card h4')
       .allTextContents();
     const normalizedVisible = visibleQuestions.map((entry) => entry.trim()).filter(Boolean);
-    expect(normalizedVisible).toHaveLength(10);
+    expect(normalizedVisible).toHaveLength(12);
     expect(new Set(schemaQuestions)).toEqual(new Set(normalizedVisible));
 
     const sitemapResponse = await page.request.get('/sitemap.xml');

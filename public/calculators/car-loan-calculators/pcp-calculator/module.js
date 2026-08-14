@@ -136,6 +136,11 @@ const FAQ_ITEMS = [
     answer:
       'No. These are fixed-rate estimates and can differ from lender offers and contract terms.',
   },
+  {
+    question: 'Is GFV the same as a balloon payment?',
+    answer:
+      'Yes, in everyday use. GFV (Guaranteed Future Value) is the official PCP term for the deferred amount, and it is commonly called the balloon payment because it is one large, optional final payment rather than spread across the monthly installments. You only pay it if you choose to buy the vehicle at the end of the agreement.',
+  },
 ];
 
 const CALCULATOR_FAQ_SCHEMA = {

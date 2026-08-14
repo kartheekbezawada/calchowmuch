@@ -98,7 +98,7 @@ test.describe('Hire Purchase Calculator', () => {
     expect(await page.locator('#hp-table-monthly-body tr').count()).toBeGreaterThan(1);
     expect(await page.locator('#hp-table-yearly-body tr').count()).toBeGreaterThan(0);
 
-    await expect(page.locator('#hp-auto-loan-explanation .bor-faq-card')).toHaveCount(10);
+    await expect(page.locator('#hp-auto-loan-explanation .bor-faq-card')).toHaveCount(11);
     await expect(page.locator('#hp-auto-loan-explanation .al-decision-summary')).toHaveCount(1);
   });
 });

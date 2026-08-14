@@ -69,7 +69,7 @@ test.describe('Hire Purchase Calculator SEO', () => {
     );
     expect(softwareSchema?.name).toBe('Hire Purchase Calculator');
     expect(breadcrumbSchema?.itemListElement).toHaveLength(3);
-    expect(faqSchema?.mainEntity).toHaveLength(10);
+    expect(faqSchema?.mainEntity).toHaveLength(11);
     expect(faqSchema?.mainEntity?.[0]?.name).toBe(
       'How does a hire purchase calculator estimate monthly payment?'
     );
