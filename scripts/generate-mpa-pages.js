@@ -1401,6 +1401,69 @@ const CREDIT_CARD_SCHEMA_CONFIG = {
   },
 };
 
+const AUTO_LOAN_SCHEMA_CONFIG = {
+  'car-loan': {
+    breadcrumbLabel: 'Car Loan Calculator',
+    softwareName: 'Car Loan Calculator',
+    softwareDescription:
+      'Estimate car loan monthly payment, amount financed, total interest, and total cost using price, deposit, trade-in, fees, tax, APR, and term.',
+    featureList: [
+      'Monthly payment estimate from price, deposit, and trade-in',
+      'Total interest and total cost breakdown',
+      'Fees and tax impact on amount financed',
+    ],
+    keywords: ['car loan calculator', 'auto loan payment calculator', 'car finance calculator'],
+  },
+  'hire-purchase': {
+    breadcrumbLabel: 'Hire Purchase Calculator',
+    softwareName: 'Hire Purchase Calculator',
+    softwareDescription:
+      'Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.',
+    featureList: [
+      'Monthly payment estimate with optional balloon',
+      'Total interest and total payable breakdown',
+      'Deposit and APR scenario testing',
+    ],
+    keywords: ['hire purchase calculator', 'hp calculator', 'hire purchase with balloon calculator'],
+  },
+  'pcp-calculator': {
+    breadcrumbLabel: 'PCP Car Finance Calculator',
+    softwareName: 'PCP Car Finance Calculator',
+    softwareDescription:
+      'Estimate PCP monthly payment, GFV, option fee, total interest, and total payable using vehicle price, deposit, APR, and term.',
+    featureList: [
+      'Monthly payment estimate with GFV (balloon) breakdown',
+      'Option-to-purchase fee and total payable',
+      'Deposit and APR scenario testing',
+    ],
+    keywords: ['pcp calculator', 'pcp car finance calculator', 'personal contract purchase calculator'],
+  },
+  'leasing-calculator': {
+    breadcrumbLabel: 'Car Lease Calculator',
+    softwareName: 'Car Lease Calculator',
+    softwareDescription:
+      'Estimate car lease monthly payment, residual value, finance charge, and total lease cost from price, money factor, upfront payment, and term.',
+    featureList: [
+      'Monthly lease payment estimate',
+      'Residual value and finance charge breakdown',
+      'Total lease cost projection',
+    ],
+    keywords: ['car lease calculator', 'lease payment calculator', 'auto lease calculator'],
+  },
+  'multiple-car-loan': {
+    breadcrumbLabel: 'Auto Loan Comparison Calculator',
+    softwareName: 'Auto Loan Comparison Calculator',
+    softwareDescription:
+      'Compare two auto loans by monthly payment, total interest, total cost, and payoff timing to see which offer is cheaper.',
+    featureList: [
+      'Side-by-side comparison of two loan offers',
+      'Total interest and total cost difference',
+      'Payoff timing comparison',
+    ],
+    keywords: ['auto loan comparison calculator', 'compare car loans', 'car loan comparison'],
+  },
+};
+
 function getArgValue(flag) {
   const index = process.argv.indexOf(flag);
   if (index === -1) {
@@ -6168,6 +6231,19 @@ function main() {
         faqEntries,
         breadcrumbSectionLabel: 'Credit Cards',
         ...creditCardSchemaConfig,
+      });
+      injectStaticStructuredData = true;
+    }
+    const autoLoanSchemaConfig = AUTO_LOAN_SCHEMA_CONFIG[calculator.id];
+    if (autoLoanSchemaConfig) {
+      const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildFinanceStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        breadcrumbSectionLabel: 'Car Loans',
+        ...autoLoanSchemaConfig,
       });
       injectStaticStructuredData = true;
     }
