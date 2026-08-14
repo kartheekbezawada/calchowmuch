@@ -16,7 +16,6 @@
     <meta name="twitter:description" content="Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/#softwareapplication","name":"Credit Card Consolidation Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/","description":"Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Credit Card Calculators","item":"https://calchowmuch.com/credit-card-calculators/"},{"@type":"ListItem","position":3,"name":"Credit Card Consolidation Calculator","item":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/"}]}]}</script>
     <style data-route-critical="true">
       /* assets/css/base.css */
       :root {
@@ -38,29 +37,29 @@
         --nav-height: 64px;
         --footer-height: 72px;
       }
-
+      
       * {
         box-sizing: border-box;
         scrollbar-width: thin;
         scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
       }
-
+      
       body {
         margin: 0;
         color: var(--header-text);
         background-color: var(--page-bg);
         background-image: none;
       }
-
+      
       a {
         color: inherit;
         text-decoration: none;
       }
-
+      
       button {
         font: inherit;
       }
-
+      
       .sr-only {
         position: absolute;
         width: 1px;
@@ -72,24 +71,24 @@
         white-space: nowrap;
         border: 0;
       }
-
+      
       /* Scrollbar styling - always visible with subtle colors */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
       }
-
+      
       ::-webkit-scrollbar-track {
         background: var(--scrollbar-track, #f1f5f9);
         border-radius: 4px;
       }
-
+      
       ::-webkit-scrollbar-thumb {
         background: var(--scrollbar-thumb, #94a3b8);
         border-radius: 4px;
         border: 2px solid var(--scrollbar-track, #f1f5f9);
       }
-
+      
       ::-webkit-scrollbar-thumb:hover {
         background: var(--scrollbar-thumb-hover, #64748b);
       }
@@ -101,7 +100,7 @@
         --calculator-button-padding: 10px 12px;
         --calculator-button-radius: 10px;
       }
-
+      
       .calculator-page {
         max-width: 1120px;
         margin: 0 auto;
@@ -110,11 +109,11 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 24px;
       }
-
+      
       .is-hidden {
         display: none;
       }
-
+      
       .card {
         background: var(--panel-bg);
         border-radius: 16px;
@@ -122,24 +121,24 @@
         box-shadow: var(--panel-shadow);
         border: 1px solid var(--border-color);
       }
-
+      
       .card h1,
       .card h2 {
         margin-top: 0;
       }
-
+      
       .calculator-ui {
         display: grid;
         gap: 18px;
       }
-
+      
       .calculator-ui label {
         font-size: 14px;
         color: var(--muted-text);
         display: block;
         margin-bottom: 6px;
       }
-
+      
       .calculator-ui input[type='number'],
       .calculator-ui input[type='text'],
       .calculator-ui input[type='email'],
@@ -161,59 +160,59 @@
         font-family: inherit;
         background: var(--panel-bg);
       }
-
+      
       .calculator-ui textarea {
         resize: vertical;
       }
-
+      
       .calculator-ui .helper {
         color: var(--muted-text);
         margin: 0;
         font-size: 14px;
       }
-
+      
       .back-link {
         display: inline-flex;
         margin-bottom: 16px;
         color: var(--accent);
       }
-
+      
       .calculator-ui .input-stack {
         display: grid;
         gap: 16px;
       }
-
+      
       .calculator-ui .input-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 16px;
       }
-
+      
       .calculator-ui .calculator-toolbar {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
         align-items: center;
       }
-
+      
       .calculator-ui .toolbar-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       .calculator-ui .button-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
-
+      
       .calculator-ui .button-group {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
       }
-
+      
       .calculator-ui .mode-switch-control {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -225,7 +224,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       .calculator-ui .mode-switch-label {
         text-align: center;
         font-size: 13px;
@@ -237,12 +236,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       .calculator-ui .mode-switch-toggle {
         position: relative;
         display: inline-flex;
@@ -250,13 +249,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       .calculator-ui .mode-switch-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       .calculator-ui .mode-switch-track {
         width: 64px;
         height: 34px;
@@ -268,7 +267,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-thumb {
         width: 26px;
         height: 26px;
@@ -278,20 +277,20 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
         transform: translateX(30px);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition .composition-mode-switch {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -303,7 +302,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       #calc-percentage-composition .composition-mode-label {
         text-align: center;
         font-size: 14px;
@@ -314,12 +313,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-mode-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       #calc-percentage-composition .composition-toggle {
         position: relative;
         display: inline-flex;
@@ -327,13 +326,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       #calc-percentage-composition .composition-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       #calc-percentage-composition .composition-toggle-track {
         width: 64px;
         height: 34px;
@@ -345,7 +344,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle-thumb {
         width: 26px;
         height: 26px;
@@ -355,11 +354,11 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       #calc-percentage-composition
         .composition-toggle
         input:checked
@@ -367,17 +366,17 @@
         .composition-toggle-thumb {
         transform: translateX(30px);
       }
-
+      
       #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition #composition-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-percentage-composition .composition-item-row {
         display: grid;
         grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
@@ -389,21 +388,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-percentage-composition .composition-row-field {
         min-width: 0;
       }
-
+      
       #calc-percentage-composition .composition-item-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-commission-calculator #comm-tier-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-commission-calculator .commission-tier-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
@@ -415,21 +414,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-commission-calculator .commission-tier-field {
         min-width: 0;
       }
-
+      
       #calc-commission-calculator .commission-tier-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-markup-calculator #markup-basket-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row {
         display: grid;
         grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
@@ -441,88 +440,88 @@
         border-radius: 12px;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
       }
-
+      
       #calc-markup-calculator .markup-row-field {
         min-width: 0;
       }
-
+      
       #calc-markup-calculator .markup-row-name-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-qty-field {
         grid-column: 2;
       }
-
+      
       #calc-markup-calculator .markup-remove-row {
         grid-column: 3;
         min-width: 104px;
       }
-
+      
       #calc-markup-calculator .markup-row-cost-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-price-wrap,
       #calc-markup-calculator .markup-row-markup-wrap {
         grid-column: 2 / 4;
       }
-
+      
       #calc-markup-calculator .markup-row-field > label {
         font-size: 13px;
         font-weight: 600;
         margin-bottom: 4px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       @media (max-width: 720px) {
         .calculator-ui .mode-switch-control {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         .calculator-ui .mode-switch-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-mode-switch {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         #calc-percentage-composition .composition-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-item-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-percentage-composition .composition-item-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-commission-calculator .commission-tier-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-commission-calculator .commission-tier-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-markup-calculator .markup-basket-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-markup-calculator .markup-basket-row .calculator-button {
           width: 100%;
         }
       }
-
+      
       .calculator-button {
         padding: var(--calculator-button-padding);
         border-radius: var(--calculator-button-radius);
@@ -538,56 +537,56 @@
         line-height: 1.2;
         white-space: nowrap;
       }
-
+      
       .calculator-button.primary {
         background: var(--accent);
         color: #fff;
       }
-
+      
       .calculator-button.secondary {
         background: #f8f9fa;
         color: #495057;
       }
-
+      
       .calculator-button.is-active,
       .calculator-button[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button.secondary.is-active,
       .calculator-button.secondary[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button:disabled {
         opacity: 0.6;
         cursor: not-allowed;
       }
-
+      
       .full-width {
         width: 100%;
       }
-
+      
       .calculator-ui .result {
         margin: 0;
         font-size: 18px;
         font-weight: 600;
         min-height: 60px;
       }
-
+      
       .calculator-ui .result-detail {
         font-size: 14px;
         color: var(--muted-text);
         margin-top: 8px;
         font-weight: 400;
       }
-
+      
       .calculator-ui .result-detail p {
         margin: 0.25rem 0;
       }
-
+      
       .calculator-ui .result-scroll {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -601,19 +600,19 @@
         flex-direction: column;
         gap: 16px;
       }
-
+      
       .calculator-ui .result-section {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-
+      
       .calculator-ui .result-section h4 {
         margin: 0;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .table-scroll {
         overflow-x: scroll;
         overflow-y: scroll;
@@ -621,7 +620,7 @@
         max-height: 240px;
         scrollbar-gutter: stable;
       }
-
+      
       .calculator-table {
         width: 100%;
         border-collapse: collapse;
@@ -629,7 +628,7 @@
         font-size: 15px;
         min-width: 400px;
       }
-
+      
       .calculator-table th,
       .calculator-table td {
         padding: 8px 12px;
@@ -637,12 +636,12 @@
         text-align: right;
         white-space: nowrap;
       }
-
+      
       .calculator-table th:first-child,
       .calculator-table td:first-child {
         text-align: left;
       }
-
+      
       .calculator-table thead th {
         background: var(--pill-bg);
         color: var(--muted-text);
@@ -651,12 +650,12 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
+      
       .calculator-table tfoot td {
         background: var(--pill-bg);
         font-weight: 600;
       }
-
+      
       .graph-panel {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -668,7 +667,7 @@
         gap: 8px;
         overflow: hidden;
       }
-
+      
       .graph-header {
         display: flex;
         align-items: center;
@@ -677,23 +676,23 @@
         color: var(--muted-text);
         flex-shrink: 0;
       }
-
+      
       .graph-title {
         color: var(--header-text);
         font-weight: 600;
       }
-
+      
       .explanation-pane h2,
       .explanation-pane h3 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 6px;
         position: relative;
       }
-
+      
       .explanation-pane h2 {
         margin-top: 0;
       }
-
+      
       .explanation-pane h2::after {
         content: '';
         position: absolute;
@@ -703,33 +702,33 @@
         width: 48px;
         background: var(--accent);
       }
-
+      
       .faq-box {
         border: 1px solid var(--border-color);
         padding: 16px;
         border-radius: 8px;
       }
-
+      
       .explanation-pane h3 + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box p {
         margin: 0;
       }
-
+      
       .faq-box p + p {
         margin-top: 6px;
       }
-
+      
       .faq-box .faq-answer {
         margin-left: 12px;
       }
-
+      
       .graph-legend {
         display: flex;
         gap: 12px;
@@ -737,39 +736,39 @@
         font-size: 12px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-item {
         display: flex;
         align-items: center;
         gap: 6px;
       }
-
+      
       .graph-legend-color {
         width: 12px;
         height: 12px;
         border-radius: 3px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-color.principal {
         background: var(--accent);
       }
-
+      
       .graph-legend-color.interest {
         background: #f59e0b;
       }
-
+      
       .graph-legend-color.balance {
         background: #10b981;
       }
-
+      
       .graph-container {
         display: flex;
         flex: 1;
         min-height: 0;
         gap: 8px;
       }
-
+      
       .graph-y-axis {
         display: flex;
         flex-direction: column;
@@ -781,7 +780,7 @@
         flex-shrink: 0;
         min-width: 50px;
       }
-
+      
       .graph-y-label {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
@@ -790,7 +789,7 @@
         text-align: center;
         flex-shrink: 0;
       }
-
+      
       .graph-main {
         flex: 1;
         display: flex;
@@ -798,7 +797,7 @@
         min-width: 0;
         overflow: hidden;
       }
-
+      
       .graph-bars-wrapper {
         flex: 1;
         overflow-x: auto;
@@ -806,7 +805,7 @@
         min-height: 0;
         scrollbar-gutter: stable;
       }
-
+      
       .graph-bars {
         display: flex;
         align-items: flex-end;
@@ -816,33 +815,33 @@
         width: max-content;
         padding-bottom: 4px;
       }
-
+      
       .graph-line {
         width: 100%;
         height: 100%;
         display: block;
       }
-
+      
       .graph-line polyline {
         fill: none;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-
+      
       .graph-line .line-primary {
         stroke: var(--accent);
       }
-
+      
       .graph-line .line-secondary {
         stroke: #94a3b8;
         stroke-dasharray: 6 4;
       }
-
+      
       .graph-legend-color.secondary {
         background: #94a3b8;
       }
-
+      
       .graph-bar {
         width: 8px;
         min-width: 8px;
@@ -850,15 +849,15 @@
         border-radius: 4px 4px 2px 2px;
         flex: 0 0 auto;
       }
-
+      
       .graph-bar.interest {
         background: #f59e0b;
       }
-
+      
       .graph-bar.balance {
         background: #10b981;
       }
-
+      
       .graph-x-axis {
         display: flex;
         justify-content: space-between;
@@ -868,7 +867,7 @@
         border-top: 1px solid var(--border-color);
         flex-shrink: 0;
       }
-
+      
       .graph-x-label {
         font-size: 11px;
         color: var(--muted-text);
@@ -902,21 +901,21 @@
           linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] .page {
         min-height: 100vh;
       }
-
+      
       body[data-design-family='credit-cards'] a {
         color: var(--cc-accent);
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-wrap,
       body[data-design-family='credit-cards'] .cc-cluster-center-column {
         width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-site-header {
         position: sticky;
         top: 0;
@@ -925,7 +924,7 @@
         background: rgba(255, 255, 255, 0.86);
         border-bottom: 1px solid rgba(230, 232, 237, 0.94);
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-site-header-inner {
         min-height: 72px;
         display: flex;
@@ -933,7 +932,7 @@
         justify-content: space-between;
         gap: 20px;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-brand {
         display: inline-flex;
         align-items: center;
@@ -942,11 +941,11 @@
         font-size: 18px;
         font-weight: 700;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-brand:hover {
         text-decoration: none;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-brand-mark {
         width: 40px;
         height: 40px;
@@ -958,28 +957,28 @@
         color: #fff;
         font-size: 18px;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-site-links {
         display: flex;
         align-items: center;
         gap: 20px;
         font-size: 14px;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-site-links a {
         color: var(--cc-accent);
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-layout-main {
         padding: 54px 0 72px;
       }
-
+      
       body[data-design-family='credit-cards'] .center-column.cc-cluster-center-column {
         max-width: none;
         padding: 0;
         display: block;
       }
-
+      
       body[data-design-family='credit-cards'] .panel.cc-cluster-panel {
         background: transparent;
         border: 0;
@@ -987,13 +986,13 @@
         padding: 0;
         overflow: visible;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-page-header {
         max-width: 760px;
         margin: 0 auto 32px;
         text-align: center;
       }
-
+      
       body[data-design-family='credit-cards'] #calculator-title {
         margin: 0;
         font-size: clamp(40px, 6vw, 54px);
@@ -1001,22 +1000,22 @@
         letter-spacing: -0.03em;
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-flow {
         gap: 32px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-ui {
         gap: 24px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-hero'] {
         display: grid;
         grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
         gap: 24px;
         align-items: start;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel'] {
         border: 1px solid var(--cc-line);
@@ -1025,14 +1024,14 @@
         box-shadow: var(--cc-shadow);
         padding: 28px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel']::before,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel']::after,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel']::before,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel']::after {
         display: none;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-main'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-list'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-result-card'],
@@ -1045,14 +1044,14 @@
         box-shadow: var(--cc-shadow);
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-main'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-list'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-summary-card'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .result-detail {
         padding: 20px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .helper,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-note'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-label'],
@@ -1060,7 +1059,7 @@
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-provider-note'] {
         color: var(--cc-muted);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .input-row {
         margin: 0;
         display: flex;
@@ -1068,7 +1067,7 @@
         gap: 8px;
         min-width: 0;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] label {
         margin: 0;
         font-size: 13px;
@@ -1077,7 +1076,7 @@
         letter-spacing: 0.01em;
         color: #243043;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='number'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='text'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='search'],
@@ -1097,7 +1096,7 @@
           box-shadow 0.18s ease,
           background-color 0.18s ease;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='number']:focus-visible,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='text']:focus-visible,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='search']:focus-visible,
@@ -1106,14 +1105,14 @@
         border-color: rgba(37, 99, 235, 0.6);
         box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .slider-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .slider-value {
         display: inline-flex;
         align-items: center;
@@ -1127,7 +1126,7 @@
         text-shadow: none;
         box-shadow: none;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='range'] {
         -webkit-appearance: none;
         appearance: none;
@@ -1143,7 +1142,7 @@
         );
         cursor: pointer;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='range']::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
@@ -1154,7 +1153,7 @@
         border: 2px solid var(--cc-accent);
         box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] input[type='range']::-moz-range-thumb {
         width: 18px;
         height: 18px;
@@ -1163,7 +1162,7 @@
         border: 2px solid var(--cc-accent);
         box-shadow: 0 2px 12px rgba(37, 99, 235, 0.18);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-button,
       body[data-design-family='credit-cards'] #calc-cc-payoff .cc-payoff-action-row .calculator-button,
       body[data-design-family='credit-cards'] #calc-cc-min .cc-min-action-row .calculator-button,
@@ -1183,19 +1182,19 @@
           box-shadow 0.18s ease,
           filter 0.18s ease;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-button:hover {
         transform: translateY(-1px);
         box-shadow: 0 18px 30px rgba(17, 17, 17, 0.14);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-button:focus-visible {
         outline: 0;
         box-shadow:
           0 18px 30px rgba(17, 17, 17, 0.14),
           0 0 0 4px rgba(37, 99, 235, 0.16);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .placeholder {
         margin: 0;
         border-radius: 16px;
@@ -1206,7 +1205,7 @@
         font-size: 14px;
         line-height: 1.55;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .form-error {
         margin: 0;
         border-radius: 16px;
@@ -1217,13 +1216,13 @@
         font-size: 14px;
         line-height: 1.45;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-results-list'],
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-list'] {
         display: grid;
         gap: 10px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .result-line,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-row'] {
         display: flex;
@@ -1236,15 +1235,15 @@
         background: linear-gradient(180deg, #ffffff, var(--cc-surface-soft-2));
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-row'] span {
         color: var(--cc-muted);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-snapshot-row'] strong {
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .table-scroll {
         position: relative;
         border: 1px solid var(--cc-line);
@@ -1254,14 +1253,14 @@
         box-shadow: var(--cc-shadow);
         overflow: hidden;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .table-scroll:focus-visible {
         outline: 0;
         box-shadow:
           var(--cc-shadow),
           0 0 0 4px rgba(37, 99, 235, 0.12);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'],
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] {
@@ -1272,7 +1271,7 @@
         background: transparent;
         table-layout: fixed;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table th,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] th,
@@ -1287,7 +1286,7 @@
         background: var(--cc-table-row);
         overflow-wrap: anywhere;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table th,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] th,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] th {
@@ -1302,7 +1301,7 @@
         text-transform: uppercase;
         z-index: 2;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table th + th,
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td + td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] th + th,
@@ -1311,38 +1310,38 @@
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td + td {
         border-left: 1px solid rgba(230, 232, 237, 0.94);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table thead th:first-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] thead th:first-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] thead th:first-child {
         border-top-left-radius: 18px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table thead th:last-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] thead th:last-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] thead th:last-child {
         border-top-right-radius: 18px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody td {
         font-variant-numeric: tabular-nums;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody td:first-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody td:first-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody td:first-child {
         font-weight: 700;
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:nth-child(even) td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:nth-child(even) td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:nth-child(even) td {
         background: var(--cc-table-row-alt);
       }
-
+      
       @media (hover: hover) {
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:hover td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:hover td,
@@ -1350,25 +1349,25 @@
           background: var(--cc-table-row-hover);
         }
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td {
         border-bottom: 0;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td:first-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td:first-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:first-child {
         border-bottom-left-radius: 18px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td:last-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td:last-child,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:last-child {
         border-bottom-right-radius: 18px;
       }
-
+      
       body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'] td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'] td,
       body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] td {
@@ -1378,23 +1377,23 @@
         font-weight: 600;
         background: linear-gradient(180deg, rgba(251, 251, 252, 0.98), rgba(247, 248, 250, 0.96));
       }
-
+      
       body[data-design-family='credit-cards'] #cc-payoff-table,
       body[data-design-family='credit-cards'] #cc-min-table,
       body[data-design-family='credit-cards'] #cc-bt-table,
       body[data-design-family='credit-cards'] #cc-con-table-yearly {
         min-width: 0;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-con-table-monthly {
         min-width: 0;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-bt-scenario-table,
       body[data-design-family='credit-cards'] .cc-con-guide-table {
         min-width: 0;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-payoff-table th:not(:first-child),
       body[data-design-family='credit-cards'] #cc-payoff-table td:not(:first-child),
       body[data-design-family='credit-cards'] #cc-min-table th:not(:first-child),
@@ -1407,17 +1406,17 @@
       body[data-design-family='credit-cards'] #cc-con-table-monthly td:not(:first-child) {
         text-align: right;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-bt-scenario-table th:nth-child(2),
       body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2) {
         text-align: right;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2) {
         font-weight: 700;
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(3) {
         color: var(--cc-muted);
         font-size: 0.76rem;
@@ -1425,37 +1424,37 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-con-guide-table th,
       body[data-design-family='credit-cards'] .cc-con-guide-table td {
         white-space: normal;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-con-guide-table th:first-child,
       body[data-design-family='credit-cards'] .cc-con-guide-table td:first-child {
         width: 42%;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-bt-scenario-table th:first-child,
       body[data-design-family='credit-cards'] #cc-bt-scenario-table td:first-child {
         width: 38%;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-bt-scenario-table th:nth-child(2),
       body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2) {
         width: 34%;
       }
-
+      
       body[data-design-family='credit-cards'] #cc-bt-scenario-table th:nth-child(3),
       body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(3) {
         width: 28%;
       }
-
+      
       body[data-design-family='credit-cards'] [id$='-explanation'] {
         display: grid;
         gap: 20px;
       }
-
+      
       body[data-design-family='credit-cards'] [id$='-explanation'] > h3,
       body[data-design-family='credit-cards'] [id$='-explanation'] > h2 {
         margin: 0;
@@ -1463,7 +1462,7 @@
         letter-spacing: -0.03em;
         color: var(--cc-text);
       }
-
+      
       body[data-design-family='credit-cards'] [id$='-explanation'] > section,
       body[data-design-family='credit-cards'] [id$='-explanation'] .faq-box,
       body[data-design-family='credit-cards'] [id$='-explanation'] .cc-min-faq-item,
@@ -1474,18 +1473,18 @@
         box-shadow: var(--cc-shadow);
         padding: 24px;
       }
-
+      
       body[data-design-family='credit-cards'] [id$='-explanation'] p,
       body[data-design-family='credit-cards'] [id$='-explanation'] li,
       body[data-design-family='credit-cards'] [id$='-explanation'] td,
       body[data-design-family='credit-cards'] [id$='-explanation'] th {
         color: #2f3846;
       }
-
+      
       body[data-design-family='credit-cards'] [id$='-explanation'] ul {
         padding-left: 20px;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-related {
         margin-top: 8px;
         padding: 28px;
@@ -1494,19 +1493,19 @@
         background: var(--cc-surface);
         box-shadow: var(--cc-shadow);
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-related h2 {
         margin: 0 0 18px;
         font-size: clamp(28px, 4vw, 36px);
         letter-spacing: -0.03em;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-related-links {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-related-link {
         display: inline-flex;
         align-items: center;
@@ -1521,24 +1520,24 @@
           border-color 0.18s ease,
           box-shadow 0.18s ease;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-related-link:hover {
         transform: translateY(-1px);
         border-color: rgba(37, 99, 235, 0.24);
         box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
         text-decoration: none;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-related-link.is-active {
         background: var(--cc-accent-soft);
         border-color: rgba(37, 99, 235, 0.18);
         color: var(--cc-accent);
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-site-footer {
         padding: 0 0 56px;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-site-footer-inner {
         display: flex;
         flex-wrap: wrap;
@@ -1552,37 +1551,37 @@
         box-shadow: var(--cc-shadow);
         text-align: center;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-footer-links {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 16px;
       }
-
+      
       body[data-design-family='credit-cards'] .cc-cluster-footer-copy {
         color: var(--cc-muted);
       }
-
+      
       @media (max-width: 980px) {
         body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-hero'] {
           grid-template-columns: 1fr;
         }
       }
-
+      
       @media (max-width: 720px) {
         body[data-design-family='credit-cards'] .cc-cluster-site-header-inner {
           min-height: 64px;
         }
-
+      
         body[data-design-family='credit-cards'] .cc-cluster-site-links {
           display: none;
         }
-
+      
         body[data-design-family='credit-cards'] .cc-cluster-layout-main {
           padding: 36px 0 56px;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-form-panel'],
         body[data-design-family='credit-cards'] [id^='calc-cc-'] [class$='-preview-panel'],
         body[data-design-family='credit-cards'] [id$='-explanation'] > section,
@@ -1593,7 +1592,7 @@
         body[data-design-family='credit-cards'] .cc-cluster-site-footer-inner {
           padding: 22px;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .table-scroll {
           border: 0;
           border-radius: 0;
@@ -1601,27 +1600,27 @@
           box-shadow: none;
           overflow: visible;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'],
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] {
           display: block;
           table-layout: auto;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table thead,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] thead,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] thead {
           display: none;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody {
           display: grid;
           gap: 14px;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tr,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tr,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tr {
@@ -1633,7 +1632,7 @@
           background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 248, 250, 0.96));
           box-shadow: var(--cc-shadow);
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td {
@@ -1646,7 +1645,7 @@
           background: transparent;
           text-align: right;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td::before,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td::before,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td::before {
@@ -1658,19 +1657,19 @@
           text-align: left;
           content: '';
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table td + td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] td + td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] td + td {
           border-left: 0;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:nth-child(even) td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:nth-child(even) td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:nth-child(even) td {
           background: transparent;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr:last-child td:first-child,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr:last-child td:first-child,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:first-child,
@@ -1679,7 +1678,7 @@
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr:last-child td:last-child {
           border-radius: 0;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'],
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'],
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] {
@@ -1689,7 +1688,7 @@
           background: transparent;
           box-shadow: none;
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'] td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'] td,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] td {
@@ -1700,104 +1699,104 @@
           text-align: left;
           background: linear-gradient(180deg, rgba(251, 251, 252, 0.98), rgba(247, 248, 250, 0.96));
         }
-
+      
         body[data-design-family='credit-cards'] [id^='calc-cc-'] .calculator-table tbody tr[class*='placeholder-row'] td::before,
         body[data-design-family='credit-cards'] [id^='cc-con-table-yearly'] tbody tr[class*='placeholder-row'] td::before,
         body[data-design-family='credit-cards'] [id^='cc-con-table-monthly'] tbody tr[class*='placeholder-row'] td::before {
           content: none;
         }
-
+      
         body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(1)::before,
         body[data-design-family='credit-cards'] #cc-min-table td:nth-child(1)::before,
         body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(1)::before,
         body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(1)::before {
           content: 'Year';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(2)::before,
         body[data-design-family='credit-cards'] #cc-min-table td:nth-child(2)::before,
         body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(2)::before {
           content: 'Payments';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(3)::before,
         body[data-design-family='credit-cards'] #cc-min-table td:nth-child(3)::before,
         body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(3)::before {
           content: 'Interest';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-payoff-table td:nth-child(4)::before,
         body[data-design-family='credit-cards'] #cc-min-table td:nth-child(4)::before,
         body[data-design-family='credit-cards'] #cc-bt-table td:nth-child(4)::before,
         body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(5)::before {
           content: 'Ending Balance';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(1)::before {
           content: 'Category';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(2)::before {
           content: 'Value';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-bt-scenario-table td:nth-child(3)::before {
           content: 'Source';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(1)::before {
           content: 'Month';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(2)::before {
           content: 'Payment';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(2)::before {
           content: 'Total Paid';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(3)::before {
           content: 'Principal';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(4)::before,
         body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(4)::before {
           content: 'Total Interest';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-con-table-monthly td:nth-child(5)::before {
           content: 'Balance';
         }
-
+      
         body[data-design-family='credit-cards'] #cc-con-table-yearly td:nth-child(3)::before {
           content: 'Total Principal';
         }
-
+      
         body[data-design-family='credit-cards'] .cc-con-guide-table--inputs tbody td:nth-child(1)::before {
           content: 'Input';
         }
-
+      
         body[data-design-family='credit-cards'] .cc-con-guide-table--inputs tbody td:nth-child(2)::before {
           content: 'Example Value';
         }
-
+      
         body[data-design-family='credit-cards'] .cc-con-guide-table--outputs tbody td:nth-child(1)::before {
           content: 'Output';
         }
-
+      
         body[data-design-family='credit-cards'] .cc-con-guide-table--outputs tbody td:nth-child(2)::before {
           content: 'Current Cards';
         }
-
+      
         body[data-design-family='credit-cards'] .cc-con-guide-table--outputs tbody td:nth-child(3)::before {
           content: 'Consolidation Loan';
         }
-
+      
         body[data-design-family='credit-cards'] .cc-con-guide-table--scenarios tbody td:nth-child(1)::before {
           content: 'Scenario';
         }
-
+      
         body[data-design-family='credit-cards'] .cc-con-guide-table--scenarios tbody td:nth-child(2)::before {
           content: 'Likely Outcome';
         }
@@ -1810,39 +1809,39 @@
         flex-direction: column;
         gap: 2rem;
       }
-
+      
       #calc-cc-con .cc-con-ui {
         display: grid;
         gap: 1.5rem;
       }
-
+      
       #calc-cc-con .cc-con-hero {
         align-items: start;
       }
-
+      
       #calc-cc-con .cc-con-form-panel,
       #calc-cc-con .cc-con-preview-panel {
         display: grid;
         gap: 1.25rem;
       }
-
+      
       #calc-cc-con .helper {
         margin: 0;
         font-size: 0.95rem;
         line-height: 1.65;
         color: #5f6673;
       }
-
+      
       #calc-cc-con .slider-row {
         gap: 0.58rem;
       }
-
+      
       #calc-cc-con .advanced-options {
         display: grid;
         gap: 0.9rem;
         padding-top: 0.2rem;
       }
-
+      
       #calc-cc-con .advanced-options summary {
         list-style: none;
         cursor: pointer;
@@ -1858,16 +1857,16 @@
         font-size: 0.95rem;
         font-weight: 700;
       }
-
+      
       #calc-cc-con .advanced-options summary::-webkit-details-marker {
         display: none;
       }
-
+      
       #calc-cc-con .advanced-options summary:focus-visible {
         outline: 0;
         box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
       }
-
+      
       #calc-cc-con .advanced-summary-pill {
         min-width: 110px;
         min-height: 34px;
@@ -1880,42 +1879,42 @@
         align-items: center;
         justify-content: center;
       }
-
+      
       #calc-cc-con .summary-state {
         display: inline-flex;
         align-items: center;
         gap: 0.45rem;
       }
-
+      
       #calc-cc-con .advanced-options[open] .summary-state-expand,
       #calc-cc-con .summary-state-close {
         display: none;
       }
-
+      
       #calc-cc-con .advanced-options[open] .summary-state-close {
         display: inline-flex;
       }
-
+      
       #calc-cc-con .advanced-stack {
         display: grid;
         gap: 1rem;
       }
-
+      
       #calc-cc-con .advanced-pair {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1rem;
       }
-
+      
       #calc-cc-con .cc-con-action-row {
         margin-top: 0.15rem;
       }
-
+      
       #calc-cc-con .cc-con-preview-main {
         display: grid;
         gap: 1rem;
       }
-
+      
       #calc-cc-con #cc-con-result,
       #calc-cc-con #cc-con-summary {
         min-height: 122px;
@@ -1924,14 +1923,14 @@
         gap: 0.8rem;
         padding: 20px;
       }
-
+      
       #calc-cc-con #cc-con-result strong {
         font-size: 0.78rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: #5f6673;
       }
-
+      
       #calc-cc-con .cc-con-result-value {
         font-size: clamp(1.8rem, 3vw, 2.5rem);
         line-height: 1;
@@ -1939,38 +1938,38 @@
         font-weight: 800;
         color: #111111;
       }
-
+      
       #calc-cc-con .cc-con-result-value.is-updated {
         animation: cc-con-value-pop 0.42s ease;
       }
-
+      
       @keyframes cc-con-value-pop {
         0% {
           transform: scale(0.98);
           opacity: 0.75;
         }
-
+      
         100% {
           transform: scale(1);
           opacity: 1;
         }
       }
-
+      
       #calc-cc-con #cc-con-summary p {
         margin: 0;
         line-height: 1.6;
       }
-
+      
       #calc-cc-con .cc-con-snapshot-list {
         display: grid;
         gap: 0.75rem;
       }
-
+      
       #cc-con-explanation {
         display: grid;
         gap: 1.5rem;
       }
-
+      
       #cc-con-explanation > h2,
       #cc-con-explanation > h3,
       #cc-con-explanation .cc-con-exp-section h3,
@@ -1978,20 +1977,20 @@
         margin: 0;
         letter-spacing: -0.03em;
       }
-
+      
       #cc-con-explanation .cc-con-exp-section--amortization h3,
       #cc-con-explanation .cc-con-guide-table-wrap + p + h4,
       #cc-con-explanation .cc-con-guide-table-wrap + h4 {
         border-bottom: 0;
         padding-bottom: 0;
       }
-
+      
       #cc-con-explanation .cc-con-exp-section--amortization h3::after,
       #cc-con-explanation .cc-con-guide-table-wrap + p + h4::after,
       #cc-con-explanation .cc-con-guide-table-wrap + h4::after {
         content: none;
       }
-
+      
       #cc-con-explanation [data-cc-con] {
         display: inline-flex;
         align-items: center;
@@ -2004,7 +2003,7 @@
         color: #1d4ed8;
         font-weight: 600;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-legend [data-cc-con],
       #cc-con-explanation .cc-con-lifetime-grid [data-cc-con],
       #cc-con-explanation .cc-con-lifetime-summary[data-cc-con] {
@@ -2019,7 +2018,7 @@
         color: inherit;
         font-weight: inherit;
       }
-
+      
       #cc-con-explanation .cc-con-guide-list,
       #cc-con-explanation .cc-con-step-list {
         margin: 0;
@@ -2027,7 +2026,7 @@
         display: grid;
         gap: 0.45rem;
       }
-
+      
       #cc-con-explanation .cc-con-formula-block {
         display: inline-flex;
         width: fit-content;
@@ -2039,23 +2038,23 @@
         color: #1d4ed8;
         font-weight: 600;
       }
-
+      
       #cc-con-explanation .cc-con-exp-section--lifetime {
         gap: 1.35rem;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-header {
         display: grid;
         gap: 0.45rem;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-subtitle {
         margin: 0;
         max-width: 640px;
         color: #5f6673;
         line-height: 1.68;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-visual {
         display: grid;
         grid-template-columns: auto minmax(0, 1fr);
@@ -2063,7 +2062,7 @@
         gap: 2rem;
         padding: 0.2rem 0 0.15rem;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-donut {
         --principal-share: 50%;
         position: relative;
@@ -2072,7 +2071,7 @@
         border-radius: 50%;
         background: conic-gradient(#111111 0 var(--principal-share), #2563eb var(--principal-share) 100%);
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-donut::after {
         content: '';
         position: absolute;
@@ -2080,12 +2079,12 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.98);
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-legend {
         display: grid;
         gap: 0;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-legend-item,
       #cc-con-explanation .cc-con-lifetime-card {
         display: grid;
@@ -2095,7 +2094,7 @@
         background: transparent;
         box-shadow: none;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-legend-item span,
       #cc-con-explanation .cc-con-lifetime-card span {
         color: #5f6673;
@@ -2104,7 +2103,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-legend-item strong,
       #cc-con-explanation .cc-con-lifetime-card strong {
         color: #111111;
@@ -2114,11 +2113,11 @@
         font-variant-numeric: tabular-nums;
         justify-self: start;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-legend-item + .cc-con-lifetime-legend-item {
         border-top: 1px solid rgba(230, 232, 237, 0.88);
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2126,16 +2125,16 @@
         padding-top: 1rem;
         border-top: 1px solid rgba(230, 232, 237, 0.88);
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-card {
         padding: 0;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-card + .cc-con-lifetime-card {
         border-left: 1px solid rgba(230, 232, 237, 0.88);
         padding-left: 1.4rem;
       }
-
+      
       #cc-con-explanation .cc-con-lifetime-summary {
         margin: 0;
         padding-top: 1rem;
@@ -2143,7 +2142,7 @@
         color: #5f6673;
         line-height: 1.72;
       }
-
+      
       #cc-con-explanation .amortization-header {
         display: flex;
         align-items: end;
@@ -2152,7 +2151,7 @@
         flex-wrap: wrap;
         margin-bottom: 1rem;
       }
-
+      
       #cc-con-explanation .table-view-toggle {
         display: inline-flex;
         align-items: center;
@@ -2164,7 +2163,7 @@
         border: 1px solid rgba(214, 219, 228, 0.94);
         background: linear-gradient(180deg, rgba(251, 251, 252, 0.98), rgba(247, 248, 250, 0.96));
       }
-
+      
       #cc-con-explanation .table-view-toggle .calculator-button.secondary {
         min-height: 42px;
         padding: 0 1.05rem;
@@ -2173,30 +2172,30 @@
         color: #243043;
         box-shadow: none;
       }
-
+      
       #cc-con-explanation .table-view-toggle .calculator-button.secondary.is-active {
         background: #111111;
         color: #ffffff;
         border-color: #111111;
       }
-
+      
       #cc-con-explanation .cc-con-guide-table td,
       #cc-con-explanation .cc-con-guide-table th {
         white-space: normal;
       }
-
+      
       #cc-con-explanation .cc-con-exp-section--amortization .table-scroll + .table-scroll {
         margin-top: 0.85rem;
       }
-
+      
       #cc-con-explanation .cc-con-guide-table-wrap {
         margin: 1rem 0 1.25rem;
       }
-
+      
       #cc-con-explanation .cc-con-guide-table-wrap + .cc-con-guide-table-wrap {
         margin-top: 1.4rem;
       }
-
+      
       #cc-con-table-monthly-wrap,
       #cc-con-table-yearly-wrap,
       #cc-con-explanation .cc-con-guide-table-wrap {
@@ -2208,7 +2207,7 @@
         background: #ffffff;
         box-shadow: none;
       }
-
+      
       #cc-con-table-monthly,
       #cc-con-table-yearly,
       #cc-con-explanation .cc-con-guide-table {
@@ -2218,7 +2217,7 @@
         border-spacing: 0;
         background: #ffffff;
       }
-
+      
       #cc-con-table-monthly th,
       #cc-con-table-monthly td,
       #cc-con-table-yearly th,
@@ -2233,7 +2232,7 @@
         overflow-wrap: break-word;
         white-space: normal;
       }
-
+      
       #cc-con-table-monthly th,
       #cc-con-table-yearly th,
       #cc-con-explanation .cc-con-guide-table th {
@@ -2246,25 +2245,25 @@
         letter-spacing: 0.04em;
         text-transform: uppercase;
       }
-
+      
       #cc-con-table-monthly td,
       #cc-con-table-yearly td,
       #cc-con-explanation .cc-con-guide-table td {
         color: #1f2937;
       }
-
+      
       #cc-con-table-monthly tbody tr:nth-child(even) td,
       #cc-con-table-yearly tbody tr:nth-child(even) td,
       #cc-con-explanation .cc-con-guide-table tbody tr:nth-child(even) td {
         background: #f9fbfd;
       }
-
+      
       #cc-con-table-monthly tbody tr:hover td,
       #cc-con-table-yearly tbody tr:hover td,
       #cc-con-explanation .cc-con-guide-table tbody tr:hover td {
         background: #f3f7fc;
       }
-
+      
       #cc-con-table-monthly thead th,
       #cc-con-table-monthly tbody td,
       #cc-con-table-monthly th:first-child,
@@ -2285,30 +2284,30 @@
       #cc-con-explanation .cc-con-guide-table td:not(:first-child) {
         text-align: center !important;
       }
-
+      
       #cc-con-explanation .cc-con-exp-section--guide,
       #cc-con-explanation .cc-con-exp-section--notes {
         display: grid;
         gap: 1rem;
       }
-
+      
       #cc-con-explanation .cc-con-exp-section--notes ul {
         margin: 0;
         padding-left: 1.15rem;
         display: grid;
         gap: 0.45rem;
       }
-
+      
       #cc-con-explanation .cc-con-exp-section--faq {
         gap: 1rem;
       }
-
+      
       #cc-con-explanation .bor-faq-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 14px;
       }
-
+      
       #cc-con-explanation .bor-faq-card {
         border: 1px solid rgba(230, 232, 237, 0.92);
         border-radius: 18px;
@@ -2316,7 +2315,7 @@
         box-shadow: 0 10px 30px rgba(17, 17, 17, 0.04);
         overflow: hidden;
       }
-
+      
       #cc-con-explanation .bor-faq-card summary {
         list-style: none;
         cursor: pointer;
@@ -2330,11 +2329,11 @@
         font-weight: 650;
         line-height: 1.5;
       }
-
+      
       #cc-con-explanation .bor-faq-card summary::-webkit-details-marker {
         display: none;
       }
-
+      
       #cc-con-explanation .bor-faq-card summary::after {
         content: '+';
         flex: none;
@@ -2342,50 +2341,50 @@
         font-size: 1.12rem;
         line-height: 1;
       }
-
+      
       #cc-con-explanation .bor-faq-card[open] summary::after {
         content: '−';
       }
-
+      
       #cc-con-explanation .bor-faq-card[open] summary {
         border-bottom: 1px solid rgba(230, 232, 237, 0.88);
       }
-
+      
       #cc-con-explanation .bor-faq-card:focus-within {
         border-color: rgba(37, 99, 235, 0.2);
         box-shadow:
           0 10px 30px rgba(17, 17, 17, 0.04),
           0 0 0 4px rgba(37, 99, 235, 0.07);
       }
-
+      
       #cc-con-explanation .bor-faq-answer {
         padding: 0 22px 20px;
       }
-
+      
       #cc-con-explanation .bor-faq-answer p {
         margin: 0;
         color: #5f6673;
         line-height: 1.72;
       }
-
+      
       @media (max-width: 980px) {
         #calc-cc-con .advanced-pair {
           grid-template-columns: 1fr;
         }
-
+      
         #cc-con-explanation .amortization-header {
           align-items: stretch;
         }
-
+      
         #cc-con-explanation .table-view-toggle {
           margin-left: 0;
         }
-
+      
         #cc-con-explanation .cc-con-lifetime-visual,
         #cc-con-explanation .cc-con-lifetime-grid {
           grid-template-columns: 1fr;
         }
-
+      
         #cc-con-explanation .cc-con-lifetime-card + .cc-con-lifetime-card {
           border-left: 0;
           border-top: 1px solid rgba(230, 232, 237, 0.88);
@@ -2393,43 +2392,43 @@
           padding-top: 1rem;
         }
       }
-
+      
       @media (max-width: 640px) {
         #cc-con-explanation .cc-con-lifetime-visual,
         #cc-con-explanation .cc-con-lifetime-grid {
           grid-template-columns: 1fr;
         }
-
+      
         #cc-con-explanation .cc-con-lifetime-visual {
           gap: 1.2rem;
         }
-
+      
         #cc-con-explanation .bor-faq-card summary {
           padding: 18px 18px;
         }
-
+      
         #cc-con-explanation .bor-faq-answer {
           padding: 0 18px 18px;
         }
-
+      
         #cc-con-explanation .amortization-header {
           gap: 0.85rem;
         }
-
+      
         #cc-con-explanation .table-view-toggle {
           width: 100%;
           justify-content: stretch;
         }
-
+      
         #cc-con-explanation .table-view-toggle .calculator-button.secondary {
           flex: 1 1 0;
           justify-content: center;
         }
-
+      
         #cc-con-explanation .cc-con-guide-table-wrap {
           margin: 0.85rem 0 1rem;
         }
-
+      
         #cc-con-explanation .cc-con-lifetime-donut {
           width: min(100%, 168px);
           margin: 0 auto;
@@ -2437,6 +2436,7 @@
       }
     </style>
  
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/#webpage","name":"Credit Card Consolidation Calculator | Loan vs Card Payoff","url":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/","description":"Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/#softwareapplication","name":"Credit Card Consolidation Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/","description":"Compare keeping card debt versus using a consolidation loan by monthly payment, payoff time, fees, interest, and total repaid.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Card debt versus consolidation loan comparison","Monthly payment and payoff time by option","Total interest and total repaid comparison"],"keywords":"credit card consolidation calculator, debt consolidation loan calculator, consolidation loan vs credit card","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/#faq","mainEntity":[{"@type":"Question","name":"What is credit card debt consolidation?","acceptedAnswer":{"@type":"Answer","text":"Credit card debt consolidation combines multiple card balances into one loan with a fixed APR and repayment term so you can simplify payments and compare total cost."}},{"@type":"Question","name":"How does a consolidation loan reduce interest costs?","acceptedAnswer":{"@type":"Answer","text":"If the consolidation APR is lower than your current card APR, a larger share of each payment goes to principal, which can reduce total interest."}},{"@type":"Question","name":"When is consolidation not worth it?","acceptedAnswer":{"@type":"Answer","text":"Consolidation may not be worth it when fees are high, the new APR is not lower enough, or the new term is too long and increases total cost."}},{"@type":"Question","name":"How are consolidation fees handled in the calculation?","acceptedAnswer":{"@type":"Answer","text":"Fees are added to the balance financed by the consolidation loan, which can raise monthly payment and total cost."}},{"@type":"Question","name":"What APR can I expect for a consolidation loan?","acceptedAnswer":{"@type":"Answer","text":"APR depends on credit profile, lender policy, loan amount, and term. Compare multiple offers to estimate realistic rates."}},{"@type":"Question","name":"Does consolidation affect my credit score?","acceptedAnswer":{"@type":"Answer","text":"It can. Opening a new loan and paying off cards may change utilization and account mix. Long-term impact depends on repayment behavior."}},{"@type":"Question","name":"Can I consolidate cards with different APRs?","acceptedAnswer":{"@type":"Answer","text":"Yes. This calculator uses one average current APR input, so combine your card balances and use a reasonable weighted average APR."}},{"@type":"Question","name":"What happens if I miss a payment on a consolidation loan?","acceptedAnswer":{"@type":"Answer","text":"Missing payments may trigger fees, possible APR changes, and credit-score damage, which can reduce or erase expected savings."}},{"@type":"Question","name":"Does this calculator include origination fees?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter origination or setup fees in Consolidation Fees so the comparison reflects the full financed amount."}},{"@type":"Question","name":"How do I compare consolidation vs. balance transfer?","acceptedAnswer":{"@type":"Answer","text":"Compare APR, fees, repayment term, and payoff discipline. Use both calculators and select the option with lower total paid and realistic monthly payment."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Credit Cards","item":"https://calchowmuch.com/finance-calculators/"},{"@type":"ListItem","position":3,"name":"Credit Card Consolidation Calculator","item":"https://calchowmuch.com/credit-card-calculators/credit-card-consolidation-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="credit-cards" data-top-nav-static="true">
@@ -3169,7 +3169,7 @@
     <section class="cc-cluster-related" aria-labelledby="cc-cluster-related-title">
   <h2 id="cc-cluster-related-title">Related Credit Card Calculators</h2>
   <div class="cc-cluster-related-links">
-    <a class="cc-cluster-related-link" href="/credit-card-calculators/credit-card-payment-calculator/">Repayment</a><a class="cc-cluster-related-link" href="/credit-card-calculators/credit-card-minimum-payment-calculator/">Minimum Payment</a><a class="cc-cluster-related-link" href="/credit-card-calculators/balance-transfer-credit-card-calculator/">Balance Transfer</a><a class="cc-cluster-related-link is-active" href="/credit-card-calculators/credit-card-consolidation-calculator/" aria-current="page">Card Consolidation</a>
+    <a class="cc-cluster-related-link" href="/credit-card-calculators/credit-card-payment-calculator/">Repayment</a><a class="cc-cluster-related-link" href="/credit-card-calculators/debt-payoff-calculator/">Debt Payoff Calculator</a><a class="cc-cluster-related-link" href="/credit-card-calculators/credit-card-minimum-payment-calculator/">Minimum Payment</a><a class="cc-cluster-related-link" href="/credit-card-calculators/balance-transfer-credit-card-calculator/">Balance Transfer</a><a class="cc-cluster-related-link is-active" href="/credit-card-calculators/credit-card-consolidation-calculator/" aria-current="page">Card Consolidation</a>
   </div>
 </section>
   </div>
