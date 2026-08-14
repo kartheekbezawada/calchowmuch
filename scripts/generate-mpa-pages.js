@@ -3389,6 +3389,30 @@ function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) 
 </section>`;
 }
 
+function buildHomeLoanRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
+  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+
+  if (!calculators.length) {
+    return '';
+  }
+
+  const linksHtml = calculators
+    .map((calculator) => {
+      const isActive = calculator.id === activeCalculatorId;
+      return `<a class="hl-cluster-related-link${isActive ? ' is-active' : ''}" href="${calculator.url}"${
+        isActive ? ' aria-current="page"' : ''
+      }>${calculator.name}</a>`;
+    })
+    .join('');
+
+  return `<section class="hl-cluster-related" aria-labelledby="hl-cluster-related-title">
+  <h2 id="hl-cluster-related-title">Related Home Loan Calculators</h2>
+  <div class="hl-cluster-related-links">
+    ${linksHtml}
+  </div>
+</section>`;
+}
+
 function buildAutoLoanRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
   const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
 
@@ -4710,6 +4734,7 @@ function buildPageHtml({
   <div class="calculator-page-single hl-cluster-flow">
     ${sanitizedCalculatorHtml}
     ${explanationHtml}
+    ${relatedCalculatorsHtml}
   </div>
 </div>`
         : paneLayout === 'single'
@@ -6122,6 +6147,8 @@ function main() {
         ? buildFinanceRelatedCalculatorsHtml(category, calculator.id)
         : isMigratedAutoLoanClusterRoute
         ? buildAutoLoanRelatedCalculatorsHtml(subcategory, calculator.id)
+        : isMigratedHomeLoanClusterRoute
+        ? buildHomeLoanRelatedCalculatorsHtml(subcategory, calculator.id)
         : '',
       routeSwitchHtml: isMigratedPercentageClusterRoute
         ? percentageRelatedSections.switcherHtml
