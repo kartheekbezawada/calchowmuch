@@ -2,7 +2,7 @@
 
 Created: 2026-08-14
 Owner: HUMAN (kartheekbezawada)
-Status: Draft — Tier 0 execution in progress
+Status: Tier 0 complete (1 of 4 original items shipped; 3 withdrawn after verification, see Section 4). Tier 1+ awaiting direction.
 Data basis: Google Search Console exports `calchowmuch.com-Performance-on-Search-2026-08-14` (28-day window, 15 Jul – 11 Aug 2026 reporting period), `requirements/universal-rules/seo_exports/internal-link-audit.md` (regenerated 2026-08-14), direct codebase inspection.
 
 ## Objective
@@ -106,7 +106,7 @@ gap metadata polish can't fix — consistent with why the prior wave didn't move
 
 | # | Finding | Type | Pages affected | Query evidence |
 |---|---|---|---|---|
-| H1 | Currency-formatting bug (`formatNumber` used where `formatCurrency` needed) — identical bug class to the one fixed on buy-to-let tonight | Mechanical | mortgage-calculator, how-much-can-i-borrow, remortgage-calculator, offset-mortgage-calculator, interest-rate-change-calculator, ltv-calculator (6 of 8 pages) | N/A — trust/UX issue, not a ranking query itself |
+| H1 | ~~Currency-formatting bug~~ — **re-classified after verification, see Section 4 Tier 0 note**: 3 of 6 pages have tests explicitly requiring no currency symbol; the other 3 have no smoking-gun evidence of broken intent like buy-to-let did. Likely deliberate convention, not a bug. Moved to Tier 2 (T2-5). | Reclassified: Product decision | mortgage-calculator, how-much-can-i-borrow, remortgage-calculator, offset-mortgage-calculator, interest-rate-change-calculator, ltv-calculator (6 of 8 pages) | N/A — trust/UX issue, not a ranking query itself |
 | H2 | No FAQ/content addressing "borrowing power" / "borrowing capacity" terminology | Content | how-much-can-i-borrow | borrowing capacity calculator (104) + borrowing power calculator (89) + home loan borrowing power (79) + borrowing power (53) + mortgage borrowing capacity (8) = 333 impressions |
 | H3 | No FAQ phrased as "how do you work out LTV" / "how to determine LTV" despite formula already existing on-page | Content (mechanical — restating existing facts) | ltv-calculator | how do you work out ltv (60, pos 93.1) + how to work out ltv (59, pos 91.2) + how do i work out ltv (54, pos 92.3) + how to determine ltv (49, pos 96.4) = 222 impressions, worst positions in dataset |
 | H4 | No dedicated remortgage-LTV section/worked example | Content | ltv-calculator | remortgage loan to value calculator (75, pos **68.2** — best-positioned query in report) + calculate ltv remortgage (31) + what is my ltv remortgage (30) + how to work out ltv when remortgaging (30) |
@@ -128,8 +128,8 @@ gap metadata polish can't fix — consistent with why the prior wave didn't move
 | A4 | No HP vs. PCP vs. personal-loan comparison; no APR-vs-flat-rate explanation anywhere in cluster | Content, biggest depth gap | all 5 | Decision-stage intent implied by query mix |
 | A5 | FAQs are calculator-mechanics-focused ("does it recalculate automatically"), not product-focused ("is hire purchase better than PCP") | Content | hire-purchase-calculator, pcp-calculator | Ties directly to A1 — schema fix alone won't win rich results without answering the actual questions |
 | A6 | Word count thin (955-1,066 words) vs. likely competitor depth for contested UK finance terms | Content | all 5 | General |
-| A7 | No currency symbol anywhere (same bug class as H1) | Mechanical | all 5 | UK-specific terms with zero £ signal |
-| A8 | `Offer.priceCurrency` hardcoded `USD` | Mechanical, minor | all 5 | Bundle with A1 fix |
+| A7 | ~~No currency symbol anywhere~~ — **re-classified**: no test either way, but also no evidence of broken intent (see H1 re-classification). Moved to Tier 2 (T2-5) alongside the home-loan pages rather than assumed a bug. | Reclassified: Product decision | all 5 | UK-specific terms with zero £ signal |
+| A8 | `Offer.priceCurrency` hardcoded `USD` | Mechanical, minor, low priority (inert — price is always "0") | all 5 | Bundle with T2-5 if that decision goes ahead |
 | A9 | No author/reviewer byline, last-updated date, or regulatory (FCA/Consumer Credit Act) framing | Structural, needs product decision | all 5 | E-E-A-T pattern gap |
 | A10 | No `/car-loan-calculators/` hub page; homepage links to none of the 5 pages | Mechanical, lower priority | all 5 | Site-wide pattern (most clusters lack hubs), not a regression |
 | A11 | Internal cross-linking within the cluster — **confirmed already solid**, no action needed | N/A (positive finding) | all 5 | Fully meshed related-calculator links already present |
@@ -144,6 +144,7 @@ gap metadata polish can't fix — consistent with why the prior wave didn't move
 | Home-loan cluster missing "Related Calculators" component | 8 pages | `0b51f2f0` | 95/95 loans test suite + visual |
 | Credit-card cluster server-rendered FAQPage/SoftwareApplication schema | 5 pages | `030e5450` | 27/28 credit-cards suite (1 unrelated pre-existing failure) |
 | Buy-to-let currency formatting bug (`formatNumber`→`formatCurrency`) | 1 page | `d2c2a978` | Visual + 10/10 buy-to-let suite |
+| Auto-loan cluster wired into server-rendered FAQPage schema (T0-3) | 5 pages | `a90095ee` | 18/18 auto-loans suite |
 | Credit-card-minimum-payment: Capital One/Chase FAQ gap + "work out" phrasing + salary-calculator internal link | 2 pages | `7620b946` | Visual + full suite |
 
 These are not re-listed in the checklist below.
@@ -163,10 +164,40 @@ the schema pipeline that already exists for other clusters.
 
 | ID | Task | Pages | Status |
 |---|---|---|---|
-| T0-1 | Fix currency formatting (`formatNumber`→`formatCurrency('GBP')`) | mortgage-calculator, how-much-can-i-borrow, remortgage-calculator, offset-mortgage-calculator, interest-rate-change-calculator, ltv-calculator | pending |
-| T0-2 | Fix currency formatting (`formatNumber`→`formatCurrency('GBP')`) | hire-purchase-calculator, pcp-calculator, car-loan-calculator, auto-loan-calculator, car-lease-calculator | pending |
-| T0-3 | Wire auto-loan cluster into the rich schema pipeline (add `AUTO_LOAN_SCHEMA_CONFIG`, reuse existing `extractCalculatorFaqEntries`/`buildFinanceStructuredData`, mirroring the credit-card fix) | all 5 auto-loan pages | pending |
-| T0-4 | Fix hardcoded `Offer.priceCurrency: 'USD'` → `'GBP'` for auto-loan cluster (bundle with T0-3) | all 5 auto-loan pages | pending |
+| ~~T0-1~~ | ~~Fix currency formatting on remaining home-loan pages~~ | ~~6 pages~~ | **WITHDRAWN — see below** |
+| ~~T0-2~~ | ~~Fix currency formatting on auto-loan cluster~~ | ~~5 pages~~ | **WITHDRAWN — see below** |
+| T0-3 | Wire auto-loan cluster into the rich schema pipeline (added `AUTO_LOAN_SCHEMA_CONFIG`, reused existing `extractCalculatorFaqEntries`/`buildFinanceStructuredData`, mirroring the credit-card fix) | all 5 auto-loan pages | **done** (`a90095ee`) — 18/18 auto-loans suite passing |
+| ~~T0-4~~ | ~~Fix hardcoded `Offer.priceCurrency: 'USD'` → `'GBP'` for auto-loan cluster~~ | ~~5 pages~~ | **WITHDRAWN — tied to T0-2** |
+
+### Why T0-1/T0-2/T0-4 were withdrawn
+
+Before executing, checked each candidate page's release test suite the same way every other
+fix tonight was verified — and found the "currency bug" framing from the research pass doesn't
+hold up:
+
+- **3 of the 6 home-loan pages have an explicit, passing test *requiring the absence* of
+  currency symbols**: `how-much-can-i-borrow` (`BOR-TEST-E2E-3: no currency symbols in results
+  or displays`, plus a code comment `/* Format helpers (no currency symbols) */`),
+  `offset-mortgage-calculator` (`OFFSET-HYBRID-8: output text excludes currency symbols`), and
+  `remortgage-calculator` (`REMO-HYBRID-4: output text and table values contain no currency
+  symbols`). This is a deliberate, tested design choice, not a bug.
+- For the remaining 3 home-loan pages (LTV, mortgage-calculator, interest-rate-change) and all
+  5 auto-loan pages, there's no test either way — but there's also no equivalent of the
+  "smoking gun" that made the buy-to-let fix safe: a function literally named
+  `formatLoanCurrency` that took a currency code and silently did nothing. These pages just use
+  generically-named formatters (`fmtAmount`, `fmt`) with no evidence of broken intent.
+  Applying the buy-to-let fix pattern here would have been generalizing from one confirmed bug
+  to five-plus unconfirmed ones — the same mistake already made and caught once tonight (the
+  countdown-timer/birthday-day-of-week structured-data revert).
+- Reading LTV's own static worked-example content (`explanation.html`, read in full earlier)
+  confirms its existing numbers are already presented without currency symbols — consistent
+  with this being deliberate site convention for the ratio/affordability-focused calculators,
+  not an oversight.
+
+**Conclusion:** "no currency symbol" appears to be the deliberate convention for this whole
+loans mega-category (ratio/comparison tools), with buy-to-let as a genuine, isolated bug because
+it's a specific UK mortgage product with unambiguous intent evidence. Recommend leaving this
+alone — it's now Tier 2 item T2-5 below, for a human decision, not a mechanical fix.
 
 ## Tier 1 — Content additions using searchers' literal phrasing (facts already exist on-page; drafting the Q&A wording is the only new authorship)
 
@@ -193,6 +224,7 @@ yet, or touch claims that need a source.
 | T2-2 | Rewrite car-loan FAQs from mechanics-focused to product-focused | hire-purchase-calculator, pcp-calculator | A5 — depends on T2-1 groundwork |
 | T2-3 | Fact-check "90-95% LTV" first-time-buyer claim, cite or revise | ltv-calculator | H10 |
 | T2-4 | Add explicit UK signal (copy + `lang="en-GB"` + `og:locale`) | ltv-calculator, possibly whole loans/credit-card clusters | H9 — ties to the earlier currency/locale decision (multi-market, scoped-technical-only was chosen previously; this would be an incremental step, not full hreflang infra) |
+| T2-5 | Decide whether LTV/mortgage-calculator/interest-rate-change (home-loan) and all 5 auto-loan pages should display currency at all | 8 pages | Withdrawn from Tier 0 — see "Why T0-1/T0-2/T0-4 were withdrawn" above. Not a bug fix; a product decision on whether these ratio/comparison-focused calculators should stay currency-agnostic (current apparent convention) or switch to explicit £. |
 
 ## Tier 3 — Structural/E-E-A-T, needs a product decision, not a content edit
 
