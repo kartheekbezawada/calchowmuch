@@ -433,10 +433,10 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'bonus-calculator': {
-    title: 'Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay',
+    title: 'Bonus Calculator (Gross Pay) | Bonus Amount and Total Compensation',
     description:
-      'Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.',
-    h1: 'Bonus Calculator',
+      'Calculate your bonus as a percentage of salary or a flat amount, then see your total gross compensation before tax — useful for comparing a percentage bonus against a fixed payout or checking how a bonus changes your total pay for the period.',
+    h1: 'Bonus Calculator (Gross Pay)',
     explanationHeading: '',
     paneLayout: 'single',
   },
