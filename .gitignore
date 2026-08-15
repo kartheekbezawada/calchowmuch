@@ -48,3 +48,6 @@ Thumbs.db
 # Lighthouse temp browser profiles (WSL/Windows path artifacts)
 C:/Users/*/AppData/Local/lighthouse.*/
 C:\\Users\\*\\AppData\\Local\\lighthouse.*/
+
+# Local SEO fix tracking (page-by-page fix history + metrics, not shared repo history)
+seo_fixes/
