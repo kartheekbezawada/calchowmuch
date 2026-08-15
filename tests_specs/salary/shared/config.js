@@ -143,10 +143,10 @@ export const SALARY_CALCULATOR_CONFIGS = {
   },
   'bonus-calculator': {
     route: '/salary-calculators/bonus-calculator/',
-    h1: 'Bonus Calculator',
-    title: 'Bonus Calculator | Bonus Amount, Bonus Percentage and Total Pay',
+    h1: 'Bonus Calculator (Gross Pay)',
+    title: 'Bonus Calculator (Gross Pay) | Bonus Amount and Total Compensation',
     description:
-      'Calculate a bonus as a percentage of salary or a flat amount, then estimate total gross compensation.',
+      'Calculate your bonus as a percentage of salary or a flat amount, then see your total gross compensation before tax — useful for comparing a percentage bonus against a fixed payout or checking how a bonus changes your total pay for the period.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       await page.fill('#bonus-salary-amount', '60000');
       await page.click('button[data-value="amount"]');
