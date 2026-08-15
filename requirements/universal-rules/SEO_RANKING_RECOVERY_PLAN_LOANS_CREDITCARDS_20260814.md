@@ -4,6 +4,7 @@ Created: 2026-08-14
 Owner: HUMAN (kartheekbezawada)
 Status: Tier 0 and Tier 1 complete. Tier 2+ awaiting direction.
 Data basis: Google Search Console exports `calchowmuch.com-Performance-on-Search-2026-08-14` (28-day window, 15 Jul – 11 Aug 2026 reporting period), `requirements/universal-rules/seo_exports/internal-link-audit.md` (regenerated 2026-08-14), direct codebase inspection.
+Results tracking: see `SEO_FIX_METRICS_TRACKING_20260815.md` for before/+15d/+30d/+45d metrics on every page fixed from this plan (and from the bonus-calculator finding, which was diagnosed outside this plan's original scope but uses the same pattern).
 
 ## Objective
 
