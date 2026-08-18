@@ -28,6 +28,46 @@
 /assets/js/*
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 
-/calculators/*
+/calculators/car-loan-calculators/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/credit-card-calculators/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/explanation/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/finance/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/finance-calculators/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/loan-calculators/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/math/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/percentage-calculators/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/pricing-calculators/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/salary-calculators/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/calculators/time-and-date/*
   Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: noindex, nofollow, noarchive

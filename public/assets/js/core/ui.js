@@ -152,7 +152,10 @@ const INITIAL_METADATA = (() => {
 })();
 
 const DEFAULT_OG_IMAGE = 'https://calchowmuch.com/assets/images/og-default.png';
-const CALCULATOR_ONLY_SCHEMA_TYPES = new Set(['SoftwareApplication', 'BreadcrumbList']);
+// SoftwareApplication is restricted to calculator-named routes because Google discourages
+// SoftwareApplication schema on pages that aren't classic installable/interactive tools.
+// BreadcrumbList carries no equivalent misuse risk, so it is intentionally not gated here.
+const CALCULATOR_ONLY_SCHEMA_TYPES = new Set(['SoftwareApplication']);
 
 function normalizeMetaText(value) {
   if (value === null || value === undefined) {

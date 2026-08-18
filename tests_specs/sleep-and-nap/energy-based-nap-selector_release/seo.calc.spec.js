@@ -33,7 +33,14 @@ test.describe('Energy-Based Nap Selector SEO', () => {
     expect(nodeTypes).toContain('WebPage');
     expect(nodeTypes).toContain('FAQPage');
     expect(nodeTypes).not.toContain('SoftwareApplication');
-    expect(nodeTypes).not.toContain('BreadcrumbList');
+    expect(nodeTypes).toContain('BreadcrumbList');
+    const breadcrumbNode = graph.find((node) => node['@type'] === 'BreadcrumbList');
+    expect(breadcrumbNode.itemListElement).toHaveLength(3);
+    expect(breadcrumbNode.itemListElement.map((item) => item.name)).toEqual([
+      'Home',
+      'Time & Date',
+      'Energy-Based Nap Selector',
+    ]);
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
