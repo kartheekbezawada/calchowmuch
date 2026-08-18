@@ -177,6 +177,24 @@ const STRUCTURED_DATA = {
         'Create a live countdown timer for birthdays, launches, holidays, trips, and deadlines, then copy a summary or add the event to your calendar.',
       inLanguage: 'en',
     },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Time & Date',
+          item: 'https://calchowmuch.com/time-and-date/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Countdown Timer (Live)',
+          item: 'https://calchowmuch.com/time-and-date/countdown-timer/',
+        },
+      ],
+    },
   ],
 };
 

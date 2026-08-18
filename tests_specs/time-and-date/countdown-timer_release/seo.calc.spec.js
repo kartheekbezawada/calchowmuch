@@ -32,7 +32,14 @@ test.describe('Countdown Timer SEO', () => {
     const types = structuredData['@graph'].map((node) => node['@type']);
     expect(types).toEqual(expect.arrayContaining(['WebPage', 'FAQPage']));
     expect(types).not.toContain('SoftwareApplication');
-    expect(types).not.toContain('BreadcrumbList');
+    expect(types).toContain('BreadcrumbList');
+    const breadcrumbNode = structuredData['@graph'].find((node) => node['@type'] === 'BreadcrumbList');
+    expect(breadcrumbNode.itemListElement).toHaveLength(3);
+    expect(breadcrumbNode.itemListElement.map((item) => item.name)).toEqual([
+      'Home',
+      'Time & Date',
+      'Countdown Timer (Live)',
+    ]);
 
     const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
     expect(faqNode.mainEntity).toHaveLength(10);

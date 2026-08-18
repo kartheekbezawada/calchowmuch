@@ -119,6 +119,24 @@ const metadata = {
           'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
         inLanguage: 'en',
       },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Time & Date',
+            item: 'https://calchowmuch.com/time-and-date/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Birthday Day-of-Week Calculator',
+            item: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
+          },
+        ],
+      },
     ],
   },
 };

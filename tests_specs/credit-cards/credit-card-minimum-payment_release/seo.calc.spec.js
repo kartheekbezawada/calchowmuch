@@ -63,7 +63,7 @@ test.describe('Credit Card Minimum Payment Calculator SEO', () => {
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
-    expect(faqNode.mainEntity).toHaveLength(11);
+    expect(faqNode.mainEntity).toHaveLength(12);
 
     const visibleQuestions = await page.locator('#cc-min-explanation .cc-min-faq-item strong').allTextContents();
     const normalizedVisibleQuestions = visibleQuestions.map((text) => text.replace(/^Q:\s*/, '').trim());

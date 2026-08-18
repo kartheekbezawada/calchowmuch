@@ -1693,7 +1693,13 @@ function toTitleCaseLabel(value) {
     .join(' ');
 }
 
-function buildCalculatorFallbackStructuredData({ canonical, title, description, h1 }) {
+function buildCalculatorFallbackStructuredData({
+  canonical,
+  title,
+  description,
+  h1,
+  includeSoftwareApplication = true,
+}) {
   let pathname = '/';
   try {
     pathname = new URL(canonical, SITE_URL).pathname || '/';
@@ -1733,29 +1739,32 @@ function buildCalculatorFallbackStructuredData({ canonical, title, description, 
     item: canonical,
   });
 
+  const graph = [];
+  if (includeSoftwareApplication) {
+    graph.push({
+      '@type': 'SoftwareApplication',
+      '@id': `${canonical}#softwareapplication`,
+      name: softwareName,
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Web',
+      url: canonical,
+      description,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    });
+  }
+  graph.push({
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumbs`,
+    itemListElement: breadcrumbItems,
+  });
+
   return {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'SoftwareApplication',
-        '@id': `${canonical}#softwareapplication`,
-        name: softwareName,
-        applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Web',
-        url: canonical,
-        description,
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumbs`,
-        itemListElement: breadcrumbItems,
-      },
-    ],
+    '@graph': graph,
   };
 }
 
@@ -1844,6 +1853,7 @@ function generateHeadMeta({
   ogImageUrl,
   h1,
   isCalculatorPage,
+  includeSoftwareApplication = isCalculatorPage,
 }) {
   const fallbackTitle = normalizeSeoText(h1) || 'CalcHowMuch';
   const title = normalizeSeoText(seoTitle) || fallbackTitle;
@@ -1861,6 +1871,7 @@ function generateHeadMeta({
           title,
           description,
           h1: fallbackTitle,
+          includeSoftwareApplication,
         })
       )}</script>`
     : '';
@@ -5123,8 +5134,11 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
         )}</script>\n`
       : '';
   const isCalculatorPage = isCalculatorPathFromCanonical(canonical);
-  const shouldEmitCalculatorHeadJsonLd =
-    isCalculatorPage && !(injectStaticStructuredData && staticStructuredData);
+  const hasDedicatedStaticStructuredData = Boolean(injectStaticStructuredData && staticStructuredData);
+  // Emit the fallback JSON-LD block for every calculator page that lacks a dedicated per-cluster
+  // builder — BreadcrumbList always belongs there. SoftwareApplication inside it stays gated by
+  // the naming convention via includeSoftwareApplication below.
+  const shouldEmitCalculatorHeadJsonLd = !hasDedicatedStaticStructuredData;
   const headMetaHtml = generateHeadMeta({
     canonicalUrl: canonical,
     seoTitle: title,
@@ -5132,6 +5146,7 @@ ${isCreditCardClusterRoute || isMigratedFinanceClusterRoute || isMigratedAutoLoa
     ogImageUrl: OG_IMAGE,
     h1: calculatorTitle,
     isCalculatorPage: shouldEmitCalculatorHeadJsonLd,
+    includeSoftwareApplication: isCalculatorPage,
   });
   let cssLinksHtml = '';
   if (isCreditCardClusterRoute) {

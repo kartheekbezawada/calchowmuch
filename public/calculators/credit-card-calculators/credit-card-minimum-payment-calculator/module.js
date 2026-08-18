@@ -43,7 +43,7 @@ const FAQ_ITEMS = [
   {
     question: 'How is the minimum payment calculated?',
     answer:
-      'Issuers commonly set the minimum as a percentage of your balance with a lowest monthly payment floor, and this calculator models that same structure month by month.',
+      'Most issuers use this formula: minimum payment = the greater of (balance x minimum payment rate) or the payment floor. For example, on a $3,200 balance with a 2.5% minimum payment rate and a $25 floor, the percentage-based amount is $3,200 x 2.5% = $80, and since $80 is higher than the $25 floor, the minimum payment is $80. This calculator applies that same formula every month as your balance changes.',
   },
   {
     question: 'Why does it take so long to pay off with minimum payments?',
@@ -86,9 +86,14 @@ const FAQ_ITEMS = [
       'Compare the minimum-only outcome with a higher fixed monthly payment and use the difference in months and interest to set a faster payoff target.',
   },
   {
-    question: 'Does this work for Capital One, Chase, or other specific card issuers?',
+    question: 'Does this work for Capital One, Chase, Discover, Citi, or other specific card issuers?',
     answer:
-      "Yes. The percentage-of-balance-plus-floor formula modeled here matches how most major issuers, including Capital One and Chase, structure minimum payments. Check your card's terms for the exact percentage and floor amount, then enter those values for a precise estimate.",
+      "Yes. The percentage-of-balance-plus-floor formula modeled here matches how most major issuers, including Capital One, Chase, Discover, Citi, American Express, Wells Fargo, and Bank of America, structure minimum payments. Check your card's terms for the exact percentage and floor amount, then enter those values for a precise estimate.",
+  },
+  {
+    question: 'What is the minimum payment on a $5,000 credit card balance?',
+    answer:
+      "Using the same percentage-plus-floor formula, a $5,000 balance at a 2.5% minimum payment rate works out to $5,000 x 2.5% = $125, which is above a typical $25 floor, so the minimum payment would be about $125. On a smaller $1,000 balance, 2.5% of the balance is exactly $25, so the floor and the percentage amount are equal and the minimum payment is $25. On a larger $10,000 balance, 2.5% works out to $250. Your actual minimum payment depends on your card's specific rate and floor, so enter your own balance above for an exact figure.",
   },
 ];
 
