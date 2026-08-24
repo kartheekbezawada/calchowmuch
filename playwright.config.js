@@ -14,6 +14,8 @@ const resolvedWorkers = process.env.CI
 const resolvedMaxFailures = parseWorkerCount(process.env.PW_MAX_FAILURES);
 const resolvedWebServerPort = parseWorkerCount(process.env.PW_WEB_SERVER_PORT) || 8001;
 const resolvedBaseUrl = process.env.PW_BASE_URL || `http://localhost:${resolvedWebServerPort}`;
+const resolvedPythonCommand = process.platform === 'win32' ? 'python' : 'python3';
+const resolvedNullSink = process.platform === 'win32' ? 'nul' : '/dev/null';
 
 export default defineConfig({
   testDir: './tests_specs',
@@ -38,7 +40,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `python3 -m http.server ${resolvedWebServerPort} --directory public >/dev/null 2>&1`,
+    command: `${resolvedPythonCommand} -m http.server ${resolvedWebServerPort} --directory public >${resolvedNullSink} 2>&1`,
     url: resolvedBaseUrl,
     reuseExistingServer: !process.env.CI,
     timeout: 10000,

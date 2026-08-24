@@ -68,7 +68,8 @@ async function ensureServer(baseUrl) {
   }
 
   const port = new URL(baseUrl).port || '8001';
-  const server = spawn('python3', ['-m', 'http.server', port, '--directory', 'public'], {
+  const pythonCommand = process.platform === 'win32' ? 'python' : 'python3';
+  const server = spawn(pythonCommand, ['-m', 'http.server', port, '--directory', 'public'], {
     cwd: ROOT,
     stdio: 'ignore',
   });

@@ -1,0 +1,62 @@
+{
+  "country": "UK",
+  "dataset": "pension",
+  "taxYear": "2026/27",
+  "effectiveFrom": "2026-04-06",
+  "effectiveTo": "2027-04-05",
+  "currency": "GBP",
+  "source": "https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay",
+  "lastVerified": null,
+  "verification": {
+    "status": "unverified",
+    "confidence": "medium",
+    "note": "Auto-enrolment minimum contributions (8% total, 5% employee) and the qualifying earnings band have been stable for several years. Confirm the qualifying earnings band for 2026/27 before ship."
+  },
+  "notes": [
+    "Relief method changes the arithmetic, not just the label — this is the single most common source of wrong UK pension figures.",
+    "`net-pay-arrangement`: contribution is deducted from GROSS pay before Income Tax, so it reduces taxable income. NI is still charged on the full amount.",
+    "`salary-sacrifice`: contribution reduces gross pay before BOTH Income Tax and NI, so it also reduces the NI bill. This is why sacrifice is worth more than net-pay for the same percentage.",
+    "`relief-at-source`: contribution is taken from NET pay and the scheme reclaims 20% basic-rate relief. Higher-rate relief is claimed separately via Self Assessment and does NOT appear in take-home pay.",
+    "Default is net-pay-arrangement because that is the most common workplace arrangement, but the user must be able to change it."
+  ],
+  "autoEnrolment": {
+    "qualifyingEarnings": { "lower": 6240, "upper": 50270 },
+    "minimumTotalContribution": 0.08,
+    "minimumEmployeeContribution": 0.05,
+    "minimumEmployerContribution": 0.03
+  },
+  "annualAllowance": {
+    "standard": 60000,
+    "taper": {
+      "thresholdIncome": 200000,
+      "adjustedIncome": 260000,
+      "reducedByPerPoundOver": 0.5,
+      "minimumAllowance": 10000
+    }
+  },
+  "reliefMethods": {
+    "net-pay-arrangement": {
+      "name": "Net pay arrangement",
+      "reducesTaxableIncome": true,
+      "reducesNiableEarnings": false,
+      "isDefault": true
+    },
+    "salary-sacrifice": {
+      "name": "Salary sacrifice",
+      "reducesTaxableIncome": true,
+      "reducesNiableEarnings": true,
+      "isDefault": false
+    },
+    "relief-at-source": {
+      "name": "Relief at source",
+      "reducesTaxableIncome": false,
+      "reducesNiableEarnings": false,
+      "basicRateReliefReclaimedByScheme": 0.2,
+      "isDefault": false
+    }
+  },
+  "contributionBasis": {
+    "default": "full-gross-pay",
+    "options": ["full-gross-pay", "qualifying-earnings"]
+  }
+}
