@@ -223,8 +223,8 @@ rating and a note saying what needs checking:
       but leave the pipeline able to accept one later without restructuring
 - [ ] Local-tax disclaimer surfaced whenever USA mode is active (spec §8.8): *"Local income taxes
       may not be included in this estimate."* Must not silently present the result as exact
-- [x] Pay-frequency normalization, including 4-weekly as `annual / 13` (spec §47).
-      **Note on what §47 actually guards against:** `monthly × 12 / 13` is algebraically
+- [x] Pay-frequency normalization, including 4-weekly as `annual / 13` (spec **§4**).
+      **Note on what §4 actually guards against:** `monthly × 12 / 13` is algebraically
       identical to `annual / 13`, so the real hazard is *rounding* — deriving 4-weekly from a
       monthly figure already rounded for display drifts the answer. Test pins 55,000 (which does
       not divide cleanly by 12) and asserts the two paths differ
@@ -242,17 +242,17 @@ rating and a note saying what needs checking:
 - [ ] Pay-date schedule engine: biweekly, 4-weekly, monthly with month-end rule, optional
       working-day adjustment (spec §5–§9)
 - [ ] Pay-schedule result includes the **net amount per period**, not only dates — the UI pay
-      sheet needs `{ date, grossAmount, netAmount, isBonusPeriod }` per row (extends spec §41's
-      shape, which currently returns dates only)
+      sheet needs `{ date, grossAmount, netAmount, isBonusPeriod }` per row (extends spec **§5**,
+      whose shape currently returns dates only)
 - [x] Effective tax rate + marginal rate as **separate fields** (spec §12). `effectiveRate` is
       all deductions over gross; `marginalRate` is the Income Tax band on the next pound. Test
       asserts they differ
-- [x] Tax breakdown array, band-by-band (spec §40) — with a test that the band amounts sum back
+- [x] Tax breakdown array, band-by-band (spec **§13**) — with a test that the band amounts sum back
       to the income and the band taxes sum to the total
 - [x] `isInAllowanceTaper` flag exposed so the UI can explain a distorted marginal rate rather
       than showing a number the user cannot reconcile
-- [ ] Calculation result object formally matches spec §39 shape — close but not audited field by
-      field yet
+- [ ] Calculation result object formally matches the spec **§7.6** output list — close but not
+      audited field by field yet
 - [x] Architecture check: **UI layer contains zero tax logic** — engine is pure, data-injected,
       no DOM, no fetch. 54 unit tests run in Node with no browser
 
@@ -488,7 +488,7 @@ the bottom, dated.
   2. `calculateProgressiveTax` takes **absolute** band boundaries on whatever income measure is
      passed in. That one decision is what lets Income Tax and NI share an implementation despite
      having unrelated thresholds.
-  3. **Spec §47's 4-weekly warning is really about rounding.** `monthly × 12 / 13` is
+  3. **Spec §4's 4-weekly warning is really about rounding.** `monthly × 12 / 13` is
      algebraically identical to `annual / 13`; the drift comes from deriving it off a monthly
      figure already rounded for display. My first test asserted the two were equal and therefore
      proved nothing — rewritten to pin 55,000 and assert they differ.

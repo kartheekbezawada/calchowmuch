@@ -98,13 +98,35 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'You can preview target years from 1600 to 2100 inside the supported range of the calculator.',
       },
     },
+    // Added 2026-08-24 to close query gaps: "what day was i born on by date of birth" (95
+    // impressions @ pos 10.57) and the future-tense cluster. Text matches the DOM entries in
+    // explanation.html verbatim. See seo_fixes/time-and-date/birthday-day-of-week/fix-2.md
+    {
+      '@type': 'Question',
+      name: 'How do I find out what day I was born on by date of birth?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Enter your date of birth in the field above and the weekday appears immediately - no sign-up and nothing to submit. To check it by hand instead, use the Doomsday rule described above.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What day of the week does my birthday fall on this year?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Enter your date of birth and leave the target year set to this year. The result shows both the weekday you were born on and the weekday your birthday falls on in the year you selected.',
+      },
+    },
   ],
 };
 
+// This block is the runtime source of truth — setPageMetadata() replaces the server-rendered
+// JSON-LD, so it must stay byte-consistent with CALCULATOR_OVERRIDES['birthday-day-of-week']
+// in scripts/generate-mpa-pages.js and with the assertions in the _release seo spec.
 const metadata = {
-  title: 'Birthday Day-of-Week Calculator | Find the Day You Were Born',
+  title: 'What Day of the Week Was I Born? | Birth Day Calculator',
   description:
-    'Find the weekday you were born on, preview future birthday weekdays, and spot upcoming Friday, Saturday, or Sunday birthdays for planning.',
+    'Enter your date of birth to find out what day of the week you were born on. See the weekday for your next birthday, the year ahead, and the next 12 years.',
   canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
@@ -113,10 +135,10 @@ const metadata = {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: 'Birthday Day-of-Week Calculator | Find Your Birth Weekday',
+        name: 'What Day of the Week Was I Born? | Birth Day Calculator',
         url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
         description:
-          'Find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
+          'Enter your date of birth to find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
         inLanguage: 'en',
       },
       {
@@ -130,9 +152,12 @@ const metadata = {
             item: 'https://calchowmuch.com/time-and-date/',
           },
           {
+            // Deliberately a short noun phrase rather than the H1. Google renders this as the
+            // SERP breadcrumb trail, where a question ("What day of the week was I born?") reads
+            // badly. Matches the title's second half instead.
             '@type': 'ListItem',
             position: 3,
-            name: 'Birthday Day-of-Week Calculator',
+            name: 'Birth Day Calculator',
             item: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
           },
         ],
@@ -152,12 +177,12 @@ function ensureH1Title() {
   if (title.tagName !== 'H1') {
     const h1 = document.createElement('h1');
     h1.id = 'calculator-title';
-    h1.textContent = 'Birthday Day-of-Week Calculator';
+    h1.textContent = 'What day of the week was I born?';
     title.replaceWith(h1);
     return;
   }
 
-  title.textContent = 'Birthday Day-of-Week Calculator';
+  title.textContent = 'What day of the week was I born?';
 }
 
 ensureH1Title();

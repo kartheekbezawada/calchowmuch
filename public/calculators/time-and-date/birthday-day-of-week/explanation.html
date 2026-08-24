@@ -1,7 +1,7 @@
 <div id="birthday-dow-explanation">
   <section class="birthday-dow-help-intro birthday-dow-explanation-card">
     <p class="birthday-dow-help-kicker">Birthday planning</p>
-    <h2>What day of the week was I born on?</h2>
+    <h2>Your birth weekday, and how the date was worked out</h2>
     <p>
       For <span data-birthday-field="dob-label">your birthday date</span>, the birth weekday is
       <span data-birthday-field="birth-weekday">still waiting</span>. In
@@ -63,6 +63,66 @@
   </section>
 
   <section class="birthday-dow-explanation-card">
+    <h3>How to work out what day of the week you were born without a calculator</h3>
+    <p>
+      If you want to check the answer by hand, the standard shortcut is the Doomsday rule. Every
+      year has a set of dates that all fall on the same weekday — that weekday is called the
+      year's "doomsday". Once you know it, you can count to any other date in that year.
+    </p>
+    <ol class="birthday-dow-guide-steps">
+      <li>
+        <strong>Find the century anchor.</strong> For the 1900s the anchor is Wednesday, and for
+        the 2000s it is Tuesday. These repeat every 400 years.
+      </li>
+      <li>
+        <strong>Work out the year's doomsday.</strong> Take the last two digits of the year. Divide
+        by 12 and keep the whole number, then add the remainder, then add the remainder divided by
+        4 (whole number again). Add that total to the century anchor, counting forward through the
+        days of the week.
+      </li>
+      <li>
+        <strong>Use a known doomsday date near your birthday.</strong> 4/4, 6/6, 8/8, 10/10 and
+        12/12 all land on the year's doomsday, as do 9/5, 5/9, 7/11 and 11/7. For January it is the
+        3rd in normal years and the 4th in leap years; for February it is the 28th, or the 29th in
+        a leap year.
+      </li>
+      <li>
+        <strong>Count forward or back in sevens.</strong> Move from the nearest doomsday date to
+        your birthday, subtracting whole weeks as you go.
+      </li>
+    </ol>
+    <p>
+      <strong>Worked example — 15 June 1985.</strong> The century anchor for the 1900s is
+      Wednesday. For 85: 85 ÷ 12 = 7 remainder 1, and 1 ÷ 4 = 0. So 7 + 1 + 0 = 8. Counting eight
+      days forward from Wednesday gives Thursday, so 1985's doomsday is Thursday. That means 6/6
+      was a Thursday. From 6 June to 15 June is nine days — one full week plus two — so 15 June
+      1985 was a <strong>Saturday</strong>.
+    </p>
+    <p>
+      The arithmetic is easy to get wrong on leap years and century boundaries, which is exactly
+      what the calculator above removes. Use the manual method to sanity-check a single date;
+      use the calculator when you want the answer plus the years ahead.
+    </p>
+  </section>
+
+  <section class="birthday-dow-explanation-card">
+    <h3>What day does my birthday fall on this year and next?</h3>
+    <p>
+      The weekday you were born on is fixed, but the weekday your birthday <em>falls on</em>
+      changes every year. A common year is 365 days, which is 52 weeks plus one day, so your
+      birthday normally moves forward one weekday each year. A leap year adds a second day, so
+      the birthday jumps forward two weekdays whenever a 29 February sits between the two dates.
+    </p>
+    <p>
+      That produces a repeating pattern rather than a random one. Across most of a lifetime a
+      birthday cycles through all seven weekdays roughly every 5 to 6 years, and the full pattern
+      repeats every 28 years. The 12-year map above shows your own sequence, so you can see which
+      upcoming years put your birthday on a Friday, Saturday or Sunday without checking a calendar
+      year by year.
+    </p>
+  </section>
+
+  <section class="birthday-dow-explanation-card">
     <h3>How to use birthday weekday patterns for planning</h3>
     <p>
       The birth weekday answers the historical question, but the planning value usually comes from
@@ -110,6 +170,14 @@
       <article class="birthday-dow-faq-item">
         <p><strong>Does this store my birthday?</strong></p>
         <p>No. The planner runs in the browser and does not submit your birthday anywhere.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>How do I find out what day I was born on by date of birth?</strong></p>
+        <p>Enter your date of birth in the field above and the weekday appears immediately - no sign-up and nothing to submit. To check it by hand instead, use the Doomsday rule described above.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>What day of the week does my birthday fall on this year?</strong></p>
+        <p>Enter your date of birth and leave the target year set to this year. The result shows both the weekday you were born on and the weekday your birthday falls on in the year you selected.</p>
       </article>
     </div>
   </section>
