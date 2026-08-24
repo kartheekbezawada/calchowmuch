@@ -1,0 +1,28 @@
+{
+  "country": "UK",
+  "dataset": "national-insurance",
+  "taxYear": "2026/27",
+  "effectiveFrom": "2026-04-06",
+  "effectiveTo": "2027-04-05",
+  "currency": "GBP",
+  "source": "https://www.gov.uk/national-insurance-rates-letters",
+  "lastVerified": null,
+  "verification": {
+    "status": "unverified",
+    "confidence": "medium-high",
+    "note": "Class 1 employee structure (8% main rate between the Primary Threshold and the Upper Earnings Limit, 2% above) has applied since April 2024, and both thresholds are frozen. Reconciles exactly against a 60,000 salary at 3,210.60. Confirm against gov.uk before ship in case of a rate change."
+  },
+  "notes": [
+    "Employee Class 1 only. Employer NI is not a deduction from employee pay and is deliberately excluded.",
+    "Bands apply to gross earnings, NOT to income after the Personal Allowance. NI has its own thresholds and is calculated independently of Income Tax.",
+    "The Primary Threshold currently coincides numerically with the Personal Allowance. That is a coincidence of policy, not a shared value — keep them as separate fields so one can change without the other."
+  ],
+  "class1Employee": {
+    "primaryThreshold": 12570,
+    "upperEarningsLimit": 50270,
+    "bands": [
+      { "id": "main", "name": "Main rate", "rate": 0.08, "from": 12570, "to": 50270 },
+      { "id": "upper", "name": "Upper rate", "rate": 0.02, "from": 50270, "to": null }
+    ]
+  }
+}

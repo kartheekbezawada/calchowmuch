@@ -2,6 +2,7 @@
 
 import fs from 'node:fs/promises';
 import fsSync from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { spawn, spawnSync } from 'node:child_process';
@@ -16,6 +17,35 @@ const DEFAULTS = {
   preset: 'mobile',
   timeoutMs: 3000,
 };
+
+async function resolveChromePath() {
+  if (process.env.CHROME_PATH) {
+    return process.env.CHROME_PATH;
+  }
+
+  // Prefer the Chromium build Playwright already manages as a project dependency.
+  try {
+    const { chromium } = await import('@playwright/test');
+    const executablePath = chromium.executablePath();
+    if (executablePath && fsSync.existsSync(executablePath)) {
+      return executablePath;
+    }
+  } catch {
+    // Fall through to manual fallback locations below.
+  }
+
+  const fallbackCandidates =
+    process.platform === 'win32'
+      ? [
+          'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+          'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+        ]
+      : process.platform === 'darwin'
+        ? ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome']
+        : ['/usr/bin/google-chrome', '/usr/bin/chromium-browser', '/usr/bin/chromium'];
+
+  return fallbackCandidates.find((candidate) => fsSync.existsSync(candidate)) || null;
+}
 
 function resolveLighthousePreset(inputPreset) {
   const normalized = String(inputPreset || '').trim().toLowerCase();
@@ -89,7 +119,8 @@ async function ensureServer(baseUrl, timeoutMs) {
   }
 
   const port = new URL(baseUrl).port || '8000';
-  const server = spawn('python3', ['-m', 'http.server', port, '--directory', 'public'], {
+  const pythonCommand = process.platform === 'win32' ? 'python' : 'python3';
+  const server = spawn(pythonCommand, ['-m', 'http.server', port, '--directory', 'public'], {
     stdio: 'ignore',
   });
 
@@ -227,7 +258,7 @@ async function runLighthouse({
   policy,
   desktopThrottlingMode,
 }) {
-  const profileDir = `/tmp/lighthouse-target-${slugFolder}-${Date.now()}`;
+  const profileDir = path.join(os.tmpdir(), `lighthouse-target-${slugFolder}-${Date.now()}`);
   const chromeFlags = buildChromeFlags(profileDir);
   const args = [
     'lighthouse',
@@ -430,9 +461,11 @@ async function main() {
     throw new Error('TARGET_ROUTE (or --route) is required.');
   }
 
-  const chromePath = process.env.CHROME_PATH;
+  const chromePath = await resolveChromePath();
   if (!chromePath) {
-    throw new Error('CHROME_PATH is required for Lighthouse.');
+    throw new Error(
+      'CHROME_PATH is required for Lighthouse and no Chrome/Chromium installation could be auto-detected. Set CHROME_PATH explicitly.'
+    );
   }
 
   const policy = await loadPolicy();
