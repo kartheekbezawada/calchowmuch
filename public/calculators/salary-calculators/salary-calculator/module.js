@@ -8,10 +8,12 @@ import {
 } from '/calculators/salary-calculators/shared/salary-utils.js';
 import { calculateGrossOnly } from '/calculators/salary-calculators/shared/tax-engine/gross-engine.js';
 import { calculateUkTakeHome } from '/calculators/salary-calculators/shared/tax-engine/uk-engine.js';
+import { calculateUsTakeHome } from '/calculators/salary-calculators/shared/tax-engine/us-engine.js';
 import { fromAnnual, toAnnual } from '/calculators/salary-calculators/shared/tax-engine/pay-frequency.js';
 import { generatePaySchedule } from '/calculators/salary-calculators/shared/tax-engine/pay-schedule.js';
 
 const TAX_DATA_BASE = '/calculators/salary-calculators/shared/tax-data/uk';
+const US_DATA_BASE = '/calculators/salary-calculators/shared/tax-data/us';
 
 const FAQ_ITEMS = [
   {
@@ -76,16 +78,19 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Salary Calculator | UK Take-Home Pay and Gross Pay Converter',
+    title: 'Salary Calculator | UK and US Take-Home Pay Calculator',
     description:
-      'Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.',
+      'Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
     canonical: 'https://calchowmuch.com/salary-calculators/salary-calculator/',
     name: 'Salary Calculator',
     appDescription:
-      'Estimate UK take-home pay after tax, or convert one gross pay amount into every pay period.',
+      'Estimate UK or US take-home pay after tax, or convert one gross pay amount into every pay period.',
     featureList: [
       'UK take-home pay after Income Tax and National Insurance',
       'England, Wales, Northern Ireland and Scotland tax bands',
+      'US take-home pay after federal tax, FICA and state tax',
+      'All 50 US states plus DC, with all four filing statuses',
+      'State payroll taxes such as CA SDI and NJ TDI/FLI',
       'Pension contributions with all three relief methods',
       'Student loan plans 1, 2, 4, 5 and Postgraduate',
       'Bonus impact on take-home pay',
@@ -93,7 +98,7 @@ setPageMetadata(
       'Gross pay conversion across every pay period',
     ],
     keywords:
-      'salary calculator, take home pay calculator, uk salary calculator, net pay calculator, gross pay calculator',
+      'salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, net pay calculator, gross pay calculator',
     faqSchema: FAQ_SCHEMA,
   })
 );
@@ -120,6 +125,10 @@ const bonusAmountInput = el('salary-bonus-amount');
 const bonusMonthSelect = el('salary-bonus-month');
 const firstPayInput = el('salary-first-pay');
 const weekendRuleSelect = el('salary-weekend-rule');
+const stateInput = el('salary-state');
+const stateList = el('salary-state-list');
+const stateHint = el('salary-state-hint');
+const pretaxInput = el('salary-pretax');
 
 const outputs = {
   hero: el('salary-annual-pay'),
@@ -170,9 +179,14 @@ const PLAIN = new Intl.NumberFormat('en-GB', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
+const USD = new Intl.NumberFormat('en-US', {
+  style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2,
+});
 const money = (value) => {
   if (value === null || value === undefined || Number.isNaN(value)) return '—';
-  return (mode === 'uk' ? GBP : PLAIN).format(Number(value));
+  if (mode === 'uk') return GBP.format(Number(value));
+  if (mode === 'us') return USD.format(Number(value));
+  return PLAIN.format(Number(value));
 };
 const percent = (fraction) => `${(Number(fraction) * 100).toFixed(1)}%`;
 const longDate = (date) =>
@@ -201,6 +215,46 @@ async function loadTaxData() {
     taxDataError = error;
   }
   return taxData;
+}
+
+let usFederal = null;
+let usFica = null;
+let usPayroll = null;
+let usStateCache = new Map();
+let selectedState = null;
+
+/** Federal + FICA + payroll load once; individual state files load only when picked. */
+async function loadUsBaseData() {
+  if (usFederal) return true;
+  try {
+    const [federal, fica, payroll] = await Promise.all(
+      ['federal-income-tax', 'fica', 'payroll-taxes'].map(async (f) => {
+        const r = await fetch(`${US_DATA_BASE}/${f}.json`);
+        if (!r.ok) throw new Error(`${f}.json responded ${r.status}`);
+        return r.json();
+      })
+    );
+    usFederal = federal;
+    usFica = fica;
+    usPayroll = payroll;
+    return true;
+  } catch (error) {
+    taxDataError = error;
+    return false;
+  }
+}
+
+/**
+ * One state file per selection rather than all 51 up front — that is the whole reason the data is
+ * fetched instead of bundled.
+ */
+async function loadState(code) {
+  if (usStateCache.has(code)) return usStateCache.get(code);
+  const response = await fetch(`${US_DATA_BASE}/states/${code}.json`);
+  if (!response.ok) throw new Error(`${code}.json responded ${response.status}`);
+  const data = await response.json();
+  usStateCache.set(code, data);
+  return data;
 }
 
 /* ------------------------------------------------------------------ helpers */
@@ -268,6 +322,11 @@ const regionButtons = setupButtonGroup(document.querySelector('[data-button-grou
   onChange: () => markDirty(),
 });
 
+const filingStatusButtons = setupButtonGroup(document.querySelector('[data-button-group="salary-filing-status"]'), {
+  defaultValue: 'single',
+  onChange: () => markDirty(),
+});
+
 const sheetFrequencyButtons = setupButtonGroup(
   document.querySelector('[data-button-group="salary-sheet-frequency"]'),
   {
@@ -290,39 +349,59 @@ setupButtonGroup(document.querySelector('[data-button-group="salary-mode"]'), {
 
 function applyMode() {
   const isUk = mode === 'uk';
-  document.querySelectorAll('.sal-uk-only').forEach((node) => {
-    // The pay sheet has its own gate (it needs a schedule), handled inside renderPaySheet.
-    if (node.id === 'salary-paysheet') return;
-    node.hidden = !isUk;
-  });
+  const isUs = mode === 'us';
+  const isTax = isUk || isUs;
 
-  setText(el('salary-mode-kicker'), isUk ? 'UK take-home pay' : 'Gross pay conversion');
-  setText(
-    el('salary-form-title'),
-    isUk
-      ? 'Work out your take-home pay after tax'
-      : 'Convert one pay amount into hourly, weekly, monthly, and annual pay'
-  );
-  setText(
-    el('salary-form-lead'),
-    isUk
-      ? 'Enter your salary and region. Add pension, student loan or a bonus only if they apply to you.'
-      : 'Gross pay only. Start with one pay amount, then compare every major pay view side by side.'
-  );
-  setText(outputs.answerTitle, isUk ? 'Estimated take-home pay' : 'Annual gross pay');
-  setText(outputs.answerEyebrow, isUk ? 'After tax and deductions' : 'Gross (before tax)');
-  setText(
-    outputs.disclaimer,
-    isUk
-      ? 'Estimates only, based on published rates for the selected tax year. Not tax advice.'
-      : 'Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.'
-  );
-  setText(
-    outputs.method,
-    isUk
-      ? 'Personal Allowance first, then Income Tax band by band. National Insurance is calculated separately on gross earnings using its own thresholds.'
-      : 'Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.'
-  );
+  // One mechanism for all three scopes. `sal-tax-only` is anything common to both countries;
+  // the country classes gate what is genuinely country-specific.
+  const scopes = [['.sal-uk-only', isUk], ['.sal-us-only', isUs], ['.sal-tax-only', isTax]];
+  for (const [selector, visible] of scopes) {
+    document.querySelectorAll(selector).forEach((node) => {
+      // The pay sheet has its own gate (it needs a schedule), handled inside renderPaySheet.
+      if (node.id === 'salary-paysheet') return;
+      node.hidden = !visible;
+    });
+  }
+  const localNote = el('salary-local-note');
+  if (localNote) localNote.hidden = !isUs;
+
+  const copy = {
+    gross: {
+      kicker: 'Gross pay conversion',
+      title: 'Convert one pay amount into hourly, weekly, monthly, and annual pay',
+      lead: 'Gross pay only. Start with one pay amount, then compare every major pay view side by side.',
+      answerTitle: 'Annual gross pay',
+      eyebrow: 'Gross (before tax)',
+      disclaimer: 'Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.',
+      method: 'Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.',
+    },
+    uk: {
+      kicker: 'UK take-home pay',
+      title: 'Work out your UK take-home pay after tax',
+      lead: 'Enter your salary and region. Add pension, student loan or a bonus only if they apply to you.',
+      answerTitle: 'Estimated take-home pay',
+      eyebrow: 'After tax and deductions',
+      disclaimer: 'Estimates only, based on published rates for the selected tax year. Not tax advice.',
+      method: 'Personal Allowance first, then Income Tax band by band. National Insurance is calculated separately on gross earnings using its own thresholds.',
+    },
+    us: {
+      kicker: 'US take-home pay',
+      title: 'Work out your US take-home pay after tax',
+      lead: 'Enter your salary, state and filing status. Federal tax, FICA and state tax are applied separately.',
+      answerTitle: 'Estimated take-home pay',
+      eyebrow: 'After federal, FICA and state tax',
+      disclaimer: 'Estimates only. Federal, FICA and state-level taxes; local income taxes are not included. Not tax advice.',
+      method: 'Standard deduction first, then federal tax band by band. FICA is charged on gross wages, and state income tax is calculated on its own schedule.',
+    },
+  }[mode];
+
+  setText(el('salary-mode-kicker'), copy.kicker);
+  setText(el('salary-form-title'), copy.title);
+  setText(el('salary-form-lead'), copy.lead);
+  setText(outputs.answerTitle, copy.answerTitle);
+  setText(outputs.answerEyebrow, copy.eyebrow);
+  setText(outputs.disclaimer, copy.disclaimer);
+  setText(outputs.method, copy.method);
 }
 
 function optionOn(name) {
@@ -341,6 +420,116 @@ document.querySelectorAll('.sal-opt-chip').forEach((chip) => {
   });
 });
 
+/* ------------------------------------------------------------------ state typeahead */
+
+const US_STATES = [
+  ['AL','Alabama'],['AK','Alaska'],['AZ','Arizona'],['AR','Arkansas'],['CA','California'],
+  ['CO','Colorado'],['CT','Connecticut'],['DE','Delaware'],['DC','District of Columbia'],
+  ['FL','Florida'],['GA','Georgia'],['HI','Hawaii'],['ID','Idaho'],['IL','Illinois'],
+  ['IN','Indiana'],['IA','Iowa'],['KS','Kansas'],['KY','Kentucky'],['LA','Louisiana'],
+  ['ME','Maine'],['MD','Maryland'],['MA','Massachusetts'],['MI','Michigan'],['MN','Minnesota'],
+  ['MS','Mississippi'],['MO','Missouri'],['MT','Montana'],['NE','Nebraska'],['NV','Nevada'],
+  ['NH','New Hampshire'],['NJ','New Jersey'],['NM','New Mexico'],['NY','New York'],
+  ['NC','North Carolina'],['ND','North Dakota'],['OH','Ohio'],['OK','Oklahoma'],['OR','Oregon'],
+  ['PA','Pennsylvania'],['RI','Rhode Island'],['SC','South Carolina'],['SD','South Dakota'],
+  ['TN','Tennessee'],['TX','Texas'],['UT','Utah'],['VT','Vermont'],['VA','Virginia'],
+  ['WA','Washington'],['WV','West Virginia'],['WI','Wisconsin'],['WY','Wyoming'],
+];
+const NO_INCOME_TAX = new Set(['AK','FL','NV','NH','SD','TN','TX','WA','WY']);
+
+let activeOption = -1;
+
+function closeStateList() {
+  if (!stateList) return;
+  stateList.hidden = true;
+  stateInput?.setAttribute('aria-expanded', 'false');
+  activeOption = -1;
+}
+
+function renderStateOptions(query) {
+  if (!stateList) return;
+  const q = query.trim().toLowerCase();
+  if (!q) return closeStateList();
+
+  const hits = US_STATES.filter(([code, name]) =>
+    name.toLowerCase().includes(q) || code.toLowerCase() === q
+  ).slice(0, 8);
+
+  if (!hits.length) {
+    stateList.innerHTML = '<div class="sal-typeahead-empty">No match</div>';
+  } else {
+    stateList.innerHTML = hits
+      .map(([code, name], i) =>
+        `<div class="sal-typeahead-item" role="option" id="sal-state-opt-${i}" data-code="${code}" aria-selected="false">${name}</div>`
+      )
+      .join('');
+  }
+  stateList.hidden = false;
+  stateInput?.setAttribute('aria-expanded', 'true');
+  activeOption = -1;
+}
+
+function highlightOption(delta) {
+  const items = [...stateList.querySelectorAll('.sal-typeahead-item')];
+  if (!items.length) return;
+  activeOption = (activeOption + delta + items.length) % items.length;
+  items.forEach((node, i) => {
+    const on = i === activeOption;
+    node.classList.toggle('is-active', on);
+    node.setAttribute('aria-selected', String(on));
+    if (on) node.scrollIntoView({ block: 'nearest' });
+  });
+  stateInput?.setAttribute('aria-activedescendant', items[activeOption].id);
+}
+
+async function chooseState(code) {
+  const entry = US_STATES.find(([c]) => c === code);
+  if (!entry) return;
+  selectedState = code;
+  if (stateInput) stateInput.value = entry[1];
+  closeStateList();
+  setText(
+    stateHint,
+    NO_INCOME_TAX.has(code)
+      ? `${entry[1]} has no state income tax on wages - federal and FICA only.`
+      : `State income tax for ${entry[1]} will be included.`
+  );
+  try {
+    await loadState(code);
+  } catch {
+    setText(stateHint, `Could not load tax data for ${entry[1]}.`);
+    selectedState = null;
+  }
+  calculate();
+}
+
+stateInput?.addEventListener('input', () => {
+  selectedState = null;
+  renderStateOptions(stateInput.value);
+});
+
+// Keyboard support is not optional here - a combobox that only works with a mouse is unusable
+// for anyone navigating by keyboard, and it was called out in the design spec's a11y section.
+stateInput?.addEventListener('keydown', (event) => {
+  if (stateList.hidden) return;
+  if (event.key === 'ArrowDown') { event.preventDefault(); highlightOption(1); }
+  else if (event.key === 'ArrowUp') { event.preventDefault(); highlightOption(-1); }
+  else if (event.key === 'Enter') {
+    const active = stateList.querySelector('.sal-typeahead-item.is-active')
+      || stateList.querySelector('.sal-typeahead-item');
+    if (active) { event.preventDefault(); void chooseState(active.dataset.code); }
+  } else if (event.key === 'Escape') closeStateList();
+});
+
+stateList?.addEventListener('click', (event) => {
+  const item = event.target.closest('.sal-typeahead-item');
+  if (item) void chooseState(item.dataset.code);
+});
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.sal-typeahead')) closeStateList();
+});
+
 /* ------------------------------------------------------------------ rendering */
 
 const SEGMENTS = [
@@ -350,15 +539,33 @@ const SEGMENTS = [
   { id: 'other', label: 'Pension & student loan', className: 'sal-seg-other' },
 ];
 
-function renderSplit(result) {
-  if (!outputs.splitBar || !outputs.splitLegend) return;
-  const other = result.studentLoans.total + (result.pension?.takeHomeCost ?? 0);
-  const values = {
+/**
+ * The UK and US engines return different shapes. Rather than branching through every render
+ * function, both are normalised once into the four segments the results card draws.
+ */
+function segmentsFor(result) {
+  if (result.country === 'US') {
+    return {
+      net: result.netAnnual,
+      tax: result.federalTax.total + result.stateTax.total,
+      ni: result.fica.total,
+      other: result.statePayrollTaxes.total + result.pretaxDeductions,
+      labels: { tax: 'Federal + state tax', ni: 'FICA', other: 'Pre-tax & state payroll' },
+    };
+  }
+  return {
     net: result.netAnnual,
     tax: result.incomeTax.total,
     ni: result.nationalInsurance.total,
-    other,
+    other: result.studentLoans.total + (result.pension ? result.pension.takeHomeCost : 0),
+    labels: { tax: 'Income tax', ni: 'National Insurance', other: 'Pension & student loan' },
   };
+}
+
+function renderSplit(result) {
+  if (!outputs.splitBar || !outputs.splitLegend) return;
+  const seg = segmentsFor(result);
+  const values = { net: seg.net, tax: seg.tax, ni: seg.ni, other: seg.other };
   const total = result.gross || 1;
 
   outputs.splitBar.innerHTML = SEGMENTS.filter((s) => values[s.id] > 0)
@@ -366,15 +573,16 @@ function renderSplit(result) {
     .join('');
 
   outputs.splitLegend.innerHTML = SEGMENTS.filter((s) => values[s.id] > 0)
-    .map(
-      (s) =>
-        `<li><i class="${s.className}" aria-hidden="true"></i>${s.label} <strong>${money(values[s.id])}</strong></li>`
-    )
+    .map((s) => {
+      const label = seg.labels[s.id] || s.label;
+      return `<li><i class="${s.className}" aria-hidden="true"></i>${label} <strong>${money(values[s.id])}</strong></li>`;
+    })
     .join('');
 }
 
 function renderBands(result) {
   if (!outputs.bandList) return;
+  if (result.country === 'US') return renderUsBands(result);
   const rows = [];
 
   rows.push(['Gross pay', result.gross, false]);
@@ -410,24 +618,57 @@ function renderBands(result) {
     `<div class="sal-band sal-band-quiet"><span>Marginal Income Tax rate</span><span class="sal-num">${percent(result.marginalRate)}</span></div>`;
 }
 
+function renderUsBands(result) {
+  const rows = [['Gross pay', result.gross, false]];
+  if (result.pretaxDeductions > 0) rows.push(['Pre-tax contributions', -result.pretaxDeductions, true]);
+  rows.push([`Standard deduction (${result.filingStatus.replace(/([A-Z])/g, ' $1').toLowerCase()})`, result.standardDeduction, false]);
+  result.federalTax.breakdown
+    .filter((b) => b.amountInBand > 0)
+    .forEach((b) => rows.push([`Federal ${b.name} on ${money(b.amountInBand)}`, -b.tax, true]));
+  result.fica.breakdown.forEach((f) => { if (f.amount > 0) rows.push([f.name, -f.amount, true]); });
+  if (result.stateTax.total > 0) {
+    rows.push([`${result.state.name} state income tax`, -result.stateTax.total, true]);
+  }
+  result.statePayrollTaxes.entries.forEach((e) => {
+    if (e.amount > 0) rows.push([e.name, -e.amount, true]);
+  });
+
+  outputs.bandList.innerHTML =
+    rows.map(([label, value, neg]) =>
+      `<div class="sal-band"><span>${label}</span><span class="sal-num">${neg ? '−' : ''}${money(Math.abs(value))}</span></div>`
+    ).join('') +
+    `<div class="sal-band sal-band-total"><span>Estimated take-home</span><span class="sal-num">${money(result.netAnnual)}</span></div>` +
+    `<div class="sal-band sal-band-quiet"><span>Marginal rate (federal + state)</span><span class="sal-num">${percent(result.combinedMarginalRate)}</span></div>` +
+    (result.assumptions.length
+      ? `<div class="sal-band sal-band-quiet"><span>${result.assumptions.join(' ')}</span><span></span></div>`
+      : '');
+}
+
 function renderPaySheet(result) {
   const paysheet = el('salary-paysheet');
   if (!paysheet) return;
 
-  const show = mode === 'uk' && optionOn('sched');
+  const show = mode !== 'gross' && optionOn('sched');
   paysheet.hidden = !show;
   if (!show) return;
 
   const frequency = sheetFrequencyButtons?.getValue() ?? 'monthly';
+  const seg = segmentsFor(result);
   const deductions = [
-    { id: 'tax', label: 'Income tax', annualAmount: result.incomeTax.total },
-    { id: 'ni', label: 'NI', annualAmount: result.nationalInsurance.total },
-    {
-      id: 'other',
-      label: 'Other',
-      annualAmount: result.studentLoans.total + (result.pension?.takeHomeCost ?? 0),
-    },
+    { id: 'tax', label: seg.labels.tax, annualAmount: seg.tax },
+    { id: 'ni', label: seg.labels.ni, annualAmount: seg.ni },
+    { id: 'other', label: seg.labels.other, annualAmount: seg.other },
   ];
+
+  // Column headers follow the country's own vocabulary rather than staying UK-flavoured.
+  const head = el('salary-paysheet');
+  const setHead = (n, text) => {
+    const th = head.querySelector('thead th:nth-child(' + n + ')');
+    if (th) th.textContent = text;
+  };
+  setHead(4, seg.labels.tax);
+  setHead(5, seg.labels.ni);
+  setHead(6, seg.labels.other);
 
   const schedule = generatePaySchedule({
     firstPayDate: firstPayInput?.value || nextFriday(),
@@ -460,11 +701,9 @@ function renderPaySheet(result) {
   const foot = outputs.paysheetFoot;
   if (foot) {
     foot.children[1].textContent = money(result.gross);
-    foot.children[2].textContent = money(result.incomeTax.total);
-    foot.children[3].textContent = money(result.nationalInsurance.total);
-    foot.children[4].textContent = money(
-      result.studentLoans.total + (result.pension?.takeHomeCost ?? 0)
-    );
+    foot.children[2].textContent = money(seg.tax);
+    foot.children[3].textContent = money(seg.ni);
+    foot.children[4].textContent = money(seg.other);
     foot.children[5].textContent = money(result.netAnnual);
   }
 
@@ -505,6 +744,23 @@ function calculate() {
     return;
   }
 
+  if (mode === 'us') {
+    if (!usFederal) {
+      showError(
+        taxDataError
+          ? 'US tax tables could not be loaded. Gross Pay mode still works.'
+          : 'Loading US tax tables...'
+      );
+      return;
+    }
+    // Deliberately no default state. Assuming one silently produces a number that is wrong for
+    // most people (design spec section 5).
+    if (!selectedState || !usStateCache.has(selectedState)) {
+      showError('Choose your state to estimate take-home pay.');
+      return;
+    }
+  }
+
   if (mode === 'uk' && !taxData) {
     showError(
       taxDataError
@@ -531,26 +787,42 @@ function calculate() {
       },
       taxData
     );
+  } else if (mode === 'us') {
+    result = calculateUsTakeHome(
+      {
+        grossAnnual: toAnnual(amount, frequency, schedule()),
+        filingStatus: filingStatusButtons ? filingStatusButtons.getValue() : 'single',
+        bonus: optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0,
+        pretaxDeductions: optionOn('pretax') ? getInputNumber(pretaxInput) || 0 : 0,
+      },
+      {
+        federal: usFederal,
+        fica: usFica,
+        state: usStateCache.get(selectedState),
+        payroll: usPayroll,
+      }
+    );
   } else {
     result = calculateGrossOnly({ amount, frequency, schedule: schedule() });
   }
 
   const periods = renderPeriods(result);
 
-  if (mode === 'uk') {
+  if (mode !== 'gross') {
     setText(outputs.effectiveRate, percent(result.effectiveRate));
-    setText(outputs.marginalRate, percent(result.marginalRate));
+    setText(
+      outputs.marginalRate,
+      percent(result.country === 'US' ? result.combinedMarginalRate : result.marginalRate)
+    );
     setText(
       outputs.note,
       `From ${money(result.gross)} gross, you keep about ${money(periods.monthly)} per month.`
     );
     setText(
       outputs.breakdown,
-      `Personal Allowance ${money(result.personalAllowance.allowance)} · Income tax ${money(
-        result.incomeTax.total
-      )} · National Insurance ${money(result.nationalInsurance.total)} · Total deductions ${money(
-        result.totalDeductions
-      )}.`
+      result.country === 'US'
+        ? `Standard deduction ${money(result.standardDeduction)} - Federal tax ${money(result.federalTax.total)} - FICA ${money(result.fica.total)} - ${result.state.name} state tax ${money(result.stateTax.total)} - Total deductions ${money(result.totalDeductions)}.`
+        : `Personal Allowance ${money(result.personalAllowance.allowance)} - Income tax ${money(result.incomeTax.total)} - National Insurance ${money(result.nationalInsurance.total)} - Total deductions ${money(result.totalDeductions)}.`
     );
     renderSplit(result);
     renderBands(result);
@@ -568,14 +840,14 @@ function calculate() {
   renderPaySheet(result);
 
   latestSummary = [
+    mode === 'gross'
+      ? `Gross (before tax): ${money(result.gross)} per year, ${money(periods.monthly)} per month.`
+      : `Estimated take-home: ${money(result.netAnnual)} per year, ${money(periods.monthly)} per month.`,
     mode === 'uk'
-      ? `Estimated UK take-home: ${money(result.netAnnual)} per year, ${money(periods.monthly)} per month.`
-      : `Gross (before tax): ${money(result.gross)} per year, ${money(periods.monthly)} per month.`,
-    mode === 'uk'
-      ? `Gross ${money(result.gross)} · Income tax ${money(result.incomeTax.total)} · NI ${money(
-          result.nationalInsurance.total
-        )} · Effective rate ${percent(result.effectiveRate)} · Region ${result.region.name}.`
-      : `Weekly ${money(periods.weekly)} · Hourly ${money(periods.hourly)}.`,
+      ? `Gross ${money(result.gross)} - Income tax ${money(result.incomeTax.total)} - NI ${money(result.nationalInsurance.total)} - Effective rate ${percent(result.effectiveRate)} - Region ${result.region.name}.`
+      : mode === 'us'
+        ? `Gross ${money(result.gross)} - Federal ${money(result.federalTax.total)} - FICA ${money(result.fica.total)} - ${result.state.name} ${money(result.stateTax.total)} - Effective rate ${percent(result.effectiveRate)}. Local income taxes are not included.`
+        : `Weekly ${money(periods.weekly)} - Hourly ${money(periods.hourly)}.`,
     buildAssumptionsLine(frequency),
   ].join('\n');
 
@@ -596,6 +868,7 @@ async function copySummary() {
   daysInput,
   pensionPercentInput,
   bonusAmountInput,
+  pretaxInput,
 ].forEach((input) => {
   input?.addEventListener('input', markDirty);
   input?.addEventListener('change', markDirty);
@@ -635,4 +908,7 @@ calculate();
 // Tax tables load in the background so Gross Pay mode is interactive immediately.
 void loadTaxData().then(() => {
   if (mode === 'uk') calculate();
+});
+void loadUsBaseData().then(() => {
+  if (mode === 'us') calculate();
 });

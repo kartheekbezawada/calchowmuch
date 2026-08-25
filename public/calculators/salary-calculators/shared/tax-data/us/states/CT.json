@@ -1,0 +1,79 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "CT",
+  "name": "Connecticut",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "7 graduated bands, top rate 6.99%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 0,
+      "personalExemption": 15000,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "2%",
+          "rate": 0.02,
+          "from": 0,
+          "to": 10000
+        },
+        {
+          "id": "b1",
+          "name": "4.5%",
+          "rate": 0.045,
+          "from": 10000,
+          "to": 50000
+        },
+        {
+          "id": "b2",
+          "name": "5.5%",
+          "rate": 0.055,
+          "from": 50000,
+          "to": 100000
+        },
+        {
+          "id": "b3",
+          "name": "6%",
+          "rate": 0.06,
+          "from": 100000,
+          "to": 200000
+        },
+        {
+          "id": "b4",
+          "name": "6.5%",
+          "rate": 0.065,
+          "from": 200000,
+          "to": 250000
+        },
+        {
+          "id": "b5",
+          "name": "6.9%",
+          "rate": 0.069,
+          "from": 250000,
+          "to": 500000
+        },
+        {
+          "id": "b6",
+          "name": "6.99%",
+          "rate": 0.0699,
+          "from": 500000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

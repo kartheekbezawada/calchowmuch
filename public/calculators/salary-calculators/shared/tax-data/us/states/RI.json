@@ -1,0 +1,51 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "RI",
+  "name": "Rhode Island",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "3 graduated bands, top rate 5.99%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 11200,
+      "personalExemption": 5250,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "3.75%",
+          "rate": 0.0375,
+          "from": 0,
+          "to": 82050
+        },
+        {
+          "id": "b1",
+          "name": "4.75%",
+          "rate": 0.0475,
+          "from": 82050,
+          "to": 186450
+        },
+        {
+          "id": "b2",
+          "name": "5.99%",
+          "rate": 0.0599,
+          "from": 186450,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

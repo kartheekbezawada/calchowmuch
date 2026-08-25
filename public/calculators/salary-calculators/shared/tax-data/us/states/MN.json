@@ -1,0 +1,58 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "MN",
+  "name": "Minnesota",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "4 graduated bands, top rate 9.85%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 15300,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "5.35%",
+          "rate": 0.0535,
+          "from": 0,
+          "to": 33310
+        },
+        {
+          "id": "b1",
+          "name": "6.8%",
+          "rate": 0.068,
+          "from": 33310,
+          "to": 109430
+        },
+        {
+          "id": "b2",
+          "name": "7.85%",
+          "rate": 0.0785,
+          "from": 109430,
+          "to": 203150
+        },
+        {
+          "id": "b3",
+          "name": "9.85%",
+          "rate": 0.0985,
+          "from": 203150,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

@@ -8,9 +8,9 @@ export const SALARY_CALCULATOR_CONFIGS = {
   'salary-calculator': {
     route: '/salary-calculators/salary-calculator/',
     h1: 'Salary Calculator',
-    title: 'Salary Calculator | UK Take-Home Pay and Gross Pay Converter',
+    title: 'Salary Calculator | UK and US Take-Home Pay Calculator',
     description:
-      'Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.',
+      'Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       // --- Gross Pay mode (the default) must behave exactly as it always has -----------------
       await page.click('button[data-value="hourly"]');

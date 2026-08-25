@@ -1,0 +1,44 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "OH",
+  "name": "Ohio",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "Flat 2.75%, applying only above 26,050."
+  },
+  "taxStructure": "flat",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 0,
+      "personalExemption": 2400,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "0%",
+          "rate": 0.0,
+          "from": 0,
+          "to": 26050
+        },
+        {
+          "id": "b1",
+          "name": "2.75%",
+          "rate": 0.0275,
+          "from": 26050,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

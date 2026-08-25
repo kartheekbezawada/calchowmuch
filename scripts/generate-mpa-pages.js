@@ -372,9 +372,9 @@ const CALCULATOR_OVERRIDES = {
   // added to this cluster is no longer accurate — it now does both. Must stay byte-identical to
   // buildSalaryMetadata() in the page's module.js, which replaces this at runtime.
   'salary-calculator': {
-    title: 'Salary Calculator | UK Take-Home Pay and Gross Pay Converter',
+    title: 'Salary Calculator | UK and US Take-Home Pay Calculator',
     description:
-      'Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.',
+      'Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
     h1: 'Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',

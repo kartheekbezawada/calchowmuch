@@ -1,0 +1,93 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "NY",
+  "name": "New York",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "9 graduated bands, top rate 10.9%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 8000,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "3.9%",
+          "rate": 0.039,
+          "from": 0,
+          "to": 8500
+        },
+        {
+          "id": "b1",
+          "name": "4.4%",
+          "rate": 0.044,
+          "from": 8500,
+          "to": 11700
+        },
+        {
+          "id": "b2",
+          "name": "5.15%",
+          "rate": 0.0515,
+          "from": 11700,
+          "to": 13900
+        },
+        {
+          "id": "b3",
+          "name": "5.4%",
+          "rate": 0.054,
+          "from": 13900,
+          "to": 80650
+        },
+        {
+          "id": "b4",
+          "name": "5.9%",
+          "rate": 0.059,
+          "from": 80650,
+          "to": 215400
+        },
+        {
+          "id": "b5",
+          "name": "6.85%",
+          "rate": 0.0685,
+          "from": 215400,
+          "to": 1077550
+        },
+        {
+          "id": "b6",
+          "name": "9.65%",
+          "rate": 0.0965,
+          "from": 1077550,
+          "to": 5000000
+        },
+        {
+          "id": "b7",
+          "name": "10.3%",
+          "rate": 0.103,
+          "from": 5000000,
+          "to": 25000000
+        },
+        {
+          "id": "b8",
+          "name": "10.9%",
+          "rate": 0.109,
+          "from": 25000000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

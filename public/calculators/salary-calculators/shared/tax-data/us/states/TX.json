@@ -1,0 +1,23 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "TX",
+  "name": "Texas",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "verified",
+    "verifiedOn": "2026-08-25",
+    "confidence": "verified",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "No state income tax on wages. Written as an explicit file rather than an omission so the absence is deliberate and auditable."
+  },
+  "taxStructure": "none",
+  "filingStatuses": {},
+  "credits": [],
+  "specialRules": []
+}

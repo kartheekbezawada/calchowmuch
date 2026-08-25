@@ -2,6 +2,7 @@
   <div class="sal-mode-bar" role="group" aria-label="Calculator mode" data-button-group="salary-mode">
     <button class="sal-mode-btn is-active" type="button" data-value="gross" aria-pressed="true">Gross Pay</button>
     <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK take-home</button>
+    <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">USA take-home</button>
   </div>
 
   <div class="sal-calc-columns">
@@ -32,6 +33,28 @@
       </div>
     </div>
 
+    <div class="sal-input-row sal-us-only" id="salary-state-row" hidden>
+      <label for="salary-state">Which state do you work in?</label>
+      <div class="sal-typeahead">
+        <input id="salary-state" type="text" autocomplete="off" role="combobox"
+               aria-expanded="false" aria-autocomplete="list" aria-controls="salary-state-list"
+               placeholder="Start typing, e.g. Cali" />
+        <div class="sal-typeahead-list" id="salary-state-list" role="listbox" hidden></div>
+      </div>
+      <p class="sal-field-hint" id="salary-state-hint">No state selected - required for an accurate estimate.</p>
+    </div>
+
+    <div class="sal-input-row sal-us-only" id="salary-filing-row" hidden>
+      <label id="salary-filing-label">Filing status</label>
+      <div class="sal-chip-group" role="group" aria-labelledby="salary-filing-label"
+           data-button-group="salary-filing-status">
+        <button class="sal-chip-button is-active" type="button" data-value="single" aria-pressed="true">Single</button>
+        <button class="sal-chip-button" type="button" data-value="marriedFilingJointly" aria-pressed="false">Married, jointly</button>
+        <button class="sal-chip-button" type="button" data-value="marriedFilingSeparately" aria-pressed="false">Married, separately</button>
+        <button class="sal-chip-button" type="button" data-value="headOfHousehold" aria-pressed="false">Head of household</button>
+      </div>
+    </div>
+
     <div class="sal-input-row sal-uk-only" id="salary-region-row" hidden>
       <label id="salary-region-label">Where do you pay tax?</label>
       <div
@@ -48,11 +71,12 @@
       <p class="sal-field-hint" id="salary-region-hint">Scotland sets its own income tax bands, so the same salary gives a different result.</p>
     </div>
 
-    <div class="sal-optional sal-uk-only" id="salary-optional" hidden>
+    <div class="sal-optional sal-tax-only" id="salary-optional" hidden>
       <p class="sal-calc-kicker">Optional — add only what applies</p>
       <div class="sal-opt-chips">
-        <button class="sal-opt-chip" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
-        <button class="sal-opt-chip" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
+        <button class="sal-opt-chip sal-uk-only" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
+        <button class="sal-opt-chip sal-us-only" type="button" data-opt="pretax" aria-pressed="false" aria-controls="salary-panel-pretax">+ 401(k) / pre-tax</button>
+        <button class="sal-opt-chip sal-uk-only" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
         <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
         <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
       </div>
@@ -73,6 +97,14 @@
           </div>
         </div>
         <p class="sal-field-hint">Salary sacrifice also reduces National Insurance, so it is worth more than a net pay arrangement at the same percentage.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-pretax" hidden>
+        <div class="sal-input-row" style="margin-bottom:0">
+          <label for="salary-pretax">Annual pre-tax contributions (401(k), HSA, FSA)</label>
+          <input id="salary-pretax" type="number" min="0" step="0.01" value="0" />
+        </div>
+        <p class="sal-field-hint">Reduces federal and state taxable income, but <strong>not</strong> FICA - Social Security and Medicare are still charged on your full salary.</p>
       </div>
 
       <div class="sal-opt-panel" id="salary-panel-loan" hidden>
@@ -167,15 +199,22 @@
     <p class="sal-answer-hero" id="salary-annual-pay">60,000.00</p>
     <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,153.85 per week.</p>
 
-    <div class="sal-rate-row sal-uk-only" id="salary-rate-row" hidden>
+    <div class="sal-rate-row sal-tax-only" id="salary-rate-row" hidden>
       <span class="sal-rate-pill">Effective rate <strong id="salary-effective-rate">—</strong></span>
       <span class="sal-rate-pill sal-rate-pill-muted">Marginal rate <strong id="salary-marginal-rate">—</strong></span>
     </div>
 
-    <div class="sal-uk-only" id="salary-split" hidden>
+    <div class="sal-tax-only" id="salary-split" hidden>
       <div class="sal-split-bar" id="salary-split-bar" aria-hidden="true"></div>
       <ul class="sal-split-legend" id="salary-split-legend"></ul>
     </div>
+
+    <p class="sal-local-note sal-us-only" id="salary-local-note" hidden>
+      <span aria-hidden="true">&#9888;</span>
+      <span><strong>Local income taxes are not included.</strong> If you live or work in a city that
+      levies its own income tax - New York City, Philadelphia, Detroit and others - your actual
+      take-home will be lower than this.</span>
+    </p>
 
     <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual pay · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
     <div class="sal-action-row">
@@ -206,7 +245,7 @@
       </div>
     </div>
 
-    <details class="sal-breakdown-details sal-uk-only" id="salary-breakdown-details" hidden>
+    <details class="sal-breakdown-details sal-tax-only" id="salary-breakdown-details" hidden>
       <summary>See how this was calculated</summary>
       <div class="sal-band-list" id="salary-band-list"></div>
     </details>
@@ -224,7 +263,7 @@
   </aside>
   </div>
 
-  <section class="sal-calc-card sal-paysheet-card sal-uk-only" id="salary-paysheet" hidden aria-labelledby="salary-paysheet-title">
+  <section class="sal-calc-card sal-paysheet-card sal-tax-only" id="salary-paysheet" hidden aria-labelledby="salary-paysheet-title">
     <div class="sal-paysheet-head">
       <div>
         <h3 id="salary-paysheet-title">Pay sheet — upcoming paydays</h3>

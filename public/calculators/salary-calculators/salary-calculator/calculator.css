@@ -449,3 +449,71 @@
     flex-direction: column;
   }
 }
+
+/* ---------------------------------------------------------------- state typeahead */
+
+/*
+ * A searchable combobox rather than a 51-item native <select> (design spec §5): "cali" narrows to
+ * California in two keystrokes, where a select forces scrolling past 30 states.
+ */
+#calc-salary-calculator .sal-typeahead {
+  position: relative;
+}
+
+#calc-salary-calculator .sal-typeahead-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  max-height: 248px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid rgba(19, 34, 47, 0.14);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(19, 34, 47, 0.14);
+}
+
+#calc-salary-calculator .sal-typeahead-item {
+  padding: 11px 15px;
+  font-size: 14.5px;
+  color: #2c4150;
+  cursor: pointer;
+}
+
+/* `.is-active` is driven by arrow keys, so keyboard and mouse share one highlight style. */
+#calc-salary-calculator .sal-typeahead-item:hover,
+#calc-salary-calculator .sal-typeahead-item.is-active {
+  background: #eaf7ee;
+  color: #14663a;
+}
+
+#calc-salary-calculator .sal-typeahead-empty {
+  padding: 11px 15px;
+  font-size: 14px;
+  color: #5a7180;
+}
+
+/* ---------------------------------------------------------------- local-tax notice */
+
+/*
+ * B2 decision: V1 ships without local/municipal income tax. This has to sit next to the number,
+ * not in footer text — an NYC or Philadelphia user reads the hero figure and leaves.
+ */
+#calc-salary-calculator .sal-local-note {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  margin: 14px 0 0;
+  padding: 12px 15px;
+  border: 1px solid #fde68a;
+  border-radius: 14px;
+  background: #fffbeb;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #7c5e10;
+}
+
+#calc-salary-calculator .sal-local-note strong {
+  color: #713f12;
+}

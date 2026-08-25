@@ -1,0 +1,37 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "NC",
+  "name": "North Carolina",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "Flat 3.99%."
+  },
+  "taxStructure": "flat",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 12750,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "3.99%",
+          "rate": 0.0399,
+          "from": 0,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

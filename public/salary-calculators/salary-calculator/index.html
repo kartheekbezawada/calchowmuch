@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Salary Calculator | UK Take-Home Pay and Gross Pay Converter</title>
-    <meta name="description" content="Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual." />
+    <title>Salary Calculator | UK and US Take-Home Pay Calculator</title>
+    <meta name="description" content="Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/salary-calculator/" />
-    <meta property="og:title" content="Salary Calculator | UK Take-Home Pay and Gross Pay Converter" />
-    <meta property="og:description" content="Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual." />
+    <meta property="og:title" content="Salary Calculator | UK and US Take-Home Pay Calculator" />
+    <meta property="og:description" content="Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/salary-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Salary Calculator | UK Take-Home Pay and Gross Pay Converter" />
-    <meta name="twitter:description" content="Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual." />
+    <meta name="twitter:title" content="Salary Calculator | UK and US Take-Home Pay Calculator" />
+    <meta name="twitter:description" content="Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -2071,9 +2071,77 @@
           flex-direction: column;
         }
       }
+
+      /* ---------------------------------------------------------------- state typeahead */
+
+      /*
+       * A searchable combobox rather than a 51-item native <select> (design spec §5): "cali" narrows to
+       * California in two keystrokes, where a select forces scrolling past 30 states.
+       */
+      #calc-salary-calculator .sal-typeahead {
+        position: relative;
+      }
+
+      #calc-salary-calculator .sal-typeahead-list {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        z-index: 30;
+        max-height: 248px;
+        overflow-y: auto;
+        background: #ffffff;
+        border: 1px solid rgba(19, 34, 47, 0.14);
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(19, 34, 47, 0.14);
+      }
+
+      #calc-salary-calculator .sal-typeahead-item {
+        padding: 11px 15px;
+        font-size: 14.5px;
+        color: #2c4150;
+        cursor: pointer;
+      }
+
+      /* `.is-active` is driven by arrow keys, so keyboard and mouse share one highlight style. */
+      #calc-salary-calculator .sal-typeahead-item:hover,
+      #calc-salary-calculator .sal-typeahead-item.is-active {
+        background: #eaf7ee;
+        color: #14663a;
+      }
+
+      #calc-salary-calculator .sal-typeahead-empty {
+        padding: 11px 15px;
+        font-size: 14px;
+        color: #5a7180;
+      }
+
+      /* ---------------------------------------------------------------- local-tax notice */
+
+      /*
+       * B2 decision: V1 ships without local/municipal income tax. This has to sit next to the number,
+       * not in footer text — an NYC or Philadelphia user reads the hero figure and leaves.
+       */
+      #calc-salary-calculator .sal-local-note {
+        display: flex;
+        gap: 9px;
+        align-items: flex-start;
+        margin: 14px 0 0;
+        padding: 12px 15px;
+        border: 1px solid #fde68a;
+        border-radius: 14px;
+        background: #fffbeb;
+        font-size: 13px;
+        line-height: 1.55;
+        color: #7c5e10;
+      }
+
+      #calc-salary-calculator .sal-local-note strong {
+        color: #713f12;
+      }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator | UK Take-Home Pay and Gross Pay Converter","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"Does this calculator show take-home pay or gross pay?","acceptedAnswer":{"@type":"Answer","text":"Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan."}},{"@type":"Question","name":"How is UK take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold."}},{"@type":"Question","name":"Why does Scotland give a different result?","acceptedAnswer":{"@type":"Answer","text":"Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional."}},{"@type":"Question","name":"Does a pension contribution reduce my tax?","acceptedAnswer":{"@type":"Answer","text":"It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf."}},{"@type":"Question","name":"What is the difference between the effective rate and the marginal rate?","acceptedAnswer":{"@type":"Answer","text":"The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works."}},{"@type":"Question","name":"How is a bonus taxed?","acceptedAnswer":{"@type":"Answer","text":"The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band."}},{"@type":"Question","name":"Why is 4-weekly pay not the same as monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it."}},{"@type":"Question","name":"Can I see the dates I will actually be paid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on."}},{"@type":"Question","name":"Why does my payslip differ from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run."}},{"@type":"Question","name":"Are my salary details stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser - no data is stored."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator | UK and US Take-Home Pay Calculator","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"Does this calculator show take-home pay or gross pay?","acceptedAnswer":{"@type":"Answer","text":"Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan."}},{"@type":"Question","name":"How is UK take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold."}},{"@type":"Question","name":"Why does Scotland give a different result?","acceptedAnswer":{"@type":"Answer","text":"Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional."}},{"@type":"Question","name":"Does a pension contribution reduce my tax?","acceptedAnswer":{"@type":"Answer","text":"It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf."}},{"@type":"Question","name":"What is the difference between the effective rate and the marginal rate?","acceptedAnswer":{"@type":"Answer","text":"The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works."}},{"@type":"Question","name":"How is a bonus taxed?","acceptedAnswer":{"@type":"Answer","text":"The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band."}},{"@type":"Question","name":"Why is 4-weekly pay not the same as monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it."}},{"@type":"Question","name":"Can I see the dates I will actually be paid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on."}},{"@type":"Question","name":"Why does my payslip differ from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run."}},{"@type":"Question","name":"Are my salary details stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser - no data is stored."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -2097,13 +2165,14 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Salary Calculator</h1>
-    <p class="sal-cluster-page-intro">Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.</p>
+    <p class="sal-cluster-page-intro">Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-salary-calculator" class="sal-calc-shell">
   <div class="sal-mode-bar" role="group" aria-label="Calculator mode" data-button-group="salary-mode">
     <button class="sal-mode-btn is-active" type="button" data-value="gross" aria-pressed="true">Gross Pay</button>
     <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK take-home</button>
+    <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">USA take-home</button>
   </div>
 
   <div class="sal-calc-columns">
@@ -2134,6 +2203,28 @@
       </div>
     </div>
 
+    <div class="sal-input-row sal-us-only" id="salary-state-row" hidden>
+      <label for="salary-state">Which state do you work in?</label>
+      <div class="sal-typeahead">
+        <input id="salary-state" type="text" autocomplete="off" role="combobox"
+               aria-expanded="false" aria-autocomplete="list" aria-controls="salary-state-list"
+               placeholder="Start typing, e.g. Cali" />
+        <div class="sal-typeahead-list" id="salary-state-list" role="listbox" hidden></div>
+      </div>
+      <p class="sal-field-hint" id="salary-state-hint">No state selected - required for an accurate estimate.</p>
+    </div>
+
+    <div class="sal-input-row sal-us-only" id="salary-filing-row" hidden>
+      <label id="salary-filing-label">Filing status</label>
+      <div class="sal-chip-group" role="group" aria-labelledby="salary-filing-label"
+           data-button-group="salary-filing-status">
+        <button class="sal-chip-button is-active" type="button" data-value="single" aria-pressed="true">Single</button>
+        <button class="sal-chip-button" type="button" data-value="marriedFilingJointly" aria-pressed="false">Married, jointly</button>
+        <button class="sal-chip-button" type="button" data-value="marriedFilingSeparately" aria-pressed="false">Married, separately</button>
+        <button class="sal-chip-button" type="button" data-value="headOfHousehold" aria-pressed="false">Head of household</button>
+      </div>
+    </div>
+
     <div class="sal-input-row sal-uk-only" id="salary-region-row" hidden>
       <label id="salary-region-label">Where do you pay tax?</label>
       <div
@@ -2150,11 +2241,12 @@
       <p class="sal-field-hint" id="salary-region-hint">Scotland sets its own income tax bands, so the same salary gives a different result.</p>
     </div>
 
-    <div class="sal-optional sal-uk-only" id="salary-optional" hidden>
+    <div class="sal-optional sal-tax-only" id="salary-optional" hidden>
       <p class="sal-calc-kicker">Optional — add only what applies</p>
       <div class="sal-opt-chips">
-        <button class="sal-opt-chip" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
-        <button class="sal-opt-chip" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
+        <button class="sal-opt-chip sal-uk-only" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
+        <button class="sal-opt-chip sal-us-only" type="button" data-opt="pretax" aria-pressed="false" aria-controls="salary-panel-pretax">+ 401(k) / pre-tax</button>
+        <button class="sal-opt-chip sal-uk-only" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
         <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
         <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
       </div>
@@ -2175,6 +2267,14 @@
           </div>
         </div>
         <p class="sal-field-hint">Salary sacrifice also reduces National Insurance, so it is worth more than a net pay arrangement at the same percentage.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-pretax" hidden>
+        <div class="sal-input-row" style="margin-bottom:0">
+          <label for="salary-pretax">Annual pre-tax contributions (401(k), HSA, FSA)</label>
+          <input id="salary-pretax" type="number" min="0" step="0.01" value="0" />
+        </div>
+        <p class="sal-field-hint">Reduces federal and state taxable income, but <strong>not</strong> FICA - Social Security and Medicare are still charged on your full salary.</p>
       </div>
 
       <div class="sal-opt-panel" id="salary-panel-loan" hidden>
@@ -2269,15 +2369,22 @@
     <p class="sal-answer-hero" id="salary-annual-pay">60,000.00</p>
     <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,153.85 per week.</p>
 
-    <div class="sal-rate-row sal-uk-only" id="salary-rate-row" hidden>
+    <div class="sal-rate-row sal-tax-only" id="salary-rate-row" hidden>
       <span class="sal-rate-pill">Effective rate <strong id="salary-effective-rate">—</strong></span>
       <span class="sal-rate-pill sal-rate-pill-muted">Marginal rate <strong id="salary-marginal-rate">—</strong></span>
     </div>
 
-    <div class="sal-uk-only" id="salary-split" hidden>
+    <div class="sal-tax-only" id="salary-split" hidden>
       <div class="sal-split-bar" id="salary-split-bar" aria-hidden="true"></div>
       <ul class="sal-split-legend" id="salary-split-legend"></ul>
     </div>
+
+    <p class="sal-local-note sal-us-only" id="salary-local-note" hidden>
+      <span aria-hidden="true">&#9888;</span>
+      <span><strong>Local income taxes are not included.</strong> If you live or work in a city that
+      levies its own income tax - New York City, Philadelphia, Detroit and others - your actual
+      take-home will be lower than this.</span>
+    </p>
 
     <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual pay · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
     <div class="sal-action-row">
@@ -2308,7 +2415,7 @@
       </div>
     </div>
 
-    <details class="sal-breakdown-details sal-uk-only" id="salary-breakdown-details" hidden>
+    <details class="sal-breakdown-details sal-tax-only" id="salary-breakdown-details" hidden>
       <summary>See how this was calculated</summary>
       <div class="sal-band-list" id="salary-band-list"></div>
     </details>
@@ -2326,7 +2433,7 @@
   </aside>
   </div>
 
-  <section class="sal-calc-card sal-paysheet-card sal-uk-only" id="salary-paysheet" hidden aria-labelledby="salary-paysheet-title">
+  <section class="sal-calc-card sal-paysheet-card sal-tax-only" id="salary-paysheet" hidden aria-labelledby="salary-paysheet-title">
     <div class="sal-paysheet-head">
       <div>
         <h3 id="salary-paysheet-title">Pay sheet — upcoming paydays</h3>

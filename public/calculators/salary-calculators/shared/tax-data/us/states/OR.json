@@ -1,0 +1,58 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "OR",
+  "name": "Oregon",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "4 graduated bands, top rate 9.9%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 2910,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "4.75%",
+          "rate": 0.0475,
+          "from": 0,
+          "to": 4550
+        },
+        {
+          "id": "b1",
+          "name": "6.75%",
+          "rate": 0.0675,
+          "from": 4550,
+          "to": 11400
+        },
+        {
+          "id": "b2",
+          "name": "8.75%",
+          "rate": 0.0875,
+          "from": 11400,
+          "to": 125000
+        },
+        {
+          "id": "b3",
+          "name": "9.9%",
+          "rate": 0.099,
+          "from": 125000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

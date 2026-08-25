@@ -1,0 +1,44 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "KS",
+  "name": "Kansas",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "2 graduated bands, top rate 5.58%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 3605,
+      "personalExemption": 9160,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "5.2%",
+          "rate": 0.052,
+          "from": 0,
+          "to": 23000
+        },
+        {
+          "id": "b1",
+          "name": "5.58%",
+          "rate": 0.0558,
+          "from": 23000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

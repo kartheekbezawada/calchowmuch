@@ -1,0 +1,58 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "WI",
+  "name": "Wisconsin",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "4 graduated bands, top rate 7.65%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 13960,
+      "personalExemption": 700,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "3.5%",
+          "rate": 0.035,
+          "from": 0,
+          "to": 15110
+        },
+        {
+          "id": "b1",
+          "name": "4.4%",
+          "rate": 0.044,
+          "from": 15110,
+          "to": 51950
+        },
+        {
+          "id": "b2",
+          "name": "5.3%",
+          "rate": 0.053,
+          "from": 51950,
+          "to": 332720
+        },
+        {
+          "id": "b3",
+          "name": "7.65%",
+          "rate": 0.0765,
+          "from": 332720,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

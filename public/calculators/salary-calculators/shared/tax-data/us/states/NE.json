@@ -1,0 +1,51 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "NE",
+  "name": "Nebraska",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "3 graduated bands, top rate 4.55%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 8850,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "2.46%",
+          "rate": 0.0246,
+          "from": 0,
+          "to": 4130
+        },
+        {
+          "id": "b1",
+          "name": "3.51%",
+          "rate": 0.0351,
+          "from": 4130,
+          "to": 24760
+        },
+        {
+          "id": "b2",
+          "name": "4.55%",
+          "rate": 0.0455,
+          "from": 24760,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

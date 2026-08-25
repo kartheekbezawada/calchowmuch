@@ -1,0 +1,44 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "MT",
+  "name": "Montana",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "2 graduated bands, top rate 5.65%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 16100,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "4.7%",
+          "rate": 0.047,
+          "from": 0,
+          "to": 47500
+        },
+        {
+          "id": "b1",
+          "name": "5.65%",
+          "rate": 0.0565,
+          "from": 47500,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

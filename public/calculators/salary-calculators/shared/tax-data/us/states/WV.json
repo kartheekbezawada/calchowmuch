@@ -1,0 +1,65 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "WV",
+  "name": "West Virginia",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "5 graduated bands, top rate 4.82%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 0,
+      "personalExemption": 2000,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "2.22%",
+          "rate": 0.0222,
+          "from": 0,
+          "to": 10000
+        },
+        {
+          "id": "b1",
+          "name": "2.96%",
+          "rate": 0.0296,
+          "from": 10000,
+          "to": 25000
+        },
+        {
+          "id": "b2",
+          "name": "3.33%",
+          "rate": 0.0333,
+          "from": 25000,
+          "to": 40000
+        },
+        {
+          "id": "b3",
+          "name": "4.44%",
+          "rate": 0.0444,
+          "from": 40000,
+          "to": 60000
+        },
+        {
+          "id": "b4",
+          "name": "4.82%",
+          "rate": 0.0482,
+          "from": 60000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

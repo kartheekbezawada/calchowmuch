@@ -1,0 +1,100 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "MD",
+  "name": "Maryland",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "10 graduated bands, top rate 6.5%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 3350,
+      "personalExemption": 3200,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "2%",
+          "rate": 0.02,
+          "from": 0,
+          "to": 1000
+        },
+        {
+          "id": "b1",
+          "name": "3%",
+          "rate": 0.03,
+          "from": 1000,
+          "to": 2000
+        },
+        {
+          "id": "b2",
+          "name": "4%",
+          "rate": 0.04,
+          "from": 2000,
+          "to": 3000
+        },
+        {
+          "id": "b3",
+          "name": "4.75%",
+          "rate": 0.0475,
+          "from": 3000,
+          "to": 100000
+        },
+        {
+          "id": "b4",
+          "name": "5%",
+          "rate": 0.05,
+          "from": 100000,
+          "to": 125000
+        },
+        {
+          "id": "b5",
+          "name": "5.25%",
+          "rate": 0.0525,
+          "from": 125000,
+          "to": 150000
+        },
+        {
+          "id": "b6",
+          "name": "5.5%",
+          "rate": 0.055,
+          "from": 150000,
+          "to": 250000
+        },
+        {
+          "id": "b7",
+          "name": "5.75%",
+          "rate": 0.0575,
+          "from": 250000,
+          "to": 500000
+        },
+        {
+          "id": "b8",
+          "name": "6.25%",
+          "rate": 0.0625,
+          "from": 500000,
+          "to": 1000000
+        },
+        {
+          "id": "b9",
+          "name": "6.5%",
+          "rate": 0.065,
+          "from": 1000000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

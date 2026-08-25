@@ -1,0 +1,51 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "SC",
+  "name": "South Carolina",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "3 graduated bands, top rate 6%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 8350,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "0%",
+          "rate": 0,
+          "from": 0,
+          "to": 3640
+        },
+        {
+          "id": "b1",
+          "name": "3%",
+          "rate": 0.03,
+          "from": 3640,
+          "to": 18230
+        },
+        {
+          "id": "b2",
+          "name": "6%",
+          "rate": 0.06,
+          "from": 18230,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

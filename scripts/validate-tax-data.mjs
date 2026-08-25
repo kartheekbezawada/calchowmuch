@@ -42,6 +42,7 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 const errors = [];
 const warnings = [];
+const aggregated = [];
 
 function fail(file, message) {
   errors.push(`${file}: ${message}`);
@@ -93,8 +94,23 @@ function validateMeta(rel, data, strict) {
     fail(rel, `\`lastVerified\` must be an ISO date, got ${JSON.stringify(data.lastVerified)}`);
   }
 
-  if (strict && data.verification && data.verification.status !== 'verified') {
-    fail(rel, `\`verification.status\` is "${data.verification.status}", expected "verified". Blocked from shipping.`);
+  if (strict && data.verification) {
+    const status = data.verification.status;
+    // `aggregated-source` is a real, narrower tier — figures taken from a reputable aggregator
+    // rather than confirmed against each issuing authority. It is accepted in strict mode ONLY
+    // for US state and payroll files, where per-jurisdiction confirmation across 51 authorities
+    // is impractical, and only when the file records what that means. Everything else must be
+    // `verified`, so the UK tables and the IRS-sourced federal/FICA files cannot quietly slip
+    // down a tier.
+    const aggregatedAllowed = /^us\/(states\/|payroll-taxes)/.test(rel);
+    if (status === 'aggregated-source' && aggregatedAllowed) {
+      if (!data.verification.note) {
+        fail(rel, '`aggregated-source` requires a `verification.note` saying what was and was not confirmed.');
+      }
+      aggregated.push(rel);
+    } else if (status !== 'verified') {
+      fail(rel, `\`verification.status\` is "${status}", expected "verified"${aggregatedAllowed ? ' or "aggregated-source"' : ''}. Blocked from shipping.`);
+    }
   }
 }
 
@@ -241,6 +257,84 @@ function validateDataset(rel, data, strict) {
       break;
     }
 
+    case 'federal-income-tax': {
+      const statuses = data.filingStatuses || {};
+      const required = ['single', 'marriedFilingJointly', 'marriedFilingSeparately', 'headOfHousehold'];
+      for (const key of required) {
+        if (!statuses[key]) {
+          fail(rel, `missing filing status "${key}" — all four are required (spec §8.1)`);
+          continue;
+        }
+        if (typeof statuses[key].standardDeduction !== 'number') {
+          fail(rel, `filingStatuses.${key}: \`standardDeduction\` must be a number`);
+        }
+        validateBands(rel, `filingStatuses.${key}.bands`, statuses[key].bands);
+      }
+      break;
+    }
+
+    case 'fica': {
+      for (const key of ['socialSecurity', 'medicare', 'additionalMedicare']) {
+        if (!data[key]) fail(rel, `\`${key}\` is required`);
+      }
+      const ss = data.socialSecurity || {};
+      if (ss.wageBase !== null && (typeof ss.wageBase !== 'number' || ss.wageBase <= 0)) {
+        fail(rel, 'socialSecurity.wageBase must be a positive number (Social Security is capped)');
+      }
+      if (data.medicare && data.medicare.wageBase !== null) {
+        fail(rel, 'medicare.wageBase must be null — Medicare has no wage cap');
+      }
+      for (const [key, node] of Object.entries(data)) {
+        if (node && typeof node === 'object' && typeof node.rate === 'number') {
+          if (node.rate < 0 || node.rate > 1) {
+            fail(rel, `${key}.rate must be a fraction between 0 and 1, got ${node.rate}`);
+          }
+        }
+      }
+      break;
+    }
+
+    case 'us-state-income-tax': {
+      const structure = data.taxStructure;
+      if (!['none', 'flat', 'graduated'].includes(structure)) {
+        fail(rel, `\`taxStructure\` must be none|flat|graduated, got "${structure}"`);
+        break;
+      }
+      if (structure === 'none') {
+        if (Object.keys(data.filingStatuses || {}).length > 0) {
+          fail(rel, 'taxStructure "none" must not define filing statuses');
+        }
+        break;
+      }
+      const statuses = data.filingStatuses || {};
+      if (!statuses.single) {
+        fail(rel, 'a `single` filing status is required for flat and graduated states');
+        break;
+      }
+      for (const [key, status] of Object.entries(statuses)) {
+        validateBands(rel, `filingStatuses.${key}.bands`, status.bands);
+      }
+      break;
+    }
+
+    case 'payroll-taxes': {
+      for (const [code, entry] of Object.entries(data.states || {})) {
+        if (!Array.isArray(entry.contributions) || entry.contributions.length === 0) {
+          fail(rel, `states.${code}: \`contributions\` must be a non-empty array`);
+          continue;
+        }
+        for (const c of entry.contributions) {
+          if (typeof c.rate !== 'number' || c.rate < 0 || c.rate > 1) {
+            fail(rel, `states.${code}.${c.id}: rate must be a fraction between 0 and 1, got ${c.rate}`);
+          }
+          if (c.wageBase !== null && (typeof c.wageBase !== 'number' || c.wageBase <= 0)) {
+            fail(rel, `states.${code}.${c.id}: wageBase must be null or a positive number`);
+          }
+        }
+      }
+      break;
+    }
+
     default:
       warn(rel, `unrecognised \`dataset\` value "${data.dataset}" — no structural checks applied`);
   }
@@ -281,6 +375,14 @@ function main() {
     errors.forEach((e) => console.error(`  x ${e}`));
     console.error('');
     process.exit(1);
+  }
+
+  if (aggregated.length) {
+    console.log(`NOTE: ${aggregated.length} file(s) ship at the 'aggregated-source' tier.`);
+    console.log('      Figures come from a reputable aggregator, NOT from confirmation against');
+    console.log('      each issuing authority. The UI must disclose this.');
+    console.log("      See each file's verification.note for what was and was not checked.");
+    console.log('');
   }
 
   console.log('All structural checks passed.');
