@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Commission Calculator | Salary Plus Commission &amp; Base Pay</title>
-    <meta name="description" content="Calculate commission earnings from sales, rate, or a known payout amount, then add base pay for a salary plus commission total." />
+    <title>Commission Earnings Calculator | Sales Commission Pay &amp; Base Pay</title>
+    <meta name="description" content="Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/commission-calculator/" />
-    <meta property="og:title" content="Commission Calculator | Salary Plus Commission &amp; Base Pay" />
-    <meta property="og:description" content="Calculate commission earnings from sales, rate, or a known payout amount, then add base pay for a salary plus commission total." />
+    <meta property="og:title" content="Commission Earnings Calculator | Sales Commission Pay &amp; Base Pay" />
+    <meta property="og:description" content="Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/commission-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Commission Calculator | Salary Plus Commission &amp; Base Pay" />
-    <meta name="twitter:description" content="Calculate commission earnings from sales, rate, or a known payout amount, then add base pay for a salary plus commission total." />
+    <meta name="twitter:title" content="Commission Earnings Calculator | Sales Commission Pay &amp; Base Pay" />
+    <meta name="twitter:description" content="Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -21,7 +21,7 @@
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
          See known_issues.md KI-007 / KI-010. */
-
+      
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -37,41 +37,33 @@
         --font-semibold: 600;
         --font-medium: 500;
         --font-normal: 400;
-        --border-color: rgba(19, 34, 47, 0.12);
-        --accent: #166534;
-        --header-text: #13222f;
-        --muted-text: #5d6f67;
-        --page-bg: #f6fbf7;
-        --panel-bg: #ffffff;
-        --panel-shadow: 0 2px 8px rgba(19, 34, 47, 0.06);
-        --pill-bg: #f0f4f1;
         --header-height: 80px;
         --nav-height: 64px;
         --footer-height: 72px;
       }
-
+      
       * {
         box-sizing: border-box;
         scrollbar-width: thin;
         scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
       }
-
+      
       body {
         margin: 0;
         color: var(--header-text);
         background-color: var(--page-bg);
         background-image: none;
       }
-
+      
       a {
         color: inherit;
         text-decoration: none;
       }
-
+      
       button {
         font: inherit;
       }
-
+      
       .sr-only {
         position: absolute;
         width: 1px;
@@ -83,24 +75,24 @@
         white-space: nowrap;
         border: 0;
       }
-
+      
       /* Scrollbar styling - always visible with subtle colors */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
       }
-
+      
       ::-webkit-scrollbar-track {
         background: var(--scrollbar-track, #f1f5f9);
         border-radius: 4px;
       }
-
+      
       ::-webkit-scrollbar-thumb {
         background: var(--scrollbar-thumb, #94a3b8);
         border-radius: 4px;
         border: 2px solid var(--scrollbar-track, #f1f5f9);
       }
-
+      
       ::-webkit-scrollbar-thumb:hover {
         background: var(--scrollbar-thumb-hover, #64748b);
       }
@@ -112,7 +104,7 @@
         --calculator-button-padding: 10px 12px;
         --calculator-button-radius: 10px;
       }
-
+      
       .calculator-page {
         max-width: 1120px;
         margin: 0 auto;
@@ -121,11 +113,11 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 24px;
       }
-
+      
       .is-hidden {
         display: none;
       }
-
+      
       .card {
         background: var(--panel-bg);
         border-radius: 16px;
@@ -133,24 +125,24 @@
         box-shadow: var(--panel-shadow);
         border: 1px solid var(--border-color);
       }
-
+      
       .card h1,
       .card h2 {
         margin-top: 0;
       }
-
+      
       .calculator-ui {
         display: grid;
         gap: 18px;
       }
-
+      
       .calculator-ui label {
         font-size: 14px;
         color: var(--muted-text);
         display: block;
         margin-bottom: 6px;
       }
-
+      
       .calculator-ui input[type='number'],
       .calculator-ui input[type='text'],
       .calculator-ui input[type='email'],
@@ -172,59 +164,59 @@
         font-family: inherit;
         background: var(--panel-bg);
       }
-
+      
       .calculator-ui textarea {
         resize: vertical;
       }
-
+      
       .calculator-ui .helper {
         color: var(--muted-text);
         margin: 0;
         font-size: 14px;
       }
-
+      
       .back-link {
         display: inline-flex;
         margin-bottom: 16px;
         color: var(--accent);
       }
-
+      
       .calculator-ui .input-stack {
         display: grid;
         gap: 16px;
       }
-
+      
       .calculator-ui .input-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 16px;
       }
-
+      
       .calculator-ui .calculator-toolbar {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
         align-items: center;
       }
-
+      
       .calculator-ui .toolbar-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       .calculator-ui .button-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
-
+      
       .calculator-ui .button-group {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
       }
-
+      
       .calculator-ui .mode-switch-control {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -236,7 +228,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       .calculator-ui .mode-switch-label {
         text-align: center;
         font-size: 13px;
@@ -248,12 +240,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       .calculator-ui .mode-switch-toggle {
         position: relative;
         display: inline-flex;
@@ -261,13 +253,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       .calculator-ui .mode-switch-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       .calculator-ui .mode-switch-track {
         width: 64px;
         height: 34px;
@@ -279,7 +271,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-thumb {
         width: 26px;
         height: 26px;
@@ -289,20 +281,20 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
         transform: translateX(30px);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition .composition-mode-switch {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -314,7 +306,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       #calc-percentage-composition .composition-mode-label {
         text-align: center;
         font-size: 14px;
@@ -325,12 +317,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-mode-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       #calc-percentage-composition .composition-toggle {
         position: relative;
         display: inline-flex;
@@ -338,13 +330,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       #calc-percentage-composition .composition-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       #calc-percentage-composition .composition-toggle-track {
         width: 64px;
         height: 34px;
@@ -356,7 +348,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle-thumb {
         width: 26px;
         height: 26px;
@@ -366,11 +358,11 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       #calc-percentage-composition
         .composition-toggle
         input:checked
@@ -378,17 +370,17 @@
         .composition-toggle-thumb {
         transform: translateX(30px);
       }
-
+      
       #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition #composition-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-percentage-composition .composition-item-row {
         display: grid;
         grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
@@ -400,21 +392,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-percentage-composition .composition-row-field {
         min-width: 0;
       }
-
+      
       #calc-percentage-composition .composition-item-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-commission-calculator #comm-tier-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-commission-calculator .commission-tier-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
@@ -426,21 +418,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-commission-calculator .commission-tier-field {
         min-width: 0;
       }
-
+      
       #calc-commission-calculator .commission-tier-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-markup-calculator #markup-basket-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row {
         display: grid;
         grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
@@ -452,88 +444,88 @@
         border-radius: 12px;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
       }
-
+      
       #calc-markup-calculator .markup-row-field {
         min-width: 0;
       }
-
+      
       #calc-markup-calculator .markup-row-name-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-qty-field {
         grid-column: 2;
       }
-
+      
       #calc-markup-calculator .markup-remove-row {
         grid-column: 3;
         min-width: 104px;
       }
-
+      
       #calc-markup-calculator .markup-row-cost-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-price-wrap,
       #calc-markup-calculator .markup-row-markup-wrap {
         grid-column: 2 / 4;
       }
-
+      
       #calc-markup-calculator .markup-row-field > label {
         font-size: 13px;
         font-weight: 600;
         margin-bottom: 4px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       @media (max-width: 720px) {
         .calculator-ui .mode-switch-control {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         .calculator-ui .mode-switch-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-mode-switch {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         #calc-percentage-composition .composition-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-item-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-percentage-composition .composition-item-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-commission-calculator .commission-tier-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-commission-calculator .commission-tier-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-markup-calculator .markup-basket-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-markup-calculator .markup-basket-row .calculator-button {
           width: 100%;
         }
       }
-
+      
       .calculator-button {
         padding: var(--calculator-button-padding);
         border-radius: var(--calculator-button-radius);
@@ -549,56 +541,56 @@
         line-height: 1.2;
         white-space: nowrap;
       }
-
+      
       .calculator-button.primary {
         background: var(--accent);
         color: #fff;
       }
-
+      
       .calculator-button.secondary {
         background: #f8f9fa;
         color: #495057;
       }
-
+      
       .calculator-button.is-active,
       .calculator-button[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button.secondary.is-active,
       .calculator-button.secondary[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button:disabled {
         opacity: 0.6;
         cursor: not-allowed;
       }
-
+      
       .full-width {
         width: 100%;
       }
-
+      
       .calculator-ui .result {
         margin: 0;
         font-size: 18px;
         font-weight: 600;
         min-height: 60px;
       }
-
+      
       .calculator-ui .result-detail {
         font-size: 14px;
         color: var(--muted-text);
         margin-top: 8px;
         font-weight: 400;
       }
-
+      
       .calculator-ui .result-detail p {
         margin: 0.25rem 0;
       }
-
+      
       .calculator-ui .result-scroll {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -612,19 +604,19 @@
         flex-direction: column;
         gap: 16px;
       }
-
+      
       .calculator-ui .result-section {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-
+      
       .calculator-ui .result-section h4 {
         margin: 0;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .table-scroll {
         overflow-x: scroll;
         overflow-y: scroll;
@@ -632,16 +624,15 @@
         max-height: 240px;
         scrollbar-gutter: stable;
       }
-
+      
       .calculator-table {
         width: 100%;
         border-collapse: collapse;
         border: 1px solid var(--border-color);
         font-size: 15px;
         min-width: 400px;
-        margin-bottom: 4px;
       }
-
+      
       .calculator-table th,
       .calculator-table td {
         padding: 8px 12px;
@@ -649,12 +640,12 @@
         text-align: right;
         white-space: nowrap;
       }
-
+      
       .calculator-table th:first-child,
       .calculator-table td:first-child {
         text-align: left;
       }
-
+      
       .calculator-table thead th {
         background: var(--pill-bg);
         color: var(--muted-text);
@@ -663,12 +654,12 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
+      
       .calculator-table tfoot td {
         background: var(--pill-bg);
         font-weight: 600;
       }
-
+      
       .graph-panel {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -680,7 +671,7 @@
         gap: 8px;
         overflow: hidden;
       }
-
+      
       .graph-header {
         display: flex;
         align-items: center;
@@ -689,23 +680,23 @@
         color: var(--muted-text);
         flex-shrink: 0;
       }
-
+      
       .graph-title {
         color: var(--header-text);
         font-weight: 600;
       }
-
+      
       .explanation-pane h2,
       .explanation-pane h3 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 6px;
         position: relative;
       }
-
+      
       .explanation-pane h2 {
         margin-top: 0;
       }
-
+      
       .explanation-pane h2::after {
         content: '';
         position: absolute;
@@ -715,33 +706,33 @@
         width: 48px;
         background: var(--accent);
       }
-
+      
       .faq-box {
         border: 1px solid var(--border-color);
         padding: 16px;
         border-radius: 8px;
       }
-
+      
       .explanation-pane h3 + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box p {
         margin: 0;
       }
-
+      
       .faq-box p + p {
         margin-top: 6px;
       }
-
+      
       .faq-box .faq-answer {
         margin-left: 12px;
       }
-
+      
       .graph-legend {
         display: flex;
         gap: 12px;
@@ -749,39 +740,39 @@
         font-size: 12px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-item {
         display: flex;
         align-items: center;
         gap: 6px;
       }
-
+      
       .graph-legend-color {
         width: 12px;
         height: 12px;
         border-radius: 3px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-color.principal {
         background: var(--accent);
       }
-
+      
       .graph-legend-color.interest {
         background: #f59e0b;
       }
-
+      
       .graph-legend-color.balance {
         background: #10b981;
       }
-
+      
       .graph-container {
         display: flex;
         flex: 1;
         min-height: 0;
         gap: 8px;
       }
-
+      
       .graph-y-axis {
         display: flex;
         flex-direction: column;
@@ -793,7 +784,7 @@
         flex-shrink: 0;
         min-width: 50px;
       }
-
+      
       .graph-y-label {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
@@ -802,7 +793,7 @@
         text-align: center;
         flex-shrink: 0;
       }
-
+      
       .graph-main {
         flex: 1;
         display: flex;
@@ -810,7 +801,7 @@
         min-width: 0;
         overflow: hidden;
       }
-
+      
       .graph-bars-wrapper {
         flex: 1;
         overflow-x: auto;
@@ -818,7 +809,7 @@
         min-height: 0;
         scrollbar-gutter: stable;
       }
-
+      
       .graph-bars {
         display: flex;
         align-items: flex-end;
@@ -828,33 +819,33 @@
         width: max-content;
         padding-bottom: 4px;
       }
-
+      
       .graph-line {
         width: 100%;
         height: 100%;
         display: block;
       }
-
+      
       .graph-line polyline {
         fill: none;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-
+      
       .graph-line .line-primary {
         stroke: var(--accent);
       }
-
+      
       .graph-line .line-secondary {
         stroke: #94a3b8;
         stroke-dasharray: 6 4;
       }
-
+      
       .graph-legend-color.secondary {
         background: #94a3b8;
       }
-
+      
       .graph-bar {
         width: 8px;
         min-width: 8px;
@@ -862,15 +853,15 @@
         border-radius: 4px 4px 2px 2px;
         flex: 0 0 auto;
       }
-
+      
       .graph-bar.interest {
         background: #f59e0b;
       }
-
+      
       .graph-bar.balance {
         background: #10b981;
       }
-
+      
       .graph-x-axis {
         display: flex;
         justify-content: space-between;
@@ -880,7 +871,7 @@
         border-top: 1px solid var(--border-color);
         flex-shrink: 0;
       }
-
+      
       .graph-x-label {
         font-size: 11px;
         color: var(--muted-text);
@@ -897,19 +888,19 @@
           radial-gradient(circle at top left, rgba(22, 163, 74, 0.08), transparent 28%),
           linear-gradient(180deg, #f6fbf7 0%, #edf5ef 100%);
       }
-
+      
       .sal-cluster-page-shell *,
       .sal-cluster-page-shell *::before,
       .sal-cluster-page-shell *::after {
         box-sizing: border-box;
       }
-
+      
       .sal-cluster-wrap,
       .sal-cluster-center-column {
         width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
       }
-
+      
       .sal-cluster-site-header {
         position: sticky;
         top: 0;
@@ -918,7 +909,7 @@
         background: rgba(246, 251, 247, 0.9);
         border-bottom: 1px solid rgba(19, 34, 47, 0.08);
       }
-
+      
       .sal-cluster-site-header-inner,
       .sal-cluster-site-footer-inner {
         min-height: 72px;
@@ -927,7 +918,7 @@
         align-items: center;
         gap: 18px;
       }
-
+      
       .sal-cluster-brand {
         display: inline-flex;
         align-items: center;
@@ -936,7 +927,7 @@
         font-size: 18px;
         font-weight: 700;
       }
-
+      
       .sal-cluster-brand-mark {
         width: 42px;
         height: 42px;
@@ -949,7 +940,7 @@
         font-size: 20px;
         font-weight: 900;
       }
-
+      
       .sal-cluster-site-label {
         justify-self: center;
         padding: 9px 14px;
@@ -962,7 +953,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-cluster-site-links,
       .sal-cluster-footer-links {
         display: flex;
@@ -971,22 +962,22 @@
         gap: 14px;
         font-size: 14px;
       }
-
+      
       .sal-cluster-site-links a,
       .sal-cluster-footer-links a {
         color: #587061;
       }
-
+      
       .sal-cluster-site-links a:hover,
       .sal-cluster-footer-links a:hover {
         color: #166534;
       }
-
+      
       .sal-cluster-layout-main {
         padding: 40px 0 64px;
         min-width: 0;
       }
-
+      
       .sal-cluster-panel {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -995,7 +986,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-cluster-page-shell #calculator-title {
         margin: 0;
         font-size: clamp(2rem, 4vw, 3.4rem);
@@ -1003,24 +994,24 @@
         letter-spacing: -0.055em;
         color: #13222f;
       }
-
+      
       .sal-cluster-page-shell #calculator-title::after {
         display: none;
       }
-
+      
       .sal-cluster-page-header {
         max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
-
+      
       .sal-cluster-page-intro {
         margin: 0 auto;
         color: #5d6f67;
         font-size: 16px;
         line-height: 1.7;
       }
-
+      
       .sal-cluster-flow {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -1029,7 +1020,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
       .sal-cluster-panel > *,
       .sal-cluster-flow > * {
@@ -1037,7 +1028,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-cluster-section {
         border: 1px solid rgba(19, 34, 47, 0.09);
         border-radius: 28px;
@@ -1045,7 +1036,7 @@
         box-shadow: 0 12px 30px rgba(16, 24, 40, 0.05);
         padding: 24px;
       }
-
+      
       .sal-cluster-section-head {
         display: flex;
         align-items: flex-start;
@@ -1053,14 +1044,14 @@
         gap: 18px;
         margin-bottom: 18px;
       }
-
+      
       .sal-cluster-section h2 {
         margin: 0;
         color: #13222f;
         font-size: 22px;
         line-height: 1.2;
       }
-
+      
       .sal-cluster-kicker {
         display: inline-flex;
         align-items: center;
@@ -1076,7 +1067,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-cluster-status-grid,
       .sal-cluster-copy-grid,
       .sal-intent-grid {
@@ -1084,7 +1075,7 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 16px;
       }
-
+      
       .sal-cluster-status-card,
       .sal-cluster-copy-card,
       .sal-intent-card {
@@ -1093,7 +1084,7 @@
         background: #f9fcfa;
         padding: 18px;
       }
-
+      
       .sal-cluster-status-card strong,
       .sal-cluster-copy-card h3,
       .sal-intent-card h3 {
@@ -1101,7 +1092,7 @@
         margin: 0 0 10px;
         color: #13222f;
       }
-
+      
       .sal-cluster-status-card p,
       .sal-cluster-copy-card p,
       .sal-intent-card p,
@@ -1110,16 +1101,16 @@
         color: #5d6f67;
         line-height: 1.65;
       }
-
+      
       .sal-intent-card a {
         color: inherit;
       }
-
+      
       .sal-intent-card:hover {
         border-color: rgba(22, 101, 52, 0.16);
         box-shadow: 0 12px 28px rgba(19, 34, 47, 0.07);
       }
-
+      
       .sal-cluster-roadmap-list,
       .sal-cluster-rule-list {
         margin: 0;
@@ -1128,22 +1119,22 @@
         gap: 10px;
         color: #22353f;
       }
-
+      
       .sal-cluster-action-row {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       .sal-cluster-site-footer {
         border-top: 1px solid rgba(19, 34, 47, 0.08);
         background: rgba(255, 255, 255, 0.78);
       }
-
+      
       .sal-cluster-calc-flow {
         gap: 20px;
       }
-
+      
       .sal-calc-shell,
       .sal-explanation,
       .sal-related-grid,
@@ -1155,12 +1146,12 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-calc-shell {
         grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
         align-items: start;
       }
-
+      
       .sal-calc-card,
       .sal-explanation-card,
       .sal-related-card {
@@ -1171,16 +1162,16 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-calc-card {
         padding: 24px;
       }
-
+      
       .sal-calc-form-card {
         display: grid;
         gap: 18px;
       }
-
+      
       .sal-calc-kicker,
       .sal-explanation-kicker {
         margin: 0;
@@ -1190,7 +1181,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-calc-form-title,
       .sal-answer-title,
       .sal-explanation-card h2,
@@ -1199,12 +1190,12 @@
         margin: 0;
         color: #13222f;
       }
-
+      
       .sal-calc-form-title {
         font-size: clamp(1.35rem, 2.3vw, 1.9rem);
         line-height: 1.18;
       }
-
+      
       .sal-calc-lead,
       .sal-answer-note,
       .sal-explanation-card p,
@@ -1215,7 +1206,7 @@
         color: #5d6f67;
         line-height: 1.65;
       }
-
+      
       .sal-input-stack,
       .sal-input-row,
       .sal-mode-fields,
@@ -1225,18 +1216,18 @@
         display: grid;
         gap: 12px;
       }
-
+      
       .sal-input-grid,
       .sal-inline-fields {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+      
       .sal-calc-shell label {
         color: #22353f;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .sal-calc-shell input[type='number'],
       .sal-calc-shell input[type='text'],
       .sal-calc-shell input[type='email'],
@@ -1252,13 +1243,13 @@
         color: #13222f;
         font-size: 16px;
       }
-
+      
       .sal-calc-shell input:focus-visible {
         outline: 2px solid rgba(38, 93, 144, 0.24);
         outline-offset: 1px;
         border-color: rgba(38, 93, 144, 0.36);
       }
-
+      
       .sal-helper-text,
       .sal-calc-helper,
       .sal-answer-context,
@@ -1270,14 +1261,14 @@
         font-size: 14px;
         line-height: 1.55;
       }
-
+      
       .sal-input-details {
         padding: 16px;
         border-radius: 20px;
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f7fbf8;
       }
-
+      
       .sal-input-details summary {
         cursor: pointer;
         color: #22353f;
@@ -1285,34 +1276,34 @@
         font-weight: 700;
         list-style: none;
       }
-
+      
       .sal-input-details summary::-webkit-details-marker {
         display: none;
       }
-
+      
       .sal-input-details summary::after {
         content: '+';
         float: right;
         color: #5d6f67;
       }
-
+      
       .sal-input-details[open] summary::after {
         content: '−';
       }
-
+      
       .sal-input-details-copy {
         margin: 0;
         color: #5d6f67;
         font-size: 14px;
         line-height: 1.55;
       }
-
+      
       .sal-chip-group {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
       }
-
+      
       .sal-chip-button {
         min-height: 42px;
         padding: 0 16px;
@@ -1322,14 +1313,14 @@
         color: #465a52;
         font-weight: 600;
       }
-
+      
       .sal-chip-button.is-active,
       .sal-chip-button[aria-pressed='true'] {
         border-color: rgba(28, 103, 88, 0.18);
         background: #163b55;
         color: #ffffff;
       }
-
+      
       .sal-primary-action {
         width: 100%;
         min-height: 50px;
@@ -1339,25 +1330,25 @@
         color: #ffffff;
         font-weight: 700;
       }
-
+      
       .sal-calc-error {
         margin: 0;
         color: #b85d49;
         font-size: 13px;
         font-weight: 700;
       }
-
+      
       .sal-calc-error[hidden] {
         display: none;
       }
-
+      
       .sal-answer-card {
         display: grid;
         gap: 18px;
         position: sticky;
         top: 92px;
       }
-
+      
       .sal-answer-top {
         display: flex;
         align-items: flex-start;
@@ -1365,14 +1356,14 @@
         gap: 12px;
         flex-wrap: wrap;
       }
-
+      
       .sal-answer-title {
         margin-bottom: 6px;
         font-size: 14px;
         font-weight: 700;
         letter-spacing: 0.02em;
       }
-
+      
       .sal-answer-eyebrow {
         margin: 0;
         color: #6a7c75;
@@ -1381,7 +1372,7 @@
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
-
+      
       .sal-status-chip,
       .sal-copy-feedback {
         display: inline-flex;
@@ -1397,13 +1388,13 @@
         font-weight: 700;
         line-height: 1.3;
       }
-
+      
       .sal-status-chip.is-dirty {
         border-color: rgba(180, 83, 9, 0.22);
         background: rgba(254, 243, 199, 0.7);
         color: #92400e;
       }
-
+      
       .sal-answer-hero {
         margin: 0;
         color: #13222f;
@@ -1412,25 +1403,25 @@
         letter-spacing: -0.06em;
         font-weight: 800;
       }
-
+      
       .sal-answer-note {
         padding-top: 4px;
       }
-
+      
       .sal-answer-context {
         padding: 10px 12px;
         border-radius: 16px;
         background: #f7fbf8;
         border: 1px solid rgba(19, 34, 47, 0.06);
       }
-
+      
       .sal-action-row {
         display: flex;
         align-items: center;
         gap: 10px;
         flex-wrap: wrap;
       }
-
+      
       .sal-secondary-action {
         min-height: 42px;
         padding: 0 16px;
@@ -1441,36 +1432,36 @@
         font-size: 13px;
         font-weight: 700;
       }
-
+      
       .sal-secondary-action:hover {
         border-color: rgba(22, 59, 85, 0.16);
         background: #ffffff;
       }
-
+      
       .sal-copy-feedback {
         display: none;
         color: #166534;
       }
-
+      
       .sal-copy-feedback.is-visible {
         display: inline-flex;
       }
-
+      
       .sal-copy-feedback[data-tone='error'] {
         color: #b85d49;
       }
-
+      
       .sal-results-proof {
         margin: 0;
         color: #6b7e77;
         font-size: 12px;
         line-height: 1.55;
       }
-
+      
       .sal-support-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+      
       .sal-support-card {
         display: grid;
         gap: 8px;
@@ -1479,19 +1470,19 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
       }
-
+      
       .sal-support-card span {
         color: #6b7e77;
         font-size: 13px;
         font-weight: 600;
       }
-
+      
       .sal-support-card strong {
         color: #13222f;
         font-size: 1.15rem;
         line-height: 1.2;
       }
-
+      
       .sal-breakdown-card,
       .sal-method-card {
         display: grid;
@@ -1501,7 +1492,7 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
       }
-
+      
       .sal-breakdown-card h3,
       .sal-method-card h3 {
         margin: 0;
@@ -1509,12 +1500,12 @@
         font-size: 15px;
         line-height: 1.3;
       }
-
+      
       .sal-explanation-card,
       .sal-related-card {
         padding: 24px;
       }
-
+      
       .sal-explanation-list,
       .sal-related-list {
         margin: 0;
@@ -1522,37 +1513,37 @@
         display: grid;
         gap: 8px;
       }
-
+      
       .sal-related-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
-
+      
       .sal-faq-grid {
         gap: 12px;
       }
-
+      
       .sal-faq-grid .sal-related-card {
         padding: 18px;
         border-radius: 22px;
         background: #fcfdfc;
         box-shadow: none;
       }
-
+      
       .sal-faq-grid .sal-related-card h3 {
         margin-bottom: 6px;
         font-size: 1rem;
       }
-
+      
       .sal-related-card a,
       .sal-explanation-card a {
         color: #163b55;
       }
-
+      
       .sal-explanation-card a:hover,
       .sal-related-card a:hover {
         color: #0f2c41;
       }
-
+      
       .sal-form-inline-toggle {
         display: flex;
         align-items: center;
@@ -1560,51 +1551,51 @@
         color: #465a52;
         font-size: 14px;
       }
-
+      
       .sal-form-inline-toggle input {
         accent-color: #163b55;
       }
-
+      
       @media (max-width: 900px) {
         .sal-calc-shell {
           grid-template-columns: 1fr;
         }
-
+      
         .sal-answer-card {
           position: static;
         }
       }
-
+      
       @media (max-width: 640px) {
         .sal-input-grid,
         .sal-inline-fields,
         .sal-support-grid {
           grid-template-columns: 1fr;
         }
-
+      
         .sal-calc-card,
         .sal-explanation-card,
         .sal-related-card {
           padding: 20px;
         }
-
+      
         .sal-action-row {
           align-items: stretch;
         }
-
+      
         .sal-secondary-action,
         .sal-copy-feedback {
           width: 100%;
           justify-content: center;
         }
       }
-
+      
       .sal-cluster-footer-copy {
         justify-self: end;
         color: #5d6f67;
         font-size: 14px;
       }
-
+      
       @media (max-width: 760px) {
         .sal-cluster-site-header-inner,
         .sal-cluster-site-footer-inner {
@@ -1612,62 +1603,24 @@
           justify-items: start;
           padding: 16px 0;
         }
-
+      
         .sal-cluster-site-label,
         .sal-cluster-footer-copy {
           justify-self: start;
         }
-
+      
         .sal-cluster-layout-main {
           padding: 28px 0 48px;
         }
-
+      
         .sal-cluster-section {
           border-radius: 22px;
           padding: 18px;
         }
       }
-
-      .sal-key-insight {
-        margin: 20px 0;
-        padding: 20px 24px;
-        border-left: 4px solid #265d90;
-        border-radius: 0 16px 16px 0;
-        background: rgba(38, 93, 144, 0.06);
-      }
-
-      .sal-key-insight strong {
-        display: block;
-        margin-bottom: 6px;
-        color: #265d90;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.03em;
-      }
-
-      .sal-key-insight p {
-        margin: 0;
-        color: #22353f;
-        font-size: 15px;
-        line-height: 1.65;
-      }
-
-      .sal-table-caption {
-        margin: 32px 0 10px;
-        color: #22353f;
-        font-size: 15px;
-        font-weight: 600;
-      }
-
-      .sal-table-note {
-        margin: 8px 0 16px;
-        color: #6b7e77;
-        font-size: 13px;
-        font-style: italic;
-      }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#webpage","name":"Commission Calculator | Salary Plus Commission & Base Pay","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay for a salary plus commission total.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication","name":"Commission Earnings Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay for a salary plus commission total.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate commission?","acceptedAnswer":{"@type":"Answer","text":"Multiply the sales amount by the commission rate. For example, $80,000 in sales at 6% = $4,800 commission."}},{"@type":"Question","name":"Is commission better than a fixed salary?","acceptedAnswer":{"@type":"Answer","text":"It depends on your risk tolerance and sales consistency. Commission has higher upside but also higher downside. Strong sellers in stable markets often prefer it."}},{"@type":"Question","name":"What is a good commission rate?","acceptedAnswer":{"@type":"Answer","text":"Rates vary by industry: 5–10% is common in real estate and SaaS, 1–3% in high-volume retail, and 15–25% or more in specialized services."}},{"@type":"Question","name":"How do I budget on commission income?","acceptedAnswer":{"@type":"Answer","text":"Base your fixed expenses on your worst realistic month, not your average. Treat above-average months as savings or debt-payoff opportunities."}},{"@type":"Question","name":"Can I add base pay to see total earnings?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter base pay in the optional field and the calculator adds it to commission for total earnings."}},{"@type":"Question","name":"What is the effective commission rate?","acceptedAnswer":{"@type":"Answer","text":"It is the commission amount divided by sales. Useful when comparing different pay plans that use different payout structures."}},{"@type":"Question","name":"Does this include taxes?","acceptedAnswer":{"@type":"Answer","text":"No. All figures are gross. Commission income is taxed as ordinary income in most cases."}},{"@type":"Question","name":"Is my data saved or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser. Nothing is stored or transmitted."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Earnings Calculator","item":"https://calchowmuch.com/salary-calculators/commission-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#webpage","name":"Commission Earnings Calculator | Sales Commission Pay & Base Pay","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#softwareapplication","name":"Commission Earnings Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/commission-calculator/","description":"Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do you calculate commission?","acceptedAnswer":{"@type":"Answer","text":"Multiply the sales amount by the commission rate to estimate commission earned."}},{"@type":"Question","name":"Can I use a commission rate or a known commission amount?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator can support either a rate-based input or a known commission amount."}},{"@type":"Question","name":"Can I include base pay?","acceptedAnswer":{"@type":"Answer","text":"Yes. If base pay is entered, total earnings can be shown as base pay plus commission."}},{"@type":"Question","name":"Does this show effective commission rate?","acceptedAnswer":{"@type":"Answer","text":"Yes. If commission and sales are known, the calculator can also show the effective commission percentage."}},{"@type":"Question","name":"Does this include tax deductions?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross commission earnings only."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/commission-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Commission Earnings Calculator","item":"https://calchowmuch.com/salary-calculators/commission-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -1691,7 +1644,7 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Commission Earnings Calculator</h1>
-    <p class="sal-cluster-page-intro">Calculate commission earnings from sales, rate, or a known payout amount, then add base pay for a salary plus commission total.</p>
+    <p class="sal-cluster-page-intro">Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-commission" class="sal-calc-shell">
@@ -1775,197 +1728,153 @@
     <div id="commission-calculator-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
     <p class="sal-explanation-kicker">Sales earnings guide</p>
-    <h2>See exactly what your sales are worth in commission and total pay</h2>
+    <h2>How a commission calculator turns sales into commission and total earnings</h2>
     <p>
-      Commission pay can be exciting or stressful — the math is the same either way. Enter your
-      sales volume, commission rate, and optional base pay to see commission earned, total earnings,
-      and the effective rate in one view.
+      This commission earnings calculator estimates commission from sales and rate inputs, or works
+      backward from a known commission amount. It also shows total earnings and effective rate so
+      salary-plus-commission pay is easier to judge in one place.
+    </p>
+    <p>
+      Commission-heavy pay can look strong but fluctuate more than fixed salary. Seeing commission
+      and total earnings together makes that trade-off easier to read when you are comparing pay
+      plans, roles, or months of uneven performance.
     </p>
   </section>
-
   <section class="sal-explanation-card">
     <h3>How to Guide</h3>
 
     <h4>What This Calculator Does</h4>
     <p>
-      The calculator estimates commission from a sales amount and rate (or flat amount), adds any base
-      pay, and shows total earnings with the effective commission rate.
+      The calculator estimates commission from either a rate or a flat commission amount. If you add
+      base pay, it also shows total earnings for the period.
     </p>
 
     <h4>How to Use This Calculator</h4>
     <ol class="sal-explanation-list">
-      <li>Enter the sales amount for the period.</li>
-      <li>Choose rate mode (e.g., 6%) or amount mode (e.g., $4,800).</li>
-      <li>Enter the commission value.</li>
-      <li>Optional: enter base pay to see total earnings.</li>
+      <li>Enter the sales amount.</li>
+      <li>Choose rate mode or amount mode.</li>
+      <li>Enter the commission rate or commission amount.</li>
+      <li>Optional: add base pay if you want total earnings.</li>
       <li>Click <strong>Calculate</strong> to see commission, total earnings, and effective rate.</li>
     </ol>
 
     <h4>How to Interpret Results</h4>
-    <p class="sal-table-caption">Commission earned at common sales volumes and rates</p>
     <table class="calculator-table">
       <thead>
         <tr>
-          <th scope="col">Sales Volume</th>
-          <th scope="col">3% Rate</th>
-          <th scope="col">5% Rate</th>
-          <th scope="col">8% Rate</th>
-          <th scope="col">10% Rate</th>
+          <th scope="col">Result</th>
+          <th scope="col">What it tells you</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td data-label="Sales Volume">$25,000</td><td data-label="3% Rate">$750</td><td data-label="5% Rate">$1,250</td><td data-label="8% Rate">$2,000</td><td data-label="10% Rate">$2,500</td></tr>
-        <tr><td data-label="Sales Volume">$50,000</td><td data-label="3% Rate">$1,500</td><td data-label="5% Rate">$2,500</td><td data-label="8% Rate">$4,000</td><td data-label="10% Rate">$5,000</td></tr>
-        <tr><td data-label="Sales Volume">$75,000</td><td data-label="3% Rate">$2,250</td><td data-label="5% Rate">$3,750</td><td data-label="8% Rate">$6,000</td><td data-label="10% Rate">$7,500</td></tr>
-        <tr><td data-label="Sales Volume">$100,000</td><td data-label="3% Rate">$3,000</td><td data-label="5% Rate">$5,000</td><td data-label="8% Rate">$8,000</td><td data-label="10% Rate">$10,000</td></tr>
-        <tr><td data-label="Sales Volume">$150,000</td><td data-label="3% Rate">$4,500</td><td data-label="5% Rate">$7,500</td><td data-label="8% Rate">$12,000</td><td data-label="10% Rate">$15,000</td></tr>
-        <tr><td data-label="Sales Volume">$200,000</td><td data-label="3% Rate">$6,000</td><td data-label="5% Rate">$10,000</td><td data-label="8% Rate">$16,000</td><td data-label="10% Rate">$20,000</td></tr>
-      </tbody>
-    </table>
-    <p class="sal-table-note">All figures are gross commission = sales × rate.</p>
-
-    <p class="sal-table-caption">Monthly total earnings with $3,500 base pay and 6% commission</p>
-    <table class="calculator-table">
-      <thead>
         <tr>
-          <th scope="col">Monthly Sales</th>
-          <th scope="col">Commission</th>
-          <th scope="col">Total Monthly</th>
-          <th scope="col">Annualized</th>
+          <td>Commission earned</td>
+          <td>The gross variable-pay amount from the entered sales.</td>
         </tr>
-      </thead>
-      <tbody>
-        <tr><td data-label="Monthly Sales">$20,000</td><td data-label="Commission">$1,200</td><td data-label="Total Monthly">$4,700</td><td data-label="Annualized">$56,400</td></tr>
-        <tr><td data-label="Monthly Sales">$40,000</td><td data-label="Commission">$2,400</td><td data-label="Total Monthly">$5,900</td><td data-label="Annualized">$70,800</td></tr>
-        <tr><td data-label="Monthly Sales">$60,000</td><td data-label="Commission">$3,600</td><td data-label="Total Monthly">$7,100</td><td data-label="Annualized">$85,200</td></tr>
-        <tr><td data-label="Monthly Sales">$80,000</td><td data-label="Commission">$4,800</td><td data-label="Total Monthly">$8,300</td><td data-label="Annualized">$99,600</td></tr>
-        <tr><td data-label="Monthly Sales">$100,000</td><td data-label="Commission">$6,000</td><td data-label="Total Monthly">$9,500</td><td data-label="Annualized">$114,000</td></tr>
+        <tr>
+          <td>Total earnings</td>
+          <td>Base pay plus commission for the same period.</td>
+        </tr>
+        <tr>
+          <td>Effective rate</td>
+          <td>The commission amount as a share of sales.</td>
+        </tr>
       </tbody>
     </table>
-    <p class="sal-table-note">Annualized = total monthly × 12. Assumes consistent monthly sales.</p>
+    <p>
+      Use commission earned to judge sales performance and total earnings to judge cash flow. The
+      effective rate is useful when you want to compare plans that use different payout styles.
+    </p>
+    <p>
+      Formula breakdown: in rate mode, commission equals sales amount times commission rate. In amount
+      mode, the entered commission amount is used directly, and effective rate equals commission divided by sales amount.
+    </p>
 
-    <div class="sal-key-insight">
-      <strong>Key Insight</strong>
-      <p>
-        Commission pay amplifies good months AND bad months. At a 6% rate with $3,500 base, a
-        $60K sales month earns $7,100. But a $15K slump month earns only $4,400. If your fixed
-        expenses are $5,500, one slow month creates a $1,100 shortfall. Always stress-test the
-        worst-case month, not just the average.
-      </p>
-    </div>
+    <h4>When to Use This Calculator</h4>
+    <ul class="sal-explanation-list">
+      <li>Compare a salary-plus-commission role against a fixed-salary offer.</li>
+      <li>Check how much base pay changes total earnings when commission is variable.</li>
+      <li>Translate a known payout amount into an effective commission rate.</li>
+      <li>Stress-test whether high-sales months are carrying too much of your income plan.</li>
+    </ul>
 
     <h4>Real-World Example</h4>
     <p>
-      Reena is a SaaS account executive with a <strong>$42,000</strong> base
-      (<strong>$3,500/month</strong>) and a <strong>6%</strong> commission on closed deals. In her
-      best quarter, she closed <strong>$210,000</strong> in deals — <strong>$12,600</strong> in
-      commission, for total quarterly earnings of <strong>$23,100</strong>.
-    </p>
-    <p>
-      But in Q1, she closed only <strong>$45,000</strong> — just <strong>$2,700</strong> in
-      commission, dropping quarterly earnings to <strong>$13,200</strong>. Her income swung by
-      nearly <strong>$10,000 per quarter</strong> based on pipeline alone. She uses the calculator
-      to model best-case, average, and worst-case months before committing to a budget.
-    </p>
-    <p>
-      Once you know your average month, translate that variable income into steadier budget numbers with the
-      <a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a>
-      and the <a href="/salary-calculators/salary-calculator/">Salary Calculator</a>. For the broader set of pay tools,
-      browse the <a href="/salary-calculators/">Salary Calculators hub</a>.
+      With <strong>$80,000.00</strong> in sales and a <strong>6%</strong> commission rate, commission
+      earned is <strong>$4,800.00</strong>. If base pay is <strong>$3,000.00</strong>, total earnings
+      become <strong>$7,800.00</strong>.
     </p>
 
-    <h4>What to Do Next</h4>
-    <ol class="sal-explanation-list">
-      <li>Compare commission pay with a fixed <a href="/salary-calculators/raise-calculator/">raise</a> to see which adds more stability.</li>
-      <li>Use the <a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a> to model a bonus-based alternative to pure commission.</li>
-      <li>Convert your average total earnings into a <a href="/salary-calculators/salary-to-hourly-calculator/">hourly rate</a> to see what you truly earn per hour of work.</li>
-    </ol>
+    <h4>Commission Variability</h4>
+    <p>
+      Commission pay is driven by both performance and payout structure. A strong rate can still produce
+      uneven income if sales are seasonal or unpredictable.
+    </p>
+    <p>
+      That is why total earnings should be read with caution when base pay is small. Variable pay often
+      works best when your budget has room for swings.
+    </p>
+
+    <h4>Reading Commission Alongside Salary</h4>
+    <p>
+      Use the total-earnings output to understand gross cash flow, but use the commission-only output
+      to judge how dependent your pay is on performance. That split makes it easier to compare a
+      high-base role with a higher-upside role that carries more month-to-month risk.
+    </p>
 
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>Convert total earnings into hourly, weekly, monthly, and annual views.</p>
+        <p>Compare commission-driven earnings with equivalent hourly, monthly, or annual gross pay views.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
-        <p>Compare commission pay with bonus-based variable compensation.</p>
+        <p>Estimate another form of variable pay when the compensation question is bonus rather than commission.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
-        <p>See whether a higher base salary beats commission upside for your situation.</p>
+        <p>Check whether a higher base salary changes total compensation more reliably than variable commission.</p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
-        <p>Turn average annualized commission earnings into a monthly planning number for budgeting.</p>
+        <h3><a href="/salary-calculators/overtime-pay-calculator/">Overtime Pay Calculator</a></h3>
+        <p>Compare commission-driven income with another variable-pay route based on extra hours rather than sales.</p>
       </article>
-      <article class="sal-related-card">
-        <h3><a href="/pricing-calculators/commission-calculator/">Pricing Commission Calculator</a></h3>
-        <p>Compare sales commission from a pricing and margins perspective rather than payroll.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
-        <p>Quickly find what any commission rate means in dollars at different sales volumes.</p>
-      </article>
-    
-      <article class="sal-related-card">
-        <h3><a href="/pricing-calculators/commission-calculator/">Pricing Commission Calculator</a></h3>
-        <p>Compare sales commission from a pricing and margins perspective rather than payroll.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
-        <p>Quickly find what any commission rate means in dollars at different sales volumes.</p>
-      </article>
-    
     </div>
   </section>
-
   <section class="sal-explanation-card">
     <h3>Frequently Asked Questions</h3>
     <div class="sal-faq-grid">
       <article class="sal-related-card">
-        <h3>How do I calculate commission?</h3>
-        <p>Multiply the sales amount by the commission rate. For example, $80,000 in sales at 6% = $4,800 commission.</p>
+        <h3>How do you calculate commission?</h3>
+        <p>Multiply the sales amount by the commission rate to estimate commission earned.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Is commission better than a fixed salary?</h3>
-        <p>It depends on your risk tolerance and sales consistency. Commission has higher upside but also higher downside. Strong sellers in stable markets often prefer it.</p>
+        <h3>Can I use a commission rate or a known commission amount?</h3>
+        <p>Yes. The calculator can support either a rate-based input or a known commission amount.</p>
       </article>
       <article class="sal-related-card">
-        <h3>What is a good commission rate?</h3>
-        <p>Rates vary by industry: 5–10% is common in real estate and SaaS, 1–3% in high-volume retail, and 15–25% or more in specialized services.</p>
+        <h3>Can I include base pay?</h3>
+        <p>Yes. If base pay is entered, total earnings can be shown as base pay plus commission.</p>
       </article>
       <article class="sal-related-card">
-        <h3>How do I budget on commission income?</h3>
-        <p>Base your fixed expenses on your worst realistic month, not your average. Treat above-average months as savings or debt-payoff opportunities.</p>
+        <h3>Does this show effective commission rate?</h3>
+        <p>Yes. If commission and sales are known, the calculator can also show the effective commission percentage.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I add base pay to see total earnings?</h3>
-        <p>Yes. Enter base pay in the optional field and the calculator adds it to commission for total earnings.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>What is the effective commission rate?</h3>
-        <p>It is the commission amount divided by sales. Useful when comparing different pay plans that use different payout structures.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Does this include taxes?</h3>
-        <p>No. All figures are gross. Commission income is taxed as ordinary income in most cases.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Is my data saved or sent anywhere?</h3>
-        <p>No. All calculations run locally in your browser. Nothing is stored or transmitted.</p>
+        <h3>Does this include tax deductions?</h3>
+        <p>No. It estimates gross commission earnings only.</p>
       </article>
     </div>
   </section>
-
   <section class="sal-explanation-card sal-important-notes">
     <h3>Important Notes</h3>
     <ul class="sal-important-notes-list">
-      <li><span class="sal-note-key">Last updated:</span> April 2026</li>
-      <li><span class="sal-note-key">Accuracy:</span> Results use the sales amount, commission rate or amount, and optional base pay you enter.</li>
+      <li><span class="sal-note-key">Last updated:</span> March 2026</li>
+      <li><span class="sal-note-key">Accuracy:</span> Results use the sales amount, commission value, and optional base pay that you enter.</li>
       <li><span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does not provide payroll, tax, or legal advice.</li>
-      <li><span class="sal-note-key">Assumptions:</span> Commission and base pay are gross. Each calculation models one sales period at a time.</li>
-      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser — no data is stored.</li>
+      <li><span class="sal-note-key">Assumptions:</span> Commission and base pay are treated as gross pay, and each calculation models one sales period at a time.</li>
+      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>
