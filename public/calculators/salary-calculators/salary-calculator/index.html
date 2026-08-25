@@ -1,11 +1,16 @@
 <div id="calc-salary-calculator" class="sal-calc-shell">
+  <div class="sal-mode-bar" role="group" aria-label="Calculator mode" data-button-group="salary-mode">
+    <button class="sal-mode-btn is-active" type="button" data-value="gross" aria-pressed="true">Gross Pay</button>
+    <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK take-home</button>
+  </div>
+
   <section class="sal-calc-card sal-calc-form-card" aria-label="Salary calculator inputs">
-    <p class="sal-calc-kicker">Gross pay conversion</p>
-    <h2 class="sal-calc-form-title">Convert one pay amount into hourly, weekly, monthly, and annual pay</h2>
-    <p class="sal-calc-lead">Gross pay only. Start with one pay amount, then compare every major pay view side by side.</p>
+    <p class="sal-calc-kicker" id="salary-mode-kicker">Gross pay conversion</p>
+    <h2 class="sal-calc-form-title" id="salary-form-title">Convert one pay amount into hourly, weekly, monthly, and annual pay</h2>
+    <p class="sal-calc-lead" id="salary-form-lead">Gross pay only. Start with one pay amount, then compare every major pay view side by side.</p>
 
     <div class="sal-input-row">
-      <label for="salary-pay-amount">Gross pay amount</label>
+      <label for="salary-pay-amount">Pay amount</label>
       <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" value="60000" />
     </div>
 
@@ -23,6 +28,107 @@
         <button class="sal-chip-button" type="button" data-value="biweekly" aria-pressed="false">Biweekly</button>
         <button class="sal-chip-button" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
         <button class="sal-chip-button is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
+      </div>
+    </div>
+
+    <div class="sal-input-row sal-uk-only" id="salary-region-row" hidden>
+      <label id="salary-region-label">Where do you pay tax?</label>
+      <div
+        class="sal-chip-group"
+        role="group"
+        aria-labelledby="salary-region-label"
+        data-button-group="salary-region"
+      >
+        <button class="sal-chip-button is-active" type="button" data-value="england" aria-pressed="true">England</button>
+        <button class="sal-chip-button" type="button" data-value="wales" aria-pressed="false">Wales</button>
+        <button class="sal-chip-button" type="button" data-value="northern-ireland" aria-pressed="false">N. Ireland</button>
+        <button class="sal-chip-button" type="button" data-value="scotland" aria-pressed="false">Scotland</button>
+      </div>
+      <p class="sal-field-hint" id="salary-region-hint">Scotland sets its own income tax bands, so the same salary gives a different result.</p>
+    </div>
+
+    <div class="sal-optional sal-uk-only" id="salary-optional" hidden>
+      <p class="sal-calc-kicker">Optional — add only what applies</p>
+      <div class="sal-opt-chips">
+        <button class="sal-opt-chip" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
+        <button class="sal-opt-chip" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
+        <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
+        <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-pension" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-pension-percent">Pension contribution (%)</label>
+            <input id="salary-pension-percent" type="number" min="0" max="100" step="0.1" value="5" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-pension-relief">Relief method</label>
+            <select id="salary-pension-relief">
+              <option value="net-pay-arrangement" selected>Net pay arrangement</option>
+              <option value="salary-sacrifice">Salary sacrifice</option>
+              <option value="relief-at-source">Relief at source</option>
+            </select>
+          </div>
+        </div>
+        <p class="sal-field-hint">Salary sacrifice also reduces National Insurance, so it is worth more than a net pay arrangement at the same percentage.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-loan" hidden>
+        <div class="sal-input-row">
+          <label for="salary-loan-plan">Student loan plan</label>
+          <select id="salary-loan-plan">
+            <option value="none" selected>None</option>
+            <option value="plan-1">Plan 1</option>
+            <option value="plan-2">Plan 2</option>
+            <option value="plan-4">Plan 4 (Scotland)</option>
+            <option value="plan-5">Plan 5</option>
+            <option value="postgraduate">Postgraduate Loan</option>
+          </select>
+        </div>
+        <label class="sal-checkbox">
+          <input id="salary-loan-postgrad" type="checkbox" />
+          <span>I also have a Postgraduate Loan</span>
+        </label>
+        <p class="sal-field-hint">An undergraduate plan and a postgraduate loan are deducted at the same time.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-bonus" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-bonus-amount">Bonus amount</label>
+            <input id="salary-bonus-amount" type="number" min="0" step="0.01" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-bonus-month">Typical bonus month</label>
+            <select id="salary-bonus-month">
+              <option value="0">January</option><option value="1">February</option>
+              <option value="2">March</option><option value="3">April</option>
+              <option value="4">May</option><option value="5">June</option>
+              <option value="6">July</option><option value="7">August</option>
+              <option value="8">September</option><option value="9">October</option>
+              <option value="10">November</option><option value="11" selected>December</option>
+            </select>
+          </div>
+        </div>
+        <p class="sal-field-hint">The pay sheet shows the bonus landing in this month rather than spreading it across every payday.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-sched" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-first-pay">First pay date</label>
+            <input id="salary-first-pay" type="date" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-weekend-rule">If payday falls on a weekend</label>
+            <select id="salary-weekend-rule">
+              <option value="previous" selected>Pay on previous working day</option>
+              <option value="next">Pay on next working day</option>
+              <option value="none">No adjustment</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -52,18 +158,30 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
     <div class="sal-answer-top">
       <div>
-        <p class="sal-answer-title">Annual gross pay</p>
-        <p class="sal-answer-eyebrow">Gross (before tax)</p>
+        <p class="sal-answer-title" id="salary-answer-title">Annual gross pay</p>
+        <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Gross (before tax)</p>
       </div>
       <span class="sal-status-chip" id="salary-dirty-chip">Up to date</span>
     </div>
     <p class="sal-answer-hero" id="salary-annual-pay">60,000.00</p>
     <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,153.85 per week.</p>
+
+    <div class="sal-rate-row sal-uk-only" id="salary-rate-row" hidden>
+      <span class="sal-rate-pill">Effective rate <strong id="salary-effective-rate">—</strong></span>
+      <span class="sal-rate-pill sal-rate-pill-muted">Marginal rate <strong id="salary-marginal-rate">—</strong></span>
+    </div>
+
+    <div class="sal-uk-only" id="salary-split" hidden>
+      <div class="sal-split-bar" id="salary-split-bar" aria-hidden="true"></div>
+      <ul class="sal-split-legend" id="salary-split-legend"></ul>
+    </div>
+
     <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual pay · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
     <div class="sal-action-row">
       <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
       <span class="sal-copy-feedback" id="salary-copy-feedback" aria-live="polite"></span>
     </div>
+
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Monthly pay</span>
@@ -86,15 +204,64 @@
         <strong id="salary-hourly-pay">28.85</strong>
       </div>
     </div>
+
+    <details class="sal-breakdown-details sal-uk-only" id="salary-breakdown-details" hidden>
+      <summary>See how this was calculated</summary>
+      <div class="sal-band-list" id="salary-band-list"></div>
+    </details>
+
     <div class="sal-breakdown-card">
       <h3>Calculation basis</h3>
       <p id="salary-breakdown">Annual pay starts from the amount you entered. Monthly = annual / 12, biweekly = annual / 26, weekly = annual / weeks per year, and hourly uses weekly / hours per week.</p>
     </div>
     <div class="sal-method-card">
       <h3>How we calculate this</h3>
-      <p>Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.</p>
+      <p id="salary-method-copy">Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.</p>
     </div>
     <p class="sal-results-proof">Calculated locally in your browser - no data stored.</p>
-    <p class="sal-results-disclaimer">Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.</p>
+    <p class="sal-results-disclaimer" id="salary-results-disclaimer">Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.</p>
   </aside>
+
+  <section class="sal-calc-card sal-paysheet-card sal-uk-only" id="salary-paysheet" hidden aria-labelledby="salary-paysheet-title">
+    <div class="sal-paysheet-head">
+      <div>
+        <h3 id="salary-paysheet-title">Pay sheet — upcoming paydays</h3>
+        <p class="sal-paysheet-meta" id="salary-paysheet-meta">Monthly · 12 periods per year</p>
+      </div>
+      <div class="sal-chip-group" role="group" aria-label="Pay sheet frequency" data-button-group="salary-sheet-frequency">
+        <button class="sal-chip-button" type="button" data-value="weekly" aria-pressed="false">Weekly</button>
+        <button class="sal-chip-button" type="button" data-value="biweekly" aria-pressed="false">Bi-weekly</button>
+        <button class="sal-chip-button" type="button" data-value="fourWeekly" aria-pressed="false">4-weekly</button>
+        <button class="sal-chip-button is-active" type="button" data-value="monthly" aria-pressed="true">Monthly</button>
+      </div>
+    </div>
+    <p class="sal-paysheet-assumed" id="salary-paysheet-assumed">
+      Dates assume your first payday is <strong id="salary-assumed-date"></strong>.
+      <button class="sal-inline-link" type="button" id="salary-set-schedule">Set your actual pay date</button>
+    </p>
+    <div class="sal-table-scroll">
+      <table class="sal-paysheet-table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pay date</th>
+            <th scope="col">Gross</th>
+            <th scope="col">Income tax</th>
+            <th scope="col">NI</th>
+            <th scope="col">Other</th>
+            <th scope="col">Net pay</th>
+          </tr>
+        </thead>
+        <tbody id="salary-paysheet-body"></tbody>
+        <tfoot>
+          <tr id="salary-paysheet-foot">
+            <td colspan="2">Annual total</td>
+            <td class="sal-num"></td><td class="sal-num"></td>
+            <td class="sal-num"></td><td class="sal-num"></td><td class="sal-num"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="sal-paysheet-note">Showing the next 12 paydays. Amounts assume a consistent schedule; your employer's actual payroll dates and deductions may differ.</p>
+  </section>
 </div>

@@ -7,11 +7,12 @@ export const SALARY_HUB_DESCRIPTION =
 export const SALARY_CALCULATOR_CONFIGS = {
   'salary-calculator': {
     route: '/salary-calculators/salary-calculator/',
-    h1: 'Salary Calculator (Gross Pay)',
-    title: 'Salary Calculator (Gross Pay) | Hourly, Weekly, Monthly and Annual Pay',
+    h1: 'Salary Calculator',
+    title: 'Salary Calculator | UK Take-Home Pay and Gross Pay Converter',
     description:
-      'Convert one gross pay amount into hourly, daily, weekly, biweekly, monthly, and annual pay with schedule assumptions that stay visible.',
+      'Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.',
     runE2E: async ({ page, expect, parseNumericText }) => {
+      // --- Gross Pay mode (the default) must behave exactly as it always has -----------------
       await page.click('button[data-value="hourly"]');
       await page.click('#salary-assumptions summary');
       await page.fill('#salary-pay-amount', '25');
@@ -23,6 +24,30 @@ export const SALARY_CALCULATOR_CONFIGS = {
       expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(52000, 2);
       expect(parseNumericText(await page.locator('#salary-daily-pay').textContent())).toBeCloseTo(200, 2);
       await expect(page.locator('#salary-answer-context')).toContainText('source hourly pay');
+
+      // Gross mode is currency-neutral — this page is used outside the UK too.
+      expect(await page.locator('#salary-annual-pay').textContent()).not.toContain('£');
+      await expect(page.locator('#salary-region-row')).toBeHidden();
+      await expect(page.locator('#salary-optional')).toBeHidden();
+
+      // --- UK take-home mode ------------------------------------------------------------------
+      await page.click('.sal-mode-btn[data-value="uk"]');
+      await page.fill('#salary-pay-amount', '60000');
+      await page.click('button[data-value="annual"]');
+      await page.click('#salary-calc-button');
+
+      await expect(page.locator('#salary-region-row')).toBeVisible();
+      // 60,000 in England: 11,432 income tax + 3,210.60 NI => 45,357.40 take-home.
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(45357.4, 1);
+      expect(await page.locator('#salary-annual-pay').textContent()).toContain('£');
+      await expect(page.locator('#salary-effective-rate')).toContainText('%');
+
+      // Scotland must produce a different figure — the region selector is not cosmetic.
+      const englandNet = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      await page.click('#salary-region-row button[data-value="scotland"]');
+      await page.click('#salary-calc-button');
+      const scotlandNet = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      expect(scotlandNet).not.toBeCloseTo(englandNet, 1);
     },
   },
   'hourly-to-salary-calculator': {

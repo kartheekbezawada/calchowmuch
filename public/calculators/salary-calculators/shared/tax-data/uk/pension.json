@@ -6,11 +6,13 @@
   "effectiveTo": "2027-04-05",
   "currency": "GBP",
   "source": "https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay",
-  "lastVerified": null,
+  "lastVerified": "2026-08-25",
   "verification": {
-    "status": "unverified",
-    "confidence": "medium",
-    "note": "Auto-enrolment minimum contributions (8% total, 5% employee) and the qualifying earnings band have been stable for several years. Confirm the qualifying earnings band for 2026/27 before ship."
+    "status": "verified",
+    "verifiedOn": "2026-08-25",
+    "confidence": "verified",
+    "source": "https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay",
+    "note": "CONFIRMED unchanged 2026-08-25. Qualifying earnings band 6,240-50,270; minimum total 8% (employee 5% + employer 3%)."
   },
   "notes": [
     "Relief method changes the arithmetic, not just the label — this is the single most common source of wrong UK pension figures.",
@@ -20,7 +22,10 @@
     "Default is net-pay-arrangement because that is the most common workplace arrangement, but the user must be able to change it."
   ],
   "autoEnrolment": {
-    "qualifyingEarnings": { "lower": 6240, "upper": 50270 },
+    "qualifyingEarnings": {
+      "lower": 6240,
+      "upper": 50270
+    },
     "minimumTotalContribution": 0.08,
     "minimumEmployeeContribution": 0.05,
     "minimumEmployerContribution": 0.03
@@ -57,6 +62,9 @@
   },
   "contributionBasis": {
     "default": "full-gross-pay",
-    "options": ["full-gross-pay", "qualifying-earnings"]
+    "options": [
+      "full-gross-pay",
+      "qualifying-earnings"
+    ]
   }
 }

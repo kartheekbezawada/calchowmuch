@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Birthday Day-of-Week Calculator', () => {
-  test('BIRTHDAY-DOW-TEST-E2E-1: single-pane journey, intent options, planner views, and copy summary', async ({
+  test('BIRTHDAY-DOW-TEST-E2E-1: single-pane journey, year presets, results, and copy summary', async ({
     page,
   }) => {
     await page.goto('/time-and-date/birthday-day-of-week');
@@ -12,32 +12,34 @@ test.describe('Birthday Day-of-Week Calculator', () => {
     await expect(page.locator('.left-nav')).toHaveCount(0);
     await expect(page.locator('.ads-column')).toHaveCount(0);
     await expect(page.locator('.birthday-dow-workspace')).toBeVisible();
-    await expect(page.locator('[data-birthday-intent]')).toHaveCount(3);
-    await expect(page.locator('[data-plan-view]')).toHaveCount(3);
     await expect(page.locator('.td-cluster-switch-chip[aria-current="page"]')).toContainText(
       'Birthday Day-of-Week'
     );
 
-    await page.locator('[data-birthday-intent="weekend"]').click();
-    await expect(page.locator('[data-birthday-intent="weekend"]')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('[data-plan-view="weekend"]')).toHaveAttribute('aria-pressed', 'true');
+    // Rewritten 2026-08-25. This previously asserted `[data-birthday-intent]` and
+    // `[data-plan-view]` intent chips / planner tabs. That feature was added in 4d26b2f6
+    // (2026-03-13) and REMOVED in 01a4589d (2026-03-22, the release sign-off) — the tests were
+    // never updated, so this spec had been failing for five months and every assertion after it
+    // never ran. The page's actual control is the year-preset chip group; covering that instead
+    // keeps real coverage rather than deleting it.
+    await expect(page.locator('[data-year-preset]')).toHaveCount(3);
+    await page.locator('[data-year-preset="next"]').click();
+    await expect(page.locator('[data-year-preset="next"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-year-preset="current"]')).toHaveAttribute('aria-pressed', 'false');
 
     await page.locator('#birthday-dow-dob').fill('1990-06-15');
     await page.locator('#birthday-dow-year').fill('2025');
     await page.locator('#birthday-dow-calculate').click();
 
-    await expect(page.locator('#birthday-dow-birth-weekday')).toHaveText('Friday');
+    // #birthday-dow-birth-weekday was renamed to #birthday-dow-hero-weekday.
+    await expect(page.locator('#birthday-dow-hero-weekday')).toHaveText('Friday');
     await expect(page.locator('#birthday-dow-target-weekday-card')).toHaveText('Sunday');
-    await expect(page.locator('#birthday-dow-hero-target-year')).toHaveText('2025');
+    await expect(page.locator('#birthday-dow-hero-target-year')).toContainText('2025');
     await expect(page.locator('#birthday-dow-recurrence .birthday-dow-recurrence-item')).toHaveCount(12);
     await expect(page.locator('#birthday-dow-weekend-highlights .birthday-dow-weekend-item')).toHaveCount(3);
     await expect(page.locator('#birthday-dow-next-age')).not.toHaveText('--');
     await expect(page.locator('#birthday-dow-next-days')).not.toHaveText('--');
     await expect(page.locator('#birthday-dow-next-panel-title')).toContainText(',');
-
-    await page.locator('[data-plan-view="timeline"]').click();
-    await expect(page.locator('[data-plan-view="timeline"]')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('[data-plan-panel="timeline"]')).toBeVisible();
 
     await page.evaluate(() => {
       Object.defineProperty(navigator, 'clipboard', {

@@ -51,3 +51,11 @@ C:\\Users\\*\\AppData\\Local\\lighthouse.*/
 
 # Local SEO fix tracking (page-by-page fix history + metrics, not shared repo history)
 seo_fixes/
+
+# Local working files — planning docs, requirements, analysis exports, GSC data dumps.
+# Not needed to build, test or deploy the site, and deliberately kept off GitHub.
+# Contains: requirements/, docs/, functions/, New_analysis.md  (moved here 2026-08-24)
+# NOTE: scripts that write analysis output (audit-internal-links.mjs, export_seo_csv.mjs,
+# local-seo-performance-audit.mjs) point into files/requirements/ and still work locally —
+# their output is intentionally untracked.
+files/

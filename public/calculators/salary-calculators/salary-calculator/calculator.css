@@ -1,0 +1,410 @@
+/*
+ * Salary calculator — styles for the take-home rebuild.
+ *
+ * Only NEW classes live here. Everything already defined in
+ * `salary-calculators/shared/cluster-light.css` (.sal-calc-card, .sal-chip-button,
+ * .sal-support-grid, .sal-input-row, …) is reused unchanged so this page keeps the cluster's
+ * visual language rather than forking it.
+ */
+
+/*
+ * The `hidden` attribute is only `display: none` from the UA stylesheet, so ANY class that sets
+ * its own `display` silently defeats it. `.sal-input-row` in cluster-light.css does exactly that,
+ * which left the UK-only rows visible in Gross Pay mode even though JS had set `hidden = true`.
+ * Restore the attribute's meaning for this page rather than hiding via a JS class, so `hidden`
+ * stays both the styling hook and the accessibility signal.
+ */
+#calc-salary-calculator [hidden] {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------------- mode toggle */
+
+#calc-salary-calculator .sal-mode-bar {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 4px;
+  border-radius: 999px;
+  background: rgba(19, 34, 47, 0.06);
+  width: fit-content;
+}
+
+#calc-salary-calculator .sal-mode-btn {
+  border: 0;
+  background: transparent;
+  border-radius: 999px;
+  padding: 9px 20px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  color: #45606f;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+#calc-salary-calculator .sal-mode-btn:hover {
+  color: #13222f;
+}
+
+#calc-salary-calculator .sal-mode-btn.is-active {
+  background: #ffffff;
+  color: #13222f;
+  box-shadow: 0 1px 3px rgba(19, 34, 47, 0.16);
+}
+
+#calc-salary-calculator .sal-mode-btn:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- fields */
+
+#calc-salary-calculator .sal-field-hint {
+  margin: 7px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #5a7180;
+}
+
+#calc-salary-calculator .sal-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #2c4150;
+  cursor: pointer;
+}
+
+#calc-salary-calculator .sal-checkbox input {
+  width: 17px;
+  height: 17px;
+  accent-color: #16a34a;
+}
+
+/* --------------------------------------------------- progressive disclosure */
+
+#calc-salary-calculator .sal-optional {
+  margin: 20px 0 4px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(19, 34, 47, 0.1);
+}
+
+#calc-salary-calculator .sal-opt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Dashed until active, solid green once on — the state has to be readable at a glance, because
+   these chips are the only signal that extra inputs exist. */
+#calc-salary-calculator .sal-opt-chip {
+  border: 1px dashed rgba(19, 34, 47, 0.28);
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 15px;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #45606f;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+#calc-salary-calculator .sal-opt-chip:hover {
+  border-color: rgba(19, 34, 47, 0.5);
+  color: #13222f;
+}
+
+#calc-salary-calculator .sal-opt-chip.is-active,
+#calc-salary-calculator .sal-opt-chip[aria-pressed='true'] {
+  border-style: solid;
+  border-color: #16a34a;
+  background: #eaf7ee;
+  color: #14663a;
+}
+
+#calc-salary-calculator .sal-opt-chip:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+
+#calc-salary-calculator .sal-opt-panel {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(19, 34, 47, 0.035);
+  border: 1px solid rgba(19, 34, 47, 0.07);
+}
+
+/* ---------------------------------------------------------------- rates */
+
+#calc-salary-calculator .sal-rate-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+
+/* Effective and marginal are deliberately styled differently. Presenting them identically is
+   what makes people read the marginal rate as "the rate I pay on everything". */
+#calc-salary-calculator .sal-rate-pill {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: #eaf7ee;
+  color: #14663a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#calc-salary-calculator .sal-rate-pill-muted {
+  background: rgba(19, 34, 47, 0.06);
+  color: #45606f;
+}
+
+/* ---------------------------------------------------------------- split bar */
+
+#calc-salary-calculator .sal-split-bar {
+  display: flex;
+  height: 15px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 16px 0 12px;
+  background: rgba(19, 34, 47, 0.08);
+}
+
+#calc-salary-calculator .sal-split-bar span {
+  height: 100%;
+}
+
+#calc-salary-calculator .sal-split-legend {
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 13px;
+  color: #45606f;
+}
+
+#calc-salary-calculator .sal-split-legend li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+#calc-salary-calculator .sal-split-legend strong {
+  color: #13222f;
+}
+
+#calc-salary-calculator .sal-split-legend i {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+#calc-salary-calculator .sal-seg-net { background: #16a34a; }
+#calc-salary-calculator .sal-seg-tax { background: #ef4444; }
+#calc-salary-calculator .sal-seg-ni { background: #f59e0b; }
+#calc-salary-calculator .sal-seg-other { background: #6366f1; }
+
+/* ---------------------------------------------------------------- breakdown */
+
+#calc-salary-calculator .sal-breakdown-details {
+  margin-top: 18px;
+  border-top: 1px solid rgba(19, 34, 47, 0.1);
+  padding-top: 14px;
+}
+
+#calc-salary-calculator .sal-breakdown-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  color: #13222f;
+}
+
+#calc-salary-calculator .sal-band {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 9px 0;
+  border-bottom: 1px dashed rgba(19, 34, 47, 0.12);
+  font-size: 14px;
+  color: #2c4150;
+}
+
+#calc-salary-calculator .sal-band-total {
+  border-bottom: 0;
+  font-weight: 800;
+  color: #13222f;
+  border-top: 2px solid rgba(19, 34, 47, 0.16);
+  margin-top: 4px;
+}
+
+#calc-salary-calculator .sal-band-quiet {
+  border-bottom: 0;
+  color: #5a7180;
+  font-size: 13px;
+}
+
+#calc-salary-calculator .sal-num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- pay sheet */
+
+/*
+ * Sticky is switched OFF for the results card on this page. This is deliberate.
+ *
+ * `.sal-answer-card` is `position: sticky` in cluster-light.css, which was harmless while the
+ * shell held only two cards. Adding a full-width pay sheet below gave the sticky card somewhere
+ * to travel to, and it slid down over the table — measured at 748x508px of the pay sheet covered
+ * once scrolled past ~600px.
+ *
+ * Pinning explicit grid rows did NOT fix it: Chromium does not confine a sticky grid item to its
+ * grid area here, so it still ranges over the whole shell. Rather than fight that, sticky is
+ * dropped for this page — the results card is ~1,260px tall against a 1,000px viewport, so
+ * sticky could never show the whole card anyway and was buying nothing.
+ *
+ * If sticky is ever restored, re-measure overlap at several scroll positions, not just at 0.
+ */
+#calc-salary-calculator .sal-mode-bar { grid-row: 1; }
+#calc-salary-calculator .sal-calc-form-card,
+#calc-salary-calculator .sal-answer-card { grid-row: 2; }
+
+#calc-salary-calculator .sal-answer-card {
+  position: static;
+  top: auto;
+}
+
+#calc-salary-calculator .sal-paysheet-card {
+  grid-row: 3;
+  grid-column: 1 / -1;
+  margin-top: 18px;
+}
+
+#calc-salary-calculator .sal-paysheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+#calc-salary-calculator .sal-paysheet-head h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+#calc-salary-calculator .sal-paysheet-meta {
+  margin: 0;
+  font-size: 13px;
+  color: #5a7180;
+}
+
+#calc-salary-calculator .sal-paysheet-assumed {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  margin: 0 0 14px;
+  padding: 11px 15px;
+  border: 1px dashed rgba(19, 34, 47, 0.18);
+  border-radius: 12px;
+  background: rgba(19, 34, 47, 0.03);
+  font-size: 13.5px;
+  color: #45606f;
+}
+
+#calc-salary-calculator .sal-inline-link {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: #14663a;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Wide tables scroll inside their own container so the page body never scrolls sideways. */
+#calc-salary-calculator .sal-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#calc-salary-calculator .sal-paysheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+  font-size: 14px;
+}
+
+#calc-salary-calculator .sal-paysheet-table th,
+#calc-salary-calculator .sal-paysheet-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(19, 34, 47, 0.08);
+  text-align: left;
+}
+
+#calc-salary-calculator .sal-paysheet-table th {
+  background: rgba(19, 34, 47, 0.04);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #45606f;
+}
+
+#calc-salary-calculator .sal-paysheet-table th:not(:nth-child(1)):not(:nth-child(2)),
+#calc-salary-calculator .sal-paysheet-table td.sal-num {
+  text-align: right;
+}
+
+#calc-salary-calculator .sal-paysheet-table tfoot td {
+  border-bottom: 0;
+  border-top: 2px solid rgba(19, 34, 47, 0.16);
+  font-weight: 800;
+  color: #13222f;
+}
+
+#calc-salary-calculator .sal-moved {
+  margin-left: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(19, 34, 47, 0.07);
+  color: #5a7180;
+}
+
+#calc-salary-calculator .sal-paysheet-note {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  color: #5a7180;
+}
+
+@media (max-width: 720px) {
+  #calc-salary-calculator .sal-mode-bar {
+    width: 100%;
+  }
+  #calc-salary-calculator .sal-mode-btn {
+    flex: 1;
+    padding: 9px 10px;
+  }
+  #calc-salary-calculator .sal-paysheet-head {
+    flex-direction: column;
+  }
+}
