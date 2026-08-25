@@ -28,7 +28,15 @@ const SHARED_CONTRACT_FILES = new Set([
   'scripts/validate-isolation-scope.mjs',
 ]);
 
-const SHARED_CONTRACT_PREFIXES = ['requirements/universal-rules/'];
+// NOTE (2026-08-24): `requirements/` moved to `files/requirements/`, which is gitignored. This
+// check runs against `git diff --name-only`, so files under the new path will never appear in
+// the changed-file list and this prefix is now effectively inert. Both paths are kept so the
+// rule still applies to any history predating the move, and so the intent stays readable if the
+// folder is ever tracked again.
+const SHARED_CONTRACT_PREFIXES = [
+  'requirements/universal-rules/',
+  'files/requirements/universal-rules/',
+];
 
 function run(command) {
   try {

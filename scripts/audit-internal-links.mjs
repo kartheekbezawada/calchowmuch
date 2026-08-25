@@ -23,7 +23,8 @@ const DEFAULTS = {
   registryPath: 'config/clusters/cluster-registry.json',
   clustersRoot: 'clusters',
   publicDir: 'public',
-  outputDir: 'requirements/universal-rules/seo_exports',
+  // Moved under files/ (gitignored) 2026-08-24 — these exports are local analysis artifacts.
+  outputDir: 'files/requirements/universal-rules/seo_exports',
 };
 
 function parseArgs(argv) {

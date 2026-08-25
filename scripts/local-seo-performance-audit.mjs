@@ -9,8 +9,9 @@ import { chromium } from 'playwright';
 
 const DEFAULTS = {
   baseUrl: 'http://127.0.0.1:8000',
-  slugsPath: 'requirements/compliance/REQ-20260208-029.slugs.txt',
-  auditPath: 'requirements/compliance/Audit.md',
+  // Moved under files/ (gitignored) 2026-08-24.
+  slugsPath: 'files/requirements/compliance/REQ-20260208-029.slugs.txt',
+  auditPath: 'files/requirements/compliance/Audit.md',
   outputDir: 'test-results/seo/local-audit',
   timeoutMs: 30000,
   ignorePerf: false,

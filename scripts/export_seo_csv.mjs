@@ -8,7 +8,8 @@ import { JSDOM } from 'jsdom';
 const DEFAULTS = {
   sitemapPath: 'public/sitemap.xml',
   publicDir: 'public',
-  outputDir: 'requirements/universal-rules/seo_exports',
+  // Moved under files/ (gitignored) 2026-08-24 — these exports are local analysis artifacts.
+  outputDir: 'files/requirements/universal-rules/seo_exports',
 };
 
 const BRAND_REGEX = /calchowmuch|calculate\s+how\s+much/i;
