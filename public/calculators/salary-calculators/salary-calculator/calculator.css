@@ -263,33 +263,74 @@
 /* ---------------------------------------------------------------- pay sheet */
 
 /*
- * Sticky is switched OFF for the results card on this page. This is deliberate.
+ * Layout contract — design spec §2. Implemented 2026-08-25.
  *
- * `.sal-answer-card` is `position: sticky` in cluster-light.css, which was harmless while the
- * shell held only two cards. Adding a full-width pay sheet below gave the sticky card somewhere
- * to travel to, and it slid down over the table — measured at 748x508px of the pay sheet covered
- * once scrolled past ~600px.
+ * The cluster stylesheet makes `.sal-calc-shell` itself the two-column grid. That works when the
+ * page is just form + results, but the pay sheet is a third, full-width block, and putting it in
+ * the same grid is what let the sticky results card slide over it (748x508px covered).
  *
- * Pinning explicit grid rows did NOT fix it: Chromium does not confine a sticky grid item to its
- * grid area here, so it still ranges over the whole shell. Rather than fight that, sticky is
- * dropped for this page — the results card is ~1,260px tall against a 1,000px viewport, so
- * sticky could never show the whole card anyway and was buying nothing.
- *
- * If sticky is ever restored, re-measure overlap at several scroll positions, not just at 0.
+ * The mockup solved this structurally: #paySheet is a SIBLING of .shell, outside the grid. This
+ * mirrors that — the shell becomes a vertical stack, and only the two top cards live in their own
+ * grid. Sticky is then naturally confined and needs no workaround.
  */
-#calc-salary-calculator .sal-mode-bar { grid-row: 1; }
+#calc-salary-calculator.sal-calc-shell {
+  display: block;
+}
+
+/*
+ * Spec §2 asks for a 1400px container. NOT applied: the effective width is set by
+ * `.sal-cluster-center-column { width: min(1120px, …) }` in cluster-light.css, which is shared by
+ * all 11 salary pages. Widening it here alone would make this page jump wider than its siblings
+ * when navigating between them; widening it globally is a cluster-wide visual change that is out
+ * of scope for this build. Left at 1120px deliberately — 470px + 634px still reads comfortably.
+ * Raise it in cluster-light.css if the whole cluster should move together.
+ */
+
+#calc-salary-calculator .sal-calc-columns {
+  display: grid;
+  /* Fixed left column: the layout must not shift when optional panels open or close. */
+  grid-template-columns: var(--sal-col-left, 470px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Both cards start the same height so the initial view is balanced before any panel opens. */
 #calc-salary-calculator .sal-calc-form-card,
-#calc-salary-calculator .sal-answer-card { grid-row: 2; }
+#calc-salary-calculator .sal-answer-card {
+  min-height: 560px;
+  padding: 32px;
+}
 
 #calc-salary-calculator .sal-answer-card {
-  position: static;
-  top: auto;
+  position: sticky;
+  top: 96px;
+}
+
+#calc-salary-calculator input[type='number'],
+#calc-salary-calculator input[type='text'],
+#calc-salary-calculator input[type='date'],
+#calc-salary-calculator select {
+  min-height: 48px;
+}
+
+@media (max-width: 1080px) {
+  #calc-salary-calculator .sal-calc-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #calc-salary-calculator .sal-answer-card {
+    position: static;
+    top: auto;
+  }
+  #calc-salary-calculator .sal-calc-form-card,
+  #calc-salary-calculator .sal-answer-card {
+    min-height: 0;
+    padding: 22px;
+  }
 }
 
 #calc-salary-calculator .sal-paysheet-card {
-  grid-row: 3;
-  grid-column: 1 / -1;
-  margin-top: 18px;
+  margin-top: 16px;
+  padding: 32px;
 }
 
 #calc-salary-calculator .sal-paysheet-head {
