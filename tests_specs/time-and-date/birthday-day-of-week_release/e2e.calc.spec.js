@@ -84,8 +84,13 @@ test.describe('Birthday Day-of-Week Calculator', () => {
     expect(calculatorBox).toBeTruthy();
     expect(explanationBox).toBeTruthy();
     expect(calculatorBox.y).toBeLessThan(explanationBox.y);
-    await expect(page.locator('#birthday-dow-explanation h2')).toHaveText(
-      'What day of the week was I born on?'
+    // Updated 2026-08-24: the explanation H2 no longer duplicates the H1 — see
+    // seo_fixes/time-and-date/birthday-day-of-week/fix-1.md. Also scoped with .first(): the
+    // generator injects "More Age Calculator tools" and "Related Time & Date calculators" H2s
+    // inside this container, so the bare locator matches 3 elements and toHaveText(<string>)
+    // could never have passed.
+    await expect(page.locator('#birthday-dow-explanation h2').first()).toHaveText(
+      'Your birth weekday, and how the date was worked out'
     );
   });
 });

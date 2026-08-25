@@ -106,11 +106,16 @@
   color: var(--birthday-ink);
 }
 
+/* `white-space: nowrap` used to be safe here only because the heading was short. It is not a
+   design requirement — it silently clipped the heading off the right edge of the card the moment
+   the copy got longer (2026-08-24, when the H2 changed to target the "by date of birth" query
+   cluster). Allow wrapping and cap the size so the title stays on one line where it fits and
+   wraps where it does not. */
 #calc-birthday-dow .birthday-dow-hero-title {
-  font-size: clamp(1.9rem, 3.2vw, 3.6rem);
-  line-height: 0.98;
-  max-width: none;
-  white-space: nowrap;
+  font-size: clamp(1.6rem, 2.6vw, 2.9rem);
+  line-height: 1.08;
+  max-width: 22ch;
+  text-wrap: balance;
 }
 
 #calc-birthday-dow .birthday-dow-section-title,

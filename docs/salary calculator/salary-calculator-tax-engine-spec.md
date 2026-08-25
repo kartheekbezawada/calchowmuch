@@ -118,6 +118,23 @@ Supported frequencies and their period counts:
 | Monthly | 12 | Normally one payment per calendar month |
 | Annual | 1 | — |
 
+**Implemented** — `shared/tax-engine/pay-frequency.js`. Everything normalises through an annual
+figure; chained conversions (monthly → weekly → hourly) accumulate error.
+
+Hourly and Daily have no fixed period count because there is no fixed number of working hours in
+a year — they resolve against the user's `{ hoursPerWeek, weeksPerYear, daysPerWeek }` schedule.
+
+**On the 4-weekly rule.** Compute it as `annual / 13`. Note precisely what the hazard is:
+`monthly × 12 / 13` is *algebraically identical* to `annual / 13`, so the two are not different
+formulas. The failure is **rounding** — deriving 4-weekly from a monthly figure that has already
+been rounded to pence for display drifts the answer. On a £55,000 salary the displayed monthly
+£4,583.33 yields £4,230.77 via that route against £4,230.7692… computed directly.
+
+Keep full precision internally and round only at the presentation layer (§10). The unit test
+pins £55,000 specifically because it does not divide cleanly by 12, and asserts the two paths
+produce different numbers — an earlier version of that test compared the two algebraically
+identical expressions and therefore proved nothing.
+
 ---
 
 ## 5. Pay-Date Schedule Engine
@@ -189,6 +206,23 @@ Estimated net bonus = net with bonus − net without bonus
 
 This avoids incorrectly assuming `bonus × marginal tax rate` is the final answer.
 
+**Implemented** — `calculateUkBonusImpact()` runs the full engine twice, once with the bonus and
+once without, and reports the difference. Returns `{ grossBonus, netBonus, deductedFromBonus,
+effectiveBonusRate }` alongside both full result objects.
+
+**Why running it twice is worth the cost.** Two worked cases from the unit tests:
+
+| Case | Naive `bonus × marginal` | Actual | What the naive method misses |
+|---|---|---|---|
+| £60,000 + £10,000 | 40% | **42%** | 2% NI above the Upper Earnings Limit |
+| £100,000 + £10,000 | 40% | **62%** | 2% NI **and** 20% from losing £5,000 of Personal Allowance |
+
+The second case is the one that justifies the approach. A user earning £100,000 who receives a
+£10,000 bonus keeps £3,800 of it. A marginal-rate calculation tells them £6,000 — a £2,200 error
+on a figure they will check against their payslip.
+
+Both cases are pinned in `tests_specs/infrastructure/unit/uk-tax-engine.test.js`.
+
 ---
 
 ## 7. UK Tax Engine
@@ -211,34 +245,97 @@ Do not hard-code these values into calculation functions — store them in tax-d
 
 ### 7.3 Income Tax Data Model
 
-Table: `uk_income_tax_bands`
+The actual calculation must read from a data table, not hard-coded conditionals.
 
-| Field | Example |
+**Bands are stored in TAXABLE-INCOME space, not gross-salary space.** This was decided during
+implementation (2026-08-24) and supersedes the gross-bound example this section originally
+carried (`lower_bound: 12570, upper_bound: 50270`).
+
+| Field | Example (rUK basic rate) |
 |---|---|
-| tax_year | 2026/27 |
-| region | England |
-| band_name | Basic |
-| lower_bound | 12570 |
-| upper_bound | 50270 |
-| rate | 0.20 |
+| id | `basic` |
+| name | Basic rate |
+| rate | 0.2 |
+| from | 0 |
+| to | 37700 |
 
-The actual calculation must read from this data table, not hard-coded conditionals.
+**Why taxable-income space is the only correct choice:** the Personal Allowance tapers away
+between £100,000 and £125,140 of gross income. Gross-space band boundaries are therefore not
+constant — the £50,270 higher-rate threshold only holds for someone receiving the full £12,570
+allowance. Taxable-income boundaries are constant for everyone.
+
+**The trap this creates**, which must be understood before editing `income-tax.json`: converting
+a quoted gross threshold to taxable space is `gross − 12,570` **only below the taper**. At
+£125,140 the allowance is already nil, so taxable income equals gross income and the
+additional-rate threshold is £125,140 in *both* spaces. Subtracting £12,570 from the top
+threshold is the natural-looking mistake and it silently overtaxes every additional-rate payer.
+
+The same reasoning applies to the six Scottish bands.
+
+Implemented as `bandSets` (`rUK`, `scotland`) with `regions` mapping onto them, so England, Wales
+and Northern Ireland share one definition rather than being duplicated three times.
 
 ### 7.4 National Insurance
 
 Table: `uk_ni_rates` with fields `tax_year`, `category`, `lower_threshold`, `upper_threshold`,
-`rate`.
+`rate`. Do not calculate NI by simply applying one flat percentage to gross salary.
 
-For standard employee Class 1 NI, 2026/27 uses 8% between £242/week and £967/week, and 2% above
-£967/week. Also support annualised equivalents where appropriate. Do not calculate NI by simply
-applying one flat percentage to gross salary.
+For standard employee Class 1 NI: 8% between the Primary Threshold and the Upper Earnings Limit,
+2% above the UEL.
+
+**NI bands are stored in GROSS-EARNINGS space** — the opposite convention to Income Tax (§7.3).
+This is not an inconsistency to be tidied up. NI has its own thresholds and is calculated
+entirely independently of the Personal Allowance; there is no "taxable income" concept in NI.
+The generic algorithm (§11.3) supports both because it takes absolute boundaries on whatever
+income measure the caller passes in.
+
+**Use the annualised thresholds (£12,570 / £50,270), not the weekly ones.** HMRC publishes both,
+and they do not reconcile: £242/week × 52 = £12,584 and £967/week × 52 = £50,284, neither of
+which equals the annual figure. The weekly values are rounded for payroll runs. An annual-basis
+calculator must use the annual thresholds or its results will not match an annual P60.
+
+**Keep the Primary Threshold as its own field even though it currently equals the Personal
+Allowance.** The two being both £12,570 is a coincidence of policy, not a shared value, and they
+can diverge in any Budget. Deriving one from the other creates a bug that appears years later.
 
 ### 7.5 Optional UK Inputs
 
-- **Pension:** contribution %, contribution amount, salary sacrifice flag.
+- **Pension:** contribution %, contribution amount, relief method.
 - **Student loan:** None, Plan 1, Plan 2, Plan 4, Plan 5, Postgraduate. Student-loan
   calculations should be isolated from normal Income Tax/NI.
 - **Other deductions:** other pre-tax deductions, other post-tax deductions.
+
+#### 7.5.1 Pension relief method is not a label — it changes the arithmetic
+
+A "salary sacrifice flag" is not sufficient; there are three methods with three different
+outcomes for the same contribution percentage. Encoded as behaviour flags in `pension.json` so
+the engine reads from data rather than branching on a method name:
+
+| Method | Reduces taxable income | Reduces NIable earnings | Cost to take-home |
+|---|---|---|---|
+| Net pay arrangement *(default)* | yes | no | full contribution |
+| Salary sacrifice | yes | **yes** | full contribution |
+| Relief at source | no | no | **80%** of contribution |
+
+Consequences that must be preserved:
+
+- Salary sacrifice beats a net pay arrangement at the same percentage, because it also cuts the
+  NI bill — £60/yr on a £60,000 salary contributing 5%, since the sacrificed £3,000 sits above
+  the Upper Earnings Limit where NI is 2%.
+- Relief at source is paid out of *net* pay and the scheme reclaims 20% basic-rate relief, so
+  take-home falls by only 80% of the nominal contribution. Higher-rate relief is claimed
+  separately through Self Assessment and **must not** appear in take-home pay.
+
+Treating all three as "a percentage off gross" gives a wrong answer in two of the three cases.
+
+#### 7.5.2 Student loans
+
+Repayment is a percentage of gross income above a plan threshold, calculated independently of
+Income Tax and NI.
+
+A borrower can hold **an undergraduate plan and a postgraduate loan at the same time**, and both
+are deducted. Plan selection is therefore not mutually exclusive with the postgraduate flag —
+but selecting `postgraduate` *as* the plan while also setting the flag must not double-count.
 
 ### 7.6 UK Output
 
@@ -452,9 +549,41 @@ and run a generic progressive-tax algorithm against it.
 
 ### 11.3 Generic Progressive Tax Algorithm
 
-The engine should support a reusable `calculateProgressiveTax(taxableIncome, brackets)`
-function, where `brackets` is an array of `{ lower, upper, rate }` objects. This same algorithm
-is reused for UK, US federal, US states, and future countries.
+**Implemented** — `shared/tax-engine/progressive-tax.js`.
+
+```js
+calculateProgressiveTax(income, bands)
+  -> { total, breakdown: [{ id, name, rate, from, to, amountInBand, tax }], marginalRate }
+```
+
+`bands` is an array of `{ id, name, rate, from, to }`, where `to: null` marks the unbounded top
+band. One implementation serves UK Income Tax, UK NI, and later US federal + every state.
+
+**The design decision that makes reuse possible:** `from`/`to` are **absolute boundaries on
+whatever income measure the caller passes in**, not offsets from a threshold. That single choice
+lets the same function serve two incompatible conventions without branching:
+
+| Caller | `income` argument | Bands start at |
+|---|---|---|
+| UK Income Tax | income after the Personal Allowance | 0 |
+| UK National Insurance | gross earnings | 12,570 (Primary Threshold) |
+
+Expressing NI as "offsets from a threshold" is where hand-rolled implementations go wrong,
+because NI's thresholds have nothing to do with the Income Tax allowance.
+
+`marginalRate` is the rate of the last band that actually received income — the rate on the next
+pound earned. It is returned alongside the total specifically so the presentation layer can keep
+it distinct from the effective rate (§12).
+
+Two shapes deliberately live beside it rather than being forced into the band schedule:
+
+- `calculateThresholdTax(income, threshold, rate)` — flat rate above a threshold. UK student
+  loans, and several US states.
+- `calculateTaperedAllowance(income, { amount, taper })` — an allowance that phases out. The UK
+  Personal Allowance, and the same shape as several US state exemption phase-outs.
+
+Pretending either is a progressive band schedule obscures what is happening and makes the taper
+in particular impossible to explain to the user.
 
 ### 11.4 Data Sources
 
@@ -470,27 +599,57 @@ forms/instructions, cross-checked against the Tax Foundation's 2026 state datase
 rates, standard deductions, exemptions) as a data-inventory starting point — not a substitute
 for state-authority validation.
 
-### 11.5 Recommended Data File Layout
+### 11.5 Data File Layout (as built)
 
-```
-tax-data/
-├── uk/
-│   ├── income-tax.json
-│   ├── national-insurance.json
-│   ├── student-loans.json
-│   └── pension.json
-└── us/
+Root: `public/calculators/salary-calculators/shared/tax-data/`
+
+Chosen to sit beside `salary-utils.js`, which the cluster already shares. Served statically and
+fetched on demand, so the 51 state files never enter the initial payload. Already covered by the
+`/calculators/*` noindex header, so the raw JSON cannot be indexed.
+
+```text
+shared/tax-data/
+├── uk/                          ← built 2026-08-24
+│   ├── income-tax.json          band sets: rUK + scotland, PA taper
+│   ├── national-insurance.json  Class 1 employee
+│   ├── student-loans.json       Plans 1/2/4/5 + Postgraduate
+│   └── pension.json             3 relief methods, auto-enrolment
+└── us/                          ← not yet built
     ├── federal-income-tax.json
     ├── fica.json
-    ├── states/
-    │   ├── AL.json
-    │   ├── AK.json
-    │   ├── AZ.json
-    │   └── ...
-    └── local/
+    ├── payroll-taxes.json       state SDI / PFML / employee-SUI (Bucket A)
+    └── states/
+        ├── AL.json
+        └── ...                  all 50 + DC, including the 9 no-tax states
+                                 as explicit "taxStructure": "none" files
 ```
 
+`us/local/` is **deliberately absent** — see §8.8 (B2 decision).
+
 Do not put all US tax data into one enormous JavaScript file.
+
+### 11.7 Validation (mandatory before ship)
+
+`scripts/validate-tax-data.mjs` enforces this section mechanically.
+
+```bash
+node scripts/validate-tax-data.mjs            # structural; warns on unverified tables
+node scripts/validate-tax-data.mjs --strict   # pre-ship gate; FAILS on unverified tables
+```
+
+Structural checks: §11.1 metadata present, `source` is a URL, rates are fractions in 0–1 (catches
+`20` entered for 20%), band boundaries **contiguous and non-overlapping**, top band unbounded,
+PA taper internally consistent, auto-enrolment percentages sum, exactly one default pension
+relief method.
+
+Band contiguity is checked because neither failure mode throws on its own — a gap silently
+under-taxes and an overlap silently double-taxes. Both produce a plausible wrong number.
+
+Strict mode additionally requires `lastVerified` to be a real date and
+`verification.status === "verified"`. **A table whose figures have not been confirmed against
+its official source carries `lastVerified: null` and blocks the build.** This is the enforcement
+mechanism for §11.2 and §11.4 — a confidently-presented wrong tax figure is worse than no
+calculator at all.
 
 ### 11.6 US State JSON Example
 
@@ -689,3 +848,75 @@ The implementation must clearly distinguish:
 
 The final calculator should provide a transparent calculation breakdown so a user can understand
 exactly how gross salary became estimated take-home pay.
+
+---
+
+## 22. Implementation Status
+
+Updated 2026-08-24. The build checklist
+(`salary-calculator-build-checklist.md`) is the authoritative task list; this section maps spec
+sections onto what actually exists so a reader of *this* document knows which parts are still
+design and which are code.
+
+### 22.1 Built
+
+| Artifact | Covers |
+|---|---|
+| `shared/tax-engine/progressive-tax.js` | §11.3 — `calculateProgressiveTax`, `calculateThresholdTax`, `calculateTaperedAllowance` |
+| `shared/tax-engine/pay-frequency.js` | §4 — `toAnnual`, `fromAnnual`, `periodsPerYear` |
+| `shared/tax-engine/uk-engine.js` | §7 — `calculateUkTakeHome`, `calculateUkBonusImpact` |
+| `shared/tax-data/uk/*.json` (4 files) | §7.3, §7.4, §7.5, §11.1, §11.5 |
+| `scripts/validate-tax-data.mjs` | §11.7 — structural checks + `--strict` pre-ship gate |
+| `tests_specs/infrastructure/unit/uk-tax-engine.test.js` | §13 boundary tests — 54 passing |
+
+Against §21's implementation sequence: steps 5, 6, 9, 10 are done for the UK, step 13 is done for
+what exists, and step 3 is done for UK schemas.
+
+### 22.2 Not built
+
+- **US engine and US tax data** (§8) — federal, FICA, 51 state files, state payroll taxes.
+  The generic algorithm is proven, so this is data entry against a state schema (§11.6) rather
+  than new algorithm design.
+- **Pay-date schedule engine** (§5) — biweekly/4-weekly/monthly generation, month-end rule,
+  working-day adjustment. The behaviour is fully specified and demonstrated in the UI mockup, but
+  the mockup's version is throwaway JS, not engine code. Per §5's requirement plus the UI's pay
+  sheet, the result rows must carry `{ date, grossAmount, netAmount, isBonusPeriod }`, not dates
+  alone.
+- **`GrossOnlyEngine`** — the existing gross-pay conversion path, to be preserved as its own mode.
+- **Canonical `SalaryInput` model** (§3) — currently an informal JSDoc typedef on each engine.
+  Deliberately deferred until the US engine exists and the genuinely shared shape is known rather
+  than guessed.
+- **UI integration** (§21 step 14) — nothing is wired into the live page. The existing gross-only
+  `salary-calculator` page is untouched.
+
+### 22.3 Tax figures are NOT verified
+
+`node scripts/validate-tax-data.mjs --strict` **currently exits 1.** All four UK tables carry
+`lastVerified: null`, which is deliberate and follows §21's instruction to *"flag the field for
+verification rather than guessing."*
+
+Each file carries a `verification` block with a confidence rating:
+
+| Table | Confidence | Needs |
+|---|---|---|
+| `income-tax.json` — rUK bands | high | Thresholds frozen to April 2028, so 2026/27 should equal 2025/26. Confirm on gov.uk |
+| `income-tax.json` — **Scotland bands** | **low** | **Values are 2025/26.** Scottish rates are set annually by the Scottish Budget and starter/basic thresholds are routinely uprated. Replace from gov.scot |
+| `national-insurance.json` | medium-high | 8%/2% structure has held since April 2024 and reconciles exactly to £3,210.60 on £60,000. Confirm no rate change |
+| `student-loans.json` | **low** | **Values are 2025/26.** Plan 1/2/4 thresholds uprate annually; a wrong threshold moves the result by hundreds a year |
+| `pension.json` | medium | Confirm the qualifying earnings band for 2026/27 |
+
+Nothing ships until each is confirmed against its §11.4 source, `lastVerified` is set to a real
+date, and `verification.status` is flipped to `verified`.
+
+### 22.4 Corrections this section records
+
+Two things in this spec were wrong or underspecified and have been amended in place rather than
+left to be rediscovered:
+
+1. **§7.3** originally showed Income Tax bands with gross bounds (`12570`–`50270`). That cannot
+   work once the Personal Allowance taper is modelled. Rewritten to taxable-income space, with
+   the boundary-conversion trap spelled out.
+2. **§4's 4-weekly warning** was stated as "use `annual / 13`, never `monthly × 12 / 13`". Those
+   two expressions are algebraically identical; the real hazard is rounding an intermediate
+   monthly figure. Restated accurately. The first version of the corresponding unit test asserted
+   the two expressions were equal and therefore proved nothing — it has been rewritten.

@@ -702,11 +702,15 @@ const CALCULATOR_OVERRIDES = {
       'Choose Quick, Strong, or Full energy goals to get the best nap length, wake-up time, and practical alternatives for daytime or late-night naps.',
     h1: 'Energy-Based Nap Selector',
   },
+  // Title/H1 lead with the searcher's own phrasing, not the tool's name. GSC 28d to 2026-08-22:
+  // "what day of the week was i born" = 133 impressions; "birthday day of the week calculator" = 4.
+  // Past-tense "was I born" phrasing is 70.9% of all named demand. See
+  // seo_fixes/time-and-date/birthday-day-of-week/fix-1.md
   'birthday-day-of-week': {
-    title: 'Birthday Day-of-Week Calculator | Find the Day You Were Born',
+    title: 'What Day of the Week Was I Born? | Birth Day Calculator',
     description:
-      'Find the weekday you were born on, preview future birthday weekdays, and spot upcoming Friday, Saturday, or Sunday birthdays for planning.',
-    h1: 'Birthday Day-of-Week Calculator',
+      'Enter your date of birth to find out what day of the week you were born on. See the weekday for your next birthday, the year ahead, and the next 12 years.',
+    h1: 'What day of the week was I born?',
   },
   'countdown-timer': {
     title: 'Countdown Timer (Live) | Live Countdown to Any Date or Event',
