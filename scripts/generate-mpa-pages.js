@@ -368,11 +368,14 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  // 2026-08-25: page gained a UK take-home mode, so the "(Gross Pay)" disambiguation that was
+  // added to this cluster is no longer accurate — it now does both. Must stay byte-identical to
+  // buildSalaryMetadata() in the page's module.js, which replaces this at runtime.
   'salary-calculator': {
-    title: 'Salary Calculator (Gross Pay) | Hourly, Weekly, Monthly and Annual Pay',
+    title: 'Salary Calculator | UK Take-Home Pay and Gross Pay Converter',
     description:
-      'Convert one gross pay amount into hourly, daily, weekly, biweekly, monthly, and annual pay with schedule assumptions that stay visible.',
-    h1: 'Salary Calculator (Gross Pay)',
+      'Work out your UK take-home pay after Income Tax, National Insurance, pension and student loan, or convert gross pay between hourly, weekly, monthly and annual.',
+    h1: 'Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },

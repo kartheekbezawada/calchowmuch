@@ -104,12 +104,12 @@ describe('calculateTaperedAllowance', () => {
 
 describe('calculateThresholdTax', () => {
   it('charges nothing at or below the threshold', () => {
-    expect(calculateThresholdTax(25000, 28470, 0.09).total).toBe(0);
-    expect(calculateThresholdTax(28470, 28470, 0.09).total).toBe(0);
+    expect(calculateThresholdTax(25000, 29385, 0.09).total).toBe(0);
+    expect(calculateThresholdTax(29385, 29385, 0.09).total).toBe(0);
   });
 
   it('charges the rate on income above the threshold only', () => {
-    expect(money(calculateThresholdTax(38470, 28470, 0.09).total)).toBe(900);
+    expect(money(calculateThresholdTax(39385, 29385, 0.09).total)).toBe(900);
   });
 });
 
@@ -294,7 +294,7 @@ describe('calculateUkTakeHome — student loans', () => {
 
   it('deducts 9% of income above the Plan 2 threshold', () => {
     const result = calculateUkTakeHome({ grossAnnual: 40000, region: 'england', studentLoanPlan: 'plan-2' }, taxData);
-    expect(money(result.studentLoans.total)).toBe(money((40000 - 28470) * 0.09));
+    expect(money(result.studentLoans.total)).toBe(money((40000 - 29385) * 0.09));
   });
 
   it('applies an undergraduate plan and a postgraduate loan at the same time', () => {
@@ -303,7 +303,7 @@ describe('calculateUkTakeHome — student loans', () => {
       taxData,
     );
     expect(result.studentLoans.entries).toHaveLength(2);
-    const expected = (40000 - 28470) * 0.09 + (40000 - 21000) * 0.06;
+    const expected = (40000 - 29385) * 0.09 + (40000 - 21000) * 0.06;
     expect(money(result.studentLoans.total)).toBe(money(expected));
   });
 
