@@ -397,17 +397,17 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'annual-to-monthly-salary-calculator': {
-    title: 'Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly Income',
+    title: 'Annual to Monthly Salary Calculator | UK and US Take-Home Pay',
     description:
-      'Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.',
+      'Convert annual salary into monthly pay, and see UK or US take-home pay after tax on that monthly figure. Free, and nothing is stored.',
     h1: 'Annual to Monthly Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'monthly-to-annual-salary-calculator': {
-    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
+    title: 'Monthly to Annual Salary Calculator | UK and US Take-Home Pay',
     description:
-      'Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.',
+      'Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored.',
     h1: 'Monthly to Annual Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
