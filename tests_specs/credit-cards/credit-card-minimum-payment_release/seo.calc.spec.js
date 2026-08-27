@@ -5,7 +5,7 @@ test.describe('Credit Card Minimum Payment Calculator SEO', () => {
     const route = '/credit-card-calculators/credit-card-minimum-payment-calculator/';
     const expectedTitle = 'Credit Card Minimum Payment Calculator | Payoff Time & Interest';
     const expectedDescription =
-      'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.';
+      'Work out your credit card minimum payment, then see exactly how many years minimum-only payments take and what they cost in interest. Free, nothing stored.';
 
     await page.goto(route);
 
@@ -63,7 +63,7 @@ test.describe('Credit Card Minimum Payment Calculator SEO', () => {
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
-    expect(faqNode.mainEntity).toHaveLength(12);
+    expect(faqNode.mainEntity).toHaveLength(17);
 
     const visibleQuestions = await page.locator('#cc-min-explanation .cc-min-faq-item strong').allTextContents();
     const normalizedVisibleQuestions = visibleQuestions.map((text) => text.replace(/^Q:\s*/, '').trim());

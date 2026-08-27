@@ -128,6 +128,21 @@ export function generatePaySchedule({
       bonusMonthIndex !== null && !bonusApplied && date.getMonth() === bonusMonthIndex;
     if (isBonusPeriod) bonusApplied = true;
 
+    // The bonus brings its own tax with it. Without apportioning that across the deduction
+    // columns the bonus row does not add up on screen - gross minus the listed deductions would
+    // not equal the net, which is the first thing a user checks.
+    const bonusDeductionTotal = isBonusPeriod ? bonusGross - bonusNet : 0;
+    const deductionRows = perPeriodDeductions.map((d) => ({ ...d }));
+    if (bonusDeductionTotal > 0) {
+      const baseTotal = perPeriodDeductions.reduce((sum, d) => sum + d.amount, 0);
+      deductionRows.forEach((d, index) => {
+        // Split in the same proportion as the regular deductions. If there are none (gross mode,
+        // or a zero-tax state) put it all on the first line rather than losing it.
+        const share = baseTotal > 0 ? d.amount / baseTotal : index === 0 ? 1 : 0;
+        d.amount += bonusDeductionTotal * share;
+      });
+    }
+
     rows.push({
       index: i + 1,
       date,
@@ -135,7 +150,7 @@ export function generatePaySchedule({
       isBonusPeriod,
       gross: perPeriodGross + (isBonusPeriod ? bonusGross : 0),
       net: perPeriodNet + (isBonusPeriod ? bonusNet : 0),
-      deductions: perPeriodDeductions.map((d) => ({ ...d })),
+      deductions: deductionRows,
     });
   }
 

@@ -14,7 +14,8 @@ export const SALARY_CALCULATOR_CONFIGS = {
     runE2E: async ({ page, expect, parseNumericText }) => {
       // --- Gross Pay mode (the default) must behave exactly as it always has -----------------
       await page.click('button[data-value="hourly"]');
-      await page.click('#salary-assumptions summary');
+      // Work schedule assumptions is always open now, not a click-to-expand <details>.
+      await expect(page.locator('#salary-hours-per-week')).toBeVisible();
       await page.fill('#salary-pay-amount', '25');
       await page.fill('#salary-hours-per-week', '40');
       await page.fill('#salary-weeks-per-year', '52');
@@ -48,6 +49,66 @@ export const SALARY_CALCULATOR_CONFIGS = {
       await page.click('#salary-calc-button');
       const scotlandNet = parseNumericText(await page.locator('#salary-annual-pay').textContent());
       expect(scotlandNet).not.toBeCloseTo(englandNet, 1);
+      await page.click('#salary-region-row button[data-value="england"]');
+
+      // --- explanation follows the mode -------------------------------------------------------
+      // Each mode shows only its own guidance. Both country sections stay in the DOM and are
+      // hidden with CSS, so the crawler and the content scorer still see all of it.
+      const ukCard = page.locator('#salary-calculator-explanation .sal-uk-only').first();
+      const usCard = page.locator('#salary-calculator-explanation .sal-us-only').first();
+      const grossCard = page.locator('#salary-calculator-explanation .sal-gross-only').first();
+      await expect(ukCard).toBeVisible();
+      await expect(usCard).toBeHidden();
+      await expect(grossCard).toBeHidden();
+
+      // --- pay sheet is available WITHOUT opening `+ Pay schedule` -----------------------------
+      const schedChip = page.locator('.sal-opt-chip[data-opt="sched"]');
+      await expect(schedChip).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.locator('#salary-paysheet')).toBeVisible();
+      await expect(page.locator('#salary-paysheet tbody tr')).toHaveCount(12);
+      // Default first payday is the 1st of a month, not a weekday guess.
+      await expect(page.locator('#salary-paysheet tbody tr:first-child td:nth-child(2)'))
+        .toContainText(' 1 ');
+
+      // --- bonus lands on exactly one payday, and that row reconciles --------------------------
+      await page.click('.sal-opt-chip[data-opt="bonus"]');
+      await page.fill('#salary-bonus-amount', '10000');
+      await page.selectOption('#salary-bonus-month', '11');
+      await page.click('#salary-calc-button');
+      await expect(page.locator('#salary-paysheet tr.is-bonus')).toHaveCount(1);
+
+      const bonusCells = await page.locator('#salary-paysheet tr.is-bonus td').allTextContents();
+      const [, , g, tax, ni, other, net] = bonusCells.map(parseNumericText);
+      // Gross minus every listed deduction must equal the net shown, or the row looks broken.
+      expect(g - tax - ni - other).toBeCloseTo(net, 1);
+      await page.click('.sal-opt-chip[data-opt="bonus"]');
+
+      // --- USA mode ---------------------------------------------------------------------------
+      await page.click('.sal-mode-btn[data-value="us"]');
+      await expect(usCard).toBeVisible();
+      await expect(ukCard).toBeHidden();
+      await expect(page.locator('#salary-state-row')).toBeVisible();
+      await expect(page.locator('#salary-filing-row')).toBeVisible();
+
+      // USA mode defaults to Texas rather than making the visitor pick a state first.
+      await expect(page.locator('#salary-state')).toHaveValue('Texas');
+      await expect(page.locator('#salary-calc-error')).toBeHidden();
+
+      await page.fill('#salary-pay-amount', '100000');
+      await page.click('#salary-calc-button');
+      // 100,000 single in Texas: 13,170 federal + 7,650 FICA, no state tax => 79,180.
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent()))
+        .toBeCloseTo(79180, 0);
+      await expect(page.locator('#salary-local-note')).toBeVisible();
+
+      // --- Gross Pay mode ---------------------------------------------------------------------
+      await page.click('.sal-mode-btn[data-value="gross"]');
+      await expect(grossCard).toBeVisible();
+      await expect(ukCard).toBeHidden();
+      await expect(usCard).toBeHidden();
+      // Pay sheet still there, degraded to date + gross only.
+      await expect(page.locator('#salary-paysheet')).toBeVisible();
+      await expect(page.locator('#salary-paysheet thead th:visible')).toHaveCount(3);
     },
   },
   'hourly-to-salary-calculator': {

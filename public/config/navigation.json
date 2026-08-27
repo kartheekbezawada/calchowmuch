@@ -569,6 +569,21 @@
           "icon": "💳",
           "calculators": [
             {
+              "id": "credit-card-calculators-hub",
+              "name": "Credit Card Calculators",
+              "url": "/credit-card-calculators/",
+              "keywords": [
+                "credit card calculators",
+                "credit card minimum payment",
+                "credit card payoff",
+                "balance transfer",
+                "debt payoff"
+              ],
+              "routeArchetype": "content_shell",
+              "designFamily": "credit-cards",
+              "paneLayout": "single"
+            },
+            {
               "id": "credit-card-repayment-payoff",
               "name": "Repayment",
               "url": "/credit-card-calculators/credit-card-payment-calculator/",

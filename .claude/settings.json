@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(npm run test:iss:*)",
-      "Bash(lsof:*)"
+      "Bash(lsof:*)",
+      "Bash(node \"C:/Users/karth/AppData/Local/Temp/claude/c--Users-karth-Desktop-Calculator-project-3-calchowmuch/8170af3d-b625-4a0b-be3d-7cc6c4071c81/scratchpad/score-cmp.mjs\")",
+      "Bash(node --check public/calculators/salary-calculators/salary-calculator/module.js)",
+      "Bash(sed -i 's|'\\\\''./public/assets/js/core/credit-card-utils.js'\\\\''|'\\\\''file:///c:/Users/karth/Desktop/Calculator_project_3/calchowmuch/public/assets/js/core/credit-card-utils.js'\\\\''|' __TRACKED_VAR__/gen.mjs)",
+      "Bash(node __TRACKED_VAR__/gen.mjs)",
+      "WebFetch(domain:www.capitalone.com)",
+      "Bash(node scripts/generate-mpa-pages.js --calc-id credit-card-minimum-payment)",
+      "Bash(node \"C:\\\\Users\\\\karth\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-karth-Desktop-Calculator-project-3-calchowmuch\\\\8170af3d-b625-4a0b-be3d-7cc6c4071c81\\\\scratchpad\\\\verify-spacing.mjs\")",
+      "Bash(node scripts/validate-tax-data.mjs --strict)"
     ]
   }
 }

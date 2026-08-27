@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
@@ -571,10 +572,20 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  'credit-card-calculators-hub': {
+    title: 'Credit Card Calculators | Minimum Payment, Payoff, Balance Transfer',
+    description:
+      'Free credit card calculators: work out your minimum payment and what it costs, compare a fixed payoff plan, price a balance transfer, and order multiple debts.',
+    h1: 'Credit Card Calculators',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'credit-card-minimum-payment': {
     title: 'Credit Card Minimum Payment Calculator | Payoff Time & Interest',
+    // Must stay byte-identical to the `metadata` object in the page's module.js, which replaces
+    // this at runtime. Enforced by finance-static-schema-source-parity.test.js.
     description:
-      'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
+      'Work out your credit card minimum payment, then see exactly how many years minimum-only payments take and what they cost in interest. Free, nothing stored.',
     h1: 'Credit Card Minimum Payment Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -1330,7 +1341,7 @@ const CREDIT_CARD_SCHEMA_CONFIG = {
     breadcrumbLabel: 'Credit Card Minimum Payment Calculator',
     softwareName: 'Credit Card Minimum Payment Calculator',
     softwareDescription:
-      'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
+      'Work out your credit card minimum payment, then see exactly how many years minimum-only payments take and what they cost in interest. Free, nothing stored.',
     featureList: [
       'Minimum payment estimate with lowest-payment floor',
       'Month-by-month payoff schedule',
@@ -1596,6 +1607,30 @@ function resolveCalculatorGovernance({ category, subcategory, calculator, overri
   calculator.paneLayout = paneLayout;
 
   return { routeArchetype, designFamily, paneLayout };
+}
+
+const fileVersionCache = new Map();
+
+/**
+ * Per-calculator module.js/calculator.css assets are versioned off their own content hash rather
+ * than the global ROUTE_ASSET_VERSION literal, so an edit is guaranteed to change the emitted
+ * `?v=` query string on the next build. The global literal never got bumped, which meant every
+ * browser that had already loaded a calculator page kept serving the cached pre-edit JS/CSS from
+ * that unchanged URL no matter how many times the source file changed.
+ */
+function fileContentVersion(absPath) {
+  if (fileVersionCache.has(absPath)) {
+    return fileVersionCache.get(absPath);
+  }
+  let version = ROUTE_ASSET_VERSION;
+  try {
+    const buf = fs.readFileSync(absPath);
+    version = crypto.createHash('md5').update(buf).digest('hex').slice(0, 10);
+  } catch {
+    // Missing/unreadable source file: fall back to the global stamp rather than failing the build.
+  }
+  fileVersionCache.set(absPath, version);
+  return version;
 }
 
 function appendVersionParam(href, version = ROUTE_ASSET_VERSION) {
@@ -2837,7 +2872,10 @@ function resolveCalculatorModuleScriptHref(calculatorRelPath) {
   if (isFinanceCalculatorRelPath(calculatorRelPath)) {
     const clusterModuleAbsPath = path.join(CALC_DIR, calculatorRelPath, 'module.js');
     if (fs.existsSync(clusterModuleAbsPath)) {
-      return appendVersionParam(`/calculators/${calculatorRelPath}/module.js`);
+      return appendVersionParam(
+        `/calculators/${calculatorRelPath}/module.js`,
+        fileContentVersion(clusterModuleAbsPath)
+      );
     }
     const financeAssetRelPath = path
       .join('assets', 'js', 'calculators', calculatorRelPath, 'module.js')
@@ -2846,16 +2884,24 @@ function resolveCalculatorModuleScriptHref(calculatorRelPath) {
     if (!fs.existsSync(financeAssetAbsPath)) {
       throw new Error(`Missing finance module asset: ${financeAssetAbsPath}`);
     }
-    return appendVersionParam(`/${financeAssetRelPath}`);
+    return appendVersionParam(`/${financeAssetRelPath}`, fileContentVersion(financeAssetAbsPath));
   }
-  return appendVersionParam(`/calculators/${calculatorRelPath}/module.js`);
+  const genericModuleAbsPath = path.join(CALC_DIR, calculatorRelPath, 'module.js');
+  return appendVersionParam(
+    `/calculators/${calculatorRelPath}/module.js`,
+    fileContentVersion(genericModuleAbsPath)
+  );
 }
 
 function resolveCalculatorCssHref(calculatorRelPath) {
   if (!calculatorRelPath) {
     return null;
   }
-  return appendVersionParam(`/calculators/${calculatorRelPath}/calculator.css`);
+  const cssAbsPath = path.join(CALC_DIR, calculatorRelPath, 'calculator.css');
+  return appendVersionParam(
+    `/calculators/${calculatorRelPath}/calculator.css`,
+    fileContentVersion(cssAbsPath)
+  );
 }
 
 const HOME_LOAN_CLUSTER_REDESIGN_ORDER = [
@@ -3593,7 +3639,12 @@ const PERCENTAGE_RELATED_CARD_COPY = {
 };
 
 function buildCreditCardRelatedCalculatorsHtml(subcategory, activeCalculatorId) {
-  const calculators = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+  const allEntries = Array.isArray(subcategory?.calculators) ? subcategory.calculators : [];
+  // This row is peer navigation between the tools themselves, so the cluster hub (a content_shell,
+  // not a calculator) is excluded - it is reached via the breadcrumb, nav, and homepage instead.
+  const calculators = allEntries.filter(
+    (calculator) => calculator.routeArchetype !== 'content_shell'
+  );
 
   if (!calculators.length) {
     return '';
@@ -5687,6 +5738,19 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           </section>
 
           <section class="seo-block">
+            <h3>Credit Cards &amp; Debt Payoff</h3>
+            <p>
+              See what minimum-only repayment really costs with the
+              <a href="/credit-card-calculators/credit-card-minimum-payment-calculator/">credit card minimum payment calculator</a>,
+              set a faster plan with the
+              <a href="/credit-card-calculators/credit-card-payment-calculator/">credit card payoff calculator</a>,
+              or browse every
+              <a href="/credit-card-calculators/">credit card calculator</a>
+              including balance transfer and consolidation.
+            </p>
+          </section>
+
+          <section class="seo-block">
             <h3>Pricing &amp; Profitability</h3>
             <p>
               Compare
@@ -6279,6 +6343,76 @@ function main() {
         softwareName: override?.h1 ?? calculator.name,
         softwareDescription: pageDescription,
       });
+      injectStaticStructuredData = true;
+    }
+    if (calculator.id === 'credit-card-calculators-hub') {
+      staticStructuredData = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            '@id': `${SITE_URL}/#website`,
+            url: `${SITE_URL}/`,
+            name: 'CalcHowMuch',
+            inLanguage: 'en',
+          },
+          {
+            '@type': 'Organization',
+            '@id': `${SITE_URL}/#organization`,
+            name: 'CalcHowMuch',
+            url: `${SITE_URL}/`,
+            logo: {
+              '@type': 'ImageObject',
+              url: OG_IMAGE,
+            },
+          },
+          {
+            '@type': 'CollectionPage',
+            '@id': `${pageCanonical}#webpage`,
+            name: pageTitle,
+            url: pageCanonical,
+            description: pageDescription,
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            publisher: { '@id': `${SITE_URL}/#organization` },
+            inLanguage: 'en',
+          },
+          {
+            '@type': 'ItemList',
+            '@id': `${pageCanonical}#itemlist`,
+            name: 'Credit Card Calculators',
+            itemListElement: [
+              ['Credit Card Minimum Payment Calculator', 'credit-card-minimum-payment-calculator'],
+              ['Credit Card Payoff Calculator', 'credit-card-payment-calculator'],
+              ['Balance Transfer Credit Card Calculator', 'balance-transfer-credit-card-calculator'],
+              ['Credit Card Consolidation Calculator', 'credit-card-consolidation-calculator'],
+              ['Debt Payoff Calculator', 'debt-payoff-calculator'],
+            ].map(([name, slug], index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name,
+              url: `${SITE_URL}/credit-card-calculators/${slug}/`,
+            })),
+          },
+          {
+            '@type': 'BreadcrumbList',
+            '@id': `${pageCanonical}#breadcrumbs`,
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: `${SITE_URL}/`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Credit Card Calculators',
+                item: pageCanonical,
+              },
+            ],
+          },
+        ],
+      };
       injectStaticStructuredData = true;
     }
     if (calculator.id === 'salary-calculators-hub') {

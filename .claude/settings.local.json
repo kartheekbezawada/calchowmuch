@@ -46,7 +46,12 @@
       "Bash(npx lighthouse:*)",
       "Bash(CHROME_PATH=/home/kartheek/.cache/puppeteer-browsers/chrome/linux-145.0.7632.46/chrome-linux64/chrome npx lighthouse:*)",
       "Bash(pkill:*)",
-      "Bash(killall:*)"
+      "Bash(killall:*)",
+      "Bash(node \"C:\\\\Users\\\\karth\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-karth-Desktop-Calculator-project-3-calchowmuch\\\\8170af3d-b625-4a0b-be3d-7cc6c4071c81\\\\scratchpad\\\\gross-shot.mjs\")",
+      "Bash(node \"C:\\\\Users\\\\karth\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-karth-Desktop-Calculator-project-3-calchowmuch\\\\8170af3d-b625-4a0b-be3d-7cc6c4071c81\\\\scratchpad\\\\verify-tx.mjs\")",
+      "Bash(node -e ' *)",
+      "Bash(node \"C:\\\\Users\\\\karth\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-karth-Desktop-Calculator-project-3-calchowmuch\\\\8170af3d-b625-4a0b-be3d-7cc6c4071c81\\\\scratchpad\\\\verify-standalone.mjs\")",
+      "Bash(node \"C:\\\\Users\\\\karth\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-karth-Desktop-Calculator-project-3-calchowmuch\\\\8170af3d-b625-4a0b-be3d-7cc6c4071c81\\\\scratchpad\\\\zoom.mjs\")"
     ]
   }
 }

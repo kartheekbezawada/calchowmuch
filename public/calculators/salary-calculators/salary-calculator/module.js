@@ -17,53 +17,79 @@ const US_DATA_BASE = '/calculators/salary-calculators/shared/tax-data/us';
 
 const FAQ_ITEMS = [
   {
-    question: 'Does this calculator show take-home pay or gross pay?',
+    question: "Does this calculator show take-home pay or gross pay?",
     answer:
-      'Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan.',
+      "Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan.",
   },
   {
-    question: 'How is UK take-home pay calculated here?',
+    question: "How is UK take-home pay calculated here?",
     answer:
-      'Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold.',
+      "Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold.",
   },
   {
-    question: 'Why does Scotland give a different result?',
+    question: "Why does Scotland give a different result?",
     answer:
-      'Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional.',
+      "Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional.",
   },
   {
-    question: 'Does a pension contribution reduce my tax?',
+    question: "Does a pension contribution reduce my tax?",
     answer:
-      'It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf.',
+      "It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf.",
   },
   {
-    question: 'What is the difference between the effective rate and the marginal rate?',
+    question: "What is the difference between the effective rate and the marginal rate?",
     answer:
-      'The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works.',
+      "The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works.",
   },
   {
-    question: 'How is a bonus taxed?',
+    question: "How is a bonus taxed?",
     answer:
-      'The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band.',
+      "The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band.",
   },
   {
-    question: 'Why is 4-weekly pay not the same as monthly pay?',
+    question: "Why is 4-weekly pay not the same as monthly pay?",
     answer:
-      'Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it.',
+      "Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it.",
   },
   {
-    question: 'Can I see the dates I will actually be paid?',
+    question: "Can I see the dates I will actually be paid?",
     answer:
-      'Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on.',
+      "Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on.",
   },
   {
-    question: 'Why does my payslip differ from this estimate?',
+    question: "Why does my payslip differ from this estimate?",
     answer:
-      'Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run.',
+      "Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run.",
   },
   {
-    question: 'Are my salary details stored anywhere?',
-    answer: 'No. All calculations run locally in your browser and nothing is stored.',
+    question: "Are my salary details stored anywhere?",
+    answer:
+      "No. All calculations run locally in your browser - no data is stored.",
+  },
+  {
+    question: "How is US take-home pay calculated here?",
+    answer:
+      "Your standard deduction is applied first, then federal income tax is charged bracket by bracket on what remains. FICA is calculated separately on your gross wages, and state income tax uses that state's own schedule and deductions.",
+  },
+  {
+    question: "Does my 401(k) reduce FICA as well as income tax?",
+    answer:
+      "No. A 401(k) reduces federal and state taxable income, but Social Security and Medicare are charged on your full gross wages regardless. This is the detail most paycheck calculators get wrong, and it makes the real saving smaller than the headline rate suggests.",
+  },
+  {
+    question: "Why does my state change the result so much?",
+    answer:
+      "Nine states levy no income tax on wages at all, around fifteen apply a single flat rate, and the rest use graduated brackets with their own deductions. On a $100,000 salary the difference between Texas and California is over $6,500 a year.",
+  },
+  {
+    question: "Are city or local income taxes included?",
+    answer:
+      "No. This calculator covers federal, FICA and state-level taxes only. If you live or work in a city with its own income tax. New York City, Philadelphia, Detroit and others. Your actual take-home will be lower than shown.",
+  },
+  {
+    question: "Which filing status should I choose?",
+    answer:
+      "Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars.",
   },
 ];
 
@@ -259,6 +285,35 @@ async function loadState(code) {
 
 /* ------------------------------------------------------------------ helpers */
 
+/**
+ * Blank the results card.
+ *
+ * Called whenever calculate() cannot produce a figure. Without this the card keeps whatever the
+ * previous mode left behind, so switching to USA before choosing a state showed the UK result -
+ * complete with a pound sign - next to a "choose your state" error. A stale number in the wrong
+ * currency is worse than no number, because it looks like an answer.
+ */
+function clearResults() {
+  const dash = '\u2014';
+  [outputs.hero, outputs.monthly, outputs.biweekly, outputs.weekly, outputs.daily, outputs.hourly]
+    .forEach((node) => setText(node, dash));
+  setText(outputs.effectiveRate, dash);
+  setText(outputs.marginalRate, dash);
+  setText(outputs.note, '');
+  setText(outputs.breakdown, '');
+  if (outputs.splitBar) outputs.splitBar.innerHTML = '';
+  if (outputs.splitLegend) outputs.splitLegend.innerHTML = '';
+  if (outputs.bandList) outputs.bandList.innerHTML = '';
+  if (outputs.paysheetBody) outputs.paysheetBody.innerHTML = '';
+
+  const details = el('salary-breakdown-details');
+  if (details) details.hidden = true;
+  const paysheet = el('salary-paysheet');
+  if (paysheet) paysheet.hidden = true;
+
+  latestSummary = '';
+}
+
 function showError(message) {
   if (!errorNode) return;
   errorNode.hidden = false;
@@ -273,13 +328,29 @@ function clearError() {
 
 function setDirty(isDirty) {
   if (!dirtyChip) return;
-  dirtyChip.textContent = isDirty ? 'Inputs changed - click Calculate to update' : 'Up to date';
+  // With live calculation the "click Calculate" prompt would be wrong, so this reports state
+  // rather than instructing an action that is no longer required.
+  dirtyChip.textContent = isDirty ? 'Updating...' : 'Updated';
   dirtyChip.classList.toggle('is-dirty', isDirty);
 }
 
+/**
+ * Recalculate as the user types rather than making them find the Calculate button.
+ *
+ * The button sat at the bottom of a tall form card while the result sat at the top of the results
+ * card, roughly 900px apart, so clicking it meant scrolling away from the answer and back again.
+ * Live calculation removes that round trip entirely. The button stays as an explicit action for
+ * anyone who expects one, but nothing depends on it.
+ *
+ * Debounced so a four-digit salary does not trigger four full recalculations, and because the US
+ * path can touch the state cache.
+ */
+let liveTimer = null;
 function markDirty() {
-  setDirty(true);
   clearError();
+  setDirty(true);
+  window.clearTimeout(liveTimer);
+  liveTimer = window.setTimeout(() => calculate(), 250);
 }
 
 function setCopyFeedback(message, tone = 'success') {
@@ -295,11 +366,19 @@ function setCopyFeedback(message, tone = 'success') {
   }, 1800);
 }
 
-function nextFriday() {
-  const date = new Date();
-  date.setHours(12, 0, 0, 0);
-  date.setDate(date.getDate() + ((5 - date.getDay() + 7) % 7 || 7));
-  return date;
+/**
+ * Default first payday: the 1st of next month.
+ *
+ * The pay sheet is visible before anyone has entered a pay date, so it needs a sensible default.
+ * The 1st is the right choice over "next Friday" — it is the most common monthly payroll anchor,
+ * it reads as an obvious placeholder rather than a real-looking date the user might trust, and
+ * `addMonthsClamped()` keeps it on the 1st in every month with no special-casing.
+ *
+ * Noon local avoids `toISOString()` shifting the date back a day in negative-offset timezones.
+ */
+function firstOfNextMonth() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth() + 1, 1, 12, 0, 0, 0);
 }
 
 function schedule() {
@@ -343,18 +422,35 @@ setupButtonGroup(document.querySelector('[data-button-group="salary-mode"]'), {
   onChange: (value) => {
     mode = value;
     applyMode();
-    calculate();
+    // USA defaults to Texas rather than showing an error until the visitor picks a state.
+    // chooseState() runs its own calculate() once the state's tax data has loaded.
+    if (mode === 'us' && !selectedState) {
+      void chooseState('TX');
+    } else {
+      calculate();
+    }
   },
 });
 
 function applyMode() {
   const isUk = mode === 'uk';
   const isUs = mode === 'us';
+  const isGross = mode === 'gross';
   const isTax = isUk || isUs;
 
-  // One mechanism for all three scopes. `sal-tax-only` is anything common to both countries;
-  // the country classes gate what is genuinely country-specific.
-  const scopes = [['.sal-uk-only', isUk], ['.sal-us-only', isUs], ['.sal-tax-only', isTax]];
+  // One mechanism for every scope, and it reaches the explanation too because this is a global
+  // querySelectorAll rather than one scoped to the calculator root. `sal-tax-only` is anything
+  // common to both countries; the country classes gate what is genuinely country-specific.
+  //
+  // These hide with the `hidden` attribute and NEVER remove nodes. content-quality-thin-score.mjs
+  // parses the built HTML with JSDOM, so hidden copy still counts toward the word total and the
+  // FAQ schema — conditional rendering would roughly halve the indexable content.
+  const scopes = [
+    ['.sal-uk-only', isUk],
+    ['.sal-us-only', isUs],
+    ['.sal-tax-only', isTax],
+    ['.sal-gross-only', isGross],
+  ];
   for (const [selector, visible] of scopes) {
     document.querySelectorAll(selector).forEach((node) => {
       // The pay sheet has its own gate (it needs a schedule), handled inside renderPaySheet.
@@ -365,29 +461,32 @@ function applyMode() {
   const localNote = el('salary-local-note');
   if (localNote) localNote.hidden = !isUs;
 
+  // An optional chip hidden by a mode change must also give up its panel and its pressed state.
+  // Without this, turning on UK Pension and switching to USA leaves the panel on screen under a
+  // chip that no longer exists, and optionOn('pension') keeps reporting true - a hidden control
+  // silently holding state is exactly the kind of thing a user cannot debug.
+  document.querySelectorAll('.sal-opt-chip').forEach((chip) => {
+    if (chip.offsetParent !== null) return; // still visible in this mode, leave it alone
+    chip.setAttribute('aria-pressed', 'false');
+    chip.classList.remove('is-active');
+    const panel = el('salary-panel-' + chip.dataset.opt);
+    if (panel) panel.hidden = true;
+  });
+
   const copy = {
     gross: {
-      kicker: 'Gross pay conversion',
-      title: 'Convert one pay amount into hourly, weekly, monthly, and annual pay',
-      lead: 'Gross pay only. Start with one pay amount, then compare every major pay view side by side.',
       answerTitle: 'Annual gross pay',
       eyebrow: 'Gross (before tax)',
       disclaimer: 'Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.',
       method: 'Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.',
     },
     uk: {
-      kicker: 'UK take-home pay',
-      title: 'Work out your UK take-home pay after tax',
-      lead: 'Enter your salary and region. Add pension, student loan or a bonus only if they apply to you.',
       answerTitle: 'Estimated take-home pay',
       eyebrow: 'After tax and deductions',
       disclaimer: 'Estimates only, based on published rates for the selected tax year. Not tax advice.',
       method: 'Personal Allowance first, then Income Tax band by band. National Insurance is calculated separately on gross earnings using its own thresholds.',
     },
     us: {
-      kicker: 'US take-home pay',
-      title: 'Work out your US take-home pay after tax',
-      lead: 'Enter your salary, state and filing status. Federal tax, FICA and state tax are applied separately.',
       answerTitle: 'Estimated take-home pay',
       eyebrow: 'After federal, FICA and state tax',
       disclaimer: 'Estimates only. Federal, FICA and state-level taxes; local income taxes are not included. Not tax advice.',
@@ -395,9 +494,6 @@ function applyMode() {
     },
   }[mode];
 
-  setText(el('salary-mode-kicker'), copy.kicker);
-  setText(el('salary-form-title'), copy.title);
-  setText(el('salary-form-lead'), copy.lead);
   setText(outputs.answerTitle, copy.answerTitle);
   setText(outputs.answerEyebrow, copy.eyebrow);
   setText(outputs.disclaimer, copy.disclaimer);
@@ -648,12 +744,23 @@ function renderPaySheet(result) {
   const paysheet = el('salary-paysheet');
   if (!paysheet) return;
 
-  const show = mode !== 'gross' && optionOn('sched');
-  paysheet.hidden = !show;
-  if (!show) return;
+  // Always available, in every mode. It used to be gated behind `+ Pay schedule`, which meant
+  // most visitors calculated a figure and never discovered the feature existed. Gross Pay mode
+  // degrades to date + gross via `#salary-paysheet.is-gross [data-col="tax"] { display: none }` —
+  // "when do I get paid and how much" is still a real question with no tax applied.
+  paysheet.hidden = false;
+  paysheet.classList.toggle('is-gross', mode === 'gross');
 
   const frequency = sheetFrequencyButtons?.getValue() ?? 'monthly';
-  const seg = segmentsFor(result);
+
+  // Regular periods must be built from the WITHOUT-bonus result. Using the with-bonus figures
+  // would spread the bonus's tax across all twelve rows, which is exactly the smearing this
+  // feature exists to avoid.
+  const bonusGross = optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0;
+  const baseResult = bonusGross > 0 ? calculateFor({ ...currentInputs(), bonus: 0 }) : result;
+  const bonusNet = bonusGross > 0 && baseResult ? result.netAnnual - baseResult.netAnnual : 0;
+
+  const seg = segmentsFor(baseResult || result);
   const deductions = [
     { id: 'tax', label: seg.labels.tax, annualAmount: seg.tax },
     { id: 'ni', label: seg.labels.ni, annualAmount: seg.ni },
@@ -671,39 +778,43 @@ function renderPaySheet(result) {
   setHead(6, seg.labels.other);
 
   const schedule = generatePaySchedule({
-    firstPayDate: firstPayInput?.value || nextFriday(),
+    firstPayDate: firstPayInput?.value || firstOfNextMonth(),
     frequency,
-    annualGross: result.gross,
-    annualNet: result.netAnnual,
+    // Annual figures exclude the bonus so the regular periods stay regular; the bonus and the tax
+    // it brings with it are added back on its own payday inside the schedule engine.
+    annualGross: (baseResult || result).gross,
+    annualNet: (baseResult || result).netAnnual,
     deductions,
     periods: 12,
     weekendRule: weekendRuleSelect?.value || 'previous',
-    bonusMonthIndex: null,
-    bonusGross: 0,
-    bonusNet: 0,
+    bonusMonthIndex: bonusGross > 0 ? Number(bonusMonthSelect?.value ?? 11) : null,
+    bonusGross,
+    bonusNet,
   });
 
   outputs.paysheetBody.innerHTML = schedule.rows
     .map(
       (row) => `
-      <tr>
+      <tr class="${row.isBonusPeriod ? 'is-bonus' : ''}">
         <td>${row.index}</td>
-        <td>${longDate(row.date)}${row.movedOffWeekend ? '<span class="sal-moved">moved</span>' : ''}</td>
+        <td>${longDate(row.date)}${row.movedOffWeekend ? '<span class="sal-moved">moved</span>' : ''}${row.isBonusPeriod ? '<span class="sal-bonus-badge">Bonus</span>' : ''}</td>
         <td class="sal-num">${money(row.gross)}</td>
-        <td class="sal-num">${money(row.deductions[0].amount)}</td>
-        <td class="sal-num">${money(row.deductions[1].amount)}</td>
-        <td class="sal-num">${money(row.deductions[2].amount)}</td>
-        <td class="sal-num"><strong>${money(row.net)}</strong></td>
+        <td class="sal-num" data-col="tax">${money(row.deductions[0].amount)}</td>
+        <td class="sal-num" data-col="tax">${money(row.deductions[1].amount)}</td>
+        <td class="sal-num" data-col="tax">${money(row.deductions[2].amount)}</td>
+        <td class="sal-num" data-col="tax"><strong>${money(row.net)}</strong></td>
       </tr>`
     )
     .join('');
 
   const foot = outputs.paysheetFoot;
   if (foot) {
+    // Footer shows the full-year position, so it uses the WITH-bonus result.
+    const totalSeg = segmentsFor(result);
     foot.children[1].textContent = money(result.gross);
-    foot.children[2].textContent = money(seg.tax);
-    foot.children[3].textContent = money(seg.ni);
-    foot.children[4].textContent = money(seg.other);
+    foot.children[2].textContent = money(totalSeg.tax);
+    foot.children[3].textContent = money(totalSeg.ni);
+    foot.children[4].textContent = money(totalSeg.other);
     foot.children[5].textContent = money(result.netAnnual);
   }
 
@@ -741,6 +852,7 @@ function calculate() {
 
   if (!Number.isFinite(amount) || amount <= 0) {
     showError('Enter a pay amount plus valid schedule assumptions before calculating.');
+    clearResults();
     return;
   }
 
@@ -751,12 +863,15 @@ function calculate() {
           ? 'US tax tables could not be loaded. Gross Pay mode still works.'
           : 'Loading US tax tables...'
       );
+      clearResults();
       return;
     }
-    // Deliberately no default state. Assuming one silently produces a number that is wrong for
-    // most people (design spec section 5).
+    // The state field defaults to Texas and can only be changed to another item picked from the
+    // typeahead list, so this only fires if someone clears the field by hand. Falling back to
+    // Texas rather than showing an error keeps that edge case silent instead of blocking on it.
     if (!selectedState || !usStateCache.has(selectedState)) {
-      showError('Choose your state to estimate take-home pay.');
+      clearResults();
+      void chooseState('TX');
       return;
     }
   }
@@ -767,45 +882,64 @@ function calculate() {
         ? 'Tax tables could not be loaded, so take-home pay cannot be estimated right now. Gross Pay mode still works.'
         : 'Loading tax tables…'
     );
+    clearResults();
     return;
   }
 
   clearError();
 
-  let result;
-  if (mode === 'uk') {
-    const grossAnnual = toAnnual(amount, frequency, schedule());
-    result = calculateUkTakeHome(
-      {
-        grossAnnual,
-        region: regionButtons?.getValue() ?? 'england',
-        bonus: optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0,
-        pensionPercent: optionOn('pension') ? getInputNumber(pensionPercentInput) || 0 : 0,
-        pensionReliefMethod: pensionReliefSelect?.value || 'net-pay-arrangement',
-        studentLoanPlan: optionOn('loan') ? loanPlanSelect?.value || 'none' : 'none',
-        hasPostgraduateLoan: optionOn('loan') ? Boolean(loanPostgradInput?.checked) : false,
-      },
-      taxData
-    );
-  } else if (mode === 'us') {
-    result = calculateUsTakeHome(
-      {
-        grossAnnual: toAnnual(amount, frequency, schedule()),
-        filingStatus: filingStatusButtons ? filingStatusButtons.getValue() : 'single',
-        bonus: optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0,
-        pretaxDeductions: optionOn('pretax') ? getInputNumber(pretaxInput) || 0 : 0,
-      },
-      {
-        federal: usFederal,
-        fica: usFica,
-        state: usStateCache.get(selectedState),
-        payroll: usPayroll,
-      }
-    );
-  } else {
-    result = calculateGrossOnly({ amount, frequency, schedule: schedule() });
-  }
+  const result = calculateFor(currentInputs());
+  if (!result) return;
+  renderResult(result, frequency);
+}
 
+/**
+ * The inputs the engines need, read once from the DOM.
+ *
+ * Split out from `calculate()` so the pay sheet can re-run the engine with `bonus: 0` and derive
+ * the net bonus as the difference between two full results — which is the only way to capture
+ * band crossings and the UK allowance taper.
+ */
+function currentInputs() {
+  const frequency = frequencyButtons?.getValue() ?? 'annual';
+  const amount = getInputNumber(amountInput);
+  return {
+    amount,
+    frequency,
+    grossAnnual: toAnnual(amount, frequency, schedule()),
+    region: regionButtons?.getValue() ?? 'england',
+    filingStatus: filingStatusButtons ? filingStatusButtons.getValue() : 'single',
+    bonus: optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0,
+    pensionPercent: optionOn('pension') ? getInputNumber(pensionPercentInput) || 0 : 0,
+    pensionReliefMethod: pensionReliefSelect?.value || 'net-pay-arrangement',
+    studentLoanPlan: optionOn('loan') ? loanPlanSelect?.value || 'none' : 'none',
+    hasPostgraduateLoan: optionOn('loan') ? Boolean(loanPostgradInput?.checked) : false,
+    pretaxDeductions: optionOn('pretax') ? getInputNumber(pretaxInput) || 0 : 0,
+  };
+}
+
+/** Dispatch to the right engine for the active mode. Pure given `input`. */
+function calculateFor(input) {
+  if (mode === 'uk') {
+    return calculateUkTakeHome(input, taxData);
+  }
+  if (mode === 'us') {
+    return calculateUsTakeHome(input, {
+      federal: usFederal,
+      fica: usFica,
+      state: usStateCache.get(selectedState),
+      payroll: usPayroll,
+    });
+  }
+  return calculateGrossOnly({
+    amount: input.amount,
+    frequency: input.frequency,
+    bonus: input.bonus,
+    schedule: schedule(),
+  });
+}
+
+function renderResult(result, frequency) {
   const periods = renderPeriods(result);
 
   if (mode !== 'gross') {
@@ -849,9 +983,36 @@ function calculate() {
         ? `Gross ${money(result.gross)} - Federal ${money(result.federalTax.total)} - FICA ${money(result.fica.total)} - ${result.state.name} ${money(result.stateTax.total)} - Effective rate ${percent(result.effectiveRate)}. Local income taxes are not included.`
         : `Weekly ${money(periods.weekly)} - Hourly ${money(periods.hourly)}.`,
     buildAssumptionsLine(frequency),
-  ].join('\n');
+    paySheetSummary(),
+  ].filter(Boolean).join('\n');
 
   setDirty(false);
+}
+
+/**
+ * The pay sheet is part of the answer, so it belongs in the copied text. Kept to the first three
+ * paydays plus a pointer to the rest - pasting twelve rows into a message is noise, but "when does
+ * the money actually arrive" is the reason someone copies this at all.
+ */
+function paySheetSummary() {
+  const body = outputs.paysheetBody;
+  if (!body || !body.children.length) return '';
+  const rows = [...body.children].slice(0, 3).map((tr) => {
+    const cells = [...tr.children].filter((td) => td.offsetParent !== null);
+    // The date cell may carry a "moved" and/or "Bonus" badge. textContent concatenates them with
+    // no separator, so "Fri, 30 Oct 2026moved" — normalise both into readable suffixes.
+    const date = cells[1]
+      ? cells[1].textContent
+          .replace(/moved/i, ' (moved off a weekend)')
+          .replace(/Bonus/i, ' (bonus)')
+          .replace(/\s+/g, ' ')
+          .trim()
+      : '';
+    const net = cells.length ? cells[cells.length - 1].textContent.trim() : '';
+    return '  ' + date + ': ' + net;
+  });
+  const meta = outputs.paysheetMeta ? outputs.paysheetMeta.textContent.trim() : '';
+  return ['Next paydays (' + meta + '):'].concat(rows, ['  ...next 12 paydays shown on the page.']).join('\n');
 }
 
 async function copySummary() {
@@ -899,7 +1060,10 @@ copyButton?.addEventListener('click', () => {
 });
 
 if (firstPayInput && !firstPayInput.value) {
-  firstPayInput.value = nextFriday().toISOString().slice(0, 10);
+  const d = firstOfNextMonth();
+  // Built from local parts rather than toISOString() so the value cannot slip to the previous
+  // month in a negative-offset timezone.
+  firstPayInput.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
 }
 
 applyMode();
