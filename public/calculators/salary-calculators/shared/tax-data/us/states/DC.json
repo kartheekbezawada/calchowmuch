@@ -1,0 +1,79 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "DC",
+  "name": "District of Columbia",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "7 graduated bands, top rate 10.75%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 16100,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "4%",
+          "rate": 0.04,
+          "from": 0,
+          "to": 10000
+        },
+        {
+          "id": "b1",
+          "name": "6%",
+          "rate": 0.06,
+          "from": 10000,
+          "to": 40000
+        },
+        {
+          "id": "b2",
+          "name": "6.5%",
+          "rate": 0.065,
+          "from": 40000,
+          "to": 60000
+        },
+        {
+          "id": "b3",
+          "name": "8.5%",
+          "rate": 0.085,
+          "from": 60000,
+          "to": 250000
+        },
+        {
+          "id": "b4",
+          "name": "9.25%",
+          "rate": 0.0925,
+          "from": 250000,
+          "to": 500000
+        },
+        {
+          "id": "b5",
+          "name": "9.75%",
+          "rate": 0.0975,
+          "from": 500000,
+          "to": 1000000
+        },
+        {
+          "id": "b6",
+          "name": "10.75%",
+          "rate": 0.1075,
+          "from": 1000000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

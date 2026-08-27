@@ -1,0 +1,37 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "UT",
+  "name": "Utah",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "Flat 4.5%."
+  },
+  "taxStructure": "flat",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 0,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "4.5%",
+          "rate": 0.045,
+          "from": 0,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

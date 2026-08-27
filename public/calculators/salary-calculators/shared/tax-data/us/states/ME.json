@@ -1,0 +1,51 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "ME",
+  "name": "Maine",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "3 graduated bands, top rate 7.15%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 8350,
+      "personalExemption": 5300,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "5.8%",
+          "rate": 0.058,
+          "from": 0,
+          "to": 27399
+        },
+        {
+          "id": "b1",
+          "name": "6.75%",
+          "rate": 0.0675,
+          "from": 27399,
+          "to": 64849
+        },
+        {
+          "id": "b2",
+          "name": "7.15%",
+          "rate": 0.0715,
+          "from": 64849,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

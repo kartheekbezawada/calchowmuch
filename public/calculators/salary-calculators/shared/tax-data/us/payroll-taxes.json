@@ -1,0 +1,84 @@
+{
+  "country": "US",
+  "dataset": "payroll-taxes",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://onpay.com/insights/sdi-tax-rates-by-state/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "Payroll aggregators; NOT individual state agency confirmation",
+    "note": "Bucket A only: employee-side SDI/TDI/PFML/PFL. Rates and wage bases here come from payroll aggregators, not each state's agency, and these programs change rate every single year - they are the most volatile numbers in the whole dataset. Confirm against each state agency before relying on them. States with a known employee-side program that is NOT yet modelled are listed under `notModelled` rather than being silently omitted."
+  },
+  "notes": [
+    "Employee share ONLY. Employer-side contributions are not deductions from employee pay.",
+    "Charged on GROSS wages, not on taxable income after deductions.",
+    "`wageBase: null` means no cap - the rate applies to all wages.",
+    "A state absent from `states` and absent from `notModelled` has no employee-side program."
+  ],
+  "states": {
+    "CA": {
+      "name": "California",
+      "contributions": [
+        {
+          "id": "sdi",
+          "label": "CA SDI",
+          "rate": 0.013,
+          "wageBase": null,
+          "note": "Includes Paid Family Leave. Wage cap was removed from 2024, so this applies to all wages."
+        }
+      ]
+    },
+    "NJ": {
+      "name": "New Jersey",
+      "contributions": [
+        {
+          "id": "tdi",
+          "label": "NJ TDI",
+          "rate": 0.0019,
+          "wageBase": 171100,
+          "note": "Temporary Disability Insurance, employee share."
+        },
+        {
+          "id": "fli",
+          "label": "NJ FLI",
+          "rate": 0.0023,
+          "wageBase": 171100,
+          "note": "Family Leave Insurance, funded entirely by employee deductions."
+        }
+      ]
+    },
+    "NY": {
+      "name": "New York",
+      "contributions": [
+        {
+          "id": "pfl",
+          "label": "NY PFL",
+          "rate": 0.00432,
+          "wageBase": null,
+          "note": "Paid Family Leave. NY caps the ANNUAL contribution at a fixed dollar amount tied to the statewide average weekly wage; that cap is not modelled, so this slightly overstates the deduction for very high earners."
+        }
+      ]
+    }
+  },
+  "notModelled": {
+    "reason": "These jurisdictions operate an employee-side payroll contribution but a reliable 2026 employee rate and wage base was not confirmed. Listed explicitly so the gap is visible rather than looking like 'no program'.",
+    "jurisdictions": [
+      "HI",
+      "RI",
+      "WA",
+      "OR",
+      "CO",
+      "MA",
+      "CT",
+      "MD",
+      "MN",
+      "DE",
+      "ME"
+    ]
+  }
+}

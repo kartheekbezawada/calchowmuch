@@ -39,9 +39,14 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('#cc-min-rate')).toHaveAttribute('step', '0.5');
 
     await expect(page.locator('select')).toHaveCount(0);
-    await expect(page.locator('#cc-min-placeholder')).not.toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-min-results-list')).toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(1);
+    await expect(page.locator('#cc-min-placeholder')).toHaveCount(0);
+    await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
+    // The outcome card stays gated behind Calculate, but the explanation, yearly table and
+    // comparison must render real numbers on load - no em-dashes for crawlers. See fix-4.
+    await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(0);
+    await expect(page.locator('#cc-min-table-body tr').first()).toBeVisible();
+    await expect(page.locator('#cc-min-explanation [data-cc-min="months"]').first()).not.toHaveText('—');
+    await expect(page.locator('#cc-min-comparison-body tr')).toHaveCount(2);
 
     await setSliderValue(page, '#cc-min-balance', 5000);
     await setSliderValue(page, '#cc-min-apr', 19.5);
@@ -97,13 +102,14 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
   }) => {
     await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
-    await expect(page.locator('#cc-min-placeholder')).not.toHaveClass(/is-hidden/);
-    await expect(page.locator('#cc-min-results-list')).toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-placeholder')).toHaveCount(0);
+    await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(0);
 
     await setSliderValue(page, '#cc-min-balance', 6400);
     await expect(page.locator('#cc-min-floor')).toHaveAttribute('max', '6400');
 
-    await expect(page.locator('#cc-min-results-list')).toHaveClass(/is-hidden/);
+    await expect(page.locator('#cc-min-results-list')).not.toHaveClass(/is-hidden/);
     await expect(page.locator('#cc-min-summary')).toHaveCount(0);
 
     await page.locator('#cc-min-calc').click();
@@ -112,19 +118,26 @@ test.describe('Credit Card Minimum Payment Calculator', () => {
     await expect(page.locator('#cc-min-table-body .cc-min-table-placeholder-row')).toHaveCount(0);
   });
 
-  test('MINPAY-TEST-E2E-3: explanation pane contains required sections and 12 FAQs', async ({
+  test('MINPAY-TEST-E2E-3: explanation pane contains required sections and 17 FAQs', async ({
     page,
   }) => {
     await page.goto('/credit-card-calculators/credit-card-minimum-payment-calculator/');
 
     const explanation = page.locator('#cc-min-explanation');
-    await expect(explanation.locator('h2')).toHaveText(
-      'How Much Do Minimum Credit Card Payments Really Cost?'
-    );
+    await expect(explanation.locator('h2')).toHaveText([
+      'How Much Do Minimum Credit Card Payments Really Cost?',
+      'How Is a Credit Card Minimum Payment Calculated?',
+      'What Is the Minimum Payment on a Credit Card? Common Balances',
+      'Minimum Payment vs Paying More: What You Save',
+      'Minimum Payment Rules by Card Issuer',
+    ]);
+    await expect(explanation.locator('#cc-min-reference-table tbody tr')).toHaveCount(8);
+    await expect(explanation.locator('#cc-min-issuer-table tbody tr')).toHaveCount(4);
+    await expect(explanation).toContainText('Sources');
     await expect(explanation).not.toContainText('Scenario Summary');
     await expect(explanation.locator('#cc-min-scenario-table')).toHaveCount(0);
     await expect(explanation).toContainText('Results Table (Yearly Payoff Snapshot)');
     await expect(explanation).toContainText('Frequently Asked Questions');
-    await expect(explanation.locator('.cc-min-faq-item')).toHaveCount(12);
+    await expect(explanation.locator('.cc-min-faq-item')).toHaveCount(17);
   });
 });

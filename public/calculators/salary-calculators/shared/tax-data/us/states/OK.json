@@ -1,0 +1,58 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "OK",
+  "name": "Oklahoma",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "4 graduated bands, top rate 4.5%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 6350,
+      "personalExemption": 1000,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "0%",
+          "rate": 0,
+          "from": 0,
+          "to": 3750
+        },
+        {
+          "id": "b1",
+          "name": "2.5%",
+          "rate": 0.025,
+          "from": 3750,
+          "to": 4900
+        },
+        {
+          "id": "b2",
+          "name": "3.5%",
+          "rate": 0.035,
+          "from": 4900,
+          "to": 7200
+        },
+        {
+          "id": "b3",
+          "name": "4.5%",
+          "rate": 0.045,
+          "from": 7200,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

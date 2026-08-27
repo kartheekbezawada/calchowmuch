@@ -1,0 +1,51 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "ND",
+  "name": "North Dakota",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "3 graduated bands, top rate 2.5%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 16100,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "0%",
+          "rate": 0,
+          "from": 0,
+          "to": 48475
+        },
+        {
+          "id": "b1",
+          "name": "1.95%",
+          "rate": 0.0195,
+          "from": 48475,
+          "to": 244825
+        },
+        {
+          "id": "b2",
+          "name": "2.5%",
+          "rate": 0.025,
+          "from": 244825,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

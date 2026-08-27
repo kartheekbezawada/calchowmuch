@@ -1,0 +1,72 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "NM",
+  "name": "New Mexico",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "6 graduated bands, top rate 5.9%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 16100,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "1.5%",
+          "rate": 0.015,
+          "from": 0,
+          "to": 5500
+        },
+        {
+          "id": "b1",
+          "name": "3.2%",
+          "rate": 0.032,
+          "from": 5500,
+          "to": 16500
+        },
+        {
+          "id": "b2",
+          "name": "4.3%",
+          "rate": 0.043,
+          "from": 16500,
+          "to": 33500
+        },
+        {
+          "id": "b3",
+          "name": "4.7%",
+          "rate": 0.047,
+          "from": 33500,
+          "to": 66500
+        },
+        {
+          "id": "b4",
+          "name": "4.9%",
+          "rate": 0.049,
+          "from": 66500,
+          "to": 210000
+        },
+        {
+          "id": "b5",
+          "name": "5.9%",
+          "rate": 0.059,
+          "from": 210000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

@@ -1,0 +1,114 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "HI",
+  "name": "Hawaii",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "12 graduated bands, top rate 11%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 4400,
+      "personalExemption": 1144,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "1.4%",
+          "rate": 0.014,
+          "from": 0,
+          "to": 9600
+        },
+        {
+          "id": "b1",
+          "name": "3.2%",
+          "rate": 0.032,
+          "from": 9600,
+          "to": 14400
+        },
+        {
+          "id": "b2",
+          "name": "5.5%",
+          "rate": 0.055,
+          "from": 14400,
+          "to": 19200
+        },
+        {
+          "id": "b3",
+          "name": "6.4%",
+          "rate": 0.064,
+          "from": 19200,
+          "to": 24000
+        },
+        {
+          "id": "b4",
+          "name": "6.8%",
+          "rate": 0.068,
+          "from": 24000,
+          "to": 36000
+        },
+        {
+          "id": "b5",
+          "name": "7.2%",
+          "rate": 0.072,
+          "from": 36000,
+          "to": 48000
+        },
+        {
+          "id": "b6",
+          "name": "7.6%",
+          "rate": 0.076,
+          "from": 48000,
+          "to": 125000
+        },
+        {
+          "id": "b7",
+          "name": "7.9%",
+          "rate": 0.079,
+          "from": 125000,
+          "to": 175000
+        },
+        {
+          "id": "b8",
+          "name": "8.25%",
+          "rate": 0.0825,
+          "from": 175000,
+          "to": 225000
+        },
+        {
+          "id": "b9",
+          "name": "9%",
+          "rate": 0.09,
+          "from": 225000,
+          "to": 275000
+        },
+        {
+          "id": "b10",
+          "name": "10%",
+          "rate": 0.1,
+          "from": 275000,
+          "to": 325000
+        },
+        {
+          "id": "b11",
+          "name": "11%",
+          "rate": 0.11,
+          "from": 325000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

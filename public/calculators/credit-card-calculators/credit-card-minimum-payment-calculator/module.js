@@ -1,6 +1,10 @@
 import { formatNumber, formatPercent } from '/assets/js/core/format.js';
 import { setPageMetadata } from '/assets/js/core/ui.js';
-import { calculateMinimumPayment } from '/assets/js/core/credit-card-utils.js';
+import {
+  calculateCreditCardPayoff,
+  calculateMinimumPayment,
+} from '/assets/js/core/credit-card-utils.js';
+import { renderPayoffChart } from '/calculators/credit-card-calculators/credit-card-minimum-payment-calculator/minimum-payment-chart.js';
 
 const balanceInput = document.querySelector('#cc-min-balance');
 const aprInput = document.querySelector('#cc-min-apr');
@@ -12,10 +16,11 @@ const aprDisplay = document.querySelector('#cc-min-apr-display');
 const rateDisplay = document.querySelector('#cc-min-rate-display');
 const floorDisplay = document.querySelector('#cc-min-floor-display');
 
-const placeholder = document.querySelector('#cc-min-placeholder');
 const errorMessage = document.querySelector('#cc-min-error');
 const resultsList = document.querySelector('#cc-min-results-list');
 const tableBody = document.querySelector('#cc-min-table-body');
+const comparisonBody = document.querySelector('#cc-min-comparison-body');
+const chartRoot = document.querySelector('#cc-min-chart');
 
 const explanationSpans = Array.from(document.querySelectorAll('[data-cc-min]')).reduce(
   (acc, el) => {
@@ -95,6 +100,31 @@ const FAQ_ITEMS = [
     answer:
       "Using the same percentage-plus-floor formula, a $5,000 balance at a 2.5% minimum payment rate works out to $5,000 x 2.5% = $125, which is above a typical $25 floor, so the minimum payment would be about $125. On a smaller $1,000 balance, 2.5% of the balance is exactly $25, so the floor and the percentage amount are equal and the minimum payment is $25. On a larger $10,000 balance, 2.5% works out to $250. Your actual minimum payment depends on your card's specific rate and floor, so enter your own balance above for an exact figure.",
   },
+  {
+    question: 'How much will my minimum credit card payment be?',
+    answer:
+      'Multiply your balance by your card’s minimum payment rate, then compare that against your card’s floor and take whichever is larger. At a common 2.5% rate, a $3,200 balance gives $80, a $5,000 balance gives $125, and a $10,000 balance gives $250. If the percentage works out below the floor — typically $25 to $40 depending on the issuer — you pay the floor instead. Enter your own balance, rate, and floor above for an exact figure.',
+  },
+  {
+    question: 'What is the average minimum payment on a credit card?',
+    answer:
+      'There is no single national figure, because the minimum depends on your balance and your card’s terms. In practice most US issuers use a percentage of the balance between 1% and 3%, combined with a fixed floor: Bank of America uses a $25 floor, Discover $35, and Chase $40. On a mid-sized balance the percentage almost always exceeds the floor, so the percentage is what you actually pay.',
+  },
+  {
+    question: 'How much of my minimum payment goes to interest?',
+    answer:
+      'Most of it. On a $3,200 balance at 21.9% APR, the first month’s interest is about $58.40 while the minimum payment is $80 — so roughly 73% of that payment covers interest and only about $21.60 reduces what you actually owe. That ratio stays close to 73% as the balance falls, because the required payment shrinks alongside the balance, which is why the debt takes so long to clear.',
+  },
+  {
+    question: 'Can you pay off a credit card by making only the minimum payment?',
+    answer:
+      'Yes, eventually, provided you stop adding new purchases — but it takes far longer than most people expect. A $3,200 balance at 21.9% APR clears in about 245 months, or roughly 20 years, and costs about $6,758 in interest. A $10,000 balance takes around 34 years. Minimum payments are designed to keep the account in good standing, not to clear the debt efficiently.',
+  },
+  {
+    question: 'What is the minimum payment on a $10,000 credit card balance?',
+    answer:
+      'At a 2.5% minimum payment rate, the first minimum payment on $10,000 is $250. Paying only that amount at 21.9% APR takes about 413 months — roughly 34 years — and costs about $25,143 in interest, which is more than twice the original balance. Doubling the payment cuts that dramatically. See the balance table above for other amounts.',
+  },
 ];
 
 const CALCULATOR_FAQ_SCHEMA = {
@@ -112,7 +142,7 @@ const CALCULATOR_FAQ_SCHEMA = {
 const metadata = {
   title: 'Credit Card Minimum Payment Calculator | Payoff Time & Interest',
   description:
-    'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
+    'Work out your credit card minimum payment, then see exactly how many years minimum-only payments take and what they cost in interest. Free, nothing stored.',
   canonical: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
   structuredData: {
     '@context': 'https://schema.org',
@@ -122,7 +152,8 @@ const metadata = {
         name: 'Credit Card Minimum Payment Calculator | Payoff Time & Interest',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
         description:
-          'See how long minimum-only credit card payments could take, your first minimum payment, and total interest paid over the payoff period.',
+          'Work out your credit card minimum payment, then see exactly how many years minimum-only payments take and what they cost in interest. Free, nothing stored.',
+        dateModified: '2026-08-26',
         inLanguage: 'en',
       },
       {
@@ -132,7 +163,7 @@ const metadata = {
         operatingSystem: 'Any',
         url: 'https://calchowmuch.com/credit-card-calculators/credit-card-minimum-payment-calculator/',
         description:
-          'Estimate payoff time, first payment size, and total interest when you only make minimum credit card payments.',
+          'Work out your credit card minimum payment, then see exactly how many years minimum-only payments take and what they cost in interest. Free, nothing stored.',
         browserRequirements: 'Requires JavaScript enabled',
         softwareVersion: '1.0',
         creator: {
@@ -175,8 +206,6 @@ const metadata = {
 };
 
 setPageMetadata(metadata);
-
-let hasCalculated = false;
 
 function setSpan(key, value) {
   const nodes = explanationSpans[key] || [];
@@ -304,6 +333,8 @@ function setOutputPlaceholders() {
   setSpan('interest', '—');
   setSpan('total', '—');
   setSpan('interest-multiple', '—');
+  setSpan('comparison-saved', '—');
+  setSpan('comparison-sooner', '—');
 }
 
 function setOutputSpans(data, values) {
@@ -326,6 +357,71 @@ function setOutputSpans(data, values) {
     Number.isFinite(interestMultiple)
       ? `${formatNumber(interestMultiple, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}x`
       : '—'
+  );
+}
+
+// Minimum-only vs a fixed monthly payment. Reuses calculateCreditCardPayoff() from
+// credit-card-utils.js so the comparison can never drift from the page's own engine.
+function updateComparison(minimumData, values) {
+  if (!comparisonBody) {
+    return;
+  }
+
+  const fixedPayment = minimumData.firstPayment * 2;
+  const fixed = calculateCreditCardPayoff({
+    balance: values.balance,
+    apr: values.apr,
+    monthlyPayment: fixedPayment,
+  });
+
+  if (fixed.error) {
+    comparisonBody.innerHTML = `<tr><td colspan="4">${fixed.error}</td></tr>`;
+    setSpan('comparison-saved', '—');
+    setSpan('comparison-sooner', '—');
+    return;
+  }
+
+  renderPayoffChart(chartRoot, {
+    minimum: minimumData,
+    fixed,
+    startBalance: values.balance,
+  });
+
+  const interestSaved = minimumData.totalInterest - fixed.totalInterest;
+  const monthsSooner = minimumData.months - fixed.months;
+
+  const rows = [
+    {
+      label: 'Minimum only',
+      payment: minimumData.firstPayment,
+      months: minimumData.months,
+      interest: minimumData.totalInterest,
+    },
+    {
+      label: 'Double the minimum',
+      payment: fixedPayment,
+      months: fixed.months,
+      interest: fixed.totalInterest,
+    },
+  ];
+
+  comparisonBody.innerHTML = rows
+    .map(
+      (row) => `
+        <tr>
+          <td>${row.label}</td>
+          <td>${formatExplanationAmount(row.payment)}</td>
+          <td>${formatNumber(row.months, { maximumFractionDigits: 0 })}</td>
+          <td>${formatExplanationAmount(row.interest)}</td>
+        </tr>
+      `
+    )
+    .join('');
+
+  setSpan('comparison-saved', formatExplanationAmount(Math.max(0, interestSaved)));
+  setSpan(
+    'comparison-sooner',
+    `${formatNumber(Math.max(0, monthsSooner), { maximumFractionDigits: 0 })} months`
   );
 }
 
@@ -370,7 +466,6 @@ function clearError() {
 
 function showPlaceholder() {
   clearError();
-  placeholder?.classList.remove('is-hidden');
   resultsList?.classList.add('is-hidden');
 
   if (resultsList) {
@@ -386,7 +481,6 @@ function showError(message) {
     errorMessage.classList.remove('is-hidden');
   }
 
-  placeholder?.classList.add('is-hidden');
   resultsList?.classList.add('is-hidden');
 
   if (resultsList) {
@@ -412,7 +506,6 @@ function renderOutcomeCard(months) {
   }
   addResultLine(outcomeMarkup(months));
   clearError();
-  placeholder?.classList.add('is-hidden');
   resultsList?.classList.remove('is-hidden');
 }
 
@@ -445,12 +538,12 @@ function validateInputs(values) {
 function resetAfterInputChange() {
   syncSliderUI();
   clearError();
-  if (!hasCalculated) {
-    return;
-  }
   calculate();
 }
 
+// Always computes and renders everything: the headline outcome, the snapshot rows, the
+// explanation spans, the yearly table and the comparison. The panel is static - nothing is
+// hidden behind the Calculate button, so the layout never changes shape.
 function calculate() {
   syncSliderUI();
   const values = readInputs();
@@ -476,10 +569,10 @@ function calculate() {
   renderOutcomeCard(data.months);
   updateTable(data.yearly);
   setOutputSpans(data, values);
+  updateComparison(data, values);
 }
 
 calculateButton?.addEventListener('click', () => {
-  hasCalculated = true;
   calculate();
 });
 
@@ -489,6 +582,8 @@ document.querySelectorAll('#calc-cc-min input').forEach((input) => {
 
 (function initializeExplanation() {
   syncSliderUI();
-  setOutputPlaceholders();
+  // Everything renders from the defaults on load. Before this ran, the page shipped 34 literal
+  // em-dashes in its rendered body text.
   showPlaceholder();
+  calculate();
 })();

@@ -1,0 +1,44 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "ID",
+  "name": "Idaho",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "Flat 5.3%, applying only above 4,811."
+  },
+  "taxStructure": "flat",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 16100,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "0%",
+          "rate": 0.0,
+          "from": 0,
+          "to": 4811
+        },
+        {
+          "id": "b1",
+          "name": "5.3%",
+          "rate": 0.053,
+          "from": 4811,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

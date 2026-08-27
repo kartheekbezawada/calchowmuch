@@ -1,0 +1,40 @@
+{
+  "country": "US",
+  "dataset": "fica",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://www.irs.gov/taxtopics/tc751",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "verified",
+    "verifiedOn": "2026-08-25",
+    "confidence": "verified",
+    "source": "IRS Topic 751 and SSA contribution and benefit base",
+    "note": "Social Security wage base 184,500 for 2026; employee rate 6.2%. Medicare 1.45% with no cap. Additional Medicare 0.9% withheld above 200,000 of wages regardless of filing status."
+  },
+  "notes": [
+    "Employee share only. Employer FICA is not a deduction from employee pay.",
+    "Additional Medicare withholding uses a flat 200,000 wage threshold regardless of filing status. The taxpayer's final liability threshold differs by status (250,000 MFJ, 125,000 MFS), reconciled on the return - not at withholding, and not modelled here.",
+    "FICA is charged on gross wages, not on taxable income after the standard deduction."
+  ],
+  "socialSecurity": {
+    "rate": 0.062,
+    "wageBase": 184500
+  },
+  "medicare": {
+    "rate": 0.0145,
+    "wageBase": null
+  },
+  "additionalMedicare": {
+    "rate": 0.009,
+    "withholdingThreshold": 200000,
+    "liabilityThresholds": {
+      "single": 200000,
+      "marriedFilingJointly": 250000,
+      "marriedFilingSeparately": 125000,
+      "headOfHousehold": 200000
+    }
+  }
+}

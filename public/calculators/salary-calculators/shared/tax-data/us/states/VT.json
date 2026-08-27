@@ -1,0 +1,58 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "VT",
+  "name": "Vermont",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "4 graduated bands, top rate 8.75%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 7650,
+      "personalExemption": 5300,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "3.35%",
+          "rate": 0.0335,
+          "from": 0,
+          "to": 49400
+        },
+        {
+          "id": "b1",
+          "name": "6.6%",
+          "rate": 0.066,
+          "from": 49400,
+          "to": 119700
+        },
+        {
+          "id": "b2",
+          "name": "7.6%",
+          "rate": 0.076,
+          "from": 119700,
+          "to": 249700
+        },
+        {
+          "id": "b3",
+          "name": "8.75%",
+          "rate": 0.0875,
+          "from": 249700,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

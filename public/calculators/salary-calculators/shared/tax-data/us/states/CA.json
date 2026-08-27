@@ -1,0 +1,101 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "CA",
+  "name": "California",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "10 graduated bands, top rate 13.3%. STANDARD DEDUCTION CORRECTED 2026-08-25: the aggregator listed 5,540, which is the 2025 figure. California FTB gives a 2026 joint deduction of 11,412, and the single deduction is exactly half, so 5,706. Brackets themselves left as sourced. This one correction is evidence the aggregated bracket/deduction set may carry other stale values - see the us/README note.",
+    "crossCheckedAgainst": "https://www.ftb.ca.gov/file/personal/deductions/index.html"
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 5706,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "1%",
+          "rate": 0.01,
+          "from": 0,
+          "to": 11079
+        },
+        {
+          "id": "b1",
+          "name": "2%",
+          "rate": 0.02,
+          "from": 11079,
+          "to": 26264
+        },
+        {
+          "id": "b2",
+          "name": "4%",
+          "rate": 0.04,
+          "from": 26264,
+          "to": 41452
+        },
+        {
+          "id": "b3",
+          "name": "6%",
+          "rate": 0.06,
+          "from": 41452,
+          "to": 57542
+        },
+        {
+          "id": "b4",
+          "name": "8%",
+          "rate": 0.08,
+          "from": 57542,
+          "to": 72724
+        },
+        {
+          "id": "b5",
+          "name": "9.3%",
+          "rate": 0.093,
+          "from": 72724,
+          "to": 371479
+        },
+        {
+          "id": "b6",
+          "name": "10.3%",
+          "rate": 0.103,
+          "from": 371479,
+          "to": 445771
+        },
+        {
+          "id": "b7",
+          "name": "11.3%",
+          "rate": 0.113,
+          "from": 445771,
+          "to": 742953
+        },
+        {
+          "id": "b8",
+          "name": "12.3%",
+          "rate": 0.123,
+          "from": 742953,
+          "to": 1000000
+        },
+        {
+          "id": "b9",
+          "name": "13.3%",
+          "rate": 0.133,
+          "from": 1000000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

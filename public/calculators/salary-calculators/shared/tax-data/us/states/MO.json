@@ -1,0 +1,86 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "MO",
+  "name": "Missouri",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "8 graduated bands, top rate 4.7%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 16100,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "0%",
+          "rate": 0,
+          "from": 0,
+          "to": 1348
+        },
+        {
+          "id": "b1",
+          "name": "2%",
+          "rate": 0.02,
+          "from": 1348,
+          "to": 2696
+        },
+        {
+          "id": "b2",
+          "name": "2.5%",
+          "rate": 0.025,
+          "from": 2696,
+          "to": 4044
+        },
+        {
+          "id": "b3",
+          "name": "3%",
+          "rate": 0.03,
+          "from": 4044,
+          "to": 5392
+        },
+        {
+          "id": "b4",
+          "name": "3.5%",
+          "rate": 0.035,
+          "from": 5392,
+          "to": 6740
+        },
+        {
+          "id": "b5",
+          "name": "4%",
+          "rate": 0.04,
+          "from": 6740,
+          "to": 8088
+        },
+        {
+          "id": "b6",
+          "name": "4.5%",
+          "rate": 0.045,
+          "from": 8088,
+          "to": 9436
+        },
+        {
+          "id": "b7",
+          "name": "4.7%",
+          "rate": 0.047,
+          "from": 9436,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

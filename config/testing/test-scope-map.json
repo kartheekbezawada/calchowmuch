@@ -276,6 +276,7 @@
     "credit-cards": {
       "clusterReleaseDir": "tests_specs/credit-cards/cluster_release",
       "routes": [
+        "/credit-card-calculators/",
         "/credit-card-calculators/balance-transfer-credit-card-calculator/",
         "/credit-card-calculators/credit-card-consolidation-calculator/",
         "/credit-card-calculators/credit-card-minimum-payment-calculator/",
@@ -302,6 +303,10 @@
         "debt-payoff-calculator": {
           "route": "/credit-card-calculators/debt-payoff-calculator/",
           "releaseDir": "tests_specs/credit-cards/debt-payoff-calculator_release"
+        },
+        "credit-card-calculators-hub": {
+          "route": "/credit-card-calculators/",
+          "releaseDir": "tests_specs/credit-cards/credit-card-calculators-hub_release"
         }
       }
     },

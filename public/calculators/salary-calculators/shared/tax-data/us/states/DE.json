@@ -1,0 +1,79 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "DE",
+  "name": "Delaware",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "7 graduated bands, top rate 6.6%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 3250,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "0%",
+          "rate": 0,
+          "from": 0,
+          "to": 2000
+        },
+        {
+          "id": "b1",
+          "name": "2.2%",
+          "rate": 0.022,
+          "from": 2000,
+          "to": 5000
+        },
+        {
+          "id": "b2",
+          "name": "3.9%",
+          "rate": 0.039,
+          "from": 5000,
+          "to": 10000
+        },
+        {
+          "id": "b3",
+          "name": "4.8%",
+          "rate": 0.048,
+          "from": 10000,
+          "to": 20000
+        },
+        {
+          "id": "b4",
+          "name": "5.2%",
+          "rate": 0.052,
+          "from": 20000,
+          "to": 25000
+        },
+        {
+          "id": "b5",
+          "name": "5.55%",
+          "rate": 0.0555,
+          "from": 25000,
+          "to": 60000
+        },
+        {
+          "id": "b6",
+          "name": "6.6%",
+          "rate": 0.066,
+          "from": 60000,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

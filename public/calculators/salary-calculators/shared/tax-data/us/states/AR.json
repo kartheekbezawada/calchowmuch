@@ -1,0 +1,44 @@
+{
+  "country": "US",
+  "dataset": "us-state-income-tax",
+  "state": "AR",
+  "name": "Arkansas",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "USD",
+  "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+  "lastVerified": "2026-08-25",
+  "verification": {
+    "status": "aggregated-source",
+    "verifiedOn": "2026-08-25",
+    "confidence": "aggregated-source",
+    "source": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/",
+    "note": "2 graduated bands, top rate 3.9%."
+  },
+  "taxStructure": "graduated",
+  "filingStatuses": {
+    "single": {
+      "standardDeduction": 2470,
+      "personalExemption": 0,
+      "bands": [
+        {
+          "id": "b0",
+          "name": "2%",
+          "rate": 0.02,
+          "from": 0,
+          "to": 4600
+        },
+        {
+          "id": "b1",
+          "name": "3.9%",
+          "rate": 0.039,
+          "from": 4600,
+          "to": null
+        }
+      ]
+    }
+  },
+  "credits": [],
+  "specialRules": []
+}

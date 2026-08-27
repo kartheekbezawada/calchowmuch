@@ -211,6 +211,67 @@
   text-align: center !important;
 }
 
+/* The yearly-snapshot wrapper uses overflow:hidden with a fixed 4-column layout. These reference
+   tables have more columns and free-text cells, so they scroll inside their own container instead
+   of forcing the page body to scroll horizontally on mobile. */
+#cc-min-explanation .cc-min-reference-scroll {
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid #cfd6e0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+#cc-min-reference-table,
+#cc-min-comparison-table,
+#cc-min-issuer-table {
+  min-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: #ffffff;
+}
+
+#cc-min-reference-table th,
+#cc-min-reference-table td,
+#cc-min-comparison-table th,
+#cc-min-comparison-table td,
+#cc-min-issuer-table th,
+#cc-min-issuer-table td {
+  padding: 12px 14px;
+  border: 1px solid #d7dde6;
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: none;
+  color: #1f2937;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+}
+
+#cc-min-reference-table th,
+#cc-min-comparison-table th,
+#cc-min-issuer-table th {
+  position: static;
+  background: #eef3f9;
+  color: #1f2937;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#cc-min-reference-table tbody tr:nth-child(even) td,
+#cc-min-comparison-table tbody tr:nth-child(even) td,
+#cc-min-issuer-table tbody tr:nth-child(even) td {
+  background: #f9fbfd;
+}
+
+/* Issuer formulas are long sentences; give that column room before it wraps. */
+#cc-min-issuer-table td:nth-child(2) {
+  min-width: 20rem;
+}
+
 #cc-min-explanation [data-cc-min] {
   display: inline-flex;
   align-items: center;
@@ -275,5 +336,251 @@
 @media (max-width: 900px) {
   #calc-cc-min .cc-min-headline {
     font-size: clamp(1.7rem, 8vw, 2.2rem);
+  }
+}
+
+/* Payoff curve. Fixed viewBox + aspect-ratio on the svg means the box is reserved before paint,
+   so the chart contributes no layout shift. */
+#cc-min-explanation .cc-min-chart {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #cfd6e0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+#cc-min-explanation .cc-min-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 260;
+}
+
+#cc-min-explanation .cc-min-chart-axis {
+  stroke: #94a3b8;
+  stroke-width: 1;
+}
+
+#cc-min-explanation .cc-min-chart-grid {
+  stroke: #e2e8f0;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+#cc-min-explanation .cc-min-chart-tick {
+  fill: #5f6673;
+  font-size: 12px;
+}
+
+#cc-min-explanation .cc-min-chart-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#cc-min-explanation .cc-min-chart-line--minimum {
+  stroke: #dc2626;
+}
+
+#cc-min-explanation .cc-min-chart-line--fixed {
+  stroke: #2563eb;
+  stroke-dasharray: 6 4;
+}
+
+#cc-min-explanation .cc-min-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #5f6673;
+}
+
+#cc-min-explanation .cc-min-chart-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+#cc-min-explanation .cc-min-chart-key::before {
+  content: '';
+  width: 18px;
+  height: 3px;
+  border-radius: 999px;
+}
+
+#cc-min-explanation .cc-min-chart-key--minimum::before {
+  background: #dc2626;
+}
+
+#cc-min-explanation .cc-min-chart-key--fixed::before {
+  background: #2563eb;
+}
+
+/* ---------------------------------------------------------------------------
+   Right panel: one box, not five.
+   The shared cluster styles give a card treatment to .cc-min-preview-panel,
+   #cc-min-result, .cc-min-snapshot-list and every .cc-min-snapshot-row, which
+   stacked into nested boxes. Only the outer panel keeps its border; everything
+   inside is flattened to plain content.
+   --------------------------------------------------------------------------- */
+#calc-cc-min .cc-min-preview-panel {
+  align-content: start;
+  gap: 1rem;
+}
+
+#calc-cc-min #cc-min-result,
+#calc-cc-min .cc-min-snapshot-list,
+#calc-cc-min .cc-min-snapshot-row {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+#calc-cc-min #cc-min-result {
+  min-height: 0;
+  gap: 0.5rem;
+}
+
+#calc-cc-min .cc-min-snapshot-list {
+  gap: 0;
+  border-top: 1px solid #e6e8ed;
+}
+
+#calc-cc-min .cc-min-snapshot-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.62rem 0;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+#calc-cc-min .cc-min-snapshot-row:last-child {
+  border-bottom: 0;
+}
+
+#calc-cc-min .cc-min-snapshot-row span {
+  color: #5f6673;
+  font-size: 0.92rem;
+}
+
+#calc-cc-min .cc-min-snapshot-row strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The snapshot values are plain text here, not the pill treatment used for
+   inline figures inside the explanation prose. */
+#calc-cc-min .cc-min-snapshot-row [data-cc-min] {
+  display: inline;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  border-radius: 0;
+  color: #111111;
+  font-weight: 700;
+}
+
+/* Title on one line, and the panels pulled up closer to it. */
+body[data-design-family='credit-cards'] .cc-cluster-page-header {
+  max-width: none;
+  margin-bottom: 20px;
+}
+
+body[data-design-family='credit-cards'] #calculator-title {
+  font-size: clamp(1.75rem, 4.4vw, 3.25rem);
+}
+
+@media (min-width: 1024px) {
+  body[data-design-family='credit-cards'] #calculator-title {
+    white-space: nowrap;
+  }
+}
+
+/* The revealed outcome line is also card-styled by the shared rules; flatten it so the
+   headline number reads as content inside the one box rather than a sixth nested card. */
+#calc-cc-min .cc-min-results-list,
+#calc-cc-min .result-line {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+#calc-cc-min .result-metric {
+  display: grid;
+  gap: 0.2rem;
+}
+
+#calc-cc-min .result-metric .metric-value {
+  align-items: baseline;
+}
+
+/* ---------------------------------------------------------------------------
+   One combined box: sliders and results share a single card, split by a rule.
+   The shared cluster CSS cards each panel separately via
+   [class$="-form-panel"] / [class$="-preview-panel"]; those are overridden here
+   so only .cc-min-hero carries the border. Note the shared selectors match on
+   the WHOLE class attribute ending in "-panel", so no extra class may be added
+   to those two elements - doing so silently drops their styling.
+   --------------------------------------------------------------------------- */
+#calc-cc-min .cc-min-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  padding: 28px;
+  border: 1px solid #e6e8ed;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 48px rgba(17, 17, 17, 0.06);
+}
+
+#calc-cc-min .cc-min-form-panel,
+#calc-cc-min .cc-min-preview-panel {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  align-content: start;
+}
+
+#calc-cc-min .cc-min-form-panel {
+  padding-right: 28px;
+  border-right: 1px solid #e6e8ed;
+}
+
+#calc-cc-min .cc-min-preview-panel {
+  padding-left: 28px;
+}
+
+/* The headline number always shows, so the Payoff Time row would repeat it. */
+#calc-cc-min [data-cc-min-row='months'] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #calc-cc-min .cc-min-hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 20px;
+  }
+
+  #calc-cc-min .cc-min-form-panel {
+    padding-right: 0;
+    padding-bottom: 20px;
+    border-right: 0;
+    border-bottom: 1px solid #e6e8ed;
+  }
+
+  #calc-cc-min .cc-min-preview-panel {
+    padding-left: 0;
+    padding-top: 20px;
   }
 }
