@@ -990,6 +990,20 @@
         text-align: center;
       }
       
+      body[data-design-family='auto-loans'] .al-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        font-size: 0.92rem;
+        color: var(--al-muted);
+      }
+      
+      body[data-design-family='auto-loans'] .al-cluster-breadcrumbs a {
+        color: var(--al-accent-strong);
+      }
+      
       body[data-design-family='auto-loans'] .al-cluster-page-kicker {
         display: inline-flex;
         align-items: center;
@@ -2371,6 +2385,13 @@
         <section class="al-cluster-center-column">
           <div class="al-cluster-panel">
   <div class="al-cluster-page-header">
+    <div class="al-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculators</a>
+      <span>/</span>
+      <span>Hire Purchase Calculator</span>
+    </div>
     <span class="al-cluster-page-kicker">Auto Loan Calculators</span>
     <h1 id="calculator-title">Hire Purchase Calculator</h1>
     <p class="al-cluster-page-intro">Estimate hire purchase monthly payment, optional balloon amount, total interest, and total payable from vehicle price, deposit, APR, and term.</p>
@@ -3014,6 +3035,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/car-loan-calculators/hire-purchase-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/car-loan-calculators/hire-purchase-calculator/module.js?v=2937240455"></script>
   </body>
 </html>

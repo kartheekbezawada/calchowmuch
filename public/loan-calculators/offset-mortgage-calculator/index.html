@@ -987,6 +987,20 @@
         text-align: center;
       }
       
+      body[data-design-family='home-loan'] .hl-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        font-size: 0.92rem;
+        color: var(--hl-muted);
+      }
+      
+      body[data-design-family='home-loan'] .hl-cluster-breadcrumbs a {
+        color: var(--hl-accent-strong);
+      }
+      
       body[data-design-family='home-loan'] .hl-cluster-page-kicker {
         display: inline-flex;
         align-items: center;
@@ -2551,6 +2565,13 @@
         <section class="hl-cluster-center-column">
           <div class="hl-cluster-panel">
   <div class="hl-cluster-page-header">
+    <div class="hl-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/loan-calculators/how-much-can-i-borrow/">Home Loan Calculators</a>
+      <span>/</span>
+      <span>Offset Calculator</span>
+    </div>
     <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
     <h1 id="calculator-title">Offset Calculator</h1>
     <p class="hl-cluster-page-intro">See how an offset savings balance and monthly deposits could reduce mortgage interest, shorten payoff, and change total cost.</p>
@@ -3286,6 +3307,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/loan-calculators/offset-mortgage-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/loan-calculators/offset-mortgage-calculator/module.js?v=6088633292"></script>
   </body>
 </html>

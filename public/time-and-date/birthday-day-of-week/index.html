@@ -1004,6 +1004,20 @@
         text-align: center;
       }
       
+      body[data-design-family='neutral'] .td-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        font-size: 0.92rem;
+        color: var(--td-muted);
+      }
+      
+      body[data-design-family='neutral'] .td-cluster-breadcrumbs a {
+        color: var(--td-accent-strong);
+      }
+      
       body[data-design-family='neutral'] .td-cluster-page-kicker,
       body[data-design-family='neutral'] .td-cluster-switch-kicker {
         display: inline-flex;
@@ -1928,6 +1942,13 @@
         <section class="td-cluster-center-column">
           <div class="td-cluster-panel panel-span-all">
   <div class="td-cluster-page-header">
+    <div class="td-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/time-and-date/age-calculator/">Time &amp; Date Calculators</a>
+      <span>/</span>
+      <span>What day of the week was I born?</span>
+    </div>
     <h1 id="calculator-title">What day of the week was I born?</h1>
     <p class="td-cluster-page-intro">Enter your date of birth to find out what day of the week you were born on. See the weekday for your next birthday, the year ahead, and the next 12 years.</p>
   </div>
@@ -2409,6 +2430,6 @@
 </footer>
     </div>
     <script type="module" src="/calculators/time-and-date/shared/cluster-ux.js"></script>
-    <script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/time-and-date/birthday-day-of-week/module.js?v=4234e6d16a"></script>
   </body>
 </html>

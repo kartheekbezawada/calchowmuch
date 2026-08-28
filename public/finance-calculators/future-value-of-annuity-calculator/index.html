@@ -21,7 +21,7 @@
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
          See known_issues.md KI-007 / KI-010. */
-
+      
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -41,29 +41,29 @@
         --nav-height: 64px;
         --footer-height: 72px;
       }
-
+      
       * {
         box-sizing: border-box;
         scrollbar-width: thin;
         scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
       }
-
+      
       body {
         margin: 0;
         color: var(--header-text);
         background-color: var(--page-bg);
         background-image: none;
       }
-
+      
       a {
         color: inherit;
         text-decoration: none;
       }
-
+      
       button {
         font: inherit;
       }
-
+      
       .sr-only {
         position: absolute;
         width: 1px;
@@ -75,24 +75,24 @@
         white-space: nowrap;
         border: 0;
       }
-
+      
       /* Scrollbar styling - always visible with subtle colors */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
       }
-
+      
       ::-webkit-scrollbar-track {
         background: var(--scrollbar-track, #f1f5f9);
         border-radius: 4px;
       }
-
+      
       ::-webkit-scrollbar-thumb {
         background: var(--scrollbar-thumb, #94a3b8);
         border-radius: 4px;
         border: 2px solid var(--scrollbar-track, #f1f5f9);
       }
-
+      
       ::-webkit-scrollbar-thumb:hover {
         background: var(--scrollbar-thumb-hover, #64748b);
       }
@@ -104,7 +104,7 @@
         --calculator-button-padding: 10px 12px;
         --calculator-button-radius: 10px;
       }
-
+      
       .calculator-page {
         max-width: 1120px;
         margin: 0 auto;
@@ -113,11 +113,11 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 24px;
       }
-
+      
       .is-hidden {
         display: none;
       }
-
+      
       .card {
         background: var(--panel-bg);
         border-radius: 16px;
@@ -125,24 +125,24 @@
         box-shadow: var(--panel-shadow);
         border: 1px solid var(--border-color);
       }
-
+      
       .card h1,
       .card h2 {
         margin-top: 0;
       }
-
+      
       .calculator-ui {
         display: grid;
         gap: 18px;
       }
-
+      
       .calculator-ui label {
         font-size: 14px;
         color: var(--muted-text);
         display: block;
         margin-bottom: 6px;
       }
-
+      
       .calculator-ui input[type='number'],
       .calculator-ui input[type='text'],
       .calculator-ui input[type='email'],
@@ -164,59 +164,59 @@
         font-family: inherit;
         background: var(--panel-bg);
       }
-
+      
       .calculator-ui textarea {
         resize: vertical;
       }
-
+      
       .calculator-ui .helper {
         color: var(--muted-text);
         margin: 0;
         font-size: 14px;
       }
-
+      
       .back-link {
         display: inline-flex;
         margin-bottom: 16px;
         color: var(--accent);
       }
-
+      
       .calculator-ui .input-stack {
         display: grid;
         gap: 16px;
       }
-
+      
       .calculator-ui .input-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 16px;
       }
-
+      
       .calculator-ui .calculator-toolbar {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
         align-items: center;
       }
-
+      
       .calculator-ui .toolbar-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       .calculator-ui .button-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
-
+      
       .calculator-ui .button-group {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
       }
-
+      
       .calculator-ui .mode-switch-control {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -228,7 +228,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       .calculator-ui .mode-switch-label {
         text-align: center;
         font-size: 13px;
@@ -240,12 +240,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       .calculator-ui .mode-switch-toggle {
         position: relative;
         display: inline-flex;
@@ -253,13 +253,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       .calculator-ui .mode-switch-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       .calculator-ui .mode-switch-track {
         width: 64px;
         height: 34px;
@@ -271,7 +271,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-thumb {
         width: 26px;
         height: 26px;
@@ -281,20 +281,20 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
         transform: translateX(30px);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition .composition-mode-switch {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -306,7 +306,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       #calc-percentage-composition .composition-mode-label {
         text-align: center;
         font-size: 14px;
@@ -317,12 +317,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-mode-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       #calc-percentage-composition .composition-toggle {
         position: relative;
         display: inline-flex;
@@ -330,13 +330,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       #calc-percentage-composition .composition-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       #calc-percentage-composition .composition-toggle-track {
         width: 64px;
         height: 34px;
@@ -348,7 +348,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle-thumb {
         width: 26px;
         height: 26px;
@@ -358,11 +358,11 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       #calc-percentage-composition
         .composition-toggle
         input:checked
@@ -370,17 +370,17 @@
         .composition-toggle-thumb {
         transform: translateX(30px);
       }
-
+      
       #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition #composition-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-percentage-composition .composition-item-row {
         display: grid;
         grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
@@ -392,21 +392,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-percentage-composition .composition-row-field {
         min-width: 0;
       }
-
+      
       #calc-percentage-composition .composition-item-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-commission-calculator #comm-tier-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-commission-calculator .commission-tier-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
@@ -418,21 +418,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-commission-calculator .commission-tier-field {
         min-width: 0;
       }
-
+      
       #calc-commission-calculator .commission-tier-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-markup-calculator #markup-basket-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row {
         display: grid;
         grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
@@ -444,88 +444,88 @@
         border-radius: 12px;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
       }
-
+      
       #calc-markup-calculator .markup-row-field {
         min-width: 0;
       }
-
+      
       #calc-markup-calculator .markup-row-name-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-qty-field {
         grid-column: 2;
       }
-
+      
       #calc-markup-calculator .markup-remove-row {
         grid-column: 3;
         min-width: 104px;
       }
-
+      
       #calc-markup-calculator .markup-row-cost-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-price-wrap,
       #calc-markup-calculator .markup-row-markup-wrap {
         grid-column: 2 / 4;
       }
-
+      
       #calc-markup-calculator .markup-row-field > label {
         font-size: 13px;
         font-weight: 600;
         margin-bottom: 4px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       @media (max-width: 720px) {
         .calculator-ui .mode-switch-control {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         .calculator-ui .mode-switch-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-mode-switch {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         #calc-percentage-composition .composition-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-item-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-percentage-composition .composition-item-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-commission-calculator .commission-tier-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-commission-calculator .commission-tier-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-markup-calculator .markup-basket-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-markup-calculator .markup-basket-row .calculator-button {
           width: 100%;
         }
       }
-
+      
       .calculator-button {
         padding: var(--calculator-button-padding);
         border-radius: var(--calculator-button-radius);
@@ -541,56 +541,56 @@
         line-height: 1.2;
         white-space: nowrap;
       }
-
+      
       .calculator-button.primary {
         background: var(--accent);
         color: #fff;
       }
-
+      
       .calculator-button.secondary {
         background: #f8f9fa;
         color: #495057;
       }
-
+      
       .calculator-button.is-active,
       .calculator-button[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button.secondary.is-active,
       .calculator-button.secondary[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button:disabled {
         opacity: 0.6;
         cursor: not-allowed;
       }
-
+      
       .full-width {
         width: 100%;
       }
-
+      
       .calculator-ui .result {
         margin: 0;
         font-size: 18px;
         font-weight: 600;
         min-height: 60px;
       }
-
+      
       .calculator-ui .result-detail {
         font-size: 14px;
         color: var(--muted-text);
         margin-top: 8px;
         font-weight: 400;
       }
-
+      
       .calculator-ui .result-detail p {
         margin: 0.25rem 0;
       }
-
+      
       .calculator-ui .result-scroll {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -604,19 +604,19 @@
         flex-direction: column;
         gap: 16px;
       }
-
+      
       .calculator-ui .result-section {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-
+      
       .calculator-ui .result-section h4 {
         margin: 0;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .table-scroll {
         overflow-x: scroll;
         overflow-y: scroll;
@@ -624,7 +624,7 @@
         max-height: 240px;
         scrollbar-gutter: stable;
       }
-
+      
       .calculator-table {
         width: 100%;
         border-collapse: collapse;
@@ -632,7 +632,7 @@
         font-size: 15px;
         min-width: 400px;
       }
-
+      
       .calculator-table th,
       .calculator-table td {
         padding: 8px 12px;
@@ -640,12 +640,12 @@
         text-align: right;
         white-space: nowrap;
       }
-
+      
       .calculator-table th:first-child,
       .calculator-table td:first-child {
         text-align: left;
       }
-
+      
       .calculator-table thead th {
         background: var(--pill-bg);
         color: var(--muted-text);
@@ -654,12 +654,12 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
+      
       .calculator-table tfoot td {
         background: var(--pill-bg);
         font-weight: 600;
       }
-
+      
       .graph-panel {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -671,7 +671,7 @@
         gap: 8px;
         overflow: hidden;
       }
-
+      
       .graph-header {
         display: flex;
         align-items: center;
@@ -680,23 +680,23 @@
         color: var(--muted-text);
         flex-shrink: 0;
       }
-
+      
       .graph-title {
         color: var(--header-text);
         font-weight: 600;
       }
-
+      
       .explanation-pane h2,
       .explanation-pane h3 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 6px;
         position: relative;
       }
-
+      
       .explanation-pane h2 {
         margin-top: 0;
       }
-
+      
       .explanation-pane h2::after {
         content: '';
         position: absolute;
@@ -706,33 +706,33 @@
         width: 48px;
         background: var(--accent);
       }
-
+      
       .faq-box {
         border: 1px solid var(--border-color);
         padding: 16px;
         border-radius: 8px;
       }
-
+      
       .explanation-pane h3 + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box p {
         margin: 0;
       }
-
+      
       .faq-box p + p {
         margin-top: 6px;
       }
-
+      
       .faq-box .faq-answer {
         margin-left: 12px;
       }
-
+      
       .graph-legend {
         display: flex;
         gap: 12px;
@@ -740,39 +740,39 @@
         font-size: 12px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-item {
         display: flex;
         align-items: center;
         gap: 6px;
       }
-
+      
       .graph-legend-color {
         width: 12px;
         height: 12px;
         border-radius: 3px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-color.principal {
         background: var(--accent);
       }
-
+      
       .graph-legend-color.interest {
         background: #f59e0b;
       }
-
+      
       .graph-legend-color.balance {
         background: #10b981;
       }
-
+      
       .graph-container {
         display: flex;
         flex: 1;
         min-height: 0;
         gap: 8px;
       }
-
+      
       .graph-y-axis {
         display: flex;
         flex-direction: column;
@@ -784,7 +784,7 @@
         flex-shrink: 0;
         min-width: 50px;
       }
-
+      
       .graph-y-label {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
@@ -793,7 +793,7 @@
         text-align: center;
         flex-shrink: 0;
       }
-
+      
       .graph-main {
         flex: 1;
         display: flex;
@@ -801,7 +801,7 @@
         min-width: 0;
         overflow: hidden;
       }
-
+      
       .graph-bars-wrapper {
         flex: 1;
         overflow-x: auto;
@@ -809,7 +809,7 @@
         min-height: 0;
         scrollbar-gutter: stable;
       }
-
+      
       .graph-bars {
         display: flex;
         align-items: flex-end;
@@ -819,33 +819,33 @@
         width: max-content;
         padding-bottom: 4px;
       }
-
+      
       .graph-line {
         width: 100%;
         height: 100%;
         display: block;
       }
-
+      
       .graph-line polyline {
         fill: none;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-
+      
       .graph-line .line-primary {
         stroke: var(--accent);
       }
-
+      
       .graph-line .line-secondary {
         stroke: #94a3b8;
         stroke-dasharray: 6 4;
       }
-
+      
       .graph-legend-color.secondary {
         background: #94a3b8;
       }
-
+      
       .graph-bar {
         width: 8px;
         min-width: 8px;
@@ -853,15 +853,15 @@
         border-radius: 4px 4px 2px 2px;
         flex: 0 0 auto;
       }
-
+      
       .graph-bar.interest {
         background: #f59e0b;
       }
-
+      
       .graph-bar.balance {
         background: #10b981;
       }
-
+      
       .graph-x-axis {
         display: flex;
         justify-content: space-between;
@@ -871,7 +871,7 @@
         border-top: 1px solid var(--border-color);
         flex-shrink: 0;
       }
-
+      
       .graph-x-label {
         font-size: 11px;
         color: var(--muted-text);
@@ -906,21 +906,21 @@
           linear-gradient(180deg, #fbfcfa 0%, #f4f6f2 100%);
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] a {
         color: var(--fi-accent);
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-page-shell {
         min-height: 100vh;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-wrap,
       body[data-design-family='neutral'] .fi-cluster-center-column {
         width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-site-header {
         position: sticky;
         top: 0;
@@ -929,7 +929,7 @@
         background: rgba(251, 252, 250, 0.82);
         border-bottom: 1px solid rgba(225, 231, 226, 0.95);
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-site-header-inner {
         min-height: 68px;
         display: flex;
@@ -937,7 +937,7 @@
         justify-content: space-between;
         gap: 18px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-brand {
         display: inline-flex;
         align-items: center;
@@ -946,11 +946,11 @@
         font-size: 18px;
         font-weight: 700;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-brand:hover {
         text-decoration: none;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-brand-mark {
         width: 42px;
         height: 42px;
@@ -964,7 +964,7 @@
         font-weight: 800;
         letter-spacing: 0.08em;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-site-links,
       body[data-design-family='neutral'] .fi-cluster-footer-links {
         display: flex;
@@ -973,22 +973,36 @@
         gap: 16px;
         font-size: 14px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-layout-main {
         padding: 44px 0 64px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-panel {
         display: grid;
         gap: 28px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-page-header {
         max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
-
+      
+      body[data-design-family='neutral'] .fi-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        font-size: 0.92rem;
+        color: var(--fi-muted);
+      }
+      
+      body[data-design-family='neutral'] .fi-cluster-breadcrumbs a {
+        color: var(--fi-accent-strong);
+      }
+      
       body[data-design-family='neutral'] .fi-cluster-page-kicker {
         display: inline-flex;
         align-items: center;
@@ -1003,7 +1017,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       body[data-design-family='neutral'] #calculator-title {
         margin: 18px 0 0;
         font-size: clamp(40px, 6vw, 58px);
@@ -1011,7 +1025,7 @@
         letter-spacing: -0.04em;
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-page-intro {
         max-width: 700px;
         margin: 14px auto 0;
@@ -1019,12 +1033,12 @@
         font-size: 16px;
         line-height: 1.65;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-flow {
         display: grid;
         gap: 24px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related {
         border: 1px solid var(--fi-line);
         border-radius: var(--fi-radius-xl);
@@ -1032,19 +1046,19 @@
         box-shadow: var(--fi-shadow-soft);
         padding: 28px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related h2 {
         margin: 0 0 18px;
         font-size: 18px;
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related-links {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 14px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related-link {
         display: grid;
         gap: 10px;
@@ -1060,43 +1074,43 @@
           border-color 0.18s ease,
           box-shadow 0.18s ease;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related-link:hover {
         transform: translateY(-1px);
         border-color: rgba(31, 95, 135, 0.3);
         box-shadow: var(--fi-shadow-soft);
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related-link.is-active,
       body[data-design-family='neutral'] .fi-cluster-related-link[aria-current='page'] {
         background: var(--fi-accent-soft);
         border-color: rgba(31, 95, 135, 0.18);
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related-card-title {
         font-size: 15px;
         font-weight: 700;
         line-height: 1.3;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related-card-copy,
       body[data-design-family='neutral'] .fi-cluster-related-card-meta {
         color: var(--fi-muted);
         font-size: 12px;
         line-height: 1.55;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-related-card-meta {
         margin-top: auto;
         font-weight: 700;
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-site-footer {
         padding: 0 0 52px;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-site-footer-inner {
         display: flex;
         flex-wrap: wrap;
@@ -1110,11 +1124,11 @@
         box-shadow: var(--fi-shadow-soft);
         text-align: center;
       }
-
+      
       body[data-design-family='neutral'] .fi-cluster-footer-copy {
         color: var(--fi-muted);
       }
-
+      
       body[data-design-family='neutral']
         :is(
           #calc-present-value,
@@ -1132,7 +1146,7 @@
         width: 100%;
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral']
         :is(
           #calc-present-value,
@@ -1151,7 +1165,7 @@
         display: grid;
         gap: 24px;
       }
-
+      
       body[data-design-family='neutral']
         :is(
           #calc-present-value,
@@ -1172,7 +1186,7 @@
         gap: 28px;
         align-items: start;
       }
-
+      
       body[data-design-family='neutral']
         :is(
           #calc-present-value,
@@ -1194,7 +1208,7 @@
         box-shadow: var(--fi-shadow);
         padding: 28px;
       }
-
+      
       body[data-design-family='neutral']
         :is(
           #calc-present-value,
@@ -1213,7 +1227,7 @@
         display: grid;
         gap: 22px;
       }
-
+      
       body[data-design-family='neutral']
         :is(
           #calc-present-value,
@@ -1233,7 +1247,7 @@
         gap: 18px;
         align-content: start;
       }
-
+      
       body[data-design-family='neutral'] .helper,
       body[data-design-family='neutral'] .fi-form-section-copy,
       body[data-design-family='neutral'] .fi-action-note {
@@ -1242,7 +1256,7 @@
         font-size: 14px;
         line-height: 1.65;
       }
-
+      
       body[data-design-family='neutral'] .fi-form-section {
         display: grid;
         gap: 16px;
@@ -1251,38 +1265,38 @@
         border-radius: var(--fi-radius-md);
         background: rgba(246, 249, 247, 0.9);
       }
-
+      
       body[data-design-family='neutral'] .fi-form-section-header {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         gap: 12px;
       }
-
+      
       body[data-design-family='neutral'] .fi-form-section-title {
         margin: 0;
         font-size: 18px;
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] .input-grid-2-col {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
       }
-
+      
       body[data-design-family='neutral'] .input-row {
         display: grid;
         gap: 8px;
       }
-
+      
       body[data-design-family='neutral'] .slider-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
       }
-
+      
       body[data-design-family='neutral'] .slider-header label,
       body[data-design-family='neutral'] .slider-precision-label,
       body[data-design-family='neutral'] .fi-toggle-label {
@@ -1290,13 +1304,13 @@
         font-weight: 700;
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] .slider-value {
         color: var(--fi-accent-strong);
         font-size: 13px;
         font-weight: 700;
       }
-
+      
       body[data-design-family='neutral'] input[type='range'] {
         width: 100%;
         height: 6px;
@@ -1311,7 +1325,7 @@
         );
         outline: none;
       }
-
+      
       body[data-design-family='neutral'] input[type='range']::-webkit-slider-thumb {
         width: 18px;
         height: 18px;
@@ -1321,7 +1335,7 @@
         background: var(--fi-accent);
         box-shadow: 0 2px 8px rgba(21, 32, 43, 0.18);
       }
-
+      
       body[data-design-family='neutral'] input[type='range']::-moz-range-thumb {
         width: 18px;
         height: 18px;
@@ -1330,12 +1344,12 @@
         background: var(--fi-accent);
         box-shadow: 0 2px 8px rgba(21, 32, 43, 0.18);
       }
-
+      
       body[data-design-family='neutral'] .slider-precision-row {
         display: grid;
         gap: 6px;
       }
-
+      
       body[data-design-family='neutral'] .slider-precision-input {
         width: 100%;
         min-height: 46px;
@@ -1346,30 +1360,30 @@
         color: var(--fi-text);
         font-size: 15px;
       }
-
+      
       body[data-design-family='neutral'] .slider-precision-input:focus-visible {
         outline: 2px solid rgba(31, 95, 135, 0.2);
         border-color: var(--fi-accent);
       }
-
+      
       body[data-design-family='neutral'] .fi-toggle-row {
         display: flex;
         gap: 16px;
         flex-wrap: wrap;
       }
-
+      
       body[data-design-family='neutral'] .fi-toggle-group {
         display: grid;
         gap: 8px;
         flex: 1 1 240px;
       }
-
+      
       body[data-design-family='neutral'] .button-group {
         display: inline-flex;
         flex-wrap: wrap;
         gap: 8px;
       }
-
+      
       body[data-design-family='neutral'] .calculator-button {
         min-height: 46px;
         padding: 0 18px;
@@ -1386,35 +1400,35 @@
           border-color 0.18s ease,
           background-color 0.18s ease;
       }
-
+      
       body[data-design-family='neutral'] .calculator-button:hover {
         transform: translateY(-1px);
         box-shadow: 0 10px 20px rgba(31, 95, 135, 0.18);
       }
-
+      
       body[data-design-family='neutral'] .calculator-button:focus-visible {
         outline: 2px solid rgba(31, 95, 135, 0.18);
         outline-offset: 2px;
       }
-
+      
       body[data-design-family='neutral'] .calculator-button.full-width {
         width: 100%;
       }
-
+      
       body[data-design-family='neutral'] .calculator-button.secondary {
         background: rgba(255, 255, 255, 0.96);
         border-color: var(--fi-line-strong);
         color: var(--fi-text);
         box-shadow: none;
       }
-
+      
       body[data-design-family='neutral'] .calculator-button.secondary.is-active,
       body[data-design-family='neutral'] .calculator-button.secondary[aria-pressed='true'] {
         background: var(--fi-accent-soft);
         border-color: rgba(31, 95, 135, 0.18);
         color: var(--fi-accent-strong);
       }
-
+      
       body[data-design-family='neutral'] .mtg-preview-main {
         display: grid;
         gap: 12px;
@@ -1423,7 +1437,7 @@
         background: linear-gradient(135deg, #133247, #2d698d);
         color: #fff;
       }
-
+      
       body[data-design-family='neutral'] .mtg-preview-label {
         margin: 0;
         font-size: 12px;
@@ -1432,13 +1446,13 @@
         text-transform: uppercase;
         color: rgba(233, 242, 248, 0.9);
       }
-
+      
       body[data-design-family='neutral'] .mtg-result-card,
       body[data-design-family='neutral'] .mtg-summary-card,
       body[data-design-family='neutral'] .fi-metric-card {
         border-radius: 20px;
       }
-
+      
       body[data-design-family='neutral'] .mtg-result-value {
         display: block;
         font-size: clamp(34px, 4vw, 46px);
@@ -1446,11 +1460,11 @@
         font-weight: 800;
         letter-spacing: -0.04em;
       }
-
+      
       body[data-design-family='neutral'] .mtg-result-value.is-updated {
         animation: fi-result-pulse 0.42s ease;
       }
-
+      
       body[data-design-family='neutral'] .mtg-summary-card {
         display: grid;
         gap: 10px;
@@ -1458,13 +1472,13 @@
         border: 1px solid var(--fi-line);
         background: var(--fi-surface-soft);
       }
-
+      
       body[data-design-family='neutral'] .fi-metric-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
-
+      
       body[data-design-family='neutral'] .fi-metric-card {
         display: grid;
         gap: 6px;
@@ -1472,7 +1486,7 @@
         border: 1px solid var(--fi-line);
         background: #fff;
       }
-
+      
       body[data-design-family='neutral'] .fi-metric-label {
         color: var(--fi-muted);
         font-size: 12px;
@@ -1480,13 +1494,13 @@
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
-
+      
       body[data-design-family='neutral'] .fi-metric-value {
         font-size: 22px;
         line-height: 1.1;
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] .fi-snapshot-list {
         display: grid;
         gap: 10px;
@@ -1495,7 +1509,7 @@
         border-radius: 20px;
         background: rgba(255, 255, 255, 0.92);
       }
-
+      
       body[data-design-family='neutral'] .fi-snapshot-row {
         display: flex;
         align-items: center;
@@ -1504,11 +1518,11 @@
         color: var(--fi-muted);
         font-size: 14px;
       }
-
+      
       body[data-design-family='neutral'] .fi-snapshot-row strong {
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] .fi-preview-stale {
         margin: 0;
         padding: 12px 14px;
@@ -1519,16 +1533,16 @@
         font-size: 13px;
         font-weight: 700;
       }
-
+      
       body[data-design-family='neutral'] .mtg-preview-panel[data-result-stale='true'] .mtg-result-value {
         opacity: 0.72;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] {
         display: grid;
         gap: 18px;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] .mtg-exp-section {
         display: grid;
         gap: 14px;
@@ -1538,56 +1552,56 @@
         background: rgba(255, 255, 255, 0.96);
         box-shadow: var(--fi-shadow-soft);
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] h2,
       body[data-design-family='neutral'] [id$='-explanation'] h3,
       body[data-design-family='neutral'] [id$='-explanation'] h4 {
         margin: 0;
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] p,
       body[data-design-family='neutral'] [id$='-explanation'] li {
         color: var(--fi-muted);
         line-height: 1.7;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] ul,
       body[data-design-family='neutral'] [id$='-explanation'] ol {
         margin: 0;
         padding-left: 1.2rem;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] strong,
       body[data-design-family='neutral'] [id$='-explanation'] [data-pv],
       body[data-design-family='neutral'] [id$='-explanation'] [data-fv] {
         color: var(--fi-text);
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] .table-scroll {
         overflow: auto;
         max-height: 420px;
         border: 1px solid var(--fi-line);
         border-radius: 18px;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] .table-scroll:focus-visible {
         outline: 2px solid rgba(31, 95, 135, 0.18);
         outline-offset: 2px;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] table {
         width: 100%;
         border-collapse: collapse;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] th,
       body[data-design-family='neutral'] [id$='-explanation'] td {
         padding: 12px 14px;
         border-bottom: 1px solid rgba(143, 158, 167, 0.18);
         text-align: left;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] thead th {
         position: sticky;
         top: 0;
@@ -1599,13 +1613,13 @@
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-card {
         display: grid;
         gap: 10px;
@@ -1614,7 +1628,7 @@
         border-radius: 20px;
         background: var(--fi-surface-soft);
       }
-
+      
       body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-number {
         color: var(--fi-muted);
         font-size: 12px;
@@ -1622,25 +1636,25 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       @keyframes fi-result-pulse {
         0% {
           transform: translateY(3px);
           opacity: 0.6;
         }
-
+      
         100% {
           transform: translateY(0);
           opacity: 1;
         }
       }
-
+      
       @media (max-width: 1080px) {
         body[data-design-family='neutral'] .fi-cluster-related-links {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
       }
-
+      
       @media (max-width: 960px) {
         body[data-design-family='neutral']
           :is(
@@ -1659,7 +1673,7 @@
           :is(.mtg-hero, .fi-hero) {
           grid-template-columns: 1fr;
         }
-
+      
         body[data-design-family='neutral'] .input-grid-2-col,
         body[data-design-family='neutral'] .fi-metric-grid,
         body[data-design-family='neutral'] [id$='-explanation'] .bor-faq-grid,
@@ -1667,17 +1681,17 @@
           grid-template-columns: 1fr;
         }
       }
-
+      
       @media (max-width: 720px) {
         body[data-design-family='neutral'] .fi-cluster-wrap,
         body[data-design-family='neutral'] .fi-cluster-center-column {
           width: min(100% - 20px, 1180px);
         }
-
+      
         body[data-design-family='neutral'] .fi-cluster-layout-main {
           padding: 28px 0 48px;
         }
-
+      
         body[data-design-family='neutral']
           :is(
             #calc-present-value,
@@ -1695,17 +1709,17 @@
           :is(.mtg-form-panel, .mtg-preview-panel, .fi-form-panel, .fi-preview-panel) {
           padding: 22px 18px;
         }
-
+      
         body[data-design-family='neutral'] [id$='-explanation'] .mtg-exp-section,
         body[data-design-family='neutral'] .fi-cluster-related {
           padding: 22px 18px;
         }
-
+      
         body[data-design-family='neutral'] .fi-toggle-row,
         body[data-design-family='neutral'] .button-group {
           flex-direction: column;
         }
-
+      
         body[data-design-family='neutral'] .calculator-button.secondary {
           width: 100%;
         }
@@ -1716,15 +1730,15 @@
         color: #15202b;
         font-weight: 700;
       }
-
+      
       #calc-future-value-of-annuity [data-fva='metric-annuity-type'] {
         font-size: 18px;
       }
-
+      
       #calc-future-value-of-annuity .fva-results-table tbody tr:last-child td {
         border-bottom: 0;
       }
-
+      
       #calc-future-value-of-annuity .fva-formula-block {
         width: fit-content;
         margin: 0;
@@ -1736,18 +1750,18 @@
         font-size: 1.02rem;
         font-weight: 700;
       }
-
+      
       #calc-future-value-of-annuity .fva-formula-steps {
         display: grid;
         gap: 8px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-hero,
       #calc-future-value-of-annuity .fi-exp-guide {
         display: grid;
         gap: 18px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-intro,
       #calc-future-value-of-annuity .fi-exp-support,
       #calc-future-value-of-annuity .fi-exp-section-head,
@@ -1755,7 +1769,7 @@
         display: grid;
         gap: 8px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-intro h2,
       #calc-future-value-of-annuity .fi-exp-section-head h3,
       #calc-future-value-of-annuity .fi-exp-card h3,
@@ -1763,7 +1777,7 @@
         margin: 0;
         color: #13293d;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-intro p,
       #calc-future-value-of-annuity .fi-exp-support p,
       #calc-future-value-of-annuity .fi-exp-card p,
@@ -1775,7 +1789,7 @@
         color: #44515c;
         line-height: 1.7;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-kpi {
         display: grid;
         gap: 6px;
@@ -1784,7 +1798,7 @@
         border: 1px solid rgba(31, 95, 135, 0.16);
         background: linear-gradient(180deg, rgba(232, 241, 247, 0.88), rgba(255, 255, 255, 0.96));
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-kpi-label {
         margin: 0;
         font-size: 12px;
@@ -1793,26 +1807,26 @@
         text-transform: uppercase;
         color: #557089;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-kpi-value {
         margin: 0;
         font-size: clamp(1.6rem, 2vw, 2.15rem);
         line-height: 1.1;
         color: #13293d;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-kpi-note {
         margin: 0;
         color: #44515c;
         line-height: 1.7;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-context-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-card {
         display: grid;
         gap: 8px;
@@ -1821,13 +1835,13 @@
         border: 1px solid rgba(31, 95, 135, 0.12);
         background: rgba(255, 255, 255, 0.88);
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-link-list {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-link-list a {
         display: inline-flex;
         align-items: center;
@@ -1839,12 +1853,12 @@
         text-decoration: none;
         font-weight: 700;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-guide-list {
         display: grid;
         gap: 12px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-guide-step {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -1854,7 +1868,7 @@
         border: 1px solid rgba(31, 95, 135, 0.12);
         background: rgba(248, 250, 252, 0.94);
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-step-no {
         width: 38px;
         height: 38px;
@@ -1867,26 +1881,26 @@
         font-weight: 800;
         letter-spacing: 0.06em;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-guide-step ol,
       #calc-future-value-of-annuity .fi-exp-guide-step ul,
       #calc-future-value-of-annuity .mtg-exp-section--notes ul {
         display: grid;
         gap: 8px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-guide-summary {
         padding-top: 10px;
         border-top: 1px solid rgba(31, 95, 135, 0.12);
       }
-
+      
       @media (max-width: 720px) {
         #calc-future-value-of-annuity .fi-exp-context-grid,
         #calc-future-value-of-annuity .fi-exp-guide-step {
           grid-template-columns: 1fr;
         }
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article,
       #calc-future-value-of-annuity .fi-exp-article-shell,
       #calc-future-value-of-annuity .fi-exp-article-main,
@@ -1896,33 +1910,33 @@
       #calc-future-value-of-annuity .fi-exp-rail-card {
         display: grid;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article {
         gap: 22px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-shell {
         gap: 20px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-head {
         display: grid;
         grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
         gap: 20px;
         align-items: start;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-intro {
         gap: 12px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-intro h2,
       #calc-future-value-of-annuity .fi-exp-story-block h3,
       #calc-future-value-of-annuity .fi-exp-rail-card h3 {
         margin: 0;
         color: #13293d;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-intro p,
       #calc-future-value-of-annuity .fi-exp-story-block p,
       #calc-future-value-of-annuity .fi-exp-story-block li,
@@ -1932,24 +1946,24 @@
         color: #44515c;
         line-height: 1.68;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-intro p,
       #calc-future-value-of-annuity .fi-exp-story-block p {
         max-width: 74ch;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-layout {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
         gap: 18px;
         align-items: start;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-main {
         gap: 20px;
         min-width: 0;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-story-block {
         gap: 12px;
         padding: 22px 24px;
@@ -1957,18 +1971,18 @@
         border: 1px solid rgba(31, 95, 135, 0.12);
         background: rgba(255, 255, 255, 0.92);
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-story-block--table {
         margin-bottom: 8px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-story-block--table .table-scroll {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin-top: 4px;
         margin-bottom: 12px;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-bullet-list,
       #calc-future-value-of-annuity .fi-exp-rail-list,
       #calc-future-value-of-annuity .fi-exp-formula-steps {
@@ -1977,7 +1991,7 @@
         margin: 0;
         padding-left: 1.15rem;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-formula-block {
         width: fit-content;
         margin: 0;
@@ -1989,12 +2003,12 @@
         font-size: 1.02rem;
         font-weight: 700;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-article-rail {
         gap: 14px;
         min-width: 0;
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-rail-card {
         gap: 10px;
         padding: 18px 20px;
@@ -2002,17 +2016,17 @@
         border: 1px solid rgba(31, 95, 135, 0.12);
         background: rgba(248, 250, 252, 0.94);
       }
-
+      
       #calc-future-value-of-annuity .fi-exp-rail-list strong {
         color: #13293d;
       }
-
+      
       @media (max-width: 720px) {
         #calc-future-value-of-annuity .fi-exp-article-head,
         #calc-future-value-of-annuity .fi-exp-article-layout {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-future-value-of-annuity .fi-exp-story-block,
         #calc-future-value-of-annuity .fi-exp-rail-card {
           padding: 18px;
@@ -2042,6 +2056,13 @@
         <section class="fi-cluster-center-column">
           <div class="fi-cluster-panel panel-span-all">
   <div class="fi-cluster-page-header">
+    <div class="fi-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/finance-calculators/present-value-calculator/">Finance Calculators</a>
+      <span>/</span>
+      <span>Future Value of Annuity Calculator</span>
+    </div>
     <span class="fi-cluster-page-kicker">Finance Calculators</span>
     <h1 id="calculator-title">Future Value of Annuity Calculator</h1>
     <p class="fi-cluster-page-intro">Project how recurring payments could grow using return rate, payment periods, and ordinary or due annuity timing.</p>
@@ -2744,6 +2765,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/finance-calculators/future-value-of-annuity-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/finance-calculators/future-value-of-annuity-calculator/module.js?v=2b29391255"></script>
   </body>
 </html>

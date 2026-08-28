@@ -1046,6 +1046,20 @@
         text-align: center;
       }
       
+      .pct-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        font-size: 0.92rem;
+        color: var(--pct-muted);
+      }
+      
+      .pct-cluster-breadcrumbs a {
+        color: var(--pct-accent-strong);
+      }
+      
       .pct-cluster-page-kicker,
       .pct-cluster-switch-kicker {
         display: inline-flex;
@@ -2315,6 +2329,13 @@
         <section class="pct-cluster-center-column">
           <div class="pct-cluster-panel panel panel-scroll panel-span-all panel--shellless">
   <div class="pct-cluster-page-header">
+    <div class="pct-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/pricing-calculators/commission-calculator/">Pricing Calculators</a>
+      <span>/</span>
+      <span>Sales Commission Calculator</span>
+    </div>
     <h1 id="calculator-title">Sales Commission Calculator</h1>
     <p class="pct-cluster-page-intro">Calculate commission on sales using flat or tiered rates, compare the effective commission %, and model payout scenarios for pricing or sales plans.</p>
   </div>
@@ -2670,6 +2691,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/pricing-calculators/commission-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/pricing-calculators/commission-calculator/module.js?v=e3e113793b"></script>
   </body>
 </html>
