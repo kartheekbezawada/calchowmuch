@@ -21,7 +21,7 @@
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
          See known_issues.md KI-007 / KI-010. */
-
+      
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -41,29 +41,29 @@
         --nav-height: 64px;
         --footer-height: 72px;
       }
-
+      
       * {
         box-sizing: border-box;
         scrollbar-width: thin;
         scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
       }
-
+      
       body {
         margin: 0;
         color: var(--header-text);
         background-color: var(--page-bg);
         background-image: none;
       }
-
+      
       a {
         color: inherit;
         text-decoration: none;
       }
-
+      
       button {
         font: inherit;
       }
-
+      
       .sr-only {
         position: absolute;
         width: 1px;
@@ -75,24 +75,24 @@
         white-space: nowrap;
         border: 0;
       }
-
+      
       /* Scrollbar styling - always visible with subtle colors */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
       }
-
+      
       ::-webkit-scrollbar-track {
         background: var(--scrollbar-track, #f1f5f9);
         border-radius: 4px;
       }
-
+      
       ::-webkit-scrollbar-thumb {
         background: var(--scrollbar-thumb, #94a3b8);
         border-radius: 4px;
         border: 2px solid var(--scrollbar-track, #f1f5f9);
       }
-
+      
       ::-webkit-scrollbar-thumb:hover {
         background: var(--scrollbar-thumb-hover, #64748b);
       }
@@ -104,7 +104,7 @@
         --calculator-button-padding: 10px 12px;
         --calculator-button-radius: 10px;
       }
-
+      
       .calculator-page {
         max-width: 1120px;
         margin: 0 auto;
@@ -113,11 +113,11 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 24px;
       }
-
+      
       .is-hidden {
         display: none;
       }
-
+      
       .card {
         background: var(--panel-bg);
         border-radius: 16px;
@@ -125,24 +125,24 @@
         box-shadow: var(--panel-shadow);
         border: 1px solid var(--border-color);
       }
-
+      
       .card h1,
       .card h2 {
         margin-top: 0;
       }
-
+      
       .calculator-ui {
         display: grid;
         gap: 18px;
       }
-
+      
       .calculator-ui label {
         font-size: 14px;
         color: var(--muted-text);
         display: block;
         margin-bottom: 6px;
       }
-
+      
       .calculator-ui input[type='number'],
       .calculator-ui input[type='text'],
       .calculator-ui input[type='email'],
@@ -164,59 +164,59 @@
         font-family: inherit;
         background: var(--panel-bg);
       }
-
+      
       .calculator-ui textarea {
         resize: vertical;
       }
-
+      
       .calculator-ui .helper {
         color: var(--muted-text);
         margin: 0;
         font-size: 14px;
       }
-
+      
       .back-link {
         display: inline-flex;
         margin-bottom: 16px;
         color: var(--accent);
       }
-
+      
       .calculator-ui .input-stack {
         display: grid;
         gap: 16px;
       }
-
+      
       .calculator-ui .input-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 16px;
       }
-
+      
       .calculator-ui .calculator-toolbar {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
         align-items: center;
       }
-
+      
       .calculator-ui .toolbar-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       .calculator-ui .button-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
-
+      
       .calculator-ui .button-group {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
       }
-
+      
       .calculator-ui .mode-switch-control {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -228,7 +228,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       .calculator-ui .mode-switch-label {
         text-align: center;
         font-size: 13px;
@@ -240,12 +240,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       .calculator-ui .mode-switch-toggle {
         position: relative;
         display: inline-flex;
@@ -253,13 +253,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       .calculator-ui .mode-switch-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       .calculator-ui .mode-switch-track {
         width: 64px;
         height: 34px;
@@ -271,7 +271,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-thumb {
         width: 26px;
         height: 26px;
@@ -281,20 +281,20 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
         transform: translateX(30px);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition .composition-mode-switch {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -306,7 +306,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       #calc-percentage-composition .composition-mode-label {
         text-align: center;
         font-size: 14px;
@@ -317,12 +317,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-mode-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       #calc-percentage-composition .composition-toggle {
         position: relative;
         display: inline-flex;
@@ -330,13 +330,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       #calc-percentage-composition .composition-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       #calc-percentage-composition .composition-toggle-track {
         width: 64px;
         height: 34px;
@@ -348,7 +348,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle-thumb {
         width: 26px;
         height: 26px;
@@ -358,11 +358,11 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       #calc-percentage-composition
         .composition-toggle
         input:checked
@@ -370,17 +370,17 @@
         .composition-toggle-thumb {
         transform: translateX(30px);
       }
-
+      
       #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition #composition-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-percentage-composition .composition-item-row {
         display: grid;
         grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
@@ -392,21 +392,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-percentage-composition .composition-row-field {
         min-width: 0;
       }
-
+      
       #calc-percentage-composition .composition-item-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-commission-calculator #comm-tier-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-commission-calculator .commission-tier-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
@@ -418,21 +418,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-commission-calculator .commission-tier-field {
         min-width: 0;
       }
-
+      
       #calc-commission-calculator .commission-tier-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-markup-calculator #markup-basket-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row {
         display: grid;
         grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
@@ -444,88 +444,88 @@
         border-radius: 12px;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
       }
-
+      
       #calc-markup-calculator .markup-row-field {
         min-width: 0;
       }
-
+      
       #calc-markup-calculator .markup-row-name-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-qty-field {
         grid-column: 2;
       }
-
+      
       #calc-markup-calculator .markup-remove-row {
         grid-column: 3;
         min-width: 104px;
       }
-
+      
       #calc-markup-calculator .markup-row-cost-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-price-wrap,
       #calc-markup-calculator .markup-row-markup-wrap {
         grid-column: 2 / 4;
       }
-
+      
       #calc-markup-calculator .markup-row-field > label {
         font-size: 13px;
         font-weight: 600;
         margin-bottom: 4px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       @media (max-width: 720px) {
         .calculator-ui .mode-switch-control {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         .calculator-ui .mode-switch-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-mode-switch {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         #calc-percentage-composition .composition-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-item-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-percentage-composition .composition-item-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-commission-calculator .commission-tier-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-commission-calculator .commission-tier-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-markup-calculator .markup-basket-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-markup-calculator .markup-basket-row .calculator-button {
           width: 100%;
         }
       }
-
+      
       .calculator-button {
         padding: var(--calculator-button-padding);
         border-radius: var(--calculator-button-radius);
@@ -541,56 +541,56 @@
         line-height: 1.2;
         white-space: nowrap;
       }
-
+      
       .calculator-button.primary {
         background: var(--accent);
         color: #fff;
       }
-
+      
       .calculator-button.secondary {
         background: #f8f9fa;
         color: #495057;
       }
-
+      
       .calculator-button.is-active,
       .calculator-button[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button.secondary.is-active,
       .calculator-button.secondary[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button:disabled {
         opacity: 0.6;
         cursor: not-allowed;
       }
-
+      
       .full-width {
         width: 100%;
       }
-
+      
       .calculator-ui .result {
         margin: 0;
         font-size: 18px;
         font-weight: 600;
         min-height: 60px;
       }
-
+      
       .calculator-ui .result-detail {
         font-size: 14px;
         color: var(--muted-text);
         margin-top: 8px;
         font-weight: 400;
       }
-
+      
       .calculator-ui .result-detail p {
         margin: 0.25rem 0;
       }
-
+      
       .calculator-ui .result-scroll {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -604,19 +604,19 @@
         flex-direction: column;
         gap: 16px;
       }
-
+      
       .calculator-ui .result-section {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-
+      
       .calculator-ui .result-section h4 {
         margin: 0;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .table-scroll {
         overflow-x: scroll;
         overflow-y: scroll;
@@ -624,7 +624,7 @@
         max-height: 240px;
         scrollbar-gutter: stable;
       }
-
+      
       .calculator-table {
         width: 100%;
         border-collapse: collapse;
@@ -632,7 +632,7 @@
         font-size: 15px;
         min-width: 400px;
       }
-
+      
       .calculator-table th,
       .calculator-table td {
         padding: 8px 12px;
@@ -640,12 +640,12 @@
         text-align: right;
         white-space: nowrap;
       }
-
+      
       .calculator-table th:first-child,
       .calculator-table td:first-child {
         text-align: left;
       }
-
+      
       .calculator-table thead th {
         background: var(--pill-bg);
         color: var(--muted-text);
@@ -654,12 +654,12 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
+      
       .calculator-table tfoot td {
         background: var(--pill-bg);
         font-weight: 600;
       }
-
+      
       .graph-panel {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -671,7 +671,7 @@
         gap: 8px;
         overflow: hidden;
       }
-
+      
       .graph-header {
         display: flex;
         align-items: center;
@@ -680,23 +680,23 @@
         color: var(--muted-text);
         flex-shrink: 0;
       }
-
+      
       .graph-title {
         color: var(--header-text);
         font-weight: 600;
       }
-
+      
       .explanation-pane h2,
       .explanation-pane h3 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 6px;
         position: relative;
       }
-
+      
       .explanation-pane h2 {
         margin-top: 0;
       }
-
+      
       .explanation-pane h2::after {
         content: '';
         position: absolute;
@@ -706,33 +706,33 @@
         width: 48px;
         background: var(--accent);
       }
-
+      
       .faq-box {
         border: 1px solid var(--border-color);
         padding: 16px;
         border-radius: 8px;
       }
-
+      
       .explanation-pane h3 + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box p {
         margin: 0;
       }
-
+      
       .faq-box p + p {
         margin-top: 6px;
       }
-
+      
       .faq-box .faq-answer {
         margin-left: 12px;
       }
-
+      
       .graph-legend {
         display: flex;
         gap: 12px;
@@ -740,39 +740,39 @@
         font-size: 12px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-item {
         display: flex;
         align-items: center;
         gap: 6px;
       }
-
+      
       .graph-legend-color {
         width: 12px;
         height: 12px;
         border-radius: 3px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-color.principal {
         background: var(--accent);
       }
-
+      
       .graph-legend-color.interest {
         background: #f59e0b;
       }
-
+      
       .graph-legend-color.balance {
         background: #10b981;
       }
-
+      
       .graph-container {
         display: flex;
         flex: 1;
         min-height: 0;
         gap: 8px;
       }
-
+      
       .graph-y-axis {
         display: flex;
         flex-direction: column;
@@ -784,7 +784,7 @@
         flex-shrink: 0;
         min-width: 50px;
       }
-
+      
       .graph-y-label {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
@@ -793,7 +793,7 @@
         text-align: center;
         flex-shrink: 0;
       }
-
+      
       .graph-main {
         flex: 1;
         display: flex;
@@ -801,7 +801,7 @@
         min-width: 0;
         overflow: hidden;
       }
-
+      
       .graph-bars-wrapper {
         flex: 1;
         overflow-x: auto;
@@ -809,7 +809,7 @@
         min-height: 0;
         scrollbar-gutter: stable;
       }
-
+      
       .graph-bars {
         display: flex;
         align-items: flex-end;
@@ -819,33 +819,33 @@
         width: max-content;
         padding-bottom: 4px;
       }
-
+      
       .graph-line {
         width: 100%;
         height: 100%;
         display: block;
       }
-
+      
       .graph-line polyline {
         fill: none;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-
+      
       .graph-line .line-primary {
         stroke: var(--accent);
       }
-
+      
       .graph-line .line-secondary {
         stroke: #94a3b8;
         stroke-dasharray: 6 4;
       }
-
+      
       .graph-legend-color.secondary {
         background: #94a3b8;
       }
-
+      
       .graph-bar {
         width: 8px;
         min-width: 8px;
@@ -853,15 +853,15 @@
         border-radius: 4px 4px 2px 2px;
         flex: 0 0 auto;
       }
-
+      
       .graph-bar.interest {
         background: #f59e0b;
       }
-
+      
       .graph-bar.balance {
         background: #10b981;
       }
-
+      
       .graph-x-axis {
         display: flex;
         justify-content: space-between;
@@ -871,7 +871,7 @@
         border-top: 1px solid var(--border-color);
         flex-shrink: 0;
       }
-
+      
       .graph-x-label {
         font-size: 11px;
         color: var(--muted-text);
@@ -888,19 +888,19 @@
           radial-gradient(circle at top left, rgba(22, 163, 74, 0.08), transparent 28%),
           linear-gradient(180deg, #f6fbf7 0%, #edf5ef 100%);
       }
-
+      
       .sal-cluster-page-shell *,
       .sal-cluster-page-shell *::before,
       .sal-cluster-page-shell *::after {
         box-sizing: border-box;
       }
-
+      
       .sal-cluster-wrap,
       .sal-cluster-center-column {
         width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
       }
-
+      
       .sal-cluster-site-header {
         position: sticky;
         top: 0;
@@ -909,7 +909,7 @@
         background: rgba(246, 251, 247, 0.9);
         border-bottom: 1px solid rgba(19, 34, 47, 0.08);
       }
-
+      
       .sal-cluster-site-header-inner,
       .sal-cluster-site-footer-inner {
         min-height: 72px;
@@ -918,7 +918,7 @@
         align-items: center;
         gap: 18px;
       }
-
+      
       .sal-cluster-brand {
         display: inline-flex;
         align-items: center;
@@ -927,7 +927,7 @@
         font-size: 18px;
         font-weight: 700;
       }
-
+      
       .sal-cluster-brand-mark {
         width: 42px;
         height: 42px;
@@ -940,7 +940,7 @@
         font-size: 20px;
         font-weight: 900;
       }
-
+      
       .sal-cluster-site-label {
         justify-self: center;
         padding: 9px 14px;
@@ -953,7 +953,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-cluster-site-links,
       .sal-cluster-footer-links {
         display: flex;
@@ -962,22 +962,22 @@
         gap: 14px;
         font-size: 14px;
       }
-
+      
       .sal-cluster-site-links a,
       .sal-cluster-footer-links a {
         color: #587061;
       }
-
+      
       .sal-cluster-site-links a:hover,
       .sal-cluster-footer-links a:hover {
         color: #166534;
       }
-
+      
       .sal-cluster-layout-main {
         padding: 40px 0 64px;
         min-width: 0;
       }
-
+      
       .sal-cluster-panel {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -986,7 +986,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-cluster-page-shell #calculator-title {
         margin: 0;
         font-size: clamp(2rem, 4vw, 3.4rem);
@@ -994,24 +994,24 @@
         letter-spacing: -0.055em;
         color: #13222f;
       }
-
+      
       .sal-cluster-page-shell #calculator-title::after {
         display: none;
       }
-
+      
       .sal-cluster-page-header {
         max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
-
+      
       .sal-cluster-page-intro {
         margin: 0 auto;
         color: #5d6f67;
         font-size: 16px;
         line-height: 1.7;
       }
-
+      
       .sal-cluster-flow {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -1020,7 +1020,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
       .sal-cluster-panel > *,
       .sal-cluster-flow > * {
@@ -1028,7 +1028,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-cluster-section {
         border: 1px solid rgba(19, 34, 47, 0.09);
         border-radius: 28px;
@@ -1036,7 +1036,7 @@
         box-shadow: 0 12px 30px rgba(16, 24, 40, 0.05);
         padding: 24px;
       }
-
+      
       .sal-cluster-section-head {
         display: flex;
         align-items: flex-start;
@@ -1044,14 +1044,14 @@
         gap: 18px;
         margin-bottom: 18px;
       }
-
+      
       .sal-cluster-section h2 {
         margin: 0;
         color: #13222f;
         font-size: 22px;
         line-height: 1.2;
       }
-
+      
       .sal-cluster-kicker {
         display: inline-flex;
         align-items: center;
@@ -1067,7 +1067,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-cluster-status-grid,
       .sal-cluster-copy-grid,
       .sal-intent-grid {
@@ -1075,7 +1075,7 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 16px;
       }
-
+      
       .sal-cluster-status-card,
       .sal-cluster-copy-card,
       .sal-intent-card {
@@ -1084,7 +1084,7 @@
         background: #f9fcfa;
         padding: 18px;
       }
-
+      
       .sal-cluster-status-card strong,
       .sal-cluster-copy-card h3,
       .sal-intent-card h3 {
@@ -1092,7 +1092,7 @@
         margin: 0 0 10px;
         color: #13222f;
       }
-
+      
       .sal-cluster-status-card p,
       .sal-cluster-copy-card p,
       .sal-intent-card p,
@@ -1101,16 +1101,152 @@
         color: #5d6f67;
         line-height: 1.65;
       }
-
+      
       .sal-intent-card a {
         color: inherit;
       }
-
-      .sal-intent-card:hover {
-        border-color: rgba(22, 101, 52, 0.16);
-        box-shadow: 0 12px 28px rgba(19, 34, 47, 0.07);
+      
+      .sal-intent-card,
+      .sal-related-card {
+        transition:
+          transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.2s ease,
+          border-color 0.2s ease,
+          background-color 0.2s ease;
       }
-
+      
+      .sal-intent-card:hover,
+      .sal-intent-card:focus-within,
+      .sal-related-card:hover,
+      .sal-related-card:focus-within {
+        transform: translateY(-6px) scale(1.015);
+        box-shadow: 0 26px 48px rgba(19, 34, 47, 0.16);
+        border-color: rgba(22, 163, 74, 0.4);
+        background-color: #f6fcf7;
+      }
+      
+      .sal-intent-card h3 a,
+      .sal-related-card h3 a {
+        transition: color 0.2s ease;
+      }
+      
+      .sal-intent-card:hover h3 a,
+      .sal-intent-card:focus-within h3 a,
+      .sal-related-card:hover h3 a,
+      .sal-related-card:focus-within h3 a {
+        color: #15803d;
+      }
+      
+      .sal-card-badge {
+        display: inline-flex;
+        align-items: center;
+        margin: 0 0 8px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(22, 163, 74, 0.1);
+        color: #15803d;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      
+      .sal-cluster-subhead {
+        margin: 0 0 12px;
+        color: #4f6a61;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      
+      .sal-cluster-subgroup + .sal-cluster-subgroup {
+        margin-top: 24px;
+      }
+      
+      .sal-picker-step {
+        display: grid;
+        gap: 10px;
+      }
+      
+      .sal-picker-step + .sal-picker-step {
+        margin-top: 16px;
+      }
+      
+      .sal-picker-step-label {
+        margin: 0;
+        color: #22353f;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      
+      .sal-picker .sal-chip-button {
+        cursor: pointer;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease,
+          background-color 0.15s ease;
+      }
+      
+      .sal-picker .sal-chip-button:hover {
+        transform: translateY(-2px);
+        border-color: rgba(22, 163, 74, 0.4);
+        box-shadow: 0 8px 18px rgba(19, 34, 47, 0.12);
+      }
+      
+      .sal-picker .sal-chip-button.is-active:hover,
+      .sal-picker .sal-chip-button[aria-pressed='true']:hover {
+        border-color: rgba(28, 103, 88, 0.3);
+        box-shadow: 0 8px 18px rgba(15, 44, 65, 0.28);
+      }
+      
+      .sal-picker-result {
+        display: grid;
+        gap: 8px;
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f9fcfa;
+      }
+      
+      .sal-picker-result[hidden] {
+        display: none;
+      }
+      
+      .sal-picker-result-label {
+        margin: 0;
+        color: #6a7c75;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      
+      .sal-picker-result-name {
+        margin: 0;
+        color: #13222f;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      
+      .sal-picker-result-note {
+        margin: 0;
+        color: #5d6f67;
+        line-height: 1.6;
+      }
+      
+      .sal-picker-result-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      
+      .sal-picker-result > .calculator-button {
+        justify-self: start;
+        margin-top: 4px;
+      }
+      
       .sal-cluster-roadmap-list,
       .sal-cluster-rule-list {
         margin: 0;
@@ -1119,22 +1255,40 @@
         gap: 10px;
         color: #22353f;
       }
-
+      
       .sal-cluster-action-row {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
+      .sal-cluster-page-shell .calculator-button {
+        background: #163b55;
+        color: #ffffff;
+      }
+      
+      .sal-cluster-page-shell .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+      
+      .sal-cluster-page-shell .calculator-button:hover {
+        background: #0f2c41;
+      }
+      
+      .sal-cluster-page-shell .calculator-button.secondary:hover {
+        background: #eef1f3;
+      }
+      
       .sal-cluster-site-footer {
         border-top: 1px solid rgba(19, 34, 47, 0.08);
         background: rgba(255, 255, 255, 0.78);
       }
-
+      
       .sal-cluster-calc-flow {
         gap: 20px;
       }
-
+      
       .sal-calc-shell,
       .sal-explanation,
       .sal-related-grid,
@@ -1146,12 +1300,12 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-calc-shell {
         grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
         align-items: start;
       }
-
+      
       .sal-calc-card,
       .sal-explanation-card,
       .sal-related-card {
@@ -1162,16 +1316,16 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-calc-card {
         padding: 24px;
       }
-
+      
       .sal-calc-form-card {
         display: grid;
         gap: 18px;
       }
-
+      
       .sal-calc-kicker,
       .sal-explanation-kicker {
         margin: 0;
@@ -1181,7 +1335,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-calc-form-title,
       .sal-answer-title,
       .sal-explanation-card h2,
@@ -1190,12 +1344,12 @@
         margin: 0;
         color: #13222f;
       }
-
+      
       .sal-calc-form-title {
         font-size: clamp(1.35rem, 2.3vw, 1.9rem);
         line-height: 1.18;
       }
-
+      
       .sal-calc-lead,
       .sal-answer-note,
       .sal-explanation-card p,
@@ -1206,7 +1360,7 @@
         color: #5d6f67;
         line-height: 1.65;
       }
-
+      
       .sal-input-stack,
       .sal-input-row,
       .sal-mode-fields,
@@ -1216,18 +1370,18 @@
         display: grid;
         gap: 12px;
       }
-
+      
       .sal-input-grid,
       .sal-inline-fields {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+      
       .sal-calc-shell label {
         color: #22353f;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .sal-calc-shell input[type='number'],
       .sal-calc-shell input[type='text'],
       .sal-calc-shell input[type='email'],
@@ -1243,13 +1397,13 @@
         color: #13222f;
         font-size: 16px;
       }
-
+      
       .sal-calc-shell input:focus-visible {
         outline: 2px solid rgba(38, 93, 144, 0.24);
         outline-offset: 1px;
         border-color: rgba(38, 93, 144, 0.36);
       }
-
+      
       .sal-helper-text,
       .sal-calc-helper,
       .sal-answer-context,
@@ -1261,14 +1415,14 @@
         font-size: 14px;
         line-height: 1.55;
       }
-
+      
       .sal-input-details {
         padding: 16px;
         border-radius: 20px;
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f7fbf8;
       }
-
+      
       .sal-input-details summary {
         cursor: pointer;
         color: #22353f;
@@ -1276,34 +1430,34 @@
         font-weight: 700;
         list-style: none;
       }
-
+      
       .sal-input-details summary::-webkit-details-marker {
         display: none;
       }
-
+      
       .sal-input-details summary::after {
         content: '+';
         float: right;
         color: #5d6f67;
       }
-
+      
       .sal-input-details[open] summary::after {
         content: '−';
       }
-
+      
       .sal-input-details-copy {
         margin: 0;
         color: #5d6f67;
         font-size: 14px;
         line-height: 1.55;
       }
-
+      
       .sal-chip-group {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
       }
-
+      
       .sal-chip-button {
         min-height: 42px;
         padding: 0 16px;
@@ -1313,14 +1467,14 @@
         color: #465a52;
         font-weight: 600;
       }
-
+      
       .sal-chip-button.is-active,
       .sal-chip-button[aria-pressed='true'] {
         border-color: rgba(28, 103, 88, 0.18);
         background: #163b55;
         color: #ffffff;
       }
-
+      
       .sal-primary-action {
         width: 100%;
         min-height: 50px;
@@ -1330,31 +1484,71 @@
         color: #ffffff;
         font-weight: 700;
       }
-
+      
       .sal-calc-error {
         margin: 0;
         color: #b85d49;
         font-size: 13px;
         font-weight: 700;
       }
-
+      
       .sal-calc-error[hidden] {
         display: none;
       }
-
+      
       .sal-answer-card {
         display: grid;
         gap: 18px;
         position: sticky;
         top: 92px;
       }
-
+      
+      .sal-answer-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      
       .sal-answer-title {
+        margin-bottom: 6px;
         font-size: 14px;
         font-weight: 700;
         letter-spacing: 0.02em;
       }
-
+      
+      .sal-answer-eyebrow {
+        margin: 0;
+        color: #6a7c75;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      
+      .sal-status-chip,
+      .sal-copy-feedback {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 34px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f7fbf8;
+        color: #163b55;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      
+      .sal-status-chip.is-dirty {
+        border-color: rgba(180, 83, 9, 0.22);
+        background: rgba(254, 243, 199, 0.7);
+        color: #92400e;
+      }
+      
       .sal-answer-hero {
         margin: 0;
         color: #13222f;
@@ -1363,22 +1557,65 @@
         letter-spacing: -0.06em;
         font-weight: 800;
       }
-
+      
       .sal-answer-note {
         padding-top: 4px;
       }
-
+      
       .sal-answer-context {
         padding: 10px 12px;
         border-radius: 16px;
         background: #f7fbf8;
         border: 1px solid rgba(19, 34, 47, 0.06);
       }
-
+      
+      .sal-action-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      
+      .sal-secondary-action {
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(19, 34, 47, 0.1);
+        background: rgba(255, 255, 255, 0.94);
+        color: #163b55;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      
+      .sal-secondary-action:hover {
+        border-color: rgba(22, 59, 85, 0.16);
+        background: #ffffff;
+      }
+      
+      .sal-copy-feedback {
+        display: none;
+        color: #166534;
+      }
+      
+      .sal-copy-feedback.is-visible {
+        display: inline-flex;
+      }
+      
+      .sal-copy-feedback[data-tone='error'] {
+        color: #b85d49;
+      }
+      
+      .sal-results-proof {
+        margin: 0;
+        color: #6b7e77;
+        font-size: 12px;
+        line-height: 1.55;
+      }
+      
       .sal-support-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+      
       .sal-support-card {
         display: grid;
         gap: 8px;
@@ -1387,19 +1624,19 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
       }
-
+      
       .sal-support-card span {
         color: #6b7e77;
         font-size: 13px;
         font-weight: 600;
       }
-
+      
       .sal-support-card strong {
         color: #13222f;
         font-size: 1.15rem;
         line-height: 1.2;
       }
-
+      
       .sal-breakdown-card,
       .sal-method-card {
         display: grid;
@@ -1409,7 +1646,7 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
       }
-
+      
       .sal-breakdown-card h3,
       .sal-method-card h3 {
         margin: 0;
@@ -1417,12 +1654,12 @@
         font-size: 15px;
         line-height: 1.3;
       }
-
+      
       .sal-explanation-card,
       .sal-related-card {
         padding: 24px;
       }
-
+      
       .sal-explanation-list,
       .sal-related-list {
         margin: 0;
@@ -1430,37 +1667,37 @@
         display: grid;
         gap: 8px;
       }
-
+      
       .sal-related-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
-
+      
       .sal-faq-grid {
         gap: 12px;
       }
-
+      
       .sal-faq-grid .sal-related-card {
         padding: 18px;
         border-radius: 22px;
         background: #fcfdfc;
         box-shadow: none;
       }
-
+      
       .sal-faq-grid .sal-related-card h3 {
         margin-bottom: 6px;
         font-size: 1rem;
       }
-
+      
       .sal-related-card a,
       .sal-explanation-card a {
         color: #163b55;
       }
-
+      
       .sal-explanation-card a:hover,
       .sal-related-card a:hover {
         color: #0f2c41;
       }
-
+      
       .sal-form-inline-toggle {
         display: flex;
         align-items: center;
@@ -1468,41 +1705,51 @@
         color: #465a52;
         font-size: 14px;
       }
-
+      
       .sal-form-inline-toggle input {
         accent-color: #163b55;
       }
-
+      
       @media (max-width: 900px) {
         .sal-calc-shell {
           grid-template-columns: 1fr;
         }
-
+      
         .sal-answer-card {
           position: static;
         }
       }
-
+      
       @media (max-width: 640px) {
         .sal-input-grid,
         .sal-inline-fields,
         .sal-support-grid {
           grid-template-columns: 1fr;
         }
-
+      
         .sal-calc-card,
         .sal-explanation-card,
         .sal-related-card {
           padding: 20px;
         }
+      
+        .sal-action-row {
+          align-items: stretch;
+        }
+      
+        .sal-secondary-action,
+        .sal-copy-feedback {
+          width: 100%;
+          justify-content: center;
+        }
       }
-
+      
       .sal-cluster-footer-copy {
         justify-self: end;
         color: #5d6f67;
         font-size: 14px;
       }
-
+      
       @media (max-width: 760px) {
         .sal-cluster-site-header-inner,
         .sal-cluster-site-footer-inner {
@@ -1510,16 +1757,16 @@
           justify-items: start;
           padding: 16px 0;
         }
-
+      
         .sal-cluster-site-label,
         .sal-cluster-footer-copy {
           justify-self: start;
         }
-
+      
         .sal-cluster-layout-main {
           padding: 28px 0 48px;
         }
-
+      
         .sal-cluster-section {
           border-radius: 22px;
           padding: 18px;
@@ -1553,195 +1800,249 @@
   <div class="sal-cluster-flow">
   <div class="sal-cluster-page-header">
     <p class="sal-cluster-page-intro">
-      Use this salary calculator hub to convert pay across time periods, compare overtime and raise
-      scenarios, estimate bonus or commission earnings, and keep gross-pay planning in one place.
+      Use this salary calculator hub to convert pay across time periods, estimate UK or US take-home
+      pay after tax, compare overtime and raise scenarios, and estimate bonus or commission earnings
+      in one place.
     </p>
   </div>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-intent-title">
+  <section class="sal-cluster-section sal-picker" aria-labelledby="sal-cluster-picker-title">
     <div class="sal-cluster-section-head">
       <div>
-        <span class="sal-cluster-kicker">Quick Start</span>
-        <h2 id="sal-cluster-intent-title">Start with what you already know</h2>
+        <span class="sal-cluster-kicker">Not sure where to start?</span>
+        <h2 id="sal-cluster-picker-title">Find your calculator in two clicks</h2>
       </div>
     </div>
-    <div class="sal-intent-grid">
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/hourly-to-salary-calculator/">I know hourly pay</a></h3>
-        <p>Turn an hourly rate into annual, monthly, biweekly, and weekly pay before you compare offers or plan a raise.</p>
-      </article>
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/salary-to-hourly-calculator/">I know annual salary</a></h3>
-        <p>Reverse yearly pay into hourly, weekly, biweekly, and monthly views with schedule assumptions kept visible.</p>
-      </article>
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/weekly-pay-calculator/">I want weekly pay</a></h3>
-        <p>Estimate a weekly answer first, then annualize it when you need a broader compensation view.</p>
-      </article>
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/raise-calculator/">I want raise, bonus, or commission help</a></h3>
-        <p>Jump into earnings-change tools when the real question is compensation growth, variable pay, or offer comparison.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-featured-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Featured</span>
-        <h2 id="sal-cluster-featured-title">Start with the route that matches your pay question</h2>
+    <div class="sal-picker-step">
+      <p class="sal-picker-step-label">1. What pay figure do you have?</p>
+      <div class="sal-chip-group" data-picker-step="known" role="group" aria-label="What pay figure do you have?">
+        <button type="button" class="sal-chip-button" data-known="hourly">Hourly</button>
+        <button type="button" class="sal-chip-button" data-known="weekly">Weekly</button>
+        <button type="button" class="sal-chip-button" data-known="monthly">Monthly</button>
+        <button type="button" class="sal-chip-button" data-known="annual">Annual</button>
       </div>
     </div>
-    <div class="sal-related-grid">
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>Convert one pay amount into hourly, daily, weekly, biweekly, monthly, and annual views without re-entering schedule assumptions.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/hourly-to-salary-calculator/">Hourly to Salary Calculator</a></h3>
-        <p>Turn an hourly wage into annual salary with monthly, biweekly, and weekly support values.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/salary-to-hourly-calculator/">Salary to Hourly Calculator</a></h3>
-        <p>Reverse an annual salary into hourly pay while keeping hours and weeks assumptions visible.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/overtime-pay-calculator/">Overtime Pay Calculator</a></h3>
-        <p>Estimate the extra pay created by overtime hours and compare how a multiplier changes gross earnings.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
-        <p>Compare current pay and new pay using either a percentage raise or a flat increase amount.</p>
-      </article>
+    <div class="sal-picker-step">
+      <p class="sal-picker-step-label">2. What do you want to see?</p>
+      <div class="sal-chip-group" data-picker-step="want" role="group" aria-label="What do you want to see?">
+        <button type="button" class="sal-chip-button" data-want="convert">Just convert it</button>
+        <button type="button" class="sal-chip-button" data-want="uk">UK take-home pay</button>
+        <button type="button" class="sal-chip-button" data-want="us">US take-home pay</button>
+        <button type="button" class="sal-chip-button" data-want="variable">Overtime, raise, bonus or commission</button>
+      </div>
     </div>
+    <div class="sal-picker-result" data-picker-result hidden></div>
   </section>
 
   <section class="sal-cluster-section" aria-labelledby="sal-cluster-all-title">
     <div class="sal-cluster-section-head">
       <div>
-        <span class="sal-cluster-kicker">All Routes</span>
-        <h2 id="sal-cluster-all-title">All salary calculators in this cluster</h2>
+        <span class="sal-cluster-kicker">All Calculators</span>
+        <h2 id="sal-cluster-all-title">All salary calculators</h2>
       </div>
     </div>
-    <div class="sal-related-grid">
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
-        <p>Convert yearly pay into monthly salary with weekly and biweekly support values.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/monthly-to-annual-salary-calculator/">Monthly to Annual Salary Calculator</a></h3>
-        <p>Turn monthly pay into yearly salary with weekly and biweekly context.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
-        <p>Estimate weekly earnings from hourly pay with optional split regular and overtime hours.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
-        <p>Calculate bonus amount and total compensation using percent or flat-amount mode.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/commission-calculator/">Commission Calculator</a></h3>
-        <p>Estimate commission earned from sales, then optionally add base pay to see gross total earnings.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Salary Calculator</a></h3>
-        <p>Compare a new salary with inflation so you can see whether a raise improves real buying power.</p>
-      </article>
-    </div>
-  </section>
+    <p class="sal-cluster-page-intro" style="margin: -6px 0 20px; text-align: left;">
+      Salary Calculator, Monthly to Annual, and Annual to Monthly include UK and US take-home pay
+      after tax. Every other calculator below stays gross-pay only.
+    </p>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-why-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Planning guide</span>
-        <h2 id="sal-cluster-why-title">What these salary calculators help you answer</h2>
+    <div class="sal-cluster-subgroup">
+      <h3 class="sal-cluster-subhead">Convert pay</h3>
+      <div class="sal-related-grid">
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/hourly-to-salary-calculator/">Hourly to Salary Calculator</a></h3>
+          <p>Turn an hourly wage into annual salary with monthly, biweekly, and weekly support values.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/salary-to-hourly-calculator/">Salary to Hourly Calculator</a></h3>
+          <p>Reverse an annual salary into hourly pay while keeping hours and weeks assumptions visible.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
+          <p>Estimate weekly earnings from hourly pay with optional split regular and overtime hours.</p>
+        </article>
       </div>
     </div>
-    <div class="sal-cluster-copy-grid">
-      <div class="sal-cluster-copy-card">
-        <h3>Offer comparison</h3>
-        <p>Move between hourly and annual pay before you compare jobs, contracts, or side-income options.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Variable pay planning</h3>
-        <p>Use overtime, bonus, and commission routes when the paycheck changes with performance or extra hours.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Gross-pay budgeting</h3>
-        <p>Read these tools as gross-pay planning calculators, then layer tax or withholding decisions separately.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-scope-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Scope</span>
-        <h2 id="sal-cluster-scope-title">What this salary cluster covers</h2>
+    <div class="sal-cluster-subgroup">
+      <h3 class="sal-cluster-subhead">Take-home pay after tax</h3>
+      <div class="sal-related-grid">
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
+          <span class="sal-card-badge">UK &amp; US tax</span>
+          <p>Convert any pay frequency and see UK or US take-home pay after tax on the same page.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/monthly-to-annual-salary-calculator/">Monthly to Annual Salary Calculator</a></h3>
+          <span class="sal-card-badge">UK &amp; US tax</span>
+          <p>Turn monthly pay into yearly gross pay, or switch to UK or US mode for yearly take-home pay.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
+          <span class="sal-card-badge">UK &amp; US tax</span>
+          <p>Convert yearly pay into monthly gross pay, or switch to UK or US mode for monthly take-home pay.</p>
+        </article>
       </div>
     </div>
-    <div class="sal-cluster-copy-grid">
-      <div class="sal-cluster-copy-card">
-        <h3>Conversion first</h3>
-        <p>Core tools focus on moving cleanly between hourly, weekly, monthly, and annual pay.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Earnings support</h3>
-        <p>Overtime, raise, bonus, and commission routes stay direct and focused on gross compensation planning.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Gross pay only</h3>
-        <p>The cluster avoids tax, withholding, and jurisdiction-specific payroll assumptions so the math stays clean and portable.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-faq-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">FAQ</span>
-        <h2 id="sal-cluster-faq-title">Common salary-cluster questions</h2>
+    <div class="sal-cluster-subgroup">
+      <h3 class="sal-cluster-subhead">Variable pay</h3>
+      <div class="sal-related-grid">
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/overtime-pay-calculator/">Overtime Pay Calculator</a></h3>
+          <p>Estimate the extra pay created by overtime hours and compare how a multiplier changes gross earnings.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
+          <p>Compare current pay and new pay using either a percentage raise or a flat increase amount.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
+          <p>Calculate bonus amount and total compensation using percent or flat-amount mode.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/commission-calculator/">Commission Calculator</a></h3>
+          <p>Estimate commission earned from sales, then optionally add base pay to see gross total earnings.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Salary Calculator</a></h3>
+          <p>Compare a new salary with inflation so you can see whether a raise improves real buying power.</p>
+        </article>
       </div>
-    </div>
-    <div class="sal-faq-grid">
-      <article class="sal-related-card">
-        <h3>What can I calculate with these salary calculators?</h3>
-        <p>You can convert pay frequencies and estimate overtime, raise, bonus, and commission amounts from the same salary-planning hub.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Which calculator should I use for hourly pay?</h3>
-        <p>Start with Hourly to Salary Calculator for direct conversion or Weekly Pay Calculator for a weekly answer first.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Do these calculators include tax deductions?</h3>
-        <p>No. The salary cluster stays focused on gross-pay estimates before deductions, tax, and local payroll rules.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Can I compare weekly, monthly, and annual pay?</h3>
-        <p>Yes. The conversion routes are designed to show pay frequency equivalents clearly.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Are overtime, raise, and bonus calculations included?</h3>
-        <p>Yes. Those routes sit alongside the pay-conversion tools so you can move from one compensation question to the next.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="sal-cluster-section sal-cluster-actions" aria-labelledby="sal-cluster-actions-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Explore</span>
-        <h2 id="sal-cluster-actions-title">Useful next salary routes</h2>
-      </div>
-    </div>
-    <div class="sal-cluster-action-row">
-      <a class="calculator-button" href="/salary-calculators/salary-calculator/">Open Salary Calculator</a>
-      <a class="calculator-button secondary" href="/salary-calculators/bonus-calculator/">See Bonus Calculator</a>
-      <a class="calculator-button secondary" href="/salary-calculators/commission-calculator/">See Commission Calculator</a>
     </div>
   </section>
 </div>
+<script>
+  (function () {
+    var pickerSection = document.querySelector('.sal-picker');
+    if (!pickerSection) return;
+
+    var knownGroup = pickerSection.querySelector('[data-picker-step="known"]');
+    var wantGroup = pickerSection.querySelector('[data-picker-step="want"]');
+    var resultEl = pickerSection.querySelector('[data-picker-result]');
+    if (!knownGroup || !wantGroup || !resultEl) return;
+
+    var state = { known: null, want: null };
+
+    var CONVERT_MAP = {
+      hourly: {
+        href: '/salary-calculators/hourly-to-salary-calculator/',
+        name: 'Hourly to Salary Calculator',
+        note: 'Turns an hourly rate into annual, monthly, biweekly, and weekly pay.',
+      },
+      weekly: {
+        href: '/salary-calculators/weekly-pay-calculator/',
+        name: 'Weekly Pay Calculator',
+        note: 'Estimates weekly earnings from hourly pay, with optional split overtime hours.',
+      },
+      monthly: {
+        href: '/salary-calculators/monthly-to-annual-salary-calculator/',
+        name: 'Monthly to Annual Salary Calculator',
+        note: 'Use Gross Pay mode to convert monthly pay into yearly, weekly, and biweekly views.',
+      },
+      annual: {
+        href: '/salary-calculators/salary-to-hourly-calculator/',
+        name: 'Salary to Hourly Calculator',
+        note: 'Reverses annual salary into hourly, weekly, biweekly, and monthly pay.',
+      },
+    };
+
+    var TAX_MAP = {
+      hourly: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Hourly pay frequency, then switch to the UK or USA tab.',
+      },
+      weekly: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Weekly pay frequency, then switch to the UK or USA tab.',
+      },
+      monthly: {
+        href: '/salary-calculators/monthly-to-annual-salary-calculator/',
+        name: 'Monthly to Annual Salary Calculator',
+        note: 'Switch to the UK or USA tab to see monthly pay after tax, converted to a yearly figure.',
+      },
+      annual: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Annual pay frequency, then switch to the UK or USA tab.',
+      },
+    };
+
+    var VARIABLE_LINKS = [
+      { href: '/salary-calculators/overtime-pay-calculator/', name: 'Overtime Pay Calculator' },
+      { href: '/salary-calculators/raise-calculator/', name: 'Raise Calculator' },
+      { href: '/salary-calculators/bonus-calculator/', name: 'Bonus Calculator' },
+      { href: '/salary-calculators/commission-calculator/', name: 'Commission Calculator' },
+    ];
+
+    function setActive(group, button) {
+      var buttons = group.querySelectorAll('.sal-chip-button');
+      for (var i = 0; i < buttons.length; i += 1) {
+        var active = buttons[i] === button;
+        buttons[i].classList.toggle('is-active', active);
+        buttons[i].setAttribute('aria-pressed', active ? 'true' : 'false');
+      }
+    }
+
+    function linkHtml(className, item) {
+      return '<a class="' + className + '" href="' + item.href + '">' + item.name + '</a>';
+    }
+
+    function render() {
+      if (!state.want) {
+        resultEl.hidden = true;
+        resultEl.innerHTML = '';
+        return;
+      }
+
+      if (state.want === 'variable') {
+        var links = '';
+        for (var i = 0; i < VARIABLE_LINKS.length; i += 1) {
+          links += linkHtml('calculator-button secondary', VARIABLE_LINKS[i]);
+        }
+        resultEl.hidden = false;
+        resultEl.innerHTML =
+          '<p class="sal-picker-result-label">Best matches</p>' +
+          '<p class="sal-picker-result-note">Any of these fit overtime, raise, bonus, or commission questions:</p>' +
+          '<div class="sal-picker-result-links">' + links + '</div>';
+        return;
+      }
+
+      if (!state.known) {
+        resultEl.hidden = false;
+        resultEl.innerHTML = '<p class="sal-picker-result-note">Pick a pay figure above to see your calculator.</p>';
+        return;
+      }
+
+      var map = state.want === 'convert' ? CONVERT_MAP : TAX_MAP;
+      var pick = map[state.known];
+      resultEl.hidden = false;
+      resultEl.innerHTML =
+        '<p class="sal-picker-result-label">Best match</p>' +
+        '<p class="sal-picker-result-name">' + pick.name + '</p>' +
+        '<p class="sal-picker-result-note">' + pick.note + '</p>' +
+        linkHtml('calculator-button', { href: pick.href, name: 'Open ' + pick.name });
+    }
+
+    knownGroup.addEventListener('click', function (event) {
+      var btn = event.target.closest('.sal-chip-button');
+      if (!btn) return;
+      state.known = btn.getAttribute('data-known');
+      setActive(knownGroup, btn);
+      render();
+    });
+
+    wantGroup.addEventListener('click', function (event) {
+      var btn = event.target.closest('.sal-chip-button');
+      if (!btn) return;
+      state.want = btn.getAttribute('data-want');
+      setActive(wantGroup, btn);
+      render();
+    });
+  })();
+</script>
 
 </div>
         </section>

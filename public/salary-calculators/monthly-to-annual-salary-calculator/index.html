@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary</title>
-    <meta name="description" content="Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount." />
+    <title>Monthly to Annual Salary Calculator | UK and US Take-Home Pay</title>
+    <meta name="description" content="Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/" />
-    <meta property="og:title" content="Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary" />
-    <meta property="og:description" content="Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount." />
+    <meta property="og:title" content="Monthly to Annual Salary Calculator | UK and US Take-Home Pay" />
+    <meta property="og:description" content="Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary" />
-    <meta name="twitter:description" content="Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount." />
+    <meta name="twitter:title" content="Monthly to Annual Salary Calculator | UK and US Take-Home Pay" />
+    <meta name="twitter:description" content="Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -21,7 +21,7 @@
       /* theme-premium-dark.css is now loaded as a direct <link> in HTML pages
          instead of @import, to eliminate sequential CSS waterfall.
          See known_issues.md KI-007 / KI-010. */
-
+      
       :root {
         --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-family: var(--font-body);
@@ -37,41 +37,33 @@
         --font-semibold: 600;
         --font-medium: 500;
         --font-normal: 400;
-        --border-color: rgba(19, 34, 47, 0.12);
-        --accent: #166534;
-        --header-text: #13222f;
-        --muted-text: #5d6f67;
-        --page-bg: #f6fbf7;
-        --panel-bg: #ffffff;
-        --panel-shadow: 0 2px 8px rgba(19, 34, 47, 0.06);
-        --pill-bg: #f0f4f1;
         --header-height: 80px;
         --nav-height: 64px;
         --footer-height: 72px;
       }
-
+      
       * {
         box-sizing: border-box;
         scrollbar-width: thin;
         scrollbar-color: var(--scrollbar-thumb, #94a3b8) var(--scrollbar-track, #f1f5f9);
       }
-
+      
       body {
         margin: 0;
         color: var(--header-text);
         background-color: var(--page-bg);
         background-image: none;
       }
-
+      
       a {
         color: inherit;
         text-decoration: none;
       }
-
+      
       button {
         font: inherit;
       }
-
+      
       .sr-only {
         position: absolute;
         width: 1px;
@@ -83,24 +75,24 @@
         white-space: nowrap;
         border: 0;
       }
-
+      
       /* Scrollbar styling - always visible with subtle colors */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
       }
-
+      
       ::-webkit-scrollbar-track {
         background: var(--scrollbar-track, #f1f5f9);
         border-radius: 4px;
       }
-
+      
       ::-webkit-scrollbar-thumb {
         background: var(--scrollbar-thumb, #94a3b8);
         border-radius: 4px;
         border: 2px solid var(--scrollbar-track, #f1f5f9);
       }
-
+      
       ::-webkit-scrollbar-thumb:hover {
         background: var(--scrollbar-thumb-hover, #64748b);
       }
@@ -112,7 +104,7 @@
         --calculator-button-padding: 10px 12px;
         --calculator-button-radius: 10px;
       }
-
+      
       .calculator-page {
         max-width: 1120px;
         margin: 0 auto;
@@ -121,11 +113,11 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 24px;
       }
-
+      
       .is-hidden {
         display: none;
       }
-
+      
       .card {
         background: var(--panel-bg);
         border-radius: 16px;
@@ -133,24 +125,24 @@
         box-shadow: var(--panel-shadow);
         border: 1px solid var(--border-color);
       }
-
+      
       .card h1,
       .card h2 {
         margin-top: 0;
       }
-
+      
       .calculator-ui {
         display: grid;
         gap: 18px;
       }
-
+      
       .calculator-ui label {
         font-size: 14px;
         color: var(--muted-text);
         display: block;
         margin-bottom: 6px;
       }
-
+      
       .calculator-ui input[type='number'],
       .calculator-ui input[type='text'],
       .calculator-ui input[type='email'],
@@ -172,59 +164,59 @@
         font-family: inherit;
         background: var(--panel-bg);
       }
-
+      
       .calculator-ui textarea {
         resize: vertical;
       }
-
+      
       .calculator-ui .helper {
         color: var(--muted-text);
         margin: 0;
         font-size: 14px;
       }
-
+      
       .back-link {
         display: inline-flex;
         margin-bottom: 16px;
         color: var(--accent);
       }
-
+      
       .calculator-ui .input-stack {
         display: grid;
         gap: 16px;
       }
-
+      
       .calculator-ui .input-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 16px;
       }
-
+      
       .calculator-ui .calculator-toolbar {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
         align-items: center;
       }
-
+      
       .calculator-ui .toolbar-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       .calculator-ui .button-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
-
+      
       .calculator-ui .button-group {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
       }
-
+      
       .calculator-ui .mode-switch-control {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -236,7 +228,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       .calculator-ui .mode-switch-label {
         text-align: center;
         font-size: 13px;
@@ -248,12 +240,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       .calculator-ui .mode-switch-toggle {
         position: relative;
         display: inline-flex;
@@ -261,13 +253,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       .calculator-ui .mode-switch-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       .calculator-ui .mode-switch-track {
         width: 64px;
         height: 34px;
@@ -279,7 +271,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-thumb {
         width: 26px;
         height: 26px;
@@ -289,20 +281,20 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:checked + .mode-switch-track .mode-switch-thumb {
         transform: translateX(30px);
       }
-
+      
       .calculator-ui .mode-switch-toggle input:focus-visible + .mode-switch-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition .composition-mode-switch {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -314,7 +306,7 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
       }
-
+      
       #calc-percentage-composition .composition-mode-label {
         text-align: center;
         font-size: 14px;
@@ -325,12 +317,12 @@
           color 0.2s ease,
           transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-mode-label.is-active {
         color: #0f172a;
         transform: translateY(-1px);
       }
-
+      
       #calc-percentage-composition .composition-toggle {
         position: relative;
         display: inline-flex;
@@ -338,13 +330,13 @@
         justify-content: center;
         cursor: pointer;
       }
-
+      
       #calc-percentage-composition .composition-toggle input {
         position: absolute;
         opacity: 0;
         pointer-events: none;
       }
-
+      
       #calc-percentage-composition .composition-toggle-track {
         width: 64px;
         height: 34px;
@@ -356,7 +348,7 @@
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
         transition: background 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle-thumb {
         width: 26px;
         height: 26px;
@@ -366,11 +358,11 @@
         transform: translateX(0);
         transition: transform 0.2s ease;
       }
-
+      
       #calc-percentage-composition .composition-toggle input:checked + .composition-toggle-track {
         background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       }
-
+      
       #calc-percentage-composition
         .composition-toggle
         input:checked
@@ -378,17 +370,17 @@
         .composition-toggle-thumb {
         transform: translateX(30px);
       }
-
+      
       #calc-percentage-composition .composition-toggle input:focus-visible + .composition-toggle-track {
         outline: 3px solid rgba(59, 130, 246, 0.35);
         outline-offset: 2px;
       }
-
+      
       #calc-percentage-composition #composition-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-percentage-composition .composition-item-row {
         display: grid;
         grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
@@ -400,21 +392,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-percentage-composition .composition-row-field {
         min-width: 0;
       }
-
+      
       #calc-percentage-composition .composition-item-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-commission-calculator #comm-tier-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-commission-calculator .commission-tier-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
@@ -426,21 +418,21 @@
         border-radius: 12px;
         background: var(--panel-bg);
       }
-
+      
       #calc-commission-calculator .commission-tier-field {
         min-width: 0;
       }
-
+      
       #calc-commission-calculator .commission-tier-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       #calc-markup-calculator #markup-basket-rows {
         display: grid;
         gap: 10px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row {
         display: grid;
         grid-template-columns: minmax(0, 1.7fr) minmax(92px, 0.7fr) auto;
@@ -452,88 +444,88 @@
         border-radius: 12px;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, var(--panel-bg) 100%);
       }
-
+      
       #calc-markup-calculator .markup-row-field {
         min-width: 0;
       }
-
+      
       #calc-markup-calculator .markup-row-name-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-qty-field {
         grid-column: 2;
       }
-
+      
       #calc-markup-calculator .markup-remove-row {
         grid-column: 3;
         min-width: 104px;
       }
-
+      
       #calc-markup-calculator .markup-row-cost-field {
         grid-column: 1;
       }
-
+      
       #calc-markup-calculator .markup-row-price-wrap,
       #calc-markup-calculator .markup-row-markup-wrap {
         grid-column: 2 / 4;
       }
-
+      
       #calc-markup-calculator .markup-row-field > label {
         font-size: 13px;
         font-weight: 600;
         margin-bottom: 4px;
       }
-
+      
       #calc-markup-calculator .markup-basket-row .calculator-button {
         min-height: 42px;
         align-self: end;
       }
-
+      
       @media (max-width: 720px) {
         .calculator-ui .mode-switch-control {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         .calculator-ui .mode-switch-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-mode-switch {
           grid-template-columns: 1fr;
           gap: 8px;
         }
-
+      
         #calc-percentage-composition .composition-toggle {
           justify-self: center;
         }
-
+      
         #calc-percentage-composition .composition-item-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-percentage-composition .composition-item-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-commission-calculator .commission-tier-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-commission-calculator .commission-tier-row .calculator-button {
           width: 100%;
         }
-
+      
         #calc-markup-calculator .markup-basket-row {
           grid-template-columns: 1fr;
         }
-
+      
         #calc-markup-calculator .markup-basket-row .calculator-button {
           width: 100%;
         }
       }
-
+      
       .calculator-button {
         padding: var(--calculator-button-padding);
         border-radius: var(--calculator-button-radius);
@@ -549,56 +541,56 @@
         line-height: 1.2;
         white-space: nowrap;
       }
-
+      
       .calculator-button.primary {
         background: var(--accent);
         color: #fff;
       }
-
+      
       .calculator-button.secondary {
         background: #f8f9fa;
         color: #495057;
       }
-
+      
       .calculator-button.is-active,
       .calculator-button[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button.secondary.is-active,
       .calculator-button.secondary[aria-pressed='true'] {
         background: var(--button-active-bg, #1d4ed8);
         color: #fff;
       }
-
+      
       .calculator-button:disabled {
         opacity: 0.6;
         cursor: not-allowed;
       }
-
+      
       .full-width {
         width: 100%;
       }
-
+      
       .calculator-ui .result {
         margin: 0;
         font-size: 18px;
         font-weight: 600;
         min-height: 60px;
       }
-
+      
       .calculator-ui .result-detail {
         font-size: 14px;
         color: var(--muted-text);
         margin-top: 8px;
         font-weight: 400;
       }
-
+      
       .calculator-ui .result-detail p {
         margin: 0.25rem 0;
       }
-
+      
       .calculator-ui .result-scroll {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -612,19 +604,19 @@
         flex-direction: column;
         gap: 16px;
       }
-
+      
       .calculator-ui .result-section {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-
+      
       .calculator-ui .result-section h4 {
         margin: 0;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .table-scroll {
         overflow-x: scroll;
         overflow-y: scroll;
@@ -632,16 +624,15 @@
         max-height: 240px;
         scrollbar-gutter: stable;
       }
-
+      
       .calculator-table {
         width: 100%;
         border-collapse: collapse;
         border: 1px solid var(--border-color);
         font-size: 15px;
         min-width: 400px;
-        margin-bottom: 4px;
       }
-
+      
       .calculator-table th,
       .calculator-table td {
         padding: 8px 12px;
@@ -649,12 +640,12 @@
         text-align: right;
         white-space: nowrap;
       }
-
+      
       .calculator-table th:first-child,
       .calculator-table td:first-child {
         text-align: left;
       }
-
+      
       .calculator-table thead th {
         background: var(--pill-bg);
         color: var(--muted-text);
@@ -663,12 +654,12 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-
+      
       .calculator-table tfoot td {
         background: var(--pill-bg);
         font-weight: 600;
       }
-
+      
       .graph-panel {
         border: 1px solid var(--border-color);
         border-radius: 12px;
@@ -680,7 +671,7 @@
         gap: 8px;
         overflow: hidden;
       }
-
+      
       .graph-header {
         display: flex;
         align-items: center;
@@ -689,23 +680,23 @@
         color: var(--muted-text);
         flex-shrink: 0;
       }
-
+      
       .graph-title {
         color: var(--header-text);
         font-weight: 600;
       }
-
+      
       .explanation-pane h2,
       .explanation-pane h3 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 6px;
         position: relative;
       }
-
+      
       .explanation-pane h2 {
         margin-top: 0;
       }
-
+      
       .explanation-pane h2::after {
         content: '';
         position: absolute;
@@ -715,33 +706,33 @@
         width: 48px;
         background: var(--accent);
       }
-
+      
       .faq-box {
         border: 1px solid var(--border-color);
         padding: 16px;
         border-radius: 8px;
       }
-
+      
       .explanation-pane h3 + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box + .faq-box {
         margin-top: 6px;
       }
-
+      
       .faq-box p {
         margin: 0;
       }
-
+      
       .faq-box p + p {
         margin-top: 6px;
       }
-
+      
       .faq-box .faq-answer {
         margin-left: 12px;
       }
-
+      
       .graph-legend {
         display: flex;
         gap: 12px;
@@ -749,39 +740,39 @@
         font-size: 12px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-item {
         display: flex;
         align-items: center;
         gap: 6px;
       }
-
+      
       .graph-legend-color {
         width: 12px;
         height: 12px;
         border-radius: 3px;
         flex-shrink: 0;
       }
-
+      
       .graph-legend-color.principal {
         background: var(--accent);
       }
-
+      
       .graph-legend-color.interest {
         background: #f59e0b;
       }
-
+      
       .graph-legend-color.balance {
         background: #10b981;
       }
-
+      
       .graph-container {
         display: flex;
         flex: 1;
         min-height: 0;
         gap: 8px;
       }
-
+      
       .graph-y-axis {
         display: flex;
         flex-direction: column;
@@ -793,7 +784,7 @@
         flex-shrink: 0;
         min-width: 50px;
       }
-
+      
       .graph-y-label {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
@@ -802,7 +793,7 @@
         text-align: center;
         flex-shrink: 0;
       }
-
+      
       .graph-main {
         flex: 1;
         display: flex;
@@ -810,7 +801,7 @@
         min-width: 0;
         overflow: hidden;
       }
-
+      
       .graph-bars-wrapper {
         flex: 1;
         overflow-x: auto;
@@ -818,7 +809,7 @@
         min-height: 0;
         scrollbar-gutter: stable;
       }
-
+      
       .graph-bars {
         display: flex;
         align-items: flex-end;
@@ -828,33 +819,33 @@
         width: max-content;
         padding-bottom: 4px;
       }
-
+      
       .graph-line {
         width: 100%;
         height: 100%;
         display: block;
       }
-
+      
       .graph-line polyline {
         fill: none;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-
+      
       .graph-line .line-primary {
         stroke: var(--accent);
       }
-
+      
       .graph-line .line-secondary {
         stroke: #94a3b8;
         stroke-dasharray: 6 4;
       }
-
+      
       .graph-legend-color.secondary {
         background: #94a3b8;
       }
-
+      
       .graph-bar {
         width: 8px;
         min-width: 8px;
@@ -862,15 +853,15 @@
         border-radius: 4px 4px 2px 2px;
         flex: 0 0 auto;
       }
-
+      
       .graph-bar.interest {
         background: #f59e0b;
       }
-
+      
       .graph-bar.balance {
         background: #10b981;
       }
-
+      
       .graph-x-axis {
         display: flex;
         justify-content: space-between;
@@ -880,7 +871,7 @@
         border-top: 1px solid var(--border-color);
         flex-shrink: 0;
       }
-
+      
       .graph-x-label {
         font-size: 11px;
         color: var(--muted-text);
@@ -897,19 +888,19 @@
           radial-gradient(circle at top left, rgba(22, 163, 74, 0.08), transparent 28%),
           linear-gradient(180deg, #f6fbf7 0%, #edf5ef 100%);
       }
-
+      
       .sal-cluster-page-shell *,
       .sal-cluster-page-shell *::before,
       .sal-cluster-page-shell *::after {
         box-sizing: border-box;
       }
-
+      
       .sal-cluster-wrap,
       .sal-cluster-center-column {
         width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
       }
-
+      
       .sal-cluster-site-header {
         position: sticky;
         top: 0;
@@ -918,7 +909,7 @@
         background: rgba(246, 251, 247, 0.9);
         border-bottom: 1px solid rgba(19, 34, 47, 0.08);
       }
-
+      
       .sal-cluster-site-header-inner,
       .sal-cluster-site-footer-inner {
         min-height: 72px;
@@ -927,7 +918,7 @@
         align-items: center;
         gap: 18px;
       }
-
+      
       .sal-cluster-brand {
         display: inline-flex;
         align-items: center;
@@ -936,7 +927,7 @@
         font-size: 18px;
         font-weight: 700;
       }
-
+      
       .sal-cluster-brand-mark {
         width: 42px;
         height: 42px;
@@ -949,7 +940,7 @@
         font-size: 20px;
         font-weight: 900;
       }
-
+      
       .sal-cluster-site-label {
         justify-self: center;
         padding: 9px 14px;
@@ -962,7 +953,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-cluster-site-links,
       .sal-cluster-footer-links {
         display: flex;
@@ -971,22 +962,22 @@
         gap: 14px;
         font-size: 14px;
       }
-
+      
       .sal-cluster-site-links a,
       .sal-cluster-footer-links a {
         color: #587061;
       }
-
+      
       .sal-cluster-site-links a:hover,
       .sal-cluster-footer-links a:hover {
         color: #166534;
       }
-
+      
       .sal-cluster-layout-main {
         padding: 40px 0 64px;
         min-width: 0;
       }
-
+      
       .sal-cluster-panel {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -995,7 +986,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-cluster-page-shell #calculator-title {
         margin: 0;
         font-size: clamp(2rem, 4vw, 3.4rem);
@@ -1003,24 +994,24 @@
         letter-spacing: -0.055em;
         color: #13222f;
       }
-
+      
       .sal-cluster-page-shell #calculator-title::after {
         display: none;
       }
-
+      
       .sal-cluster-page-header {
         max-width: 760px;
         margin: 0 auto;
         text-align: center;
       }
-
+      
       .sal-cluster-page-intro {
         margin: 0 auto;
         color: #5d6f67;
         font-size: 16px;
         line-height: 1.7;
       }
-
+      
       .sal-cluster-flow {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -1029,7 +1020,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .calculator-page-single.sal-cluster-flow.sal-cluster-calc-flow,
       .sal-cluster-panel > *,
       .sal-cluster-flow > * {
@@ -1037,7 +1028,7 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-cluster-section {
         border: 1px solid rgba(19, 34, 47, 0.09);
         border-radius: 28px;
@@ -1045,7 +1036,7 @@
         box-shadow: 0 12px 30px rgba(16, 24, 40, 0.05);
         padding: 24px;
       }
-
+      
       .sal-cluster-section-head {
         display: flex;
         align-items: flex-start;
@@ -1053,14 +1044,14 @@
         gap: 18px;
         margin-bottom: 18px;
       }
-
+      
       .sal-cluster-section h2 {
         margin: 0;
         color: #13222f;
         font-size: 22px;
         line-height: 1.2;
       }
-
+      
       .sal-cluster-kicker {
         display: inline-flex;
         align-items: center;
@@ -1076,7 +1067,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-cluster-status-grid,
       .sal-cluster-copy-grid,
       .sal-intent-grid {
@@ -1084,7 +1075,7 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 16px;
       }
-
+      
       .sal-cluster-status-card,
       .sal-cluster-copy-card,
       .sal-intent-card {
@@ -1093,7 +1084,7 @@
         background: #f9fcfa;
         padding: 18px;
       }
-
+      
       .sal-cluster-status-card strong,
       .sal-cluster-copy-card h3,
       .sal-intent-card h3 {
@@ -1101,7 +1092,7 @@
         margin: 0 0 10px;
         color: #13222f;
       }
-
+      
       .sal-cluster-status-card p,
       .sal-cluster-copy-card p,
       .sal-intent-card p,
@@ -1110,16 +1101,16 @@
         color: #5d6f67;
         line-height: 1.65;
       }
-
+      
       .sal-intent-card a {
         color: inherit;
       }
-
+      
       .sal-intent-card:hover {
         border-color: rgba(22, 101, 52, 0.16);
         box-shadow: 0 12px 28px rgba(19, 34, 47, 0.07);
       }
-
+      
       .sal-cluster-roadmap-list,
       .sal-cluster-rule-list {
         margin: 0;
@@ -1128,22 +1119,22 @@
         gap: 10px;
         color: #22353f;
       }
-
+      
       .sal-cluster-action-row {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
-
+      
       .sal-cluster-site-footer {
         border-top: 1px solid rgba(19, 34, 47, 0.08);
         background: rgba(255, 255, 255, 0.78);
       }
-
+      
       .sal-cluster-calc-flow {
         gap: 20px;
       }
-
+      
       .sal-calc-shell,
       .sal-explanation,
       .sal-related-grid,
@@ -1155,12 +1146,12 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-calc-shell {
         grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
         align-items: start;
       }
-
+      
       .sal-calc-card,
       .sal-explanation-card,
       .sal-related-card {
@@ -1171,16 +1162,16 @@
         min-width: 0;
         max-width: 100%;
       }
-
+      
       .sal-calc-card {
         padding: 24px;
       }
-
+      
       .sal-calc-form-card {
         display: grid;
         gap: 18px;
       }
-
+      
       .sal-calc-kicker,
       .sal-explanation-kicker {
         margin: 0;
@@ -1190,7 +1181,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-
+      
       .sal-calc-form-title,
       .sal-answer-title,
       .sal-explanation-card h2,
@@ -1199,12 +1190,12 @@
         margin: 0;
         color: #13222f;
       }
-
+      
       .sal-calc-form-title {
         font-size: clamp(1.35rem, 2.3vw, 1.9rem);
         line-height: 1.18;
       }
-
+      
       .sal-calc-lead,
       .sal-answer-note,
       .sal-explanation-card p,
@@ -1215,7 +1206,7 @@
         color: #5d6f67;
         line-height: 1.65;
       }
-
+      
       .sal-input-stack,
       .sal-input-row,
       .sal-mode-fields,
@@ -1225,18 +1216,18 @@
         display: grid;
         gap: 12px;
       }
-
+      
       .sal-input-grid,
       .sal-inline-fields {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+      
       .sal-calc-shell label {
         color: #22353f;
         font-size: 14px;
         font-weight: 600;
       }
-
+      
       .sal-calc-shell input[type='number'],
       .sal-calc-shell input[type='text'],
       .sal-calc-shell input[type='email'],
@@ -1252,13 +1243,13 @@
         color: #13222f;
         font-size: 16px;
       }
-
+      
       .sal-calc-shell input:focus-visible {
         outline: 2px solid rgba(38, 93, 144, 0.24);
         outline-offset: 1px;
         border-color: rgba(38, 93, 144, 0.36);
       }
-
+      
       .sal-helper-text,
       .sal-calc-helper,
       .sal-answer-context,
@@ -1270,14 +1261,14 @@
         font-size: 14px;
         line-height: 1.55;
       }
-
+      
       .sal-input-details {
         padding: 16px;
         border-radius: 20px;
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f7fbf8;
       }
-
+      
       .sal-input-details summary {
         cursor: pointer;
         color: #22353f;
@@ -1285,34 +1276,34 @@
         font-weight: 700;
         list-style: none;
       }
-
+      
       .sal-input-details summary::-webkit-details-marker {
         display: none;
       }
-
+      
       .sal-input-details summary::after {
         content: '+';
         float: right;
         color: #5d6f67;
       }
-
+      
       .sal-input-details[open] summary::after {
         content: '−';
       }
-
+      
       .sal-input-details-copy {
         margin: 0;
         color: #5d6f67;
         font-size: 14px;
         line-height: 1.55;
       }
-
+      
       .sal-chip-group {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
       }
-
+      
       .sal-chip-button {
         min-height: 42px;
         padding: 0 16px;
@@ -1322,14 +1313,14 @@
         color: #465a52;
         font-weight: 600;
       }
-
+      
       .sal-chip-button.is-active,
       .sal-chip-button[aria-pressed='true'] {
         border-color: rgba(28, 103, 88, 0.18);
         background: #163b55;
         color: #ffffff;
       }
-
+      
       .sal-primary-action {
         width: 100%;
         min-height: 50px;
@@ -1339,25 +1330,25 @@
         color: #ffffff;
         font-weight: 700;
       }
-
+      
       .sal-calc-error {
         margin: 0;
         color: #b85d49;
         font-size: 13px;
         font-weight: 700;
       }
-
+      
       .sal-calc-error[hidden] {
         display: none;
       }
-
+      
       .sal-answer-card {
         display: grid;
         gap: 18px;
         position: sticky;
         top: 92px;
       }
-
+      
       .sal-answer-top {
         display: flex;
         align-items: flex-start;
@@ -1365,14 +1356,14 @@
         gap: 12px;
         flex-wrap: wrap;
       }
-
+      
       .sal-answer-title {
         margin-bottom: 6px;
         font-size: 14px;
         font-weight: 700;
         letter-spacing: 0.02em;
       }
-
+      
       .sal-answer-eyebrow {
         margin: 0;
         color: #6a7c75;
@@ -1381,7 +1372,7 @@
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
-
+      
       .sal-status-chip,
       .sal-copy-feedback {
         display: inline-flex;
@@ -1397,13 +1388,13 @@
         font-weight: 700;
         line-height: 1.3;
       }
-
+      
       .sal-status-chip.is-dirty {
         border-color: rgba(180, 83, 9, 0.22);
         background: rgba(254, 243, 199, 0.7);
         color: #92400e;
       }
-
+      
       .sal-answer-hero {
         margin: 0;
         color: #13222f;
@@ -1412,25 +1403,25 @@
         letter-spacing: -0.06em;
         font-weight: 800;
       }
-
+      
       .sal-answer-note {
         padding-top: 4px;
       }
-
+      
       .sal-answer-context {
         padding: 10px 12px;
         border-radius: 16px;
         background: #f7fbf8;
         border: 1px solid rgba(19, 34, 47, 0.06);
       }
-
+      
       .sal-action-row {
         display: flex;
         align-items: center;
         gap: 10px;
         flex-wrap: wrap;
       }
-
+      
       .sal-secondary-action {
         min-height: 42px;
         padding: 0 16px;
@@ -1441,36 +1432,36 @@
         font-size: 13px;
         font-weight: 700;
       }
-
+      
       .sal-secondary-action:hover {
         border-color: rgba(22, 59, 85, 0.16);
         background: #ffffff;
       }
-
+      
       .sal-copy-feedback {
         display: none;
         color: #166534;
       }
-
+      
       .sal-copy-feedback.is-visible {
         display: inline-flex;
       }
-
+      
       .sal-copy-feedback[data-tone='error'] {
         color: #b85d49;
       }
-
+      
       .sal-results-proof {
         margin: 0;
         color: #6b7e77;
         font-size: 12px;
         line-height: 1.55;
       }
-
+      
       .sal-support-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+      
       .sal-support-card {
         display: grid;
         gap: 8px;
@@ -1479,19 +1470,19 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
       }
-
+      
       .sal-support-card span {
         color: #6b7e77;
         font-size: 13px;
         font-weight: 600;
       }
-
+      
       .sal-support-card strong {
         color: #13222f;
         font-size: 1.15rem;
         line-height: 1.2;
       }
-
+      
       .sal-breakdown-card,
       .sal-method-card {
         display: grid;
@@ -1501,7 +1492,7 @@
         border: 1px solid rgba(19, 34, 47, 0.08);
         background: #f9fcfa;
       }
-
+      
       .sal-breakdown-card h3,
       .sal-method-card h3 {
         margin: 0;
@@ -1509,12 +1500,12 @@
         font-size: 15px;
         line-height: 1.3;
       }
-
+      
       .sal-explanation-card,
       .sal-related-card {
         padding: 24px;
       }
-
+      
       .sal-explanation-list,
       .sal-related-list {
         margin: 0;
@@ -1522,37 +1513,37 @@
         display: grid;
         gap: 8px;
       }
-
+      
       .sal-related-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       }
-
+      
       .sal-faq-grid {
         gap: 12px;
       }
-
+      
       .sal-faq-grid .sal-related-card {
         padding: 18px;
         border-radius: 22px;
         background: #fcfdfc;
         box-shadow: none;
       }
-
+      
       .sal-faq-grid .sal-related-card h3 {
         margin-bottom: 6px;
         font-size: 1rem;
       }
-
+      
       .sal-related-card a,
       .sal-explanation-card a {
         color: #163b55;
       }
-
+      
       .sal-explanation-card a:hover,
       .sal-related-card a:hover {
         color: #0f2c41;
       }
-
+      
       .sal-form-inline-toggle {
         display: flex;
         align-items: center;
@@ -1560,51 +1551,51 @@
         color: #465a52;
         font-size: 14px;
       }
-
+      
       .sal-form-inline-toggle input {
         accent-color: #163b55;
       }
-
+      
       @media (max-width: 900px) {
         .sal-calc-shell {
           grid-template-columns: 1fr;
         }
-
+      
         .sal-answer-card {
           position: static;
         }
       }
-
+      
       @media (max-width: 640px) {
         .sal-input-grid,
         .sal-inline-fields,
         .sal-support-grid {
           grid-template-columns: 1fr;
         }
-
+      
         .sal-calc-card,
         .sal-explanation-card,
         .sal-related-card {
           padding: 20px;
         }
-
+      
         .sal-action-row {
           align-items: stretch;
         }
-
+      
         .sal-secondary-action,
         .sal-copy-feedback {
           width: 100%;
           justify-content: center;
         }
       }
-
+      
       .sal-cluster-footer-copy {
         justify-self: end;
         color: #5d6f67;
         font-size: 14px;
       }
-
+      
       @media (max-width: 760px) {
         .sal-cluster-site-header-inner,
         .sal-cluster-site-footer-inner {
@@ -1612,62 +1603,953 @@
           justify-items: start;
           padding: 16px 0;
         }
-
+      
         .sal-cluster-site-label,
         .sal-cluster-footer-copy {
           justify-self: start;
         }
-
+      
         .sal-cluster-layout-main {
           padding: 28px 0 48px;
         }
-
+      
         .sal-cluster-section {
           border-radius: 22px;
           padding: 18px;
         }
       }
 
-      .sal-key-insight {
-        margin: 20px 0;
-        padding: 20px 24px;
-        border-left: 4px solid #265d90;
-        border-radius: 0 16px 16px 0;
-        background: rgba(38, 93, 144, 0.06);
+      /* calculators/salary-calculators/monthly-to-annual-salary-calculator/calculator.css */
+      /*
+       * Salary calculator — styles for the take-home rebuild.
+       *
+       * Only NEW classes live here. Everything already defined in
+       * `salary-calculators/shared/cluster-light.css` (.sal-calc-card, .sal-chip-button,
+       * .sal-support-grid, .sal-input-row, …) is reused unchanged so this page keeps the cluster's
+       * visual language rather than forking it.
+       */
+
+      /*
+       * The `hidden` attribute is only `display: none` from the UA stylesheet, so ANY class that sets
+       * its own `display` silently defeats it. `.sal-input-row` in cluster-light.css does exactly that,
+       * which left the UK-only rows visible in Gross Pay mode even though JS had set `hidden = true`.
+       * Restore the attribute's meaning for this page rather than hiding via a JS class, so `hidden`
+       * stays both the styling hook and the accessibility signal.
+       */
+      #calc-monthly-to-annual [hidden] {
+        display: none !important;
       }
 
-      .sal-key-insight strong {
-        display: block;
-        margin-bottom: 6px;
-        color: #265d90;
-        font-size: 14px;
+      /* ---------------------------------------------------------------- mode toggle */
+
+      #calc-monthly-to-annual .sal-mode-bar {
+        grid-column: 1 / -1;
+        display: inline-flex;
+        gap: 4px;
+        padding: 4px;
+        margin-bottom: 4px;
+        border-radius: 999px;
+        background: rgba(19, 34, 47, 0.06);
+        width: fit-content;
+      }
+
+      #calc-monthly-to-annual .sal-mode-btn {
+        border: 0;
+        background: transparent;
+        border-radius: 999px;
+        padding: 9px 20px;
+        font: inherit;
         font-weight: 700;
-        letter-spacing: 0.03em;
+        font-size: 14px;
+        color: #45606f;
+        cursor: pointer;
+        transition: background-color 0.15s ease, color 0.15s ease;
       }
 
-      .sal-key-insight p {
-        margin: 0;
-        color: #22353f;
-        font-size: 15px;
-        line-height: 1.65;
+      #calc-monthly-to-annual .sal-mode-btn:hover {
+        color: #13222f;
       }
 
-      .sal-table-caption {
-        margin: 32px 0 10px;
-        color: #22353f;
-        font-size: 15px;
+      #calc-monthly-to-annual .sal-mode-btn.is-active {
+        background: #ffffff;
+        color: #13222f;
+        box-shadow: 0 1px 3px rgba(19, 34, 47, 0.16);
+      }
+
+      #calc-monthly-to-annual .sal-mode-btn:focus-visible {
+        outline: 2px solid #16a34a;
+        outline-offset: 2px;
+      }
+
+      /* ---------------------------------------------------------------- fields */
+
+      #calc-monthly-to-annual .sal-field-hint {
+        margin: 7px 0 0;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #5a7180;
+      }
+
+      #calc-monthly-to-annual .sal-mandatory-label {
+        font-weight: 700;
+      }
+
+      #calc-monthly-to-annual .sal-mandatory-tag {
+        font-weight: 600;
+        color: #b85d49;
+      }
+
+      #calc-monthly-to-annual .sal-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #2c4150;
+        cursor: pointer;
+      }
+
+      #calc-monthly-to-annual .sal-checkbox input {
+        width: 17px;
+        height: 17px;
+        accent-color: #16a34a;
+      }
+
+      /* --------------------------------------------------- progressive disclosure */
+
+      #calc-monthly-to-annual .sal-optional {
+        margin: 20px 0 4px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(19, 34, 47, 0.1);
+      }
+
+      #calc-monthly-to-annual .sal-opt-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      /* Dashed until active, solid green once on — the state has to be readable at a glance, because
+         these chips are the only signal that extra inputs exist. */
+      #calc-monthly-to-annual .sal-opt-chip {
+        border: 1px dashed rgba(19, 34, 47, 0.28);
+        background: transparent;
+        border-radius: 999px;
+        padding: 8px 15px;
+        font: inherit;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #45606f;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+
+      #calc-monthly-to-annual .sal-opt-chip:hover {
+        border-color: rgba(19, 34, 47, 0.5);
+        color: #13222f;
+      }
+
+      #calc-monthly-to-annual .sal-opt-chip.is-active,
+      #calc-monthly-to-annual .sal-opt-chip[aria-pressed='true'] {
+        border-style: solid;
+        border-color: #16a34a;
+        background: #eaf7ee;
+        color: #14663a;
+      }
+
+      #calc-monthly-to-annual .sal-opt-chip:focus-visible {
+        outline: 2px solid #16a34a;
+        outline-offset: 2px;
+      }
+
+      #calc-monthly-to-annual .sal-opt-panel {
+        margin-top: 14px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        background: rgba(19, 34, 47, 0.035);
+        border: 1px solid rgba(19, 34, 47, 0.07);
+      }
+
+      /* ---------------------------------------------------------------- rates */
+
+      #calc-monthly-to-annual .sal-rate-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 14px 0 4px;
+      }
+
+      /* Effective and marginal are deliberately styled differently. Presenting them identically is
+         what makes people read the marginal rate as "the rate I pay on everything". */
+      #calc-monthly-to-annual .sal-rate-pill {
+        display: inline-flex;
+        gap: 6px;
+        padding: 6px 13px;
+        border-radius: 999px;
+        background: #eaf7ee;
+        color: #14663a;
+        font-size: 13px;
         font-weight: 600;
       }
 
-      .sal-table-note {
-        margin: 8px 0 16px;
-        color: #6b7e77;
+      #calc-monthly-to-annual .sal-rate-pill-muted {
+        background: rgba(19, 34, 47, 0.06);
+        color: #45606f;
+      }
+
+      /* ---------------------------------------------------------------- split bar */
+
+      #calc-monthly-to-annual .sal-split-bar {
+        display: flex;
+        height: 15px;
+        border-radius: 999px;
+        overflow: hidden;
+        margin: 16px 0 12px;
+        background: rgba(19, 34, 47, 0.08);
+      }
+
+      #calc-monthly-to-annual .sal-split-bar span {
+        height: 100%;
+      }
+
+      #calc-monthly-to-annual .sal-split-legend {
+        list-style: none;
+        margin: 0 0 6px;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
         font-size: 13px;
-        font-style: italic;
+        color: #45606f;
+      }
+
+      #calc-monthly-to-annual .sal-split-legend li {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      #calc-monthly-to-annual .sal-split-legend strong {
+        color: #13222f;
+      }
+
+      #calc-monthly-to-annual .sal-split-legend i {
+        width: 11px;
+        height: 11px;
+        border-radius: 3px;
+        display: inline-block;
+      }
+
+      #calc-monthly-to-annual .sal-seg-net { background: #16a34a; }
+      #calc-monthly-to-annual .sal-seg-tax { background: #ef4444; }
+      #calc-monthly-to-annual .sal-seg-ni { background: #f59e0b; }
+      #calc-monthly-to-annual .sal-seg-other { background: #6366f1; }
+
+      /* ---------------------------------------------------------------- breakdown */
+
+      /*
+       * "See how this was calculated," "Calculation basis" and "How we calculate this" used to live
+       * inside .sal-answer-card and took their spacing from its shared grid gap. Moved into their own
+       * standalone card (calculator.css "standalone calculation card" section below), so the spacing is
+       * now owned entirely by that card's own container rule instead of each piece carrying its own
+       * margin/border - one rhythm, set once, rather than three near-duplicate declarations.
+       */
+      #calc-monthly-to-annual .sal-breakdown-details h3 {
+        margin: 0 0 10px;
+        font-size: 15px;
+        color: #13222f;
+      }
+
+      #calc-monthly-to-annual .sal-band {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 9px 0;
+        border-bottom: 1px dashed rgba(19, 34, 47, 0.12);
+        font-size: 14px;
+        color: #2c4150;
+      }
+
+      #calc-monthly-to-annual .sal-band-total {
+        border-bottom: 0;
+        font-weight: 800;
+        color: #13222f;
+        border-top: 2px solid rgba(19, 34, 47, 0.16);
+        margin-top: 4px;
+      }
+
+      #calc-monthly-to-annual .sal-band-quiet {
+        border-bottom: 0;
+        color: #5a7180;
+        font-size: 13px;
+      }
+
+      #calc-monthly-to-annual .sal-num {
+        font-variant-numeric: tabular-nums;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      /* ---------------------------------------------------------------- pay sheet */
+
+      /*
+       * Layout contract — design spec §2. Implemented 2026-08-25.
+       *
+       * The cluster stylesheet makes `.sal-calc-shell` itself the two-column grid. That works when the
+       * page is just form + results, but the pay sheet is a third, full-width block, and putting it in
+       * the same grid is what let the sticky results card slide over it (748x508px covered).
+       *
+       * The mockup solved this structurally: #paySheet is a SIBLING of .shell, outside the grid. This
+       * mirrors that — the shell becomes a vertical stack, and only the two top cards live in their own
+       * grid. Sticky is then naturally confined and needs no workaround.
+       */
+      #calc-monthly-to-annual.sal-calc-shell {
+        display: block;
+      }
+
+      /*
+       * Widen the container so the cards have room to expand leftward.
+       *
+       * The 1120px cap lives on `.sal-cluster-center-column` in cluster-light.css and is shared by all
+       * 11 salary pages. Scoping the override with `:has()` widens THIS route only, leaving the siblings
+       * untouched. The explanation column below is matched to the same width so the page reads as one
+       * block rather than a wide calculator sitting on a narrow article.
+       */
+      .sal-cluster-center-column:has(#calc-monthly-to-annual) {
+        /* Measured at a 1920px viewport the old 1400px cap left 520px (27%) of the screen unused while
+           the chip rows below were wrapping for want of ~150px. Track the viewport instead of a fixed
+           cap so wide screens actually get used. */
+        width: min(1760px, calc(100% - 48px));
+      }
+
+      /*
+       * Spec §2 asks for a 1400px container. NOT applied: the effective width is set by
+       * `.sal-cluster-center-column { width: min(1120px, …) }` in cluster-light.css, which is shared by
+       * all 11 salary pages. Widening it here alone would make this page jump wider than its siblings
+       * when navigating between them; widening it globally is a cluster-wide visual change that is out
+       * of scope for this build. Left at 1120px deliberately — 470px + 634px still reads comfortably.
+       * Raise it in cluster-light.css if the whole cluster should move together.
+       */
+
+      /*
+       * Inputs and results are ONE card, not two boxes side by side.
+       *
+       * They were two separate cards, each with its own border, shadow and 24px of padding, separated by
+       * an 18px gap: three vertical edges and roughly 66px of chrome between a field and its own answer,
+       * for two halves of a single task. The card styling now lives on the wrapper and the two panes
+       * share it, divided by a single hairline.
+       *
+       * The <section> and <aside> stay as they are. They carry the aria-labels telling a screen reader
+       * which half is inputs and which is results, and merging them visually should not merge them
+       * semantically.
+       */
+      #calc-monthly-to-annual .sal-calc-columns {
+        display: grid;
+        /* Equal halves. The previous 470px / 1fr split gave the inputs 34% of the row, which is what
+           forced the pay-frequency and filing-status chips onto two lines. */
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 0;
+        align-items: stretch;
+
+        border-radius: 28px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 14px 34px rgba(19, 34, 47, 0.06);
+        overflow: hidden;
+      }
+
+      /* The panes give up their own card chrome; the wrapper carries it now. */
+      #calc-monthly-to-annual .sal-calc-columns > .sal-calc-card {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      /* One hairline between the halves instead of two borders and a gap. */
+      #calc-monthly-to-annual .sal-calc-columns > .sal-answer-card {
+        border-left: 1px solid rgba(19, 34, 47, 0.09);
+      }
+
+      /*
+       * Sticky must be OFF at every width now.
+       *
+       * cluster-light.css sets `position: sticky` on .sal-answer-card. That made sense when the panes
+       * were separate boxes of different heights. Inside a stretched grid it fights the layout, and
+       * there is nothing to stick past because both halves are now the same height by construction.
+       */
+      #calc-monthly-to-annual .sal-answer-card {
+        position: static;
+        top: auto;
+      }
+
+      @media (max-width: 1080px) {
+        /* Stacked, so the divider becomes horizontal. */
+        #calc-monthly-to-annual .sal-calc-columns > .sal-answer-card {
+          border-left: 0;
+          border-top: 1px solid rgba(19, 34, 47, 0.09);
+        }
+      }
+
+      /*
+       * Both cards hold a fixed minimum height so they do NOT resize when the mode toggle is used.
+       *
+       * Content genuinely differs per mode, so these are set from the TALLEST measured mode (USA), not
+       * the shortest. Measured at 1500px viewport: form 720 / 948 / 1031 and results 948 / 1167 / 1265
+       * across Gross / UK / USA. Without this the entire page jumps every time someone switches mode.
+       *
+       * Trade-off accepted deliberately: Gross Pay mode carries some empty space at the bottom of both
+       * cards. A stable layout is worth more than tight whitespace on the simplest mode. If these
+       * numbers are ever changed, re-measure all three modes rather than guessing.
+       */
+      /*
+       * Heights are no longer pinned to the tallest mode. That kept the layout perfectly static but
+       * bought it with several hundred pixels of dead space, which pushed the Calculate button and the
+       * result further apart and made the page feel like it needed constant scrolling. A modest floor
+       * keeps the two columns visually balanced without manufacturing emptiness.
+       */
+      #calc-monthly-to-annual .sal-calc-form-card,
+      #calc-monthly-to-annual .sal-answer-card {
+        min-height: 520px;
+        padding: 22px 24px;
+      }
+
+      /* --- density pass: the page showed too little information per screen ------------------------- */
+
+      /*
+       * Both cards are `display: grid`, which already puts a `gap` between EVERY child. Almost every
+       * child below also carried its own margin on top of that gap, so two adjacent elements were
+       * separated by gap + margin at once — e.g. the pay-amount field sat 18px (gap) + 12px (margin)
+       * = 30px from the next field. That compounding, not any single value, is what read as "space
+       * between every sentence." Fix: shrink the base gap to one small rhythm unit and delete the
+       * per-child margins that were only re-adding what the gap already provided. Margins that remain
+       * below are deliberate — they mark an actual section boundary, not a duplicate of the gap.
+       */
+      #calc-monthly-to-annual .sal-calc-form-card,
+      #calc-monthly-to-annual .sal-answer-card {
+        gap: 8px;
+      }
+
+      #calc-monthly-to-annual .sal-field-hint {
+        line-height: 1.4;
+      }
+
+      #calc-monthly-to-annual .sal-input-row {
+        margin-bottom: 0;
+      }
+
+      #calc-monthly-to-annual .sal-optional {
+        margin: 8px 0 0;
+        padding-top: 14px;
+      }
+
+      #calc-monthly-to-annual .sal-opt-panel {
+        margin-top: 10px;
+        padding: 12px 14px;
+      }
+
+      /* The hero was 73px, which alone pushed everything below it off screen. */
+      #calc-monthly-to-annual .sal-answer-hero {
+        font-size: clamp(2rem, 3.4vw, 2.9rem);
+        line-height: 1.05;
+      }
+
+      #calc-monthly-to-annual .sal-answer-note {
+        line-height: 1.4;
+      }
+
+      #calc-monthly-to-annual .sal-rate-row {
+        margin: 0;
+      }
+
+      /*
+       * Flat row list instead of five boxed mini-cards.
+       *
+       * Five bordered, backgrounded boxes for five numbers ("Monthly pay", "Weekly pay", ...) is a box
+       * for every fact on a page that is already one card. A plain list — label left, value right, one
+       * hairline between rows — reads the numbers just as fast with far less visual noise.
+       */
+      #calc-monthly-to-annual .sal-support-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        border-top: 1px solid rgba(19, 34, 47, 0.08);
+      }
+
+      #calc-monthly-to-annual .sal-support-card {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 0;
+        border: 0;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(19, 34, 47, 0.07);
+        background: none;
+      }
+
+      #calc-monthly-to-annual .sal-support-card:last-child {
+        border-bottom: 0;
+      }
+
+      #calc-monthly-to-annual .sal-support-card span {
+        font-size: 13px;
+        color: #5d6f67;
+      }
+
+      #calc-monthly-to-annual .sal-support-card strong {
+        font-size: 1rem;
+        line-height: 1.2;
+      }
+
+      /* Flattened: plain text, not its own bordered/backgrounded box. Spacing between this and its
+         neighbors is owned by the standalone card's container rule, not by this block itself. */
+      #calc-monthly-to-annual .sal-breakdown-card,
+      #calc-monthly-to-annual .sal-method-card {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
+        line-height: 1.4;
+      }
+
+      #calc-monthly-to-annual .sal-breakdown-card h3,
+      #calc-monthly-to-annual .sal-method-card h3 {
+        margin: 0 0 6px;
+      }
+
+      #calc-monthly-to-annual .sal-answer-context {
+        line-height: 1.4;
+      }
+
+      #calc-monthly-to-annual .sal-split-bar {
+        margin: 8px 0 6px;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-card {
+        padding: 24px 26px;
+      }
+
+      #calc-monthly-to-annual input[type='number'],
+      #calc-monthly-to-annual input[type='text'],
+      #calc-monthly-to-annual input[type='date'],
+      #calc-monthly-to-annual select {
+        min-height: 48px;
+      }
+
+      @media (max-width: 1080px) {
+        #calc-monthly-to-annual .sal-calc-columns {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        #calc-monthly-to-annual .sal-answer-card {
+          position: static;
+          top: auto;
+        }
+        /* Fixed heights are a desktop concern only - stacked on mobile they would be dead space. */
+        #calc-monthly-to-annual .sal-calc-form-card,
+        #calc-monthly-to-annual .sal-answer-card {
+          min-height: 0;
+          padding: 22px;
+        }
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-card {
+        margin-top: 16px;
+        padding: 32px;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-head {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-head h3 {
+        margin: 0 0 4px;
+        font-size: 1.1rem;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-meta {
+        margin: 0;
+        font-size: 13px;
+        color: #5a7180;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-assumed {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: baseline;
+        margin: 0 0 14px;
+        padding: 11px 15px;
+        border: 1px dashed rgba(19, 34, 47, 0.18);
+        border-radius: 12px;
+        background: rgba(19, 34, 47, 0.03);
+        font-size: 13.5px;
+        color: #45606f;
+      }
+
+      #calc-monthly-to-annual .sal-inline-link {
+        border: 0;
+        background: none;
+        padding: 0;
+        font: inherit;
+        font-weight: 700;
+        color: #14663a;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      /* Wide tables scroll inside their own container so the page body never scrolls sideways. */
+      #calc-monthly-to-annual .sal-table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+        font-size: 14px;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-table th,
+      #calc-monthly-to-annual .sal-paysheet-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(19, 34, 47, 0.08);
+        text-align: left;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-table th {
+        background: rgba(19, 34, 47, 0.04);
+        font-size: 11.5px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #45606f;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-table th:not(:nth-child(1)):not(:nth-child(2)),
+      #calc-monthly-to-annual .sal-paysheet-table td.sal-num {
+        text-align: right;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-table tfoot td {
+        border-bottom: 0;
+        border-top: 2px solid rgba(19, 34, 47, 0.16);
+        font-weight: 800;
+        color: #13222f;
+      }
+
+      #calc-monthly-to-annual .sal-moved {
+        margin-left: 8px;
+        padding: 2px 7px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        background: rgba(19, 34, 47, 0.07);
+        color: #5a7180;
+      }
+
+      #calc-monthly-to-annual .sal-paysheet-note {
+        margin: 12px 0 0;
+        font-size: 12.5px;
+        color: #5a7180;
+      }
+
+      @media (max-width: 720px) {
+        #calc-monthly-to-annual .sal-mode-bar {
+          width: 100%;
+        }
+        #calc-monthly-to-annual .sal-mode-btn {
+          flex: 1;
+          padding: 9px 10px;
+        }
+        #calc-monthly-to-annual .sal-paysheet-head {
+          flex-direction: column;
+        }
+      }
+
+      /* ---------------------------------------------------------------- state typeahead */
+
+      /*
+       * A searchable combobox rather than a 51-item native <select> (design spec §5): "cali" narrows to
+       * California in two keystrokes, where a select forces scrolling past 30 states.
+       */
+      #calc-monthly-to-annual .sal-typeahead {
+        position: relative;
+      }
+
+      #calc-monthly-to-annual .sal-typeahead-list {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        z-index: 30;
+        max-height: 248px;
+        overflow-y: auto;
+        background: #ffffff;
+        border: 1px solid rgba(19, 34, 47, 0.14);
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(19, 34, 47, 0.14);
+      }
+
+      #calc-monthly-to-annual .sal-typeahead-item {
+        padding: 11px 15px;
+        font-size: 14.5px;
+        color: #2c4150;
+        cursor: pointer;
+      }
+
+      /* `.is-active` is driven by arrow keys, so keyboard and mouse share one highlight style. */
+      #calc-monthly-to-annual .sal-typeahead-item:hover,
+      #calc-monthly-to-annual .sal-typeahead-item.is-active {
+        background: #eaf7ee;
+        color: #14663a;
+      }
+
+      #calc-monthly-to-annual .sal-typeahead-empty {
+        padding: 11px 15px;
+        font-size: 14px;
+        color: #5a7180;
+      }
+
+      /* ---------------------------------------------------------------- local-tax notice */
+
+      /*
+       * B2 decision: V1 ships without local/municipal income tax. This has to sit next to the number,
+       * not in footer text — an NYC or Philadelphia user reads the hero figure and leaves.
+       */
+      #calc-monthly-to-annual .sal-local-note {
+        display: flex;
+        gap: 9px;
+        align-items: flex-start;
+        margin: 0;
+        padding: 12px 15px;
+        border: 1px solid #fde68a;
+        border-radius: 14px;
+        background: #fffbeb;
+        font-size: 13px;
+        line-height: 1.4;
+        color: #7c5e10;
+      }
+
+      #calc-monthly-to-annual .sal-local-note strong {
+        color: #713f12;
+      }
+
+      /* ---------------------------------------------------------------- explanation callout */
+
+      /* Used by the local-tax notice inside the US deductions card. */
+      #salary-calculator-explanation .sal-callout {
+        border-left: 4px solid #f59e0b;
+        background: #fffbeb;
+        border-radius: 0 14px 14px 0;
+        padding: 14px 18px;
+        margin: 0 0 16px;
+      }
+
+      #salary-calculator-explanation .sal-callout p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ---------------------------------------------------------------- pay sheet modes */
+
+      /*
+       * Gross Pay mode has no deductions, so the sheet drops to # / Pay date / Gross.
+       * Done in CSS rather than JS so it survives every renderPaySheet() re-render.
+       */
+      #calc-monthly-to-annual #salary-paysheet.is-gross [data-col='tax'] {
+        display: none;
+      }
+
+      /*
+       * The bonus lands on ONE payday rather than being averaged across the year. Highlighting that row
+       * is the whole point - it is the behaviour most competing calculators get wrong.
+       */
+      #calc-monthly-to-annual #salary-paysheet tr.is-bonus {
+        background: #fffbeb;
+      }
+
+      #calc-monthly-to-annual #salary-paysheet tr.is-bonus td {
+        font-weight: 600;
+      }
+
+      #calc-monthly-to-annual .sal-bonus-badge {
+        margin-left: 8px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        background: #f59e0b;
+        color: #ffffff;
+      }
+
+      /* ---------------------------------------------------------------- a11y helper */
+
+      /*
+       * Visually hidden but read by screen readers. Used for the pay sheet's <caption>, which explains
+       * what the table contains — sighted users get that from the surrounding heading, but a screen
+       * reader landing directly on the table would otherwise get columns with no context.
+       */
+      #calc-monthly-to-annual .sal-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* ---------------------------------------------------------------- chip rows */
+
+      /*
+       * Filing status and region now share the exact button shape as the Gross Pay / UK
+       * take-home / USA take-home mode switcher above: one gray pill-shaped capsule holding every option,
+       * each option flat until active, the active one lifted to a white pill with a soft shadow. Three
+       * different button styles on one small form read as inconsistent; one style repeated three times
+       * reads as a single design language.
+       */
+      #calc-monthly-to-annual [data-button-group='salary-filing-status'],
+      #calc-monthly-to-annual [data-button-group='salary-region'] {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 4px;
+        border-radius: 999px;
+        background: rgba(19, 34, 47, 0.06);
+        width: fit-content;
+        max-width: 100%;
+      }
+
+      #calc-monthly-to-annual [data-button-group='salary-filing-status'] .sal-chip-button,
+      #calc-monthly-to-annual [data-button-group='salary-region'] .sal-chip-button {
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        padding: 9px 16px;
+        font-weight: 700;
+        font-size: 13.5px;
+        color: #45606f;
+        white-space: nowrap;
+        flex: 0 1 auto;
+        min-height: 0;
+        transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      #calc-monthly-to-annual [data-button-group='salary-filing-status'] .sal-chip-button.is-active,
+      #calc-monthly-to-annual [data-button-group='salary-filing-status'] .sal-chip-button[aria-pressed='true'],
+      #calc-monthly-to-annual [data-button-group='salary-region'] .sal-chip-button.is-active,
+      #calc-monthly-to-annual [data-button-group='salary-region'] .sal-chip-button[aria-pressed='true'] {
+        background: #ffffff;
+        color: #13222f;
+        box-shadow: 0 1px 3px rgba(19, 34, 47, 0.16);
+      }
+
+      /* The four filing-status labels are the longest set on the page, so they get the tightest fit. */
+      #calc-monthly-to-annual [data-button-group='salary-filing-status'] .sal-chip-button {
+        padding: 9px 13px;
+        font-size: 13px;
+      }
+
+      /* ---------------------------------------------------------------- standalone calculation card */
+
+      /*
+       * "See how this was calculated," "Calculation basis," "How we calculate this" and the two
+       * disclaimer lines used to be a tail inside the results card. Now a card of its own, sitting
+       * between the top box and the pay sheet - same chrome and top margin as the pay sheet card
+       * (.sal-paysheet-card, reused directly) so the three boxes in the stack read as one family.
+       *
+       * One rhythm for the whole card: a hairline before every child but the first, instead of each
+       * piece carrying its own margin/border tuned for its old home inside .sal-answer-card's grid gap.
+       */
+      #calc-monthly-to-annual .sal-breakdown-standalone {
+        display: grid;
+        gap: 14px;
+      }
+
+      /*
+       * "Not the first child" would be wrong here: "See how this was calculated" is hidden in Gross Pay
+       * mode via the `hidden` attribute (not removed from the DOM), so the plain :first-child would still
+       * be that hidden element and "Calculation basis" - visually first in that mode - would wrongly get
+       * a divider with nothing above it. `:not([hidden]) ~ :not([hidden])` targets "a visible child that
+       * has an earlier visible sibling," which is correct regardless of which child is hidden.
+       */
+      #calc-monthly-to-annual .sal-breakdown-standalone > :not([hidden]) ~ :not([hidden]) {
+        padding-top: 14px;
+        border-top: 1px solid rgba(19, 34, 47, 0.08);
+      }
+
+      /*
+       * The results pane lost its "See how this was calculated" tail to the card above. Both panes in
+       * .sal-calc-columns still stretch to match the taller one (deliberately - see the "static cards"
+       * note earlier in this file), so a shorter results pane would otherwise leave dead space at its
+       * own bottom. Spreading its remaining children across the full stretched height uses that space
+       * with what's already there instead of leaving a gap or inventing new copy to fill it.
+       */
+      #calc-monthly-to-annual .sal-answer-card {
+        align-content: space-between;
+      }
+
+      /* ---------------------------------------------------------------- work schedule assumptions */
+
+      /*
+       * Was a <details>/<summary> toggle; always open now, so the heading keeps the same look minus the
+       * affordances (pointer cursor, +/- marker) that implied it could still be clicked shut.
+       */
+      #calc-monthly-to-annual .sal-input-details-heading {
+        margin: 0;
+        color: #22353f;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      /*
+       * cluster-light.css sets `.sal-input-grid`'s grid-template-columns but never actually makes it a
+       * grid container, so every row using this class (pension %/relief method, bonus amount/month,
+       * first pay date/weekend rule, and now the assumptions row below) has been rendering as a stacked
+       * block instead of a 2-column row. Fixed here, scoped to this page only, rather than in the shared
+       * file which also feeds the other 10 salary pages.
+       */
+      #calc-monthly-to-annual .sal-input-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      /*
+       * Hours per week / weeks per year / days per week in one row of equal-width fields. Scoped to this
+       * modifier rather than changing .sal-input-grid itself, which the three 2-field rows above still
+       * rely on staying a 2-column grid.
+       */
+      #calc-monthly-to-annual .sal-input-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      /* ---------------------------------------------------------------- page header */
+
+      /*
+       * The generator prints the meta description as an intro paragraph under the H1. On this page it
+       * repeats what the card already says in its kicker, title and lead, so it is three lines of
+       * duplication before the user reaches the first input. Hidden on this route only: the same
+       * template feeds the other 10 salary pages, where it is still doing useful work.
+       */
+      .sal-cluster-panel:has(#calc-monthly-to-annual) .sal-cluster-page-intro {
+        display: none;
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#webpage","name":"Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary","url":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/","description":"Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#softwareapplication","name":"Monthly to Annual Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/","description":"Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"How do I convert monthly salary to annual pay?","acceptedAnswer":{"@type":"Answer","text":"Multiply monthly salary by 12. For example, $5,000/month × 12 = $60,000/year gross."}},{"@type":"Question","name":"What if my monthly income varies?","acceptedAnswer":{"@type":"Answer","text":"Use your average month. Add up the last 12 months of income and divide by 12, then multiply by 12 to annualize. This avoids overestimating from a high month."}},{"@type":"Question","name":"Can I compare a monthly-paid job with one that lists annual salary?","acceptedAnswer":{"@type":"Answer","text":"Yes — that is the main use case. Convert the monthly figure to annual and compare it directly with the other offer."}},{"@type":"Question","name":"Does this include bonuses or overtime?","acceptedAnswer":{"@type":"Answer","text":"No. It converts only the monthly base pay you enter. Add bonus or overtime separately using the Bonus or Overtime calculators."}},{"@type":"Question","name":"How do I set a savings target from my annual figure?","acceptedAnswer":{"@type":"Answer","text":"A common guideline is 15-20% of gross annual income. Divide that by 12 to get a monthly savings transfer amount."}},{"@type":"Question","name":"Why is the biweekly number not exactly half the monthly?","acceptedAnswer":{"@type":"Answer","text":"Biweekly pay divides annual by 26, not by 24. That is because there are 26 two-week periods in a year, not 24."}},{"@type":"Question","name":"Does this show net income?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates gross annual salary before taxes, insurance, retirement, and other deductions."}},{"@type":"Question","name":"Is my data saved or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser. Nothing is stored or transmitted."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Monthly to Annual Salary Calculator","item":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#webpage","name":"Monthly to Annual Salary Calculator | UK and US Take-Home Pay","url":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/","description":"Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#softwareapplication","name":"Monthly to Annual Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/","description":"Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"Does this calculator show take-home pay or gross pay?","acceptedAnswer":{"@type":"Answer","text":"Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan."}},{"@type":"Question","name":"How is UK take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold."}},{"@type":"Question","name":"Why does Scotland give a different result?","acceptedAnswer":{"@type":"Answer","text":"Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional."}},{"@type":"Question","name":"Does a pension contribution reduce my tax?","acceptedAnswer":{"@type":"Answer","text":"It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf."}},{"@type":"Question","name":"What is the difference between the effective rate and the marginal rate?","acceptedAnswer":{"@type":"Answer","text":"The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works."}},{"@type":"Question","name":"How is a bonus taxed?","acceptedAnswer":{"@type":"Answer","text":"The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band."}},{"@type":"Question","name":"Why is 4-weekly pay not the same as monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it."}},{"@type":"Question","name":"Can I see the dates I will actually be paid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on."}},{"@type":"Question","name":"Why does my payslip differ from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run."}},{"@type":"Question","name":"Are my salary details stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser - no data is stored."}},{"@type":"Question","name":"How is US take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your standard deduction is applied first, then federal income tax is charged bracket by bracket on what remains. FICA is calculated separately on your gross wages, and state income tax uses that state's own schedule and deductions."}},{"@type":"Question","name":"Does my 401(k) reduce FICA as well as income tax?","acceptedAnswer":{"@type":"Answer","text":"No. A 401(k) reduces federal and state taxable income, but Social Security and Medicare are charged on your full gross wages regardless. This is the detail most paycheck calculators get wrong, and it makes the real saving smaller than the headline rate suggests."}},{"@type":"Question","name":"Why does my state change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Nine states levy no income tax on wages at all, around fifteen apply a single flat rate, and the rest use graduated brackets with their own deductions. On a $100,000 salary the difference between Texas and California is over $6,500 a year."}},{"@type":"Question","name":"Are city or local income taxes included?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator covers federal, FICA and state-level taxes only. If you live or work in a city with its own income tax. New York City, Philadelphia, Detroit and others. Your actual take-home will be lower than shown."}},{"@type":"Question","name":"Which filing status should I choose?","acceptedAnswer":{"@type":"Answer","text":"Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Monthly to Annual Salary Calculator","item":"https://calchowmuch.com/salary-calculators/monthly-to-annual-salary-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -1691,56 +2573,314 @@
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
     <h1 id="calculator-title">Monthly to Annual Salary Calculator</h1>
-    <p class="sal-cluster-page-intro">Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.</p>
+    <p class="sal-cluster-page-intro">Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-monthly-to-annual" class="sal-calc-shell">
+  <div class="sal-mode-bar" role="group" aria-label="Calculator mode" data-button-group="salary-mode">
+    <button class="sal-mode-btn is-active" type="button" data-value="gross" aria-pressed="true">Gross Pay</button>
+    <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK Take Home Pay</button>
+    <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">USA Take Home Pay</button>
+  </div>
+
+  <div class="sal-calc-columns">
   <section class="sal-calc-card sal-calc-form-card" aria-label="Monthly to annual salary inputs">
-    <p class="sal-calc-kicker">Focused conversion</p>
-    <h2 class="sal-calc-form-title">Turn monthly pay into annual salary with weekly support</h2>
-    <p class="sal-calc-lead">Keep the annual answer first, then use weekly and biweekly views as supporting context.</p>
     <div class="sal-input-row">
-      <label for="monthly-salary-input">Monthly salary</label>
-      <input id="monthly-salary-input" type="number" min="0" step="0.01" inputmode="decimal" value="5000" />
+      <label for="salary-pay-amount">Monthly salary</label>
+      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" value="5000" />
     </div>
-    <div class="sal-input-row">
-      <label for="monthly-weeks-input">Weeks per year</label>
-      <input id="monthly-weeks-input" type="number" min="0" step="0.1" value="52" />
+
+    <div class="sal-input-row sal-us-only" id="salary-state-row" hidden>
+      <label for="salary-state" class="sal-mandatory-label">Which state do you work in? <span class="sal-mandatory-tag">(Mandatory)</span></label>
+      <div class="sal-typeahead">
+        <input id="salary-state" type="text" autocomplete="off" role="combobox"
+               aria-expanded="false" aria-autocomplete="list" aria-controls="salary-state-list"
+               placeholder="Start typing, e.g. Cali" />
+        <div class="sal-typeahead-list" id="salary-state-list" role="listbox" hidden></div>
+      </div>
+      <p class="sal-field-hint" id="salary-state-hint"></p>
     </div>
-    <p class="sal-calc-error" id="monthly-to-annual-error" hidden></p>
-    <button class="sal-primary-action" id="monthly-to-annual-button" type="button">Calculate</button>
+
+    <div class="sal-input-row sal-us-only" id="salary-filing-row" hidden>
+      <label id="salary-filing-label">Filing status</label>
+      <div class="sal-chip-group" role="group" aria-labelledby="salary-filing-label"
+           data-button-group="salary-filing-status">
+        <button class="sal-chip-button is-active" type="button" data-value="single" aria-pressed="true">Single</button>
+        <button class="sal-chip-button" type="button" data-value="marriedFilingJointly" aria-pressed="false">Married, jointly</button>
+        <button class="sal-chip-button" type="button" data-value="marriedFilingSeparately" aria-pressed="false">Married, separately</button>
+        <button class="sal-chip-button" type="button" data-value="headOfHousehold" aria-pressed="false">Head of household</button>
+      </div>
+    </div>
+
+    <div class="sal-input-row sal-uk-only" id="salary-region-row" hidden>
+      <label id="salary-region-label">Where do you pay tax?</label>
+      <div
+        class="sal-chip-group"
+        role="group"
+        aria-labelledby="salary-region-label"
+        data-button-group="salary-region"
+      >
+        <button class="sal-chip-button is-active" type="button" data-value="england" aria-pressed="true">England</button>
+        <button class="sal-chip-button" type="button" data-value="wales" aria-pressed="false">Wales</button>
+        <button class="sal-chip-button" type="button" data-value="northern-ireland" aria-pressed="false">N. Ireland</button>
+        <button class="sal-chip-button" type="button" data-value="scotland" aria-pressed="false">Scotland</button>
+      </div>
+      <p class="sal-field-hint" id="salary-region-hint">Scotland sets its own income tax bands, so the same salary gives a different result.</p>
+    </div>
+
+    <p class="sal-calc-error" id="salary-calc-error" hidden></p>
+    <button class="sal-primary-action" id="salary-calc-button" type="button">Calculate</button>
+
+    <div class="sal-optional sal-tax-only" id="salary-optional" hidden>
+      <p class="sal-calc-kicker">Optional — add only what applies</p>
+      <div class="sal-opt-chips">
+        <button class="sal-opt-chip sal-uk-only" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
+        <button class="sal-opt-chip sal-us-only" type="button" data-opt="pretax" aria-pressed="false" aria-controls="salary-panel-pretax">+ 401(k) / pre-tax</button>
+        <button class="sal-opt-chip sal-uk-only" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
+        <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
+        <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-pension" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-pension-percent">Pension contribution (%)</label>
+            <input id="salary-pension-percent" type="number" min="0" max="100" step="0.1" value="5" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-pension-relief">Relief method</label>
+            <select id="salary-pension-relief">
+              <option value="net-pay-arrangement" selected>Net pay arrangement</option>
+              <option value="salary-sacrifice">Salary sacrifice</option>
+              <option value="relief-at-source">Relief at source</option>
+            </select>
+          </div>
+        </div>
+        <p class="sal-field-hint">Salary sacrifice also reduces National Insurance, so it is worth more than a net pay arrangement at the same percentage.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-pretax" hidden>
+        <div class="sal-input-row" style="margin-bottom:0">
+          <label for="salary-pretax">Annual pre-tax contributions (401(k), HSA, FSA)</label>
+          <input id="salary-pretax" type="number" min="0" step="0.01" value="0" />
+        </div>
+        <p class="sal-field-hint">Reduces federal and state taxable income, but <strong>not</strong> FICA - Social Security and Medicare are still charged on your full salary.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-loan" hidden>
+        <div class="sal-input-row">
+          <label for="salary-loan-plan">Student loan plan</label>
+          <select id="salary-loan-plan">
+            <option value="none" selected>None</option>
+            <option value="plan-1">Plan 1</option>
+            <option value="plan-2">Plan 2</option>
+            <option value="plan-4">Plan 4 (Scotland)</option>
+            <option value="plan-5">Plan 5</option>
+            <option value="postgraduate">Postgraduate Loan</option>
+          </select>
+        </div>
+        <label class="sal-checkbox">
+          <input id="salary-loan-postgrad" type="checkbox" />
+          <span>I also have a Postgraduate Loan</span>
+        </label>
+        <p class="sal-field-hint">An undergraduate plan and a postgraduate loan are deducted at the same time.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-bonus" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-bonus-amount">Bonus amount</label>
+            <input id="salary-bonus-amount" type="number" min="0" step="0.01" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-bonus-month">Typical bonus month</label>
+            <select id="salary-bonus-month">
+              <option value="0">January</option><option value="1">February</option>
+              <option value="2">March</option><option value="3">April</option>
+              <option value="4">May</option><option value="5">June</option>
+              <option value="6">July</option><option value="7">August</option>
+              <option value="8">September</option><option value="9">October</option>
+              <option value="10">November</option><option value="11" selected>December</option>
+            </select>
+          </div>
+        </div>
+        <p class="sal-field-hint">The pay sheet shows the bonus landing in this month rather than spreading it across every payday.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-sched" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-first-pay">First pay date</label>
+            <input id="salary-first-pay" type="date" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-weekend-rule">If payday falls on a weekend</label>
+            <select id="salary-weekend-rule">
+              <option value="previous" selected>Pay on previous working day</option>
+              <option value="next">Pay on next working day</option>
+              <option value="none">No adjustment</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sal-input-details" id="salary-assumptions">
+      <p class="sal-input-details-heading">Work schedule assumptions</p>
+      <p class="sal-input-details-copy">Defaults use 40 hours per week, 52 weeks per year, and 5 workdays per week.</p>
+      <div class="sal-input-grid sal-input-grid-3">
+        <div class="sal-input-row">
+          <label for="salary-hours-per-week">Hours per week</label>
+          <input id="salary-hours-per-week" type="number" min="0" step="0.1" value="40" />
+        </div>
+        <div class="sal-input-row">
+          <label for="salary-weeks-per-year">Weeks per year</label>
+          <input id="salary-weeks-per-year" type="number" min="0" step="0.1" value="52" />
+        </div>
+        <div class="sal-input-row">
+          <label for="salary-days-per-week">Days per week</label>
+          <input id="salary-days-per-week" type="number" min="1" max="7" step="1" value="5" />
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Monthly to annual salary results">
-    <p class="sal-answer-title">Annual salary</p>
-    <p class="sal-answer-hero" id="monthly-annual-result">60,000.00</p>
-    <p class="sal-answer-note" id="monthly-annual-note">That equals about 1,153.85 per week before taxes.</p>
-    <p class="sal-answer-context" id="monthly-annual-context">Based on 52 weeks/year for the weekly view.</p>
+    <div class="sal-answer-top">
+      <div>
+        <p class="sal-answer-title" id="salary-answer-title">Annual gross pay</p>
+        <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Gross (before tax)</p>
+      </div>
+      <span class="sal-status-chip" id="salary-dirty-chip">Up to date</span>
+    </div>
+    <p class="sal-answer-hero" id="salary-annual-pay">60,000.00</p>
+    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,153.85 per week.</p>
+
+    <div class="sal-rate-row sal-tax-only" id="salary-rate-row" hidden>
+      <span class="sal-rate-pill">Effective rate <strong id="salary-effective-rate">—</strong></span>
+      <span class="sal-rate-pill sal-rate-pill-muted">Marginal rate <strong id="salary-marginal-rate">—</strong></span>
+    </div>
+
+    <div class="sal-tax-only" id="salary-split" hidden>
+      <div class="sal-split-bar" id="salary-split-bar" aria-hidden="true"></div>
+      <ul class="sal-split-legend" id="salary-split-legend"></ul>
+    </div>
+
+    <p class="sal-local-note sal-us-only" id="salary-local-note" hidden>
+      <span aria-hidden="true">&#9888;</span>
+      <span><strong>Local income taxes are not included.</strong> If you live or work in a city that
+      levies its own income tax - New York City, Philadelphia, Detroit and others - your actual
+      take-home will be lower than this.</span>
+    </p>
+
+    <p class="sal-answer-context" id="salary-answer-context">Assumptions: source monthly pay · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
+    <div class="sal-action-row">
+      <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
+      <span class="sal-copy-feedback" id="salary-copy-feedback" aria-live="polite"></span>
+    </div>
+
     <div class="sal-support-grid">
-      <div class="sal-support-card"><span>Biweekly pay</span><strong id="monthly-biweekly-result">2,307.69</strong></div>
-      <div class="sal-support-card"><span>Weekly pay</span><strong id="monthly-weekly-result">1,153.85</strong></div>
+      <div class="sal-support-card">
+        <span>Monthly pay</span>
+        <strong id="salary-monthly-pay">5,000.00</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Biweekly pay</span>
+        <strong id="salary-biweekly-pay">2,307.69</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>Weekly pay</span>
+        <strong id="salary-weekly-pay">1,153.85</strong>
+      </div>
+    </div>
+
+  </aside>
+  </div>
+
+  <section class="sal-calc-card sal-paysheet-card sal-breakdown-standalone" aria-label="How this estimate was calculated">
+    <div class="sal-breakdown-details sal-tax-only" id="salary-breakdown-details" hidden>
+      <h3>See how this was calculated</h3>
+      <div class="sal-band-list" id="salary-band-list"></div>
     </div>
     <div class="sal-breakdown-card">
       <h3>Calculation basis</h3>
-      <p id="monthly-annual-breakdown">Annual salary = monthly salary × 12. Weekly pay uses the weeks-per-year value you enter.</p>
+      <p id="salary-breakdown">Annual pay = monthly amount you entered x 12. Biweekly = annual / 26, and weekly = annual / weeks per year.</p>
     </div>
     <div class="sal-method-card">
       <h3>How we calculate this</h3>
-      <p>Gross pay only. This route does not include taxes, deductions, bonuses, or irregular payroll schedules.</p>
+      <p id="salary-method-copy">Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.</p>
     </div>
-    <p class="sal-results-disclaimer">Gross-pay estimate only. Bonus, overtime, and tax assumptions are excluded.</p>
-  </aside>
+    <p class="sal-results-proof">Calculated locally in your browser - no data stored.</p>
+    <p class="sal-results-disclaimer" id="salary-results-disclaimer">Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.</p>
+  </section>
+
+  <section class="sal-calc-card sal-paysheet-card sal-tax-only" id="salary-paysheet" hidden aria-labelledby="salary-paysheet-title">
+    <div class="sal-paysheet-head">
+      <div>
+        <h3 id="salary-paysheet-title">Pay sheet — upcoming paydays</h3>
+        <p class="sal-paysheet-meta" id="salary-paysheet-meta">Monthly · 12 periods per year</p>
+      </div>
+      <div class="sal-chip-group" role="group" aria-label="Pay sheet frequency" data-button-group="salary-sheet-frequency">
+        <button class="sal-chip-button" type="button" data-value="weekly" aria-pressed="false">Weekly</button>
+        <button class="sal-chip-button" type="button" data-value="biweekly" aria-pressed="false">Bi-weekly</button>
+        <button class="sal-chip-button" type="button" data-value="fourWeekly" aria-pressed="false">4-weekly</button>
+        <button class="sal-chip-button is-active" type="button" data-value="monthly" aria-pressed="true">Monthly</button>
+      </div>
+    </div>
+    <p class="sal-paysheet-assumed" id="salary-paysheet-assumed">
+      Dates assume your first payday is <strong id="salary-assumed-date"></strong>.
+      <button class="sal-inline-link" type="button" id="salary-set-schedule">Set your actual pay date</button>
+    </p>
+    <div class="sal-table-scroll">
+      <table class="sal-paysheet-table">
+        <caption class="sal-sr-only" id="salary-paysheet-caption">
+          Upcoming paydays with the gross amount, each deduction and the net pay landing on each date.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pay date</th>
+            <th scope="col">Gross</th>
+            <!-- data-col="tax" marks the deduction columns so Gross Pay mode can drop them in
+                 CSS. Doing it in CSS rather than JS means it survives every re-render. -->
+            <th scope="col" data-col="tax">Income tax</th>
+            <th scope="col" data-col="tax">NI</th>
+            <th scope="col" data-col="tax">Other</th>
+            <th scope="col" data-col="tax">Net pay</th>
+          </tr>
+        </thead>
+        <tbody id="salary-paysheet-body"></tbody>
+        <tfoot>
+          <tr id="salary-paysheet-foot">
+            <td colspan="2">Annual total</td>
+            <td class="sal-num"></td>
+            <td class="sal-num" data-col="tax"></td>
+            <td class="sal-num" data-col="tax"></td>
+            <td class="sal-num" data-col="tax"></td>
+            <td class="sal-num" data-col="tax"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="sal-paysheet-note">Showing the next 12 paydays. Amounts assume a consistent schedule; your employer's actual payroll dates and deductions may differ.</p>
+  </section>
 </div>
 
     <div id="monthly-to-annual-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
     <p class="sal-explanation-kicker">Income planning guide</p>
-    <h2>Turn your monthly pay into a full annual picture</h2>
+    <h2>Turn a monthly salary into an annual figure, gross or take-home</h2>
     <p>
-      Your payslip, freelance retainer, or contract shows a monthly figure — but job comparisons,
-      retirement goals, and savings targets usually work in annual numbers. This calculator
-      multiplies your monthly salary by 12 and also breaks it into biweekly and weekly views so
-      you can plan at every scale.
+      Start with the amount you're paid each month and get a clean yearly number back. Gross Pay mode
+      just multiplies by 12 with no tax applied. Switch to UK take-home or USA take-home and the same
+      monthly amount runs through the full tax calculation instead, so the annual figure you see is what
+      actually lands in your bank account across the year, not the headline salary.
+    </p>
+    <p>
+      This matters most when an offer, payslip or freelance retainer only states a monthly number. A
+      yearly figure is what you actually compare against other offers, mortgage affordability
+      calculations and savings targets.
     </p>
   </section>
 
@@ -1749,192 +2889,239 @@
 
     <h4>What This Calculator Does</h4>
     <p>
-      Enter a monthly salary and the calculator converts it to annual, biweekly, and weekly gross
-      pay. The annual figure is the one you need most often — for offer comparisons, retirement
-      contribution percentages, and yearly savings targets.
+      Enter a monthly amount once. Gross Pay mode multiplies it by 12 for an annual figure, plus
+      biweekly and weekly views. UK and USA modes run that same monthly amount through the relevant
+      country's tax rules and show annual take-home pay instead, alongside a full breakdown of every
+      deduction.
     </p>
 
     <h4>How to Use This Calculator</h4>
     <ol class="sal-explanation-list">
-      <li>Enter the monthly salary from your payslip, contract, or retainer agreement.</li>
-      <li>Confirm weeks per year for the weekly estimate (default is 52).</li>
-      <li>Click <strong>Calculate</strong> to see all three views.</li>
-      <li>Use the annual figure to compare job offers or set yearly savings targets, and the biweekly figure if your employer pays every two weeks.</li>
+      <li>Choose Gross Pay, UK take-home, or USA take-home at the top.</li>
+      <li>Enter your monthly salary.</li>
+      <li>In UK mode, pick the country you pay tax in. In USA mode, confirm your state and filing status.</li>
+      <li>Add a pension, student loan, 401(k), or bonus only if they apply to you.</li>
+      <li>Read the annual figure, then check the biweekly and weekly views below it.</li>
     </ol>
 
     <h4>How to Interpret Results</h4>
-    <p class="sal-table-caption">Common monthly salaries converted to annual, biweekly, and weekly pay</p>
     <table class="calculator-table">
       <thead>
         <tr>
-          <th scope="col">Monthly Salary</th>
-          <th scope="col">Annual</th>
-          <th scope="col">Biweekly</th>
-          <th scope="col">Weekly</th>
+          <th scope="col">Output</th>
+          <th scope="col">What it helps with</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td data-label="Monthly Salary">$3,000</td>
-          <td data-label="Annual">$36,000</td>
-          <td data-label="Biweekly">$1,385</td>
-          <td data-label="Weekly">$692</td>
+          <td>Annual pay</td>
+          <td>Comparing job offers, mortgage applications, and yearly budgeting.</td>
         </tr>
         <tr>
-          <td data-label="Monthly Salary">$4,000</td>
-          <td data-label="Annual">$48,000</td>
-          <td data-label="Biweekly">$1,846</td>
-          <td data-label="Weekly">$923</td>
+          <td>Biweekly pay</td>
+          <td>Matching a fortnightly payroll schedule.</td>
         </tr>
         <tr>
-          <td data-label="Monthly Salary">$5,000</td>
-          <td data-label="Annual">$60,000</td>
-          <td data-label="Biweekly">$2,308</td>
-          <td data-label="Weekly">$1,154</td>
-        </tr>
-        <tr>
-          <td data-label="Monthly Salary">$6,500</td>
-          <td data-label="Annual">$78,000</td>
-          <td data-label="Biweekly">$3,000</td>
-          <td data-label="Weekly">$1,500</td>
-        </tr>
-        <tr>
-          <td data-label="Monthly Salary">$8,000</td>
-          <td data-label="Annual">$96,000</td>
-          <td data-label="Biweekly">$3,692</td>
-          <td data-label="Weekly">$1,846</td>
-        </tr>
-        <tr>
-          <td data-label="Monthly Salary">$10,000</td>
-          <td data-label="Annual">$120,000</td>
-          <td data-label="Biweekly">$4,615</td>
-          <td data-label="Weekly">$2,308</td>
+          <td>Weekly pay</td>
+          <td>Checking the pace of income through the year.</td>
         </tr>
       </tbody>
     </table>
-    <p class="sal-table-note">Gross pay before taxes and deductions. Weekly assumes 52 weeks/year.</p>
-
     <p>
-      Use the annual column when comparing two offers that list pay in different formats. The
-      biweekly column matters if your employer pays every two weeks — your actual direct deposit
-      amount will be closer to that figure than to half the monthly.
+      In Gross Pay mode a higher annual result simply means the monthly amount is larger. In UK or USA
+      mode the annual figure also reflects your tax bracket, so doubling the monthly input does not
+      exactly double the take-home figure once you cross into a higher band.
     </p>
-
-    <div class="sal-key-insight">
-      <strong>Key Insight</strong>
-      <p>
-        If your monthly income varies, annualize your average month — not your best month.
-        Overestimating by just $500/month means overcommitting to $6,000 in yearly obligations
-        that may not be funded during slower periods.
-      </p>
-    </div>
-
-    <h4>Real-World Example</h4>
-    <p>
-      Carlos works as a freelance designer and bills clients between $4,200 and $5,800 per month
-      depending on project load. To set a realistic annual savings target for retirement, he uses
-      his average monthly income of <strong>$5,000</strong> and converts it:
-      $5,000 × 12 = <strong>$60,000 equivalent annual</strong>.
-    </p>
-    <p>
-      Knowing this, he targets saving 15% — about <strong>$9,000/year</strong> or
-      <strong>$750/month</strong> — without overcommitting based on a good month. If he used his
-      best month ($5,800) he would have set a target of $10,440 per year, which would feel
-      impossible during slow months.
-    </p>
-
-    <h4>What to Do Next</h4>
-    <ol class="sal-explanation-list">
-      <li>Compare your annualized salary with job listings that show annual pay — now they are in the same units.</li>
-      <li>Use the <a href="/salary-calculators/raise-calculator/">Raise Calculator</a> to see what a percentage increase would look like at the annual level.</li>
-      <li>Check the <a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Calculator</a> to see whether your annual income has kept up with rising costs.</li>
-    </ol>
 
     <h4>Related Calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
-        <p>Reverse the calculation when you have an annual number and need the monthly breakdown.</p>
+        <p>Go the other way: start from an annual figure and see the monthly take-home instead.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>See your salary across every pay period — hourly, daily, weekly, biweekly, monthly, and annual — in one view.</p>
+        <p>The full calculator with a free choice of pay frequency, not fixed to monthly.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/hourly-to-salary-calculator/">Hourly to Salary Calculator</a></h3>
-        <p>Compare a monthly-based annual figure with what the same pay looks like from an hourly starting point.</p>
+        <p>Start from an hourly rate instead of a monthly amount.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
-        <p>See how a raise changes the annual figure after converting monthly to yearly pay.</p>
+        <p>See how a raise changes the annual figure once it's converted from a monthly amount.</p>
       </article>
-      <article class="sal-related-card">
-        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
-        <p>See how investing a portion of your annualized income grows with compound returns over time.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
-        <p>Find a specific percentage of your annual income for tax estimates or savings targets.</p>
-      </article>
-    
-      <article class="sal-related-card">
-        <h3><a href="/finance-calculators/compound-interest-calculator/">Compound Interest Calculator</a></h3>
-        <p>See how investing a portion of your annualized income grows with compound returns over time.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/percentage-calculators/percentage-of-a-number-calculator/">Percentage of a Number Calculator</a></h3>
-        <p>Find a specific percentage of your annual income for tax estimates or savings targets.</p>
-      </article>
-    
     </div>
   </section>
 
+  <section class="sal-explanation-card sal-gross-only">
+    <h3>Gross pay conversion explained</h3>
+    <h4>How the conversion works</h4>
+    <p>
+      Annual pay is the monthly amount multiplied by 12. Biweekly divides the annual figure by 26, and
+      weekly divides it by the weeks-per-year value in Work Schedule Assumptions, which defaults to 52.
+      No tax, National Insurance, or FICA is applied in this mode.
+    </p>
+    <h4>When you need a country mode instead</h4>
+    <p>
+      Gross Pay mode is the right tool for comparing job offers stated as monthly salary, or for
+      converting a monthly retainer into a yearly figure. If you want to know what actually reaches your
+      account after tax, switch to UK take-home or USA take-home above.
+    </p>
+  </section>
+
+  <section class="sal-explanation-card sal-uk-only">
+    <h3>UK deductions explained</h3>
+    <h4>Income Tax and the Personal Allowance</h4>
+    <p>
+      The calculator multiplies your monthly amount by 12 to get an annual gross figure, then applies
+      your Personal Allowance (the amount you can earn tax-free) before charging Income Tax band by
+      band on what remains. Earning over £100,000 a year starts to taper the allowance away, which is
+      one reason the take-home figure can fall faster than the gross figure rises near that threshold.
+    </p>
+    <h4>National Insurance</h4>
+    <p>
+      National Insurance is worked out separately from Income Tax, on the same annual gross figure,
+      using its own thresholds and rates. It is not reduced by pension contributions unless you use
+      salary sacrifice.
+    </p>
+    <h4>Pension and student loan</h4>
+    <p>
+      Turn on the Pension or Student Loan panels if either applies. A net pay arrangement and salary
+      sacrifice both reduce Income Tax; only salary sacrifice also reduces National Insurance, which
+      makes it worth slightly more at the same contribution percentage.
+    </p>
+  </section>
+
+  <section class="sal-explanation-card sal-us-only">
+    <h3>US deductions explained</h3>
+    <h4>Federal tax and FICA</h4>
+    <p>
+      Your monthly amount is annualized, then the standard deduction is applied before federal income
+      tax is charged bracket by bracket. FICA (Social Security and Medicare) is calculated separately on
+      your full gross wages and is not reduced by 401(k) contributions.
+    </p>
+    <h4>State tax</h4>
+    <p>
+      State income tax depends entirely on which state you select. Nine states charge no income tax on
+      wages at all; the rest use either a flat rate or their own graduated brackets, which is why the
+      same monthly salary can produce noticeably different annual take-home pay in different states.
+    </p>
+    <h4>Filing status</h4>
+    <p>
+      Single, Married Filing Jointly, Married Filing Separately, and Head of Household each carry
+      different brackets and standard deductions, so choosing the correct one changes the annual result
+      by a meaningful amount at higher incomes.
+    </p>
+  </section>
+
+  <section class="sal-explanation-card sal-uk-only">
+    <h3>Worked example: £4,500 a month in England</h3>
+    <p>
+      A monthly salary of <strong>£4,500.00</strong> annualizes to <strong>£54,000.00</strong> gross. In
+      England, that leaves a Personal Allowance of £12,570, taxed at 20% up to £50,270 and 40% above it,
+      plus National Insurance on the same gross figure. The result is an estimated annual take-home of
+      roughly <strong>£40,900</strong>, or about <strong>£3,408</strong> a month after deductions -
+      noticeably less than the gross monthly figure most job adverts quote.
+    </p>
+  </section>
+
+  <section class="sal-explanation-card sal-us-only">
+    <h3>Worked example: $5,000 a month, Texas versus California</h3>
+    <p>
+      A monthly salary of <strong>$5,000.00</strong> annualizes to <strong>$60,000.00</strong> gross,
+      filing Single. In <strong>Texas</strong>, which charges no state income tax, the estimated annual
+      take-home is around <strong>$50,390</strong>. In <strong>California</strong>, state income tax
+      brings that down to roughly <strong>$46,800</strong> - over $3,500 less a year from the same
+      monthly salary, purely because of where the work is based.
+    </p>
+  </section>
+
   <section class="sal-explanation-card">
-    <h3>Frequently Asked Questions</h3>
+    <h3>Common mistakes when converting monthly pay</h3>
+    <ul class="sal-explanation-list">
+      <li>Treating the Gross Pay annual figure as take-home pay when tax has not been applied.</li>
+      <li>Multiplying a take-home monthly payslip figure by 12 instead of entering the gross monthly amount.</li>
+      <li>Forgetting that a bonus paid in one month is taxed as part of that month's income, not spread evenly.</li>
+      <li>Ignoring the state selector in USA mode - it changes the annual result more than almost any other input.</li>
+      <li>Assuming doubling a monthly salary always doubles annual take-home, when tax bands mean it usually doesn't.</li>
+    </ul>
+  </section>
+
+  <section class="sal-explanation-card">
+    <h3>FAQ</h3>
     <div class="sal-faq-grid">
       <article class="sal-related-card">
-        <h3>How do I convert monthly salary to annual pay?</h3>
-        <p>Multiply monthly salary by 12. For example, $5,000/month × 12 = $60,000/year gross.</p>
+        <h3>Does this calculator show take-home pay or gross pay?</h3>
+        <p>Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan.</p>
+      </article>
+      <article class="sal-related-card sal-uk-only">
+        <h3>How is UK take-home pay calculated here?</h3>
+        <p>Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold.</p>
+      </article>
+      <article class="sal-related-card sal-uk-only">
+        <h3>Why does Scotland give a different result?</h3>
+        <p>Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional.</p>
+      </article>
+      <article class="sal-related-card sal-uk-only">
+        <h3>Does a pension contribution reduce my tax?</h3>
+        <p>It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf.</p>
       </article>
       <article class="sal-related-card">
-        <h3>What if my monthly income varies?</h3>
-        <p>Use your average month. Add up the last 12 months of income and divide by 12, then multiply by 12 to annualize. This avoids overestimating from a high month.</p>
+        <h3>What is the difference between the effective rate and the marginal rate?</h3>
+        <p>The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I compare a monthly-paid job with one that lists annual salary?</h3>
-        <p>Yes — that is the main use case. Convert the monthly figure to annual and compare it directly with the other offer.</p>
+        <h3>How is a bonus taxed?</h3>
+        <p>The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this include bonuses or overtime?</h3>
-        <p>No. It converts only the monthly base pay you enter. Add bonus or overtime separately using the Bonus or Overtime calculators.</p>
+        <h3>Why is 4-weekly pay not the same as monthly pay?</h3>
+        <p>Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it.</p>
       </article>
       <article class="sal-related-card">
-        <h3>How do I set a savings target from my annual figure?</h3>
-        <p>A common guideline is 15-20% of gross annual income. Divide that by 12 to get a monthly savings transfer amount.</p>
+        <h3>Can I see the dates I will actually be paid?</h3>
+        <p>Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Why is the biweekly number not exactly half the monthly?</h3>
-        <p>Biweekly pay divides annual by 26, not by 24. That is because there are 26 two-week periods in a year, not 24.</p>
+        <h3>Why does my payslip differ from this estimate?</h3>
+        <p>Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run.</p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this show net income?</h3>
-        <p>No. It estimates gross annual salary before taxes, insurance, retirement, and other deductions.</p>
+        <h3>Are my salary details stored anywhere?</h3>
+        <p>No. All calculations run locally in your browser - no data is stored.</p>
       </article>
-      <article class="sal-related-card">
-        <h3>Is my data saved or sent anywhere?</h3>
-        <p>No. All calculations run locally in your browser. Nothing is stored or transmitted.</p>
+      <article class="sal-related-card sal-us-only">
+        <h3>How is US take-home pay calculated here?</h3>
+        <p>Your standard deduction is applied first, then federal income tax is charged bracket by bracket on what remains. FICA is calculated separately on your gross wages, and state income tax uses that state's own schedule and deductions.</p>
+      </article>
+      <article class="sal-related-card sal-us-only">
+        <h3>Does my 401(k) reduce FICA as well as income tax?</h3>
+        <p>No. A 401(k) reduces federal and state taxable income, but Social Security and Medicare are charged on your full gross wages regardless. This is the detail most paycheck calculators get wrong, and it makes the real saving smaller than the headline rate suggests.</p>
+      </article>
+      <article class="sal-related-card sal-us-only">
+        <h3>Why does my state change the result so much?</h3>
+        <p>Nine states levy no income tax on wages at all, around fifteen apply a single flat rate, and the rest use graduated brackets with their own deductions. On a $100,000 salary the difference between Texas and California is over $6,500 a year.</p>
+      </article>
+      <article class="sal-related-card sal-us-only">
+        <h3>Are city or local income taxes included?</h3>
+        <p>No. This calculator covers federal, FICA and state-level taxes only. If you live or work in a city with its own income tax. New York City, Philadelphia, Detroit and others. Your actual take-home will be lower than shown.</p>
+      </article>
+      <article class="sal-related-card sal-us-only">
+        <h3>Which filing status should I choose?</h3>
+        <p>Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars.</p>
       </article>
     </div>
   </section>
 
   <section class="sal-explanation-card sal-important-notes">
     <h3>Important Notes</h3>
-    <ul class="sal-important-notes-list">
-      <li><span class="sal-note-key">Last updated:</span> April 2026</li>
-      <li><span class="sal-note-key">Accuracy:</span> Results use standard monthly-to-annual multiplication (×12), biweekly (÷26), and weekly (÷weeks per year).</li>
-      <li><span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does not provide payroll, tax, or legal advice.</li>
-      <li><span class="sal-note-key">Assumptions:</span> Monthly salary is gross pay. Variable-income workers should use an average month.</li>
-      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser — no data is stored.</li>
+    <ul class="sal-explanation-list">
+      <li><span class="sal-note-key">Last updated:</span> August 2026</li>
+      <li><span class="sal-note-key">Accuracy:</span> UK and US results use published rates and thresholds for the selected tax year, stored as versioned data. Gross Pay mode applies no tax and is exact for the monthly amount you enter.</li>
+      <li><span class="sal-note-key">Disclaimer:</span> This calculator provides an estimate of take-home pay based on the information and tax rules selected. Actual payroll deductions may differ because of employer payroll settings, benefits, tax code adjustments, credits and other circumstances. It is not tax or financial advice.</li>
+      <li><span class="sal-note-key">Assumptions:</span> Monthly pay is treated as consistent across the year. Bonuses are treated as taxable income in the month entered. Employee-side Social Security, Medicare and National Insurance only; employer contributions are excluded.</li>
+      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>
@@ -1958,6 +3145,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/salary-calculators/monthly-to-annual-salary-calculator/module.js?v=20260224"></script>
+    <script type="module" src="/calculators/salary-calculators/monthly-to-annual-salary-calculator/module.js?v=67d0e780f7"></script>
   </body>
 </html>

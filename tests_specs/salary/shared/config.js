@@ -146,31 +146,63 @@ export const SALARY_CALCULATOR_CONFIGS = {
   'annual-to-monthly-salary-calculator': {
     route: '/salary-calculators/annual-to-monthly-salary-calculator/',
     h1: 'Annual to Monthly Salary Calculator',
-    title: 'Annual to Monthly Salary Calculator | Convert Yearly Pay to Monthly Income',
+    title: 'Annual to Monthly Salary Calculator | UK and US Take-Home Pay',
     description:
-      'Convert annual salary into monthly income, then compare biweekly and weekly gross pay from your yearly amount.',
+      'Convert annual salary into monthly pay, and see UK or US take-home pay after tax on that monthly figure. Free, and nothing is stored.',
     runE2E: async ({ page, expect, parseNumericText }) => {
-      await page.fill('#annual-salary-input', '72000');
-      await page.fill('#annual-weeks-input', '52');
-      await page.click('#annual-to-monthly-button');
+      // No frequency picker on this page - the input is always an annual amount, and the hero is
+      // always the monthly figure (the reverse of salary-calculator, which this was forked from).
+      await expect(page.locator('[data-button-group="salary-pay-frequency"]')).toHaveCount(0);
 
-      expect(parseNumericText(await page.locator('#annual-monthly-result').textContent())).toBeCloseTo(6000, 2);
-      expect(parseNumericText(await page.locator('#annual-weekly-result').textContent())).toBeCloseTo(1384.62, 2);
+      // --- Gross Pay mode (the default) --------------------------------------------------------
+      await page.fill('#salary-pay-amount', '72000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(6000, 2);
+      expect(await page.locator('#salary-annual-pay').textContent()).not.toContain('£');
+
+      // --- UK take-home mode ------------------------------------------------------------------
+      await page.click('.sal-mode-btn[data-value="uk"]');
+      await page.fill('#salary-pay-amount', '60000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(3779.78, 1);
+
+      // --- USA mode: defaults to Texas, no click-through-an-error needed -----------------------
+      await page.click('.sal-mode-btn[data-value="us"]');
+      await expect(page.locator('#salary-state')).toHaveValue('Texas');
+      await page.fill('#salary-pay-amount', '60000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(4199.17, 1);
     },
   },
   'monthly-to-annual-salary-calculator': {
     route: '/salary-calculators/monthly-to-annual-salary-calculator/',
     h1: 'Monthly to Annual Salary Calculator',
-    title: 'Monthly to Annual Salary Calculator | Convert Monthly Pay to Yearly Salary',
+    title: 'Monthly to Annual Salary Calculator | UK and US Take-Home Pay',
     description:
-      'Convert monthly salary into annual pay, then compare biweekly and weekly gross pay from your monthly amount.',
+      'Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored.',
     runE2E: async ({ page, expect, parseNumericText }) => {
-      await page.fill('#monthly-salary-input', '5000');
-      await page.fill('#monthly-weeks-input', '52');
-      await page.click('#monthly-to-annual-button');
+      // No frequency picker - the input is always a monthly amount, and the hero is always the
+      // annual figure (same hero behavior as salary-calculator, just with frequency locked).
+      await expect(page.locator('[data-button-group="salary-pay-frequency"]')).toHaveCount(0);
 
-      expect(parseNumericText(await page.locator('#monthly-annual-result').textContent())).toBeCloseTo(60000, 2);
-      expect(parseNumericText(await page.locator('#monthly-weekly-result').textContent())).toBeCloseTo(1153.85, 2);
+      // --- Gross Pay mode (the default) --------------------------------------------------------
+      await page.fill('#salary-pay-amount', '6000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(72000, 2);
+      expect(await page.locator('#salary-annual-pay').textContent()).not.toContain('£');
+
+      // --- UK take-home mode ------------------------------------------------------------------
+      await page.click('.sal-mode-btn[data-value="uk"]');
+      await page.fill('#salary-pay-amount', '5000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(45357.40, 1);
+
+      // --- USA mode: defaults to Texas, no click-through-an-error needed -----------------------
+      await page.click('.sal-mode-btn[data-value="us"]');
+      await expect(page.locator('#salary-state')).toHaveValue('Texas');
+      await page.fill('#salary-pay-amount', '5000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(50390.00, 1);
     },
   },
   'weekly-pay-calculator': {
