@@ -266,9 +266,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'how-much-can-i-borrow': {
-    title: 'How Much Can I Borrow Calculator | Mortgage Affordability',
+    title: 'How Much Can I Borrow Calculator | Borrowing Power Estimate',
     description:
-      'Estimate mortgage affordability from income, debts, deposit, rate, and term, then compare borrowing power with likely monthly payments.',
+      'Estimate your borrowing power, or borrowing capacity, for a mortgage from income, debts, deposit, rate, and term, then compare it with monthly payments.',
     h1: 'How Much Can I Borrow Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -977,7 +977,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'How Much Can I Borrow',
     softwareName: 'How Much Can I Borrow Calculator',
     softwareDescription:
-      'Estimate mortgage affordability from income, debts, deposit, rate, and term using income multiple and payment-to-income checks.',
+      'Estimate borrowing power (borrowing capacity) for a mortgage from income, debts, deposit, rate, and term using income multiple and payment-to-income checks.',
     featureList: [
       'Income multiple borrowing estimate',
       'Payment-to-income affordability mode',
@@ -990,6 +990,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'income multiple mortgage',
       'payment to income calculator',
       'borrowing power calculator',
+      'borrowing capacity calculator',
     ],
   },
   'remortgage-switching': {

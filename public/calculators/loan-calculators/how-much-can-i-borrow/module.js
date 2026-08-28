@@ -8,9 +8,9 @@ import {
 } from '/calculators/loan-calculators/shared/cluster-ux.js';
 
 const metadata = {
-  title: 'How Much Can I Borrow Calculator | Mortgage Affordability',
+  title: 'How Much Can I Borrow Calculator | Borrowing Power Estimate',
   description:
-    'Estimate mortgage affordability from income, debts, deposit, rate, and term, then compare borrowing power with likely monthly payments.',
+    'Estimate your borrowing power, or borrowing capacity, for a mortgage from income, debts, deposit, rate, and term, then compare it with monthly payments.',
   canonical: 'https://calchowmuch.com/loan-calculators/how-much-can-i-borrow/',
 };
 
