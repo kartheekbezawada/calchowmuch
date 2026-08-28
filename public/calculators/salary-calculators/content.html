@@ -1,192 +1,246 @@
 <div class="sal-cluster-flow">
   <div class="sal-cluster-page-header">
     <p class="sal-cluster-page-intro">
-      Use this salary calculator hub to convert pay across time periods, compare overtime and raise
-      scenarios, estimate bonus or commission earnings, and keep gross-pay planning in one place.
+      Use this salary calculator hub to convert pay across time periods, estimate UK or US take-home
+      pay after tax, compare overtime and raise scenarios, and estimate bonus or commission earnings
+      in one place.
     </p>
   </div>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-intent-title">
+  <section class="sal-cluster-section sal-picker" aria-labelledby="sal-cluster-picker-title">
     <div class="sal-cluster-section-head">
       <div>
-        <span class="sal-cluster-kicker">Quick Start</span>
-        <h2 id="sal-cluster-intent-title">Start with what you already know</h2>
+        <span class="sal-cluster-kicker">Not sure where to start?</span>
+        <h2 id="sal-cluster-picker-title">Find your calculator in two clicks</h2>
       </div>
     </div>
-    <div class="sal-intent-grid">
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/hourly-to-salary-calculator/">I know hourly pay</a></h3>
-        <p>Turn an hourly rate into annual, monthly, biweekly, and weekly pay before you compare offers or plan a raise.</p>
-      </article>
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/salary-to-hourly-calculator/">I know annual salary</a></h3>
-        <p>Reverse yearly pay into hourly, weekly, biweekly, and monthly views with schedule assumptions kept visible.</p>
-      </article>
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/weekly-pay-calculator/">I want weekly pay</a></h3>
-        <p>Estimate a weekly answer first, then annualize it when you need a broader compensation view.</p>
-      </article>
-      <article class="sal-intent-card">
-        <h3><a href="/salary-calculators/raise-calculator/">I want raise, bonus, or commission help</a></h3>
-        <p>Jump into earnings-change tools when the real question is compensation growth, variable pay, or offer comparison.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-featured-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Featured</span>
-        <h2 id="sal-cluster-featured-title">Start with the route that matches your pay question</h2>
+    <div class="sal-picker-step">
+      <p class="sal-picker-step-label">1. What pay figure do you have?</p>
+      <div class="sal-chip-group" data-picker-step="known" role="group" aria-label="What pay figure do you have?">
+        <button type="button" class="sal-chip-button" data-known="hourly">Hourly</button>
+        <button type="button" class="sal-chip-button" data-known="weekly">Weekly</button>
+        <button type="button" class="sal-chip-button" data-known="monthly">Monthly</button>
+        <button type="button" class="sal-chip-button" data-known="annual">Annual</button>
       </div>
     </div>
-    <div class="sal-related-grid">
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-        <p>Convert one pay amount into hourly, daily, weekly, biweekly, monthly, and annual views without re-entering schedule assumptions.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/hourly-to-salary-calculator/">Hourly to Salary Calculator</a></h3>
-        <p>Turn an hourly wage into annual salary with monthly, biweekly, and weekly support values.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/salary-to-hourly-calculator/">Salary to Hourly Calculator</a></h3>
-        <p>Reverse an annual salary into hourly pay while keeping hours and weeks assumptions visible.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/overtime-pay-calculator/">Overtime Pay Calculator</a></h3>
-        <p>Estimate the extra pay created by overtime hours and compare how a multiplier changes gross earnings.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
-        <p>Compare current pay and new pay using either a percentage raise or a flat increase amount.</p>
-      </article>
+    <div class="sal-picker-step">
+      <p class="sal-picker-step-label">2. What do you want to see?</p>
+      <div class="sal-chip-group" data-picker-step="want" role="group" aria-label="What do you want to see?">
+        <button type="button" class="sal-chip-button" data-want="convert">Just convert it</button>
+        <button type="button" class="sal-chip-button" data-want="uk">UK take-home pay</button>
+        <button type="button" class="sal-chip-button" data-want="us">US take-home pay</button>
+        <button type="button" class="sal-chip-button" data-want="variable">Overtime, raise, bonus or commission</button>
+      </div>
     </div>
+    <div class="sal-picker-result" data-picker-result hidden></div>
   </section>
 
   <section class="sal-cluster-section" aria-labelledby="sal-cluster-all-title">
     <div class="sal-cluster-section-head">
       <div>
-        <span class="sal-cluster-kicker">All Routes</span>
-        <h2 id="sal-cluster-all-title">All salary calculators in this cluster</h2>
+        <span class="sal-cluster-kicker">All Calculators</span>
+        <h2 id="sal-cluster-all-title">All salary calculators</h2>
       </div>
     </div>
-    <div class="sal-related-grid">
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
-        <p>Convert yearly pay into monthly salary with weekly and biweekly support values.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/monthly-to-annual-salary-calculator/">Monthly to Annual Salary Calculator</a></h3>
-        <p>Turn monthly pay into yearly salary with weekly and biweekly context.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
-        <p>Estimate weekly earnings from hourly pay with optional split regular and overtime hours.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
-        <p>Calculate bonus amount and total compensation using percent or flat-amount mode.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/commission-calculator/">Commission Calculator</a></h3>
-        <p>Estimate commission earned from sales, then optionally add base pay to see gross total earnings.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3><a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Salary Calculator</a></h3>
-        <p>Compare a new salary with inflation so you can see whether a raise improves real buying power.</p>
-      </article>
-    </div>
-  </section>
+    <p class="sal-cluster-page-intro" style="margin: -6px 0 20px; text-align: left;">
+      Salary Calculator, Monthly to Annual, and Annual to Monthly include UK and US take-home pay
+      after tax. Every other calculator below stays gross-pay only.
+    </p>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-why-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Planning guide</span>
-        <h2 id="sal-cluster-why-title">What these salary calculators help you answer</h2>
+    <div class="sal-cluster-subgroup">
+      <h3 class="sal-cluster-subhead">Convert pay</h3>
+      <div class="sal-related-grid">
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/hourly-to-salary-calculator/">Hourly to Salary Calculator</a></h3>
+          <p>Turn an hourly wage into annual salary with monthly, biweekly, and weekly support values.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/salary-to-hourly-calculator/">Salary to Hourly Calculator</a></h3>
+          <p>Reverse an annual salary into hourly pay while keeping hours and weeks assumptions visible.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
+          <p>Estimate weekly earnings from hourly pay with optional split regular and overtime hours.</p>
+        </article>
       </div>
     </div>
-    <div class="sal-cluster-copy-grid">
-      <div class="sal-cluster-copy-card">
-        <h3>Offer comparison</h3>
-        <p>Move between hourly and annual pay before you compare jobs, contracts, or side-income options.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Variable pay planning</h3>
-        <p>Use overtime, bonus, and commission routes when the paycheck changes with performance or extra hours.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Gross-pay budgeting</h3>
-        <p>Read these tools as gross-pay planning calculators, then layer tax or withholding decisions separately.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-scope-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Scope</span>
-        <h2 id="sal-cluster-scope-title">What this salary cluster covers</h2>
+    <div class="sal-cluster-subgroup">
+      <h3 class="sal-cluster-subhead">Take-home pay after tax</h3>
+      <div class="sal-related-grid">
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
+          <span class="sal-card-badge">UK &amp; US tax</span>
+          <p>Convert any pay frequency and see UK or US take-home pay after tax on the same page.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/monthly-to-annual-salary-calculator/">Monthly to Annual Salary Calculator</a></h3>
+          <span class="sal-card-badge">UK &amp; US tax</span>
+          <p>Turn monthly pay into yearly gross pay, or switch to UK or US mode for yearly take-home pay.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
+          <span class="sal-card-badge">UK &amp; US tax</span>
+          <p>Convert yearly pay into monthly gross pay, or switch to UK or US mode for monthly take-home pay.</p>
+        </article>
       </div>
     </div>
-    <div class="sal-cluster-copy-grid">
-      <div class="sal-cluster-copy-card">
-        <h3>Conversion first</h3>
-        <p>Core tools focus on moving cleanly between hourly, weekly, monthly, and annual pay.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Earnings support</h3>
-        <p>Overtime, raise, bonus, and commission routes stay direct and focused on gross compensation planning.</p>
-      </div>
-      <div class="sal-cluster-copy-card">
-        <h3>Gross pay only</h3>
-        <p>The cluster avoids tax, withholding, and jurisdiction-specific payroll assumptions so the math stays clean and portable.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="sal-cluster-section" aria-labelledby="sal-cluster-faq-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">FAQ</span>
-        <h2 id="sal-cluster-faq-title">Common salary-cluster questions</h2>
+    <div class="sal-cluster-subgroup">
+      <h3 class="sal-cluster-subhead">Variable pay</h3>
+      <div class="sal-related-grid">
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/overtime-pay-calculator/">Overtime Pay Calculator</a></h3>
+          <p>Estimate the extra pay created by overtime hours and compare how a multiplier changes gross earnings.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
+          <p>Compare current pay and new pay using either a percentage raise or a flat increase amount.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
+          <p>Calculate bonus amount and total compensation using percent or flat-amount mode.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/commission-calculator/">Commission Calculator</a></h3>
+          <p>Estimate commission earned from sales, then optionally add base pay to see gross total earnings.</p>
+        </article>
+        <article class="sal-related-card">
+          <h3><a href="/salary-calculators/inflation-adjusted-salary-calculator/">Inflation Adjusted Salary Calculator</a></h3>
+          <p>Compare a new salary with inflation so you can see whether a raise improves real buying power.</p>
+        </article>
       </div>
-    </div>
-    <div class="sal-faq-grid">
-      <article class="sal-related-card">
-        <h3>What can I calculate with these salary calculators?</h3>
-        <p>You can convert pay frequencies and estimate overtime, raise, bonus, and commission amounts from the same salary-planning hub.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Which calculator should I use for hourly pay?</h3>
-        <p>Start with Hourly to Salary Calculator for direct conversion or Weekly Pay Calculator for a weekly answer first.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Do these calculators include tax deductions?</h3>
-        <p>No. The salary cluster stays focused on gross-pay estimates before deductions, tax, and local payroll rules.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Can I compare weekly, monthly, and annual pay?</h3>
-        <p>Yes. The conversion routes are designed to show pay frequency equivalents clearly.</p>
-      </article>
-      <article class="sal-related-card">
-        <h3>Are overtime, raise, and bonus calculations included?</h3>
-        <p>Yes. Those routes sit alongside the pay-conversion tools so you can move from one compensation question to the next.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="sal-cluster-section sal-cluster-actions" aria-labelledby="sal-cluster-actions-title">
-    <div class="sal-cluster-section-head">
-      <div>
-        <span class="sal-cluster-kicker">Explore</span>
-        <h2 id="sal-cluster-actions-title">Useful next salary routes</h2>
-      </div>
-    </div>
-    <div class="sal-cluster-action-row">
-      <a class="calculator-button" href="/salary-calculators/salary-calculator/">Open Salary Calculator</a>
-      <a class="calculator-button secondary" href="/salary-calculators/bonus-calculator/">See Bonus Calculator</a>
-      <a class="calculator-button secondary" href="/salary-calculators/commission-calculator/">See Commission Calculator</a>
     </div>
   </section>
 </div>
+<script>
+  (function () {
+    var pickerSection = document.querySelector('.sal-picker');
+    if (!pickerSection) return;
+
+    var knownGroup = pickerSection.querySelector('[data-picker-step="known"]');
+    var wantGroup = pickerSection.querySelector('[data-picker-step="want"]');
+    var resultEl = pickerSection.querySelector('[data-picker-result]');
+    if (!knownGroup || !wantGroup || !resultEl) return;
+
+    var state = { known: null, want: null };
+
+    var CONVERT_MAP = {
+      hourly: {
+        href: '/salary-calculators/hourly-to-salary-calculator/',
+        name: 'Hourly to Salary Calculator',
+        note: 'Turns an hourly rate into annual, monthly, biweekly, and weekly pay.',
+      },
+      weekly: {
+        href: '/salary-calculators/weekly-pay-calculator/',
+        name: 'Weekly Pay Calculator',
+        note: 'Estimates weekly earnings from hourly pay, with optional split overtime hours.',
+      },
+      monthly: {
+        href: '/salary-calculators/monthly-to-annual-salary-calculator/',
+        name: 'Monthly to Annual Salary Calculator',
+        note: 'Use Gross Pay mode to convert monthly pay into yearly, weekly, and biweekly views.',
+      },
+      annual: {
+        href: '/salary-calculators/salary-to-hourly-calculator/',
+        name: 'Salary to Hourly Calculator',
+        note: 'Reverses annual salary into hourly, weekly, biweekly, and monthly pay.',
+      },
+    };
+
+    var TAX_MAP = {
+      hourly: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Hourly pay frequency, then switch to the UK or USA tab.',
+      },
+      weekly: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Weekly pay frequency, then switch to the UK or USA tab.',
+      },
+      monthly: {
+        href: '/salary-calculators/monthly-to-annual-salary-calculator/',
+        name: 'Monthly to Annual Salary Calculator',
+        note: 'Switch to the UK or USA tab to see monthly pay after tax, converted to a yearly figure.',
+      },
+      annual: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Annual pay frequency, then switch to the UK or USA tab.',
+      },
+    };
+
+    var VARIABLE_LINKS = [
+      { href: '/salary-calculators/overtime-pay-calculator/', name: 'Overtime Pay Calculator' },
+      { href: '/salary-calculators/raise-calculator/', name: 'Raise Calculator' },
+      { href: '/salary-calculators/bonus-calculator/', name: 'Bonus Calculator' },
+      { href: '/salary-calculators/commission-calculator/', name: 'Commission Calculator' },
+    ];
+
+    function setActive(group, button) {
+      var buttons = group.querySelectorAll('.sal-chip-button');
+      for (var i = 0; i < buttons.length; i += 1) {
+        var active = buttons[i] === button;
+        buttons[i].classList.toggle('is-active', active);
+        buttons[i].setAttribute('aria-pressed', active ? 'true' : 'false');
+      }
+    }
+
+    function linkHtml(className, item) {
+      return '<a class="' + className + '" href="' + item.href + '">' + item.name + '</a>';
+    }
+
+    function render() {
+      if (!state.want) {
+        resultEl.hidden = true;
+        resultEl.innerHTML = '';
+        return;
+      }
+
+      if (state.want === 'variable') {
+        var links = '';
+        for (var i = 0; i < VARIABLE_LINKS.length; i += 1) {
+          links += linkHtml('calculator-button secondary', VARIABLE_LINKS[i]);
+        }
+        resultEl.hidden = false;
+        resultEl.innerHTML =
+          '<p class="sal-picker-result-label">Best matches</p>' +
+          '<p class="sal-picker-result-note">Any of these fit overtime, raise, bonus, or commission questions:</p>' +
+          '<div class="sal-picker-result-links">' + links + '</div>';
+        return;
+      }
+
+      if (!state.known) {
+        resultEl.hidden = false;
+        resultEl.innerHTML = '<p class="sal-picker-result-note">Pick a pay figure above to see your calculator.</p>';
+        return;
+      }
+
+      var map = state.want === 'convert' ? CONVERT_MAP : TAX_MAP;
+      var pick = map[state.known];
+      resultEl.hidden = false;
+      resultEl.innerHTML =
+        '<p class="sal-picker-result-label">Best match</p>' +
+        '<p class="sal-picker-result-name">' + pick.name + '</p>' +
+        '<p class="sal-picker-result-note">' + pick.note + '</p>' +
+        linkHtml('calculator-button', { href: pick.href, name: 'Open ' + pick.name });
+    }
+
+    knownGroup.addEventListener('click', function (event) {
+      var btn = event.target.closest('.sal-chip-button');
+      if (!btn) return;
+      state.known = btn.getAttribute('data-known');
+      setActive(knownGroup, btn);
+      render();
+    });
+
+    wantGroup.addEventListener('click', function (event) {
+      var btn = event.target.closest('.sal-chip-button');
+      if (!btn) return;
+      state.want = btn.getAttribute('data-want');
+      setActive(wantGroup, btn);
+      render();
+    });
+  })();
+</script>

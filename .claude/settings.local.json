@@ -62,7 +62,12 @@
       "Bash(node \"C:\\\\Users\\\\karth\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-karth-Desktop-Calculator-project-3-calchowmuch\\\\8170af3d-b625-4a0b-be3d-7cc6c4071c81\\\\scratchpad\\\\verify-forks.mjs\")",
       "Bash(node scripts/generate-mpa-pages.js --calc-id monthly-to-annual-salary-calculator)",
       "Bash(node scripts/generate-mpa-pages.js --calc-id annual-to-monthly-salary-calculator)",
-      "Bash(node scripts/validate-tax-data.mjs --strict)"
+      "Bash(node scripts/validate-tax-data.mjs --strict)",
+      "Bash(node scripts/generate-mpa-pages.js --calc-id salary-calculators-hub)",
+      "Bash(node \"C:/Users/karth/AppData/Local/Temp/claude/c--Users-karth-Desktop-Calculator-project-3-calchowmuch/8170af3d-b625-4a0b-be3d-7cc6c4071c81/scratchpad/verify-hub.mjs\")",
+      "Bash(node \"C:/Users/karth/AppData/Local/Temp/claude/c--Users-karth-Desktop-Calculator-project-3-calchowmuch/8170af3d-b625-4a0b-be3d-7cc6c4071c81/scratchpad/verify-hub-mobile.mjs\")",
+      "Bash(node \"C:/Users/karth/AppData/Local/Temp/claude/c--Users-karth-Desktop-Calculator-project-3-calchowmuch/8170af3d-b625-4a0b-be3d-7cc6c4071c81/scratchpad/verify-hub2.mjs\")",
+      "Bash(node \"C:/Users/karth/AppData/Local/Temp/claude/c--Users-karth-Desktop-Calculator-project-3-calchowmuch/8170af3d-b625-4a0b-be3d-7cc6c4071c81/scratchpad/verify-hover.mjs\")"
     ]
   }
 }
