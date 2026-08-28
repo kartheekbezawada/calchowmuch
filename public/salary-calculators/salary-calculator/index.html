@@ -1012,6 +1012,20 @@
         line-height: 1.7;
       }
       
+      .sal-cluster-breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 0 12px;
+        font-size: 0.92rem;
+        color: #5d6f67;
+      }
+      
+      .sal-cluster-breadcrumbs a {
+        color: #163b55;
+      }
+      
       .sal-cluster-flow {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -1106,9 +1120,145 @@
         color: inherit;
       }
       
-      .sal-intent-card:hover {
-        border-color: rgba(22, 101, 52, 0.16);
-        box-shadow: 0 12px 28px rgba(19, 34, 47, 0.07);
+      .sal-intent-card,
+      .sal-related-card {
+        transition:
+          transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.2s ease,
+          border-color 0.2s ease,
+          background-color 0.2s ease;
+      }
+      
+      .sal-intent-card:hover,
+      .sal-intent-card:focus-within,
+      .sal-related-card:hover,
+      .sal-related-card:focus-within {
+        transform: translateY(-6px) scale(1.015);
+        box-shadow: 0 26px 48px rgba(19, 34, 47, 0.16);
+        border-color: rgba(22, 163, 74, 0.4);
+        background-color: #f6fcf7;
+      }
+      
+      .sal-intent-card h3 a,
+      .sal-related-card h3 a {
+        transition: color 0.2s ease;
+      }
+      
+      .sal-intent-card:hover h3 a,
+      .sal-intent-card:focus-within h3 a,
+      .sal-related-card:hover h3 a,
+      .sal-related-card:focus-within h3 a {
+        color: #15803d;
+      }
+      
+      .sal-card-badge {
+        display: inline-flex;
+        align-items: center;
+        margin: 0 0 8px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(22, 163, 74, 0.1);
+        color: #15803d;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      
+      .sal-cluster-subhead {
+        margin: 0 0 12px;
+        color: #4f6a61;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      
+      .sal-cluster-subgroup + .sal-cluster-subgroup {
+        margin-top: 24px;
+      }
+      
+      .sal-picker-step {
+        display: grid;
+        gap: 10px;
+      }
+      
+      .sal-picker-step + .sal-picker-step {
+        margin-top: 16px;
+      }
+      
+      .sal-picker-step-label {
+        margin: 0;
+        color: #22353f;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      
+      .sal-picker .sal-chip-button {
+        cursor: pointer;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          border-color 0.15s ease,
+          background-color 0.15s ease;
+      }
+      
+      .sal-picker .sal-chip-button:hover {
+        transform: translateY(-2px);
+        border-color: rgba(22, 163, 74, 0.4);
+        box-shadow: 0 8px 18px rgba(19, 34, 47, 0.12);
+      }
+      
+      .sal-picker .sal-chip-button.is-active:hover,
+      .sal-picker .sal-chip-button[aria-pressed='true']:hover {
+        border-color: rgba(28, 103, 88, 0.3);
+        box-shadow: 0 8px 18px rgba(15, 44, 65, 0.28);
+      }
+      
+      .sal-picker-result {
+        display: grid;
+        gap: 8px;
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 34, 47, 0.08);
+        background: #f9fcfa;
+      }
+      
+      .sal-picker-result[hidden] {
+        display: none;
+      }
+      
+      .sal-picker-result-label {
+        margin: 0;
+        color: #6a7c75;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      
+      .sal-picker-result-name {
+        margin: 0;
+        color: #13222f;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      
+      .sal-picker-result-note {
+        margin: 0;
+        color: #5d6f67;
+        line-height: 1.6;
+      }
+      
+      .sal-picker-result-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      
+      .sal-picker-result > .calculator-button {
+        justify-self: start;
+        margin-top: 4px;
       }
       
       .sal-cluster-roadmap-list,
@@ -1124,6 +1274,24 @@
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
+      }
+      
+      .sal-cluster-page-shell .calculator-button {
+        background: #163b55;
+        color: #ffffff;
+      }
+      
+      .sal-cluster-page-shell .calculator-button.secondary {
+        background: #f8f9fa;
+        color: #495057;
+      }
+      
+      .sal-cluster-page-shell .calculator-button:hover {
+        background: #0f2c41;
+      }
+      
+      .sal-cluster-page-shell .calculator-button.secondary:hover {
+        background: #eef1f3;
       }
       
       .sal-cluster-site-footer {
@@ -2576,6 +2744,13 @@
         <section class="sal-cluster-center-column">
           <div class="sal-cluster-panel panel-span-all">
   <div class="sal-cluster-page-header">
+    <div class="sal-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/salary-calculators/">Salary Calculators</a>
+      <span>/</span>
+      <span>Salary Calculator</span>
+    </div>
     <h1 id="calculator-title">Salary Calculator</h1>
     <p class="sal-cluster-page-intro">Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.</p>
   </div>

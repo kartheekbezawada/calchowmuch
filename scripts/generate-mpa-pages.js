@@ -266,9 +266,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'how-much-can-i-borrow': {
-    title: 'How Much Can I Borrow Calculator | Mortgage Affordability',
+    title: 'How Much Can I Borrow Calculator | Borrowing Power Estimate',
     description:
-      'Estimate mortgage affordability from income, debts, deposit, rate, and term, then compare borrowing power with likely monthly payments.',
+      'Estimate your borrowing power, or borrowing capacity, for a mortgage from income, debts, deposit, rate, and term, then compare it with monthly payments.',
     h1: 'How Much Can I Borrow Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -977,7 +977,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
     breadcrumbLabel: 'How Much Can I Borrow',
     softwareName: 'How Much Can I Borrow Calculator',
     softwareDescription:
-      'Estimate mortgage affordability from income, debts, deposit, rate, and term using income multiple and payment-to-income checks.',
+      'Estimate borrowing power (borrowing capacity) for a mortgage from income, debts, deposit, rate, and term using income multiple and payment-to-income checks.',
     featureList: [
       'Income multiple borrowing estimate',
       'Payment-to-income affordability mode',
@@ -990,6 +990,7 @@ const HOME_LOAN_SCHEMA_CONFIG = {
       'income multiple mortgage',
       'payment to income calculator',
       'borrowing power calculator',
+      'borrowing capacity calculator',
     ],
   },
   'remortgage-switching': {
@@ -3457,6 +3458,60 @@ function buildMathClusterFooterHtml() {
 </footer>`;
 }
 
+// Shared visible-breadcrumb builder for the sparser calc_only/exp_only cluster templates, which -
+// unlike calc_exp's per-cluster header blocks - have no dedicated wrapper div to hand-place a
+// breadcrumb into. Mirrors the calc_exp breadcrumb markup/wording for each cluster (see e.g. the
+// isMigratedMathClusterRoute branch above) so the visible trail always matches what calc_exp shows,
+// regardless of which archetype a given calculator route resolves to. Returns '' (not even a
+// trailing space) for any calculator outside the migrated cluster shells, so ${...}<h1 ...> in the
+// caller still reads cleanly with nothing inserted.
+function buildClusterBreadcrumbHtml({
+  isMigratedPercentageClusterRoute,
+  isMigratedPricingClusterRoute,
+  isMigratedFinanceClusterRoute,
+  isMigratedTimeAndDateClusterRoute,
+  isMigratedAutoLoanClusterRoute,
+  isMigratedHomeLoanClusterRoute,
+  isCreditCardClusterRoute,
+  calculatorTitle,
+}) {
+  const crumb = (className, href, label) => `<div class="${className}">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="${href}">${label}</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
+`;
+
+  if (isMigratedPercentageClusterRoute) {
+    return crumb(
+      'pct-cluster-breadcrumbs',
+      '/percentage-calculators/percent-change-calculator/',
+      'Percentage Calculators'
+    );
+  }
+  if (isMigratedPricingClusterRoute) {
+    return crumb('pct-cluster-breadcrumbs', '/pricing-calculators/commission-calculator/', 'Pricing Calculators');
+  }
+  if (isMigratedFinanceClusterRoute) {
+    return crumb('fi-cluster-breadcrumbs', '/finance-calculators/present-value-calculator/', 'Finance Calculators');
+  }
+  if (isMigratedTimeAndDateClusterRoute) {
+    return crumb('td-cluster-breadcrumbs', '/time-and-date/age-calculator/', 'Time &amp; Date Calculators');
+  }
+  if (isMigratedAutoLoanClusterRoute) {
+    return crumb('al-cluster-breadcrumbs', '/car-loan-calculators/car-loan-calculator/', 'Car Loan Calculators');
+  }
+  if (isMigratedHomeLoanClusterRoute) {
+    return crumb('hl-cluster-breadcrumbs', '/loan-calculators/how-much-can-i-borrow/', 'Home Loan Calculators');
+  }
+  if (isCreditCardClusterRoute) {
+    return crumb('cc-cluster-breadcrumbs', '/credit-card-calculators/', 'Credit Card Calculators');
+  }
+  return '';
+}
+
 function buildTimeAndDateClusterHeaderHtml() {
   return `<header class="td-cluster-site-header">
   <div class="td-cluster-wrap td-cluster-site-header-inner">
@@ -4901,6 +4956,13 @@ function buildPageHtml({
       isCreditCardClusterRoute
         ? `<div class="panel panel-scroll panel-span-all cc-cluster-panel${calculatorPanelClassSuffix}">
   <div class="cc-cluster-page-header">
+    <div class="cc-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/credit-card-calculators/">Credit Card Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <h1 id="calculator-title">${calculatorTitle}</h1>
   </div>
   <div class="calculator-page-single cc-cluster-flow">
@@ -4912,6 +4974,13 @@ function buildPageHtml({
         : isMigratedPercentageClusterRoute
         ? `<div class="pct-cluster-panel panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <div class="pct-cluster-page-header">
+    <div class="pct-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/percentage-calculators/percent-change-calculator/">Percentage Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="pct-cluster-page-intro">${description}</p>
   </div>
@@ -4923,6 +4992,13 @@ function buildPageHtml({
         : isMigratedPricingClusterRoute
         ? `<div class="pct-cluster-panel panel panel-scroll panel-span-all${calculatorPanelClassSuffix}">
   <div class="pct-cluster-page-header">
+    <div class="pct-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/pricing-calculators/commission-calculator/">Pricing Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="pct-cluster-page-intro">${description}</p>
   </div>
@@ -4937,6 +5013,13 @@ function buildPageHtml({
         : isMigratedFinanceClusterRoute
         ? `<div class="fi-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="fi-cluster-page-header">
+    <div class="fi-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/finance-calculators/present-value-calculator/">Finance Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <span class="fi-cluster-page-kicker">Finance Calculators</span>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="fi-cluster-page-intro">${description}</p>
@@ -4969,6 +5052,13 @@ function buildPageHtml({
         : isMigratedTimeAndDateClusterRoute
         ? `<div class="td-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="td-cluster-page-header">
+    <div class="td-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/time-and-date/age-calculator/">Time &amp; Date Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="td-cluster-page-intro">${description}</p>
   </div>
@@ -4980,6 +5070,13 @@ function buildPageHtml({
         : isMigratedSalaryClusterRoute
         ? `<div class="sal-cluster-panel panel-span-all${calculatorPanelClassSuffix}">
   <div class="sal-cluster-page-header">
+    <div class="sal-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/salary-calculators/">Salary Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="sal-cluster-page-intro">${description}</p>
   </div>
@@ -4992,6 +5089,13 @@ function buildPageHtml({
         : isMigratedAutoLoanClusterRoute
         ? `<div class="al-cluster-panel${calculatorPanelClassSuffix}">
   <div class="al-cluster-page-header">
+    <div class="al-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/car-loan-calculators/car-loan-calculator/">Car Loan Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <span class="al-cluster-page-kicker">Auto Loan Calculators</span>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="al-cluster-page-intro">${description}</p>
@@ -5005,6 +5109,13 @@ function buildPageHtml({
         : isMigratedHomeLoanClusterRoute
         ? `<div class="hl-cluster-panel${calculatorPanelClassSuffix}">
   <div class="hl-cluster-page-header">
+    <div class="hl-cluster-breadcrumbs">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/loan-calculators/how-much-can-i-borrow/">Home Loan Calculators</a>
+      <span>/</span>
+      <span>${calculatorTitle}</span>
+    </div>
     <span class="hl-cluster-page-kicker">Home Loan Calculators</span>
     <h1 id="calculator-title">${calculatorTitle}</h1>
     <p class="hl-cluster-page-intro">${description}</p>
@@ -5045,7 +5156,16 @@ ${explanationTitleHtml}  ${explanationHtml}
         ? 'hl-cluster-panel'
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
-  <h1 id="calculator-title">${calculatorTitle}</h1>
+  ${buildClusterBreadcrumbHtml({
+    isMigratedPercentageClusterRoute,
+    isMigratedPricingClusterRoute,
+    isMigratedFinanceClusterRoute,
+    isMigratedTimeAndDateClusterRoute,
+    isMigratedAutoLoanClusterRoute,
+    isMigratedHomeLoanClusterRoute,
+    isCreditCardClusterRoute,
+    calculatorTitle,
+  })}<h1 id="calculator-title">${calculatorTitle}</h1>
   <div class="calculator-page-single${
     isMigratedTimeAndDateClusterRoute
       ? ' td-cluster-flow'
@@ -5089,7 +5209,16 @@ ${explanationTitleHtml}  ${explanationHtml}
         ? 'hl-cluster-panel'
         : `panel panel-scroll panel-span-all${isCreditCardClusterRoute ? ' cc-cluster-panel' : ''}`
     }">
-  <h1 id="calculator-title">${calculatorTitle}</h1>
+  ${buildClusterBreadcrumbHtml({
+    isMigratedPercentageClusterRoute,
+    isMigratedPricingClusterRoute,
+    isMigratedFinanceClusterRoute,
+    isMigratedTimeAndDateClusterRoute,
+    isMigratedAutoLoanClusterRoute,
+    isMigratedHomeLoanClusterRoute,
+    isCreditCardClusterRoute,
+    calculatorTitle,
+  })}<h1 id="calculator-title">${calculatorTitle}</h1>
 ${
   isCreditCardClusterRoute ||
   isMigratedPercentageClusterRoute ||

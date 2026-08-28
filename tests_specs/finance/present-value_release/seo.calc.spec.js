@@ -8,7 +8,7 @@ test.describe('Present Value Calculator SEO', () => {
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Discount future cash flow into today's value using rate, time period, and compounding to compare offers, projects, or investments.'
+      "Discount future cash flow into today's value using rate, time period, and compounding to compare offers, projects, or investments."
     );
 
     const h1 = page.locator('h1');
@@ -25,7 +25,7 @@ test.describe('Present Value Calculator SEO', () => {
 
     const ogDescription = await page.locator('meta[property="og:description"]').getAttribute('content');
     expect(ogDescription).toBe(
-      'Discount future cash flow into today's value using rate, time period, and compounding to compare offers, projects, or investments.'
+      "Discount future cash flow into today's value using rate, time period, and compounding to compare offers, projects, or investments."
     );
 
     const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');
