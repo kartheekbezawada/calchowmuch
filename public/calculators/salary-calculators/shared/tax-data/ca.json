@@ -1,0 +1,287 @@
+{
+  "country": "CA",
+  "dataset": "ca-tax-data",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "effectiveTo": "2026-12-31",
+  "currency": "CAD",
+  "source": "https://www.taxtips.ca/taxrates/canada.htm",
+  "lastVerified": null,
+  "verification": {
+    "status": "aggregated-source",
+    "confidence": "medium",
+    "source": "Cross-checked across TaxTips.ca, catax.tools, and targeted searches for CPP2/QPP/QPIP/EI figures; not fetched directly from CRA.ca or any provincial finance ministry. Needs a primary-source pass on every figure before `--strict` will accept `verified`. See per-section notes below for which specific figures carry extra uncertainty.",
+    "note": "Single-file layout (all 13 provinces/territories + federal + CPP + EI in one JSON, one fetch), unlike the US convention of 51 lazy-fetched per-state files - deliberate for Canada given only 13 jurisdictions, no need for the lazy-load complexity that scale justifies for the US."
+  },
+  "notes": [
+    "Canada's Basic Personal Amount (federal AND provincial) is a NON-REFUNDABLE TAX CREDIT, not a pre-bracket deduction the way the UK Personal Allowance or US standard deduction are - see ca-engine.js header comment for why this changes the arithmetic.",
+    "federal.basicPersonalAmount.taper models the BPA phasing down to a NON-ZERO FLOOR (14,829 of 16,452), unlike the UK Personal Allowance which tapers to zero. `calculateTaperedAllowance`'s optional `floor` parameter exists specifically for this.",
+    "Provincial/territorial Basic Personal Amounts are modelled as flat (no income-tested taper) for all 13 jurisdictions - a documented V1 simplification, not a confirmed fact that none of them taper.",
+    "Quebec (`provinces.QC`) is not just another province row: it carries its own `qpp` (replaces `cpp`), `eiReduced` (replaces `ei`'s rate, same national maxInsurableEarnings), `qpip` (an additional premium with no non-Quebec equivalent), and `quebecAbatementRate` (reduces FEDERAL tax owing, not provincial). See ca-engine.js's `isQuebec` branch."
+  ],
+  "federal": {
+    "notes": [
+      "Two aggregator sources disagreed on the 4th-bracket rate: 29.0% vs 29.29%/29.31% (the latter alongside a capital-gains table, likely a mid-2025 transition artifact, not a 2026 full-year rate). 29% was chosen as the more likely stable figure - needs direct CRA.ca confirmation.",
+      "reducedByDollarOver is derived: (16452 - 14829) / (258482 - 181440) = 1623 / 77042 = 0.0210664, i.e. the BPA loses about 2.1 cents per dollar of income in the phase-out range."
+    ],
+    "basicPersonalAmount": {
+      "amount": 16452,
+      "taper": {
+        "thresholdIncome": 181440,
+        "reducedByDollarOver": 0.0210664,
+        "floor": 14829,
+        "fullyFlooredAtIncome": 258482
+      }
+    },
+    "bands": [
+      { "id": "r14", "name": "14%", "rate": 0.14, "from": 0, "to": 58523 },
+      { "id": "r20_5", "name": "20.5%", "rate": 0.205, "from": 58523, "to": 117045 },
+      { "id": "r26", "name": "26%", "rate": 0.26, "from": 117045, "to": 181440 },
+      { "id": "r29", "name": "29%", "rate": 0.29, "from": 181440, "to": 258482 },
+      { "id": "r33", "name": "33%", "rate": 0.33, "from": 258482, "to": null }
+    ]
+  },
+  "cpp": {
+    "notes": [
+      "Employee-only rates. Employer share is not a deduction from employee pay and is not modelled.",
+      "CPP2 (the second, additional tier) is a distinct mechanic added in 2024 with no UK/US equivalent - a separate contribution on a separate earnings range (base ceiling to secondTier ceiling), not another band on the base schedule.",
+      "The 2026 YMPE/YAMPE (74,600 / 85,000) are INFERRED from Quebec's confirmed 2026 QPP ceilings, not independently sourced for CPP directly - CPP's YMPE and QPP's MPE are set by the same national calculation and have historically matched exactly, but this needs direct confirmation.",
+      "The $3,500 basic exemption is a flat, historically unindexed figure - unlike almost every other threshold here, it does not rise annually."
+    ],
+    "base": { "label": "CPP base contribution", "rate": 0.0595, "exemption": 3500, "ceiling": 74600 },
+    "secondTier": { "label": "CPP2 (second additional contribution)", "rate": 0.04, "floor": 74600, "ceiling": 85000 }
+  },
+  "ei": {
+    "notes": [
+      "Applies to every province/territory EXCEPT Quebec, which uses `provinces.QC.eiReduced` instead (same maxInsurableEarnings, lower rate, because QPIP covers what EI would otherwise fund federally)."
+    ],
+    "rate": 0.0166,
+    "maxInsurableEarnings": 68900
+  },
+  "provinces": {
+    "AB": {
+      "province": "AB",
+      "name": "Alberta",
+      "notes": ["No surtax, no health premium - the default province for Canada mode precisely because it has none of the wrinkles Ontario/Quebec do."],
+      "basicPersonalAmount": { "amount": 22769 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r8", "name": "8%", "rate": 0.08, "from": 0, "to": 61200 },
+        { "id": "r10", "name": "10%", "rate": 0.1, "from": 61200, "to": 154259 },
+        { "id": "r12", "name": "12%", "rate": 0.12, "from": 154259, "to": 185111 },
+        { "id": "r13", "name": "13%", "rate": 0.13, "from": 185111, "to": 246813 },
+        { "id": "r14", "name": "14%", "rate": 0.14, "from": 246813, "to": 370220 },
+        { "id": "r15", "name": "15%", "rate": 0.15, "from": 370220, "to": null }
+      ]
+    },
+    "BC": {
+      "province": "BC",
+      "name": "British Columbia",
+      "notes": ["7 brackets - the most of any non-Quebec province other than Newfoundland & Labrador."],
+      "basicPersonalAmount": { "amount": 13216 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r5_6", "name": "5.6%", "rate": 0.056, "from": 0, "to": 50363 },
+        { "id": "r7_7", "name": "7.7%", "rate": 0.077, "from": 50363, "to": 100728 },
+        { "id": "r10_5", "name": "10.5%", "rate": 0.105, "from": 100728, "to": 115648 },
+        { "id": "r12_29", "name": "12.29%", "rate": 0.1229, "from": 115648, "to": 140430 },
+        { "id": "r14_7", "name": "14.7%", "rate": 0.147, "from": 140430, "to": 190405 },
+        { "id": "r16_8", "name": "16.8%", "rate": 0.168, "from": 190405, "to": 265545 },
+        { "id": "r20_5", "name": "20.5%", "rate": 0.205, "from": 265545, "to": null }
+      ]
+    },
+    "MB": {
+      "province": "MB",
+      "name": "Manitoba",
+      "basicPersonalAmount": { "amount": 15780 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r10_8", "name": "10.8%", "rate": 0.108, "from": 0, "to": 47000 },
+        { "id": "r12_75", "name": "12.75%", "rate": 0.1275, "from": 47000, "to": 100000 },
+        { "id": "r17_4", "name": "17.4%", "rate": 0.174, "from": 100000, "to": null }
+      ]
+    },
+    "NB": {
+      "province": "NB",
+      "name": "New Brunswick",
+      "basicPersonalAmount": { "amount": 13664 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r9_4", "name": "9.4%", "rate": 0.094, "from": 0, "to": 52333 },
+        { "id": "r14", "name": "14%", "rate": 0.14, "from": 52333, "to": 104666 },
+        { "id": "r16", "name": "16%", "rate": 0.16, "from": 104666, "to": 193861 },
+        { "id": "r19_5", "name": "19.5%", "rate": 0.195, "from": 193861, "to": null }
+      ]
+    },
+    "NL": {
+      "province": "NL",
+      "name": "Newfoundland and Labrador",
+      "notes": ["8 brackets - the most of any jurisdiction in this dataset, federal included."],
+      "basicPersonalAmount": { "amount": 13094 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r8_7", "name": "8.7%", "rate": 0.087, "from": 0, "to": 44678 },
+        { "id": "r14_5", "name": "14.5%", "rate": 0.145, "from": 44678, "to": 89354 },
+        { "id": "r15_8", "name": "15.8%", "rate": 0.158, "from": 89354, "to": 159528 },
+        { "id": "r17_8", "name": "17.8%", "rate": 0.178, "from": 159528, "to": 223340 },
+        { "id": "r19_8", "name": "19.8%", "rate": 0.198, "from": 223340, "to": 285319 },
+        { "id": "r20_8", "name": "20.8%", "rate": 0.208, "from": 285319, "to": 570638 },
+        { "id": "r21_3", "name": "21.3%", "rate": 0.213, "from": 570638, "to": 1141275 },
+        { "id": "r21_8", "name": "21.8%", "rate": 0.218, "from": 1141275, "to": null }
+      ]
+    },
+    "NS": {
+      "province": "NS",
+      "name": "Nova Scotia",
+      "basicPersonalAmount": { "amount": 11932 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r8_79", "name": "8.79%", "rate": 0.0879, "from": 0, "to": 30995 },
+        { "id": "r14_95", "name": "14.95%", "rate": 0.1495, "from": 30995, "to": 61991 },
+        { "id": "r16_67", "name": "16.67%", "rate": 0.1667, "from": 61991, "to": 97417 },
+        { "id": "r17_5", "name": "17.5%", "rate": 0.175, "from": 97417, "to": 157124 },
+        { "id": "r21", "name": "21%", "rate": 0.21, "from": 157124, "to": null }
+      ]
+    },
+    "ON": {
+      "province": "ON",
+      "name": "Ontario",
+      "notes": [
+        "Most complex non-Quebec province - surtax AND health premium both apply.",
+        "Health premium plateau values ($0/$300/$450/$600/$750/$900) and the $20,000/$36,000/$48,000 boundaries were confirmed via search; the finer ramp thresholds (approx. 25,000/38,500/48,600/72,600/200,600) were NOT independently re-confirmed and are reconstructed from the well-documented general shape of the Ontario Health Premium - needs a primary-source pass against the T4032-ON table.",
+        "Surtax is a tax-on-a-tax: a percentage of PROVINCIAL TAX OWING (after the provincial BPA credit), not of income. Both tiers are additive - above the second threshold, the 20% and 36% surtax both apply simultaneously.",
+        "Health premium is a step function of taxable income (flat dollar amounts, ramping between plateaus): each step's `upTo` is where the NEXT ramp begins, and the step's `cap` naturally holds the premium flat for the rest of that range, so a 'ramp then plateau' shape is one step, not two."
+      ],
+      "basicPersonalAmount": { "amount": 12989 },
+      "surtax": {
+        "tiers": [
+          { "threshold": 5818, "rate": 0.2 },
+          { "threshold": 7446, "rate": 0.36 }
+        ]
+      },
+      "healthPremium": {
+        "steps": [
+          { "upTo": 20000, "from": 0, "base": 0, "rate": 0, "cap": 0 },
+          { "upTo": 36000, "from": 20000, "base": 0, "rate": 0.06, "cap": 300 },
+          { "upTo": 48000, "from": 36000, "base": 300, "rate": 0.06, "cap": 450 },
+          { "upTo": 72000, "from": 48000, "base": 450, "rate": 0.25, "cap": 600 },
+          { "upTo": 200000, "from": 72000, "base": 600, "rate": 0.25, "cap": 750 },
+          { "upTo": null, "from": 200000, "base": 750, "rate": 0.25, "cap": 900 }
+        ]
+      },
+      "bands": [
+        { "id": "r5_05", "name": "5.05%", "rate": 0.0505, "from": 0, "to": 53891 },
+        { "id": "r9_15", "name": "9.15%", "rate": 0.0915, "from": 53891, "to": 107785 },
+        { "id": "r11_16", "name": "11.16%", "rate": 0.1116, "from": 107785, "to": 150000 },
+        { "id": "r12_16", "name": "12.16%", "rate": 0.1216, "from": 150000, "to": 220000 },
+        { "id": "r13_16", "name": "13.16%", "rate": 0.1316, "from": 220000, "to": null }
+      ]
+    },
+    "PE": {
+      "province": "PE",
+      "name": "Prince Edward Island",
+      "notes": [
+        "PEI's surtax was discontinued in 2024. An earlier research pass found one aggregator source that incorrectly still listed a surtax; a second, more specific search confirmed it no longer applies. `surtax: null` is a deliberate, confirmed omission, not an oversight."
+      ],
+      "basicPersonalAmount": { "amount": 15000 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r9_5", "name": "9.5%", "rate": 0.095, "from": 0, "to": 33928 },
+        { "id": "r13_47", "name": "13.47%", "rate": 0.1347, "from": 33928, "to": 65820 },
+        { "id": "r16_6", "name": "16.6%", "rate": 0.166, "from": 65820, "to": 106890 },
+        { "id": "r17_62", "name": "17.62%", "rate": 0.1762, "from": 106890, "to": 142520 },
+        { "id": "r19", "name": "19%", "rate": 0.19, "from": 142520, "to": 200000 },
+        { "id": "r20", "name": "20%", "rate": 0.2, "from": 200000, "to": null }
+      ]
+    },
+    "QC": {
+      "province": "QC",
+      "name": "Quebec",
+      "notes": [
+        "Not just a different bracket table: a different pension plan (qpp), a different (reduced) EI rate, an additional QPIP premium, and a federal tax abatement. See ca-engine.js's `isQuebec` branch.",
+        "Quebec residents are NOT charged CPP - `qpp` replaces `cpp` entirely for this province.",
+        "eiReduced uses the SAME national maxInsurableEarnings as `ei` (68,900) - only the rate differs (1.30% vs 1.66%). An earlier draft incorrectly modelled a separate, lower ceiling for Quebec; corrected after re-reading the source.",
+        "qpip is a SEPARATE premium on top of (not instead of) eiReduced, with its own much higher maxInsurableEarnings (103,000).",
+        "quebecAbatementRate (16.5%) reduces FEDERAL tax owing, not provincial - see the top-level `federal` section and ca-engine.js's `abatement` calculation.",
+        "QPP rate re-checked with a second, more targeted search after an earlier pass misread a combined employee+employer figure (10.6%) as employee-only. Correct 2026 employee-only figures: 5.3% base + 1.0% first additional = 6.3% combined (modelled as one `base.rate`), plus 4.0% QPP2 on 74,600-85,000."
+      ],
+      "basicPersonalAmount": { "amount": 18952 },
+      "surtax": null,
+      "healthPremium": null,
+      "quebecAbatementRate": 0.165,
+      "qpp": {
+        "base": { "label": "QPP base + first additional contribution", "rate": 0.063, "exemption": 3500, "ceiling": 74600 },
+        "secondTier": { "label": "QPP2 (second additional contribution)", "rate": 0.04, "floor": 74600, "ceiling": 85000 }
+      },
+      "eiReduced": { "rate": 0.013, "maxInsurableEarnings": 68900 },
+      "qpip": { "rate": 0.0043, "maxInsurableEarnings": 103000 },
+      "bands": [
+        { "id": "r14", "name": "14%", "rate": 0.14, "from": 0, "to": 54345 },
+        { "id": "r19", "name": "19%", "rate": 0.19, "from": 54345, "to": 108680 },
+        { "id": "r24", "name": "24%", "rate": 0.24, "from": 108680, "to": 132245 },
+        { "id": "r25_75", "name": "25.75%", "rate": 0.2575, "from": 132245, "to": null }
+      ]
+    },
+    "SK": {
+      "province": "SK",
+      "name": "Saskatchewan",
+      "basicPersonalAmount": { "amount": 20381 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r10_5", "name": "10.5%", "rate": 0.105, "from": 0, "to": 54532 },
+        { "id": "r12_5", "name": "12.5%", "rate": 0.125, "from": 54532, "to": 155805 },
+        { "id": "r14_5", "name": "14.5%", "rate": 0.145, "from": 155805, "to": null }
+      ]
+    },
+    "NT": {
+      "province": "NT",
+      "name": "Northwest Territories",
+      "basicPersonalAmount": { "amount": 18198 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r5_9", "name": "5.9%", "rate": 0.059, "from": 0, "to": 53003 },
+        { "id": "r8_6", "name": "8.6%", "rate": 0.086, "from": 53003, "to": 106009 },
+        { "id": "r12_2", "name": "12.2%", "rate": 0.122, "from": 106009, "to": 172346 },
+        { "id": "r14_05", "name": "14.05%", "rate": 0.1405, "from": 172346, "to": null }
+      ]
+    },
+    "YT": {
+      "province": "YT",
+      "name": "Yukon",
+      "notes": ["First three bracket thresholds mirror the federal thresholds exactly - a real design choice by Yukon, not a data-entry error."],
+      "basicPersonalAmount": { "amount": 16452 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r6_4", "name": "6.4%", "rate": 0.064, "from": 0, "to": 58523 },
+        { "id": "r9", "name": "9%", "rate": 0.09, "from": 58523, "to": 117045 },
+        { "id": "r10_9", "name": "10.9%", "rate": 0.109, "from": 117045, "to": 181440 },
+        { "id": "r12_8", "name": "12.8%", "rate": 0.128, "from": 181440, "to": 500000 },
+        { "id": "r15", "name": "15%", "rate": 0.15, "from": 500000, "to": null }
+      ]
+    },
+    "NU": {
+      "province": "NU",
+      "name": "Nunavut",
+      "notes": ["Lowest marginal rates of any jurisdiction in this dataset - 4% starting bracket."],
+      "basicPersonalAmount": { "amount": 19659 },
+      "surtax": null,
+      "healthPremium": null,
+      "bands": [
+        { "id": "r4", "name": "4%", "rate": 0.04, "from": 0, "to": 55801 },
+        { "id": "r7", "name": "7%", "rate": 0.07, "from": 55801, "to": 111602 },
+        { "id": "r9", "name": "9%", "rate": 0.09, "from": 111602, "to": 181439 },
+        { "id": "r11_5", "name": "11.5%", "rate": 0.115, "from": 181439, "to": null }
+      ]
+    }
+  }
+}

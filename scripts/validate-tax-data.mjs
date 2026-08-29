@@ -97,12 +97,14 @@ function validateMeta(rel, data, strict) {
   if (strict && data.verification) {
     const status = data.verification.status;
     // `aggregated-source` is a real, narrower tier — figures taken from a reputable aggregator
-    // rather than confirmed against each issuing authority. It is accepted in strict mode ONLY
-    // for US state and payroll files, where per-jurisdiction confirmation across 51 authorities
-    // is impractical, and only when the file records what that means. Everything else must be
-    // `verified`, so the UK tables and the IRS-sourced federal/FICA files cannot quietly slip
-    // down a tier.
-    const aggregatedAllowed = /^us\/(states\/|payroll-taxes)/.test(rel);
+    // rather than confirmed against each issuing authority. It is accepted in strict mode for US
+    // state/payroll files (per-jurisdiction confirmation across 51 authorities is impractical)
+    // and for `ca.json` (13 provincial/territorial authorities plus CRA, gathered this session
+    // from aggregator cross-checks rather than fetched from each authority directly — see the
+    // per-section `notes` inside the file), and only when the file records what that means.
+    // Everything else must be `verified`, so the UK tables and the IRS-sourced US federal/FICA
+    // files cannot quietly slip down a tier.
+    const aggregatedAllowed = /^us\/(states\/|payroll-taxes)/.test(rel) || rel === 'ca.json';
     if (status === 'aggregated-source' && aggregatedAllowed) {
       if (!data.verification.note) {
         fail(rel, '`aggregated-source` requires a `verification.note` saying what was and was not confirmed.');
@@ -329,6 +331,138 @@ function validateDataset(rel, data, strict) {
           }
           if (c.wageBase !== null && (typeof c.wageBase !== 'number' || c.wageBase <= 0)) {
             fail(rel, `states.${code}.${c.id}: wageBase must be null or a positive number`);
+          }
+        }
+      }
+      break;
+    }
+
+    case 'ca-tax-data': {
+      // Single-file layout: all 13 provinces/territories + federal + CPP + EI in one JSON,
+      // unlike the US's 51 lazy-fetched per-state files — 13 jurisdictions doesn't justify that
+      // complexity. Every sub-section gets the same structural rigor a standalone file would.
+      const { federal, cpp, ei, provinces } = data;
+
+      if (!federal) {
+        fail(rel, '`federal` is required');
+      } else {
+        const bpa = federal.basicPersonalAmount;
+        if (!bpa || typeof bpa.amount !== 'number') {
+          fail(rel, 'federal.basicPersonalAmount.amount is required');
+        } else if (bpa.taper) {
+          const { thresholdIncome, reducedByDollarOver, floor, fullyFlooredAtIncome } = bpa.taper;
+          if (typeof floor !== 'number' || floor < 0 || floor >= bpa.amount) {
+            fail(rel, `federal.basicPersonalAmount.taper.floor must be a number below \`amount\` (${bpa.amount}), got ${floor}`);
+          } else {
+            const expected = thresholdIncome + (bpa.amount - floor) / reducedByDollarOver;
+            if (Math.abs(expected - fullyFlooredAtIncome) > 1) {
+              fail(
+                rel,
+                `federal.basicPersonalAmount.taper is internally inconsistent: losing ${reducedByDollarOver} per dollar ` +
+                  `above ${thresholdIncome} reaches the floor of ${floor} (from ${bpa.amount}) at ${expected.toFixed(2)}, ` +
+                  `but \`fullyFlooredAtIncome\` says ${fullyFlooredAtIncome}.`,
+              );
+            }
+          }
+        }
+        validateBands(rel, 'federal.bands', federal.bands);
+      }
+
+      const validatePensionPlan = (label, plan) => {
+        if (!plan || !plan.base) {
+          fail(rel, `${label}.base is required`);
+          return;
+        }
+        if (typeof plan.base.rate !== 'number' || plan.base.rate < 0 || plan.base.rate > 1) {
+          fail(rel, `${label}.base.rate must be a fraction between 0 and 1, got ${plan.base.rate}`);
+        }
+        if (typeof plan.base.exemption !== 'number' || plan.base.exemption < 0) {
+          fail(rel, `${label}.base.exemption must be a non-negative number`);
+        } else if (typeof plan.base.ceiling !== 'number' || plan.base.ceiling <= plan.base.exemption) {
+          fail(rel, `${label}.base.ceiling must be a number greater than base.exemption`);
+        }
+        if (plan.secondTier) {
+          if (typeof plan.secondTier.rate !== 'number' || plan.secondTier.rate < 0 || plan.secondTier.rate > 1) {
+            fail(rel, `${label}.secondTier.rate must be a fraction between 0 and 1, got ${plan.secondTier.rate}`);
+          }
+          if (plan.secondTier.floor !== plan.base.ceiling) {
+            fail(
+              rel,
+              `${label}.secondTier.floor (${plan.secondTier.floor}) must equal ${label}.base.ceiling ` +
+                `(${plan.base.ceiling}) — a gap or overlap between the two tiers silently under- or double-charges.`,
+            );
+          }
+          if (typeof plan.secondTier.ceiling !== 'number' || plan.secondTier.ceiling <= plan.secondTier.floor) {
+            fail(rel, `${label}.secondTier.ceiling must be a number greater than secondTier.floor`);
+          }
+        }
+      };
+
+      validatePensionPlan('cpp', cpp);
+
+      if (!ei || typeof ei.rate !== 'number' || ei.rate < 0 || ei.rate > 1) {
+        fail(rel, `ei.rate must be a fraction between 0 and 1, got ${ei?.rate}`);
+      }
+      if (!ei || typeof ei.maxInsurableEarnings !== 'number' || ei.maxInsurableEarnings <= 0) {
+        fail(rel, 'ei.maxInsurableEarnings must be a positive number');
+      }
+
+      const EXPECTED_PROVINCES = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK', 'NT', 'NU', 'YT'];
+      if (!provinces || typeof provinces !== 'object') {
+        fail(rel, '`provinces` is required');
+        break;
+      }
+      const missing = EXPECTED_PROVINCES.filter((code) => !provinces[code]);
+      if (missing.length) {
+        fail(rel, `provinces is missing: ${missing.join(', ')} — all 13 provinces/territories are required`);
+      }
+      const extra = Object.keys(provinces).filter((code) => !EXPECTED_PROVINCES.includes(code));
+      if (extra.length) {
+        fail(rel, `provinces has unrecognised code(s): ${extra.join(', ')}`);
+      }
+
+      for (const [code, province] of Object.entries(provinces)) {
+        const label = `provinces.${code}`;
+        const bpa = province.basicPersonalAmount;
+        if (!bpa || typeof bpa.amount !== 'number') {
+          fail(rel, `${label}.basicPersonalAmount.amount is required`);
+        }
+        validateBands(rel, `${label}.bands`, province.bands);
+
+        if (province.surtax) {
+          for (const [i, tier] of (province.surtax.tiers || []).entries()) {
+            if (typeof tier.threshold !== 'number' || tier.threshold < 0) {
+              fail(rel, `${label}.surtax.tiers[${i}].threshold must be a non-negative number`);
+            }
+            if (typeof tier.rate !== 'number' || tier.rate <= 0 || tier.rate > 1) {
+              fail(rel, `${label}.surtax.tiers[${i}].rate must be a fraction between 0 and 1, got ${tier.rate}`);
+            }
+          }
+        }
+
+        if (province.healthPremium) {
+          for (const [i, step] of (province.healthPremium.steps || []).entries()) {
+            if (typeof step.rate !== 'number' || step.rate < 0 || step.rate > 1) {
+              fail(rel, `${label}.healthPremium.steps[${i}].rate must be a fraction between 0 and 1, got ${step.rate}`);
+            }
+            if (typeof step.cap !== 'number' || step.cap < (step.base || 0)) {
+              fail(rel, `${label}.healthPremium.steps[${i}].cap must be a number >= base`);
+            }
+          }
+        }
+
+        // Quebec carries an entirely separate deduction stack (see ca-engine.js's `isQuebec`
+        // branch) — QPP instead of CPP, a reduced EI rate, a QPIP premium, a federal abatement.
+        if (code === 'QC') {
+          if (typeof province.quebecAbatementRate !== 'number' || province.quebecAbatementRate <= 0 || province.quebecAbatementRate > 1) {
+            fail(rel, `${label}.quebecAbatementRate must be a fraction between 0 and 1`);
+          }
+          validatePensionPlan(`${label}.qpp`, province.qpp);
+          if (!province.eiReduced || typeof province.eiReduced.rate !== 'number' || province.eiReduced.rate <= 0) {
+            fail(rel, `${label}.eiReduced.rate is required and must be positive`);
+          }
+          if (!province.qpip || typeof province.qpip.rate !== 'number' || province.qpip.rate <= 0) {
+            fail(rel, `${label}.qpip.rate is required and must be positive`);
           }
         }
       }

@@ -373,9 +373,9 @@ const CALCULATOR_OVERRIDES = {
   // added to this cluster is no longer accurate — it now does both. Must stay byte-identical to
   // buildSalaryMetadata() in the page's module.js, which replaces this at runtime.
   'salary-calculator': {
-    title: 'Salary Calculator | UK and US Take-Home Pay Calculator',
+    title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
     description:
-      'Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
+      'Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
     h1: 'Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -397,17 +397,17 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'annual-to-monthly-salary-calculator': {
-    title: 'Annual to Monthly Salary Calculator | UK and US Take-Home Pay',
+    title: 'Annual to Monthly Salary Calculator | UK, US and Canada Take-Home Pay',
     description:
-      'Convert annual salary into monthly pay, and see UK or US take-home pay after tax on that monthly figure. Free, and nothing is stored.',
+      'Convert annual salary into monthly pay, and see UK, US or Canada take-home pay after tax on that monthly figure. Free, and nothing is stored.',
     h1: 'Annual to Monthly Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
   'monthly-to-annual-salary-calculator': {
-    title: 'Monthly to Annual Salary Calculator | UK and US Take-Home Pay',
+    title: 'Monthly to Annual Salary Calculator | UK, US and Canada Take-Home Pay',
     description:
-      'Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored.',
+      'Convert monthly salary into annual pay, and see UK, US or Canada take-home pay after tax on that annual figure. Free, and nothing is stored.',
     h1: 'Monthly to Annual Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -1480,6 +1480,83 @@ const AUTO_LOAN_SCHEMA_CONFIG = {
       'Payoff timing comparison',
     ],
     keywords: ['auto loan comparison calculator', 'compare car loans', 'car loan comparison'],
+  },
+};
+
+// Extra SoftwareApplication schema fields (featureList/keywords) for the STATIC (pre-JS,
+// crawler-visible) JSON-LD on salary-cluster pages. buildSalaryStructuredData() already supports
+// both fields, but the call site had never been passing them - client-side buildSalaryMetadata()
+// in each calculator's module.js carries a richer featureList/keywords, but that only reaches a
+// crawler that executes JS, not the first, non-JS pass. Currently populated only for
+// salary-calculator (the calculator Canada support was added to); the other 10 salary calculators
+// still fall back to just softwareName/softwareDescription, same as before this entry existed.
+const SALARY_SCHEMA_CONFIG = {
+  'salary-calculator': {
+    softwareName: 'Salary Calculator',
+    softwareDescription:
+      'Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual.',
+    featureList: [
+      'UK take-home pay after Income Tax and National Insurance',
+      'US take-home pay after federal tax, FICA and state tax',
+      'Canada take-home pay after federal tax, provincial tax, CPP and EI',
+      "All 13 Canadian provinces and territories, including Quebec's QPP and QPIP",
+      'Pension, 401(k)/pre-tax and student loan deductions',
+      'Bonus impact on take-home pay',
+      'Pay sheet of upcoming paydays with net amounts',
+    ],
+    keywords: [
+      'salary calculator',
+      'take home pay calculator',
+      'uk salary calculator',
+      'us paycheck calculator',
+      'canada salary calculator',
+      'canada take home pay calculator',
+      'cpp calculator',
+      'qpp calculator',
+      'net pay calculator',
+    ],
+  },
+  'monthly-to-annual-salary-calculator': {
+    softwareName: 'Monthly to Annual Salary Calculator',
+    softwareDescription:
+      'Convert a monthly salary into annual pay, and estimate UK, US or Canada take-home pay after tax on it.',
+    featureList: [
+      'Monthly salary converted to annual, weekly and biweekly pay',
+      'UK take-home pay after Income Tax and National Insurance',
+      'US take-home pay after federal tax, FICA and state tax',
+      'Canada take-home pay after federal tax, provincial tax, CPP and EI',
+      "All 13 Canadian provinces and territories, including Quebec's QPP and QPIP",
+      'Pension, student loan and bonus impact',
+    ],
+    keywords: [
+      'monthly to annual salary calculator',
+      'monthly pay to yearly salary',
+      'annual salary from monthly income',
+      'uk take home pay',
+      'us paycheck calculator',
+      'canada take home pay calculator',
+    ],
+  },
+  'annual-to-monthly-salary-calculator': {
+    softwareName: 'Annual to Monthly Salary Calculator',
+    softwareDescription:
+      'Convert an annual salary into monthly pay, and estimate UK, US or Canada take-home pay after tax on it.',
+    featureList: [
+      'Annual salary converted to monthly, weekly and biweekly pay',
+      'UK take-home pay after Income Tax and National Insurance',
+      'US take-home pay after federal tax, FICA and state tax',
+      'Canada take-home pay after federal tax, provincial tax, CPP and EI',
+      "All 13 Canadian provinces and territories, including Quebec's QPP and QPIP",
+      'Pension, student loan and bonus impact',
+    ],
+    keywords: [
+      'annual to monthly salary calculator',
+      'yearly to monthly pay',
+      'annual salary to monthly income',
+      'uk take home pay',
+      'us paycheck calculator',
+      'canada take home pay calculator',
+    ],
   },
 };
 
@@ -6464,6 +6541,7 @@ function main() {
     }
     if (isMigratedSalaryClusterRoute && calculator.id !== 'salary-calculators-hub') {
       const faqEntries = extractCalculatorFaqEntries(fragments.explanationHtml, calculator.id);
+      const salarySchemaConfig = SALARY_SCHEMA_CONFIG[calculator.id];
       staticStructuredData = buildSalaryStructuredData({
         title: pageTitle,
         description: pageDescription,
@@ -6471,6 +6549,7 @@ function main() {
         faqEntries,
         softwareName: override?.h1 ?? calculator.name,
         softwareDescription: pageDescription,
+        ...salarySchemaConfig,
       });
       injectStaticStructuredData = true;
     }

@@ -73,7 +73,10 @@
       "Bash(node --check scripts/generate-mpa-pages.js)",
       "Bash(node scripts/generate-mpa-pages.js)",
       "Bash(node scripts/generate-mpa-pages.js --all)",
-      "Bash(echo \"EXIT CODE: $?\")"
+      "Bash(echo \"EXIT CODE: $?\")",
+      "Bash(node scripts/validate-tax-data.mjs)",
+      "Bash(node \"C:/Users/karth/AppData/Local/Temp/claude/c--Users-karth-Desktop-Calculator-project-3-calchowmuch/8170af3d-b625-4a0b-be3d-7cc6c4071c81/scratchpad/smoke-ca-engine.mjs\")",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
