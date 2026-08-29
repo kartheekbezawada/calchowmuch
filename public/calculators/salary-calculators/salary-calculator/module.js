@@ -9,11 +9,13 @@ import {
 import { calculateGrossOnly } from '/calculators/salary-calculators/shared/tax-engine/gross-engine.js';
 import { calculateUkTakeHome } from '/calculators/salary-calculators/shared/tax-engine/uk-engine.js';
 import { calculateUsTakeHome } from '/calculators/salary-calculators/shared/tax-engine/us-engine.js';
+import { calculateCaTakeHome } from '/calculators/salary-calculators/shared/tax-engine/ca-engine.js';
 import { fromAnnual, toAnnual } from '/calculators/salary-calculators/shared/tax-engine/pay-frequency.js';
 import { generatePaySchedule } from '/calculators/salary-calculators/shared/tax-engine/pay-schedule.js';
 
 const TAX_DATA_BASE = '/calculators/salary-calculators/shared/tax-data/uk';
 const US_DATA_BASE = '/calculators/salary-calculators/shared/tax-data/us';
+const CA_DATA_URL = '/calculators/salary-calculators/shared/tax-data/ca.json';
 
 const FAQ_ITEMS = [
   {
@@ -91,6 +93,31 @@ const FAQ_ITEMS = [
     answer:
       "Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars.",
   },
+  {
+    question: "How is Canada take-home pay calculated here?",
+    answer:
+      "Federal tax is charged band by band on your full income, then a Basic Personal Amount credit is subtracted from the tax bill - not from the income being taxed, which is a different mechanic than the UK or US use. Provincial or territorial tax works the same way with its own bands and its own Basic Personal Amount credit. CPP and EI are calculated separately on gross earnings.",
+  },
+  {
+    question: "Why does my province change the result so much?",
+    answer:
+      "Each province and territory sets its own income tax bands and its own Basic Personal Amount. Ontario also adds a surtax and a health premium on top of provincial tax, and Quebec runs an entirely separate system - so the same salary can produce a noticeably different take-home figure depending on where you work.",
+  },
+  {
+    question: "What is CPP2, and why is it separate from CPP?",
+    answer:
+      "CPP2 is a second, additional contribution introduced alongside the base Canada Pension Plan rate. It applies only to earnings between the base ceiling (the YMPE) and a higher ceiling (the YAMPE), at its own rate - it is not simply a continuation of the base CPP band.",
+  },
+  {
+    question: "Is Quebec calculated differently from other provinces?",
+    answer:
+      "Yes. Quebec residents contribute to the Quebec Pension Plan (QPP) instead of CPP, pay a reduced Employment Insurance rate alongside a separate Quebec Parental Insurance Plan (QPIP) premium, and receive a federal tax abatement that reduces federal tax owing to reflect Quebec collecting its own provincial tax directly.",
+  },
+  {
+    question: "Does the Basic Personal Amount work like the UK Personal Allowance?",
+    answer:
+      "Not quite. The UK Personal Allowance reduces the income that gets taxed. Canada's Basic Personal Amount instead reduces the tax bill directly, as a credit equal to the amount multiplied by the lowest tax rate - full tax is charged on the lowest band first, then the credit is subtracted from what is owed.",
+  },
 ];
 
 const FAQ_SCHEMA = {
@@ -104,19 +131,21 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Salary Calculator | UK and US Take-Home Pay Calculator',
+    title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
     description:
-      'Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
+      'Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
     canonical: 'https://calchowmuch.com/salary-calculators/salary-calculator/',
     name: 'Salary Calculator',
     appDescription:
-      'Estimate UK or US take-home pay after tax, or convert one gross pay amount into every pay period.',
+      'Estimate UK, US or Canada take-home pay after tax, or convert one gross pay amount into every pay period.',
     featureList: [
       'UK take-home pay after Income Tax and National Insurance',
       'England, Wales, Northern Ireland and Scotland tax bands',
       'US take-home pay after federal tax, FICA and state tax',
       'All 50 US states plus DC, with all four filing statuses',
       'State payroll taxes such as CA SDI and NJ TDI/FLI',
+      'Canada take-home pay after federal, provincial, CPP and EI',
+      'All 13 Canadian provinces and territories, including Quebec’s QPP/QPIP',
       'Pension contributions with all three relief methods',
       'Student loan plans 1, 2, 4, 5 and Postgraduate',
       'Bonus impact on take-home pay',
@@ -124,7 +153,7 @@ setPageMetadata(
       'Gross pay conversion across every pay period',
     ],
     keywords:
-      'salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, net pay calculator, gross pay calculator',
+      'salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, canada salary calculator, net pay calculator, gross pay calculator',
     faqSchema: FAQ_SCHEMA,
   })
 );
@@ -155,6 +184,9 @@ const stateInput = el('salary-state');
 const stateList = el('salary-state-list');
 const stateHint = el('salary-state-hint');
 const pretaxInput = el('salary-pretax');
+const provinceInput = el('salary-province');
+const provinceList = el('salary-province-list');
+const provinceHint = el('salary-province-hint');
 
 const outputs = {
   hero: el('salary-annual-pay'),
@@ -208,10 +240,14 @@ const PLAIN = new Intl.NumberFormat('en-GB', {
 const USD = new Intl.NumberFormat('en-US', {
   style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2,
 });
+const CAD = new Intl.NumberFormat('en-CA', {
+  style: 'currency', currency: 'CAD', minimumFractionDigits: 2, maximumFractionDigits: 2,
+});
 const money = (value) => {
   if (value === null || value === undefined || Number.isNaN(value)) return '—';
   if (mode === 'uk') return GBP.format(Number(value));
   if (mode === 'us') return USD.format(Number(value));
+  if (mode === 'canada') return CAD.format(Number(value));
   return PLAIN.format(Number(value));
 };
 const percent = (fraction) => `${(Number(fraction) * 100).toFixed(1)}%`;
@@ -281,6 +317,28 @@ async function loadState(code) {
   const data = await response.json();
   usStateCache.set(code, data);
   return data;
+}
+
+let caData = null;
+let selectedProvince = null;
+
+/**
+ * Canada ships as a single file (federal + CPP + EI + all 13 provinces/territories nested
+ * inside), unlike the US's 51 lazy-fetched per-state files - 13 jurisdictions doesn't justify
+ * that complexity, so one fetch loads everything and province selection just indexes into
+ * `caData.provinces[code]` locally with no further network round-trip.
+ */
+async function loadCaData() {
+  if (caData) return caData;
+  try {
+    const response = await fetch(CA_DATA_URL);
+    if (!response.ok) throw new Error(`ca.json responded ${response.status}`);
+    caData = await response.json();
+    return caData;
+  } catch (error) {
+    taxDataError = error;
+    return null;
+  }
 }
 
 /* ------------------------------------------------------------------ helpers */
@@ -422,10 +480,13 @@ setupButtonGroup(document.querySelector('[data-button-group="salary-mode"]'), {
   onChange: (value) => {
     mode = value;
     applyMode();
-    // USA defaults to Texas rather than showing an error until the visitor picks a state.
-    // chooseState() runs its own calculate() once the state's tax data has loaded.
+    // USA defaults to Texas, Canada defaults to Alberta - both rather than showing an error
+    // until the visitor picks a jurisdiction. chooseState()/chooseProvince() run their own
+    // calculate() once that jurisdiction's tax data has loaded.
     if (mode === 'us' && !selectedState) {
       void chooseState('TX');
+    } else if (mode === 'canada' && !selectedProvince) {
+      void chooseProvince('AB');
     } else {
       calculate();
     }
@@ -435,12 +496,13 @@ setupButtonGroup(document.querySelector('[data-button-group="salary-mode"]'), {
 function applyMode() {
   const isUk = mode === 'uk';
   const isUs = mode === 'us';
+  const isCanada = mode === 'canada';
   const isGross = mode === 'gross';
-  const isTax = isUk || isUs;
+  const isTax = isUk || isUs || isCanada;
 
   // One mechanism for every scope, and it reaches the explanation too because this is a global
   // querySelectorAll rather than one scoped to the calculator root. `sal-tax-only` is anything
-  // common to both countries; the country classes gate what is genuinely country-specific.
+  // common to all three countries; the country classes gate what is genuinely country-specific.
   //
   // These hide with the `hidden` attribute and NEVER remove nodes. content-quality-thin-score.mjs
   // parses the built HTML with JSDOM, so hidden copy still counts toward the word total and the
@@ -448,6 +510,7 @@ function applyMode() {
   const scopes = [
     ['.sal-uk-only', isUk],
     ['.sal-us-only', isUs],
+    ['.sal-ca-only', isCanada],
     ['.sal-tax-only', isTax],
     ['.sal-gross-only', isGross],
   ];
@@ -491,6 +554,12 @@ function applyMode() {
       eyebrow: 'After federal, FICA and state tax',
       disclaimer: 'Estimates only. Federal, FICA and state-level taxes; local income taxes are not included. Not tax advice.',
       method: 'Standard deduction first, then federal tax band by band. FICA is charged on gross wages, and state income tax is calculated on its own schedule.',
+    },
+    canada: {
+      answerTitle: 'Estimated take-home pay',
+      eyebrow: 'After federal, provincial, CPP and EI',
+      disclaimer: 'Estimates only, based on published 2026 rates. Not tax advice.',
+      method: 'Federal and provincial tax are each charged band by band, then a Basic Personal Amount credit is subtracted from each. CPP (or QPP in Quebec) and EI (or QPIP alongside a reduced EI rate in Quebec) are calculated separately on gross earnings.',
     },
   }[mode];
 
@@ -626,6 +695,103 @@ document.addEventListener('click', (event) => {
   if (!event.target.closest('.sal-typeahead')) closeStateList();
 });
 
+/* ------------------------------------------------------------------ province typeahead */
+
+// Names, not just codes, are populated once caData loads - the province list mirrors the US
+// state typeahead pattern (13 options is too many for a chip row the way UK's 4 regions fit).
+let CA_PROVINCES = [];
+
+let activeProvinceOption = -1;
+
+function closeProvinceList() {
+  if (!provinceList) return;
+  provinceList.hidden = true;
+  provinceInput?.setAttribute('aria-expanded', 'false');
+  activeProvinceOption = -1;
+}
+
+function renderProvinceOptions(query) {
+  if (!provinceList) return;
+  const q = query.trim().toLowerCase();
+  if (!q) return closeProvinceList();
+
+  const hits = CA_PROVINCES.filter(([code, name]) =>
+    name.toLowerCase().includes(q) || code.toLowerCase() === q
+  ).slice(0, 8);
+
+  if (!hits.length) {
+    provinceList.innerHTML = '<div class="sal-typeahead-empty">No match</div>';
+  } else {
+    provinceList.innerHTML = hits
+      .map(([code, name], i) =>
+        `<div class="sal-typeahead-item" role="option" id="sal-province-opt-${i}" data-code="${code}" aria-selected="false">${name}</div>`
+      )
+      .join('');
+  }
+  provinceList.hidden = false;
+  provinceInput?.setAttribute('aria-expanded', 'true');
+  activeProvinceOption = -1;
+}
+
+function highlightProvinceOption(delta) {
+  const items = [...provinceList.querySelectorAll('.sal-typeahead-item')];
+  if (!items.length) return;
+  activeProvinceOption = (activeProvinceOption + delta + items.length) % items.length;
+  items.forEach((node, i) => {
+    const on = i === activeProvinceOption;
+    node.classList.toggle('is-active', on);
+    node.setAttribute('aria-selected', String(on));
+    if (on) node.scrollIntoView({ block: 'nearest' });
+  });
+  provinceInput?.setAttribute('aria-activedescendant', items[activeProvinceOption].id);
+}
+
+async function chooseProvince(code) {
+  const data = await loadCaData();
+  if (!data) {
+    setText(provinceHint, 'Could not load Canada tax data.');
+    return;
+  }
+  CA_PROVINCES = Object.values(data.provinces).map((p) => [p.province, p.name]);
+  const entry = CA_PROVINCES.find(([c]) => c === code);
+  if (!entry) return;
+  selectedProvince = code;
+  if (provinceInput) provinceInput.value = entry[1];
+  closeProvinceList();
+  setText(
+    provinceHint,
+    code === 'QC'
+      ? `${entry[1]} uses QPP instead of CPP, a reduced EI rate plus a separate QPIP premium, and a federal tax abatement.`
+      : `Provincial income tax for ${entry[1]} will be included.`
+  );
+  calculate();
+}
+
+provinceInput?.addEventListener('input', () => {
+  selectedProvince = null;
+  renderProvinceOptions(provinceInput.value);
+});
+
+provinceInput?.addEventListener('keydown', (event) => {
+  if (provinceList.hidden) return;
+  if (event.key === 'ArrowDown') { event.preventDefault(); highlightProvinceOption(1); }
+  else if (event.key === 'ArrowUp') { event.preventDefault(); highlightProvinceOption(-1); }
+  else if (event.key === 'Enter') {
+    const active = provinceList.querySelector('.sal-typeahead-item.is-active')
+      || provinceList.querySelector('.sal-typeahead-item');
+    if (active) { event.preventDefault(); void chooseProvince(active.dataset.code); }
+  } else if (event.key === 'Escape') closeProvinceList();
+});
+
+provinceList?.addEventListener('click', (event) => {
+  const item = event.target.closest('.sal-typeahead-item');
+  if (item) void chooseProvince(item.dataset.code);
+});
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.sal-typeahead')) closeProvinceList();
+});
+
 /* ------------------------------------------------------------------ rendering */
 
 const SEGMENTS = [
@@ -647,6 +813,20 @@ function segmentsFor(result) {
       ni: result.fica.total,
       other: result.statePayrollTaxes.total + result.pretaxDeductions,
       labels: { tax: 'Federal + state tax', ni: 'FICA', other: 'Pre-tax & state payroll' },
+    };
+  }
+  if (result.country === 'CA') {
+    const pensionPlanTotal = (result.cpp || result.qpp).total;
+    return {
+      net: result.netAnnual,
+      tax: result.federalTax.payable + result.provincialTax.total,
+      ni: pensionPlanTotal,
+      other: result.ei.amount + (result.qpip ? result.qpip.amount : 0),
+      labels: {
+        tax: 'Federal + provincial tax',
+        ni: result.qpp ? 'QPP' : 'CPP',
+        other: result.qpip ? 'EI + QPIP' : 'EI',
+      },
     };
   }
   return {
@@ -679,6 +859,7 @@ function renderSplit(result) {
 function renderBands(result) {
   if (!outputs.bandList) return;
   if (result.country === 'US') return renderUsBands(result);
+  if (result.country === 'CA') return renderCaBands(result);
   const rows = [];
 
   rows.push(['Gross pay', result.gross, false]);
@@ -738,6 +919,46 @@ function renderUsBands(result) {
     (result.assumptions.length
       ? `<div class="sal-band sal-band-quiet"><span>${result.assumptions.join(' ')}</span><span></span></div>`
       : '');
+}
+
+function renderCaBands(result) {
+  const rows = [['Gross pay', result.gross, false]];
+
+  result.federalTax.breakdown
+    .filter((b) => b.amountInBand > 0)
+    .forEach((b) => rows.push([`Federal ${b.name} on ${money(b.amountInBand)}`, -b.tax, true]));
+  if (result.federalTax.bpa.credit > 0) {
+    rows.push(['Federal Basic Personal Amount credit', result.federalTax.bpa.credit, false]);
+  }
+  if (result.federalTax.abatement > 0) {
+    rows.push(['Quebec federal abatement', result.federalTax.abatement, false]);
+  }
+
+  const pensionPlan = result.cpp || result.qpp;
+  if (pensionPlan.base > 0) rows.push([pensionPlan.breakdown[0].name, -pensionPlan.base, true]);
+  if (pensionPlan.secondTier > 0) rows.push([pensionPlan.breakdown[1].name, -pensionPlan.secondTier, true]);
+  if (result.ei.amount > 0) rows.push([result.qpip ? 'EI (Quebec-reduced rate)' : 'EI', -result.ei.amount, true]);
+  if (result.qpip && result.qpip.amount > 0) rows.push(['QPIP', -result.qpip.amount, true]);
+
+  result.provincialTax.breakdown
+    .filter((b) => b.amountInBand > 0)
+    .forEach((b) => rows.push([`${result.province.name} ${b.name} on ${money(b.amountInBand)}`, -b.tax, true]));
+  if (result.provincialTax.bpa.credit > 0) {
+    rows.push([`${result.province.name} Basic Personal Amount credit`, result.provincialTax.bpa.credit, false]);
+  }
+  if (result.provincialTax.surtax.total > 0) {
+    rows.push([`${result.province.name} surtax`, -result.provincialTax.surtax.total, true]);
+  }
+  if (result.provincialTax.healthPremium.total > 0) {
+    rows.push([`${result.province.name} health premium`, -result.provincialTax.healthPremium.total, true]);
+  }
+
+  outputs.bandList.innerHTML =
+    rows.map(([label, value, neg]) =>
+      `<div class="sal-band"><span>${label}</span><span class="sal-num">${neg ? '−' : ''}${money(Math.abs(value))}</span></div>`
+    ).join('') +
+    `<div class="sal-band sal-band-total"><span>Estimated take-home</span><span class="sal-num">${money(result.netAnnual)}</span></div>` +
+    `<div class="sal-band sal-band-quiet"><span>Marginal rate (federal + provincial)</span><span class="sal-num">${percent(result.combinedMarginalRate)}</span></div>`;
 }
 
 function renderPaySheet(result) {
@@ -886,6 +1107,27 @@ function calculate() {
     return;
   }
 
+  if (mode === 'canada') {
+    if (!caData) {
+      showError(
+        taxDataError
+          ? 'Canada tax tables could not be loaded. Gross Pay mode still works.'
+          : 'Loading Canada tax tables...'
+      );
+      clearResults();
+      return;
+    }
+    // The province field defaults to Alberta and can only be changed to another item picked
+    // from the typeahead list, so this only fires if someone clears the field by hand. Falling
+    // back to Alberta rather than showing an error keeps that edge case silent, matching the US
+    // state field's Texas fallback.
+    if (!selectedProvince || !caData.provinces[selectedProvince]) {
+      clearResults();
+      void chooseProvince('AB');
+      return;
+    }
+  }
+
   clearError();
 
   const result = calculateFor(currentInputs());
@@ -909,6 +1151,7 @@ function currentInputs() {
     grossAnnual: toAnnual(amount, frequency, schedule()),
     region: regionButtons?.getValue() ?? 'england',
     filingStatus: filingStatusButtons ? filingStatusButtons.getValue() : 'single',
+    province: selectedProvince,
     bonus: optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0,
     pensionPercent: optionOn('pension') ? getInputNumber(pensionPercentInput) || 0 : 0,
     pensionReliefMethod: pensionReliefSelect?.value || 'net-pay-arrangement',
@@ -931,6 +1174,14 @@ function calculateFor(input) {
       payroll: usPayroll,
     });
   }
+  if (mode === 'canada') {
+    return calculateCaTakeHome(input, {
+      federal: caData.federal,
+      cpp: caData.cpp,
+      ei: caData.ei,
+      province: caData.provinces[input.province],
+    });
+  }
   return calculateGrossOnly({
     amount: input.amount,
     frequency: input.frequency,
@@ -946,7 +1197,9 @@ function renderResult(result, frequency) {
     setText(outputs.effectiveRate, percent(result.effectiveRate));
     setText(
       outputs.marginalRate,
-      percent(result.country === 'US' ? result.combinedMarginalRate : result.marginalRate)
+      percent(
+        result.country === 'US' || result.country === 'CA' ? result.combinedMarginalRate : result.marginalRate
+      )
     );
     setText(
       outputs.note,
@@ -956,6 +1209,8 @@ function renderResult(result, frequency) {
       outputs.breakdown,
       result.country === 'US'
         ? `Standard deduction ${money(result.standardDeduction)} - Federal tax ${money(result.federalTax.total)} - FICA ${money(result.fica.total)} - ${result.state.name} state tax ${money(result.stateTax.total)} - Total deductions ${money(result.totalDeductions)}.`
+        : result.country === 'CA'
+        ? `Federal tax ${money(result.federalTax.payable)} - ${(result.cpp || result.qpp).breakdown[0].name.split(' ')[0]} ${money((result.cpp || result.qpp).total)} - EI ${money(result.ei.amount)}${result.qpip ? ` - QPIP ${money(result.qpip.amount)}` : ''} - ${result.province.name} tax ${money(result.provincialTax.total)} - Total deductions ${money(result.totalDeductions)}.`
         : `Personal Allowance ${money(result.personalAllowance.allowance)} - Income tax ${money(result.incomeTax.total)} - National Insurance ${money(result.nationalInsurance.total)} - Total deductions ${money(result.totalDeductions)}.`
     );
     renderSplit(result);
@@ -981,7 +1236,9 @@ function renderResult(result, frequency) {
       ? `Gross ${money(result.gross)} - Income tax ${money(result.incomeTax.total)} - NI ${money(result.nationalInsurance.total)} - Effective rate ${percent(result.effectiveRate)} - Region ${result.region.name}.`
       : mode === 'us'
         ? `Gross ${money(result.gross)} - Federal ${money(result.federalTax.total)} - FICA ${money(result.fica.total)} - ${result.state.name} ${money(result.stateTax.total)} - Effective rate ${percent(result.effectiveRate)}. Local income taxes are not included.`
-        : `Weekly ${money(periods.weekly)} - Hourly ${money(periods.hourly)}.`,
+        : mode === 'canada'
+          ? `Gross ${money(result.gross)} - Federal ${money(result.federalTax.payable)} - Provincial ${money(result.provincialTax.total)} - Effective rate ${percent(result.effectiveRate)} - Province ${result.province.name}.`
+          : `Weekly ${money(periods.weekly)} - Hourly ${money(periods.hourly)}.`,
     buildAssumptionsLine(frequency),
     paySheetSummary(),
   ].filter(Boolean).join('\n');
@@ -1075,4 +1332,7 @@ void loadTaxData().then(() => {
 });
 void loadUsBaseData().then(() => {
   if (mode === 'us') calculate();
+});
+void loadCaData().then(() => {
+  if (mode === 'canada') calculate();
 });

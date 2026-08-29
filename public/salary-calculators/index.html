@@ -1814,9 +1814,9 @@
   <div class="sal-cluster-flow">
   <div class="sal-cluster-page-header">
     <p class="sal-cluster-page-intro">
-      Use this salary calculator hub to convert pay across time periods, estimate UK or US take-home
-      pay after tax, compare overtime and raise scenarios, and estimate bonus or commission earnings
-      in one place.
+      Use this salary calculator hub to convert pay across time periods, estimate UK, US or Canada
+      take-home pay after tax, compare overtime and raise scenarios, and estimate bonus or commission
+      earnings in one place.
     </p>
   </div>
 
@@ -1842,6 +1842,7 @@
         <button type="button" class="sal-chip-button" data-want="convert">Just convert it</button>
         <button type="button" class="sal-chip-button" data-want="uk">UK take-home pay</button>
         <button type="button" class="sal-chip-button" data-want="us">US take-home pay</button>
+        <button type="button" class="sal-chip-button" data-want="canada">Canada take-home pay</button>
         <button type="button" class="sal-chip-button" data-want="variable">Overtime, raise, bonus or commission</button>
       </div>
     </div>
@@ -1856,8 +1857,8 @@
       </div>
     </div>
     <p class="sal-cluster-page-intro" style="margin: -6px 0 20px; text-align: left;">
-      Salary Calculator, Monthly to Annual, and Annual to Monthly include UK and US take-home pay
-      after tax. Every other calculator below stays gross-pay only.
+      Salary Calculator, Monthly to Annual, and Annual to Monthly include UK, US and Canada take-home
+      pay after tax. Every other calculator below stays gross-pay only.
     </p>
 
     <div class="sal-cluster-subgroup">
@@ -1883,18 +1884,18 @@
       <div class="sal-related-grid">
         <article class="sal-related-card">
           <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
-          <span class="sal-card-badge">UK &amp; US tax</span>
-          <p>Convert any pay frequency and see UK or US take-home pay after tax on the same page.</p>
+          <span class="sal-card-badge">UK, US &amp; Canada tax</span>
+          <p>Convert any pay frequency and see UK, US or Canada take-home pay after tax on the same page.</p>
         </article>
         <article class="sal-related-card">
           <h3><a href="/salary-calculators/monthly-to-annual-salary-calculator/">Monthly to Annual Salary Calculator</a></h3>
-          <span class="sal-card-badge">UK &amp; US tax</span>
-          <p>Turn monthly pay into yearly gross pay, or switch to UK or US mode for yearly take-home pay.</p>
+          <span class="sal-card-badge">UK, US &amp; Canada tax</span>
+          <p>Turn monthly pay into yearly gross pay, or switch to UK, US or Canada mode for yearly take-home pay.</p>
         </article>
         <article class="sal-related-card">
           <h3><a href="/salary-calculators/annual-to-monthly-salary-calculator/">Annual to Monthly Salary Calculator</a></h3>
-          <span class="sal-card-badge">UK &amp; US tax</span>
-          <p>Convert yearly pay into monthly gross pay, or switch to UK or US mode for monthly take-home pay.</p>
+          <span class="sal-card-badge">UK, US &amp; Canada tax</span>
+          <p>Convert yearly pay into monthly gross pay, or switch to UK, US or Canada mode for monthly take-home pay.</p>
         </article>
       </div>
     </div>
@@ -1984,6 +1985,29 @@
       },
     };
 
+    var CANADA_MAP = {
+      hourly: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Hourly pay frequency, then switch to the Canada tab and choose your province.',
+      },
+      weekly: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Weekly pay frequency, then switch to the Canada tab and choose your province.',
+      },
+      monthly: {
+        href: '/salary-calculators/monthly-to-annual-salary-calculator/',
+        name: 'Monthly to Annual Salary Calculator',
+        note: 'Switch to the Canada tab to see monthly pay after tax, converted to a yearly figure.',
+      },
+      annual: {
+        href: '/salary-calculators/salary-calculator/',
+        name: 'Salary Calculator',
+        note: 'Pick the Annual pay frequency, then switch to the Canada tab and choose your province.',
+      },
+    };
+
     var VARIABLE_LINKS = [
       { href: '/salary-calculators/overtime-pay-calculator/', name: 'Overtime Pay Calculator' },
       { href: '/salary-calculators/raise-calculator/', name: 'Raise Calculator' },
@@ -2030,7 +2054,7 @@
         return;
       }
 
-      var map = state.want === 'convert' ? CONVERT_MAP : TAX_MAP;
+      var map = state.want === 'convert' ? CONVERT_MAP : state.want === 'canada' ? CANADA_MAP : TAX_MAP;
       var pick = map[state.known];
       resultEl.hidden = false;
       resultEl.innerHTML =

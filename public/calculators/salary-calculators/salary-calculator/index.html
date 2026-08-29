@@ -3,6 +3,7 @@
     <button class="sal-mode-btn is-active" type="button" data-value="gross" aria-pressed="true">Gross Pay</button>
     <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK Take Home Pay</button>
     <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">USA Take Home Pay</button>
+    <button class="sal-mode-btn" type="button" data-value="canada" aria-pressed="false">Canada Take Home Pay</button>
   </div>
 
   <div class="sal-calc-columns">
@@ -65,6 +66,17 @@
         <button class="sal-chip-button" type="button" data-value="scotland" aria-pressed="false">Scotland</button>
       </div>
       <p class="sal-field-hint" id="salary-region-hint">Scotland sets its own income tax bands, so the same salary gives a different result.</p>
+    </div>
+
+    <div class="sal-input-row sal-ca-only" id="salary-province-row" hidden>
+      <label for="salary-province" class="sal-mandatory-label">Which province or territory do you work in? <span class="sal-mandatory-tag">(Mandatory)</span></label>
+      <div class="sal-typeahead">
+        <input id="salary-province" type="text" autocomplete="off" role="combobox"
+               aria-expanded="false" aria-autocomplete="list" aria-controls="salary-province-list"
+               placeholder="Start typing, e.g. Onta" />
+        <div class="sal-typeahead-list" id="salary-province-list" role="listbox" hidden></div>
+      </div>
+      <p class="sal-field-hint" id="salary-province-hint"></p>
     </div>
 
     <p class="sal-calc-error" id="salary-calc-error" hidden></p>

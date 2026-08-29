@@ -8,9 +8,9 @@ export const SALARY_CALCULATOR_CONFIGS = {
   'salary-calculator': {
     route: '/salary-calculators/salary-calculator/',
     h1: 'Salary Calculator',
-    title: 'Salary Calculator | UK and US Take-Home Pay Calculator',
+    title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
     description:
-      'Work out your take-home pay after tax in the UK or the US, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
+      'Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       // --- Gross Pay mode (the default) must behave exactly as it always has -----------------
       await page.click('button[data-value="hourly"]');
@@ -101,11 +101,42 @@ export const SALARY_CALCULATOR_CONFIGS = {
         .toBeCloseTo(79180, 0);
       await expect(page.locator('#salary-local-note')).toBeVisible();
 
+      // --- Canada mode --------------------------------------------------------------------------
+      await page.click('.sal-mode-btn[data-value="canada"]');
+      const caCard = page.locator('#salary-calculator-explanation .sal-ca-only').first();
+      await expect(caCard).toBeVisible();
+      await expect(ukCard).toBeHidden();
+      await expect(usCard).toBeHidden();
+      await expect(page.locator('#salary-province-row')).toBeVisible();
+
+      // Canada mode defaults to Alberta rather than making the visitor pick a province first.
+      await expect(page.locator('#salary-province')).toHaveValue('Alberta');
+      await expect(page.locator('#salary-calc-error')).toBeHidden();
+
+      await page.fill('#salary-pay-amount', '60000');
+      await page.click('#salary-calc-button');
+      // 60,000 in Alberta - pinned against ca-engine.js's own smoke-test output.
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent()))
+        .toBeCloseTo(46471.05, 1);
+      expect(await page.locator('#salary-annual-pay').textContent()).not.toContain('£');
+
+      // Quebec must produce a different figure - QPP/QPIP/the federal abatement are not cosmetic.
+      const albertaNet = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      await page.fill('#salary-province', 'Quebec');
+      await page.click('.sal-typeahead-item[data-code="QC"]');
+      await page.click('#salary-calc-button');
+      const quebecNet = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      expect(quebecNet).not.toBeCloseTo(albertaNet, 1);
+      expect(quebecNet).toBeCloseTo(44202.1, 1);
+      await page.fill('#salary-province', 'Alberta');
+      await page.click('.sal-typeahead-item[data-code="AB"]');
+
       // --- Gross Pay mode ---------------------------------------------------------------------
       await page.click('.sal-mode-btn[data-value="gross"]');
       await expect(grossCard).toBeVisible();
       await expect(ukCard).toBeHidden();
       await expect(usCard).toBeHidden();
+      await expect(caCard).toBeHidden();
       // Pay sheet still there, degraded to date + gross only.
       await expect(page.locator('#salary-paysheet')).toBeVisible();
       await expect(page.locator('#salary-paysheet thead th:visible')).toHaveCount(3);
@@ -146,9 +177,9 @@ export const SALARY_CALCULATOR_CONFIGS = {
   'annual-to-monthly-salary-calculator': {
     route: '/salary-calculators/annual-to-monthly-salary-calculator/',
     h1: 'Annual to Monthly Salary Calculator',
-    title: 'Annual to Monthly Salary Calculator | UK and US Take-Home Pay',
+    title: 'Annual to Monthly Salary Calculator | UK, US and Canada Take-Home Pay',
     description:
-      'Convert annual salary into monthly pay, and see UK or US take-home pay after tax on that monthly figure. Free, and nothing is stored.',
+      'Convert annual salary into monthly pay, and see UK, US or Canada take-home pay after tax on that monthly figure. Free, and nothing is stored.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       // No frequency picker on this page - the input is always an annual amount, and the hero is
       // always the monthly figure (the reverse of salary-calculator, which this was forked from).
@@ -172,14 +203,30 @@ export const SALARY_CALCULATOR_CONFIGS = {
       await page.fill('#salary-pay-amount', '60000');
       await page.click('#salary-calc-button');
       expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(4199.17, 1);
+
+      // --- Canada mode: defaults to Alberta, Quebec must differ --------------------------------
+      await page.click('.sal-mode-btn[data-value="canada"]');
+      await expect(page.locator('#salary-province')).toHaveValue('Alberta');
+      await page.fill('#salary-pay-amount', '60000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(3872.59, 1);
+      expect(await page.locator('#salary-annual-pay').textContent()).not.toContain('£');
+
+      const albertaMonthly = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      await page.fill('#salary-province', 'Quebec');
+      await page.click('.sal-typeahead-item[data-code="QC"]');
+      await page.click('#salary-calc-button');
+      const quebecMonthly = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      expect(quebecMonthly).not.toBeCloseTo(albertaMonthly, 1);
+      expect(quebecMonthly).toBeCloseTo(3683.51, 1);
     },
   },
   'monthly-to-annual-salary-calculator': {
     route: '/salary-calculators/monthly-to-annual-salary-calculator/',
     h1: 'Monthly to Annual Salary Calculator',
-    title: 'Monthly to Annual Salary Calculator | UK and US Take-Home Pay',
+    title: 'Monthly to Annual Salary Calculator | UK, US and Canada Take-Home Pay',
     description:
-      'Convert monthly salary into annual pay, and see UK or US take-home pay after tax on that annual figure. Free, and nothing is stored.',
+      'Convert monthly salary into annual pay, and see UK, US or Canada take-home pay after tax on that annual figure. Free, and nothing is stored.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       // No frequency picker - the input is always a monthly amount, and the hero is always the
       // annual figure (same hero behavior as salary-calculator, just with frequency locked).
@@ -203,6 +250,22 @@ export const SALARY_CALCULATOR_CONFIGS = {
       await page.fill('#salary-pay-amount', '5000');
       await page.click('#salary-calc-button');
       expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(50390.00, 1);
+
+      // --- Canada mode: defaults to Alberta, Quebec must differ --------------------------------
+      await page.click('.sal-mode-btn[data-value="canada"]');
+      await expect(page.locator('#salary-province')).toHaveValue('Alberta');
+      await page.fill('#salary-pay-amount', '5000');
+      await page.click('#salary-calc-button');
+      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(46471.05, 1);
+      expect(await page.locator('#salary-annual-pay').textContent()).not.toContain('£');
+
+      const albertaNet = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      await page.fill('#salary-province', 'Quebec');
+      await page.click('.sal-typeahead-item[data-code="QC"]');
+      await page.click('#salary-calc-button');
+      const quebecNet = parseNumericText(await page.locator('#salary-annual-pay').textContent());
+      expect(quebecNet).not.toBeCloseTo(albertaNet, 1);
+      expect(quebecNet).toBeCloseTo(44202.10, 1);
     },
   },
   'weekly-pay-calculator': {

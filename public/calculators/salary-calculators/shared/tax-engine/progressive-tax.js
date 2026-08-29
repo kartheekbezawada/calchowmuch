@@ -95,17 +95,26 @@ export function calculateThresholdTax(income, threshold, rate) {
  * The UK case: 1 lost for every 2 above 100,000, so the 12,570 allowance is gone by 125,140.
  * That creates a ~60% effective marginal band which users notice and ask about, so the taper
  * has to be modelled rather than approximated.
+ *
+ * `taper.floor` (optional, default 0) is the value the allowance stops shrinking at. The UK
+ * Personal Allowance tapers all the way to nil, so it never sets this. Canada's federal Basic
+ * Personal Amount is the reason this exists: it tapers down to a non-zero floor (14,829 of
+ * 16,452 for 2026), not to zero — without a floor, a `reducedByPerPoundOver` rate calibrated to
+ * reach that floor at one income level would keep shrinking the allowance toward zero at higher
+ * incomes instead of holding flat, which is not how Canada's BPA taper actually behaves.
  */
 export function calculateTaperedAllowance(income, { amount, taper }) {
   if (!taper || income <= taper.thresholdIncome) {
     return { allowance: amount, reducedBy: 0, isTapered: false };
   }
 
+  const floor = taper.floor ?? 0;
   const excess = income - taper.thresholdIncome;
-  const reduction = Math.min(amount, excess * taper.reducedByPerPoundOver);
+  const maxReduction = amount - floor;
+  const reduction = Math.min(maxReduction, excess * taper.reducedByPerPoundOver);
 
   return {
-    allowance: Math.max(0, amount - reduction),
+    allowance: Math.max(floor, amount - reduction),
     reducedBy: reduction,
     isTapered: true,
   };
