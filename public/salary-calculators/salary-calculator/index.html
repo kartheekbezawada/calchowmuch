@@ -2077,27 +2077,12 @@
       }
       
       /*
-       * Widen the container so the cards have room to expand leftward.
-       *
-       * The 1120px cap lives on `.sal-cluster-center-column` in cluster-light.css and is shared by all
-       * 11 salary pages. Scoping the override with `:has()` widens THIS route only, leaving the siblings
-       * untouched. The explanation column below is matched to the same width so the page reads as one
-       * block rather than a wide calculator sitting on a narrow article.
-       */
-      .sal-cluster-center-column:has(#calc-salary-calculator) {
-        /* Measured at a 1920px viewport the old 1400px cap left 520px (27%) of the screen unused while
-           the chip rows below were wrapping for want of ~150px. Track the viewport instead of a fixed
-           cap so wide screens actually get used. */
-        width: min(1760px, calc(100% - 48px));
-      }
-      
-      /*
-       * Spec §2 asks for a 1400px container. NOT applied: the effective width is set by
-       * `.sal-cluster-center-column { width: min(1120px, …) }` in cluster-light.css, which is shared by
-       * all 11 salary pages. Widening it here alone would make this page jump wider than its siblings
-       * when navigating between them; widening it globally is a cluster-wide visual change that is out
-       * of scope for this build. Left at 1120px deliberately — 470px + 634px still reads comfortably.
-       * Raise it in cluster-light.css if the whole cluster should move together.
+       * No per-route container width. This page uses the shared salary-cluster width
+       * (`.sal-cluster-center-column`, `min(1120px, calc(100% - 32px))` in cluster-light.css) — the same
+       * as every sibling salary page, and the same pattern the finance-cluster calculators follow (e.g.
+       * Present Value). An earlier build widened this route to 1760px; that override was removed so wide
+       * viewports keep a generous empty margin on both sides for AdSense auto-placed ads and the
+       * calculator stays visually consistent with the rest of the cluster.
        */
       
       /*
@@ -2378,27 +2363,42 @@
         -webkit-overflow-scrolling: touch;
       }
       
+      /*
+       * Ruled like a spreadsheet. Every cell carries a right + bottom hairline and the table has a full
+       * outer frame, so the pay sheet shows continuous vertical AND horizontal gridlines across the
+       * header, body and footer. The column structure is obvious at a glance, and selecting the table
+       * still pastes into Excel / Google Sheets as one clean gridded block.
+       */
       #calc-salary-calculator .sal-paysheet-table {
         width: 100%;
         border-collapse: collapse;
         min-width: 640px;
         font-size: 14px;
+        border: 1px solid rgba(19, 34, 47, 0.3);
       }
       
       #calc-salary-calculator .sal-paysheet-table th,
       #calc-salary-calculator .sal-paysheet-table td {
-        padding: 10px 12px;
-        border-bottom: 1px solid rgba(19, 34, 47, 0.08);
+        padding: 9px 12px;
+        border-right: 1px solid rgba(19, 34, 47, 0.15);
+        border-bottom: 1px solid rgba(19, 34, 47, 0.15);
         text-align: left;
       }
       
+      #calc-salary-calculator .sal-paysheet-table th:last-child,
+      #calc-salary-calculator .sal-paysheet-table td:last-child {
+        border-right: 0;
+      }
+      
       #calc-salary-calculator .sal-paysheet-table th {
-        background: rgba(19, 34, 47, 0.04);
+        /* Darker header band + near-black text so the column titles read as a header strip, not a row. */
+        background: rgba(19, 34, 47, 0.14);
         font-size: 11.5px;
         font-weight: 800;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: #45606f;
+        color: #13222f;
+        border-bottom: 2px solid rgba(19, 34, 47, 0.34);
       }
       
       #calc-salary-calculator .sal-paysheet-table th:not(:nth-child(1)):not(:nth-child(2)),
@@ -2407,8 +2407,11 @@
       }
       
       #calc-salary-calculator .sal-paysheet-table tfoot td {
+        /* Annual-total row keeps the vertical gridlines but gets a heavier rule above it and a grey
+           fill, so it still stands out as a summary line the way a totals row does in a spreadsheet. */
+        border-top: 2px solid rgba(19, 34, 47, 0.4);
         border-bottom: 0;
-        border-top: 2px solid rgba(19, 34, 47, 0.16);
+        background: rgba(19, 34, 47, 0.07);
         font-weight: 800;
         color: #13222f;
       }

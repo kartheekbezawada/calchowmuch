@@ -76,7 +76,14 @@
       "Bash(echo \"EXIT CODE: $?\")",
       "Bash(node scripts/validate-tax-data.mjs)",
       "Bash(node \"C:/Users/karth/AppData/Local/Temp/claude/c--Users-karth-Desktop-Calculator-project-3-calchowmuch/8170af3d-b625-4a0b-be3d-7cc6c4071c81/scratchpad/smoke-ca-engine.mjs\")",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(node scripts/generate-mpa-pages.js --route /salary-calculators/salary-calculator/)",
+      "Bash(node scripts/generate-mpa-pages.js --route /salary-calculators/monthly-to-annual-salary-calculator/)",
+      "Bash(node scripts/generate-mpa-pages.js --route /salary-calculators/annual-to-monthly-salary-calculator/)",
+      "Bash(TARGET_ROUTE=/salary-calculators/salary-calculator/ node scripts/generate-mpa-pages.js)",
+      "Bash(TARGET_ROUTE=/salary-calculators/monthly-to-annual-salary-calculator/ node scripts/generate-mpa-pages.js)",
+      "Bash(TARGET_ROUTE=/salary-calculators/annual-to-monthly-salary-calculator/ node scripts/generate-mpa-pages.js)",
+      "Bash(node -e \"const d=require\\('./public/calculators/salary-calculators/shared/tax-data/ca.json'\\); console.log\\('top keys:', Object.keys\\(d\\)\\); console.log\\('federal keys:', Object.keys\\(d.federal||{}\\)\\); console.log\\('provinces:', Object.keys\\(d.provinces||{}\\)\\); console.log\\('cpp:', JSON.stringify\\(d.cpp\\)\\); console.log\\('ei:', JSON.stringify\\(d.ei\\)\\);\")"
     ]
   }
 }

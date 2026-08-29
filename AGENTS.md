@@ -51,6 +51,7 @@
 **Pipeline:** `REQUIREMENT -> BUILD -> RELEASE CHECKLIST -> RELEASE SIGN-OFF -> READY`
 
 ### Step 1: Requirement In
+
 - Read: `requirements/universal-rules/README.md` (folder map), `UNIVERSAL_REQUIREMENTS.md` (law), and only the companion docs needed for the task.
 
 ### Step 2: Build
@@ -59,6 +60,7 @@
 - Ensure sitemap coverage.
 
 ### Step 3: Release Checklist (All Gates)
+
 - **Trigger:** Run immediately after build. No human wait.
 - **Gates:**
     - `lint` (Code quality)

@@ -2,9 +2,9 @@
 /**
  * Tax-data schema validator.
  *
- * Enforces the contract in `files/docs/salary calculator/salary-calculator-tax-engine-spec.md` §11.1
- * and the Phase 1 checklist: every table carries versioning metadata, every rate is a sane
- * fraction, and progressive bands are contiguous and non-overlapping.
+ * Enforces the contract in `clusters/salary/docs/tax-engine-spec.md` §11.1 (metadata envelope),
+ * §11.3 (band schedules) and §11.4 (official source URL): every table carries versioning
+ * metadata, every rate is a sane fraction, and progressive bands are contiguous and non-overlapping.
  *
  * Two modes:
  *   node scripts/validate-tax-data.mjs            structural checks only (development)
