@@ -570,7 +570,6 @@
       "routes": [
         "/salary-calculators/",
         "/salary-calculators/salary-calculator/",
-        "/salary-calculators/annual-to-monthly-salary-calculator/",
         "/salary-calculators/overtime-pay-calculator/",
         "/salary-calculators/raise-calculator/",
         "/salary-calculators/bonus-calculator/"
@@ -579,10 +578,6 @@
         "salary-calculator": {
           "route": "/salary-calculators/salary-calculator/",
           "releaseDir": "tests_specs/salary/salary-calculator_release"
-        },
-        "annual-to-monthly-salary-calculator": {
-          "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
-          "releaseDir": "tests_specs/salary/annual-to-monthly-salary-calculator_release"
         },
         "overtime-pay-calculator": {
           "route": "/salary-calculators/overtime-pay-calculator/",

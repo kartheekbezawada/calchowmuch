@@ -6,9 +6,9 @@
 **Canonical location:** `clusters/salary/docs/tax-engine-spec.md` (committed). Code comments and
 `scripts/validate-tax-data.mjs` reference this file by section number (e.g. "spec §8.9").
 
-**Consumers today:** `salary-calculator`, `annual-to-monthly-salary-calculator`,
-`monthly-to-annual-salary-calculator` (the last two are forks of the first — Part II §19 removes
-the fork).
+**Consumers today:** `salary-calculator` only. The `annual-to-monthly-salary-calculator` and
+`monthly-to-annual-salary-calculator` forks were both retired in the 2026-08 consolidation (301'd
+into `salary-calculator`, whose Gross Pay mode covers the pay-period conversion intent).
 
 ---
 
@@ -257,13 +257,12 @@ Renderers, all schema-driven (never `if country ===`):
     result card · bands breakdown · dynamic pay sheet (§27) · tax-saving panel (§28) · CSV / copy
 ```
 
-### §19 De-fork the controllers *(Phase 0)*
+### §19 De-fork the controllers *(Phase 0 — DONE via consolidation)*
 
-`annual-to-monthly-salary-calculator/module.js` and `monthly-to-annual-salary-calculator/module.js`
-are ~1330-line near-verbatim copies of `salary-calculator/module.js`. Extract
-`shared/salary-calculator-core.js` exporting an `initSalaryCalculator(options)` factory; the three
-routes become thin wrappers passing `{ heroField, frequencyPicker, copyOverrides }`. All Part II
-architecture then lands **once**.
+~~`annual-to-monthly-salary-calculator/module.js` and `monthly-to-annual-salary-calculator/module.js`
+are ~1330-line near-verbatim copies of `salary-calculator/module.js`.~~ Both forks were **deleted**
+in the 2026-08 consolidation rather than de-forked — there is now a single salary-calculator
+controller, so all Part II architecture lands there directly with no factory extraction needed.
 
 ### §20 Country module contract
 

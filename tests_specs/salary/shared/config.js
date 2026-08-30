@@ -1,8 +1,8 @@
 export const SALARY_HUB_ROUTE = '/salary-calculators/';
 export const SALARY_HUB_TITLE =
-  'Salary Calculators | Take-Home Pay, Pay Conversion, Overtime, Raise & Bonus';
+  'Salary Calculators | Take-Home Pay, Overtime, Raise & Bonus';
 export const SALARY_HUB_DESCRIPTION =
-  'Five calculators for what you earn: take-home pay after tax in the UK, US and Canada, pay converted between periods, plus overtime, raise and bonus tools.';
+  'Four calculators for what you earn: take-home pay after tax in the UK, US and Canada (with pay converted between periods), plus overtime, raise and bonus tools.';
 
 export const SALARY_CALCULATOR_CONFIGS = {
   'salary-calculator': {
@@ -165,43 +165,6 @@ export const SALARY_CALCULATOR_CONFIGS = {
       // Pay sheet still there, degraded to date + gross only.
       await expect(page.locator('#salary-paysheet')).toBeVisible();
       await expect(page.locator('#salary-paysheet thead th:visible')).toHaveCount(3);
-    },
-  },
-  'annual-to-monthly-salary-calculator': {
-    route: '/salary-calculators/annual-to-monthly-salary-calculator/',
-    h1: 'Annual to Monthly Salary Calculator',
-    title: 'Annual to Monthly Salary Calculator | Convert Hourly, Weekly, Monthly and Annual Pay',
-    description:
-      'Convert a salary between annual, monthly, biweekly, weekly, daily and hourly pay. Enter the amount you know at its frequency and see every other pay period, gross before tax.',
-    runE2E: async ({ page, expect, parseNumericText }) => {
-      // Reframed 2026-08: a gross pay-period converter, no take-home tax modes. It now has a
-      // source-frequency picker; the hero is always the monthly figure.
-      await expect(page.locator('[data-button-group="salary-pay-frequency"]')).toHaveCount(1);
-      await expect(page.locator('.sal-mode-bar')).toHaveCount(0);
-      await expect(page.locator('#salary-paysheet')).toHaveCount(0);
-
-      // --- Annual in -> monthly hero ---------------------------------------------------------
-      await page.fill('#salary-pay-amount', '72000');
-      await page.click('#salary-calc-button');
-      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(6000, 2);
-      expect(parseNumericText(await page.locator('#salary-annual-result').textContent())).toBeCloseTo(72000, 2);
-      expect(await page.locator('#salary-annual-pay').textContent()).not.toContain('£');
-
-      // --- Monthly in -> annual shown in the results ----------------------------------------
-      await page.click('[data-button-group="salary-pay-frequency"] button[data-value="monthly"]');
-      await page.fill('#salary-pay-amount', '5000');
-      await page.click('#salary-calc-button');
-      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(5000, 2);
-      expect(parseNumericText(await page.locator('#salary-annual-result').textContent())).toBeCloseTo(60000, 2);
-
-      // --- Hourly in, custom schedule -----------------------------------------------------
-      await page.click('[data-button-group="salary-pay-frequency"] button[data-value="hourly"]');
-      await page.fill('#salary-pay-amount', '30');
-      await page.fill('#salary-hours-per-week', '40');
-      await page.fill('#salary-weeks-per-year', '52');
-      await page.click('#salary-calc-button');
-      expect(parseNumericText(await page.locator('#salary-annual-result').textContent())).toBeCloseTo(62400, 2);
-      expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(5200, 2);
     },
   },
   'overtime-pay-calculator': {

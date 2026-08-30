@@ -4,6 +4,7 @@ import {
   calculateBonus,
   calculateRaise,
   calculateSalaryCommission,
+  calculateSalaryConversion,
   calculateWeeklyPay,
   convertAnnualPay,
   toAnnualPay,
@@ -72,5 +73,34 @@ describe('salary cluster shared helpers', () => {
     expect(calculateRaise({ currentSalary: 0, mode: 'percent', raisePercent: 5 })).toBeNull();
     expect(calculateBonus({ salaryAmount: 60000, mode: 'amount', bonusAmount: -1 })).toBeNull();
     expect(calculateSalaryCommission({ salesAmount: 0, mode: 'rate', commissionRate: 8 })).toBeNull();
+  });
+
+  // The dedicated Annual-to-Monthly page was retired 2026-08 (folded into salary-calculator's Gross
+  // Pay mode). calculateSalaryConversion still backs that conversion, so its coverage moves here.
+  it('SALARY-CLUSTER-U-6: pay-period conversion works from any source frequency', () => {
+    const fromAnnual = calculateSalaryConversion({
+      amount: 72000,
+      frequency: 'annual',
+      hoursPerWeek: 40,
+      weeksPerYear: 52,
+      daysPerWeek: 5,
+    });
+    expect(fromAnnual.annualPay).toBeCloseTo(72000, 8);
+    expect(fromAnnual.monthlyPay).toBeCloseTo(6000, 8);
+    expect(fromAnnual.biweeklyPay).toBeCloseTo(72000 / 26, 8);
+    expect(fromAnnual.hourlyPay).toBeCloseTo(72000 / 52 / 40, 8);
+
+    const fromHourly = calculateSalaryConversion({
+      amount: 30,
+      frequency: 'hourly',
+      hoursPerWeek: 40,
+      weeksPerYear: 52,
+      daysPerWeek: 5,
+    });
+    expect(fromHourly.annualPay).toBeCloseTo(62400, 8);
+    expect(fromHourly.monthlyPay).toBeCloseTo(5200, 8);
+
+    expect(calculateSalaryConversion({ amount: 0, frequency: 'annual', weeksPerYear: 52 })).toBeNull();
+    expect(calculateSalaryConversion({ amount: 72000, frequency: 'annual', weeksPerYear: 0 })).toBeNull();
   });
 });

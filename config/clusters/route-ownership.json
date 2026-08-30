@@ -242,14 +242,6 @@
       "generationMode": "cluster"
     },
     {
-      "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
-      "calculatorId": "annual-to-monthly-salary-calculator",
-      "activeOwnerClusterId": "salary",
-      "previousOwnerClusterId": "legacy-shared",
-      "rollbackTag": "pre-salary-rollout-20260326",
-      "generationMode": "cluster"
-    },
-    {
       "route": "/salary-calculators/overtime-pay-calculator/",
       "calculatorId": "overtime-pay-calculator",
       "activeOwnerClusterId": "salary",

@@ -362,9 +362,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-calculators-hub': {
-    title: 'Salary Calculators | Take-Home Pay, Pay Conversion, Overtime, Raise & Bonus',
+    title: 'Salary Calculators | Take-Home Pay, Overtime, Raise & Bonus',
     description:
-      'Five calculators for what you earn: take-home pay after tax in the UK, US and Canada, pay converted between periods, plus overtime, raise and bonus tools.',
+      'Four calculators for what you earn: take-home pay after tax in the UK, US and Canada (with pay converted between periods), plus overtime, raise and bonus tools.',
     h1: 'Salary Calculators',
     explanationHeading: '',
     paneLayout: 'single',
@@ -377,14 +377,6 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.',
     h1: 'Salary Calculator',
-    explanationHeading: '',
-    paneLayout: 'single',
-  },
-  'annual-to-monthly-salary-calculator': {
-    title: 'Annual to Monthly Salary Calculator | Convert Hourly, Weekly, Monthly and Annual Pay',
-    description:
-      'Convert a salary between annual, monthly, biweekly, weekly, daily and hourly pay. Enter the amount you know at its frequency and see every other pay period, gross before tax.',
-    h1: 'Annual to Monthly Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -1445,7 +1437,8 @@ const SALARY_SCHEMA_CONFIG = {
       'Canada take-home pay after federal tax, provincial tax, CPP and EI',
       "All 13 Canadian provinces and territories, including Quebec's QPP and QPIP",
       'Pension, 401(k)/pre-tax and student loan deductions',
-      'Bonus impact on take-home pay',
+      'Overtime, bonus and commission added to gross',
+      'Gross pay converted between annual, monthly, 4-weekly, weekly, daily and hourly',
       'Pay sheet of upcoming paydays with net amounts',
     ],
     keywords: [
@@ -1458,23 +1451,8 @@ const SALARY_SCHEMA_CONFIG = {
       'cpp calculator',
       'qpp calculator',
       'net pay calculator',
-    ],
-  },
-  'annual-to-monthly-salary-calculator': {
-    softwareName: 'Annual to Monthly Salary Calculator',
-    softwareDescription:
-      'Convert a salary between annual, monthly, biweekly, weekly, daily and hourly gross pay using your own hours and weeks per year.',
-    featureList: [
-      'Annual salary converted to monthly pay',
-      'Hourly, daily, weekly and biweekly equivalents',
-      'Any source pay frequency, including hourly and weekly',
-      'Editable hours per week, weeks per year and workdays',
-      'Gross pay only, no hidden payroll assumptions',
-    ],
-    keywords: [
       'annual to monthly salary calculator',
       'monthly to annual salary calculator',
-      'yearly to monthly pay',
       'hourly to salary calculator',
       'salary to hourly calculator',
       'weekly pay calculator',
@@ -3071,7 +3049,6 @@ const PRICING_CLUSTER_REDESIGN_ORDER = [
 const SALARY_CLUSTER_REDESIGN_ORDER = [
   'salary-calculators-hub',
   'salary-calculator',
-  'annual-to-monthly-salary-calculator',
   'overtime-pay-calculator',
   'raise-calculator',
   'bonus-calculator',
@@ -5893,7 +5870,7 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
               Work out take-home pay after tax, convert pay between periods, and value overtime,
               raises and bonuses with the
               <a href="/salary-calculators/salary-calculator/">salary calculator</a>,
-              <a href="/salary-calculators/annual-to-monthly-salary-calculator/">annual to monthly salary calculator</a>,
+              <a href="/salary-calculators/overtime-pay-calculator/">overtime pay calculator</a>,
               and <a href="/salary-calculators/raise-calculator/">raise calculator</a>.
             </p>
           </section>

@@ -5,7 +5,7 @@ describe('route-scope planner generation', () => {
   const planner = buildPlannerData();
 
   it('builds deterministic baseline counts', () => {
-    expect(planner.rows).toHaveLength(84);
+    expect(planner.rows).toHaveLength(83);
 
     const counts = Object.fromEntries(
       planner.prefixSummary.map((row) => [row.routePrefix, row.calculatorCount])

@@ -27,15 +27,6 @@
       "css": { "core": [], "route": [], "critical": null },
       "js": { "core": [], "route": ["/calculators/salary-calculators/salary-calculator/module.js"] }
     },
-    "/salary-calculators/annual-to-monthly-salary-calculator/": {
-      "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
-      "calculatorId": "annual-to-monthly-salary-calculator",
-      "clusterId": "salary",
-      "buildId": "salary-rollout-20260326",
-      "isolationBoundary": "route",
-      "css": { "core": [], "route": [], "critical": null },
-      "js": { "core": [], "route": ["/calculators/salary-calculators/annual-to-monthly-salary-calculator/module.js"] }
-    },
     "/salary-calculators/overtime-pay-calculator/": {
       "route": "/salary-calculators/overtime-pay-calculator/",
       "calculatorId": "overtime-pay-calculator",

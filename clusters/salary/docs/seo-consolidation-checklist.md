@@ -285,6 +285,25 @@ the **Progress log** at the bottom current.
   "How are overtime, bonuses and commission taxed?" + new "How do I enter overtime?"; paydays
   FAQ de-bonus'd. `module.js` `FAQ_ITEMS`/`FAQ_SCHEMA` mirrored. Regenerated. **Thin-score 98
   (Strong), 0 hard flags, 21 FAQ, similarity 22.8%; 1267 vitest + 18 salary Playwright green.**
+- 2026-08-31 — **`annual-to-monthly-salary-calculator` also retired** (cluster now **4 calculators
+  + hub**, was 5). User: "no point having another Annual to Monthly Salary Calculator — remove it
+  and add the keywords to the salary calculator." Its conversion intent is fully covered by
+  `salary-calculator`'s Gross Pay mode.
+  - 301: `annual-to-monthly-salary-calculator` (+ `/index.html`, `/calculators/...*`) →
+    `/salary-calculators/salary-calculator/`. The 4 earlier conversion 301s (hourly-to-salary,
+    salary-to-hourly, monthly-to-annual, weekly-pay) were **repointed** from annual-to-monthly to
+    salary-calculator so no redirect chains.
+  - Keywords folded into `salary-calculator` (both `navigation.json` copies + `SALARY_SCHEMA_CONFIG`):
+    annual to monthly / monthly to annual / hourly to salary / salary to hourly / weekly pay /
+    pay converter / yearly to monthly. featureList gained a conversion line.
+  - Removed from: generator (`SALARY_CLUSTER_REDESIGN_ORDER`, `CALCULATOR_OVERRIDES`,
+    `SALARY_SCHEMA_CONFIG`), both `navigation.json` + `asset-manifest.json`, `route-ownership.json`,
+    `test-scope-map.json`, hub `content.html`, homepage seo-block, sitemap, `public/calculators/index.html`.
+  - Deleted: fragment dir, built dir, `tests_specs/salary/annual-to-monthly-salary-calculator_release/`.
+    `calculateSalaryConversion` coverage moved to `unit.cluster.test.js` (SALARY-CLUSTER-U-6).
+  - Tests: `contracts.cluster` 5→4, `route-scope-validator` 84→83, `config.js` hub copy "Five"→"Four".
+  - **Bonus fix:** the `--all` regen also corrected `public/calculators/index.html` and the homepage
+    seo-block, which the prior consolidation commit had left pointing at now-301'd salary routes.
 - **#7 full framework — NOT attempted in-session and not doable in one.** Per-period statutory
   withholding (IRS Pub 15-T, HMRC cumulative PAYE, CRA T4127), year-keyed tax-data dirs,
   contribution-limit + employer-contribution models, tax-saving panel and the conformance suite

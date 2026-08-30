@@ -15,15 +15,9 @@ Pass criteria:
 
 Ownership: cluster release owner.
 
-Routes:
+Routes (consolidated 2026-08, 11 calculators -> 4 + hub):
 - /salary-calculators/
 - /salary-calculators/salary-calculator/
-- /salary-calculators/hourly-to-salary-calculator/
-- /salary-calculators/salary-to-hourly-calculator/
-- /salary-calculators/annual-to-monthly-salary-calculator/
-- /salary-calculators/monthly-to-annual-salary-calculator/
-- /salary-calculators/weekly-pay-calculator/
 - /salary-calculators/overtime-pay-calculator/
 - /salary-calculators/raise-calculator/
 - /salary-calculators/bonus-calculator/
-- /salary-calculators/commission-calculator/

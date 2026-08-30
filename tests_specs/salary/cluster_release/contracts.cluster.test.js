@@ -13,10 +13,10 @@ describe('salary cluster contracts', () => {
     expect(Array.isArray(cluster.routes)).toBeTruthy();
     expect(cluster.routes).toContain('/salary-calculators/');
     expect(cluster.routes).toContain('/salary-calculators/salary-calculator/');
-    expect(cluster.routes).toContain('/salary-calculators/annual-to-monthly-salary-calculator/');
+    expect(cluster.routes).toContain('/salary-calculators/overtime-pay-calculator/');
     expect(cluster.calculators && typeof cluster.calculators).toBe('object');
-    // Consolidated 2026-08 from 11 to 5 (+ hub): see clusters/salary/docs/seo-consolidation-checklist.md
-    expect(Object.keys(cluster.calculators)).toHaveLength(5);
+    // Consolidated 2026-08 from 11 to 4 (+ hub): see clusters/salary/docs/seo-consolidation-checklist.md
+    expect(Object.keys(cluster.calculators)).toHaveLength(4);
 
     for (const [calcId, calc] of Object.entries(cluster.calculators)) {
       expect(calcId).toBeTruthy();
