@@ -7,14 +7,20 @@ import {
   setText,
 } from '/calculators/salary-calculators/shared/salary-utils.js';
 
+// Keep in sync with the FAQ block in explanation.html (static build extracts that; this copy is
+// what the client-side setPageMetadata swaps in).
 const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'How do you calculate overtime pay?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply the hourly rate by overtime hours and the overtime multiplier.' } },
-    { '@type': 'Question', name: 'Why is the overtime multiplier editable?', acceptedAnswer: { '@type': 'Answer', text: 'Overtime treatment can vary by employer or situation, so you need to enter the multiplier that matches your case.' } },
-    { '@type': 'Question', name: 'Can I include total pay with overtime?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. If base pay is entered, the calculator can show total pay plus overtime.' } },
-    { '@type': 'Question', name: 'Does this route assume a legal overtime rule?', acceptedAnswer: { '@type': 'Answer', text: 'No. It is a user-input calculator and does not imply one legal overtime standard.' } },
-    { '@type': 'Question', name: 'Does the result include tax deductions?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross overtime pay only.' } },
+    { '@type': 'Question', name: 'How do you calculate overtime pay?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply your hourly rate by the overtime hours and by the overtime multiplier. At $25 an hour, 10 hours at 1.5x is $375.' } },
+    { '@type': 'Question', name: 'Why does the calculator make me enter the multiplier?', acceptedAnswer: { '@type': 'Answer', text: 'Overtime rules vary by country, state, employer, and shift. Rather than assume one standard the tool cannot verify, it uses the multiplier that matches your situation.' } },
+    { '@type': 'Question', name: 'What is time-and-a-half versus double-time?', acceptedAnswer: { '@type': 'Answer', text: 'Time-and-a-half is a 1.5x multiplier, common for hours over a weekly or daily threshold. Double-time is 2x, often used for holidays or hours past a second threshold.' } },
+    { '@type': 'Question', name: 'Is overtime taxed at a higher rate?', acceptedAnswer: { '@type': 'Answer', text: 'No. Overtime is taxed at your normal rates when you file. A larger single paycheck can have more tax withheld for that period, but that is a timing effect, not a higher rate.' } },
+    { '@type': 'Question', name: 'Do salaried employees get overtime?', acceptedAnswer: { '@type': 'Answer', text: 'Often not. Employees classified as exempt typically receive no overtime premium, so extra hours add nothing on this calculator for them.' } },
+    { '@type': 'Question', name: 'What rate should I enter if I get shift bonuses?', acceptedAnswer: { '@type': 'Answer', text: 'Use the blended regular rate, not just your base wage. Shift differentials and non-discretionary bonuses can raise the rate overtime must be calculated on.' } },
+    { '@type': 'Question', name: 'Can I get my full weekly pay from this?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Set base pay to your regular hours times your rate, add the overtime block, and total pay is your weekly gross before tax.' } },
+    { '@type': 'Question', name: 'Does the result include tax or deductions?', acceptedAnswer: { '@type': 'Answer', text: 'No. It returns gross overtime and gross total pay. Run the total through the Salary Calculator for a take-home estimate.' } },
+    { '@type': 'Question', name: 'Should I rely on overtime for regular budgeting?', acceptedAnswer: { '@type': 'Answer', text: 'Treat it as a cushion, not core income. Overtime can be reduced or removed without notice, so budget from base pay and use overtime to pay down debt or add to savings.' } },
   ],
 };
 

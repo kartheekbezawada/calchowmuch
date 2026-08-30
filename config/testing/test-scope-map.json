@@ -570,41 +570,19 @@
       "routes": [
         "/salary-calculators/",
         "/salary-calculators/salary-calculator/",
-        "/salary-calculators/hourly-to-salary-calculator/",
-        "/salary-calculators/salary-to-hourly-calculator/",
         "/salary-calculators/annual-to-monthly-salary-calculator/",
-        "/salary-calculators/monthly-to-annual-salary-calculator/",
-        "/salary-calculators/weekly-pay-calculator/",
         "/salary-calculators/overtime-pay-calculator/",
         "/salary-calculators/raise-calculator/",
-        "/salary-calculators/bonus-calculator/",
-        "/salary-calculators/commission-calculator/",
-        "/salary-calculators/inflation-adjusted-salary-calculator/"
+        "/salary-calculators/bonus-calculator/"
       ],
       "calculators": {
         "salary-calculator": {
           "route": "/salary-calculators/salary-calculator/",
           "releaseDir": "tests_specs/salary/salary-calculator_release"
         },
-        "hourly-to-salary-calculator": {
-          "route": "/salary-calculators/hourly-to-salary-calculator/",
-          "releaseDir": "tests_specs/salary/hourly-to-salary-calculator_release"
-        },
-        "salary-to-hourly-calculator": {
-          "route": "/salary-calculators/salary-to-hourly-calculator/",
-          "releaseDir": "tests_specs/salary/salary-to-hourly-calculator_release"
-        },
         "annual-to-monthly-salary-calculator": {
           "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
           "releaseDir": "tests_specs/salary/annual-to-monthly-salary-calculator_release"
-        },
-        "monthly-to-annual-salary-calculator": {
-          "route": "/salary-calculators/monthly-to-annual-salary-calculator/",
-          "releaseDir": "tests_specs/salary/monthly-to-annual-salary-calculator_release"
-        },
-        "weekly-pay-calculator": {
-          "route": "/salary-calculators/weekly-pay-calculator/",
-          "releaseDir": "tests_specs/salary/weekly-pay-calculator_release"
         },
         "overtime-pay-calculator": {
           "route": "/salary-calculators/overtime-pay-calculator/",
@@ -617,14 +595,6 @@
         "bonus-calculator": {
           "route": "/salary-calculators/bonus-calculator/",
           "releaseDir": "tests_specs/salary/bonus-calculator_release"
-        },
-        "commission-calculator": {
-          "route": "/salary-calculators/commission-calculator/",
-          "releaseDir": "tests_specs/salary/commission-calculator_release"
-        },
-        "inflation-adjusted-salary-calculator": {
-          "route": "/salary-calculators/inflation-adjusted-salary-calculator/",
-          "releaseDir": "tests_specs/salary/inflation-adjusted-salary-calculator_release"
         }
       }
     }

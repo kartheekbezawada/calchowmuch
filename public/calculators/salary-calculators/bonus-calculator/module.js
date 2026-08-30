@@ -9,14 +9,21 @@ import {
   setText,
 } from '/calculators/salary-calculators/shared/salary-utils.js';
 
+// Keep in sync with the FAQ block in explanation.html (the static build extracts that; this is
+// the copy the client-side setPageMetadata swaps in, so drift shows JS vs non-JS crawlers
+// different questions).
 const FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
-    { '@type': 'Question', name: 'How do you calculate a bonus from salary?', acceptedAnswer: { '@type': 'Answer', text: 'Multiply salary by the bonus percentage, or enter a known bonus amount directly.' } },
-    { '@type': 'Question', name: 'Can I use a percentage or a flat amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator supports both a percent-based bonus and a flat bonus amount.' } },
-    { '@type': 'Question', name: 'Does this show total compensation?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Total compensation is the base salary plus bonus amount.' } },
-    { '@type': 'Question', name: 'Can I reverse the bonus percent from a known bonus amount?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator also shows the effective bonus percentage when salary and bonus are known.' } },
-    { '@type': 'Question', name: 'Does this include tax on bonuses?', acceptedAnswer: { '@type': 'Answer', text: 'No. It estimates gross bonus and total compensation only.' } },
+    { '@type': 'Question', name: 'How is a bonus calculated from salary?', acceptedAnswer: { '@type': 'Answer', text: 'In percent mode, bonus amount equals salary multiplied by the bonus percentage. In flat-amount mode you enter the bonus directly and the tool works out what percentage of salary it represents.' } },
+    { '@type': 'Question', name: 'What is total compensation here?', acceptedAnswer: { '@type': 'Answer', text: 'Base salary plus the bonus amount, before tax. It is the figure to compare when two offers split pay differently between base and bonus.' } },
+    { '@type': 'Question', name: 'Is a bonus taxed more than salary?', acceptedAnswer: { '@type': 'Answer', text: 'Not in the end. US employers often withhold a flat 22% on supplemental pay such as bonuses, and other countries use a similar shortcut, but your actual tax is settled on total income when you file. The higher withholding is a cash-flow timing effect, not a higher tax rate.' } },
+    { '@type': 'Question', name: 'Does this calculator apply any tax?', acceptedAnswer: { '@type': 'Answer', text: 'No. It returns gross bonus and gross total compensation. For take-home after tax, run the total through the Salary Calculator.' } },
+    { '@type': 'Question', name: 'Can I reverse a known bonus into a percentage?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Enter your salary and the bonus in flat-amount mode; the effective bonus percentage is shown next to total compensation.' } },
+    { '@type': 'Question', name: 'Should I count a target bonus as guaranteed income?', acceptedAnswer: { '@type': 'Answer', text: 'Usually not. A target is what pays out if performance and company results land as expected. Check the recent payout history and whether it is discretionary before you budget around it.' } },
+    { '@type': 'Question', name: 'How does a bonus compare with a raise of the same size?', acceptedAnswer: { '@type': 'Answer', text: 'A raise changes base pay permanently and compounds into future raises; a one-off bonus does neither. Model both in the Raise Calculator to see the multi-year gap.' } },
+    { '@type': 'Question', name: 'What about a signing bonus that is clawed back if I leave early?', acceptedAnswer: { '@type': 'Answer', text: 'Model it as flat-amount pay for the first year only, and read the clawback terms carefully: many require repayment of the gross amount even though you received a smaller net payment.' } },
+    { '@type': 'Question', name: 'Can the bonus be more than 100% of salary?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The calculator accepts any non-negative amount, so equity-heavy or commission-style packages where variable pay exceeds base are handled; the effective percentage just goes above 100%.' } },
   ],
 };
 

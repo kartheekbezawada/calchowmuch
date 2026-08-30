@@ -254,7 +254,7 @@ test.describe('Official standalone homepage', () => {
     await expect(salaryToggle).toContainText('Collapse');
     expect(await salaryCard.locator('[data-route-link]').count()).toBeGreaterThan(4);
     await expect(
-      salaryCard.locator('[data-route-link][href="/salary-calculators/commission-calculator/"]')
+      salaryCard.locator('[data-route-link][href="/salary-calculators/bonus-calculator/"]')
     ).toHaveCount(1);
 
     await homeLoanToggle.click();

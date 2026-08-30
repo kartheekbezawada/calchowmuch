@@ -10,8 +10,10 @@ import { calculateGrossOnly } from '/calculators/salary-calculators/shared/tax-e
 import { calculateUkTakeHome } from '/calculators/salary-calculators/shared/tax-engine/uk-engine.js';
 import { calculateUsTakeHome } from '/calculators/salary-calculators/shared/tax-engine/us-engine.js';
 import { calculateCaTakeHome } from '/calculators/salary-calculators/shared/tax-engine/ca-engine.js';
-import { fromAnnual, toAnnual } from '/calculators/salary-calculators/shared/tax-engine/pay-frequency.js';
+import { FREQUENCY_LABELS, fromAnnual, toAnnual } from '/calculators/salary-calculators/shared/tax-engine/pay-frequency.js';
 import { generatePaySchedule } from '/calculators/salary-calculators/shared/tax-engine/pay-schedule.js';
+import { resolveExtraPayments } from '/calculators/salary-calculators/shared/tax-engine/extra-payments.js';
+import { deductionRows } from '/calculators/salary-calculators/shared/tax-engine/deduction-rows.js';
 
 const TAX_DATA_BASE = '/calculators/salary-calculators/shared/tax-data/uk';
 const US_DATA_BASE = '/calculators/salary-calculators/shared/tax-data/us';
@@ -44,9 +46,14 @@ const FAQ_ITEMS = [
       "The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works.",
   },
   {
-    question: "How is a bonus taxed?",
+    question: "How are overtime, bonuses and commission taxed?",
     answer:
-      "The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band.",
+      "Each extra payment is converted to an annual amount using the frequency you set, added to your salary, and the total tax is worked out on the combined figure. That is more accurate than applying your marginal rate to the extra, because it can push part of your income into a higher band.",
+  },
+  {
+    question: "How do I enter overtime?",
+    answer:
+      "Choose one of three methods: a fixed amount, an hourly rate multiplied by hours worked, or a percentage of a gross-pay basis you pick - hourly, weekly, 4-weekly, monthly or annual. Set how often that overtime occurs and the calculator annualises it before adding it to your gross.",
   },
   {
     question: "Why is 4-weekly pay not the same as monthly pay?",
@@ -56,7 +63,7 @@ const FAQ_ITEMS = [
   {
     question: "Can I see the dates I will actually be paid?",
     answer:
-      "Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on.",
+      "Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one. Any extra payments are spread evenly across those paydays.",
   },
   {
     question: "Why does my payslip differ from this estimate?",
@@ -133,7 +140,7 @@ setPageMetadata(
   buildSalaryMetadata({
     title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
     description:
-      'Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
+      'Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.',
     canonical: 'https://calchowmuch.com/salary-calculators/salary-calculator/',
     name: 'Salary Calculator',
     appDescription:
@@ -162,6 +169,7 @@ setPageMetadata(
 
 const el = (id) => document.querySelector(`#${id}`);
 
+const shell = el('calc-salary-calculator');
 const amountInput = el('salary-pay-amount');
 const hoursInput = el('salary-hours-per-week');
 const weeksInput = el('salary-weeks-per-year');
@@ -170,14 +178,24 @@ const errorNode = el('salary-calc-error');
 const calculateButton = el('salary-calc-button');
 const copyButton = el('salary-copy-summary');
 const copyFeedback = el('salary-copy-feedback');
-const dirtyChip = el('salary-dirty-chip');
 
 const pensionPercentInput = el('salary-pension-percent');
 const pensionReliefSelect = el('salary-pension-relief');
 const loanPlanSelect = el('salary-loan-plan');
 const loanPostgradInput = el('salary-loan-postgrad');
 const bonusAmountInput = el('salary-bonus-amount');
-const bonusMonthSelect = el('salary-bonus-month');
+const bonusFrequencySelect = el('salary-bonus-frequency');
+const otMethodSelect = el('salary-ot-method');
+const otAmountInput = el('salary-ot-amount');
+const otRateInput = el('salary-ot-rate');
+const otHoursInput = el('salary-ot-hours');
+const otPercentInput = el('salary-ot-percent');
+const otBasisSelect = el('salary-ot-basis');
+const otFrequencySelect = el('salary-ot-frequency');
+const commissionAmountInput = el('salary-commission-amount');
+const commissionFrequencySelect = el('salary-commission-frequency');
+const extraAmountInput = el('salary-extra-amount');
+const extraFrequencySelect = el('salary-extra-frequency');
 const firstPayInput = el('salary-first-pay');
 const weekendRuleSelect = el('salary-weekend-rule');
 const stateInput = el('salary-state');
@@ -203,6 +221,7 @@ const outputs = {
   splitLegend: el('salary-split-legend'),
   bandList: el('salary-band-list'),
   monthly: el('salary-monthly-pay'),
+  fourWeekly: el('salary-fourweekly-pay'),
   biweekly: el('salary-biweekly-pay'),
   weekly: el('salary-weekly-pay'),
   daily: el('salary-daily-pay'),
@@ -212,6 +231,9 @@ const outputs = {
   paysheetMeta: el('salary-paysheet-meta'),
   paysheetAssumed: el('salary-paysheet-assumed'),
   assumedDate: el('salary-assumed-date'),
+  deductionsCard: el('salary-deductions'),
+  deductionsList: el('salary-deductions-list'),
+  deductionsTotal: el('salary-deductions-total'),
 };
 
 /* ------------------------------------------------------------------ state */
@@ -223,6 +245,15 @@ let latestSummary = '';
 let copyTimer = null;
 let payDateUserSet = false;
 let sheetFrequencyUserSet = false;
+
+// The result reflects the inputs as of the last Calculate press. `lastResult` / `lastPeriods` /
+// `lastFrequency` are that snapshot, reused when the pay-sheet cadence toggle re-renders the sheet
+// without re-reading (possibly changed) inputs. `calcPending` is set when calculate() bailed out
+// waiting on a tax-data fetch, so the fetch's `.then` knows to retry.
+let lastResult = null;
+let lastFrequency = 'annual';
+let lastPeriods = null;
+let calcPending = false;
 
 // Gross Pay mode stays currency-NEUTRAL, exactly as this page has always been. It is pure
 // arithmetic and is used by visitors outside the UK, so stamping a £ on it would be a
@@ -368,14 +399,22 @@ function clearResults() {
   if (details) details.hidden = true;
   const paysheet = el('salary-paysheet');
   if (paysheet) paysheet.hidden = true;
+  const jump = el('salary-paysheet-jump');
+  if (jump) jump.hidden = true;
+  const panel = el('salary-summary-panel');
+  if (panel) panel.innerHTML = '';
 
   latestSummary = '';
+  lastResult = null;
+  lastPeriods = null;
 }
 
 function showError(message) {
   if (!errorNode) return;
   errorNode.hidden = false;
   errorNode.textContent = message;
+  // An error message and the amber "press Calculate" nudge would compete for the same spot.
+  setStale(false);
 }
 
 function clearError() {
@@ -384,31 +423,23 @@ function clearError() {
   errorNode.textContent = '';
 }
 
-function setDirty(isDirty) {
-  if (!dirtyChip) return;
-  // With live calculation the "click Calculate" prompt would be wrong, so this reports state
-  // rather than instructing an action that is no longer required.
-  dirtyChip.textContent = isDirty ? 'Updating...' : 'Updated';
-  dirtyChip.classList.toggle('is-dirty', isDirty);
+/**
+ * Result freshness.
+ *
+ * Calculation is deliberately gated behind the Calculate button. The page opens on a fixed
+ * Annual 100,000 baseline and nothing — not a salary edit, not a frequency chip, not even a
+ * mode switch — moves the figure until Calculate is pressed. `setStale(true)` dims the answer,
+ * emphasises the button and shows the hint; `calculate()` clears it on success.
+ */
+function setStale(isStale) {
+  shell?.classList.toggle('is-stale', isStale);
+  const hint = el('salary-stale-hint');
+  if (hint) hint.hidden = !isStale;
 }
 
-/**
- * Recalculate as the user types rather than making them find the Calculate button.
- *
- * The button sat at the bottom of a tall form card while the result sat at the top of the results
- * card, roughly 900px apart, so clicking it meant scrolling away from the answer and back again.
- * Live calculation removes that round trip entirely. The button stays as an explicit action for
- * anyone who expects one, but nothing depends on it.
- *
- * Debounced so a four-digit salary does not trigger four full recalculations, and because the US
- * path can touch the state cache.
- */
-let liveTimer = null;
-function markDirty() {
+function markStale() {
   clearError();
-  setDirty(true);
-  window.clearTimeout(liveTimer);
-  liveTimer = window.setTimeout(() => calculate(), 250);
+  setStale(true);
 }
 
 function setCopyFeedback(message, tone = 'success') {
@@ -451,26 +482,29 @@ function schedule() {
 
 const frequencyButtons = setupButtonGroup(document.querySelector('[data-button-group="salary-pay-frequency"]'), {
   defaultValue: 'annual',
-  onChange: () => markDirty(),
+  onChange: () => markStale(),
 });
 
 const regionButtons = setupButtonGroup(document.querySelector('[data-button-group="salary-region"]'), {
   defaultValue: 'england',
-  onChange: () => markDirty(),
+  onChange: () => markStale(),
 });
 
 const filingStatusButtons = setupButtonGroup(document.querySelector('[data-button-group="salary-filing-status"]'), {
   defaultValue: 'single',
-  onChange: () => markDirty(),
+  onChange: () => markStale(),
 });
 
 const sheetFrequencyButtons = setupButtonGroup(
   document.querySelector('[data-button-group="salary-sheet-frequency"]'),
   {
     defaultValue: 'monthly',
+    // The sheet cadence is a display toggle on an already-calculated result, so it re-renders the
+    // pay sheet from `lastResult` rather than re-running calculate() (which would fold in any
+    // uncalculated input edits).
     onChange: () => {
       sheetFrequencyUserSet = true;
-      calculate();
+      rerenderPaySheet();
     },
   }
 );
@@ -480,16 +514,12 @@ setupButtonGroup(document.querySelector('[data-button-group="salary-mode"]'), {
   onChange: (value) => {
     mode = value;
     applyMode();
-    // USA defaults to Texas, Canada defaults to Alberta - both rather than showing an error
-    // until the visitor picks a jurisdiction. chooseState()/chooseProvince() run their own
-    // calculate() once that jurisdiction's tax data has loaded.
-    if (mode === 'us' && !selectedState) {
-      void chooseState('TX');
-    } else if (mode === 'canada' && !selectedProvince) {
-      void chooseProvince('AB');
-    } else {
-      calculate();
-    }
+    // Seed the default jurisdiction so it is ready for the next Calculate press - USA to Texas,
+    // Canada to Alberta. Neither triggers a calculation: a mode switch only relabels the card and
+    // shows that country's controls; the figure moves only when Calculate is pressed.
+    if (mode === 'us' && !selectedState) void chooseState('TX');
+    else if (mode === 'canada' && !selectedProvince) void chooseProvince('AB');
+    markStale();
   },
 });
 
@@ -523,6 +553,12 @@ function applyMode() {
   }
   const localNote = el('salary-local-note');
   if (localNote) localNote.hidden = !isUs;
+
+  // A mode switch no longer recalculates, but the pay sheet's column set is a display concern, not
+  // a computed value - keep it in step with the mode so Gross Pay never shows tax columns it
+  // cannot fill (the numbers stay stale until Calculate, along with the rest of the answer).
+  const paysheet = el('salary-paysheet');
+  if (paysheet) paysheet.classList.toggle('is-gross', isGross);
 
   // An optional chip hidden by a mode change must also give up its panel and its pressed state.
   // Without this, turning on UK Pension and switching to USA leaves the panel on screen under a
@@ -581,7 +617,7 @@ document.querySelectorAll('.sal-opt-chip').forEach((chip) => {
     chip.classList.toggle('is-active', !isOn);
     const panel = el(`salary-panel-${chip.dataset.opt}`);
     if (panel) panel.hidden = isOn;
-    calculate();
+    markStale();
   });
 });
 
@@ -665,7 +701,9 @@ async function chooseState(code) {
     setText(stateHint, `Could not load tax data for ${entry[1]}.`);
     selectedState = null;
   }
-  calculate();
+  // If a Calculate press was waiting on this state's data, run it now; otherwise just mark stale.
+  if (calcPending) calculate();
+  else markStale();
 }
 
 stateInput?.addEventListener('input', () => {
@@ -764,7 +802,8 @@ async function chooseProvince(code) {
       ? `${entry[1]} uses QPP instead of CPP, a reduced EI rate plus a separate QPIP premium, and a federal tax abatement.`
       : `Provincial income tax for ${entry[1]} will be included.`
   );
-  calculate();
+  if (calcPending) calculate();
+  else markStale();
 }
 
 provinceInput?.addEventListener('input', () => {
@@ -974,14 +1013,10 @@ function renderPaySheet(result) {
 
   const frequency = sheetFrequencyButtons?.getValue() ?? 'monthly';
 
-  // Regular periods must be built from the WITHOUT-bonus result. Using the with-bonus figures
-  // would spread the bonus's tax across all twelve rows, which is exactly the smearing this
-  // feature exists to avoid.
-  const bonusGross = optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0;
-  const baseResult = bonusGross > 0 ? calculateFor({ ...currentInputs(), bonus: 0 }) : result;
-  const bonusNet = bonusGross > 0 && baseResult ? result.netAnnual - baseResult.netAnnual : 0;
-
-  const seg = segmentsFor(baseResult || result);
+  // Extra payments (overtime / bonus / commission / other) are already folded into `result.gross`
+  // and spread evenly across the year, so the pay sheet works straight from the with-extras
+  // result — no separate bonus-on-one-payday handling.
+  const seg = segmentsFor(result);
   const deductions = [
     { id: 'tax', label: seg.labels.tax, annualAmount: seg.tax },
     { id: 'ni', label: seg.labels.ni, annualAmount: seg.ni },
@@ -1001,16 +1036,11 @@ function renderPaySheet(result) {
   const schedule = generatePaySchedule({
     firstPayDate: firstPayInput?.value || firstOfNextMonth(),
     frequency,
-    // Annual figures exclude the bonus so the regular periods stay regular; the bonus and the tax
-    // it brings with it are added back on its own payday inside the schedule engine.
-    annualGross: (baseResult || result).gross,
-    annualNet: (baseResult || result).netAnnual,
+    annualGross: result.gross,
+    annualNet: result.netAnnual,
     deductions,
     periods: 12,
     weekendRule: weekendRuleSelect?.value || 'previous',
-    bonusMonthIndex: bonusGross > 0 ? Number(bonusMonthSelect?.value ?? 11) : null,
-    bonusGross,
-    bonusNet,
   });
 
   outputs.paysheetBody.innerHTML = schedule.rows
@@ -1051,6 +1081,7 @@ function renderPeriods(result) {
   const periods = fromAnnual(result.netAnnual, schedule());
   setText(outputs.hero, money(result.netAnnual));
   setText(outputs.monthly, money(periods.monthly));
+  setText(outputs.fourWeekly, money(periods.fourWeekly));
   setText(outputs.biweekly, money(periods.biweekly));
   setText(outputs.weekly, money(periods.weekly));
   setText(outputs.daily, money(periods.daily));
@@ -1061,7 +1092,8 @@ function renderPeriods(result) {
 /* ------------------------------------------------------------------ calculate */
 
 function buildAssumptionsLine(frequency) {
-  return `Assumptions: source ${frequency} pay · ${formatInputValue(hoursInput, '40')} hrs/week · ${formatInputValue(
+  const freqLabel = (FREQUENCY_LABELS[frequency] || frequency).toLowerCase();
+  return `Assumptions: source ${freqLabel} gross salary · ${formatInputValue(hoursInput, '40')} hrs/week · ${formatInputValue(
     weeksInput,
     '52'
   )} weeks/year · ${formatInputValue(daysInput, '5')} workdays/week.`;
@@ -1085,6 +1117,7 @@ function calculate() {
           : 'Loading US tax tables...'
       );
       clearResults();
+      calcPending = true;
       return;
     }
     // The state field defaults to Texas and can only be changed to another item picked from the
@@ -1092,6 +1125,7 @@ function calculate() {
     // Texas rather than showing an error keeps that edge case silent instead of blocking on it.
     if (!selectedState || !usStateCache.has(selectedState)) {
       clearResults();
+      calcPending = true;
       void chooseState('TX');
       return;
     }
@@ -1104,6 +1138,7 @@ function calculate() {
         : 'Loading tax tables…'
     );
     clearResults();
+    calcPending = true;
     return;
   }
 
@@ -1115,6 +1150,7 @@ function calculate() {
           : 'Loading Canada tax tables...'
       );
       clearResults();
+      calcPending = true;
       return;
     }
     // The province field defaults to Alberta and can only be changed to another item picked
@@ -1123,12 +1159,14 @@ function calculate() {
     // state field's Texas fallback.
     if (!selectedProvince || !caData.provinces[selectedProvince]) {
       clearResults();
+      calcPending = true;
       void chooseProvince('AB');
       return;
     }
   }
 
   clearError();
+  calcPending = false;
 
   const result = calculateFor(currentInputs());
   if (!result) return;
@@ -1142,17 +1180,65 @@ function calculate() {
  * the net bonus as the difference between two full results — which is the only way to capture
  * band crossings and the UK allowance taper.
  */
+/**
+ * Optional Extra Payments (spec §63–§65) → the list `resolveExtraPayments` understands. Only the
+ * panels the user has opened contribute.
+ */
+function gatherExtraPayments() {
+  const extras = [];
+  if (optionOn('overtime')) {
+    const method = otMethodSelect?.value || 'fixed';
+    extras.push({
+      type: 'overtime',
+      method,
+      amount: getInputNumber(otAmountInput) || 0,
+      hourlyRate: getInputNumber(otRateInput) || 0,
+      hours: getInputNumber(otHoursInput) || 0,
+      percent: getInputNumber(otPercentInput) || 0,
+      percentBasis: otBasisSelect?.value || 'monthly',
+      frequency: otFrequencySelect?.value || 'monthly',
+    });
+  }
+  if (optionOn('bonus')) {
+    extras.push({
+      type: 'bonus',
+      amount: getInputNumber(bonusAmountInput) || 0,
+      frequency: bonusFrequencySelect?.value || 'oneOff',
+    });
+  }
+  if (optionOn('commission')) {
+    extras.push({
+      type: 'commission',
+      amount: getInputNumber(commissionAmountInput) || 0,
+      frequency: commissionFrequencySelect?.value || 'monthly',
+    });
+  }
+  if (optionOn('extra')) {
+    extras.push({
+      type: 'other',
+      amount: getInputNumber(extraAmountInput) || 0,
+      frequency: extraFrequencySelect?.value || 'oneOff',
+    });
+  }
+  return extras;
+}
+
 function currentInputs() {
   const frequency = frequencyButtons?.getValue() ?? 'annual';
   const amount = getInputNumber(amountInput);
+  const grossAnnual = toAnnual(amount, frequency, schedule());
+  // Extra payments annualise against the BASE salary and are added on top as ordinary taxable
+  // income (engines take this as `bonus` and do `gross = base + bonus`).
+  const extras = resolveExtraPayments(gatherExtraPayments(), { grossAnnual });
   return {
     amount,
     frequency,
-    grossAnnual: toAnnual(amount, frequency, schedule()),
+    grossAnnual,
     region: regionButtons?.getValue() ?? 'england',
     filingStatus: filingStatusButtons ? filingStatusButtons.getValue() : 'single',
     province: selectedProvince,
-    bonus: optionOn('bonus') ? getInputNumber(bonusAmountInput) || 0 : 0,
+    bonus: extras.totalAnnual,
+    extraPayments: extras,
     pensionPercent: optionOn('pension') ? getInputNumber(pensionPercentInput) || 0 : 0,
     pensionReliefMethod: pensionReliefSelect?.value || 'net-pay-arrangement',
     studentLoanPlan: optionOn('loan') ? loanPlanSelect?.value || 'none' : 'none',
@@ -1190,6 +1276,28 @@ function calculateFor(input) {
   });
 }
 
+/**
+ * The visible, itemised "Deductions" section (spec §62). Country-specific rows come from the
+ * common-layer `deductionRows` mapper.
+ */
+function renderDeductions(result) {
+  if (!outputs.deductionsCard || !outputs.deductionsList) return;
+  const rows = deductionRows(result);
+  if (!rows.length) {
+    outputs.deductionsCard.hidden = true;
+    return;
+  }
+  outputs.deductionsCard.hidden = false;
+  outputs.deductionsList.innerHTML = rows
+    .map(
+      (row) =>
+        `<li class="sal-deduction-row"><span>${row.label}</span><span class="sal-num">-${money(row.amount)}</span></li>`
+    )
+    .join('');
+  const total = rows.reduce((sum, row) => sum + row.amount, 0);
+  setText(outputs.deductionsTotal, `-${money(total)} a year`);
+}
+
 function renderResult(result, frequency) {
   const periods = renderPeriods(result);
 
@@ -1215,9 +1323,11 @@ function renderResult(result, frequency) {
     );
     renderSplit(result);
     renderBands(result);
+    renderDeductions(result);
     const details = el('salary-breakdown-details');
     if (details) details.hidden = false;
   } else {
+    if (outputs.deductionsCard) outputs.deductionsCard.hidden = true;
     setText(outputs.note, `Gross (before tax), that equals about ${money(periods.weekly)} per week.`);
     setText(
       outputs.breakdown,
@@ -1228,22 +1338,76 @@ function renderResult(result, frequency) {
   setText(outputs.context, buildAssumptionsLine(frequency));
   renderPaySheet(result);
 
-  latestSummary = [
-    mode === 'gross'
-      ? `Gross (before tax): ${money(result.gross)} per year, ${money(periods.monthly)} per month.`
-      : `Estimated take-home: ${money(result.netAnnual)} per year, ${money(periods.monthly)} per month.`,
-    mode === 'uk'
-      ? `Gross ${money(result.gross)} - Income tax ${money(result.incomeTax.total)} - NI ${money(result.nationalInsurance.total)} - Effective rate ${percent(result.effectiveRate)} - Region ${result.region.name}.`
-      : mode === 'us'
-        ? `Gross ${money(result.gross)} - Federal ${money(result.federalTax.total)} - FICA ${money(result.fica.total)} - ${result.state.name} ${money(result.stateTax.total)} - Effective rate ${percent(result.effectiveRate)}. Local income taxes are not included.`
-        : mode === 'canada'
-          ? `Gross ${money(result.gross)} - Federal ${money(result.federalTax.payable)} - Provincial ${money(result.provincialTax.total)} - Effective rate ${percent(result.effectiveRate)} - Province ${result.province.name}.`
-          : `Weekly ${money(periods.weekly)} - Hourly ${money(periods.hourly)}.`,
-    buildAssumptionsLine(frequency),
-    paySheetSummary(),
-  ].filter(Boolean).join('\n');
+  const summary = buildSummary(result, periods, frequency);
+  renderSummaryPanel(summary);
+  latestSummary = serializeSummary(summary);
 
-  setDirty(false);
+  lastResult = result;
+  lastFrequency = frequency;
+  lastPeriods = periods;
+  setStale(false);
+}
+
+/**
+ * One structured view of the result, rendered both into the on-page summary panel and the copied
+ * clipboard text. Number first (`figure` + `unitline`), the per-period figures next, then the
+ * explanatory lines last — the order both the panel and the copied text follow.
+ */
+function buildSummary(result, periods, frequency) {
+  const isGross = mode === 'gross';
+  const detail =
+    mode === 'uk'
+      ? `Gross ${money(result.gross)} · Income tax ${money(result.incomeTax.total)} · NI ${money(result.nationalInsurance.total)} · Effective rate ${percent(result.effectiveRate)} · ${result.region.name}`
+      : mode === 'us'
+        ? `Gross ${money(result.gross)} · Federal ${money(result.federalTax.total)} · FICA ${money(result.fica.total)} · ${result.state.name} ${money(result.stateTax.total)} · Effective rate ${percent(result.effectiveRate)}. Local income taxes are not included.`
+        : mode === 'canada'
+          ? `Gross ${money(result.gross)} · Federal ${money(result.federalTax.payable)} · Provincial ${money(result.provincialTax.total)} · Effective rate ${percent(result.effectiveRate)} · ${result.province.name}`
+          : `Monthly ${money(periods.monthly)} · Biweekly ${money(periods.biweekly)} · Daily ${money(periods.daily)} · Hourly ${money(periods.hourly)}`;
+  return {
+    figure: money(isGross ? result.gross : result.netAnnual),
+    unitline: isGross ? 'gross a year' : 'estimated take-home a year',
+    periodsLine: `${money(periods.monthly)} / month · ${money(periods.fourWeekly)} / 4-weekly · ${money(periods.weekly)} / week`,
+    detail,
+    extras:
+      result.bonus > 0
+        ? `Includes ${money(result.bonus)} a year of extra payments (overtime / bonus / commission), added to gross salary and taxed as ordinary income.`
+        : '',
+    assume: buildAssumptionsLine(frequency),
+    paydays: isGross ? '' : paySheetSummary(),
+  };
+}
+
+function renderSummaryPanel(summary) {
+  const panel = el('salary-summary-panel');
+  if (!panel) return;
+  panel.innerHTML =
+    `<p class="sal-summary-figure">${summary.figure}</p>` +
+    `<p class="sal-summary-unit">${summary.unitline}</p>` +
+    `<p class="sal-summary-periods">${summary.periodsLine}</p>` +
+    `<p class="sal-summary-text"></p>`;
+  const textNode = panel.querySelector('.sal-summary-text');
+  if (textNode) {
+    textNode.textContent = [summary.detail, summary.extras, summary.assume, summary.paydays]
+      .filter(Boolean)
+      .join('\n\n');
+  }
+}
+
+function serializeSummary(summary) {
+  const parts = [`${summary.figure} ${summary.unitline}`, '', summary.periodsLine, summary.detail];
+  if (summary.extras) parts.push(summary.extras);
+  parts.push('', summary.assume);
+  if (summary.paydays) parts.push(summary.paydays);
+  return parts.join('\n');
+}
+
+/** Re-render the pay sheet (and the summary's paydays line) from the last calculated result. */
+function rerenderPaySheet() {
+  if (!lastResult) return;
+  renderPaySheet(lastResult);
+  const summary = buildSummary(lastResult, lastPeriods, lastFrequency);
+  renderSummaryPanel(summary);
+  latestSummary = serializeSummary(summary);
 }
 
 /**
@@ -1287,22 +1451,52 @@ async function copySummary() {
   pensionPercentInput,
   bonusAmountInput,
   pretaxInput,
+  otAmountInput,
+  otRateInput,
+  otHoursInput,
+  otPercentInput,
+  commissionAmountInput,
+  extraAmountInput,
 ].forEach((input) => {
-  input?.addEventListener('input', markDirty);
-  input?.addEventListener('change', markDirty);
+  input?.addEventListener('input', markStale);
+  input?.addEventListener('change', markStale);
   input?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') calculate();
   });
 });
 
-[pensionReliefSelect, loanPlanSelect, bonusMonthSelect, weekendRuleSelect].forEach((node) => {
-  node?.addEventListener('change', calculate);
+[
+  pensionReliefSelect,
+  loanPlanSelect,
+  weekendRuleSelect,
+  bonusFrequencySelect,
+  otBasisSelect,
+  otFrequencySelect,
+  commissionFrequencySelect,
+  extraFrequencySelect,
+].forEach((node) => {
+  node?.addEventListener('change', markStale);
 });
-loanPostgradInput?.addEventListener('change', calculate);
+loanPostgradInput?.addEventListener('change', markStale);
 
+// Overtime method (spec §64): show only the fields the chosen method needs.
+function syncOvertimeMethod() {
+  const method = otMethodSelect?.value || 'fixed';
+  document.querySelectorAll('#salary-panel-overtime [data-ot-method]').forEach((block) => {
+    block.hidden = block.dataset.otMethod !== method;
+  });
+}
+otMethodSelect?.addEventListener('change', () => {
+  syncOvertimeMethod();
+  markStale();
+});
+syncOvertimeMethod();
+
+// The first pay date only shifts the pay-sheet dates, not the tax calc, so it re-renders the
+// sheet live from the last result rather than marking the whole answer stale.
 firstPayInput?.addEventListener('change', () => {
   payDateUserSet = true;
-  calculate();
+  rerenderPaySheet();
 });
 
 el('salary-set-schedule')?.addEventListener('click', () => {
@@ -1316,6 +1510,10 @@ copyButton?.addEventListener('click', () => {
   void copySummary();
 });
 
+el('salary-paysheet-jump')?.addEventListener('click', () => {
+  el('salary-paysheet')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 if (firstPayInput && !firstPayInput.value) {
   const d = firstOfNextMonth();
   // Built from local parts rather than toISOString() so the value cannot slip to the previous
@@ -1323,16 +1521,19 @@ if (firstPayInput && !firstPayInput.value) {
   firstPayInput.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
 }
 
+if (amountInput && !amountInput.value) amountInput.value = '100000';
 applyMode();
 calculate();
 
-// Tax tables load in the background so Gross Pay mode is interactive immediately.
+// Tax tables load in the background so Gross Pay mode is interactive immediately. They re-run
+// calculate() only if a Calculate press is actually waiting on them (`calcPending`) — otherwise
+// an arriving fetch must not move a figure the visitor has not asked to recompute.
 void loadTaxData().then(() => {
-  if (mode === 'uk') calculate();
+  if (mode === 'uk' && calcPending) calculate();
 });
 void loadUsBaseData().then(() => {
-  if (mode === 'us') calculate();
+  if (mode === 'us' && calcPending) calculate();
 });
 void loadCaData().then(() => {
-  if (mode === 'canada') calculate();
+  if (mode === 'canada' && calcPending) calculate();
 });

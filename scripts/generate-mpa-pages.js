@@ -362,9 +362,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'salary-calculators-hub': {
-    title: 'Salary Calculators | Pay Conversion, Overtime, Raise, Bonus & Commission',
+    title: 'Salary Calculators | Take-Home Pay, Pay Conversion, Overtime, Raise & Bonus',
     description:
-      'Browse salary calculators to convert pay, compare overtime, model raises, estimate bonuses, and plan commission-based earnings with gross-pay assumptions.',
+      'Five calculators for what you earn: take-home pay after tax in the UK, US and Canada, pay converted between periods, plus overtime, raise and bonus tools.',
     h1: 'Salary Calculators',
     explanationHeading: '',
     paneLayout: 'single',
@@ -375,48 +375,16 @@ const CALCULATOR_OVERRIDES = {
   'salary-calculator': {
     title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
     description:
-      'Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.',
+      'Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.',
     h1: 'Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
-  'hourly-to-salary-calculator': {
-    title: 'Hourly to Salary Calculator (Gross Pay) | Annual, Monthly and Weekly Pay',
-    description:
-      'Estimate gross annual salary from an hourly rate, then see monthly, biweekly, and weekly pay using your hours per week and paid weeks per year.',
-    h1: 'Hourly to Salary Calculator (Gross Pay)',
-    explanationHeading: '',
-    paneLayout: 'single',
-  },
-  'salary-to-hourly-calculator': {
-    title: 'Salary to Hourly Calculator (Gross Pay) | Hourly, Weekly and Monthly Pay',
-    description:
-      'Convert annual gross salary into hourly, weekly, biweekly, and monthly pay using your hours worked and paid weeks per year.',
-    h1: 'Salary to Hourly Calculator (Gross Pay)',
-    explanationHeading: '',
-    paneLayout: 'single',
-  },
   'annual-to-monthly-salary-calculator': {
-    title: 'Annual to Monthly Salary Calculator | UK, US and Canada Take-Home Pay',
+    title: 'Annual to Monthly Salary Calculator | Convert Hourly, Weekly, Monthly and Annual Pay',
     description:
-      'Convert annual salary into monthly pay, and see UK, US or Canada take-home pay after tax on that monthly figure. Free, and nothing is stored.',
+      'Convert a salary between annual, monthly, biweekly, weekly, daily and hourly pay. Enter the amount you know at its frequency and see every other pay period, gross before tax.',
     h1: 'Annual to Monthly Salary Calculator',
-    explanationHeading: '',
-    paneLayout: 'single',
-  },
-  'monthly-to-annual-salary-calculator': {
-    title: 'Monthly to Annual Salary Calculator | UK, US and Canada Take-Home Pay',
-    description:
-      'Convert monthly salary into annual pay, and see UK, US or Canada take-home pay after tax on that annual figure. Free, and nothing is stored.',
-    h1: 'Monthly to Annual Salary Calculator',
-    explanationHeading: '',
-    paneLayout: 'single',
-  },
-  'weekly-pay-calculator': {
-    title: 'Weekly Pay Calculator (Gross Pay) | Weekly Earnings and Annualized Pay',
-    description:
-      'Estimate weekly gross pay from hourly rate, regular hours, overtime hours, and overtime multiplier, then annualize the result.',
-    h1: 'Weekly Pay Calculator (Gross Pay)',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -429,9 +397,9 @@ const CALCULATOR_OVERRIDES = {
     paneLayout: 'single',
   },
   'raise-calculator': {
-    title: 'Raise Calculator | New Salary, Raise Amount and Raise Percentage',
+    title: 'Raise Calculator | New Salary, Raise Percentage and Value After Inflation',
     description:
-      'Calculate a new salary after a raise, compare raise amount versus raise percentage, and estimate the gross-pay impact.',
+      'Work out your new salary after a raise, compare a percentage raise with a flat amount, and check whether the increase actually beats inflation in real terms.',
     h1: 'Raise Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -441,22 +409,6 @@ const CALCULATOR_OVERRIDES = {
     description:
       'Calculate your bonus as a percentage of salary or a flat amount, then see your total gross compensation before tax — useful for comparing a percentage bonus against a fixed payout or checking how a bonus changes your total pay for the period.',
     h1: 'Bonus Calculator (Gross Pay)',
-    explanationHeading: '',
-    paneLayout: 'single',
-  },
-  'commission-calculator': {
-    title: 'Commission Calculator – Calculate Sales Earnings',
-    description:
-      'Calculate commission earnings from sales and commission rate, with optional total earnings when base pay is included.',
-    h1: 'Commission Calculator',
-    explanationHeading: '',
-    paneLayout: 'single',
-  },
-  'inflation-adjusted-salary-calculator': {
-    title: 'Inflation Adjusted Salary Calculator | Real Raise vs Inflation',
-    description:
-      'Compare current salary, new salary, inflation rate, and years between pay points to see whether a raise beats inflation in real terms.',
-    h1: 'Inflation Adjusted Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
   },
@@ -943,15 +895,7 @@ const CALCULATOR_OVERRIDES = {
   },
 };
 
-const ROUTE_SPECIFIC_OVERRIDES = {
-  '/salary-calculators/commission-calculator/': {
-    title: 'Commission Earnings Calculator | Sales Commission Pay & Base Pay',
-    description:
-      'Calculate commission earnings from sales, rate, or a known payout amount, then add base pay to estimate gross total earnings.',
-    h1: 'Commission Earnings Calculator',
-    paneLayout: 'single',
-  },
-};
+const ROUTE_SPECIFIC_OVERRIDES = {};
 
 const HOME_LOAN_SCHEMA_CONFIG = {
   'home-loan': {
@@ -1516,46 +1460,25 @@ const SALARY_SCHEMA_CONFIG = {
       'net pay calculator',
     ],
   },
-  'monthly-to-annual-salary-calculator': {
-    softwareName: 'Monthly to Annual Salary Calculator',
-    softwareDescription:
-      'Convert a monthly salary into annual pay, and estimate UK, US or Canada take-home pay after tax on it.',
-    featureList: [
-      'Monthly salary converted to annual, weekly and biweekly pay',
-      'UK take-home pay after Income Tax and National Insurance',
-      'US take-home pay after federal tax, FICA and state tax',
-      'Canada take-home pay after federal tax, provincial tax, CPP and EI',
-      "All 13 Canadian provinces and territories, including Quebec's QPP and QPIP",
-      'Pension, student loan and bonus impact',
-    ],
-    keywords: [
-      'monthly to annual salary calculator',
-      'monthly pay to yearly salary',
-      'annual salary from monthly income',
-      'uk take home pay',
-      'us paycheck calculator',
-      'canada take home pay calculator',
-    ],
-  },
   'annual-to-monthly-salary-calculator': {
     softwareName: 'Annual to Monthly Salary Calculator',
     softwareDescription:
-      'Convert an annual salary into monthly pay, and estimate UK, US or Canada take-home pay after tax on it.',
+      'Convert a salary between annual, monthly, biweekly, weekly, daily and hourly gross pay using your own hours and weeks per year.',
     featureList: [
-      'Annual salary converted to monthly, weekly and biweekly pay',
-      'UK take-home pay after Income Tax and National Insurance',
-      'US take-home pay after federal tax, FICA and state tax',
-      'Canada take-home pay after federal tax, provincial tax, CPP and EI',
-      "All 13 Canadian provinces and territories, including Quebec's QPP and QPIP",
-      'Pension, student loan and bonus impact',
+      'Annual salary converted to monthly pay',
+      'Hourly, daily, weekly and biweekly equivalents',
+      'Any source pay frequency, including hourly and weekly',
+      'Editable hours per week, weeks per year and workdays',
+      'Gross pay only, no hidden payroll assumptions',
     ],
     keywords: [
       'annual to monthly salary calculator',
+      'monthly to annual salary calculator',
       'yearly to monthly pay',
-      'annual salary to monthly income',
-      'uk take home pay',
-      'us paycheck calculator',
-      'canada take home pay calculator',
+      'hourly to salary calculator',
+      'salary to hourly calculator',
+      'weekly pay calculator',
+      'pay converter',
     ],
   },
 };
@@ -3143,19 +3066,15 @@ const PRICING_CLUSTER_REDESIGN_ORDER = [
   'markup-calculator',
 ];
 
+// Consolidated 2026-08 from 11 calculators to 5 (+ hub). Retired routes 301 via public/_redirects;
+// see clusters/salary/docs/seo-consolidation-checklist.md.
 const SALARY_CLUSTER_REDESIGN_ORDER = [
   'salary-calculators-hub',
   'salary-calculator',
-  'hourly-to-salary-calculator',
-  'salary-to-hourly-calculator',
   'annual-to-monthly-salary-calculator',
-  'monthly-to-annual-salary-calculator',
-  'weekly-pay-calculator',
   'overtime-pay-calculator',
   'raise-calculator',
   'bonus-calculator',
-  'commission-calculator',
-  'inflation-adjusted-salary-calculator',
 ];
 
 PERCENTAGE_CLUSTER_REDESIGN_IDS.forEach((calculatorId) => {
@@ -5971,11 +5890,11 @@ ${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented o
           <section class="seo-block">
             <h3>Salary, Earnings &amp; Pay Conversion</h3>
             <p>
-              Convert hourly and annual pay, compare overtime, and estimate commission-driven
-              earnings with the
+              Work out take-home pay after tax, convert pay between periods, and value overtime,
+              raises and bonuses with the
               <a href="/salary-calculators/salary-calculator/">salary calculator</a>,
-              <a href="/salary-calculators/hourly-to-salary-calculator/">hourly to salary calculator</a>,
-              and <a href="/salary-calculators/commission-calculator/">commission earnings calculator</a>.
+              <a href="/salary-calculators/annual-to-monthly-salary-calculator/">annual to monthly salary calculator</a>,
+              and <a href="/salary-calculators/raise-calculator/">raise calculator</a>.
             </p>
           </section>
 
@@ -6687,6 +6606,19 @@ function main() {
                 item: pageCanonical,
               },
             ],
+          },
+          {
+            '@type': 'ItemList',
+            '@id': `${pageCanonical}#itemlist`,
+            name: 'Salary calculators',
+            itemListElement: SALARY_CLUSTER_REDESIGN_ORDER.filter(
+              (id) => id !== 'salary-calculators-hub'
+            ).map((id, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: (CALCULATOR_OVERRIDES[id] && CALCULATOR_OVERRIDES[id].h1) || id,
+              url: `${SITE_URL}/salary-calculators/${id}/`,
+            })),
           },
         ],
       };

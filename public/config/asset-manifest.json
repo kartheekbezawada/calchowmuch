@@ -892,38 +892,6 @@
         ]
       }
     },
-    "/salary-calculators/hourly-to-salary-calculator/": {
-      "route": "/salary-calculators/hourly-to-salary-calculator/",
-      "calculatorId": "hourly-to-salary-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": null
-      },
-      "js": {
-        "core": [],
-        "route": [
-          "/calculators/salary-calculators/hourly-to-salary-calculator/module.js"
-        ]
-      }
-    },
-    "/salary-calculators/salary-to-hourly-calculator/": {
-      "route": "/salary-calculators/salary-to-hourly-calculator/",
-      "calculatorId": "salary-to-hourly-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": null
-      },
-      "js": {
-        "core": [],
-        "route": [
-          "/calculators/salary-calculators/salary-to-hourly-calculator/module.js"
-        ]
-      }
-    },
     "/salary-calculators/annual-to-monthly-salary-calculator/": {
       "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
       "calculatorId": "annual-to-monthly-salary-calculator",
@@ -937,38 +905,6 @@
         "core": [],
         "route": [
           "/calculators/salary-calculators/annual-to-monthly-salary-calculator/module.js"
-        ]
-      }
-    },
-    "/salary-calculators/monthly-to-annual-salary-calculator/": {
-      "route": "/salary-calculators/monthly-to-annual-salary-calculator/",
-      "calculatorId": "monthly-to-annual-salary-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": null
-      },
-      "js": {
-        "core": [],
-        "route": [
-          "/calculators/salary-calculators/monthly-to-annual-salary-calculator/module.js"
-        ]
-      }
-    },
-    "/salary-calculators/weekly-pay-calculator/": {
-      "route": "/salary-calculators/weekly-pay-calculator/",
-      "calculatorId": "weekly-pay-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": null
-      },
-      "js": {
-        "core": [],
-        "route": [
-          "/calculators/salary-calculators/weekly-pay-calculator/module.js"
         ]
       }
     },
@@ -1017,22 +953,6 @@
         "core": [],
         "route": [
           "/calculators/salary-calculators/bonus-calculator/module.js"
-        ]
-      }
-    },
-    "/salary-calculators/commission-calculator/": {
-      "route": "/salary-calculators/commission-calculator/",
-      "calculatorId": "commission-calculator",
-      "isolationBoundary": "route",
-      "css": {
-        "core": [],
-        "route": [],
-        "critical": null
-      },
-      "js": {
-        "core": [],
-        "route": [
-          "/calculators/salary-calculators/commission-calculator/module.js"
         ]
       }
     }

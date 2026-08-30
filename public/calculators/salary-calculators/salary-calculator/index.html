@@ -9,8 +9,8 @@
   <div class="sal-calc-columns">
   <section class="sal-calc-card sal-calc-form-card" aria-label="Salary calculator inputs">
     <div class="sal-input-row">
-      <label for="salary-pay-amount">Pay amount</label>
-      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" value="60000" />
+      <label for="salary-pay-amount">Gross salary</label>
+      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" value="100000" />
     </div>
 
     <div class="sal-input-row">
@@ -24,6 +24,7 @@
         <button class="sal-chip-button" type="button" data-value="hourly" aria-pressed="false">Hourly</button>
         <button class="sal-chip-button" type="button" data-value="daily" aria-pressed="false">Daily</button>
         <button class="sal-chip-button" type="button" data-value="weekly" aria-pressed="false">Weekly</button>
+        <button class="sal-chip-button" type="button" data-value="fourWeekly" aria-pressed="false">4-weekly</button>
         <button class="sal-chip-button" type="button" data-value="biweekly" aria-pressed="false">Biweekly</button>
         <button class="sal-chip-button" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
         <button class="sal-chip-button is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
@@ -83,13 +84,11 @@
     <button class="sal-primary-action" id="salary-calc-button" type="button">Calculate</button>
 
     <div class="sal-optional sal-tax-only" id="salary-optional" hidden>
-      <p class="sal-calc-kicker">Optional — add only what applies</p>
+      <p class="sal-opt-group-label">Deductions to add</p>
       <div class="sal-opt-chips">
         <button class="sal-opt-chip sal-uk-only" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
         <button class="sal-opt-chip sal-us-only" type="button" data-opt="pretax" aria-pressed="false" aria-controls="salary-panel-pretax">+ 401(k) / pre-tax</button>
         <button class="sal-opt-chip sal-uk-only" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
-        <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
-        <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
       </div>
 
       <div class="sal-opt-panel" id="salary-panel-pension" hidden>
@@ -137,25 +136,128 @@
         <p class="sal-field-hint">An undergraduate plan and a postgraduate loan are deducted at the same time.</p>
       </div>
 
+      <p class="sal-opt-group-label">Optional extra payments</p>
+      <div class="sal-opt-chips">
+        <button class="sal-opt-chip" type="button" data-opt="overtime" aria-pressed="false" aria-controls="salary-panel-overtime">+ Overtime</button>
+        <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
+        <button class="sal-opt-chip" type="button" data-opt="commission" aria-pressed="false" aria-controls="salary-panel-commission">+ Commission</button>
+        <button class="sal-opt-chip" type="button" data-opt="extra" aria-pressed="false" aria-controls="salary-panel-extra">+ Other extra pay</button>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-overtime" hidden>
+        <div class="sal-input-row">
+          <label for="salary-ot-method">How is overtime worked out?</label>
+          <select id="salary-ot-method">
+            <option value="fixed" selected>A fixed amount</option>
+            <option value="hourly">Overtime rate &times; hours</option>
+            <option value="percent">A percentage of gross pay</option>
+          </select>
+        </div>
+        <div class="sal-input-row" data-ot-method="fixed">
+          <label for="salary-ot-amount">Overtime amount</label>
+          <input id="salary-ot-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+        </div>
+        <div class="sal-input-grid" data-ot-method="hourly" hidden>
+          <div class="sal-input-row">
+            <label for="salary-ot-rate">Overtime hourly rate</label>
+            <input id="salary-ot-rate" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-ot-hours">Overtime hours</label>
+            <input id="salary-ot-hours" type="number" min="0" step="0.1" value="0" />
+          </div>
+        </div>
+        <div class="sal-input-grid" data-ot-method="percent" hidden>
+          <div class="sal-input-row">
+            <label for="salary-ot-percent">Overtime percentage</label>
+            <input id="salary-ot-percent" type="number" min="0" step="0.1" value="10" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-ot-basis">of which gross figure</label>
+            <select id="salary-ot-basis">
+              <option value="hourly">Hourly gross</option>
+              <option value="weekly">Weekly gross</option>
+              <option value="fourWeekly">4-weekly gross</option>
+              <option value="monthly" selected>Monthly gross</option>
+              <option value="annual">Annual gross</option>
+            </select>
+          </div>
+        </div>
+        <div class="sal-input-row">
+          <label for="salary-ot-frequency">How often is this overtime paid?</label>
+          <select id="salary-ot-frequency">
+            <option value="oneOff">One-off (this year)</option>
+            <option value="weekly">Every week</option>
+            <option value="fourWeekly">Every 4 weeks</option>
+            <option value="monthly" selected>Every month</option>
+            <option value="annual">Once a year</option>
+          </select>
+        </div>
+        <p class="sal-field-hint">Overtime is added to your gross salary and taxed as ordinary income.</p>
+      </div>
+
       <div class="sal-opt-panel" id="salary-panel-bonus" hidden>
         <div class="sal-input-grid">
           <div class="sal-input-row">
             <label for="salary-bonus-amount">Bonus amount</label>
-            <input id="salary-bonus-amount" type="number" min="0" step="0.01" value="0" />
+            <input id="salary-bonus-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
           </div>
           <div class="sal-input-row">
-            <label for="salary-bonus-month">Typical bonus month</label>
-            <select id="salary-bonus-month">
-              <option value="0">January</option><option value="1">February</option>
-              <option value="2">March</option><option value="3">April</option>
-              <option value="4">May</option><option value="5">June</option>
-              <option value="6">July</option><option value="7">August</option>
-              <option value="8">September</option><option value="9">October</option>
-              <option value="10">November</option><option value="11" selected>December</option>
+            <label for="salary-bonus-frequency">How often is it paid?</label>
+            <select id="salary-bonus-frequency">
+              <option value="oneOff" selected>One-off (this year)</option>
+              <option value="annual">Once a year</option>
+              <option value="fourWeekly">Every 4 weeks</option>
+              <option value="monthly">Every month</option>
+              <option value="weekly">Every week</option>
             </select>
           </div>
         </div>
-        <p class="sal-field-hint">The pay sheet shows the bonus landing in this month rather than spreading it across every payday.</p>
+        <p class="sal-field-hint">A bonus is added to gross and taxed as ordinary income. Bonus-specific withholding rules (for example the US 22% supplemental rate) are not modelled.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-commission" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-commission-amount">Commission amount</label>
+            <input id="salary-commission-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-commission-frequency">How often is it paid?</label>
+            <select id="salary-commission-frequency">
+              <option value="monthly" selected>Every month</option>
+              <option value="fourWeekly">Every 4 weeks</option>
+              <option value="weekly">Every week</option>
+              <option value="annual">Once a year</option>
+              <option value="oneOff">One-off (this year)</option>
+            </select>
+          </div>
+        </div>
+        <p class="sal-field-hint">Commission is added to gross and taxed as ordinary income.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-extra" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-extra-amount">Other extra pay</label>
+            <input id="salary-extra-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-extra-frequency">How often is it paid?</label>
+            <select id="salary-extra-frequency">
+              <option value="oneOff" selected>One-off (this year)</option>
+              <option value="annual">Once a year</option>
+              <option value="monthly">Every month</option>
+              <option value="fourWeekly">Every 4 weeks</option>
+              <option value="weekly">Every week</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <p class="sal-opt-group-label">Pay schedule</p>
+      <div class="sal-opt-chips">
+        <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
       </div>
 
       <div class="sal-opt-panel" id="salary-panel-sched" hidden>
@@ -199,14 +301,18 @@
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
     <div class="sal-answer-top">
-      <div>
+      <div class="sal-answer-top-labels">
         <p class="sal-answer-title" id="salary-answer-title">Annual gross pay</p>
         <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Gross (before tax)</p>
       </div>
-      <span class="sal-status-chip" id="salary-dirty-chip">Up to date</span>
+      <div class="sal-answer-top-actions">
+        <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
+        <span class="sal-copy-feedback" id="salary-copy-feedback" aria-live="polite"></span>
+      </div>
     </div>
-    <p class="sal-answer-hero" id="salary-annual-pay">60,000.00</p>
-    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,153.85 per week.</p>
+    <p class="sal-answer-hero" id="salary-annual-pay">100,000.00</p>
+    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,923.08 per week.</p>
+    <p class="sal-stale-hint" id="salary-stale-hint" hidden>Inputs changed &mdash; press <strong>Calculate</strong> to update the result.</p>
 
     <div class="sal-rate-row sal-tax-only" id="salary-rate-row" hidden>
       <span class="sal-rate-pill">Effective rate <strong id="salary-effective-rate">—</strong></span>
@@ -225,37 +331,62 @@
       take-home will be lower than this.</span>
     </p>
 
-    <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual pay · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
-    <div class="sal-action-row">
-      <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
-      <span class="sal-copy-feedback" id="salary-copy-feedback" aria-live="polite"></span>
-    </div>
+    <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
 
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Monthly pay</span>
-        <strong id="salary-monthly-pay">5,000.00</strong>
+        <strong id="salary-monthly-pay">8,333.33</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>4-weekly pay</span>
+        <strong id="salary-fourweekly-pay">7,692.31</strong>
       </div>
       <div class="sal-support-card">
         <span>Biweekly pay</span>
-        <strong id="salary-biweekly-pay">2,307.69</strong>
+        <strong id="salary-biweekly-pay">3,846.15</strong>
       </div>
       <div class="sal-support-card">
         <span>Weekly pay</span>
-        <strong id="salary-weekly-pay">1,153.85</strong>
+        <strong id="salary-weekly-pay">1,923.08</strong>
       </div>
       <div class="sal-support-card">
         <span>Daily pay</span>
-        <strong id="salary-daily-pay">230.77</strong>
+        <strong id="salary-daily-pay">384.62</strong>
       </div>
       <div class="sal-support-card">
         <span>Hourly pay</span>
-        <strong id="salary-hourly-pay">28.85</strong>
+        <strong id="salary-hourly-pay">48.08</strong>
       </div>
+    </div>
+
+    <div class="sal-summary-panel" id="salary-summary-panel">
+      <p class="sal-summary-figure">100,000.00</p>
+      <p class="sal-summary-unit">gross a year</p>
+      <p class="sal-summary-periods">8,333.33 / month · 7,692.31 / 4-weekly · 1,923.08 / week</p>
+      <p class="sal-summary-text">Monthly 8,333.33 · Biweekly 3,846.15 · Daily 384.62 · Hourly 48.08
+
+Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
     </div>
 
   </aside>
   </div>
+
+  <button class="sal-paysheet-jump sal-tax-only" id="salary-paysheet-jump" type="button" hidden>
+    &#8595; See your full pay sheet &mdash; every payday from gross to net
+  </button>
+
+  <section class="sal-calc-card sal-paysheet-card sal-deductions-card sal-tax-only" id="salary-deductions" hidden aria-labelledby="salary-deductions-title">
+    <div class="sal-paysheet-head">
+      <div>
+        <h3 id="salary-deductions-title">Deductions</h3>
+        <p class="sal-paysheet-meta" id="salary-deductions-meta">What comes out of your gross salary before you are paid.</p>
+      </div>
+      <span class="sal-deductions-total" id="salary-deductions-total">—</span>
+    </div>
+    <ul class="sal-deductions-list" id="salary-deductions-list"></ul>
+    <p class="sal-paysheet-note">Country-specific — these are the deductions your payroll system actually applies. Extra payments you add are taxed as ordinary income on top of your salary.</p>
+  </section>
 
   <section class="sal-calc-card sal-paysheet-card sal-breakdown-standalone" aria-label="How this estimate was calculated">
     <div class="sal-breakdown-details sal-tax-only" id="salary-breakdown-details" hidden>

@@ -68,23 +68,38 @@
 
     <h4>Step 4. Add only what applies to you</h4>
     <p>
-      Everything beyond salary and region is hidden until you ask for it. Tap a chip to reveal just
-      that section:
+      Everything beyond gross salary and region is hidden until you ask for it. The optional controls
+      are grouped into three headings. Tap a chip to reveal just that section:
     </p>
+    <p><strong>Deductions to add</strong> — amounts taken out of your pay:</p>
     <ul class="sal-explanation-list">
       <li><strong>Pension</strong> (UK): your contribution percentage and the relief method your scheme uses.</li>
       <li><strong>401(k) / pre-tax</strong> (USA): annual pre-tax contributions. These cut your income tax but not your FICA.</li>
       <li><strong>Student loan</strong> (UK): your plan, plus a separate box if you also hold a Postgraduate Loan.</li>
-      <li><strong>Bonus</strong>: the amount and the month it is normally paid, so the pay sheet shows it landing on that specific payday.</li>
-      <li><strong>Pay schedule</strong>: your first pay date and how weekend paydays are handled. Optional: leave it alone and the pay sheet assumes the 1st of each month.</li>
     </ul>
+    <p><strong>Optional extra payments</strong> — amounts added on top of your base salary. They do not change your base pay until you add them, and each one is annualised and folded into your gross for tax:</p>
+    <ul class="sal-explanation-list">
+      <li><strong>Overtime</strong>: enter it as a fixed amount, as an hourly rate times hours worked, or as a percentage of a gross-pay basis (hourly, weekly, 4-weekly, monthly or annual).</li>
+      <li><strong>Bonus</strong>: the amount, plus how often it is paid (one-off, or recurring at a set frequency).</li>
+      <li><strong>Commission</strong>: the amount and its frequency, converted to an annual figure before it is added.</li>
+      <li><strong>Other</strong>: any further taxable payment - shift allowance, on-call pay, a stipend - with its own frequency.</li>
+    </ul>
+    <p><strong>Pay schedule</strong>: your first pay date and how weekend paydays are handled. Optional - leave it alone and the pay sheet assumes the 1st of each month.</p>
 
     <h4>Step 5. Read your results</h4>
     <p>
       The large figure is your estimated take-home pay. The bar beneath it shows where your gross
       salary went. The green segment is what you keep; the rest is tax, National Insurance or FICA,
       and any other deductions. The smaller cards translate your take-home into every pay
-      period at once, and the Pay dates sheet lower down shows the actual days you will be paid.
+      period at once - including a 4-weekly figure, calculated as annual pay divided by 13 - and the
+      Pay dates sheet lower down shows the actual days you will be paid.
+    </p>
+    <p>
+      In any take-home mode the <strong>Deductions</strong> section lists every statutory and
+      voluntary deduction as its own line, in the terms that country uses: Income Tax, National
+      Insurance, pension and student loan for the UK; federal tax, state tax, Social Security,
+      Medicare and pre-tax contributions for the US; federal tax, provincial tax, CPP or QPP, EI and
+      any health premium for Canada. The lines add up to the same annual total shown in the bar.
     </p>
 
     <h4>Step 6. Expand the calculation</h4>
@@ -351,7 +366,7 @@
   </section>
 
   <section class="sal-explanation-card">
-    <h3>Pay frequency, bonuses and your pay sheet</h3>
+    <h3>Pay frequency, extra payments and your pay sheet</h3>
 
     <h4>Pay frequency explained</h4>
     <p>
@@ -384,17 +399,25 @@
       monthly figure introduces small errors that never quite reconcile against a real payslip.
     </p>
 
-    <h4>How bonuses are taxed</h4>
+    <h4>How overtime, bonuses and commission are handled</h4>
     <p>
-      A bonus is taxable income, but the amount withheld when it arrives often differs from the
-      eventual liability. That is why a bonus can appear to be taxed at a punishing rate on the
-      day it lands.
+      Overtime, a bonus, commission and any "other" payment are all taxable income on top of your
+      base salary. Each one is entered with its own frequency - one-off, weekly, 4-weekly, monthly
+      or annual - and converted to an annual amount before anything else happens. A £400 monthly
+      commission becomes £4,800 a year; a one-off £2,000 bonus stays £2,000.
     </p>
     <p>
-      This calculator estimates your annual position. It adds the bonus to your income, calculates
-      total tax on the combined figure, and reports the difference between the two results. That is
-      more accurate than applying a single marginal rate, because a bonus can push part of your
-      income into a higher band or reduce an allowance you would otherwise have kept.
+      Overtime can be entered three ways: a fixed amount, an hourly rate multiplied by the hours
+      worked, or a percentage applied to a gross-pay basis you choose (your hourly, weekly,
+      4-weekly, monthly or annual gross). All three resolve to a single annual figure.
+    </p>
+    <p>
+      The calculator then adds the combined annual extra to your salary, calculates total tax on
+      that higher figure, and shows the take-home that results. Working the tax on the combined
+      total is more accurate than applying a single marginal rate, because the extra can push part
+      of your income into a higher band or reduce an allowance you would otherwise have kept. On the
+      pay sheet the extra is spread evenly across your paydays rather than shown as one lump, so
+      every row reconciles to the same annual total.
     </p>
 
     <h4>Using the pay dates sheet</h4>
@@ -407,10 +430,10 @@
       month. Enter your real date and every row updates to match your payroll.
     </p>
     <p>
-      Two behaviours are worth knowing. Where a payday falls on a Saturday or Sunday, most
-      employers pay on the preceding Friday, and shifted rows are marked so you can see the rule
-      applied. Where you have entered a bonus, it appears on the single payday in the month you
-      selected rather than being averaged across the year, which is how it will actually reach you.
+      One behaviour is worth knowing. Where a payday falls on a Saturday or Sunday, most employers
+      pay on the preceding Friday, and shifted rows are marked so you can see the rule applied. Any
+      overtime, bonus or commission you have added is spread evenly across the paydays, so each row
+      reflects your average pay rather than trying to guess which payslip a lump sum lands on.
     </p>
   </section>
 
@@ -541,8 +564,12 @@
         <p>The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works.</p>
       </article>
       <article class="sal-related-card">
-        <h3>How is a bonus taxed?</h3>
-        <p>The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band.</p>
+        <h3>How are overtime, bonuses and commission taxed?</h3>
+        <p>Each extra payment is converted to an annual amount using the frequency you set, added to your salary, and the total tax is worked out on the combined figure. That is more accurate than applying your marginal rate to the extra, because it can push part of your income into a higher band.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>How do I enter overtime?</h3>
+        <p>Choose one of three methods: a fixed amount, an hourly rate multiplied by hours worked, or a percentage of a gross-pay basis you pick - hourly, weekly, 4-weekly, monthly or annual. Set how often that overtime occurs and the calculator annualises it before adding it to your gross.</p>
       </article>
       <article class="sal-related-card">
         <h3>Why is 4-weekly pay not the same as monthly pay?</h3>
@@ -550,7 +577,7 @@
       </article>
       <article class="sal-related-card">
         <h3>Can I see the dates I will actually be paid?</h3>
-        <p>Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on.</p>
+        <p>Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one. Any extra payments are spread evenly across those paydays.</p>
       </article>
       <article class="sal-related-card">
         <h3>Why does my payslip differ from this estimate?</h3>
@@ -609,7 +636,7 @@
       <li><strong>Last updated:</strong> August 2026</li>
       <li><strong>Accuracy:</strong> UK and US results use published rates and thresholds for the selected tax year, stored as versioned data and reviewed each year. Canada results are based on the same published-rate approach but are not yet independently verified against CRA and provincial sources - treat Canada figures as a closer estimate than UK or US until that verification is complete. Gross Pay mode applies no tax and is exact for the schedule you enter.</li>
       <li><strong>Disclaimer:</strong> This calculator provides an estimate of take-home pay based on the information and tax rules selected. Actual payroll deductions may differ because of employer payroll settings, benefits, tax code adjustments, credits and other circumstances. It is not tax or financial advice.</li>
-      <li><strong>Assumptions:</strong> Pay is treated as consistent across the year. Hours, weeks and workdays are assumed uniform. Bonuses are treated as taxable income in the year entered. Employee Class 1 National Insurance only. Employer contributions are not a deduction from your pay and are excluded.</li>
+      <li><strong>Assumptions:</strong> Pay is treated as consistent across the year. Hours, weeks and workdays are assumed uniform. Overtime, bonuses, commission and other extra payments are annualised and treated as taxable income in the year entered, then spread evenly across paydays. Employee Class 1 National Insurance only. Employer contributions are not a deduction from your pay and are excluded.</li>
       <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>

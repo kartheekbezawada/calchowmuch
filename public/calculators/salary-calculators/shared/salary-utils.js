@@ -131,6 +131,9 @@ export function toAnnualPay({ amount, frequency, hoursPerWeek, weeksPerYear, day
         return null;
       }
       return amount * weeksPerYear;
+    // 4-weekly pay is 13 payments a year (every 28 days), never a monthly figure adjusted.
+    case 'fourWeekly':
+      return amount * 13;
     case 'biweekly':
       return amount * 26;
     case 'monthly':
@@ -149,6 +152,7 @@ export function convertAnnualPay({ annualPay, hoursPerWeek, weeksPerYear, daysPe
 
   const weeklyPay = annualPay / weeksPerYear;
   const monthlyPay = annualPay / 12;
+  const fourWeeklyPay = annualPay / 13;
   const biweeklyPay = annualPay / 26;
   const dailyPay = isPositiveNumber(daysPerWeek) ? weeklyPay / daysPerWeek : null;
   const hourlyPay = isPositiveNumber(hoursPerWeek) ? weeklyPay / hoursPerWeek : null;
@@ -156,6 +160,7 @@ export function convertAnnualPay({ annualPay, hoursPerWeek, weeksPerYear, daysPe
   return {
     annualPay,
     monthlyPay,
+    fourWeeklyPay,
     biweeklyPay,
     weeklyPay,
     dailyPay,

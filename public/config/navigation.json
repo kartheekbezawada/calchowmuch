@@ -1247,10 +1247,8 @@
               "url": "/salary-calculators/",
               "keywords": [
                 "salary calculators",
-                "salary calculator",
-                "pay calculator",
-                "hourly to salary",
-                "salary to hourly"
+                "pay calculator tools",
+                "salary and pay calculators"
               ],
               "routeArchetype": "content_shell",
               "designFamily": "neutral",
@@ -1263,33 +1261,8 @@
               "keywords": [
                 "salary calculator",
                 "pay calculator",
-                "salary conversion calculator"
-              ],
-              "routeArchetype": "calc_exp",
-              "designFamily": "neutral",
-              "paneLayout": "single"
-            },
-            {
-              "id": "hourly-to-salary-calculator",
-              "name": "Hourly to Salary Calculator",
-              "url": "/salary-calculators/hourly-to-salary-calculator/",
-              "keywords": [
-                "hourly to salary calculator",
-                "hourly wage to salary",
-                "hourly pay to annual salary"
-              ],
-              "routeArchetype": "calc_exp",
-              "designFamily": "neutral",
-              "paneLayout": "single"
-            },
-            {
-              "id": "salary-to-hourly-calculator",
-              "name": "Salary to Hourly Calculator",
-              "url": "/salary-calculators/salary-to-hourly-calculator/",
-              "keywords": [
-                "salary to hourly calculator",
-                "annual salary to hourly pay",
-                "hourly rate from salary"
+                "take home pay calculator",
+                "paycheck calculator"
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
@@ -1302,33 +1275,12 @@
               "keywords": [
                 "annual to monthly salary calculator",
                 "yearly to monthly salary",
-                "annual salary to monthly pay"
-              ],
-              "routeArchetype": "calc_exp",
-              "designFamily": "neutral",
-              "paneLayout": "single"
-            },
-            {
-              "id": "monthly-to-annual-salary-calculator",
-              "name": "Monthly to Annual Salary Calculator",
-              "url": "/salary-calculators/monthly-to-annual-salary-calculator/",
-              "keywords": [
+                "annual salary to monthly pay",
                 "monthly to annual salary calculator",
-                "monthly pay to yearly salary",
-                "annual salary from monthly pay"
-              ],
-              "routeArchetype": "calc_exp",
-              "designFamily": "neutral",
-              "paneLayout": "single"
-            },
-            {
-              "id": "weekly-pay-calculator",
-              "name": "Weekly Pay Calculator",
-              "url": "/salary-calculators/weekly-pay-calculator/",
-              "keywords": [
+                "hourly to salary calculator",
+                "salary to hourly calculator",
                 "weekly pay calculator",
-                "weekly salary calculator",
-                "hourly to weekly pay"
+                "pay converter"
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
@@ -1354,7 +1306,10 @@
               "keywords": [
                 "raise calculator",
                 "salary raise calculator",
-                "pay raise calculator"
+                "pay raise calculator",
+                "raise vs inflation",
+                "real salary raise",
+                "salary increase calculator"
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",
@@ -1368,32 +1323,6 @@
                 "bonus calculator",
                 "salary bonus calculator",
                 "annual bonus calculator"
-              ],
-              "routeArchetype": "calc_exp",
-              "designFamily": "neutral",
-              "paneLayout": "single"
-            },
-            {
-              "id": "commission-calculator",
-              "name": "Commission Calculator",
-              "url": "/salary-calculators/commission-calculator/",
-              "keywords": [
-                "commission calculator",
-                "sales commission calculator",
-                "commission earnings calculator"
-              ],
-              "routeArchetype": "calc_exp",
-              "designFamily": "neutral",
-              "paneLayout": "single"
-            },
-            {
-              "id": "inflation-adjusted-salary-calculator",
-              "name": "Inflation Adjusted Salary Calculator",
-              "url": "/salary-calculators/inflation-adjusted-salary-calculator/",
-              "keywords": [
-                "inflation adjusted salary calculator",
-                "real salary calculator",
-                "salary raise vs inflation"
               ],
               "routeArchetype": "calc_exp",
               "designFamily": "neutral",

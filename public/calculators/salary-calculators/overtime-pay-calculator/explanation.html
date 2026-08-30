@@ -1,143 +1,268 @@
 <div id="overtime-pay-calculator-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
     <p class="sal-explanation-kicker">Extra pay guide</p>
-    <h2>How an overtime pay calculator isolates the value of extra hours</h2>
+    <h2>How an overtime pay calculator values the hours you work beyond a normal week</h2>
     <p>
-      This overtime pay calculator estimates the extra earnings created by overtime hours, your hourly
-      rate, and the multiplier you enter. It gives a quick gross-pay answer when you want to separate
-      overtime income from normal base pay.
+      This overtime pay calculator takes your hourly rate, the number of overtime hours, and the
+      multiplier that applies to them, and returns the overtime portion of your pay on its own. Add
+      your base pay for the same period and it also shows the combined gross total. It answers a
+      concrete question: what is one block of extra hours actually worth this week, and is that
+      enough to make the time worthwhile? Because overtime rules differ by country, employer, and
+      shift type, the multiplier is a field you fill in rather than a rule the tool assumes.
     </p>
     <p>
-      The route stays flexible because overtime treatment is not always the same. You supply the
-      multiplier instead of relying on a rule the page cannot verify.
+      Every figure is gross &mdash; before income tax and payroll deductions. Overtime pay is taxed
+      at your normal rates when you file; it is not a separate, higher tax band, even though a
+      single large paycheck can push more of that check into a higher withholding bracket for that
+      period.
     </p>
   </section>
+
   <section class="sal-explanation-card">
     <h3>How to Guide</h3>
 
-    <h4>What This Calculator Does</h4>
+    <h4>What this calculator does</h4>
     <p>
-      The calculator isolates overtime pay from three inputs: hourly rate, overtime hours, and overtime
-      multiplier. If you also enter base pay, it can show the full pay total.
+      It isolates overtime pay from three inputs: hourly rate, overtime hours, and overtime
+      multiplier. Overtime pay equals rate multiplied by hours multiplied by the multiplier. If you
+      also enter base pay for the same period, the calculator adds it on to show total gross pay, so
+      you can see the extra hours both by themselves and as part of the whole paycheck.
     </p>
 
-    <h4>How to Use This Calculator</h4>
+    <h4>How to use this calculator</h4>
     <ol class="sal-explanation-list">
-      <li>Enter your hourly rate.</li>
-      <li>Add the overtime hours you worked.</li>
-      <li>Enter the multiplier that applies to those hours.</li>
-      <li>Optional: add base pay if you want the combined total.</li>
-      <li>Click <strong>Calculate</strong> to see overtime pay and total pay.</li>
+      <li>
+        Enter your hourly rate &mdash; the &ldquo;regular rate&rdquo; your overtime is based on.
+      </li>
+      <li>Add the overtime hours worked in the period.</li>
+      <li>
+        Enter the multiplier that applies (1.5&times; for time-and-a-half, 2&times; for double-time,
+        or the figure in your contract).
+      </li>
+      <li>Optional: add base pay for the same period to see the combined total.</li>
+      <li>Select <strong>Calculate</strong> to see overtime pay and total pay.</li>
     </ol>
 
-    <h4>How to Interpret Results</h4>
+    <h4>How to interpret the results</h4>
     <table class="calculator-table">
       <thead>
         <tr>
           <th scope="col">Result</th>
-          <th scope="col">What it means</th>
+          <th scope="col">What it tells you</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Higher overtime pay</td>
-          <td>Your hourly rate, hours, or multiplier is higher.</td>
+          <td>Overtime pay</td>
+          <td>
+            The gross amount those extra hours added, on their own &mdash; not the whole paycheck.
+          </td>
         </tr>
         <tr>
-          <td>Total pay shown</td>
-          <td>You entered base pay as well as overtime inputs.</td>
+          <td>Total pay</td>
+          <td>Base pay for the period plus overtime pay, shown only when you enter base pay.</td>
         </tr>
         <tr>
-          <td>Overtime only</td>
-          <td>The result is isolating the extra portion, not the full paycheck.</td>
+          <td>Context line</td>
+          <td>
+            Restates the overtime hours and multiplier the figure is based on, so a saved screenshot
+            is self-explanatory.
+          </td>
         </tr>
       </tbody>
     </table>
     <p>
-      Read overtime pay as the extra amount added by those hours alone. If you include base pay,
-      the total figure shows the full gross result for that pay period.
-    </p>
-    <p>
-      Formula breakdown: overtime pay equals hourly rate times overtime hours times overtime multiplier.
-      When base pay is entered, total pay equals base pay plus overtime pay.
+      Read overtime pay as the marginal value of the extra hours. Divide it by the overtime hours to
+      get the real per-hour rate for that block of work &mdash; then compare that against what the
+      time costs you in rest or family time. If the number is small relative to that cost, that is a
+      signal in itself.
     </p>
 
-    <h4>Real-World Example</h4>
+    <h4>Worked example</h4>
     <p>
-      An hourly rate of <strong>$25.00</strong> with <strong>6 overtime hours</strong> at
-      <strong>1.5x</strong> produces <strong>$225.00</strong> in overtime pay. If base pay is
-      <strong>$1,000.00</strong>, total pay becomes <strong>$1,225.00</strong>.
+      An hourly rate of <strong>$25</strong> with <strong>10</strong> overtime hours at
+      <strong>1.5&times;</strong> (time-and-a-half) produces <strong>$375</strong> in overtime pay.
+      Add <strong>$1,000</strong> of base pay for the same week and total pay is
+      <strong>$1,375</strong>. Switch the multiplier to <strong>2&times;</strong> for a holiday
+      shift and the same 10 hours are worth <strong>$500</strong>, lifting total pay to
+      <strong>$1,500</strong>.
     </p>
 
-    <h4>Overtime Sensitivity</h4>
+    <h4>The regular rate and the multiplier</h4>
     <p>
-      Overtime pay moves quickly because three inputs can change it at once. Even one extra hour or a
-      higher multiplier can noticeably lift the result.
+      Overtime is calculated on your &ldquo;regular rate&rdquo;, which is not always just your base
+      hourly wage. Shift differentials, non-discretionary bonuses, and some commissions can raise
+      the regular rate an employer must use. If your payslip shows a blended figure, enter that here
+      rather than your headline rate.
     </p>
     <p>
-      That also means estimates should be read carefully. If your employer uses a different overtime
-      rule for certain shifts or days, enter the matching multiplier instead of guessing.
+      Common multipliers: <strong>1.5&times;</strong> for hours over a weekly or daily threshold,
+      <strong>2&times;</strong> for holidays or hours beyond a second threshold, and
+      <strong>1&times;</strong> (straight time) where a jurisdiction or contract does not require a
+      premium. Salaried employees classified as exempt usually receive no overtime premium at all
+      &mdash; for them, extra hours are worth zero on this calculator.
     </p>
 
-    <h4>Grow Your Wealth</h4>
+    <h4>Is the extra hour worth it?</h4>
     <p>
-      Overtime income can disappear fast because it feels temporary. Sending part of each overtime boost
-      to savings or debt payoff can turn irregular earnings into real progress.
+      Use the effective hourly value to decide. Ten hours at time-and-a-half on a $25 rate is $37.50
+      an hour; the same hours at straight time are $25. Compare that against a side project, a
+      rested Monday, or simply the marginal utility of more money once your fixed costs are covered.
+    </p>
+    <p>
+      If overtime is regular rather than occasional, consider whether a higher base rate or a
+      different role would pay more reliably. Overtime does not compound, does not count toward a
+      salary figure on a future offer, and can be cut without notice.
     </p>
 
-    <h4>Related Calculators</h4>
+    <h4>Weekly pay with overtime</h4>
+    <p>
+      To turn this into a full week&rsquo;s gross pay, set base pay to your regular hours times your
+      rate (for example 40 &times; $25 = $1,000) and add the overtime block on top. The total pay
+      figure is then your weekly gross before tax. Annualise by multiplying a typical week by your
+      paid weeks per year, but treat that number as a ceiling &mdash; few people work the same
+      overtime every week.
+    </p>
+
+    <h4>Edge cases and limits</h4>
+    <ul class="sal-explanation-list">
+      <li>
+        <strong>Zero overtime hours:</strong> enter 0 and overtime pay is 0; total pay falls back to
+        base pay. Useful for modelling a normal week.
+      </li>
+      <li><strong>Partial hours:</strong> decimals are allowed, so 3.5 overtime hours works.</li>
+      <li>
+        <strong>No base pay:</strong> leave it blank to see the overtime portion only; total pay is
+        then hidden rather than shown as equal to overtime pay.
+      </li>
+      <li>
+        <strong>Very high multiplier:</strong> there is no maximum, so you can model a rare
+        triple-time or penalty rate, but check it against your actual agreement first.
+      </li>
+      <li>
+        <strong>Multiple overtime tiers:</strong> the calculator applies one multiplier at a time.
+        For hours split between 1.5&times; and 2&times;, run it once per tier and add the results.
+      </li>
+    </ul>
+
+    <h4>Related calculators</h4>
     <div class="sal-related-grid">
       <article class="sal-related-card">
-        <h3><a href="/salary-calculators/weekly-pay-calculator/">Weekly Pay Calculator</a></h3>
-        <p>See how overtime changes total weekly gross pay instead of looking at overtime in isolation.</p>
+        <h3><a href="/salary-calculators/salary-calculator/">Salary Calculator</a></h3>
+        <p>
+          Convert a total gross week or year into take-home pay after tax, or into hourly and
+          monthly views.
+        </p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/raise-calculator/">Raise Calculator</a></h3>
-        <p>Compare a higher base salary with overtime-heavy pay when deciding which increase matters more.</p>
+        <p>Compare relying on overtime with a permanent increase to your base rate or salary.</p>
       </article>
       <article class="sal-related-card">
         <h3><a href="/salary-calculators/bonus-calculator/">Bonus Calculator</a></h3>
-        <p>Measure another kind of variable pay when the question is bonus income instead of extra hours.</p>
+        <p>
+          Value another form of variable pay when the increase comes from a bonus rather than extra
+          hours.
+        </p>
       </article>
       <article class="sal-related-card">
-        <h3><a href="/salary-calculators/commission-calculator/">Commission Earnings Calculator</a></h3>
-        <p>Compare overtime-driven income with another variable-pay route based on sales performance.</p>
+        <h3><a href="/salary-calculators/">Salary Calculators</a></h3>
+        <p>Browse the rest of the pay, take-home and earnings tools.</p>
       </article>
     </div>
   </section>
+
   <section class="sal-explanation-card">
     <h3>Frequently Asked Questions</h3>
     <div class="sal-faq-grid">
       <article class="sal-related-card">
         <h3>How do you calculate overtime pay?</h3>
-        <p>Multiply the hourly rate by overtime hours and the overtime multiplier.</p>
+        <p>
+          Multiply your hourly rate by the overtime hours and by the overtime multiplier. At $25 an
+          hour, 10 hours at 1.5&times; is $375.
+        </p>
       </article>
       <article class="sal-related-card">
-        <h3>Why is the overtime multiplier editable?</h3>
-        <p>Overtime treatment can vary by employer or situation, so you need to enter the multiplier that matches your case.</p>
+        <h3>Why does the calculator make me enter the multiplier?</h3>
+        <p>
+          Overtime rules vary by country, state, employer, and shift. Rather than assume one
+          standard the tool cannot verify, it uses the multiplier that matches your situation.
+        </p>
       </article>
       <article class="sal-related-card">
-        <h3>Can I include total pay with overtime?</h3>
-        <p>Yes. If base pay is entered, the calculator can show total pay plus overtime.</p>
+        <h3>What is time-and-a-half versus double-time?</h3>
+        <p>
+          Time-and-a-half is a 1.5&times; multiplier, common for hours over a weekly or daily
+          threshold. Double-time is 2&times;, often used for holidays or hours past a second
+          threshold.
+        </p>
       </article>
       <article class="sal-related-card">
-        <h3>Does this route assume a legal overtime rule?</h3>
-        <p>No. It is a user-input calculator and does not imply one legal overtime standard.</p>
+        <h3>Is overtime taxed at a higher rate?</h3>
+        <p>
+          No. Overtime is taxed at your normal rates when you file. A larger single paycheck can
+          have more tax withheld for that period, but that is a timing effect, not a higher rate.
+        </p>
       </article>
       <article class="sal-related-card">
-        <h3>Does the result include tax deductions?</h3>
-        <p>No. It estimates gross overtime pay only.</p>
+        <h3>Do salaried employees get overtime?</h3>
+        <p>
+          Often not. Employees classified as exempt typically receive no overtime premium, so extra
+          hours add nothing on this calculator for them.
+        </p>
+      </article>
+      <article class="sal-related-card">
+        <h3>What rate should I enter if I get shift bonuses?</h3>
+        <p>
+          Use the blended regular rate, not just your base wage. Shift differentials and
+          non-discretionary bonuses can raise the rate overtime must be calculated on.
+        </p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Can I get my full weekly pay from this?</h3>
+        <p>
+          Yes. Set base pay to your regular hours times your rate, add the overtime block, and total
+          pay is your weekly gross before tax.
+        </p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Does the result include tax or deductions?</h3>
+        <p>
+          No. It returns gross overtime and gross total pay. Run the total through the Salary
+          Calculator for a take-home estimate.
+        </p>
+      </article>
+      <article class="sal-related-card">
+        <h3>Should I rely on overtime for regular budgeting?</h3>
+        <p>
+          Treat it as a cushion, not core income. Overtime can be reduced or removed without notice,
+          so budget from base pay and use overtime to pay down debt or add to savings.
+        </p>
       </article>
     </div>
   </section>
+
   <section class="sal-explanation-card sal-important-notes">
     <h3>Important Notes</h3>
     <ul class="sal-important-notes-list">
-      <li><span class="sal-note-key">Last updated:</span> March 2026</li>
-      <li><span class="sal-note-key">Accuracy:</span> Results use the hourly rate, overtime hours, multiplier, and optional base pay that you enter.</li>
-      <li><span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does not provide payroll, tax, employment, or legal advice.</li>
-      <li><span class="sal-note-key">Assumptions:</span> Entered pay is gross pay, and the calculator does not verify whether any overtime multiplier is required in your situation.</li>
-      <li><span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no data is stored.</li>
+      <li><span class="sal-note-key">Last updated:</span> August 2026</li>
+      <li>
+        <span class="sal-note-key">Accuracy:</span> Results use the hourly rate, overtime hours,
+        multiplier, and optional base pay you enter, with no rounding beyond two decimal places.
+      </li>
+      <li>
+        <span class="sal-note-key">Disclaimer:</span> This calculator is for planning only and does
+        not provide payroll, tax, employment, or legal advice.
+      </li>
+      <li>
+        <span class="sal-note-key">Assumptions:</span> Entered pay is gross pay for a single period,
+        and the calculator does not verify whether any overtime multiplier is required or permitted
+        in your situation.
+      </li>
+      <li>
+        <span class="sal-note-key">Privacy:</span> All calculations run locally in your browser - no
+        data is stored.
+      </li>
     </ul>
   </section>
 </div>

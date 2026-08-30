@@ -4,16 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Salary Calculator | UK, US and Canada Take-Home Pay Calculator</title>
-    <meta name="description" content="Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored." />
+    <meta name="description" content="Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/salary-calculator/" />
     <meta property="og:title" content="Salary Calculator | UK, US and Canada Take-Home Pay Calculator" />
-    <meta property="og:description" content="Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored." />
+    <meta property="og:description" content="Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/salary-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Salary Calculator | UK, US and Canada Take-Home Pay Calculator" />
-    <meta name="twitter:description" content="Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored." />
+    <meta name="twitter:description" content="Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -1898,6 +1898,58 @@
         margin-top: 10px;
       }
       
+      /* Sub-headings inside the optional section — "Deductions to add" / "Optional extra payments". */
+      #calc-salary-calculator .sal-opt-group-label {
+        margin: 16px 0 0;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #5a7180;
+      }
+      #calc-salary-calculator .sal-opt-group-label:first-child {
+        margin-top: 0;
+      }
+      
+      /* --- Deductions section (spec §62) ----------------------------------------------------------- */
+      #calc-salary-calculator .sal-deductions-total {
+        font-size: 13px;
+        font-weight: 800;
+        color: #b85d49;
+        white-space: nowrap;
+      }
+      
+      #calc-salary-calculator .sal-deductions-list {
+        list-style: none;
+        margin: 4px 0 0;
+        padding: 0;
+      }
+      
+      #calc-salary-calculator .sal-deduction-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 9px 0;
+        border-bottom: 1px dashed rgba(19, 34, 47, 0.12);
+        font-size: 14px;
+        color: #2c4150;
+      }
+      
+      #calc-salary-calculator .sal-deduction-row:last-child {
+        border-bottom: 0;
+      }
+      
+      #calc-salary-calculator .sal-deduction-row .sal-num {
+        font-variant-numeric: tabular-nums;
+        text-align: right;
+        white-space: nowrap;
+      }
+      
+      /* Show/hide the overtime method's field rows. */
+      #calc-salary-calculator #salary-panel-overtime [data-ot-method][hidden] {
+        display: none !important;
+      }
+      
       /* Dashed until active, solid green once on — the state has to be readable at a glance, because
          these chips are the only signal that extra inputs exist. */
       #calc-salary-calculator .sal-opt-chip {
@@ -2638,6 +2690,14 @@
         font-size: 13px;
       }
       
+      /* Seven frequency chips (Hourly … Annual) have to clear a single row inside the input pane. With
+         the route widened to 1200px (see "route width" below) that pane is ~552px; this tighter chip
+         keeps the set comfortably on one line without the group wrapping. */
+      #calc-salary-calculator [data-button-group='salary-pay-frequency'] .sal-chip-button {
+        padding: 8px 12px;
+        font-size: 12.5px;
+      }
+      
       /* ---------------------------------------------------------------- standalone calculation card */
       
       /*
@@ -2722,9 +2782,163 @@
       .sal-cluster-panel:has(#calc-salary-calculator) .sal-cluster-page-intro {
         display: none;
       }
+      
+      /* ---------------------------------------------------------------- route width */
+      
+      /*
+       * This route only: widen the shared 1120px cluster column to 1200px so the seven pay-frequency
+       * chips clear one row in the input pane. Kept modest — the wide margin that AdSense auto-placement
+       * relies on is preserved, just narrowed by 40px a side. The long-form prose below is pulled back
+       * to a readable measure so it does not inherit the extra width.
+       */
+      .sal-cluster-center-column:has(#calc-salary-calculator) {
+        width: min(1200px, calc(100% - 32px));
+      }
+      
+      .sal-cluster-center-column:has(#calc-salary-calculator) #salary-calculator-explanation {
+        max-width: 1000px;
+        margin-inline: auto;
+      }
+      
+      /* ---------------------------------------------------------------- result header actions */
+      
+      /*
+       * The old "Updated / Updating…" status chip is gone. Its top-right slot now holds the Copy summary
+       * action, and the eyebrow ("After federal, FICA and state tax" / "After federal, provincial, CPP
+       * and EI") is forced onto one line — at 0.12em tracking those strings wrapped in the results pane.
+       */
+      #calc-salary-calculator .sal-answer-top {
+        align-items: center;
+      }
+      
+      #calc-salary-calculator .sal-answer-top-labels {
+        min-width: 0;
+      }
+      
+      #calc-salary-calculator .sal-answer-top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      
+      #calc-salary-calculator .sal-answer-eyebrow {
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+        font-size: 10px;
+      }
+      
+      /* ---------------------------------------------------------------- stale / calculate gate */
+      
+      /*
+       * Calculation is gated behind the Calculate button (module.js `setStale`). While the shown figure
+       * does not match the current inputs, `.is-stale` dims the answer and lifts the Calculate button so
+       * the required next step is unmistakable.
+       */
+      #calc-salary-calculator.is-stale .sal-answer-hero,
+      #calc-salary-calculator.is-stale .sal-answer-note,
+      #calc-salary-calculator.is-stale .sal-rate-row,
+      #calc-salary-calculator.is-stale #salary-split,
+      #calc-salary-calculator.is-stale .sal-support-grid,
+      #calc-salary-calculator.is-stale .sal-summary-panel,
+      #calc-salary-calculator.is-stale #salary-deductions,
+      #calc-salary-calculator.is-stale #salary-paysheet {
+        opacity: 0.45;
+        transition: opacity 0.15s ease;
+      }
+      
+      #calc-salary-calculator .sal-stale-hint {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+        color: #92400e;
+      }
+      
+      #calc-salary-calculator.is-stale #salary-calc-button {
+        background: #16a34a;
+        border-color: #16a34a;
+        color: #ffffff;
+        box-shadow: 0 6px 18px rgba(22, 163, 74, 0.28);
+      }
+      
+      /* ---------------------------------------------------------------- summary panel */
+      
+      /*
+       * A consolidated, copy-friendly view of the result: the figure first and large, the per-period
+       * numbers next, then the explanatory lines (breakdown, assumptions, next paydays) at the bottom.
+       * The Copy summary button in the header puts exactly this block on the clipboard.
+       */
+      #calc-salary-calculator .sal-summary-panel {
+        margin-top: 4px;
+        padding: 16px 18px;
+        border-radius: 16px;
+        border: 1px solid rgba(19, 34, 47, 0.1);
+        background: #f7fbf8;
+      }
+      
+      #calc-salary-calculator .sal-summary-figure {
+        margin: 0;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: #13222f;
+      }
+      
+      #calc-salary-calculator .sal-summary-unit {
+        margin: 2px 0 0;
+        font-size: 13px;
+        font-weight: 700;
+        color: #5a7180;
+      }
+      
+      #calc-salary-calculator .sal-summary-periods {
+        margin: 10px 0 0;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #2c4150;
+      }
+      
+      #calc-salary-calculator .sal-summary-text {
+        margin: 12px 0 0;
+        padding-top: 12px;
+        border-top: 1px solid rgba(19, 34, 47, 0.1);
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: #5a7180;
+        white-space: pre-line;
+      }
+      
+      /* ---------------------------------------------------------------- pay sheet jump */
+      
+      #calc-salary-calculator .sal-paysheet-jump {
+        display: block;
+        width: 100%;
+        margin-top: 16px;
+        padding: 13px 16px;
+        border: 1px solid #16a34a;
+        border-radius: 14px;
+        background: #eaf7ee;
+        color: #14663a;
+        font: inherit;
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+      }
+      
+      #calc-salary-calculator .sal-paysheet-jump:hover {
+        background: #d9f0e0;
+      }
+      
+      #calc-salary-calculator .sal-paysheet-jump:focus-visible {
+        outline: 2px solid #16a34a;
+        outline-offset: 2px;
+      }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator | UK, US and Canada Take-Home Pay Calculator","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["UK take-home pay after Income Tax and National Insurance","US take-home pay after federal tax, FICA and state tax","Canada take-home pay after federal tax, provincial tax, CPP and EI","All 13 Canadian provinces and territories, including Quebec's QPP and QPIP","Pension, 401(k)/pre-tax and student loan deductions","Bonus impact on take-home pay","Pay sheet of upcoming paydays with net amounts"],"keywords":"salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, canada salary calculator, canada take home pay calculator, cpp calculator, qpp calculator, net pay calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"Does this calculator show take-home pay or gross pay?","acceptedAnswer":{"@type":"Answer","text":"Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan."}},{"@type":"Question","name":"How is UK take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold."}},{"@type":"Question","name":"Why does Scotland give a different result?","acceptedAnswer":{"@type":"Answer","text":"Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional."}},{"@type":"Question","name":"Does a pension contribution reduce my tax?","acceptedAnswer":{"@type":"Answer","text":"It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf."}},{"@type":"Question","name":"What is the difference between the effective rate and the marginal rate?","acceptedAnswer":{"@type":"Answer","text":"The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works."}},{"@type":"Question","name":"How is a bonus taxed?","acceptedAnswer":{"@type":"Answer","text":"The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band."}},{"@type":"Question","name":"Why is 4-weekly pay not the same as monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it."}},{"@type":"Question","name":"Can I see the dates I will actually be paid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on."}},{"@type":"Question","name":"Why does my payslip differ from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run."}},{"@type":"Question","name":"Are my salary details stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser - no data is stored."}},{"@type":"Question","name":"How is US take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your standard deduction is applied first, then federal income tax is charged bracket by bracket on what remains. FICA is calculated separately on your gross wages, and state income tax uses that state's own schedule and deductions."}},{"@type":"Question","name":"Does my 401(k) reduce FICA as well as income tax?","acceptedAnswer":{"@type":"Answer","text":"No. A 401(k) reduces federal and state taxable income, but Social Security and Medicare are charged on your full gross wages regardless. This is the detail most paycheck calculators get wrong, and it makes the real saving smaller than the headline rate suggests."}},{"@type":"Question","name":"Why does my state change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Nine states levy no income tax on wages at all, around fifteen apply a single flat rate, and the rest use graduated brackets with their own deductions. On a $100,000 salary the difference between Texas and California is over $6,500 a year."}},{"@type":"Question","name":"Are city or local income taxes included?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator covers federal, FICA and state-level taxes only. If you live or work in a city with its own income tax. New York City, Philadelphia, Detroit and others. Your actual take-home will be lower than shown."}},{"@type":"Question","name":"Which filing status should I choose?","acceptedAnswer":{"@type":"Answer","text":"Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars."}},{"@type":"Question","name":"How is Canada take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Federal tax is charged band by band on your full income, then a Basic Personal Amount credit is subtracted from the tax bill - not from the income being taxed, which is a different mechanic than the UK or US use. Provincial or territorial tax works the same way with its own bands and its own Basic Personal Amount credit. CPP and EI are calculated separately on gross earnings."}},{"@type":"Question","name":"Why does my province change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Each province and territory sets its own income tax bands and its own Basic Personal Amount. Ontario also adds a surtax and a health premium on top of provincial tax, and Quebec runs an entirely separate system - so the same salary can produce a noticeably different take-home figure depending on where you work."}},{"@type":"Question","name":"What is CPP2, and why is it separate from CPP?","acceptedAnswer":{"@type":"Answer","text":"CPP2 is a second, additional contribution introduced alongside the base Canada Pension Plan rate. It applies only to earnings between the base ceiling (the YMPE) and a higher ceiling (the YAMPE), at its own rate - it is not simply a continuation of the base CPP band."}},{"@type":"Question","name":"Is Quebec calculated differently from other provinces?","acceptedAnswer":{"@type":"Answer","text":"Yes. Quebec residents contribute to the Quebec Pension Plan (QPP) instead of CPP, pay a reduced Employment Insurance rate alongside a separate Quebec Parental Insurance Plan (QPIP) premium, and receive a federal tax abatement that reduces federal tax owing to reflect Quebec collecting its own provincial tax directly."}},{"@type":"Question","name":"Does the Basic Personal Amount work like the UK Personal Allowance?","acceptedAnswer":{"@type":"Answer","text":"Not quite. The UK Personal Allowance reduces the income that gets taxed. Canada's Basic Personal Amount instead reduces the tax bill directly, as a credit equal to the amount multiplied by the lowest tax rate - full tax is charged on the lowest band first, then the credit is subtracted from what is owed."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator | UK, US and Canada Take-Home Pay Calculator","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["UK take-home pay after Income Tax and National Insurance","US take-home pay after federal tax, FICA and state tax","Canada take-home pay after federal tax, provincial tax, CPP and EI","All 13 Canadian provinces and territories, including Quebec's QPP and QPIP","Pension, 401(k)/pre-tax and student loan deductions","Bonus impact on take-home pay","Pay sheet of upcoming paydays with net amounts"],"keywords":"salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, canada salary calculator, canada take home pay calculator, cpp calculator, qpp calculator, net pay calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"Does this calculator show take-home pay or gross pay?","acceptedAnswer":{"@type":"Answer","text":"Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan."}},{"@type":"Question","name":"How is UK take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold."}},{"@type":"Question","name":"Why does Scotland give a different result?","acceptedAnswer":{"@type":"Answer","text":"Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional."}},{"@type":"Question","name":"Does a pension contribution reduce my tax?","acceptedAnswer":{"@type":"Answer","text":"It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf."}},{"@type":"Question","name":"What is the difference between the effective rate and the marginal rate?","acceptedAnswer":{"@type":"Answer","text":"The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works."}},{"@type":"Question","name":"How are overtime, bonuses and commission taxed?","acceptedAnswer":{"@type":"Answer","text":"Each extra payment is converted to an annual amount using the frequency you set, added to your salary, and the total tax is worked out on the combined figure. That is more accurate than applying your marginal rate to the extra, because it can push part of your income into a higher band."}},{"@type":"Question","name":"How do I enter overtime?","acceptedAnswer":{"@type":"Answer","text":"Choose one of three methods: a fixed amount, an hourly rate multiplied by hours worked, or a percentage of a gross-pay basis you pick - hourly, weekly, 4-weekly, monthly or annual. Set how often that overtime occurs and the calculator annualises it before adding it to your gross."}},{"@type":"Question","name":"Why is 4-weekly pay not the same as monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it."}},{"@type":"Question","name":"Can I see the dates I will actually be paid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one. Any extra payments are spread evenly across those paydays."}},{"@type":"Question","name":"Why does my payslip differ from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run."}},{"@type":"Question","name":"Are my salary details stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser - no data is stored."}},{"@type":"Question","name":"How is US take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your standard deduction is applied first, then federal income tax is charged bracket by bracket on what remains. FICA is calculated separately on your gross wages, and state income tax uses that state's own schedule and deductions."}},{"@type":"Question","name":"Does my 401(k) reduce FICA as well as income tax?","acceptedAnswer":{"@type":"Answer","text":"No. A 401(k) reduces federal and state taxable income, but Social Security and Medicare are charged on your full gross wages regardless. This is the detail most paycheck calculators get wrong, and it makes the real saving smaller than the headline rate suggests."}},{"@type":"Question","name":"Why does my state change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Nine states levy no income tax on wages at all, around fifteen apply a single flat rate, and the rest use graduated brackets with their own deductions. On a $100,000 salary the difference between Texas and California is over $6,500 a year."}},{"@type":"Question","name":"Are city or local income taxes included?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator covers federal, FICA and state-level taxes only. If you live or work in a city with its own income tax. New York City, Philadelphia, Detroit and others. Your actual take-home will be lower than shown."}},{"@type":"Question","name":"Which filing status should I choose?","acceptedAnswer":{"@type":"Answer","text":"Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars."}},{"@type":"Question","name":"How is Canada take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Federal tax is charged band by band on your full income, then a Basic Personal Amount credit is subtracted from the tax bill - not from the income being taxed, which is a different mechanic than the UK or US use. Provincial or territorial tax works the same way with its own bands and its own Basic Personal Amount credit. CPP and EI are calculated separately on gross earnings."}},{"@type":"Question","name":"Why does my province change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Each province and territory sets its own income tax bands and its own Basic Personal Amount. Ontario also adds a surtax and a health premium on top of provincial tax, and Quebec runs an entirely separate system - so the same salary can produce a noticeably different take-home figure depending on where you work."}},{"@type":"Question","name":"What is CPP2, and why is it separate from CPP?","acceptedAnswer":{"@type":"Answer","text":"CPP2 is a second, additional contribution introduced alongside the base Canada Pension Plan rate. It applies only to earnings between the base ceiling (the YMPE) and a higher ceiling (the YAMPE), at its own rate - it is not simply a continuation of the base CPP band."}},{"@type":"Question","name":"Is Quebec calculated differently from other provinces?","acceptedAnswer":{"@type":"Answer","text":"Yes. Quebec residents contribute to the Quebec Pension Plan (QPP) instead of CPP, pay a reduced Employment Insurance rate alongside a separate Quebec Parental Insurance Plan (QPIP) premium, and receive a federal tax abatement that reduces federal tax owing to reflect Quebec collecting its own provincial tax directly."}},{"@type":"Question","name":"Does the Basic Personal Amount work like the UK Personal Allowance?","acceptedAnswer":{"@type":"Answer","text":"Not quite. The UK Personal Allowance reduces the income that gets taxed. Canada's Basic Personal Amount instead reduces the tax bill directly, as a credit equal to the amount multiplied by the lowest tax rate - full tax is charged on the lowest band first, then the credit is subtracted from what is owed."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -2755,7 +2969,7 @@
       <span>Salary Calculator</span>
     </div>
     <h1 id="calculator-title">Salary Calculator</h1>
-    <p class="sal-cluster-page-intro">Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual. Free, and nothing is stored.</p>
+    <p class="sal-cluster-page-intro">Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-salary-calculator" class="sal-calc-shell">
@@ -2769,8 +2983,8 @@
   <div class="sal-calc-columns">
   <section class="sal-calc-card sal-calc-form-card" aria-label="Salary calculator inputs">
     <div class="sal-input-row">
-      <label for="salary-pay-amount">Pay amount</label>
-      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" value="60000" />
+      <label for="salary-pay-amount">Gross salary</label>
+      <input id="salary-pay-amount" type="number" min="0" step="0.01" inputmode="decimal" value="100000" />
     </div>
 
     <div class="sal-input-row">
@@ -2784,6 +2998,7 @@
         <button class="sal-chip-button" type="button" data-value="hourly" aria-pressed="false">Hourly</button>
         <button class="sal-chip-button" type="button" data-value="daily" aria-pressed="false">Daily</button>
         <button class="sal-chip-button" type="button" data-value="weekly" aria-pressed="false">Weekly</button>
+        <button class="sal-chip-button" type="button" data-value="fourWeekly" aria-pressed="false">4-weekly</button>
         <button class="sal-chip-button" type="button" data-value="biweekly" aria-pressed="false">Biweekly</button>
         <button class="sal-chip-button" type="button" data-value="monthly" aria-pressed="false">Monthly</button>
         <button class="sal-chip-button is-active" type="button" data-value="annual" aria-pressed="true">Annual</button>
@@ -2843,13 +3058,11 @@
     <button class="sal-primary-action" id="salary-calc-button" type="button">Calculate</button>
 
     <div class="sal-optional sal-tax-only" id="salary-optional" hidden>
-      <p class="sal-calc-kicker">Optional — add only what applies</p>
+      <p class="sal-opt-group-label">Deductions to add</p>
       <div class="sal-opt-chips">
         <button class="sal-opt-chip sal-uk-only" type="button" data-opt="pension" aria-pressed="false" aria-controls="salary-panel-pension">+ Pension</button>
         <button class="sal-opt-chip sal-us-only" type="button" data-opt="pretax" aria-pressed="false" aria-controls="salary-panel-pretax">+ 401(k) / pre-tax</button>
         <button class="sal-opt-chip sal-uk-only" type="button" data-opt="loan" aria-pressed="false" aria-controls="salary-panel-loan">+ Student loan</button>
-        <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
-        <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
       </div>
 
       <div class="sal-opt-panel" id="salary-panel-pension" hidden>
@@ -2897,25 +3110,128 @@
         <p class="sal-field-hint">An undergraduate plan and a postgraduate loan are deducted at the same time.</p>
       </div>
 
+      <p class="sal-opt-group-label">Optional extra payments</p>
+      <div class="sal-opt-chips">
+        <button class="sal-opt-chip" type="button" data-opt="overtime" aria-pressed="false" aria-controls="salary-panel-overtime">+ Overtime</button>
+        <button class="sal-opt-chip" type="button" data-opt="bonus" aria-pressed="false" aria-controls="salary-panel-bonus">+ Bonus</button>
+        <button class="sal-opt-chip" type="button" data-opt="commission" aria-pressed="false" aria-controls="salary-panel-commission">+ Commission</button>
+        <button class="sal-opt-chip" type="button" data-opt="extra" aria-pressed="false" aria-controls="salary-panel-extra">+ Other extra pay</button>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-overtime" hidden>
+        <div class="sal-input-row">
+          <label for="salary-ot-method">How is overtime worked out?</label>
+          <select id="salary-ot-method">
+            <option value="fixed" selected>A fixed amount</option>
+            <option value="hourly">Overtime rate &times; hours</option>
+            <option value="percent">A percentage of gross pay</option>
+          </select>
+        </div>
+        <div class="sal-input-row" data-ot-method="fixed">
+          <label for="salary-ot-amount">Overtime amount</label>
+          <input id="salary-ot-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+        </div>
+        <div class="sal-input-grid" data-ot-method="hourly" hidden>
+          <div class="sal-input-row">
+            <label for="salary-ot-rate">Overtime hourly rate</label>
+            <input id="salary-ot-rate" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-ot-hours">Overtime hours</label>
+            <input id="salary-ot-hours" type="number" min="0" step="0.1" value="0" />
+          </div>
+        </div>
+        <div class="sal-input-grid" data-ot-method="percent" hidden>
+          <div class="sal-input-row">
+            <label for="salary-ot-percent">Overtime percentage</label>
+            <input id="salary-ot-percent" type="number" min="0" step="0.1" value="10" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-ot-basis">of which gross figure</label>
+            <select id="salary-ot-basis">
+              <option value="hourly">Hourly gross</option>
+              <option value="weekly">Weekly gross</option>
+              <option value="fourWeekly">4-weekly gross</option>
+              <option value="monthly" selected>Monthly gross</option>
+              <option value="annual">Annual gross</option>
+            </select>
+          </div>
+        </div>
+        <div class="sal-input-row">
+          <label for="salary-ot-frequency">How often is this overtime paid?</label>
+          <select id="salary-ot-frequency">
+            <option value="oneOff">One-off (this year)</option>
+            <option value="weekly">Every week</option>
+            <option value="fourWeekly">Every 4 weeks</option>
+            <option value="monthly" selected>Every month</option>
+            <option value="annual">Once a year</option>
+          </select>
+        </div>
+        <p class="sal-field-hint">Overtime is added to your gross salary and taxed as ordinary income.</p>
+      </div>
+
       <div class="sal-opt-panel" id="salary-panel-bonus" hidden>
         <div class="sal-input-grid">
           <div class="sal-input-row">
             <label for="salary-bonus-amount">Bonus amount</label>
-            <input id="salary-bonus-amount" type="number" min="0" step="0.01" value="0" />
+            <input id="salary-bonus-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
           </div>
           <div class="sal-input-row">
-            <label for="salary-bonus-month">Typical bonus month</label>
-            <select id="salary-bonus-month">
-              <option value="0">January</option><option value="1">February</option>
-              <option value="2">March</option><option value="3">April</option>
-              <option value="4">May</option><option value="5">June</option>
-              <option value="6">July</option><option value="7">August</option>
-              <option value="8">September</option><option value="9">October</option>
-              <option value="10">November</option><option value="11" selected>December</option>
+            <label for="salary-bonus-frequency">How often is it paid?</label>
+            <select id="salary-bonus-frequency">
+              <option value="oneOff" selected>One-off (this year)</option>
+              <option value="annual">Once a year</option>
+              <option value="fourWeekly">Every 4 weeks</option>
+              <option value="monthly">Every month</option>
+              <option value="weekly">Every week</option>
             </select>
           </div>
         </div>
-        <p class="sal-field-hint">The pay sheet shows the bonus landing in this month rather than spreading it across every payday.</p>
+        <p class="sal-field-hint">A bonus is added to gross and taxed as ordinary income. Bonus-specific withholding rules (for example the US 22% supplemental rate) are not modelled.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-commission" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-commission-amount">Commission amount</label>
+            <input id="salary-commission-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-commission-frequency">How often is it paid?</label>
+            <select id="salary-commission-frequency">
+              <option value="monthly" selected>Every month</option>
+              <option value="fourWeekly">Every 4 weeks</option>
+              <option value="weekly">Every week</option>
+              <option value="annual">Once a year</option>
+              <option value="oneOff">One-off (this year)</option>
+            </select>
+          </div>
+        </div>
+        <p class="sal-field-hint">Commission is added to gross and taxed as ordinary income.</p>
+      </div>
+
+      <div class="sal-opt-panel" id="salary-panel-extra" hidden>
+        <div class="sal-input-grid">
+          <div class="sal-input-row">
+            <label for="salary-extra-amount">Other extra pay</label>
+            <input id="salary-extra-amount" type="number" min="0" step="0.01" inputmode="decimal" value="0" />
+          </div>
+          <div class="sal-input-row">
+            <label for="salary-extra-frequency">How often is it paid?</label>
+            <select id="salary-extra-frequency">
+              <option value="oneOff" selected>One-off (this year)</option>
+              <option value="annual">Once a year</option>
+              <option value="monthly">Every month</option>
+              <option value="fourWeekly">Every 4 weeks</option>
+              <option value="weekly">Every week</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <p class="sal-opt-group-label">Pay schedule</p>
+      <div class="sal-opt-chips">
+        <button class="sal-opt-chip" type="button" data-opt="sched" aria-pressed="false" aria-controls="salary-panel-sched">+ Pay schedule</button>
       </div>
 
       <div class="sal-opt-panel" id="salary-panel-sched" hidden>
@@ -2959,14 +3275,18 @@
 
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
     <div class="sal-answer-top">
-      <div>
+      <div class="sal-answer-top-labels">
         <p class="sal-answer-title" id="salary-answer-title">Annual gross pay</p>
         <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Gross (before tax)</p>
       </div>
-      <span class="sal-status-chip" id="salary-dirty-chip">Up to date</span>
+      <div class="sal-answer-top-actions">
+        <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
+        <span class="sal-copy-feedback" id="salary-copy-feedback" aria-live="polite"></span>
+      </div>
     </div>
-    <p class="sal-answer-hero" id="salary-annual-pay">60,000.00</p>
-    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,153.85 per week.</p>
+    <p class="sal-answer-hero" id="salary-annual-pay">100,000.00</p>
+    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,923.08 per week.</p>
+    <p class="sal-stale-hint" id="salary-stale-hint" hidden>Inputs changed &mdash; press <strong>Calculate</strong> to update the result.</p>
 
     <div class="sal-rate-row sal-tax-only" id="salary-rate-row" hidden>
       <span class="sal-rate-pill">Effective rate <strong id="salary-effective-rate">—</strong></span>
@@ -2985,37 +3305,62 @@
       take-home will be lower than this.</span>
     </p>
 
-    <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual pay · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
-    <div class="sal-action-row">
-      <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
-      <span class="sal-copy-feedback" id="salary-copy-feedback" aria-live="polite"></span>
-    </div>
+    <p class="sal-answer-context" id="salary-answer-context">Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
 
     <div class="sal-support-grid">
       <div class="sal-support-card">
         <span>Monthly pay</span>
-        <strong id="salary-monthly-pay">5,000.00</strong>
+        <strong id="salary-monthly-pay">8,333.33</strong>
+      </div>
+      <div class="sal-support-card">
+        <span>4-weekly pay</span>
+        <strong id="salary-fourweekly-pay">7,692.31</strong>
       </div>
       <div class="sal-support-card">
         <span>Biweekly pay</span>
-        <strong id="salary-biweekly-pay">2,307.69</strong>
+        <strong id="salary-biweekly-pay">3,846.15</strong>
       </div>
       <div class="sal-support-card">
         <span>Weekly pay</span>
-        <strong id="salary-weekly-pay">1,153.85</strong>
+        <strong id="salary-weekly-pay">1,923.08</strong>
       </div>
       <div class="sal-support-card">
         <span>Daily pay</span>
-        <strong id="salary-daily-pay">230.77</strong>
+        <strong id="salary-daily-pay">384.62</strong>
       </div>
       <div class="sal-support-card">
         <span>Hourly pay</span>
-        <strong id="salary-hourly-pay">28.85</strong>
+        <strong id="salary-hourly-pay">48.08</strong>
       </div>
+    </div>
+
+    <div class="sal-summary-panel" id="salary-summary-panel">
+      <p class="sal-summary-figure">100,000.00</p>
+      <p class="sal-summary-unit">gross a year</p>
+      <p class="sal-summary-periods">8,333.33 / month · 7,692.31 / 4-weekly · 1,923.08 / week</p>
+      <p class="sal-summary-text">Monthly 8,333.33 · Biweekly 3,846.15 · Daily 384.62 · Hourly 48.08
+
+Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 workdays/week.</p>
     </div>
 
   </aside>
   </div>
+
+  <button class="sal-paysheet-jump sal-tax-only" id="salary-paysheet-jump" type="button" hidden>
+    &#8595; See your full pay sheet &mdash; every payday from gross to net
+  </button>
+
+  <section class="sal-calc-card sal-paysheet-card sal-deductions-card sal-tax-only" id="salary-deductions" hidden aria-labelledby="salary-deductions-title">
+    <div class="sal-paysheet-head">
+      <div>
+        <h3 id="salary-deductions-title">Deductions</h3>
+        <p class="sal-paysheet-meta" id="salary-deductions-meta">What comes out of your gross salary before you are paid.</p>
+      </div>
+      <span class="sal-deductions-total" id="salary-deductions-total">—</span>
+    </div>
+    <ul class="sal-deductions-list" id="salary-deductions-list"></ul>
+    <p class="sal-paysheet-note">Country-specific — these are the deductions your payroll system actually applies. Extra payments you add are taxed as ordinary income on top of your salary.</p>
+  </section>
 
   <section class="sal-calc-card sal-paysheet-card sal-breakdown-standalone" aria-label="How this estimate was calculated">
     <div class="sal-breakdown-details sal-tax-only" id="salary-breakdown-details" hidden>
@@ -3156,23 +3501,38 @@
 
     <h4>Step 4. Add only what applies to you</h4>
     <p>
-      Everything beyond salary and region is hidden until you ask for it. Tap a chip to reveal just
-      that section:
+      Everything beyond gross salary and region is hidden until you ask for it. The optional controls
+      are grouped into three headings. Tap a chip to reveal just that section:
     </p>
+    <p><strong>Deductions to add</strong> — amounts taken out of your pay:</p>
     <ul class="sal-explanation-list">
       <li><strong>Pension</strong> (UK): your contribution percentage and the relief method your scheme uses.</li>
       <li><strong>401(k) / pre-tax</strong> (USA): annual pre-tax contributions. These cut your income tax but not your FICA.</li>
       <li><strong>Student loan</strong> (UK): your plan, plus a separate box if you also hold a Postgraduate Loan.</li>
-      <li><strong>Bonus</strong>: the amount and the month it is normally paid, so the pay sheet shows it landing on that specific payday.</li>
-      <li><strong>Pay schedule</strong>: your first pay date and how weekend paydays are handled. Optional: leave it alone and the pay sheet assumes the 1st of each month.</li>
     </ul>
+    <p><strong>Optional extra payments</strong> — amounts added on top of your base salary. They do not change your base pay until you add them, and each one is annualised and folded into your gross for tax:</p>
+    <ul class="sal-explanation-list">
+      <li><strong>Overtime</strong>: enter it as a fixed amount, as an hourly rate times hours worked, or as a percentage of a gross-pay basis (hourly, weekly, 4-weekly, monthly or annual).</li>
+      <li><strong>Bonus</strong>: the amount, plus how often it is paid (one-off, or recurring at a set frequency).</li>
+      <li><strong>Commission</strong>: the amount and its frequency, converted to an annual figure before it is added.</li>
+      <li><strong>Other</strong>: any further taxable payment - shift allowance, on-call pay, a stipend - with its own frequency.</li>
+    </ul>
+    <p><strong>Pay schedule</strong>: your first pay date and how weekend paydays are handled. Optional - leave it alone and the pay sheet assumes the 1st of each month.</p>
 
     <h4>Step 5. Read your results</h4>
     <p>
       The large figure is your estimated take-home pay. The bar beneath it shows where your gross
       salary went. The green segment is what you keep; the rest is tax, National Insurance or FICA,
       and any other deductions. The smaller cards translate your take-home into every pay
-      period at once, and the Pay dates sheet lower down shows the actual days you will be paid.
+      period at once - including a 4-weekly figure, calculated as annual pay divided by 13 - and the
+      Pay dates sheet lower down shows the actual days you will be paid.
+    </p>
+    <p>
+      In any take-home mode the <strong>Deductions</strong> section lists every statutory and
+      voluntary deduction as its own line, in the terms that country uses: Income Tax, National
+      Insurance, pension and student loan for the UK; federal tax, state tax, Social Security,
+      Medicare and pre-tax contributions for the US; federal tax, provincial tax, CPP or QPP, EI and
+      any health premium for Canada. The lines add up to the same annual total shown in the bar.
     </p>
 
     <h4>Step 6. Expand the calculation</h4>
@@ -3439,7 +3799,7 @@
   </section>
 
   <section class="sal-explanation-card">
-    <h3>Pay frequency, bonuses and your pay sheet</h3>
+    <h3>Pay frequency, extra payments and your pay sheet</h3>
 
     <h4>Pay frequency explained</h4>
     <p>
@@ -3472,17 +3832,25 @@
       monthly figure introduces small errors that never quite reconcile against a real payslip.
     </p>
 
-    <h4>How bonuses are taxed</h4>
+    <h4>How overtime, bonuses and commission are handled</h4>
     <p>
-      A bonus is taxable income, but the amount withheld when it arrives often differs from the
-      eventual liability. That is why a bonus can appear to be taxed at a punishing rate on the
-      day it lands.
+      Overtime, a bonus, commission and any "other" payment are all taxable income on top of your
+      base salary. Each one is entered with its own frequency - one-off, weekly, 4-weekly, monthly
+      or annual - and converted to an annual amount before anything else happens. A £400 monthly
+      commission becomes £4,800 a year; a one-off £2,000 bonus stays £2,000.
     </p>
     <p>
-      This calculator estimates your annual position. It adds the bonus to your income, calculates
-      total tax on the combined figure, and reports the difference between the two results. That is
-      more accurate than applying a single marginal rate, because a bonus can push part of your
-      income into a higher band or reduce an allowance you would otherwise have kept.
+      Overtime can be entered three ways: a fixed amount, an hourly rate multiplied by the hours
+      worked, or a percentage applied to a gross-pay basis you choose (your hourly, weekly,
+      4-weekly, monthly or annual gross). All three resolve to a single annual figure.
+    </p>
+    <p>
+      The calculator then adds the combined annual extra to your salary, calculates total tax on
+      that higher figure, and shows the take-home that results. Working the tax on the combined
+      total is more accurate than applying a single marginal rate, because the extra can push part
+      of your income into a higher band or reduce an allowance you would otherwise have kept. On the
+      pay sheet the extra is spread evenly across your paydays rather than shown as one lump, so
+      every row reconciles to the same annual total.
     </p>
 
     <h4>Using the pay dates sheet</h4>
@@ -3495,10 +3863,10 @@
       month. Enter your real date and every row updates to match your payroll.
     </p>
     <p>
-      Two behaviours are worth knowing. Where a payday falls on a Saturday or Sunday, most
-      employers pay on the preceding Friday, and shifted rows are marked so you can see the rule
-      applied. Where you have entered a bonus, it appears on the single payday in the month you
-      selected rather than being averaged across the year, which is how it will actually reach you.
+      One behaviour is worth knowing. Where a payday falls on a Saturday or Sunday, most employers
+      pay on the preceding Friday, and shifted rows are marked so you can see the rule applied. Any
+      overtime, bonus or commission you have added is spread evenly across the paydays, so each row
+      reflects your average pay rather than trying to guess which payslip a lump sum lands on.
     </p>
   </section>
 
@@ -3629,8 +3997,12 @@
         <p>The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works.</p>
       </article>
       <article class="sal-related-card">
-        <h3>How is a bonus taxed?</h3>
-        <p>The calculator adds the bonus to your annual income, works out total tax on the combined figure, and reports the difference. That is more accurate than applying your marginal rate to the bonus, because a bonus can push part of your income into a higher band.</p>
+        <h3>How are overtime, bonuses and commission taxed?</h3>
+        <p>Each extra payment is converted to an annual amount using the frequency you set, added to your salary, and the total tax is worked out on the combined figure. That is more accurate than applying your marginal rate to the extra, because it can push part of your income into a higher band.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>How do I enter overtime?</h3>
+        <p>Choose one of three methods: a fixed amount, an hourly rate multiplied by hours worked, or a percentage of a gross-pay basis you pick - hourly, weekly, 4-weekly, monthly or annual. Set how often that overtime occurs and the calculator annualises it before adding it to your gross.</p>
       </article>
       <article class="sal-related-card">
         <h3>Why is 4-weekly pay not the same as monthly pay?</h3>
@@ -3638,7 +4010,7 @@
       </article>
       <article class="sal-related-card">
         <h3>Can I see the dates I will actually be paid?</h3>
-        <p>Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one, including the payday your bonus falls on.</p>
+        <p>Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one. Any extra payments are spread evenly across those paydays.</p>
       </article>
       <article class="sal-related-card">
         <h3>Why does my payslip differ from this estimate?</h3>
@@ -3697,7 +4069,7 @@
       <li><strong>Last updated:</strong> August 2026</li>
       <li><strong>Accuracy:</strong> UK and US results use published rates and thresholds for the selected tax year, stored as versioned data and reviewed each year. Canada results are based on the same published-rate approach but are not yet independently verified against CRA and provincial sources - treat Canada figures as a closer estimate than UK or US until that verification is complete. Gross Pay mode applies no tax and is exact for the schedule you enter.</li>
       <li><strong>Disclaimer:</strong> This calculator provides an estimate of take-home pay based on the information and tax rules selected. Actual payroll deductions may differ because of employer payroll settings, benefits, tax code adjustments, credits and other circumstances. It is not tax or financial advice.</li>
-      <li><strong>Assumptions:</strong> Pay is treated as consistent across the year. Hours, weeks and workdays are assumed uniform. Bonuses are treated as taxable income in the year entered. Employee Class 1 National Insurance only. Employer contributions are not a deduction from your pay and are excluded.</li>
+      <li><strong>Assumptions:</strong> Pay is treated as consistent across the year. Hours, weeks and workdays are assumed uniform. Overtime, bonuses, commission and other extra payments are annualised and treated as taxable income in the year entered, then spread evenly across paydays. Employee Class 1 National Insurance only. Employer contributions are not a deduction from your pay and are excluded.</li>
       <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
@@ -3722,6 +4094,6 @@
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/salary-calculators/salary-calculator/module.js?v=cfeb677464"></script>
+    <script type="module" src="/calculators/salary-calculators/salary-calculator/module.js?v=aed0e27aec"></script>
   </body>
 </html>

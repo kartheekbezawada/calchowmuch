@@ -497,3 +497,71 @@ For each supported country, once a year when the new tax year's figures are publ
 | 7 | §27 | Dynamic pay-sheet columns + CSV |
 | 8 | §28 | Tax-saving analysis panel |
 | 9 | §29, §42 | Conformance suite green for a 4th country added as a pure module; data verification pass |
+
+---
+
+## Part IV — UI requirements (2026-08-31 requirements pass)
+
+**Status:** §60–§65 are **shipped on `salary-calculator`** (§61 also on the converter). §66 is
+partly done — `shared/tax-engine/extra-payments.js` and `deduction-rows.js` are real common-layer
+modules and the engines are already pure/data-injected, but the full plugin registry (Part II
+§18–§20, tax-year awareness §21, conformance suite §29) is still the phased build.
+
+Common-layer modules added: `shared/tax-engine/extra-payments.js` (§63–§65 resolver),
+`shared/tax-engine/deduction-rows.js` (§62 result → itemised rows). Tests:
+`tests_specs/infrastructure/unit/{extra-payments,deduction-rows}.test.js`.
+
+### §60 Label — "Gross Salary"
+
+The pay-amount input, and every reference to it in summaries, the assumptions line, the copy
+summary and the explanation, reads **"Gross salary"** (not "Pay amount"). Applies to every
+country calculator. *(Done: `salary-calculator`. The gross converter keeps "Pay amount" since its
+input may be an hourly/weekly rate, not a salary.)*
+
+### §61 Pay frequency — 4-weekly is a first-class option
+
+Frequency options, in order: **Hourly · Daily · Weekly · 4-weekly · Biweekly/Fortnightly ·
+Monthly · Annual**. 4-weekly = annual ÷ 13 (13 payments a year); never a monthly figure adjusted
+(§47). The results panel shows a 4-weekly figure and the **Copy Summary includes a 4-weekly line
+for every country**. Core-layer helpers (`pay-frequency.js`, `salary-utils.toAnnualPay` /
+`convertAnnualPay`) all carry `fourWeekly`. *(Done on the two frequency-driven calculators.)*
+
+### §62 Deductions section (country-specific)
+
+A dedicated **Deductions** section listing the deductions that actually apply to the selected
+country, each as its own line — not one generic "deductions" bucket. This is §22's
+`deductionSchema` rendered as a visible, itemised section:
+- **UK:** Income Tax · Employee National Insurance · Workplace pension · Student loan · Other
+- **US:** Federal income tax · State income tax (where applicable) · Social Security · Medicare ·
+  401(k) / retirement · Other
+- **CA:** Federal income tax · Provincial/territorial income tax · CPP · EI · Pension/RRSP · Other
+
+### §63 Optional Extra Payments section
+
+A separate **Optional Extra Payments** section, off by default, that adds income on top of the
+gross salary without changing the base figure unless the user opts in:
+- Overtime pay (§64) · Bonus pay · Commission pay · Other extra pay
+- Each extra payment carries a **frequency basis** (§65).
+
+### §64 Overtime — three calculation methods (user-selected)
+
+- **A · Fixed amount** — user enters a flat overtime figure (e.g. £500).
+- **B · Hourly rate × hours** — overtime pay = overtime hourly rate × overtime hours
+  (e.g. £25 × 10 = £250).
+- **C · Percentage of gross** — user picks a gross-pay basis (hourly / weekly / 4-weekly / monthly
+  / annual gross) and a percentage; overtime pay = that gross × percentage
+  (e.g. monthly gross £4,000 × 10% = £400).
+
+### §65 Extra-payment frequency basis
+
+For each applicable extra payment, the user selects the basis: **hourly / weekly / 4-weekly /
+monthly / annual gross**. The engine converts the entered amount to the correct annual (and
+per-period) equivalent via the core frequency helpers before folding it into the calculation.
+
+### §66 Consistency
+
+§60–§65 are **common-layer** behaviour — implemented once in `salary-calculator-core` /
+the country registry (§19–§20), inherited by every current and future country calculator. The
+country layer supplies only the payroll rules (§62's exact deduction set, tax/NI/CPP math). Adding
+a country must not require re-implementing gross salary, frequency, 4-weekly, overtime, bonus,
+commission, generic deductions or copy summary.

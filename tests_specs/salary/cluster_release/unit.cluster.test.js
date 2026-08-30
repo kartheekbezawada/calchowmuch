@@ -19,14 +19,17 @@ describe('salary cluster shared helpers', () => {
     ).toBeCloseTo(60000, 8);
   });
 
-  it('SALARY-CLUSTER-U-2: annual pay breakdown exposes hourly, daily, weekly, and monthly outputs', () => {
+  it('SALARY-CLUSTER-U-2: annual pay breakdown exposes hourly, daily, weekly, 4-weekly and monthly outputs', () => {
     const result = convertAnnualPay({ annualPay: 52000, hoursPerWeek: 40, weeksPerYear: 52, daysPerWeek: 5 });
 
     expect(result).not.toBeNull();
     expect(result.monthlyPay).toBeCloseTo(4333.333333, 6);
+    expect(result.fourWeeklyPay).toBeCloseTo(52000 / 13, 8);
     expect(result.weeklyPay).toBeCloseTo(1000, 8);
     expect(result.dailyPay).toBeCloseTo(200, 8);
     expect(result.hourlyPay).toBeCloseTo(25, 8);
+    // 4-weekly is annual / 13, never a monthly figure adjusted.
+    expect(toAnnualPay({ amount: 4000, frequency: 'fourWeekly', weeksPerYear: 52 })).toBeCloseTo(52000, 8);
   });
 
   it('SALARY-CLUSTER-U-3: weekly, raise, bonus, and commission helpers cover core earnings modes', () => {

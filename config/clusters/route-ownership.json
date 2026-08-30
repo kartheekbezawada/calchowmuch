@@ -242,40 +242,8 @@
       "generationMode": "cluster"
     },
     {
-      "route": "/salary-calculators/hourly-to-salary-calculator/",
-      "calculatorId": "hourly-to-salary-calculator",
-      "activeOwnerClusterId": "salary",
-      "previousOwnerClusterId": "legacy-shared",
-      "rollbackTag": "pre-salary-rollout-20260326",
-      "generationMode": "cluster"
-    },
-    {
-      "route": "/salary-calculators/salary-to-hourly-calculator/",
-      "calculatorId": "salary-to-hourly-calculator",
-      "activeOwnerClusterId": "salary",
-      "previousOwnerClusterId": "legacy-shared",
-      "rollbackTag": "pre-salary-rollout-20260326",
-      "generationMode": "cluster"
-    },
-    {
       "route": "/salary-calculators/annual-to-monthly-salary-calculator/",
       "calculatorId": "annual-to-monthly-salary-calculator",
-      "activeOwnerClusterId": "salary",
-      "previousOwnerClusterId": "legacy-shared",
-      "rollbackTag": "pre-salary-rollout-20260326",
-      "generationMode": "cluster"
-    },
-    {
-      "route": "/salary-calculators/monthly-to-annual-salary-calculator/",
-      "calculatorId": "monthly-to-annual-salary-calculator",
-      "activeOwnerClusterId": "salary",
-      "previousOwnerClusterId": "legacy-shared",
-      "rollbackTag": "pre-salary-rollout-20260326",
-      "generationMode": "cluster"
-    },
-    {
-      "route": "/salary-calculators/weekly-pay-calculator/",
-      "calculatorId": "weekly-pay-calculator",
       "activeOwnerClusterId": "salary",
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-salary-rollout-20260326",
@@ -303,22 +271,6 @@
       "activeOwnerClusterId": "salary",
       "previousOwnerClusterId": "legacy-shared",
       "rollbackTag": "pre-salary-rollout-20260326",
-      "generationMode": "cluster"
-    },
-    {
-      "route": "/salary-calculators/commission-calculator/",
-      "calculatorId": "commission-calculator",
-      "activeOwnerClusterId": "salary",
-      "previousOwnerClusterId": "legacy-shared",
-      "rollbackTag": "pre-salary-rollout-20260326",
-      "generationMode": "cluster"
-    },
-    {
-      "route": "/salary-calculators/inflation-adjusted-salary-calculator/",
-      "calculatorId": "inflation-adjusted-salary-calculator",
-      "activeOwnerClusterId": "salary",
-      "previousOwnerClusterId": "legacy-shared",
-      "rollbackTag": "pre-salary-inflation-adjusted-20260328",
       "generationMode": "cluster"
     },
     {

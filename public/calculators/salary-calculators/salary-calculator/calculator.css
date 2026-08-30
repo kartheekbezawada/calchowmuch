@@ -108,6 +108,58 @@
   margin-top: 10px;
 }
 
+/* Sub-headings inside the optional section — "Deductions to add" / "Optional extra payments". */
+#calc-salary-calculator .sal-opt-group-label {
+  margin: 16px 0 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #5a7180;
+}
+#calc-salary-calculator .sal-opt-group-label:first-child {
+  margin-top: 0;
+}
+
+/* --- Deductions section (spec §62) ----------------------------------------------------------- */
+#calc-salary-calculator .sal-deductions-total {
+  font-size: 13px;
+  font-weight: 800;
+  color: #b85d49;
+  white-space: nowrap;
+}
+
+#calc-salary-calculator .sal-deductions-list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+#calc-salary-calculator .sal-deduction-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 9px 0;
+  border-bottom: 1px dashed rgba(19, 34, 47, 0.12);
+  font-size: 14px;
+  color: #2c4150;
+}
+
+#calc-salary-calculator .sal-deduction-row:last-child {
+  border-bottom: 0;
+}
+
+#calc-salary-calculator .sal-deduction-row .sal-num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Show/hide the overtime method's field rows. */
+#calc-salary-calculator #salary-panel-overtime [data-ot-method][hidden] {
+  display: none !important;
+}
+
 /* Dashed until active, solid green once on — the state has to be readable at a glance, because
    these chips are the only signal that extra inputs exist. */
 #calc-salary-calculator .sal-opt-chip {
@@ -848,6 +900,14 @@
   font-size: 13px;
 }
 
+/* Seven frequency chips (Hourly … Annual) have to clear a single row inside the input pane. With
+   the route widened to 1200px (see "route width" below) that pane is ~552px; this tighter chip
+   keeps the set comfortably on one line without the group wrapping. */
+#calc-salary-calculator [data-button-group='salary-pay-frequency'] .sal-chip-button {
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+
 /* ---------------------------------------------------------------- standalone calculation card */
 
 /*
@@ -931,4 +991,158 @@
  */
 .sal-cluster-panel:has(#calc-salary-calculator) .sal-cluster-page-intro {
   display: none;
+}
+
+/* ---------------------------------------------------------------- route width */
+
+/*
+ * This route only: widen the shared 1120px cluster column to 1200px so the seven pay-frequency
+ * chips clear one row in the input pane. Kept modest — the wide margin that AdSense auto-placement
+ * relies on is preserved, just narrowed by 40px a side. The long-form prose below is pulled back
+ * to a readable measure so it does not inherit the extra width.
+ */
+.sal-cluster-center-column:has(#calc-salary-calculator) {
+  width: min(1200px, calc(100% - 32px));
+}
+
+.sal-cluster-center-column:has(#calc-salary-calculator) #salary-calculator-explanation {
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------------------- result header actions */
+
+/*
+ * The old "Updated / Updating…" status chip is gone. Its top-right slot now holds the Copy summary
+ * action, and the eyebrow ("After federal, FICA and state tax" / "After federal, provincial, CPP
+ * and EI") is forced onto one line — at 0.12em tracking those strings wrapped in the results pane.
+ */
+#calc-salary-calculator .sal-answer-top {
+  align-items: center;
+}
+
+#calc-salary-calculator .sal-answer-top-labels {
+  min-width: 0;
+}
+
+#calc-salary-calculator .sal-answer-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+#calc-salary-calculator .sal-answer-eyebrow {
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+}
+
+/* ---------------------------------------------------------------- stale / calculate gate */
+
+/*
+ * Calculation is gated behind the Calculate button (module.js `setStale`). While the shown figure
+ * does not match the current inputs, `.is-stale` dims the answer and lifts the Calculate button so
+ * the required next step is unmistakable.
+ */
+#calc-salary-calculator.is-stale .sal-answer-hero,
+#calc-salary-calculator.is-stale .sal-answer-note,
+#calc-salary-calculator.is-stale .sal-rate-row,
+#calc-salary-calculator.is-stale #salary-split,
+#calc-salary-calculator.is-stale .sal-support-grid,
+#calc-salary-calculator.is-stale .sal-summary-panel,
+#calc-salary-calculator.is-stale #salary-deductions,
+#calc-salary-calculator.is-stale #salary-paysheet {
+  opacity: 0.45;
+  transition: opacity 0.15s ease;
+}
+
+#calc-salary-calculator .sal-stale-hint {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+#calc-salary-calculator.is-stale #salary-calc-button {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.28);
+}
+
+/* ---------------------------------------------------------------- summary panel */
+
+/*
+ * A consolidated, copy-friendly view of the result: the figure first and large, the per-period
+ * numbers next, then the explanatory lines (breakdown, assumptions, next paydays) at the bottom.
+ * The Copy summary button in the header puts exactly this block on the clipboard.
+ */
+#calc-salary-calculator .sal-summary-panel {
+  margin-top: 4px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(19, 34, 47, 0.1);
+  background: #f7fbf8;
+}
+
+#calc-salary-calculator .sal-summary-figure {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #13222f;
+}
+
+#calc-salary-calculator .sal-summary-unit {
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #5a7180;
+}
+
+#calc-salary-calculator .sal-summary-periods {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #2c4150;
+}
+
+#calc-salary-calculator .sal-summary-text {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(19, 34, 47, 0.1);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #5a7180;
+  white-space: pre-line;
+}
+
+/* ---------------------------------------------------------------- pay sheet jump */
+
+#calc-salary-calculator .sal-paysheet-jump {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px 16px;
+  border: 1px solid #16a34a;
+  border-radius: 14px;
+  background: #eaf7ee;
+  color: #14663a;
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+#calc-salary-calculator .sal-paysheet-jump:hover {
+  background: #d9f0e0;
+}
+
+#calc-salary-calculator .sal-paysheet-jump:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
 }

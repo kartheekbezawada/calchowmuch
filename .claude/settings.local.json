@@ -83,7 +83,11 @@
       "Bash(TARGET_ROUTE=/salary-calculators/salary-calculator/ node scripts/generate-mpa-pages.js)",
       "Bash(TARGET_ROUTE=/salary-calculators/monthly-to-annual-salary-calculator/ node scripts/generate-mpa-pages.js)",
       "Bash(TARGET_ROUTE=/salary-calculators/annual-to-monthly-salary-calculator/ node scripts/generate-mpa-pages.js)",
-      "Bash(node -e \"const d=require\\('./public/calculators/salary-calculators/shared/tax-data/ca.json'\\); console.log\\('top keys:', Object.keys\\(d\\)\\); console.log\\('federal keys:', Object.keys\\(d.federal||{}\\)\\); console.log\\('provinces:', Object.keys\\(d.provinces||{}\\)\\); console.log\\('cpp:', JSON.stringify\\(d.cpp\\)\\); console.log\\('ei:', JSON.stringify\\(d.ei\\)\\);\")"
+      "Bash(node -e \"const d=require\\('./public/calculators/salary-calculators/shared/tax-data/ca.json'\\); console.log\\('top keys:', Object.keys\\(d\\)\\); console.log\\('federal keys:', Object.keys\\(d.federal||{}\\)\\); console.log\\('provinces:', Object.keys\\(d.provinces||{}\\)\\); console.log\\('cpp:', JSON.stringify\\(d.cpp\\)\\); console.log\\('ei:', JSON.stringify\\(d.ei\\)\\);\")",
+      "Bash(node --check public/calculators/salary-calculators/salary-calculator/module.js)",
+      "Bash(node -e \"require\\('vm'\\);const fs=require\\('fs'\\);new Function\\(fs.readFileSync\\('tests_specs/salary/shared/config.js','utf8'\\).replace\\(/export /g,''\\)\\);console.log\\('config.js parses'\\)\")",
+      "PowerShell(node scripts/generate-mpa-pages.js --route \"/salary-calculators/salary-calculator/\")",
+      "PowerShell(npx vitest run tests_specs/salary tests_specs/infrastructure/unit/extra-payments.test.js tests_specs/infrastructure/unit/deduction-rows.test.js 2>&1)"
     ]
   }
 }
