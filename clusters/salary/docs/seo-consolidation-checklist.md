@@ -304,6 +304,27 @@ the **Progress log** at the bottom current.
   - Tests: `contracts.cluster` 5→4, `route-scope-validator` 84→83, `config.js` hub copy "Five"→"Four".
   - **Bonus fix:** the `--all` regen also corrected `public/calculators/index.html` and the homepage
     seo-block, which the prior consolidation commit had left pointing at now-301'd salary routes.
+- 2026-08-31 — **`salary-calculator` re-pointed at the conversion intent** after 28-day GSC data
+  showed the cluster's demand is ~7:1 pay-period conversion (weekly / annual-to-monthly / biweekly)
+  over take-home, and that the Aug 25 rebuild into a take-home-first page dropped it from position
+  ~11 to ~53 while `annual-to-monthly` (the remaining converter) rose to page 1 — which we then
+  301'd into the demoted page. Fix, keeping the single-page model:
+  - **Title** (metadata triple + module.js): `Salary Calculator | Annual to Monthly, Weekly Pay & Take-Home`.
+    Description + `appDescription` + `SALARY_SCHEMA_CONFIG` softwareDescription/featureList/keywords
+    lead with conversion.
+  - **"Gross Pay" mode removed.** Mode bar is now 3 country toggles (UK / United States / Canada),
+    none active by default → the page opens as a plain pay-period converter. Clicking an active
+    country toggles it back off. `mode='gross'` kept internally as the no-country sentinel; the mode
+    bar is hand-wired (setupButtonGroup can't express "nothing selected").
+  - **Explanation reworked**: intro + How-to steps reframed (no "modes"); the `sal-gross-only`
+    section rewritten as "How to convert a salary between pay periods" with a **conversion-factor
+    table** and worked examples hitting the real long-tail (`annual to monthly`, `biweekly to
+    monthly`, `hourly to salary`, `daily rate from annual salary UK`, `$X a year is how much a
+    month`); **tables added** to all three country worked examples (UK £60k, US $100k CA-vs-TX,
+    CA $60k AB-vs-QC); 3 new conversion FAQs (mirrored into module.js `FAQ_ITEMS`).
+  - `.sal-guide-table` given real CSS (was unstyled). E2E updated for the toggle-off flow.
+  - **1265 vitest + 15 salary Playwright green; thin-score 98/Strong (6,013 words, 24 FAQ, 0 hard
+    flags, similarity 22.6%); CWV green.**
 - **#7 full framework — NOT attempted in-session and not doable in one.** Per-period statutory
   withholding (IRS Pub 15-T, HMRC cumulative PAYE, CRA T4127), year-keyed tax-data dirs,
   contribution-limit + employer-contribution models, tax-saving panel and the conformance suite

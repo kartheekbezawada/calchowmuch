@@ -8,9 +8,9 @@ export const SALARY_CALCULATOR_CONFIGS = {
   'salary-calculator': {
     route: '/salary-calculators/salary-calculator/',
     h1: 'Salary Calculator',
-    title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
+    title: 'Salary Calculator | Annual to Monthly, Weekly Pay & Take-Home',
     description:
-      'Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.',
+      'Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored.',
     runE2E: async ({ page, expect, parseNumericText }) => {
       // --- baseline: opens on Annual 100,000, calculation gated behind the button --------------
       await expect(page.locator('button[data-value="annual"]')).toHaveAttribute('aria-pressed', 'true');
@@ -28,7 +28,7 @@ export const SALARY_CALCULATOR_CONFIGS = {
       expect(parseNumericText(await page.locator('#salary-annual-pay').textContent())).toBeCloseTo(55000, 2);
       await expect(page.locator('#salary-stale-hint')).toBeHidden();
 
-      // --- Gross Pay mode (the default) must behave exactly as it always has -----------------
+      // --- plain conversion view (the default, no country selected) --------------------------
       await page.click('button[data-value="hourly"]');
       // Work schedule assumptions is always open now, not a click-to-expand <details>.
       await expect(page.locator('#salary-hours-per-week')).toBeVisible();
@@ -156,8 +156,10 @@ export const SALARY_CALCULATOR_CONFIGS = {
       await page.fill('#salary-province', 'Alberta');
       await page.click('.sal-typeahead-item[data-code="AB"]');
 
-      // --- Gross Pay mode ---------------------------------------------------------------------
-      await page.click('.sal-mode-btn[data-value="gross"]');
+      // --- back to the plain conversion view (toggle the active country off) ------------------
+      await expect(page.locator('.sal-mode-btn[data-value="gross"]')).toHaveCount(0);
+      await page.click('.sal-mode-btn[data-value="canada"]');
+      await expect(page.locator('.sal-mode-btn[data-value="canada"]')).toHaveAttribute('aria-pressed', 'false');
       await expect(grossCard).toBeVisible();
       await expect(ukCard).toBeHidden();
       await expect(usCard).toBeHidden();

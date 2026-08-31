@@ -18,14 +18,37 @@
   display: none !important;
 }
 
-/* ---------------------------------------------------------------- mode toggle */
+/* ---------------------------------------------------------------- country toggle */
+
+/*
+ * Take-home tax is an optional layer, not a mode: the page is a pay-period converter by default
+ * and these three buttons only ADD a country's take-home on top. None is active on load; clicking
+ * an active one turns it back off.
+ */
+#calc-salary-calculator .sal-mode-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 10px;
+}
+
+#calc-salary-calculator .sal-mode-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2c4150;
+}
+
+#calc-salary-calculator .sal-mode-label-opt {
+  font-weight: 500;
+  color: #5a7180;
+}
 
 #calc-salary-calculator .sal-mode-bar {
-  grid-column: 1 / -1;
   display: inline-flex;
   gap: 4px;
   padding: 4px;
-  margin-bottom: 4px;
+  margin-bottom: 0;
   border-radius: 999px;
   background: rgba(19, 34, 47, 0.06);
   width: fit-content;
@@ -775,6 +798,45 @@
 
 #calc-salary-calculator .sal-local-note strong {
   color: #713f12;
+}
+
+/* ---------------------------------------------------------------- explanation tables */
+
+/*
+ * Worked-example and conversion tables in the long-form guide. Not previously styled — rendered as
+ * a bare browser table. Given a light frame, striped rows and right-aligned figures so the
+ * annual / monthly / per-country columns read cleanly.
+ */
+#salary-calculator-explanation .sal-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 4px;
+  font-size: 14px;
+}
+
+#salary-calculator-explanation .sal-guide-table th,
+#salary-calculator-explanation .sal-guide-table td {
+  padding: 9px 12px;
+  border: 1px solid rgba(19, 34, 47, 0.14);
+  text-align: left;
+  vertical-align: top;
+}
+
+#salary-calculator-explanation .sal-guide-table th {
+  background: rgba(19, 34, 47, 0.06);
+  font-weight: 700;
+  color: #13222f;
+}
+
+#salary-calculator-explanation .sal-guide-table td + td,
+#salary-calculator-explanation .sal-guide-table th + th {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+#salary-calculator-explanation .sal-guide-table tbody tr:nth-child(even) td {
+  background: rgba(19, 34, 47, 0.025);
 }
 
 /* ---------------------------------------------------------------- explanation callout */

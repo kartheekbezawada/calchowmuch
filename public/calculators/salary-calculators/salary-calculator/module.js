@@ -23,7 +23,22 @@ const FAQ_ITEMS = [
   {
     question: "Does this calculator show take-home pay or gross pay?",
     answer:
-      "Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan.",
+      "Both. By default, with no country selected, it converts one gross amount into every pay period with no tax applied. Add UK, US or Canada and it also estimates take-home pay after Income Tax, National Insurance or FICA, pension and student loan.",
+  },
+  {
+    question: "How do I convert an annual salary to monthly pay?",
+    answer:
+      "Divide the annual salary by 12. Enter your salary with \"Annual\" selected and the monthly figure is shown in the results, along with 4-weekly (annual divided by 13), weekly and every other period. For example, £30,000 a year is £2,500 a month, and $25,975 a year is about $2,164.58 a month.",
+  },
+  {
+    question: "How do I convert biweekly pay to a monthly or annual figure?",
+    answer:
+      "Multiply the biweekly amount by 26 for the annual salary, then divide by 12 for the monthly figure. Biweekly is not the same as twice monthly, because there are 26 fortnightly paychecks in a year, not 24. Enter the amount with \"Biweekly\" selected and the calculator does both steps.",
+  },
+  {
+    question: "How do I convert an hourly rate to an annual salary?",
+    answer:
+      "Multiply the hourly rate by your hours per week and then by your weeks per year. At 40 hours and 52 weeks, $32.69 an hour is about $67,995 a year. Set your real hours per week, weeks per year and workdays per week under Work schedule assumptions so the annual figure matches your contract.",
   },
   {
     question: "How is UK take-home pay calculated here?",
@@ -138,14 +153,17 @@ const FAQ_SCHEMA = {
 
 setPageMetadata(
   buildSalaryMetadata({
-    title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
+    title: 'Salary Calculator | Annual to Monthly, Weekly Pay & Take-Home',
     description:
-      'Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.',
+      'Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored.',
     canonical: 'https://calchowmuch.com/salary-calculators/salary-calculator/',
     name: 'Salary Calculator',
     appDescription:
-      'Estimate UK, US or Canada take-home pay after tax, or convert one gross pay amount into every pay period.',
+      'Convert one pay amount into every pay period - annual to monthly, hourly to salary, biweekly to monthly - then add UK, US or Canada take-home after tax.',
     featureList: [
+      'Convert pay between annual, monthly, 4-weekly, biweekly, weekly, daily and hourly',
+      'Convert from any starting pay period, including hourly and biweekly',
+      'Editable hours per week, weeks per year and workdays',
       'UK take-home pay after Income Tax and National Insurance',
       'England, Wales, Northern Ireland and Scotland tax bands',
       'US take-home pay after federal tax, FICA and state tax',
@@ -155,12 +173,11 @@ setPageMetadata(
       'All 13 Canadian provinces and territories, including Quebec’s QPP/QPIP',
       'Pension contributions with all three relief methods',
       'Student loan plans 1, 2, 4, 5 and Postgraduate',
-      'Bonus impact on take-home pay',
+      'Overtime, bonus and commission added to gross',
       'Pay sheet of upcoming paydays with net amounts',
-      'Gross pay conversion across every pay period',
     ],
     keywords:
-      'salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, canada salary calculator, net pay calculator, gross pay calculator',
+      'salary calculator, annual to monthly salary calculator, weekly pay calculator, hourly to salary calculator, pay converter, take home pay calculator, uk salary calculator, us paycheck calculator, canada salary calculator, net pay calculator',
     faqSchema: FAQ_SCHEMA,
   })
 );
@@ -509,18 +526,31 @@ const sheetFrequencyButtons = setupButtonGroup(
   }
 );
 
-setupButtonGroup(document.querySelector('[data-button-group="salary-mode"]'), {
-  defaultValue: 'gross',
-  onChange: (value) => {
-    mode = value;
-    applyMode();
-    // Seed the default jurisdiction so it is ready for the next Calculate press - USA to Texas,
-    // Canada to Alberta. Neither triggers a calculation: a mode switch only relabels the card and
-    // shows that country's controls; the figure moves only when Calculate is pressed.
-    if (mode === 'us' && !selectedState) void chooseState('TX');
-    else if (mode === 'canada' && !selectedProvince) void chooseProvince('AB');
-    markStale();
-  },
+/*
+ * The page is a pay-period converter first; take-home tax is an OPTIONAL layer for one country.
+ * There is no "Gross Pay" button — `mode` starts at 'gross' (a plain conversion, no country, no
+ * currency symbol) and the UK / US / Canada buttons are individually toggleable: clicking the
+ * active one turns it back off, returning to the conversion view. setupButtonGroup can't express a
+ * "nothing selected" state, so the mode bar is wired by hand.
+ */
+const modeBar = document.querySelector('[data-button-group="salary-mode"]');
+modeBar?.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-value]');
+  if (!button || !modeBar.contains(button)) return;
+  const next = mode === button.dataset.value ? 'gross' : button.dataset.value;
+  mode = next;
+  modeBar.querySelectorAll('button[data-value]').forEach((b) => {
+    const on = b.dataset.value === next;
+    b.classList.toggle('is-active', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  applyMode();
+  // Seed the default jurisdiction so it is ready for the next Calculate press - USA to Texas,
+  // Canada to Alberta. Neither triggers a calculation: adding a country only relabels the card and
+  // shows that country's controls; the figure moves only when Calculate is pressed.
+  if (mode === 'us' && !selectedState) void chooseState('TX');
+  else if (mode === 'canada' && !selectedProvince) void chooseProvince('AB');
+  markStale();
 });
 
 function applyMode() {
@@ -574,10 +604,10 @@ function applyMode() {
 
   const copy = {
     gross: {
-      answerTitle: 'Annual gross pay',
-      eyebrow: 'Gross (before tax)',
-      disclaimer: 'Gross-pay estimates only. Taxes, bonuses, and overtime are excluded.',
-      method: 'Gross pay only. Reverse conversions use your own hours, weeks, and workdays instead of hidden payroll assumptions.',
+      answerTitle: 'Your pay, every period',
+      eyebrow: 'Before tax',
+      disclaimer: 'Pay-period conversion only. Add a country above for take-home after tax.',
+      method: 'Your salary converted across every pay period. Conversions from an hourly or daily rate use your own hours, weeks and workdays rather than hidden payroll assumptions.',
     },
     uk: {
       answerTitle: 'Estimated take-home pay',
@@ -1328,7 +1358,7 @@ function renderResult(result, frequency) {
     if (details) details.hidden = false;
   } else {
     if (outputs.deductionsCard) outputs.deductionsCard.hidden = true;
-    setText(outputs.note, `Gross (before tax), that equals about ${money(periods.weekly)} per week.`);
+    setText(outputs.note, `That is about ${money(periods.monthly)} a month and ${money(periods.weekly)} a week, before tax.`);
     setText(
       outputs.breakdown,
       'Annual pay starts from the amount you entered. Monthly = annual / 12, biweekly = annual / 26, weekly = annual / weeks per year, and hourly uses weekly / hours per week.'
@@ -1365,7 +1395,7 @@ function buildSummary(result, periods, frequency) {
           : `Monthly ${money(periods.monthly)} · Biweekly ${money(periods.biweekly)} · Daily ${money(periods.daily)} · Hourly ${money(periods.hourly)}`;
   return {
     figure: money(isGross ? result.gross : result.netAnnual),
-    unitline: isGross ? 'gross a year' : 'estimated take-home a year',
+    unitline: isGross ? 'a year, before tax' : 'estimated take-home a year',
     periodsLine: `${money(periods.monthly)} / month · ${money(periods.fourWeekly)} / 4-weekly · ${money(periods.weekly)} / week`,
     detail,
     extras:

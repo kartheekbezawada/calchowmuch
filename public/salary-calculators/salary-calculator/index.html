@@ -3,17 +3,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Salary Calculator | UK, US and Canada Take-Home Pay Calculator</title>
-    <meta name="description" content="Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored." />
+    <title>Salary Calculator | Annual to Monthly, Weekly Pay &amp; Take-Home</title>
+    <meta name="description" content="Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored." />
     <link rel="canonical" href="https://calchowmuch.com/salary-calculators/salary-calculator/" />
-    <meta property="og:title" content="Salary Calculator | UK, US and Canada Take-Home Pay Calculator" />
-    <meta property="og:description" content="Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored." />
+    <meta property="og:title" content="Salary Calculator | Annual to Monthly, Weekly Pay &amp; Take-Home" />
+    <meta property="og:description" content="Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://calchowmuch.com/salary-calculators/salary-calculator/" />
     <meta property="og:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Salary Calculator | UK, US and Canada Take-Home Pay Calculator" />
-    <meta name="twitter:description" content="Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored." />
+    <meta name="twitter:title" content="Salary Calculator | Annual to Monthly, Weekly Pay &amp; Take-Home" />
+    <meta name="twitter:description" content="Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored." />
     <meta name="twitter:image" content="https://calchowmuch.com/assets/images/og-default.png" />
     <meta name="robots" content="index,follow" />
     <style data-salary-cluster="true">
@@ -1808,14 +1808,37 @@
         display: none !important;
       }
       
-      /* ---------------------------------------------------------------- mode toggle */
+      /* ---------------------------------------------------------------- country toggle */
+      
+      /*
+       * Take-home tax is an optional layer, not a mode: the page is a pay-period converter by default
+       * and these three buttons only ADD a country's take-home on top. None is active on load; clicking
+       * an active one turns it back off.
+       */
+      #calc-salary-calculator .sal-mode-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 14px;
+        margin-bottom: 10px;
+      }
+      
+      #calc-salary-calculator .sal-mode-label {
+        font-size: 13px;
+        font-weight: 700;
+        color: #2c4150;
+      }
+      
+      #calc-salary-calculator .sal-mode-label-opt {
+        font-weight: 500;
+        color: #5a7180;
+      }
       
       #calc-salary-calculator .sal-mode-bar {
-        grid-column: 1 / -1;
         display: inline-flex;
         gap: 4px;
         padding: 4px;
-        margin-bottom: 4px;
+        margin-bottom: 0;
         border-radius: 999px;
         background: rgba(19, 34, 47, 0.06);
         width: fit-content;
@@ -2567,6 +2590,45 @@
         color: #713f12;
       }
       
+      /* ---------------------------------------------------------------- explanation tables */
+      
+      /*
+       * Worked-example and conversion tables in the long-form guide. Not previously styled — rendered as
+       * a bare browser table. Given a light frame, striped rows and right-aligned figures so the
+       * annual / monthly / per-country columns read cleanly.
+       */
+      #salary-calculator-explanation .sal-guide-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 4px;
+        font-size: 14px;
+      }
+      
+      #salary-calculator-explanation .sal-guide-table th,
+      #salary-calculator-explanation .sal-guide-table td {
+        padding: 9px 12px;
+        border: 1px solid rgba(19, 34, 47, 0.14);
+        text-align: left;
+        vertical-align: top;
+      }
+      
+      #salary-calculator-explanation .sal-guide-table th {
+        background: rgba(19, 34, 47, 0.06);
+        font-weight: 700;
+        color: #13222f;
+      }
+      
+      #salary-calculator-explanation .sal-guide-table td + td,
+      #salary-calculator-explanation .sal-guide-table th + th {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      
+      #salary-calculator-explanation .sal-guide-table tbody tr:nth-child(even) td {
+        background: rgba(19, 34, 47, 0.025);
+      }
+      
       /* ---------------------------------------------------------------- explanation callout */
       
       /* Used by the local-tax notice inside the US deductions card. */
@@ -2938,7 +3000,7 @@
       }
     </style>
  
-    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator | UK, US and Canada Take-Home Pay Calculator","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["UK take-home pay after Income Tax and National Insurance","US take-home pay after federal tax, FICA and state tax","Canada take-home pay after federal tax, provincial tax, CPP and EI","All 13 Canadian provinces and territories, including Quebec's QPP and QPIP","Pension, 401(k)/pre-tax and student loan deductions","Overtime, bonus and commission added to gross","Gross pay converted between annual, monthly, 4-weekly, weekly, daily and hourly","Pay sheet of upcoming paydays with net amounts"],"keywords":"salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, canada salary calculator, canada take home pay calculator, cpp calculator, qpp calculator, net pay calculator, annual to monthly salary calculator, monthly to annual salary calculator, hourly to salary calculator, salary to hourly calculator, weekly pay calculator, pay converter","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"Does this calculator show take-home pay or gross pay?","acceptedAnswer":{"@type":"Answer","text":"Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan."}},{"@type":"Question","name":"How is UK take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold."}},{"@type":"Question","name":"Why does Scotland give a different result?","acceptedAnswer":{"@type":"Answer","text":"Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional."}},{"@type":"Question","name":"Does a pension contribution reduce my tax?","acceptedAnswer":{"@type":"Answer","text":"It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf."}},{"@type":"Question","name":"What is the difference between the effective rate and the marginal rate?","acceptedAnswer":{"@type":"Answer","text":"The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works."}},{"@type":"Question","name":"How are overtime, bonuses and commission taxed?","acceptedAnswer":{"@type":"Answer","text":"Each extra payment is converted to an annual amount using the frequency you set, added to your salary, and the total tax is worked out on the combined figure. That is more accurate than applying your marginal rate to the extra, because it can push part of your income into a higher band."}},{"@type":"Question","name":"How do I enter overtime?","acceptedAnswer":{"@type":"Answer","text":"Choose one of three methods: a fixed amount, an hourly rate multiplied by hours worked, or a percentage of a gross-pay basis you pick - hourly, weekly, 4-weekly, monthly or annual. Set how often that overtime occurs and the calculator annualises it before adding it to your gross."}},{"@type":"Question","name":"Why is 4-weekly pay not the same as monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it."}},{"@type":"Question","name":"Can I see the dates I will actually be paid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one. Any extra payments are spread evenly across those paydays."}},{"@type":"Question","name":"Why does my payslip differ from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run."}},{"@type":"Question","name":"Are my salary details stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser - no data is stored."}},{"@type":"Question","name":"How is US take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your standard deduction is applied first, then federal income tax is charged bracket by bracket on what remains. FICA is calculated separately on your gross wages, and state income tax uses that state's own schedule and deductions."}},{"@type":"Question","name":"Does my 401(k) reduce FICA as well as income tax?","acceptedAnswer":{"@type":"Answer","text":"No. A 401(k) reduces federal and state taxable income, but Social Security and Medicare are charged on your full gross wages regardless. This is the detail most paycheck calculators get wrong, and it makes the real saving smaller than the headline rate suggests."}},{"@type":"Question","name":"Why does my state change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Nine states levy no income tax on wages at all, around fifteen apply a single flat rate, and the rest use graduated brackets with their own deductions. On a $100,000 salary the difference between Texas and California is over $6,500 a year."}},{"@type":"Question","name":"Are city or local income taxes included?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator covers federal, FICA and state-level taxes only. If you live or work in a city with its own income tax. New York City, Philadelphia, Detroit and others. Your actual take-home will be lower than shown."}},{"@type":"Question","name":"Which filing status should I choose?","acceptedAnswer":{"@type":"Answer","text":"Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars."}},{"@type":"Question","name":"How is Canada take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Federal tax is charged band by band on your full income, then a Basic Personal Amount credit is subtracted from the tax bill - not from the income being taxed, which is a different mechanic than the UK or US use. Provincial or territorial tax works the same way with its own bands and its own Basic Personal Amount credit. CPP and EI are calculated separately on gross earnings."}},{"@type":"Question","name":"Why does my province change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Each province and territory sets its own income tax bands and its own Basic Personal Amount. Ontario also adds a surtax and a health premium on top of provincial tax, and Quebec runs an entirely separate system - so the same salary can produce a noticeably different take-home figure depending on where you work."}},{"@type":"Question","name":"What is CPP2, and why is it separate from CPP?","acceptedAnswer":{"@type":"Answer","text":"CPP2 is a second, additional contribution introduced alongside the base Canada Pension Plan rate. It applies only to earnings between the base ceiling (the YMPE) and a higher ceiling (the YAMPE), at its own rate - it is not simply a continuation of the base CPP band."}},{"@type":"Question","name":"Is Quebec calculated differently from other provinces?","acceptedAnswer":{"@type":"Answer","text":"Yes. Quebec residents contribute to the Quebec Pension Plan (QPP) instead of CPP, pay a reduced Employment Insurance rate alongside a separate Quebec Parental Insurance Plan (QPIP) premium, and receive a federal tax abatement that reduces federal tax owing to reflect Quebec collecting its own provincial tax directly."}},{"@type":"Question","name":"Does the Basic Personal Amount work like the UK Personal Allowance?","acceptedAnswer":{"@type":"Answer","text":"Not quite. The UK Personal Allowance reduces the income that gets taxed. Canada's Basic Personal Amount instead reduces the tax bill directly, as a credit equal to the amount multiplied by the lowest tax rate - full tax is charged on the lowest band first, then the credit is subtracted from what is owed."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
+    <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://calchowmuch.com/#website","url":"https://calchowmuch.com/","name":"CalcHowMuch","inLanguage":"en"},{"@type":"Organization","@id":"https://calchowmuch.com/#organization","name":"CalcHowMuch","url":"https://calchowmuch.com/","logo":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"}},{"@type":"WebPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#webpage","name":"Salary Calculator | Annual to Monthly, Weekly Pay & Take-Home","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored.","isPartOf":{"@id":"https://calchowmuch.com/#website"},"publisher":{"@id":"https://calchowmuch.com/#organization"},"inLanguage":"en","primaryImageOfPage":{"@type":"ImageObject","url":"https://calchowmuch.com/assets/images/og-default.png"},"about":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"mainEntity":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication"},"breadcrumb":{"@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs"}},{"@type":"SoftwareApplication","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#softwareapplication","name":"Salary Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://calchowmuch.com/salary-calculators/salary-calculator/","description":"Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax.","inLanguage":"en","provider":{"@id":"https://calchowmuch.com/#organization"},"featureList":["Convert pay between annual, monthly, 4-weekly, biweekly, weekly, daily and hourly","Convert from any pay period - annual to monthly, hourly to salary, biweekly to monthly","UK take-home pay after Income Tax and National Insurance","US take-home pay after federal tax, FICA and state tax","Canada take-home pay after federal tax, provincial tax, CPP and EI","All 13 Canadian provinces and territories, including Quebec's QPP and QPIP","Pension, 401(k)/pre-tax and student loan deductions","Overtime, bonus and commission added to gross","Pay sheet of upcoming paydays with net amounts"],"keywords":"salary calculator, take home pay calculator, uk salary calculator, us paycheck calculator, canada salary calculator, canada take home pay calculator, cpp calculator, qpp calculator, net pay calculator, annual to monthly salary calculator, monthly to annual salary calculator, hourly to salary calculator, salary to hourly calculator, weekly pay calculator, pay converter","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#faq","mainEntity":[{"@type":"Question","name":"Does this calculator show take-home pay or gross pay?","acceptedAnswer":{"@type":"Answer","text":"Both. By default, with no country selected, it converts one gross amount into every pay period with no tax applied. Add UK, US or Canada and it also estimates take-home pay after Income Tax, National Insurance or FICA, pension and student loan."}},{"@type":"Question","name":"How do I convert an annual salary to monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Divide the annual salary by 12. Enter your salary with \"Annual\" selected and the monthly figure is shown in the results, along with 4-weekly (annual divided by 13), weekly and every other period. For example, £30,000 a year is £2,500 a month, and $25,975 a year is about $2,164.58 a month."}},{"@type":"Question","name":"How do I convert biweekly pay to a monthly or annual figure?","acceptedAnswer":{"@type":"Answer","text":"Multiply the biweekly amount by 26 for the annual salary, then divide by 12 for the monthly figure. Biweekly is not the same as twice monthly, because there are 26 fortnightly paychecks in a year, not 24. Enter the amount with \"Biweekly\" selected and the calculator does both steps."}},{"@type":"Question","name":"How do I convert an hourly rate to an annual salary?","acceptedAnswer":{"@type":"Answer","text":"Multiply the hourly rate by your hours per week and then by your weeks per year. At 40 hours and 52 weeks, $32.69 an hour is about $67,995 a year. Set your real hours per week, weeks per year and workdays per week under Work schedule assumptions so the annual figure matches your contract."}},{"@type":"Question","name":"How is UK take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your Personal Allowance is applied first, then Income Tax is charged band by band on what remains. National Insurance is calculated separately on gross earnings using its own thresholds, and student loan repayments are a percentage of income above your plan threshold."}},{"@type":"Question","name":"Why does Scotland give a different result?","acceptedAnswer":{"@type":"Answer","text":"Scotland sets its own income tax bands and rates, which differ from England, Wales and Northern Ireland. The same salary produces a different take-home figure depending on where you are resident for tax purposes, which is why the region selector is not optional."}},{"@type":"Question","name":"Does a pension contribution reduce my tax?","acceptedAnswer":{"@type":"Answer","text":"It depends on the relief method. A net pay arrangement reduces taxable income but not National Insurance. Salary sacrifice reduces both, so it is worth more at the same percentage. Relief at source reduces neither, and the scheme reclaims basic-rate relief on your behalf."}},{"@type":"Question","name":"What is the difference between the effective rate and the marginal rate?","acceptedAnswer":{"@type":"Answer","text":"The effective rate is your total deductions as a percentage of gross pay. The marginal rate is the rate charged on your next pound earned. The marginal rate is almost always higher, and confusing the two is the most common misunderstanding about how tax works."}},{"@type":"Question","name":"How are overtime, bonuses and commission taxed?","acceptedAnswer":{"@type":"Answer","text":"Each extra payment is converted to an annual amount using the frequency you set, added to your salary, and the total tax is worked out on the combined figure. That is more accurate than applying your marginal rate to the extra, because it can push part of your income into a higher band."}},{"@type":"Question","name":"How do I enter overtime?","acceptedAnswer":{"@type":"Answer","text":"Choose one of three methods: a fixed amount, an hourly rate multiplied by hours worked, or a percentage of a gross-pay basis you pick - hourly, weekly, 4-weekly, monthly or annual. Set how often that overtime occurs and the calculator annualises it before adding it to your gross."}},{"@type":"Question","name":"Why is 4-weekly pay not the same as monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Four-weekly pay means every 28 days, which is 13 payments a year. Monthly pay is 12 payments a year. The calculator divides annual pay by 13 for 4-weekly, never by taking a monthly figure and adjusting it."}},{"@type":"Question","name":"Can I see the dates I will actually be paid?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn on Pay schedule and set your first pay date. The pay sheet lists your next 12 paydays with the gross, each deduction and the net amount landing on each one. Any extra payments are spread evenly across those paydays."}},{"@type":"Question","name":"Why does my payslip differ from this estimate?","acceptedAnswer":{"@type":"Answer","text":"Payroll systems apply withholding rules that can differ from your annual tax position, and your employer may apply benefits, salary sacrifice arrangements or deductions not modelled here. This calculator estimates your annual position rather than replicating one payroll run."}},{"@type":"Question","name":"Are my salary details stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser - no data is stored."}},{"@type":"Question","name":"How is US take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Your standard deduction is applied first, then federal income tax is charged bracket by bracket on what remains. FICA is calculated separately on your gross wages, and state income tax uses that state's own schedule and deductions."}},{"@type":"Question","name":"Does my 401(k) reduce FICA as well as income tax?","acceptedAnswer":{"@type":"Answer","text":"No. A 401(k) reduces federal and state taxable income, but Social Security and Medicare are charged on your full gross wages regardless. This is the detail most paycheck calculators get wrong, and it makes the real saving smaller than the headline rate suggests."}},{"@type":"Question","name":"Why does my state change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Nine states levy no income tax on wages at all, around fifteen apply a single flat rate, and the rest use graduated brackets with their own deductions. On a $100,000 salary the difference between Texas and California is over $6,500 a year."}},{"@type":"Question","name":"Are city or local income taxes included?","acceptedAnswer":{"@type":"Answer","text":"No. This calculator covers federal, FICA and state-level taxes only. If you live or work in a city with its own income tax. New York City, Philadelphia, Detroit and others. Your actual take-home will be lower than shown."}},{"@type":"Question","name":"Which filing status should I choose?","acceptedAnswer":{"@type":"Answer","text":"Pick the status you file under: Single, Married Filing Jointly, Married Filing Separately, or Head of Household. Both the tax brackets and the standard deduction change with it, so on a $100,000 salary the federal tax alone can differ by several thousand dollars."}},{"@type":"Question","name":"How is Canada take-home pay calculated here?","acceptedAnswer":{"@type":"Answer","text":"Federal tax is charged band by band on your full income, then a Basic Personal Amount credit is subtracted from the tax bill - not from the income being taxed, which is a different mechanic than the UK or US use. Provincial or territorial tax works the same way with its own bands and its own Basic Personal Amount credit. CPP and EI are calculated separately on gross earnings."}},{"@type":"Question","name":"Why does my province change the result so much?","acceptedAnswer":{"@type":"Answer","text":"Each province and territory sets its own income tax bands and its own Basic Personal Amount. Ontario also adds a surtax and a health premium on top of provincial tax, and Quebec runs an entirely separate system - so the same salary can produce a noticeably different take-home figure depending on where you work."}},{"@type":"Question","name":"What is CPP2, and why is it separate from CPP?","acceptedAnswer":{"@type":"Answer","text":"CPP2 is a second, additional contribution introduced alongside the base Canada Pension Plan rate. It applies only to earnings between the base ceiling (the YMPE) and a higher ceiling (the YAMPE), at its own rate - it is not simply a continuation of the base CPP band."}},{"@type":"Question","name":"Is Quebec calculated differently from other provinces?","acceptedAnswer":{"@type":"Answer","text":"Yes. Quebec residents contribute to the Quebec Pension Plan (QPP) instead of CPP, pay a reduced Employment Insurance rate alongside a separate Quebec Parental Insurance Plan (QPIP) premium, and receive a federal tax abatement that reduces federal tax owing to reflect Quebec collecting its own provincial tax directly."}},{"@type":"Question","name":"Does the Basic Personal Amount work like the UK Personal Allowance?","acceptedAnswer":{"@type":"Answer","text":"Not quite. The UK Personal Allowance reduces the income that gets taxed. Canada's Basic Personal Amount instead reduces the tax bill directly, as a credit equal to the amount multiplied by the lowest tax rate - full tax is charged on the lowest band first, then the credit is subtracted from what is owed."}}]},{"@type":"BreadcrumbList","@id":"https://calchowmuch.com/salary-calculators/salary-calculator/#breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calchowmuch.com/"},{"@type":"ListItem","position":2,"name":"Salary Calculators","item":"https://calchowmuch.com/salary-calculators/"},{"@type":"ListItem","position":3,"name":"Salary Calculator","item":"https://calchowmuch.com/salary-calculators/salary-calculator/"}]}]}</script>
     <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
   </head>
   <body data-page="calculator" data-route-archetype="calc_exp" data-design-family="neutral">
@@ -2969,15 +3031,17 @@
       <span>Salary Calculator</span>
     </div>
     <h1 id="calculator-title">Salary Calculator</h1>
-    <p class="sal-cluster-page-intro">Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.</p>
+    <p class="sal-cluster-page-intro">Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored.</p>
   </div>
   <div class="calculator-page-single sal-cluster-flow sal-cluster-calc-flow">
     <div id="calc-salary-calculator" class="sal-calc-shell">
-  <div class="sal-mode-bar" role="group" aria-label="Calculator mode" data-button-group="salary-mode">
-    <button class="sal-mode-btn is-active" type="button" data-value="gross" aria-pressed="true">Gross Pay</button>
-    <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK Take Home Pay</button>
-    <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">USA Take Home Pay</button>
-    <button class="sal-mode-btn" type="button" data-value="canada" aria-pressed="false">Canada Take Home Pay</button>
+  <div class="sal-mode-wrap">
+    <span class="sal-mode-label" id="salary-mode-label">Add take-home tax for a country <span class="sal-mode-label-opt">(optional — leave off for a plain pay conversion)</span></span>
+    <div class="sal-mode-bar" role="group" aria-labelledby="salary-mode-label" data-button-group="salary-mode">
+      <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK</button>
+      <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">United States</button>
+      <button class="sal-mode-btn" type="button" data-value="canada" aria-pressed="false">Canada</button>
+    </div>
   </div>
 
   <div class="sal-calc-columns">
@@ -3276,8 +3340,8 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
     <div class="sal-answer-top">
       <div class="sal-answer-top-labels">
-        <p class="sal-answer-title" id="salary-answer-title">Annual gross pay</p>
-        <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Gross (before tax)</p>
+        <p class="sal-answer-title" id="salary-answer-title">Your pay, every period</p>
+        <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Before tax</p>
       </div>
       <div class="sal-answer-top-actions">
         <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
@@ -3285,7 +3349,7 @@
       </div>
     </div>
     <p class="sal-answer-hero" id="salary-annual-pay">100,000.00</p>
-    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,923.08 per week.</p>
+    <p class="sal-answer-note" id="salary-answer-note">That is about 8,333.33 a month and 1,923.08 a week, before tax.</p>
     <p class="sal-stale-hint" id="salary-stale-hint" hidden>Inputs changed &mdash; press <strong>Calculate</strong> to update the result.</p>
 
     <div class="sal-rate-row sal-tax-only" id="salary-rate-row" hidden>
@@ -3336,7 +3400,7 @@
 
     <div class="sal-summary-panel" id="salary-summary-panel">
       <p class="sal-summary-figure">100,000.00</p>
-      <p class="sal-summary-unit">gross a year</p>
+      <p class="sal-summary-unit">a year, before tax</p>
       <p class="sal-summary-periods">8,333.33 / month · 7,692.31 / 4-weekly · 1,923.08 / week</p>
       <p class="sal-summary-text">Monthly 8,333.33 · Biweekly 3,846.15 · Daily 384.62 · Hourly 48.08
 
@@ -3433,69 +3497,74 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
 
     <div id="salary-calculator-explanation" class="sal-explanation">
   <section class="sal-explanation-card">
-    <p class="sal-explanation-kicker">Salary and take-home pay guide</p>
-    <h2>From gross salary to the number that reaches your bank account</h2>
+    <p class="sal-explanation-kicker">Salary and pay conversion guide</p>
+    <h2>Convert your salary between every pay period &mdash; then add tax if you need it</h2>
     <p>
-      Your gross salary is the number on your contract. Your take-home pay is what actually arrives
-      each payday. The gap between the two is usually wider than people expect: a typical
-      middle-income earner loses somewhere between a fifth and a third of gross pay before the
-      money reaches their account, and that is before any pension or student loan deduction.
+      Most of the time the question is simple arithmetic: your salary is quoted one way and you
+      need it another way. An annual salary as a monthly figure. An hourly rate as a yearly salary.
+      A biweekly paycheck as a monthly amount. This calculator does that conversion first, with no
+      tax and no country selected: enter one figure at its pay frequency and read it back as
+      annual, monthly, 4-weekly, biweekly, weekly, daily and hourly.
     </p>
     <p>
-      This calculator works in four modes. <strong>Gross Pay</strong> converts one amount into
-      every pay period with no tax applied, which is what you want when comparing offers quoted in
-      different units. <strong>UK take-home</strong> applies Income Tax, National Insurance, pension
-      and student loan. <strong>USA take-home</strong> applies federal income tax, FICA and your
-      state's own income and payroll taxes. <strong>Canada take-home</strong> applies federal and
-      provincial income tax, CPP and EI. All four generate a pay dates sheet showing the specific
-      days you will be paid and how much lands on each one.
+      When you also want the number that actually reaches your bank account, add a country. Pick
+      <strong>UK</strong> for take-home after Income Tax, National Insurance, pension and student
+      loan; <strong>United States</strong> for federal income tax, FICA and your state's own income
+      and payroll taxes; or <strong>Canada</strong> for federal and provincial income tax, CPP and
+      EI. Adding a country layers a full deductions breakdown, effective and marginal rates, and a
+      pay-date sheet on top of the conversion &mdash; and you can switch it back off at any time.
     </p>
   </section>
 
   <section class="sal-explanation-card">
     <h3>How to Guide</h3>
 
-    <h4>Step 1. Choose your mode</h4>
-    <p>
-      Start with <strong>Gross Pay</strong> if you only need pay-period conversion. Comparing a
-      salary quoted annually against one quoted hourly, for example. Switch to
-      <strong>UK take-home</strong>, <strong>USA take-home</strong> or
-      <strong>Canada take-home</strong> when you want the after-tax figure. Each mode hides every
-      control that does not apply to it, and the guidance below this calculator changes with it,
-      so nothing on screen is irrelevant to what you are doing.
-    </p>
-
-    <h4>Step 2. Enter your pay and its frequency</h4>
+    <h4>Step 1. Enter your pay and its frequency</h4>
     <p>
       Enter the amount you know, then select the frequency it refers to. This matters more than
       people expect: 3,000 with "Monthly" selected produces a very different result from 3,000 with
       "Weekly" selected. The calculator normalises whatever you enter into an annual figure
-      internally, then works back out to every other period.
+      internally, then works back out to every other period &mdash; so it converts <strong>annual to
+      monthly</strong>, <strong>hourly to salary</strong>, <strong>biweekly to monthly</strong>,
+      <strong>weekly to annual</strong> or any other pairing from the one figure you type.
     </p>
+    <p>
+      By default no country is selected, so the result is a plain pay conversion with no tax
+      applied &mdash; the currency symbol is dropped because the arithmetic is identical everywhere.
+      Read the answer in the per-period cards and the summary panel.
+    </p>
+
+    <h4>Step 2. Convert from an hourly or daily rate</h4>
     <p>
       If you are paid hourly or daily, open Work schedule assumptions and set your real hours per
       week, weeks per year and workdays per week so the annualised figure matches your contract
-      rather than a generic full-time pattern.
+      rather than a generic full-time pattern. Hourly and daily are the only conversions that
+      depend on your schedule, because there is no fixed number of working hours in a year.
     </p>
 
-    <h4>Step 3. Select where you pay tax</h4>
+    <h4>Step 3. Add a country for take-home (optional)</h4>
     <p>
-      <strong>In UK mode</strong>, choose England, Wales, Northern Ireland or Scotland. This is not
-      cosmetic. Scotland operates its own income tax bands with additional rates that the rest of
-      the UK does not use, so the same salary produces a different take-home figure depending on
+      If you want the after-tax figure, add <strong>UK</strong>, <strong>United States</strong> or
+      <strong>Canada</strong>. Clicking an active country again removes it and returns you to the
+      plain conversion.
+    </p>
+    <p>
+      <strong>With UK selected</strong>, choose England, Wales, Northern Ireland or Scotland. This is
+      not cosmetic. Scotland operates its own income tax bands with additional rates that the rest
+      of the UK does not use, so the same salary produces a different take-home figure depending on
       where you are resident for tax purposes.
     </p>
     <p>
-      <strong>In USA mode</strong>, type your state into the search box and pick it from the list,
-      then choose your filing status. There is deliberately no default state: nine states levy no
-      income tax on wages while others reach into double digits, so assuming one would silently
-      produce a number that is wrong for most people.
+      <strong>With United States selected</strong>, type your state into the search box and pick it
+      from the list, then choose your filing status. There is deliberately no default state: nine
+      states levy no income tax on wages while others reach into double digits, so assuming one
+      would silently produce a number that is wrong for most people.
     </p>
     <p>
-      <strong>In Canada mode</strong>, type your province or territory into the search box and pick
-      it from the list - it defaults to Alberta, but every one of the 13 provinces and territories
-      changes the result. Quebec changes the most: it swaps CPP for QPP, adds a separate QPIP
-      premium, reduces the EI rate, and applies a federal tax abatement on top of its own
+      <strong>With Canada selected</strong>, type your province or territory into the search box and
+      pick it from the list - it defaults to Alberta, but every one of the 13 provinces and
+      territories changes the result. Quebec changes the most: it swaps CPP for QPP, adds a separate
+      QPIP premium, reduces the EI rate, and applies a federal tax abatement on top of its own
       provincial bands.
     </p>
 
@@ -3521,14 +3590,14 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
 
     <h4>Step 5. Read your results</h4>
     <p>
-      The large figure is your estimated take-home pay. The bar beneath it shows where your gross
-      salary went. The green segment is what you keep; the rest is tax, National Insurance or FICA,
-      and any other deductions. The smaller cards translate your take-home into every pay
-      period at once - including a 4-weekly figure, calculated as annual pay divided by 13 - and the
-      Pay dates sheet lower down shows the actual days you will be paid.
+      With no country selected, the large figure is your annual pay and the cards below break it
+      into monthly, 4-weekly (annual &divide; 13), biweekly, weekly, daily and hourly. Add a country
+      and the large figure becomes your estimated take-home pay, the bar beneath it shows where your
+      gross salary went - the green segment is what you keep, the rest is tax, National Insurance or
+      FICA - and the Pay dates sheet lower down shows the actual days you will be paid.
     </p>
     <p>
-      In any take-home mode the <strong>Deductions</strong> section lists every statutory and
+      With a country selected the <strong>Deductions</strong> section lists every statutory and
       voluntary deduction as its own line, in the terms that country uses: Income Tax, National
       Insurance, pension and student loan for the UK; federal tax, state tax, Social Security,
       Medicare and pre-tax contributions for the US; federal tax, provincial tax, CPP or QPP, EI and
@@ -3559,39 +3628,68 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
   </section>
 
   <section class="sal-explanation-card sal-gross-only">
-    <h3>Gross pay conversion explained</h3>
+    <h3>How to convert a salary between pay periods</h3>
     <p>
-      Gross Pay mode applies no tax at all. It answers one question precisely: if you know your pay
-      as one figure, what is the same pay expressed every other way? That is the right tool when you
-      are comparing offers quoted in different units. One salary given annually against another
-      given hourly. Or when you already know your net figure and simply want it per week.
+      With no country selected the calculator applies no tax at all. It answers one question
+      precisely: if you know your pay as one figure, what is the same pay expressed every other way?
+      That covers <strong>annual to monthly</strong>, <strong>hourly to salary</strong>,
+      <strong>biweekly to monthly</strong>, <strong>weekly to annual</strong>,
+      <strong>yearly to weekly</strong> and every other pairing, from the one amount you enter.
     </p>
 
-    <h4>How the conversion works</h4>
+    <h4>The conversion factors</h4>
     <p>
-      Whatever you enter is normalised into an annual figure first, then divided back out. Annual
-      pay divides by 12 for monthly, 26 for biweekly, 13 for 4-weekly and 52 for weekly. Daily and
-      hourly are different: they depend on your schedule, because there is no fixed number of
-      working hours in a year. That is why hours per week, weeks per year and workdays per week sit
-      under Work schedule assumptions rather than being hard-coded.
+      Whatever you enter is normalised into an annual figure first, then divided back out. Every
+      period is a fixed divisor of the annual salary, except daily and hourly, which depend on your
+      work schedule:
+    </p>
+    <table class="sal-guide-table">
+      <thead>
+        <tr>
+          <th scope="col">Pay period</th>
+          <th scope="col">From annual salary</th>
+          <th scope="col">Example: &pound;52,000 a year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Monthly</td><td>annual &divide; 12</td><td>&pound;4,333.33</td></tr>
+        <tr><td>4-weekly</td><td>annual &divide; 13</td><td>&pound;4,000.00</td></tr>
+        <tr><td>Biweekly (fortnightly)</td><td>annual &divide; 26</td><td>&pound;2,000.00</td></tr>
+        <tr><td>Weekly</td><td>annual &divide; 52</td><td>&pound;1,000.00</td></tr>
+        <tr><td>Daily</td><td>weekly &divide; workdays per week</td><td>&pound;200.00 (5-day week)</td></tr>
+        <tr><td>Hourly</td><td>weekly &divide; hours per week</td><td>&pound;25.00 (40-hour week)</td></tr>
+      </tbody>
+    </table>
+    <p>
+      To go the other way, multiply: an hourly rate becomes an annual salary as
+      <em>rate &times; hours per week &times; weeks per year</em>, a weekly wage becomes annual as
+      <em>&times; 52</em>, and a biweekly paycheck becomes annual as <em>&times; 26</em>.
     </p>
 
-    <h4>Why the figures are currency-neutral here</h4>
-    <p>
-      Gross Pay mode shows numbers without a currency symbol on purpose. The arithmetic is identical
-      in any currency, and the mode is used well outside the UK, US and Canada. Switch to a country
-      mode and the symbol appears, because at that point the calculation genuinely is
-      country-specific.
-    </p>
+    <h4>Worked examples</h4>
+    <ul class="sal-explanation-list">
+      <li><strong>Annual to monthly.</strong> &pound;30,000 a year &divide; 12 = &pound;2,500 a
+        month. $25,975 a year &divide; 12 = about $2,164.58 a month. If you earn 25k a year, that is
+        roughly 2,083 a month; 60k a year is 5,000 a month.</li>
+      <li><strong>Annual to weekly.</strong> &pound;43,700 a year &divide; 52 = &pound;840.38 a
+        week. $65,000 a year &divide; 52 = $1,250 a week. The "60000 divided by 52 weeks" shortcut
+        gives &pound;1,153.85.</li>
+      <li><strong>Biweekly to annual and to monthly.</strong> $2,769.23 paid every two weeks
+        &times; 26 = about $72,000 a year, which is $6,000 a month. Note biweekly &ne; twice
+        monthly: 26 paychecks a year, not 24.</li>
+      <li><strong>Hourly to salary.</strong> $32.69 an hour &times; 40 hours &times; 52 weeks =
+        about $67,995 a year, or roughly $2,615 biweekly. $50 an hour full-time is about $8,667 a
+        month.</li>
+      <li><strong>Daily rate from an annual salary.</strong> &pound;52,000 a year &divide; 52 weeks
+        &divide; 5 workdays = &pound;200 a day. Change the workdays-per-week figure for a part-time
+        or compressed week.</li>
+    </ul>
 
-    <h4>When you need a country mode instead</h4>
+    <h4>Why the figures have no currency symbol</h4>
     <p>
-      Use UK, USA or Canada take-home whenever you want to know what actually reaches your
-      account. The difference is substantial. A UK earner on a middle income typically loses
-      around a quarter of gross pay to Income Tax and National Insurance, a US earner on a
-      comparable salary loses a similar share to federal tax and FICA before any state tax is
-      applied, and a Canadian earner loses a broadly similar share to federal tax, CPP and EI
-      before provincial tax is added.
+      The conversion view drops the currency symbol on purpose: the arithmetic is identical in any
+      currency, and the tool is used well outside the UK, US and Canada. Add a country and the
+      symbol appears, because at that point the calculation genuinely is country-specific.
     </p>
   </section>
 
@@ -3856,7 +3954,7 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
     <h4>Using the pay dates sheet</h4>
     <p>
       The sheet lists your next twelve paydays with the gross amount, each deduction, and the net
-      figure landing in your account. It is generated for every mode and needs no setup.
+      figure landing in your account. It appears once you add a country and needs no setup.
     </p>
     <p>
       Setting a first pay date is optional. Leave it blank and the sheet assumes the first of each
@@ -3891,6 +3989,21 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
       <strong>$72,672</strong> a year. An effective rate of 27.3%, and over $6,500 a year less than
       the identical salary in Texas.
     </p>
+    <table class="sal-guide-table">
+      <thead>
+        <tr><th scope="col">$100,000 salary, filing Single</th><th scope="col">Texas</th><th scope="col">California</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Federal income tax</td><td>&minus;$13,170</td><td>&minus;$13,170</td></tr>
+        <tr><td>Social Security + Medicare (FICA)</td><td>&minus;$7,650</td><td>&minus;$7,650</td></tr>
+        <tr><td>State income tax</td><td>$0</td><td>&minus;$5,208</td></tr>
+        <tr><td>State disability (CA SDI)</td><td>$0</td><td>&minus;$1,300</td></tr>
+        <tr><td><strong>Take-home pay per year</strong></td><td><strong>$79,180</strong></td><td><strong>$72,672</strong></td></tr>
+        <tr><td>Take-home per month</td><td>$6,598</td><td>$6,056</td></tr>
+        <tr><td>Take-home per biweekly paycheck</td><td>$3,045</td><td>$2,795</td></tr>
+        <tr><td>Effective tax rate</td><td>20.8%</td><td>27.3%</td></tr>
+      </tbody>
+    </table>
     <p>
       That gap is the reason the state selector has no default. Assuming a state would silently
       produce a number that is wrong for most people, so the calculator asks first.
@@ -3907,16 +4020,27 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
       allowance.
     </p>
     <p>
-      With no pension or student loan, that leaves an estimated take-home of about £45,357 a year,
-      or roughly £3,780 a month. Adding a 5% pension contribution under a net pay arrangement
-      reduces taxable income by £3,000, cutting Income Tax by £1,200. So the true cost of that
-      £3,000 contribution to your take-home is £1,800, not £3,000. Under salary sacrifice it would
-      also reduce National Insurance, saving a further £60.
+      With no pension or student loan, that leaves an estimated <strong>£60,000 take-home of about
+      £45,357 a year</strong> &mdash; roughly £3,780 a month, £3,489 per 4-weekly, £872 a week.
     </p>
+    <table class="sal-guide-table">
+      <thead>
+        <tr><th scope="col">Item</th><th scope="col">Per year</th><th scope="col">Per month</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Gross salary</td><td>£60,000</td><td>£5,000</td></tr>
+        <tr><td>Income Tax</td><td>&minus;£11,432</td><td>&minus;£953</td></tr>
+        <tr><td>National Insurance</td><td>&minus;£3,211</td><td>&minus;£268</td></tr>
+        <tr><td><strong>Take-home pay</strong></td><td><strong>£45,357</strong></td><td><strong>£3,780</strong></td></tr>
+      </tbody>
+    </table>
     <p>
-      The same £60,000 in Scotland produces a different Income Tax figure, because Scottish bands
-      include intermediate and advanced rates that do not exist elsewhere in the UK. National
-      Insurance is identical, because NI is not devolved.
+      Adding a 5% pension contribution under a net pay arrangement reduces taxable income by £3,000,
+      cutting Income Tax by £1,200. So the true cost of that £3,000 contribution to your take-home is
+      £1,800, not £3,000. Under salary sacrifice it would also reduce National Insurance, saving a
+      further £60. The same £60,000 in Scotland produces a different Income Tax figure, because
+      Scottish bands include intermediate and advanced rates that do not exist elsewhere in the UK;
+      National Insurance is identical, because NI is not devolved.
     </p>
   </section>
 
@@ -3946,6 +4070,20 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
       Net result: an estimated take-home of about <strong>$44,202</strong> a year, roughly
       $2,269 less than the identical salary in Alberta.
     </p>
+    <table class="sal-guide-table">
+      <thead>
+        <tr><th scope="col">$60,000 salary</th><th scope="col">Alberta</th><th scope="col">Quebec</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Federal income tax (after abatement in QC)</td><td>&minus;$6,193</td><td>&minus;$5,171</td></tr>
+        <tr><td>Provincial income tax</td><td>&minus;$2,978</td><td>&minus;$6,029</td></tr>
+        <tr><td>CPP / QPP</td><td>&minus;$3,362</td><td>&minus;$3,560</td></tr>
+        <tr><td>EI</td><td>&minus;$996</td><td>&minus;$780</td></tr>
+        <tr><td>QPIP (Quebec only)</td><td>$0</td><td>&minus;$258</td></tr>
+        <tr><td><strong>Take-home pay per year</strong></td><td><strong>$46,471</strong></td><td><strong>$44,202</strong></td></tr>
+        <tr><td>Take-home per month</td><td>$3,873</td><td>$3,684</td></tr>
+      </tbody>
+    </table>
     <p>
       That gap is why the province selector, like the US state selector, has no default that
       quietly assumes an answer - it asks first.
@@ -3978,7 +4116,19 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
     <div class="sal-faq-grid">
       <article class="sal-related-card">
         <h3>Does this calculator show take-home pay or gross pay?</h3>
-        <p>Both. Gross Pay mode converts one amount into every pay period with no tax applied. UK take-home mode estimates what actually reaches your bank account after Income Tax, National Insurance, pension and student loan.</p>
+        <p>Both. By default, with no country selected, it converts one gross amount into every pay period with no tax applied. Add UK, US or Canada and it also estimates take-home pay after Income Tax, National Insurance or FICA, pension and student loan.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>How do I convert an annual salary to monthly pay?</h3>
+        <p>Divide the annual salary by 12. Enter your salary with "Annual" selected and the monthly figure is shown in the results, along with 4-weekly (annual divided by 13), weekly and every other period. For example, £30,000 a year is £2,500 a month, and $25,975 a year is about $2,164.58 a month.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>How do I convert biweekly pay to a monthly or annual figure?</h3>
+        <p>Multiply the biweekly amount by 26 for the annual salary, then divide by 12 for the monthly figure. Biweekly is not the same as twice monthly, because there are 26 fortnightly paychecks in a year, not 24. Enter the amount with "Biweekly" selected and the calculator does both steps.</p>
+      </article>
+      <article class="sal-related-card">
+        <h3>How do I convert an hourly rate to an annual salary?</h3>
+        <p>Multiply the hourly rate by your hours per week and then by your weeks per year. At 40 hours and 52 weeks, $32.69 an hour is about $67,995 a year. Set your real hours per week, weeks per year and workdays per week under Work schedule assumptions so the annual figure matches your contract.</p>
       </article>
       <article class="sal-related-card sal-uk-only">
         <h3>How is UK take-home pay calculated here?</h3>
@@ -4067,7 +4217,7 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
     <h3>Important Notes</h3>
     <ul class="sal-explanation-list">
       <li><strong>Last updated:</strong> August 2026</li>
-      <li><strong>Accuracy:</strong> UK and US results use published rates and thresholds for the selected tax year, stored as versioned data and reviewed each year. Canada results are based on the same published-rate approach but are not yet independently verified against CRA and provincial sources - treat Canada figures as a closer estimate than UK or US until that verification is complete. Gross Pay mode applies no tax and is exact for the schedule you enter.</li>
+      <li><strong>Accuracy:</strong> UK and US results use published rates and thresholds for the selected tax year, stored as versioned data and reviewed each year. Canada results are based on the same published-rate approach but are not yet independently verified against CRA and provincial sources - treat Canada figures as a closer estimate than UK or US until that verification is complete. The pay-period conversion (no country selected) applies no tax and is exact for the schedule you enter.</li>
       <li><strong>Disclaimer:</strong> This calculator provides an estimate of take-home pay based on the information and tax rules selected. Actual payroll deductions may differ because of employer payroll settings, benefits, tax code adjustments, credits and other circumstances. It is not tax or financial advice.</li>
       <li><strong>Assumptions:</strong> Pay is treated as consistent across the year. Hours, weeks and workdays are assumed uniform. Overtime, bonuses, commission and other extra payments are annualised and treated as taxable income in the year entered, then spread evenly across paydays. Employee Class 1 National Insurance only. Employer contributions are not a deduction from your pay and are excluded.</li>
       <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
@@ -4094,6 +4244,6 @@ Assumptions: source annual gross salary · 40 hrs/week · 52 weeks/year · 5 wor
   </div>
 </footer>
     </div>
-    <script type="module" src="/calculators/salary-calculators/salary-calculator/module.js?v=aed0e27aec"></script>
+    <script type="module" src="/calculators/salary-calculators/salary-calculator/module.js?v=a60689951e"></script>
   </body>
 </html>

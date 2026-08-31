@@ -1,9 +1,11 @@
 <div id="calc-salary-calculator" class="sal-calc-shell">
-  <div class="sal-mode-bar" role="group" aria-label="Calculator mode" data-button-group="salary-mode">
-    <button class="sal-mode-btn is-active" type="button" data-value="gross" aria-pressed="true">Gross Pay</button>
-    <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK Take Home Pay</button>
-    <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">USA Take Home Pay</button>
-    <button class="sal-mode-btn" type="button" data-value="canada" aria-pressed="false">Canada Take Home Pay</button>
+  <div class="sal-mode-wrap">
+    <span class="sal-mode-label" id="salary-mode-label">Add take-home tax for a country <span class="sal-mode-label-opt">(optional — leave off for a plain pay conversion)</span></span>
+    <div class="sal-mode-bar" role="group" aria-labelledby="salary-mode-label" data-button-group="salary-mode">
+      <button class="sal-mode-btn" type="button" data-value="uk" aria-pressed="false">UK</button>
+      <button class="sal-mode-btn" type="button" data-value="us" aria-pressed="false">United States</button>
+      <button class="sal-mode-btn" type="button" data-value="canada" aria-pressed="false">Canada</button>
+    </div>
   </div>
 
   <div class="sal-calc-columns">
@@ -302,8 +304,8 @@
   <aside class="sal-calc-card sal-answer-card" aria-label="Salary calculator results">
     <div class="sal-answer-top">
       <div class="sal-answer-top-labels">
-        <p class="sal-answer-title" id="salary-answer-title">Annual gross pay</p>
-        <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Gross (before tax)</p>
+        <p class="sal-answer-title" id="salary-answer-title">Your pay, every period</p>
+        <p class="sal-answer-eyebrow" id="salary-answer-eyebrow">Before tax</p>
       </div>
       <div class="sal-answer-top-actions">
         <button class="sal-secondary-action" id="salary-copy-summary" type="button">Copy summary</button>
@@ -311,7 +313,7 @@
       </div>
     </div>
     <p class="sal-answer-hero" id="salary-annual-pay">100,000.00</p>
-    <p class="sal-answer-note" id="salary-answer-note">Gross (before tax), that equals about 1,923.08 per week.</p>
+    <p class="sal-answer-note" id="salary-answer-note">That is about 8,333.33 a month and 1,923.08 a week, before tax.</p>
     <p class="sal-stale-hint" id="salary-stale-hint" hidden>Inputs changed &mdash; press <strong>Calculate</strong> to update the result.</p>
 
     <div class="sal-rate-row sal-tax-only" id="salary-rate-row" hidden>
@@ -362,7 +364,7 @@
 
     <div class="sal-summary-panel" id="salary-summary-panel">
       <p class="sal-summary-figure">100,000.00</p>
-      <p class="sal-summary-unit">gross a year</p>
+      <p class="sal-summary-unit">a year, before tax</p>
       <p class="sal-summary-periods">8,333.33 / month · 7,692.31 / 4-weekly · 1,923.08 / week</p>
       <p class="sal-summary-text">Monthly 8,333.33 · Biweekly 3,846.15 · Daily 384.62 · Hourly 48.08
 

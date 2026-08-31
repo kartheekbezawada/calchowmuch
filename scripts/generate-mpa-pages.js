@@ -373,9 +373,9 @@ const CALCULATOR_OVERRIDES = {
   // added to this cluster is no longer accurate — it now does both. Must stay byte-identical to
   // buildSalaryMetadata() in the page's module.js, which replaces this at runtime.
   'salary-calculator': {
-    title: 'Salary Calculator | UK, US and Canada Take-Home Pay Calculator',
+    title: 'Salary Calculator | Annual to Monthly, Weekly Pay & Take-Home',
     description:
-      'Work out your take-home pay after tax in the UK, the US or Canada, with a full deductions breakdown and pay-date sheet. Free, and nothing is stored.',
+      'Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax. Free, and nothing is stored.',
     h1: 'Salary Calculator',
     explanationHeading: '',
     paneLayout: 'single',
@@ -1430,15 +1430,16 @@ const SALARY_SCHEMA_CONFIG = {
   'salary-calculator': {
     softwareName: 'Salary Calculator',
     softwareDescription:
-      'Work out your take-home pay after tax in the UK, the US or Canada, or convert gross pay between hourly, weekly, monthly and annual.',
+      'Convert a salary between annual, monthly, 4-weekly, weekly, daily and hourly pay, then add UK, US or Canada take-home after tax.',
     featureList: [
+      'Convert pay between annual, monthly, 4-weekly, biweekly, weekly, daily and hourly',
+      'Convert from any pay period - annual to monthly, hourly to salary, biweekly to monthly',
       'UK take-home pay after Income Tax and National Insurance',
       'US take-home pay after federal tax, FICA and state tax',
       'Canada take-home pay after federal tax, provincial tax, CPP and EI',
       "All 13 Canadian provinces and territories, including Quebec's QPP and QPIP",
       'Pension, 401(k)/pre-tax and student loan deductions',
       'Overtime, bonus and commission added to gross',
-      'Gross pay converted between annual, monthly, 4-weekly, weekly, daily and hourly',
       'Pay sheet of upcoming paydays with net amounts',
     ],
     keywords: [
