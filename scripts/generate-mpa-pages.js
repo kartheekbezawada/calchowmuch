@@ -665,7 +665,7 @@ const CALCULATOR_OVERRIDES = {
   // Past-tense "was I born" phrasing is 70.9% of all named demand. See
   // seo_fixes/time-and-date/birthday-day-of-week/fix-1.md
   'birthday-day-of-week': {
-    title: 'What Day of the Week Was I Born? | Birth Day Calculator',
+    title: 'What Day of the Week Was I Born? | Birth Day by Date of Birth',
     description:
       'Enter your date of birth to find out what day of the week you were born on. See the weekday for your next birthday, the year ahead, and the next 12 years.',
     h1: 'What day of the week was I born?',
@@ -2068,6 +2068,102 @@ function extractCreditCardFaqEntries(explanationHtml, calculatorId) {
 
   return extractCalculatorFaqEntries(explanationHtml, calculatorId);
 }
+
+// Time & Date cluster FAQ markup: <article class="...-faq-item"><p><strong>Q</strong></p><p>A</p></article>
+function extractTimeAndDateFaqEntries(explanationHtml, calculatorId) {
+  const faqSectionMatch = explanationHtml.match(
+    /<section[^>]*id="[^"]*faq[^"]*"[^>]*>([\s\S]*?)<\/section>/i
+  );
+  const faqHtml = faqSectionMatch ? faqSectionMatch[1] : explanationHtml;
+  const itemRegex = /<article[^>]*class="[^"]*\b[\w-]*faq-item\b[^"]*"[^>]*>([\s\S]*?)<\/article>/gi;
+  const entries = [];
+
+  for (const [, itemHtml] of faqHtml.matchAll(itemRegex)) {
+    const question = extractTagText(itemHtml, 'strong');
+    const paragraphs = [...itemHtml.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(([, inner]) =>
+      normalizeHtmlText(inner)
+    );
+    const answer = paragraphs[1] || '';
+    if (!question || !answer) {
+      continue;
+    }
+    entries.push({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    });
+  }
+
+  if (entries.length < 4) {
+    throw new Error(
+      `Expected at least 4 FAQ entries for ${calculatorId}, extracted ${entries.length} from explanation.html`
+    );
+  }
+
+  return entries;
+}
+
+function buildTimeAndDateStructuredData({ title, description, canonical, faqEntries, breadcrumbLabel }) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: { '@type': 'ImageObject', url: OG_IMAGE },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        name: title,
+        url: canonical,
+        description,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: { '@type': 'ImageObject', url: OG_IMAGE },
+        breadcrumb: { '@id': `${canonical}#breadcrumbs` },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonical}#faq`,
+        mainEntity: faqEntries,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumbs`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Time & Date',
+            item: `${SITE_URL}/time-and-date/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: breadcrumbLabel,
+            item: canonical,
+          },
+        ],
+      },
+    ],
+  };
+}
+
+const TIME_AND_DATE_SCHEMA_CONFIG = {
+  'birthday-day-of-week': { breadcrumbLabel: 'Birth Day Calculator' },
+};
 
 function buildHomeLoanStructuredData({
   calculatorId,
@@ -6447,6 +6543,18 @@ function main() {
         softwareName: override?.h1 ?? calculator.name,
         softwareDescription: pageDescription,
         ...salarySchemaConfig,
+      });
+      injectStaticStructuredData = true;
+    }
+    const timeAndDateSchemaConfig = TIME_AND_DATE_SCHEMA_CONFIG[calculator.id];
+    if (timeAndDateSchemaConfig) {
+      const faqEntries = extractTimeAndDateFaqEntries(fragments.explanationHtml, calculator.id);
+      staticStructuredData = buildTimeAndDateStructuredData({
+        title: pageTitle,
+        description: pageDescription,
+        canonical: pageCanonical,
+        faqEntries,
+        ...timeAndDateSchemaConfig,
       });
       injectStaticStructuredData = true;
     }

@@ -106,15 +106,13 @@
   color: var(--birthday-ink);
 }
 
-/* `white-space: nowrap` used to be safe here only because the heading was short. It is not a
-   design requirement — it silently clipped the heading off the right edge of the card the moment
-   the copy got longer (2026-08-24, when the H2 changed to target the "by date of birth" query
-   cluster). Allow wrapping and cap the size so the title stays on one line where it fits and
-   wraps where it does not. */
+/* "Find what day you were born on by date of birth" (~48 chars) should sit on one line on
+   desktop and tablet. The size is capped low enough that it fits the intro card without the
+   `white-space: nowrap` that used to clip it off the right edge (removed 2026-08-24); it still
+   wraps gracefully on a narrow phone. No `max-width` so the one line is not force-broken. */
 #calc-birthday-dow .birthday-dow-hero-title {
-  font-size: clamp(1.6rem, 2.6vw, 2.9rem);
-  line-height: 1.08;
-  max-width: 22ch;
+  font-size: clamp(1.15rem, 2.1vw, 1.85rem);
+  line-height: 1.15;
   text-wrap: balance;
 }
 
@@ -321,6 +319,20 @@
 
 #calc-birthday-dow .birthday-dow-spotlight-text {
   max-width: 42ch;
+}
+
+#calc-birthday-dow .birthday-dow-weekday-meaning {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(67, 84, 95, 0.12);
+  max-width: 42ch;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--birthday-ink);
+}
+
+#calc-birthday-dow .birthday-dow-weekday-meaning.is-hidden {
+  display: none;
 }
 
 #calc-birthday-dow .birthday-dow-spotlight-meta {
@@ -577,6 +589,17 @@
 
 #birthday-dow-explanation .birthday-dow-guide-table tr:last-child td {
   border-bottom: 0;
+}
+
+#birthday-dow-explanation .birthday-dow-rhyme {
+  margin: 4px 0;
+  padding: 14px 18px;
+  border-left: 3px solid rgba(38, 78, 115, 0.35);
+  border-radius: 0 12px 12px 0;
+  background: rgba(38, 78, 115, 0.06);
+  color: var(--birthday-ink);
+  font-style: italic;
+  line-height: 1.7;
 }
 
 #birthday-dow-explanation .birthday-dow-faq-grid {

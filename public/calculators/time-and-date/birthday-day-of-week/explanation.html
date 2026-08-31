@@ -145,11 +145,122 @@
   </section>
 
   <section class="birthday-dow-explanation-card">
+    <h3>What the result means, and the dates it covers</h3>
+    <p>
+      What this result means in practice: the "born on" weekday is a permanent fact about your date
+      of birth, while the "falls on" weekday applies only to the year you preview. Compare the two
+      and you can see how far your birthday has drifted since you were born, then consider which
+      upcoming year brings it back to a Friday, Saturday or Sunday.
+    </p>
+    <p>
+      The calculator covers a wide but not unlimited range. The minimum target year is 1600 and the
+      maximum is 2100 &mdash; enough for every living person and several generations either side. A
+      date of birth in the future is rejected rather than guessed. The one genuine edge case is a
+      29 February birthday: in a year with no leap day the preview falls back to 28 February so the
+      answer stays usable, and 29 February entered for a non-leap year is treated as an invalid date
+      rather than silently shifted.
+    </p>
+  </section>
+
+  <section class="birthday-dow-explanation-card">
+    <h3>What your birth weekday means</h3>
+    <p>
+      The weekday you were born on is a fixed historical fact, but folklore has long attached a
+      character to each day. The best-known version is the English nursery rhyme "Monday's Child",
+      first written down in the 1830s, which gives every day of the week its own line. Once the
+      calculator tells you which day you were born on, this is the line people mean when they ask
+      what it means to be born on a Monday, a Wednesday, or a Sunday.
+    </p>
+    <blockquote class="birthday-dow-rhyme">
+      Monday's child is fair of face,<br />
+      Tuesday's child is full of grace,<br />
+      Wednesday's child is full of woe,<br />
+      Thursday's child has far to go,<br />
+      Friday's child is loving and giving,<br />
+      Saturday's child works hard for a living,<br />
+      But the child that is born on the Sabbath day<br />
+      Is bonny and blithe, and good and gay.
+    </blockquote>
+    <p>
+      "Gay" here is the older sense of the word, meaning cheerful and lively; the "Sabbath day" is
+      Sunday. The rhyme is a keepsake, not a horoscope &mdash; there is no evidence a birth weekday
+      shapes personality &mdash; but it is a nice thing to know alongside the date.
+    </p>
+    <table class="birthday-dow-guide-table">
+      <thead>
+        <tr>
+          <th scope="col">Born on</th>
+          <th scope="col">The rhyme says</th>
+          <th scope="col">Common reading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monday</td>
+          <td>"Fair of face"</td>
+          <td>Attractive and easy to like. Monday's child is usually described as calm and even-tempered.</td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td>"Full of grace"</td>
+          <td>Graceful and well-mannered, with a natural sense of poise and kindness towards others.</td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td>"Full of woe"</td>
+          <td>The harshest line in the rhyme, though it is often softened to mean thoughtful, deep, or sensitive rather than sad.</td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td>"Has far to go"</td>
+          <td>Ambitious and destined to travel, achieve, or work hard for success later in life.</td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td>"Loving and giving"</td>
+          <td>Warm, generous and caring, the friend who looks after everyone else.</td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>"Works hard for a living"</td>
+          <td>Diligent and self-reliant, expecting to earn what they get rather than have it handed over.</td>
+        </tr>
+        <tr>
+          <td>Sunday</td>
+          <td>"Bonny and blithe, and good and gay"</td>
+          <td>Happy, healthy and good-natured &mdash; the luckiest line of the week, sometimes rendered "blithe and bonny, good and gay".</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Older and regional versions swap some of the lines around &mdash; a few give Thursday "fair of
+      face" and Sunday's child "far to go" &mdash; so if you grew up with a different wording, both
+      can be right. The version above is the one most widely printed today.
+    </p>
+  </section>
+
+  <section class="birthday-dow-explanation-card" id="birthday-dow-faq">
     <h3>FAQ</h3>
     <div class="birthday-dow-faq-grid">
       <article class="birthday-dow-faq-item">
         <p><strong>Is the birth weekday accurate?</strong></p>
         <p>Yes. The result follows standard Gregorian calendar rules across the supported range.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>What day was I born?</strong></p>
+        <p>Enter your date of birth above and the calculator shows the day of the week you were born on straight away, along with the full date. For example, someone born on 15 June 1990 was born on a Friday.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>How do I find out what day I was born on by date of birth?</strong></p>
+        <p>Enter your date of birth in the field above and the weekday appears immediately - no sign-up and nothing to submit. To check it by hand instead, use the Doomsday rule described above.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>What day of the week does my birthday fall on this year?</strong></p>
+        <p>Enter your date of birth and leave the target year set to this year. The result shows both the weekday you were born on and the weekday your birthday falls on in the year you selected.</p>
+      </article>
+      <article class="birthday-dow-faq-item">
+        <p><strong>What day was my birthday last year, and what day is it this year?</strong></p>
+        <p>Set the target year to last year to read that weekday, then change it to this year. A common year shifts a birthday forward one weekday and a leap year shifts it two, so the two answers are usually one or two days apart.</p>
       </article>
       <article class="birthday-dow-faq-item">
         <p><strong>Why does the weekday change every year?</strong></p>
@@ -170,14 +281,6 @@
       <article class="birthday-dow-faq-item">
         <p><strong>Does this store my birthday?</strong></p>
         <p>No. The planner runs in the browser and does not submit your birthday anywhere.</p>
-      </article>
-      <article class="birthday-dow-faq-item">
-        <p><strong>How do I find out what day I was born on by date of birth?</strong></p>
-        <p>Enter your date of birth in the field above and the weekday appears immediately - no sign-up and nothing to submit. To check it by hand instead, use the Doomsday rule described above.</p>
-      </article>
-      <article class="birthday-dow-faq-item">
-        <p><strong>What day of the week does my birthday fall on this year?</strong></p>
-        <p>Enter your date of birth and leave the target year set to this year. The result shows both the weekday you were born on and the weekday your birthday falls on in the year you selected.</p>
       </article>
     </div>
   </section>

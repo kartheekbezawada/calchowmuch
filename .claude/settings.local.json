@@ -87,7 +87,8 @@
       "Bash(node --check public/calculators/salary-calculators/salary-calculator/module.js)",
       "Bash(node -e \"require\\('vm'\\);const fs=require\\('fs'\\);new Function\\(fs.readFileSync\\('tests_specs/salary/shared/config.js','utf8'\\).replace\\(/export /g,''\\)\\);console.log\\('config.js parses'\\)\")",
       "PowerShell(node scripts/generate-mpa-pages.js --route \"/salary-calculators/salary-calculator/\")",
-      "PowerShell(npx vitest run tests_specs/salary tests_specs/infrastructure/unit/extra-payments.test.js tests_specs/infrastructure/unit/deduction-rows.test.js 2>&1)"
+      "PowerShell(npx vitest run tests_specs/salary tests_specs/infrastructure/unit/extra-payments.test.js tests_specs/infrastructure/unit/deduction-rows.test.js 2>&1)",
+      "Bash(node --check public/calculators/time-and-date/birthday-day-of-week/module.js)"
     ]
   }
 }

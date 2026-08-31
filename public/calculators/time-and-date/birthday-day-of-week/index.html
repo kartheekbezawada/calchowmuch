@@ -11,7 +11,6 @@
       <div class="birthday-dow-top-form">
         <div class="birthday-dow-setup-copy">
           <h3 class="birthday-dow-section-title">Enter your birthday</h3>
-          <p class="birthday-dow-form-note">Date of birth is required. Target year is prefilled so you can preview a future birthday if you want to.</p>
         </div>
 
         <div class="birthday-dow-input-row birthday-dow-input-row-top">
@@ -68,6 +67,7 @@
           <p class="birthday-dow-spotlight-text" id="birthday-dow-spotlight-text">
             One clear answer first. Future birthday details appear below after you calculate.
           </p>
+          <p class="birthday-dow-weekday-meaning is-hidden" id="birthday-dow-weekday-meaning"></p>
         </div>
 
         <div class="birthday-dow-spotlight-meta">
@@ -77,10 +77,6 @@
         <div class="birthday-dow-spotlight-meta">
           <p class="birthday-dow-spotlight-chip-label">Target year preview</p>
           <p class="birthday-dow-mini-date" id="birthday-dow-hero-target-year">Add a year to preview a future birthday</p>
-        </div>
-        <div class="birthday-dow-spotlight-meta">
-          <p class="birthday-dow-spotlight-chip-label">Future birthday</p>
-          <p class="birthday-dow-mini-date" id="birthday-dow-hero-target-weekday">Enter your date of birth to see the result</p>
         </div>
 
         <div class="birthday-dow-spotlight-actions">
@@ -104,16 +100,11 @@
         </div>
 
         <div class="birthday-dow-results" id="birthday-dow-results" aria-live="polite">
-          <p class="birthday-dow-placeholder" id="birthday-dow-placeholder">
-            Enter your date of birth to see the result.
-          </p>
-
           <div class="birthday-dow-results-list is-hidden" id="birthday-dow-results-list">
             <p class="birthday-dow-summary-line" id="birthday-dow-summary-line"></p>
 
             <section class="birthday-dow-insight-section" aria-labelledby="birthday-dow-future-title">
               <div class="birthday-dow-section-heading">
-                <p class="birthday-dow-section-kicker">Section 1</p>
                 <h4 class="birthday-dow-planner-title" id="birthday-dow-future-title">Future birthdays</h4>
                 <p class="birthday-dow-section-copy">
                   See your selected-year birthday, the next birthday coming up, and the 12-year pattern.
@@ -169,7 +160,6 @@
 
             <section class="birthday-dow-insight-section" aria-labelledby="birthday-dow-weekend-title">
               <div class="birthday-dow-section-heading">
-                <p class="birthday-dow-section-kicker">Section 2</p>
                 <h4 class="birthday-dow-planner-title" id="birthday-dow-weekend-title">Weekend insights</h4>
                 <p class="birthday-dow-section-copy">
                   Spot the next Friday, Saturday, and Sunday birthdays without leaving the main answer.

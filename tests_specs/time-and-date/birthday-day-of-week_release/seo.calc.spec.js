@@ -6,7 +6,7 @@ test.describe('Birthday Day-of-Week SEO', () => {
   }) => {
     await page.goto('/time-and-date/birthday-day-of-week');
 
-    await expect(page).toHaveTitle('What Day of the Week Was I Born? | Birth Day Calculator');
+    await expect(page).toHaveTitle('What Day of the Week Was I Born? | Birth Day by Date of Birth');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
@@ -55,7 +55,7 @@ test.describe('Birthday Day-of-Week SEO', () => {
     ]);
 
     const faqNode = structuredData['@graph'].find((node) => node['@type'] === 'FAQPage');
-    expect(faqNode.mainEntity).toHaveLength(8);
+    expect(faqNode.mainEntity).toHaveLength(10);
     expect(faqNode.mainEntity[0].name).toBe('Is the birth weekday accurate?');
 
     const explanation = page.locator('#birthday-dow-explanation');
@@ -76,7 +76,7 @@ test.describe('Birthday Day-of-Week SEO', () => {
     await expect(explanation).toContainText('Important Notes');
     // Manual-method content added to close the how-to query cluster (fix-2).
     await expect(explanation).toContainText('Doomsday rule');
-    await expect(explanation.locator('.birthday-dow-faq-item')).toHaveCount(8);
+    await expect(explanation.locator('.birthday-dow-faq-item')).toHaveCount(10);
     await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');

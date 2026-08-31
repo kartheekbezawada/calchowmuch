@@ -15,9 +15,9 @@ const spotlightKicker = document.querySelector('#birthday-dow-spotlight-kicker')
 const spotlightTitle = document.querySelector('#birthday-dow-spotlight-title');
 const spotlightText = document.querySelector('#birthday-dow-spotlight-text');
 const heroWeekday = document.querySelector('#birthday-dow-hero-weekday');
+const weekdayMeaning = document.querySelector('#birthday-dow-weekday-meaning');
 const heroDate = document.querySelector('#birthday-dow-hero-date');
 const heroTargetYear = document.querySelector('#birthday-dow-hero-target-year');
-const heroTargetWeekday = document.querySelector('#birthday-dow-hero-target-weekday');
 
 const targetLabel = document.querySelector('#birthday-dow-target-label');
 const targetWeekdayCard = document.querySelector('#birthday-dow-target-weekday-card');
@@ -47,6 +47,9 @@ export const pageSchema = {
   globalFAQ: false,
 };
 
+// The 10 entries below must stay verbatim-consistent with the `birthday-dow-faq-item` blocks in
+// explanation.html — the static build extracts the FAQPage schema from that DOM, and this runtime
+// copy replaces it via setPageMetadata(). Order and wording must match exactly.
 const CALCULATOR_FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
@@ -55,52 +58,17 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'Is the birth weekday accurate?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. The weekday is calculated using standard Gregorian calendar rules for the date entered.',
+        text: 'Yes. The result follows standard Gregorian calendar rules across the supported range.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why does the same birthday move to different weekdays?',
+      name: 'What day was I born?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Because calendar years are not made of an exact number of full weeks. The leftover day or leap day shifts the weekday each year.',
+        text: 'Enter your date of birth above and the calculator shows the day of the week you were born on straight away, along with the full date. For example, someone born on 15 June 1990 was born on a Friday.',
       },
     },
-    {
-      '@type': 'Question',
-      name: 'Can I use this to plan future birthday weekends?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. The 12-year map and weekend view help you spot Friday, Saturday, and Sunday birthday years ahead of time.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What happens for February 29 birthdays?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Leap-day birthdays stay on February 29 in leap years and use February 28 in non-leap preview years.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Does this store my birthday?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. The calculator runs in your browser and does not save the birthday you enter.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'How far forward can I preview?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'You can preview target years from 1600 to 2100 inside the supported range of the calculator.',
-      },
-    },
-    // Added 2026-08-24 to close query gaps: "what day was i born on by date of birth" (95
-    // impressions @ pos 10.57) and the future-tense cluster. Text matches the DOM entries in
-    // explanation.html verbatim. See seo_fixes/time-and-date/birthday-day-of-week/fix-2.md
     {
       '@type': 'Question',
       name: 'How do I find out what day I was born on by date of birth?',
@@ -117,48 +85,121 @@ const CALCULATOR_FAQ_SCHEMA = {
         text: 'Enter your date of birth and leave the target year set to this year. The result shows both the weekday you were born on and the weekday your birthday falls on in the year you selected.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What day was my birthday last year, and what day is it this year?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Set the target year to last year to read that weekday, then change it to this year. A common year shifts a birthday forward one weekday and a leap year shifts it two, so the two answers are usually one or two days apart.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Why does the weekday change every year?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Because a normal year leaves one extra day after complete weeks, and leap years can shift it again.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I plan future birthday weekends here?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Use the Weekend insights section and the 12-year map to find Friday, Saturday, or Sunday birthdays quickly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens for February 29 birthdays?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Leap-day birthdays stay on February 29 in leap years and use February 28 in non-leap preview years.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How far forward can I preview?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The supported target-year range is 1600 to 2100.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does this store my birthday?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. The planner runs in the browser and does not submit your birthday anywhere.',
+      },
+    },
   ],
 };
 
 // This block is the runtime source of truth — setPageMetadata() replaces the server-rendered
-// JSON-LD, so it must stay byte-consistent with CALCULATOR_OVERRIDES['birthday-day-of-week']
-// in scripts/generate-mpa-pages.js and with the assertions in the _release seo spec.
+// JSON-LD, so it must stay consistent with CALCULATOR_OVERRIDES['birthday-day-of-week'] and
+// TIME_AND_DATE_SCHEMA_CONFIG in scripts/generate-mpa-pages.js and with the _release seo spec.
+// Shape mirrors buildTimeAndDateStructuredData(): WebSite + Organization + WebPage + BreadcrumbList,
+// with the FAQPage merged in from CALCULATOR_FAQ_SCHEMA by setPageMetadata().
+const SITE_URL = 'https://calchowmuch.com';
+const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
+const CANONICAL = `${SITE_URL}/time-and-date/birthday-day-of-week/`;
 const metadata = {
-  title: 'What Day of the Week Was I Born? | Birth Day Calculator',
+  title: 'What Day of the Week Was I Born? | Birth Day by Date of Birth',
   description:
     'Enter your date of birth to find out what day of the week you were born on. See the weekday for your next birthday, the year ahead, and the next 12 years.',
-  canonical: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
+  canonical: CANONICAL,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'WebPage',
-        name: 'What Day of the Week Was I Born? | Birth Day Calculator',
-        url: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
-        description:
-          'Enter your date of birth to find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
         inLanguage: 'en',
       },
       {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: { '@type': 'ImageObject', url: OG_IMAGE },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${CANONICAL}#webpage`,
+        name: 'What Day of the Week Was I Born? | Birth Day by Date of Birth',
+        url: CANONICAL,
+        description:
+          'Enter your date of birth to find the weekday you were born on, preview a future birthday year, and spot the next Friday, Saturday, or Sunday birthday.',
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: { '@type': 'ImageObject', url: OG_IMAGE },
+        breadcrumb: { '@id': `${CANONICAL}#breadcrumbs` },
+      },
+      {
         '@type': 'BreadcrumbList',
+        '@id': `${CANONICAL}#breadcrumbs`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Time & Date',
-            item: 'https://calchowmuch.com/time-and-date/',
+            item: `${SITE_URL}/time-and-date/`,
           },
           {
-            // Deliberately a short noun phrase rather than the H1. Google renders this as the
-            // SERP breadcrumb trail, where a question ("What day of the week was I born?") reads
-            // badly. Matches the title's second half instead.
+            // Deliberately a short noun phrase rather than the H1 or the title's second half.
+            // Google renders this as the SERP breadcrumb trail, where "What day of the week was
+            // I born?" or "by Date of Birth" both read badly.
             '@type': 'ListItem',
             position: 3,
             name: 'Birth Day Calculator',
-            item: 'https://calchowmuch.com/time-and-date/birthday-day-of-week/',
+            item: CANONICAL,
           },
         ],
       },
@@ -290,8 +331,25 @@ function getSpotlightContent(viewModel) {
   };
 }
 
+// The "Monday's Child" nursery-rhyme line for each weekday — shown under the result as a keepsake,
+// mirroring the explanation.html "What your birth weekday means" section.
+const WEEKDAY_RHYME_LINE = {
+  Monday: 'Monday’s child is fair of face.',
+  Tuesday: 'Tuesday’s child is full of grace.',
+  Wednesday: 'Wednesday’s child is full of woe.',
+  Thursday: 'Thursday’s child has far to go.',
+  Friday: 'Friday’s child is loving and giving.',
+  Saturday: 'Saturday’s child works hard for a living.',
+  Sunday: 'Sunday’s child is bonny and blithe, and good and gay.',
+};
+
 function renderSpotlight(viewModel) {
   const content = getSpotlightContent(viewModel);
+  if (weekdayMeaning) {
+    const line = viewModel ? WEEKDAY_RHYME_LINE[viewModel.birthWeekday] : '';
+    weekdayMeaning.textContent = line || '';
+    weekdayMeaning.classList.toggle('is-hidden', !line);
+  }
 
   if (spotlightKicker) {
     spotlightKicker.textContent = content.kicker;
@@ -315,11 +373,6 @@ function renderSpotlight(viewModel) {
     heroTargetYear.textContent = viewModel
       ? `Previewing ${viewModel.targetYear}`
       : 'Add a year to preview a future birthday';
-  }
-  if (heroTargetWeekday) {
-    heroTargetWeekday.textContent = viewModel
-      ? `In ${viewModel.targetYear}, your birthday falls on ${viewModel.targetWeekday}.`
-      : 'Enter your date of birth to see the result';
   }
 }
 

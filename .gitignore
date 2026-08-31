@@ -52,6 +52,11 @@ C:\\Users\\*\\AppData\\Local\\lighthouse.*/
 # Local SEO fix tracking (page-by-page fix history + metrics, not shared repo history)
 seo_fixes/
 
+# Future build research — opportunity analysis + per-page build specs for calculators
+# not yet built. Kept local so the research is not repeated (token cost) but is not
+# shipped as project law until a calculator is actually scheduled for build.
+future_build/
+
 # Local working files — planning docs, requirements, analysis exports, GSC data dumps.
 # Not needed to build, test or deploy the site, and deliberately kept off GitHub.
 # Contains: requirements/, docs/, functions/, New_analysis.md  (moved here 2026-08-24)
