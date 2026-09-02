@@ -207,6 +207,29 @@
   box-shadow: 0 14px 28px rgba(143, 68, 40, 0.22);
 }
 
+#calc-wake-up .wake-now-btn {
+  justify-self: start;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(184, 100, 63, 0.24);
+  border-radius: 12px;
+  background: var(--wake-accent-soft);
+  color: var(--wake-accent-strong);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+#calc-wake-up .wake-now-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(184, 100, 63, 0.4);
+  background: rgba(184, 100, 63, 0.16);
+}
+
 #calc-wake-up .wake-results-panel {
   align-content: start;
   padding-left: 28px;
@@ -409,11 +432,61 @@
 }
 
 #wake-up-explanation .wake-guide-steps,
-#wake-up-explanation .wake-notes {
+#wake-up-explanation .wake-notes,
+#wake-up-explanation .wake-cycle-list {
   display: grid;
   gap: 10px;
   margin: 0;
   padding-left: 20px;
+}
+
+#wake-up-explanation .wake-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+#wake-up-explanation .wake-cycle-table {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+#wake-up-explanation .wake-cycle-table th,
+#wake-up-explanation .wake-cycle-table td {
+  padding: 10px 14px;
+  text-align: right;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+  white-space: nowrap;
+}
+
+#wake-up-explanation .wake-cycle-table thead th {
+  background: rgba(250, 248, 244, 0.96);
+  color: var(--wake-muted-soft);
+  font-family: var(--font-body, inherit);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#wake-up-explanation .wake-cycle-table tbody th[scope='row'] {
+  text-align: left;
+  color: var(--wake-text);
+  font-weight: 600;
+}
+
+#wake-up-explanation .wake-cycle-table tbody tr:last-child th,
+#wake-up-explanation .wake-cycle-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#wake-up-explanation .wake-faq-item p:first-child strong {
+  color: var(--wake-text);
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 #wake-up-explanation .wake-guide-grid,

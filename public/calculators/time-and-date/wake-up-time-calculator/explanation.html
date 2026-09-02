@@ -1,85 +1,203 @@
 <div id="wake-up-explanation" class="wake-explanation">
   <section class="wake-explanation-card wake-explanation-intro">
     <p class="wake-explanation-kicker">Sleep cycle planning</p>
-    <h2>When should you wake up from this bedtime or fall-asleep time?</h2>
+    <h2>When should you wake up if you fall asleep now?</h2>
     <p>
-      Use this wake-up time calculator to compare wake targets that land on familiar 90-minute sleep
-      cycles instead of guessing at one alarm time.
+      This wake-up time calculator works backwards from sleep science instead of a single guessed
+      alarm. Tell it when you will fall asleep, when you plan to get into bed, or just tap
+      <strong>I'm going to sleep now</strong>, and it returns wake-up times that land between
+      90-minute sleep cycles for 4, 5, and 6 full cycles.
     </p>
     <p>
-      Based on your input time of <span data-wake-summary="input-time">—</span>, your estimated sleep
-      start is <span data-wake-summary="sleep-start">—</span> and the primary recommendation is
-      <span data-wake-summary="recommended-wake">—</span>.
+      Based on your input time of <span data-wake-summary="input-time">&mdash;</span>, your estimated
+      sleep start is <span data-wake-summary="sleep-start">&mdash;</span> and the primary
+      recommendation is <span data-wake-summary="recommended-wake">&mdash;</span>.
     </p>
     <p>
-      The current best-balance option is <span data-wake-expl="primary">—</span>, with a planning
-      window from <span data-wake-expl="window">—</span>.
+      The current best-balance option is <span data-wake-expl="primary">&mdash;</span>, with a
+      planning window from <span data-wake-expl="window">&mdash;</span>.
     </p>
   </section>
 
   <section class="wake-explanation-card">
     <h3>How to Guide</h3>
     <ol class="wake-guide-steps">
-      <li>Choose whether you want wake times from a fall-asleep time or from bedtime.</li>
-      <li>Enter your time, then click <strong>Calculate Wake-Up Times</strong>.</li>
-      <li>Compare the 4-cycle, 5-cycle, and 6-cycle options against your schedule.</li>
-      <li>Use the 5-cycle recommendation as the default balance point, then adjust if needed.</li>
+      <li>Pick how you want to plan: from a fall-asleep time, from a bedtime, or from right now.</li>
+      <li>Enter your time, or tap <strong>I'm going to sleep now</strong>, then click <strong>Calculate wake-up times</strong>.</li>
+      <li>Compare the 4-cycle, 5-cycle, and 6-cycle wake times against your morning commitments.</li>
+      <li>Use the highlighted 5-cycle option as the default, and treat 4 cycles as the early-start fallback and 6 cycles as the recovery choice.</li>
     </ol>
 
     <div class="wake-guide-grid">
       <article>
         <span>Mode</span>
-        <strong data-wake-scenario="mode">—</strong>
+        <strong data-wake-scenario="mode">&mdash;</strong>
       </article>
       <article>
         <span>Input time</span>
-        <strong data-wake-scenario="input">—</strong>
+        <strong data-wake-scenario="input">&mdash;</strong>
       </article>
       <article>
         <span>Estimated sleep start</span>
-        <strong data-wake-scenario="sleep-start">—</strong>
+        <strong data-wake-scenario="sleep-start">&mdash;</strong>
       </article>
       <article>
         <span>Primary recommendation</span>
-        <strong data-wake-scenario="recommended">—</strong>
+        <strong data-wake-scenario="recommended">&mdash;</strong>
       </article>
     </div>
 
     <div class="wake-guide-table">
       <div>
         <span>4 cycles</span>
-        <strong data-wake-metric="cycle-4">—</strong>
+        <strong data-wake-metric="cycle-4">&mdash;</strong>
       </div>
       <div>
         <span>5 cycles</span>
-        <strong data-wake-metric="cycle-5">—</strong>
+        <strong data-wake-metric="cycle-5">&mdash;</strong>
       </div>
       <div>
         <span>6 cycles</span>
-        <strong data-wake-metric="cycle-6">—</strong>
+        <strong data-wake-metric="cycle-6">&mdash;</strong>
       </div>
       <div>
         <span>Buffer</span>
-        <strong><span data-wake-metric="buffer">—</span> min</strong>
+        <strong><span data-wake-metric="buffer">&mdash;</span> min</strong>
       </div>
     </div>
   </section>
 
   <section class="wake-explanation-card">
+    <h3>Wake-up times by bedtime</h3>
+    <p>
+      To find a wake-up time by hand, add the cycle length to the moment you actually fall asleep:
+      6 hours for 4 cycles, 7 hours 30 minutes for 5 cycles, and 9 hours for 6 cycles. The table
+      below does that for common fall-asleep times so you can scan for one that fits your morning.
+    </p>
+    <div class="wake-table-scroll">
+      <table class="wake-cycle-table">
+        <thead>
+          <tr>
+            <th scope="col">Fall asleep at</th>
+            <th scope="col">4 cycles &middot; 6 hrs</th>
+            <th scope="col">5 cycles &middot; 7.5 hrs</th>
+            <th scope="col">6 cycles &middot; 9 hrs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">9:00 pm</th><td>3:00 am</td><td>4:30 am</td><td>6:00 am</td></tr>
+          <tr><th scope="row">9:30 pm</th><td>3:30 am</td><td>5:00 am</td><td>6:30 am</td></tr>
+          <tr><th scope="row">10:00 pm</th><td>4:00 am</td><td>5:30 am</td><td>7:00 am</td></tr>
+          <tr><th scope="row">10:30 pm</th><td>4:30 am</td><td>6:00 am</td><td>7:30 am</td></tr>
+          <tr><th scope="row">11:00 pm</th><td>5:00 am</td><td>6:30 am</td><td>8:00 am</td></tr>
+          <tr><th scope="row">11:30 pm</th><td>5:30 am</td><td>7:00 am</td><td>8:30 am</td></tr>
+          <tr><th scope="row">12:00 am</th><td>6:00 am</td><td>7:30 am</td><td>9:00 am</td></tr>
+          <tr><th scope="row">12:30 am</th><td>6:30 am</td><td>8:00 am</td><td>9:30 am</td></tr>
+          <tr><th scope="row">1:00 am</th><td>7:00 am</td><td>8:30 am</td><td>10:00 am</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      <strong>Worked example.</strong> Say you fall asleep at 11:00 pm. Four cycles is 6 hours, so
+      the early alarm is 5:00 am. Five cycles is 7 hours 30 minutes, giving 6:30 am &mdash; the
+      balanced default. Six cycles is 9 hours, or 8:00 am, when you can protect the time. If you are
+      still getting into bed at 11:00 pm rather than already asleep, switch to bedtime mode: the
+      calculator adds a 15-minute fall-asleep buffer, so five cycles then points to 6:45 am.
+    </p>
+    <ul class="wake-cycle-list">
+      <li>Waking at a cycle boundary is a trade-off against total sleep &mdash; a tidy 4-cycle alarm still leaves you short if the night was already too short.</li>
+      <li>Real cycles drift, so treat each row as the middle of a 20-30 minute window rather than an exact minute.</li>
+    </ul>
+  </section>
+
+  <section class="wake-explanation-card">
+    <h3>How many hours of sleep is that?</h3>
+    <p>
+      A common question is the reverse: given a bedtime and a wake time, how long is the night and
+      how many cycles does it cover? At roughly 90 minutes per cycle, every 1.5 hours of sleep is
+      one more cycle.
+    </p>
+    <div class="wake-table-scroll">
+      <table class="wake-cycle-table">
+        <thead>
+          <tr>
+            <th scope="col">Fall asleep</th>
+            <th scope="col">Wake up</th>
+            <th scope="col">Total sleep</th>
+            <th scope="col">Approx. cycles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">10:00 pm</th><td>6:00 am</td><td>8 hours</td><td>about 5.3</td></tr>
+          <tr><th scope="row">10:00 pm</th><td>7:00 am</td><td>9 hours</td><td>6</td></tr>
+          <tr><th scope="row">11:00 pm</th><td>6:00 am</td><td>7 hours</td><td>about 4.7</td></tr>
+          <tr><th scope="row">11:00 pm</th><td>7:00 am</td><td>8 hours</td><td>about 5.3</td></tr>
+          <tr><th scope="row">11:30 pm</th><td>7:00 am</td><td>7.5 hours</td><td>5</td></tr>
+          <tr><th scope="row">12:00 am</th><td>6:00 am</td><td>6 hours</td><td>4</td></tr>
+          <tr><th scope="row">12:00 am</th><td>8:00 am</td><td>8 hours</td><td>about 5.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      So sleeping from 10 pm to 6 am is 8 hours, a little over five cycles; 11 pm to 7 am is also 8
+      hours. Most adults aim for the 7.5-hour, 5-cycle line as a minimum on a normal night and use
+      the 9-hour, 6-cycle maximum for recovery.
+    </p>
+  </section>
+
+  <section class="wake-explanation-card">
+    <h3>Why you wake up groggy even after enough sleep</h3>
+    <p>
+      Waking in the middle of deep sleep triggers <strong>sleep inertia</strong> &mdash; the heavy,
+      slow-thinking feeling that can last anywhere from 15 to 60 minutes. Cycle-based wake times try
+      to avoid it by landing you in lighter sleep, where waking feels easier.
+    </p>
+    <p>
+      The 90-minute figure is an average. A real sleep cycle runs closer to 70 to 120 minutes, it
+      changes across the night, and it shifts with age, sleep debt, alcohol, and late caffeine.
+      That is why a suggested wake-up time can still feel off on any given morning: the calculator
+      is aiming at a moving target.
+    </p>
+    <p>
+      A few things reliably reduce morning grogginess: a consistent wake time seven days a week,
+      bright light within a few minutes of getting up, and not stacking short nights back to back.
+      If you wake mid-cycle anyway, a short delay before demanding tasks lets inertia clear.
+    </p>
+  </section>
+
+  <section class="wake-explanation-card">
+    <h3>How much sleep do you need by age</h3>
+    <p>
+      Cycle timing matters less if the total is wrong. Widely used public-health ranges for a full
+      24 hours are a helpful starting point, though individual needs vary by an hour or so either
+      way.
+    </p>
+    <ul class="wake-cycle-list">
+      <li><strong>Teenagers (14-17):</strong> about 8 to 10 hours, roughly 6 cycles.</li>
+      <li><strong>Young adults and adults (18-64):</strong> about 7 to 9 hours, roughly 5 to 6 cycles.</li>
+      <li><strong>Older adults (65+):</strong> about 7 to 8 hours, often with lighter, more broken sleep.</li>
+    </ul>
+    <p>
+      Match the cycle option to your age band first, then use the wake-up time to make the alarm
+      land cleanly. Chasing a neat cycle boundary at the cost of an hour of total sleep is usually
+      the wrong trade.
+    </p>
+  </section>
+
+  <section class="wake-explanation-card">
     <h3>How to pick the best wake-up option</h3>
     <p>
-      The strongest wake-up choice is usually the one that protects enough total sleep and still
-      fits your fixed morning commitments. It is easy to focus only on the cleanest cycle boundary,
-      but total sleep time still matters. A technically tidy alarm can still leave you short on
-      rest if it cuts the night too aggressively.
+      The strongest wake-up choice protects enough total sleep and still fits your fixed morning
+      commitments. It is easy to focus only on the cleanest cycle boundary, but a technically tidy
+      alarm can still leave you short on rest if it cuts the night too aggressively.
     </p>
     <p>
-      Many people use the 5-cycle option as the default planning target, then keep 4 cycles as the
-      early-start fallback and 6 cycles as the recovery option. That gives you a realistic range
-      for weekdays, travel mornings, and weekends without having to rebuild the calculation every
-      time your schedule changes.
+      Many people use the 5-cycle option as the default planning target, keep 4 cycles as the
+      early-start fallback, and use 6 cycles as the recovery option. That gives a realistic range
+      for weekdays, travel mornings, and weekends without rebuilding the calculation each time your
+      schedule changes.
     </p>
-    <ul class="wake-notes">
+    <ul class="wake-cycle-list">
       <li><strong>4 cycles:</strong> a shorter option for unavoidable early alarms.</li>
       <li><strong>5 cycles:</strong> a balanced target for many standard work or school mornings.</li>
       <li><strong>6 cycles:</strong> a longer option when recovery and next-day alertness matter more.</li>
@@ -91,53 +209,68 @@
 
     <div class="wake-faq-grid">
       <article class="wake-faq-item">
-        <h4>How many sleep cycles should I aim for?</h4>
-        <p>Many adults feel best with 5 or 6 cycles, or about 7.5 to 9 hours, but personal needs vary.</p>
+        <p><strong>How many sleep cycles should I aim for?</strong></p>
+        <p>Most adults feel best after 5 or 6 complete cycles, which is roughly 7.5 to 9 hours of sleep. Four cycles, about 6 hours, works for an occasional early start, but a run of short nights builds sleep debt. Your own ideal number can sit slightly outside that range.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>What is a sleep cycle?</h4>
-        <p>A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.</p>
+        <p><strong>What is a sleep cycle?</strong></p>
+        <p>A sleep cycle is one full pass through light sleep, deep sleep, and REM sleep. It averages about 90 minutes but realistically ranges from 70 to 120 minutes, and the early cycles of the night hold more deep sleep while later ones hold more REM.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>Why are 4, 5, and 6 cycles shown?</h4>
-        <p>These options give a practical range of wake-up times so you can balance sleep duration with your schedule.</p>
+        <p><strong>What time should I wake up if I go to sleep now?</strong></p>
+        <p>Add 6 hours for 4 cycles, 7 hours 30 minutes for 5 cycles, or 9 hours for 6 cycles to the time you actually fall asleep. If you are getting into bed now rather than already drifting off, add another 10 to 20 minutes first. The "I'm going to sleep now" button does this from the current time.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>Does this calculator assume it takes time to fall asleep?</h4>
-        <p>Yes. In bedtime mode, it adds a 15-minute buffer before sleep cycles begin.</p>
+        <p><strong>If I sleep at 10 and wake up at 6, how many hours is that?</strong></p>
+        <p>That is 8 hours, or about five and a third 90-minute cycles. Sleeping from 10 pm to 7 am is 9 hours, which is 6 full cycles, and 10 pm to 5:30 am is 7.5 hours, which is 5 cycles. The sleep-duration table above lists more common pairs.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>Can I use this if I wake during the night?</h4>
-        <p>Yes. Re-enter the new bedtime and calculate again for updated wake-up suggestions.</p>
+        <p><strong>Is it better to wake up after 5 or 6 sleep cycles?</strong></p>
+        <p>Six cycles gives more total sleep and more REM, so it is the better choice when you can protect the time. Five cycles is the common weekday compromise because it still clears 7 hours while fitting a normal schedule. Pick the option you can repeat consistently rather than the longest single night.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>Why might I feel groggy even after a suggested wake-up time?</h4>
-        <p>Cycle length varies by person and by night, so a suggested wake-up time can still feel off sometimes.</p>
+        <p><strong>Why do I still feel groggy after a suggested wake-up time?</strong></p>
+        <p>Cycle length varies from night to night, so an alarm set to an average can still land in deep sleep. Sleep debt, alcohol, late caffeine, and waking in darkness all deepen that grogginess, which is called sleep inertia. It usually fades within 15 to 60 minutes.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>Does daylight saving time affect the result?</h4>
-        <p>It can, because clock changes can shift local wall-clock wake-up times.</p>
+        <p><strong>Does the calculator assume it takes time to fall asleep?</strong></p>
+        <p>In bedtime mode it adds a fixed 15-minute fall-asleep buffer before the first cycle starts. In fall-asleep mode it assumes you are already asleep at the time you enter, so no buffer is added. Most healthy sleepers take 10 to 20 minutes to drop off.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>Is this calculator a medical tool?</h4>
-        <p>No. It is a planning aid and does not diagnose sleep or health conditions.</p>
+        <p><strong>Can I use this if I wake up during the night?</strong></p>
+        <p>Yes. Enter the time you expect to fall back asleep and calculate again for updated wake-up options. A long awakening effectively restarts the cycle count for the rest of the night.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>Should I choose 5 or 6 cycles?</h4>
-        <p>Choose the option that fits your schedule while still leaving enough total sleep time.</p>
+        <p><strong>What if my schedule only allows 4 cycles?</strong></p>
+        <p>Four cycles, roughly 6 hours, can carry you through an occasional early start, especially if you wake at a cycle boundary rather than mid-cycle. Repeated 4-cycle nights build a sleep debt that shows up as slower reactions and worse mood. Treat it as a fallback, not a plan.</p>
       </article>
 
       <article class="wake-faq-item">
-        <h4>What if my schedule allows only 4 cycles?</h4>
-        <p>Four cycles can work occasionally, but many adults feel better with longer sleep when possible.</p>
+        <p><strong>Does daylight saving time change the result?</strong></p>
+        <p>The cycle maths is the same, but the clock jump shifts your wall-clock wake time by an hour and your body clock takes a few days to catch up. Around the changeover, lean toward the longer 6-cycle option.</p>
+      </article>
+
+      <article class="wake-faq-item">
+        <p><strong>How is a wake-up time calculator different from an alarm?</strong></p>
+        <p>An alarm rings at whatever time you set. This tool works back from sleep cycles to suggest times that fall between them, so the alarm is less likely to interrupt deep sleep and trigger sleep inertia.</p>
+      </article>
+
+      <article class="wake-faq-item">
+        <p><strong>Is this a medical tool?</strong></p>
+        <p>No. It is a scheduling aid built on population averages and does not diagnose anything. Persistent trouble waking, heavy daytime sleepiness, or unrefreshing sleep is worth raising with a doctor.</p>
+      </article>
+
+      <article class="wake-faq-item">
+        <p><strong>Does it store the times I enter?</strong></p>
+        <p>No. Every calculation runs locally in your browser, and nothing is sent to a server or saved.</p>
       </article>
     </div>
   </section>
@@ -145,11 +278,11 @@
   <section class="wake-explanation-card">
     <h3>Important Notes</h3>
     <ul class="wake-notes">
-      <li>This calculator uses average 90-minute sleep cycles and fixed assumptions.</li>
-      <li>Bedtime mode adds a fixed 15-minute fall-asleep buffer before cycles begin.</li>
-      <li>Sleep quality, stress, caffeine, sleep debt, and health conditions can change how rested you feel.</li>
-      <li>Treat the recommendations as planning estimates rather than guarantees.</li>
-      <li>All calculations run locally in your browser - no data is stored.</li>
+      <li><strong>Last updated:</strong> September 2026</li>
+      <li><strong>Accuracy:</strong> Sleep cycles vary by person and by night, so every wake-up time here is a planning estimate rather than a guarantee.</li>
+      <li><strong>Disclaimer:</strong> This is a scheduling aid, not medical advice, diagnosis, or treatment.</li>
+      <li><strong>Assumptions:</strong> 90-minute cycles throughout, with a fixed 15-minute fall-asleep buffer added only in bedtime mode.</li>
+      <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>
 </div>

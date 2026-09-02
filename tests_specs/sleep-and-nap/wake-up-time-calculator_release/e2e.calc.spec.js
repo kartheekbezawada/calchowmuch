@@ -17,9 +17,6 @@ test.describe('Wake-Up Time Calculator', () => {
     const modeButtons = page.locator('[data-button-group="wake-mode"] button');
     await expect(modeButtons.first()).toHaveClass(/is-active/);
 
-    await expect(page.locator('#wake-datetime')).toHaveCount(0);
-    await expect(page.locator('#wake-fallback')).toHaveCount(0);
-
     const resultsList = page.locator('#wake-results-list');
     await expect(resultsList.locator('.wake-result')).toHaveCount(3);
     await expect(resultsList.locator('.wake-result.is-primary')).toHaveCount(1);
@@ -115,14 +112,35 @@ test.describe('Wake-Up Time Calculator', () => {
     const explanation = page.locator('#wake-up-explanation');
     await expect(explanation.locator('.wake-explanation-card h2')).toHaveCount(1);
     await expect(explanation.locator('.wake-explanation-card h2')).toHaveText(
-      'When should you wake up from this bedtime or fall-asleep time?'
+      'When should you wake up if you fall asleep now?'
     );
-    await expect(explanation.locator('.wake-explanation-card h3')).toHaveCount(3);
+    await expect(explanation.locator('.wake-explanation-card h3')).toHaveCount(8);
     await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');
-    await expect(explanation.locator('.wake-faq-item')).toHaveCount(10);
+    await expect(explanation.locator('.wake-faq-item')).toHaveCount(13);
     await expect(explanation.locator('.wake-notes li')).toHaveCount(5);
     await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
+  });
+
+  test('WAKEUP-TEST-E2E-3: "going to sleep now" sets the time and recalculates', async ({ page }) => {
+    await page.goto('/time-and-date/wake-up-time-calculator/');
+
+    const modeButtons = page.locator('[data-button-group="wake-mode"] button');
+    const resultsList = page.locator('#wake-results-list');
+    const timeInput = page.locator('#wake-time-primary');
+
+    // Switch to bedtime mode and a fixed time first, so the "now" action has something to change.
+    await modeButtons.nth(1).click();
+    await timeInput.fill('03:33');
+    await timeInput.dispatchEvent('change');
+    await page.locator('#wake-calculate').click();
+
+    await page.locator('#wake-now').click();
+
+    // "now" forces fall-asleep mode back on and repopulates the time input (HH:MM).
+    await expect(modeButtons.first()).toHaveClass(/is-active/);
+    await expect(timeInput).toHaveValue(/^\d{2}:\d{2}$/);
+    await expect(resultsList.locator('.wake-result')).toHaveCount(3);
   });
 });

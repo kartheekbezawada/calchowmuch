@@ -2,6 +2,7 @@ import { setupButtonGroup, setPageMetadata } from '/assets/js/core/ui.js';
 import {
   calculateWakeUpRecommendations,
   roundToNextQuarterHour,
+  roundToMinute,
   FALL_ASLEEP_MINUTES,
   SLEEP_CYCLES,
   CYCLE_MINUTES,
@@ -11,6 +12,7 @@ const modeGroup = document.querySelector('[data-button-group="wake-mode"]');
 const fieldLabel = document.querySelector('#wake-field-label');
 const primaryTimeInput = document.querySelector('#wake-time-primary');
 const timePickerButton = document.querySelector('#wake-time-picker');
+const nowButton = document.querySelector('#wake-now');
 const calculateButton = document.querySelector('#wake-calculate');
 const resultsList = document.querySelector('#wake-results-list');
 const placeholder = document.querySelector('#wake-placeholder');
@@ -40,6 +42,9 @@ export const pageSchema = {
   globalFAQ: false,
 };
 
+// These 13 entries must stay verbatim-consistent with the `wake-faq-item` blocks in
+// explanation.html — the static build extracts the FAQPage schema from that DOM, and this runtime
+// copy replaces it via setPageMetadata(). Order and wording must match exactly.
 const CALCULATOR_FAQ_SCHEMA = {
   '@type': 'FAQPage',
   mainEntity: [
@@ -48,7 +53,7 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'How many sleep cycles should I aim for?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Many adults feel best with 5 or 6 cycles, or about 7.5 to 9 hours, but personal sleep needs vary.',
+        text: 'Most adults feel best after 5 or 6 complete cycles, which is roughly 7.5 to 9 hours of sleep. Four cycles, about 6 hours, works for an occasional early start, but a run of short nights builds sleep debt. Your own ideal number can sit slightly outside that range.',
       },
     },
     {
@@ -56,120 +61,175 @@ const CALCULATOR_FAQ_SCHEMA = {
       name: 'What is a sleep cycle?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A sleep cycle is a repeating pattern of light sleep, deep sleep, and REM sleep that often lasts about 90 minutes.',
+        text: 'A sleep cycle is one full pass through light sleep, deep sleep, and REM sleep. It averages about 90 minutes but realistically ranges from 70 to 120 minutes, and the early cycles of the night hold more deep sleep while later ones hold more REM.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why are 4, 5, and 6 cycles shown?',
+      name: 'What time should I wake up if I go to sleep now?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'These options give a practical range of wake-up times so you can balance sleep duration with your schedule.',
+        text: 'Add 6 hours for 4 cycles, 7 hours 30 minutes for 5 cycles, or 9 hours for 6 cycles to the time you actually fall asleep. If you are getting into bed now rather than already drifting off, add another 10 to 20 minutes first. The "I\'m going to sleep now" button does this from the current time.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does this calculator assume it takes time to fall asleep?',
+      name: 'If I sleep at 10 and wake up at 6, how many hours is that?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. In bedtime mode, it adds a 15-minute buffer before sleep cycles begin.',
+        text: 'That is 8 hours, or about five and a third 90-minute cycles. Sleeping from 10 pm to 7 am is 9 hours, which is 6 full cycles, and 10 pm to 5:30 am is 7.5 hours, which is 5 cycles. The sleep-duration table above lists more common pairs.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can I use this if I wake during the night?',
+      name: 'Is it better to wake up after 5 or 6 sleep cycles?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Re-enter the new bedtime and calculate again for updated wake-up suggestions.',
+        text: 'Six cycles gives more total sleep and more REM, so it is the better choice when you can protect the time. Five cycles is the common weekday compromise because it still clears 7 hours while fitting a normal schedule. Pick the option you can repeat consistently rather than the longest single night.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Why might I feel groggy even after a suggested wake-up time?',
+      name: 'Why do I still feel groggy after a suggested wake-up time?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Cycle length varies by person and by night, so a suggested wake-up time can still feel off sometimes.',
+        text: 'Cycle length varies from night to night, so an alarm set to an average can still land in deep sleep. Sleep debt, alcohol, late caffeine, and waking in darkness all deepen that grogginess, which is called sleep inertia. It usually fades within 15 to 60 minutes.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Does daylight saving time affect the result?',
+      name: 'Does the calculator assume it takes time to fall asleep?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'It can, because clock changes can shift local wall-clock wake-up times.',
+        text: 'In bedtime mode it adds a fixed 15-minute fall-asleep buffer before the first cycle starts. In fall-asleep mode it assumes you are already asleep at the time you enter, so no buffer is added. Most healthy sleepers take 10 to 20 minutes to drop off.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Is this calculator a medical tool?',
+      name: 'Can I use this if I wake up during the night?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. It is a planning aid and does not diagnose sleep or health conditions.',
+        text: 'Yes. Enter the time you expect to fall back asleep and calculate again for updated wake-up options. A long awakening effectively restarts the cycle count for the rest of the night.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Should I choose 5 or 6 cycles?',
+      name: 'What if my schedule only allows 4 cycles?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Choose the option that fits your schedule while still leaving enough total sleep time.',
+        text: 'Four cycles, roughly 6 hours, can carry you through an occasional early start, especially if you wake at a cycle boundary rather than mid-cycle. Repeated 4-cycle nights build a sleep debt that shows up as slower reactions and worse mood. Treat it as a fallback, not a plan.',
       },
     },
     {
       '@type': 'Question',
-      name: 'What if my schedule allows only 4 cycles?',
+      name: 'Does daylight saving time change the result?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Four cycles can work occasionally, but many adults feel better with longer sleep when possible.',
+        text: 'The cycle maths is the same, but the clock jump shifts your wall-clock wake time by an hour and your body clock takes a few days to catch up. Around the changeover, lean toward the longer 6-cycle option.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How is a wake-up time calculator different from an alarm?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An alarm rings at whatever time you set. This tool works back from sleep cycles to suggest times that fall between them, so the alarm is less likely to interrupt deep sleep and trigger sleep inertia.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this a medical tool?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. It is a scheduling aid built on population averages and does not diagnose anything. Persistent trouble waking, heavy daytime sleepiness, or unrefreshing sleep is worth raising with a doctor.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does it store the times I enter?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Every calculation runs locally in your browser, and nothing is sent to a server or saved.',
       },
     },
   ],
 };
 
+// Shape mirrors buildTimeAndDateStructuredData() for this calc id in generate-mpa-pages.js:
+// WebSite + Organization + WebPage + SoftwareApplication + BreadcrumbList, with the FAQPage
+// merged in from CALCULATOR_FAQ_SCHEMA by setPageMetadata(). Keep the two in sync.
+const SITE_URL = 'https://calchowmuch.com';
+const OG_IMAGE = `${SITE_URL}/assets/images/og-default.png`;
+const CANONICAL = `${SITE_URL}/time-and-date/wake-up-time-calculator/`;
+
+const H1_TEXT = 'What time should I wake up?';
+const TITLE = 'What Time Should I Wake Up? | Wake-Up Time Calculator';
+const DESCRIPTION =
+  'Find the best time to wake up if you fall asleep now or at a set bedtime. Compare wake-up times for 4, 5, and 6 full 90-minute sleep cycles before you set an alarm.';
+
 const metadata = {
-  title: 'Wake-Up Time Calculator | Best Alarm Times by Sleep Cycle',
-  description:
-    'Calculate the best wake-up times from a target bedtime using 90-minute sleep cycles, then compare 4, 5, or 6 cycle options before you set an alarm.',
-  canonical: 'https://calchowmuch.com/time-and-date/wake-up-time-calculator/',
+  title: TITLE,
+  description: DESCRIPTION,
+  canonical: CANONICAL,
   pageSchema,
   calculatorFAQSchema: CALCULATOR_FAQ_SCHEMA,
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'WebPage',
-        name: 'Wake-Up Time Calculator | Sleep Cycle Wake Times',
-        url: 'https://calchowmuch.com/time-and-date/wake-up-time-calculator/',
-        description:
-          'Find wake-up times based on 90-minute sleep cycles and compare 4, 5, or 6 cycle options.',
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
         inLanguage: 'en',
       },
       {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: { '@type': 'ImageObject', url: OG_IMAGE },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${CANONICAL}#webpage`,
+        name: TITLE,
+        url: CANONICAL,
+        description: DESCRIPTION,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        primaryImageOfPage: { '@type': 'ImageObject', url: OG_IMAGE },
+        breadcrumb: { '@id': `${CANONICAL}#breadcrumbs` },
+      },
+      {
         '@type': 'SoftwareApplication',
+        '@id': `${CANONICAL}#softwareapplication`,
         name: 'Wake-Up Time Calculator',
         applicationCategory: 'HealthApplication',
         operatingSystem: 'Web',
-        url: 'https://calchowmuch.com/time-and-date/wake-up-time-calculator/',
+        url: CANONICAL,
         description:
-          'Free wake-up time calculator for sleep-cycle-based wake recommendations.',
+          'Free wake-up time calculator: find the best alarm time from a fall-asleep time, a bedtime, or right now, using 90-minute sleep cycles.',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-        creator: { '@type': 'Organization', name: 'CalcHowMuch' },
+        creator: { '@id': `${SITE_URL}/#organization` },
       },
       {
         '@type': 'BreadcrumbList',
+        '@id': `${CANONICAL}#breadcrumbs`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://calchowmuch.com/' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Time & Date',
-            item: 'https://calchowmuch.com/time-and-date/',
+            item: `${SITE_URL}/time-and-date/`,
           },
           {
             '@type': 'ListItem',
             position: 3,
             name: 'Wake-Up Time Calculator',
-            item: 'https://calchowmuch.com/time-and-date/wake-up-time-calculator/',
+            item: CANONICAL,
           },
         ],
       },
@@ -181,13 +241,17 @@ setPageMetadata(metadata);
 
 function ensureH1Title() {
   const title = document.getElementById('calculator-title');
-  if (!title || title.tagName === 'H1') {
+  if (!title) {
     return;
   }
-  const h1 = document.createElement('h1');
-  h1.id = 'calculator-title';
-  h1.textContent = 'Wake-Up Time Calculator';
-  title.replaceWith(h1);
+  if (title.tagName !== 'H1') {
+    const h1 = document.createElement('h1');
+    h1.id = 'calculator-title';
+    h1.textContent = H1_TEXT;
+    title.replaceWith(h1);
+    return;
+  }
+  title.textContent = H1_TEXT;
 }
 
 function formatTimeValue(date) {
@@ -426,6 +490,20 @@ timePickerButton?.addEventListener('click', () => {
     return;
   }
   primaryTimeInput.focus();
+});
+
+nowButton?.addEventListener('click', () => {
+  const nowValue = formatTimeValue(roundToMinute(new Date()));
+  if (primaryTimeInput) {
+    primaryTimeInput.value = nowValue;
+  }
+  if (proxyInput) {
+    proxyInput.value = String(timeValueToMinutes(nowValue) ?? 0);
+  }
+  // "Going to sleep now" is a fall-asleep-time scenario, so force that mode.
+  modeButtons?.setValue('sleep');
+  updateFieldLabel('sleep');
+  calculate();
 });
 
 proxyInput?.addEventListener('input', () => {

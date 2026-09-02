@@ -636,11 +636,15 @@ const CALCULATOR_OVERRIDES = {
       'Find bedtime or wake-up times using 90-minute sleep cycles, a fall-asleep buffer, and 4, 5, or 6 cycle options in a clearer answer-first layout.',
     h1: 'Sleep Time Calculator (90-Minute Cycles)',
   },
+  // Title/H1 lead with the searcher's own phrasing. GSC 28d to 2026-08-30: "what time should i
+  // wake up" = 20 impressions (top query, pos 51), "wake up time"/"when to wake up" = 18 each;
+  // "wake up time calculator" only ~3. "Sleep now -> when do I wake" is a whole unserved cluster.
+  // See seo_fixes/time-and-date/wake-up-time-calculator/fix-1.md
   'wake-up-time-calculator': {
-    title: 'Wake-Up Time Calculator | Best Alarm Times by Sleep Cycle',
+    title: 'What Time Should I Wake Up? | Wake-Up Time Calculator',
     description:
-      'Calculate the best wake-up times from a target bedtime using 90-minute sleep cycles, then compare 4, 5, or 6 cycle options before you set an alarm.',
-    h1: 'Wake-Up Time Calculator',
+      'Find the best time to wake up if you fall asleep now or at a set bedtime. Compare wake-up times for 4, 5, and 6 full 90-minute sleep cycles before you set an alarm.',
+    h1: 'What time should I wake up?',
   },
   'nap-time-calculator': {
     title: 'Nap Time Calculator | Best Nap Wake-Up Time',
@@ -2103,66 +2107,105 @@ function extractTimeAndDateFaqEntries(explanationHtml, calculatorId) {
   return entries;
 }
 
-function buildTimeAndDateStructuredData({ title, description, canonical, faqEntries, breadcrumbLabel }) {
+function buildTimeAndDateStructuredData({
+  title,
+  description,
+  canonical,
+  faqEntries,
+  breadcrumbLabel,
+  includeSoftwareApplication = false,
+  softwareApplicationCategory = 'UtilitiesApplication',
+  softwareName,
+  softwareDescription,
+}) {
+  const graph = [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: 'CalcHowMuch',
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'CalcHowMuch',
+      url: `${SITE_URL}/`,
+      logo: { '@type': 'ImageObject', url: OG_IMAGE },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      name: title,
+      url: canonical,
+      description,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      inLanguage: 'en',
+      primaryImageOfPage: { '@type': 'ImageObject', url: OG_IMAGE },
+      breadcrumb: { '@id': `${canonical}#breadcrumbs` },
+    },
+  ];
+
+  if (includeSoftwareApplication) {
+    graph.push({
+      '@type': 'SoftwareApplication',
+      '@id': `${canonical}#softwareapplication`,
+      name: softwareName || title,
+      applicationCategory: softwareApplicationCategory,
+      operatingSystem: 'Web',
+      url: canonical,
+      description: softwareDescription || description,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      creator: { '@id': `${SITE_URL}/#organization` },
+    });
+  }
+
+  graph.push(
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: faqEntries,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumbs`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Time & Date',
+          item: `${SITE_URL}/time-and-date/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: breadcrumbLabel,
+          item: canonical,
+        },
+      ],
+    }
+  );
+
   return {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebSite',
-        '@id': `${SITE_URL}/#website`,
-        url: `${SITE_URL}/`,
-        name: 'CalcHowMuch',
-        inLanguage: 'en',
-      },
-      {
-        '@type': 'Organization',
-        '@id': `${SITE_URL}/#organization`,
-        name: 'CalcHowMuch',
-        url: `${SITE_URL}/`,
-        logo: { '@type': 'ImageObject', url: OG_IMAGE },
-      },
-      {
-        '@type': 'WebPage',
-        '@id': `${canonical}#webpage`,
-        name: title,
-        url: canonical,
-        description,
-        isPartOf: { '@id': `${SITE_URL}/#website` },
-        publisher: { '@id': `${SITE_URL}/#organization` },
-        inLanguage: 'en',
-        primaryImageOfPage: { '@type': 'ImageObject', url: OG_IMAGE },
-        breadcrumb: { '@id': `${canonical}#breadcrumbs` },
-      },
-      {
-        '@type': 'FAQPage',
-        '@id': `${canonical}#faq`,
-        mainEntity: faqEntries,
-      },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${canonical}#breadcrumbs`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Time & Date',
-            item: `${SITE_URL}/time-and-date/`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: breadcrumbLabel,
-            item: canonical,
-          },
-        ],
-      },
-    ],
+    '@graph': graph,
   };
 }
 
 const TIME_AND_DATE_SCHEMA_CONFIG = {
   'birthday-day-of-week': { breadcrumbLabel: 'Birth Day Calculator' },
+  // Ends in "-calculator", so the ui.js naming gate keeps SoftwareApplication (unlike
+  // birthday-day-of-week). Category is HealthApplication — this is a sleep tool, not finance.
+  'wake-up-time-calculator': {
+    breadcrumbLabel: 'Wake-Up Time Calculator',
+    includeSoftwareApplication: true,
+    softwareApplicationCategory: 'HealthApplication',
+    softwareName: 'Wake-Up Time Calculator',
+    softwareDescription:
+      'Free wake-up time calculator: find the best alarm time from a fall-asleep time, a bedtime, or right now, using 90-minute sleep cycles.',
+  },
 };
 
 function buildHomeLoanStructuredData({

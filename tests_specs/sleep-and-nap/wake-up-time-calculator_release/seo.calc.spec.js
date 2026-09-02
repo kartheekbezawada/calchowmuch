@@ -4,16 +4,18 @@ test.describe('Wake-Up Time Calculator SEO', () => {
   test('WAKEUP-TEST-SEO-1: metadata, headings, FAQ schema, sitemap', async ({ page }) => {
     await page.goto('/time-and-date/wake-up-time-calculator/');
 
-    await expect(page).toHaveTitle('Wake-Up Time Calculator | Best Alarm Times by Sleep Cycle');
+    await expect(page).toHaveTitle('What Time Should I Wake Up? | Wake-Up Time Calculator');
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Calculate the best wake-up times from a target bedtime using 90-minute sleep cycles, then compare 4, 5, or 6 cycle options before you set an alarm.'
+      'Find the best time to wake up if you fall asleep now or at a set bedtime. Compare wake-up times for 4, 5, and 6 full 90-minute sleep cycles before you set an alarm.'
     );
 
     const h1 = page.locator('h1');
     await expect(h1).toHaveCount(1);
-    await expect(h1).toHaveText('Wake-Up Time Calculator');
+    await expect(h1).toHaveText('What time should I wake up?');
+    // The H1 phrase must not be duplicated as a lower heading.
+    await expect(page.locator('h2, h3, h4', { hasText: 'What time should I wake up?' })).toHaveCount(0);
 
     await expect(page.locator('.td-cluster-page-shell')).toHaveCount(1);
     await expect(page.locator('.calculator-page-single')).toHaveCount(1);
@@ -22,6 +24,21 @@ test.describe('Wake-Up Time Calculator SEO', () => {
     await expect(canonical).toHaveCount(1);
     const canonicalHref = await canonical.getAttribute('href');
     expect(canonicalHref).toBe('https://calchowmuch.com/time-and-date/wake-up-time-calculator/');
+
+    // Static (pre-JS) structured data must already be complete — not left to client JS.
+    const staticLd = JSON.parse(
+      (await page.locator('script[data-static-ld="true"]').first().textContent()) || '{}'
+    );
+    const staticTypes = (staticLd['@graph'] || []).map((node) => node['@type']);
+    expect(staticTypes).toEqual(
+      expect.arrayContaining(['WebPage', 'SoftwareApplication', 'BreadcrumbList', 'FAQPage'])
+    );
+    const staticSoftware = (staticLd['@graph'] || []).find(
+      (node) => node['@type'] === 'SoftwareApplication'
+    );
+    expect(staticSoftware.applicationCategory).toBe('HealthApplication');
+    const staticFaq = (staticLd['@graph'] || []).find((node) => node['@type'] === 'FAQPage');
+    expect(staticFaq.mainEntity).toHaveLength(13);
 
     const structuredDataScript = page.locator('script[data-calculator-ld]');
     await expect(structuredDataScript).toHaveCount(1);
@@ -38,17 +55,17 @@ test.describe('Wake-Up Time Calculator SEO', () => {
 
     const faqNode = graph.find((node) => node['@type'] === 'FAQPage');
     expect(Array.isArray(faqNode?.mainEntity)).toBeTruthy();
-    expect(faqNode.mainEntity).toHaveLength(10);
+    expect(faqNode.mainEntity).toHaveLength(13);
 
     const explanation = page.locator('#wake-up-explanation');
     await expect(explanation.locator('.wake-explanation-card h2')).toHaveCount(1);
     await expect(explanation.locator('.wake-explanation-card h2')).toHaveText(
-      'When should you wake up from this bedtime or fall-asleep time?'
+      'When should you wake up if you fall asleep now?'
     );
     await expect(explanation).toContainText('How to Guide');
     await expect(explanation).toContainText('FAQ');
     await expect(explanation).toContainText('Important Notes');
-    await expect(explanation.locator('.wake-faq-item')).toHaveCount(10);
+    await expect(explanation.locator('.wake-faq-item')).toHaveCount(13);
     await expect(explanation).toContainText('All calculations run locally in your browser - no data is stored.');
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
