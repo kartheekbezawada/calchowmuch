@@ -5,46 +5,75 @@ import {
   normalizeDebts,
 } from './engine.js';
 
+// Metadata sync contract (2026-09-03): these three strings must stay byte-identical to
+// CALCULATOR_OVERRIDES['debt-payoff-calculator'] and CREDIT_CARD_SCHEMA_CONFIG['debt-payoff-calculator']
+// .softwareDescription in scripts/generate-mpa-pages.js, and to the assertions in
+// tests_specs/credit-cards/debt-payoff-calculator_release/seo.calc.spec.js. Holding them in
+// constants keeps the runtime graph from drifting away from the server-rendered head.
+const PAGE_TITLE = 'Debt Payoff Calculator | Snowball vs Avalanche & Payoff Date';
+const PAGE_DESCRIPTION =
+  'See when you could be debt-free. Order multiple debts by snowball or avalanche, compare total interest and payoff months, and find which debt to pay off first.';
+const PAGE_URL = 'https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/';
+const SITE_URL = 'https://calchowmuch.com';
+// Bump alongside the "Last updated" line in explanation.html.
+const PAGE_DATE_MODIFIED = '2026-09-03';
+
+// Kept verbatim-identical to the .faq-card blocks in explanation.html, in the same order. The
+// static build extracts the DOM version; setPageMetadata() swaps in this one at runtime, so any
+// divergence means Google sees two different Q&A sets depending on whether JS ran. If you edit a
+// question or answer here, edit explanation.html in the same commit.
 const FAQ_ENTITIES = [
   [
-    'What does debt-free date mean on this page?',
-    'It is the month when every debt in the current plan reaches zero using the chosen strategy, minimum payments, and extra amount.',
-  ],
-  [
-    'Should I choose snowball or avalanche?',
-    'Choose snowball when closing a balance quickly helps you stay motivated. Choose avalanche when lowering total interest matters most.',
-  ],
-  [
-    'What if I only make minimum payments?',
-    'Use the minimum payment calculator to isolate that scenario. This planner is built for routing one extra payment pool across multiple debts.',
-  ],
-  [
-    'Can I use this if I only have one balance?',
-    'Yes, but the single-card payoff calculator is usually cleaner when only one balance is involved.',
+    'What does debt payoff date mean here?',
+    'It is the month when all modeled balances reach zero under the chosen strategy, minimum payments, and extra payment pool.',
   ],
   [
     'Does debt type change the math?',
-    'No in this version. Debt type is a label for readability only. The payoff engine uses balance, APR, minimum payment, and strategy order.',
+    'No in v1. Debt type is a label for readability. The engine still uses balance, APR, and payment inputs to run the payoff model.',
   ],
   [
-    'What does the goal-date option do?',
-    'It estimates the monthly payment needed to finish by your chosen month using the selected strategy order.',
+    'What if I only make minimum payments?',
+    'You should see what minimum-only payments cost because that route isolates the downside clearly.',
   ],
   [
-    'Does the calculator include new spending?',
-    'No. The model assumes you do not add new debt after the plan starts.',
+    'Should I use snowball or avalanche?',
+    'Use snowball when quick closures improve follow-through. Use avalanche when minimizing total interest is the main decision goal.',
   ],
   [
-    'Can I compare debt payoff with consolidation?',
-    'Yes. Use this page as the direct-payoff benchmark, then compare that result with a consolidation scenario.',
+    'Which debt should I pay off first?',
+    'Either the smallest balance, to close an account and free up a payment sooner, or the highest APR, to cut total interest. Run both orders and compare the totals before committing.',
+  ],
+  [
+    'Is it better to save money or pay off debt?',
+    'Repaying a high-rate balance returns exactly its APR with no market risk, so it usually beats saving. Keep a small emergency buffer and any employer match first.',
+  ],
+  [
+    'What is the debt payoff formula?',
+    'Monthly interest = balance × (APR ÷ 12), then new balance = balance + interest − payment. Repeat monthly until the balance reaches zero; that month is your payoff date.',
+  ],
+  [
+    'What if I only have one balance?',
+    'The route still works, but it is cleaner to run the one-balance version.',
+  ],
+  [
+    'Can I compare against consolidation?',
+    'Yes. Use this page as the direct-payoff benchmark, then compare payoff vs consolidation.',
   ],
   [
     'Can a balance transfer beat avalanche?',
-    'Sometimes. This calculator gives you the direct-payoff baseline so you can compare it with a lower-rate transfer option.',
+    'Sometimes. Use the direct payoff result first, then check a lower-APR transfer option.',
+  ],
+  [
+    'Does the calculator include new spending?',
+    'No. The model assumes no new debt is added after the plan starts.',
+  ],
+  [
+    'How does goal-date mode work?',
+    'It estimates the total monthly payment needed to clear the balances by the target month using the chosen strategy order.',
   ],
   [
     'Why are there charts and a schedule table?',
-    'The charts show the path and tradeoffs at a glance, while the table shows the full monthly or yearly mechanics behind the answer.',
+    'The charts show the overall path, while the schedule table shows the month-by-month or year-by-year mechanics that support the answer.',
   ],
 ];
 
@@ -54,35 +83,65 @@ export const pageSchema = {
 };
 
 setPageMetadata({
-  title: 'Debt Payoff Calculator | Snowball, Avalanche, Payoff Date and Interest',
-  description:
-    'Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date.',
-  canonical: 'https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/',
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  canonical: PAGE_URL,
+  // This graph mirrors buildFinanceStructuredData() in scripts/generate-mpa-pages.js node for node.
+  // setPageMetadata() REPLACES the server-rendered JSON-LD with this one, so anything missing here
+  // is lost the moment JS runs - which is why WebSite, Organization and the @id anchors are present.
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'WebPage',
-        name: 'Debt Payoff Calculator | Snowball, Avalanche, Payoff Date and Interest',
-        url: 'https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/',
-        description:
-          'Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date.',
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'CalcHowMuch',
         inLanguage: 'en',
       },
       {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
+        name: 'CalcHowMuch',
+        url: `${SITE_URL}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/assets/images/og-default.png`,
+        },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${PAGE_URL}#webpage`,
+        name: PAGE_TITLE,
+        url: PAGE_URL,
+        description: PAGE_DESCRIPTION,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        inLanguage: 'en',
+        dateModified: PAGE_DATE_MODIFIED,
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/assets/images/og-default.png`,
+        },
+      },
+      {
         '@type': 'SoftwareApplication',
+        '@id': `${PAGE_URL}#softwareapplication`,
         name: 'Debt Payoff Calculator',
         applicationCategory: 'FinanceApplication',
-        operatingSystem: 'Any',
-        url: 'https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/',
-        description:
-          'Multi-debt payoff planner with snowball and avalanche strategy comparison, payoff date, interest totals, charts, and goal-date mode.',
-        browserRequirements: 'Requires JavaScript enabled',
-        softwareVersion: '1.0',
-        creator: {
-          '@type': 'Organization',
-          name: 'CalcHowMuch',
-        },
+        operatingSystem: 'Web',
+        url: PAGE_URL,
+        description: PAGE_DESCRIPTION,
+        inLanguage: 'en',
+        provider: { '@id': `${SITE_URL}/#organization` },
+        featureList: [
+          'Snowball and avalanche strategy comparison',
+          'Multi-debt payoff plan and payoff date',
+          'Which debt to pay off first, by strategy',
+          'Payment needed for a target payoff date',
+        ],
+        keywords:
+          'debt payoff calculator, debt snowball calculator, debt avalanche calculator, debt repayment calculator, which debt to pay off first',
         offers: {
           '@type': 'Offer',
           price: '0',
@@ -90,30 +149,8 @@ setPageMetadata({
         },
       },
       {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: 'https://calchowmuch.com/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Credit Card Calculators',
-            item: 'https://calchowmuch.com/credit-card-calculators/',
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: 'Debt Payoff Calculator',
-            item: 'https://calchowmuch.com/credit-card-calculators/debt-payoff-calculator/',
-          },
-        ],
-      },
-      {
         '@type': 'FAQPage',
+        '@id': `${PAGE_URL}#faq`,
         mainEntity: FAQ_ENTITIES.map(([name, text]) => ({
           '@type': 'Question',
           name,
@@ -122,6 +159,30 @@ setPageMetadata({
             text,
           },
         })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${PAGE_URL}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: `${SITE_URL}/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Credit Cards',
+            item: `${SITE_URL}/credit-card-calculators/`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Debt Payoff Calculator',
+            item: PAGE_URL,
+          },
+        ],
       },
     ],
   },

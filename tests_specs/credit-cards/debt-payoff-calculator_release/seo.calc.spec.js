@@ -8,7 +8,7 @@ test.describe('Debt Payoff Calculator SEO', () => {
     await page.goto(route);
 
     await expect(page).toHaveTitle(
-      'Debt Payoff Calculator | Snowball, Avalanche, Payoff Date and Interest'
+      'Debt Payoff Calculator | Snowball vs Avalanche & Payoff Date'
     );
     await expect(page.locator('h1')).toHaveText('Debt Payoff Calculator');
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -18,7 +18,7 @@ test.describe('Debt Payoff Calculator SEO', () => {
 
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBe(
-      'Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date.'
+      'See when you could be debt-free. Order multiple debts by snowball or avalanche, compare total interest and payoff months, and find which debt to pay off first.'
     );
 
     const structuredText = await page.locator('script[data-calculator-ld]').textContent();
@@ -29,7 +29,7 @@ test.describe('Debt Payoff Calculator SEO', () => {
     );
 
     const faq = graph.find((node) => node['@type'] === 'FAQPage');
-    expect(faq.mainEntity).toHaveLength(10);
+    expect(faq.mainEntity).toHaveLength(13);
 
     const explanation = page.locator('#debt-payoff-explanation');
     await expect(explanation.getByRole('heading', { level: 2 })).toHaveText(
@@ -39,7 +39,7 @@ test.describe('Debt Payoff Calculator SEO', () => {
     await expect(explanation).toContainText('Snowball vs avalanche');
     await expect(explanation).toContainText('Worked scenarios');
     await expect(explanation).toContainText('Important Notes');
-    await expect(explanation.locator('.faq-card')).toHaveCount(10);
+    await expect(explanation.locator('.faq-card')).toHaveCount(13);
 
     const sitemapResponse = await page.request.get('/sitemap.xml');
     expect(sitemapResponse.ok()).toBeTruthy();

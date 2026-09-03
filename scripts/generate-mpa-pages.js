@@ -558,6 +558,18 @@ const CALCULATOR_OVERRIDES = {
     explanationHeading: '',
     paneLayout: 'single',
   },
+  // Added 2026-09-03: this page had NO override, so commit 030e5450 (server-rendered schema, Aug
+  // 2026) regenerated it with the generic fallback title/description. Keep byte-identical to the
+  // `metadata` object in the page's module.js. See
+  // seo_fixes/credit-card-calculators/debt-payoff-calculator/fix-2.md
+  'debt-payoff-calculator': {
+    title: 'Debt Payoff Calculator | Snowball vs Avalanche & Payoff Date',
+    description:
+      'See when you could be debt-free. Order multiple debts by snowball or avalanche, compare total interest and payoff months, and find which debt to pay off first.',
+    h1: 'Debt Payoff Calculator',
+    explanationHeading: '',
+    paneLayout: 'single',
+  },
   'quadratic-equation': {
     title: 'Quadratic Equation Solver | Roots, Discriminant & Vertex',
     description:
@@ -1345,17 +1357,23 @@ const CREDIT_CARD_SCHEMA_CONFIG = {
   'debt-payoff-calculator': {
     breadcrumbLabel: 'Debt Payoff Calculator',
     softwareName: 'Debt Payoff Calculator',
+    // Keep in step with PAGE_DATE_MODIFIED in the page's module.js and the "Last updated" line in
+    // explanation.html.
+    dateModified: '2026-09-03',
     softwareDescription:
-      'Build a multi-debt payoff plan with debt snowball or avalanche, compare interest and payoff date, and estimate the payment needed for a goal date.',
+      'See when you could be debt-free. Order multiple debts by snowball or avalanche, compare total interest and payoff months, and find which debt to pay off first.',
     featureList: [
       'Snowball and avalanche strategy comparison',
       'Multi-debt payoff plan and payoff date',
+      'Which debt to pay off first, by strategy',
       'Payment needed for a target payoff date',
     ],
     keywords: [
       'debt payoff calculator',
       'debt snowball calculator',
       'debt avalanche calculator',
+      'debt repayment calculator',
+      'which debt to pay off first',
     ],
   },
 };
@@ -2336,6 +2354,14 @@ function buildFinanceStructuredData({
   faqEntries,
   breadcrumbLabel,
   breadcrumbSectionLabel = 'Finance',
+  // Added 2026-09-03: position 2 used to be hardcoded to /finance-calculators/ for every cluster,
+  // so clusters that pass their own breadcrumbSectionLabel (Credit Cards, Car Loans) emitted a
+  // section URL that disagreed with the visible breadcrumb and the canonical parent. Defaults to
+  // the old value so untouched call sites are unchanged.
+  breadcrumbSectionUrl = `${SITE_URL}/finance-calculators/`,
+  // Optional ISO date. Omitted unless a cluster config sets it, so pages that do not track a
+  // freshness date keep the exact graph they had before.
+  dateModified,
   softwareName,
   webPageName,
   webPageDescription,
@@ -2373,6 +2399,7 @@ function buildFinanceStructuredData({
         isPartOf: { '@id': `${SITE_URL}/#website` },
         publisher: { '@id': `${SITE_URL}/#organization` },
         inLanguage: 'en',
+        ...(dateModified ? { dateModified } : {}),
         primaryImageOfPage: {
           '@type': 'ImageObject',
           url: OG_IMAGE,
@@ -2422,7 +2449,7 @@ function buildFinanceStructuredData({
             '@type': 'ListItem',
             position: 2,
             name: breadcrumbSectionLabel,
-            item: `${SITE_URL}/finance-calculators/`,
+            item: breadcrumbSectionUrl,
           },
           {
             '@type': 'ListItem',
@@ -6558,6 +6585,7 @@ function main() {
         canonical: pageCanonical,
         faqEntries,
         breadcrumbSectionLabel: 'Credit Cards',
+        breadcrumbSectionUrl: `${SITE_URL}/credit-card-calculators/`,
         ...creditCardSchemaConfig,
       });
       injectStaticStructuredData = true;
