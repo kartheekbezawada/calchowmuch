@@ -2,13 +2,14 @@
   <section class="dp-exp-card">
     <h2>How does this debt payoff calculator help?</h2>
     <p>
-      This page is built for the question people actually ask: <strong>when will I be debt
-      free?</strong> Instead of estimating one balance in isolation, it routes payments across
-      multiple debts, shows how strategy changes the outcome, and keeps the answer tied to months,
-      interest cost, and a practical payoff date.
+      This page is built for the question people actually ask: <strong>when will I be
+      debt-free?</strong> Instead of estimating one balance in isolation, it routes your debt
+      payments across every balance you owe, shows how the order you pay them off in changes the
+      outcome, and keeps the answer tied to months, interest cost, and a practical payoff date.
     </p>
     <p>
-      Use it when you need a real plan, not just a formula. If your situation is only one balance,
+      Use it as a debt repayment calculator when you need a real plan, not just a formula. If your
+      situation is only one balance,
       you can <a href="/credit-card-calculators/credit-card-payment-calculator/">run the one-balance version</a>.
       If you want to compare structure changes instead of payoff routing, you can
       <a href="/credit-card-calculators/credit-card-consolidation-calculator/">test whether debt consolidation helps</a>
@@ -19,17 +20,18 @@
   <section class="dp-exp-card">
     <h3>How to Guide</h3>
     <p>
-      Start by listing every balance that belongs in the payoff plan. Each row needs a name, a
-      simple debt-type label, the current balance, APR, and the minimum payment. Debt type is
-      descriptive in v1, not mathematical. The engine still uses the same payoff model across credit
-      cards, store balances, medical plans, and personal loans. What changes the outcome is the
-      balance size, interest rate, minimum payment, and the order in which extra money is routed.
+      Start by listing every balance you want to pay off. Each row needs a name, a simple debt-type
+      label, the current balance, APR, and the minimum payment. Debt type is descriptive in v1, not
+      mathematical. The engine still uses the same repayment model across credit cards, store
+      balances, medical plans, and personal loans. What changes the outcome is the balance size,
+      interest rate, minimum payment, and the order in which extra money is routed.
     </p>
     <p>
       After the rows are in place, set the global extra payment pool. This is the amount you can
       send above the required minimums every month. The calculator adds minimum payments to every
-      active debt first, then routes the extra pool according to the chosen strategy. That is what
-      makes the strategy comparison real rather than decorative.
+      active debt first, then routes the extra pool according to the chosen strategy — so the extra
+      money always pays down one target balance instead of being spread thin. That is what makes the
+      strategy comparison real rather than decorative.
     </p>
     <ol class="dp-guide-list">
       <li>Enter all active debts that belong in the plan right now.</li>
@@ -152,9 +154,146 @@
   </section>
 
   <section class="dp-exp-card">
+    <h3>Which debt should you pay off first?</h3>
+    <p>
+      There are only two defensible answers, and the calculator models both. Pay off the
+      <strong>smallest balance first</strong> if you want an account closed quickly and one less
+      monthly debt payment to track. Pay off the <strong>highest APR first</strong> if you want the
+      lowest total interest. Everything else — card issuer, debt type, which statement arrived
+      first — changes nothing about the math.
+    </p>
+    <p>
+      The practical rule: if the gap between your highest and lowest APR is wide, paying the
+      expensive balance down first saves real money, so choose avalanche. If your rates are close
+      together, the interest difference between the two orders is small and the order that keeps you
+      paying is the better one. Run both and compare the totals rather than guessing — that
+      comparison is the whole point of this page.
+    </p>
+    <p>
+      One thing does not change with strategy: minimums are still due on every account. Skipping a
+      minimum to accelerate another debt risks late fees and a penalty rate, which costs more than
+      any ordering decision saves.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>Should you save money or pay off debt first?</h3>
+    <p>
+      Paying down a balance returns exactly its interest rate, with no market risk. Clearing a card
+      at 24.9% APR removes a known 24.9% annual cost, which is more than the average return most
+      savings or investment accounts deliver — and unlike an investment return, it is not taxed.
+      For high-rate revolving debt, repayment usually wins.
+    </p>
+    <p>Two things reasonably come before aggressive repayment:</p>
+    <ul class="dp-guide-list">
+      <li>
+        <strong>A small emergency buffer.</strong> Without one, the next unexpected bill goes back
+        onto the card you just paid off, and the plan restarts. Sizing that buffer is what the
+        <a href="/finance-calculators/monthly-savings-needed-calculator/">monthly savings needed calculator</a>
+        is for.
+      </li>
+      <li>
+        <strong>An employer retirement match, if you have one.</strong> A match is an immediate
+        return on the contribution, which is hard for any interest rate to beat.
+      </li>
+    </ul>
+    <p>
+      Below roughly 6-8% APR the comparison gets genuinely close, and long-run investment growth can
+      come out ahead — you can model that side with the
+      <a href="/finance-calculators/compound-interest-calculator/">compound interest calculator</a>
+      and weigh it against the interest total this page reports.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>The debt payoff formula, and how to calculate it by hand</h3>
+    <p>
+      There is no single closed-form equation for a multi-debt plan, because the extra payment moves
+      to a new target every time a balance closes. What there is, is a repeatable monthly loop. This
+      is the debt repayment formula the engine runs, once per debt, per month:
+    </p>
+    <div class="dp-formula-block">monthly interest = balance × (APR ÷ 12)</div>
+    <div class="dp-formula-block">new balance = balance + monthly interest − payment</div>
+    <p>
+      Repeat until the balance hits zero. The month it does is your payoff date, and the sum of every
+      interest line is your total interest cost.
+    </p>
+    <h4>Worked example: one balance, by hand</h4>
+    <p>
+      Take a $2,000 balance at 22% APR with a $200 monthly payment. The monthly rate is
+      22% ÷ 12 = 1.8333%.
+    </p>
+    <div class="dp-guide-table-wrap">
+      <table class="dp-guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Month</th>
+            <th scope="col">Starting balance</th>
+            <th scope="col">Interest added</th>
+            <th scope="col">Payment</th>
+            <th scope="col">Ending balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>$2,000.00</td>
+            <td>$36.67</td>
+            <td>$200.00</td>
+            <td>$1,836.67</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>$1,836.67</td>
+            <td>$33.67</td>
+            <td>$200.00</td>
+            <td>$1,670.34</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>$1,670.34</td>
+            <td>$30.62</td>
+            <td>$200.00</td>
+            <td>$1,500.96</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Carried to the end, that balance is repaid in <strong>12 months</strong> — the final payment is
+      only $29.80 — at a total interest cost of about <strong>$229.80</strong>. Notice the interest
+      line shrinking every month: that is why sending extra money early shortens the plan more than
+      sending the same amount later.
+    </p>
+    <p>
+      With several debts the loop is identical, run in parallel, with one difference: minimums go to
+      every balance, and the extra pool goes to whichever debt sits first in your chosen order. That
+      is the only place strategy enters the arithmetic.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
+    <h3>How this differs from a debt management plan</h3>
+    <p>
+      A debt management plan (DMP) is administered by a third party, usually a nonprofit credit
+      counselling agency. You make one monthly payment to the agency, it distributes the money to
+      your creditors, and it may negotiate reduced rates or waived fees on your behalf. Accounts on
+      the plan are typically closed, and the arrangement usually runs three to five years.
+    </p>
+    <p>
+      This page models the do-it-yourself alternative: you keep control of the accounts, choose your
+      own order, and pay creditors directly. Use the payoff months and total interest here as the
+      benchmark to judge any DMP quote against — if a plan does not beat the number on this page
+      after its fees, it is not buying you much. If the appeal is a single payment rather than rate
+      relief, <a href="/credit-card-calculators/credit-card-consolidation-calculator/">compare payoff vs consolidation</a>
+      first, since that keeps the accounts in your name.
+    </p>
+  </section>
+
+  <section class="dp-exp-card">
     <h3>Worked scenarios</h3>
 
-    <h4>Scenario 1: One high-rate card dominates the plan</h4>
+    <h4>Scenario 1: One high-rate card drives the plan</h4>
     <p>
       When a single credit card drives most of the interest, avalanche often improves the interest
       result quickly because the extra payment moves straight to the most expensive balance. If the
@@ -199,6 +338,18 @@
         <p>Use snowball when quick closures improve follow-through. Use avalanche when minimizing total interest is the main decision goal.</p>
       </article>
       <article class="faq-card">
+        <h4>Which debt should I pay off first?</h4>
+        <p>Either the smallest balance, to close an account and free up a payment sooner, or the highest APR, to cut total interest. Run both orders and compare the totals before committing.</p>
+      </article>
+      <article class="faq-card">
+        <h4>Is it better to save money or pay off debt?</h4>
+        <p>Repaying a high-rate balance returns exactly its APR with no market risk, so it usually beats saving. Keep a small emergency buffer and any employer match first.</p>
+      </article>
+      <article class="faq-card">
+        <h4>What is the debt payoff formula?</h4>
+        <p>Monthly interest = balance × (APR ÷ 12), then new balance = balance + interest − payment. Repeat monthly until the balance reaches zero; that month is your payoff date.</p>
+      </article>
+      <article class="faq-card">
         <h4>What if I only have one balance?</h4>
         <p>The route still works, but it is cleaner to <a href="/credit-card-calculators/credit-card-payment-calculator/">run the one-balance version</a>.</p>
       </article>
@@ -228,11 +379,12 @@
   <section class="dp-exp-card dp-notes-card">
     <h3>Important Notes</h3>
     <ul class="dp-notes-list">
-      <li><strong>Last updated:</strong> April 2026.</li>
+      <li><strong>Last updated:</strong> September 2026.</li>
       <li><strong>Assumptions:</strong> Fixed APR, no new debt, and no promotional-rate modeling in v1.</li>
       <li><strong>Accuracy:</strong> Results are planning estimates and depend on keeping payments and rates consistent.</li>
       <li><strong>Disclaimer:</strong> This calculator is a planning tool, not financial advice.</li>
-      <li><strong>Limitations:</strong> Debt type labels do not change payoff math in v1.</li>
+      <li><strong>Limitations:</strong> Debt type labels do not change payoff math in v1. Amounts are modeled in US dollars.</li>
+      <li><strong>Sources:</strong> Repayment-strategy framing follows Consumer Financial Protection Bureau guidance on paying down credit card debt, and debt management plan mechanics follow the CFPB description of credit counselling arrangements.</li>
       <li><strong>Privacy:</strong> All calculations run locally in your browser - no data is stored.</li>
     </ul>
   </section>

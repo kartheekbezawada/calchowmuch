@@ -51,6 +51,12 @@ function getCalculatorsFromNavigation() {
                     loc: `https://calchowmuch.com${routePath}`,
                     changefreq: 'monthly',
                     priority: '0.7',
+                    // Optional per-calculator freshness date from navigation.json. Set it when a
+                    // page is substantively rewritten so the sitemap carries a recrawl hint;
+                    // entries without one keep emitting no <lastmod>, exactly as before.
+                    ...(typeof calculator?.lastmod === 'string' && calculator.lastmod
+                        ? { lastmod: calculator.lastmod }
+                        : {}),
                 });
             }
         }
