@@ -2881,6 +2881,23 @@ function renderManagedHeadAdsenseBlock() {
   return '';
 }
 
+function renderAnalyticsHeadBlock(indent = '    ') {
+  const lines = [
+    '<!-- Google tag (gtag.js) -->',
+    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-NX2DY3KTPV"></script>',
+    '<script>',
+    '  window.dataLayer = window.dataLayer || [];',
+    '  function gtag(){dataLayer.push(arguments);}',
+    "  gtag('js', new Date());",
+    "  gtag('config', 'G-NX2DY3KTPV');",
+    '</script>',
+    '<!-- Cloudflare Web Analytics -->',
+    '<script type=\'module\' src=\'https://static.cloudflareinsights.com/beacon.min.js\' data-cf-beacon=\'{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}\'></script>',
+    '<!-- End Cloudflare Web Analytics -->',
+  ];
+  return `${lines.map((line) => `${indent}${line}`).join('\n')}\n`;
+}
+
 function renderManagedAdPanel(indent = '          ') {
   return `${indent}<div class="ad-panel"></div>`;
 }
@@ -4168,11 +4185,12 @@ function buildPricingClusterLandingPage(category) {
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+${renderAnalyticsHeadBlock()}
 ${headMetaHtml}
     <style data-pricing-cluster="true">
 ${indentBlock(buildPricingClusterInlineCss(null), '      ')}
     </style>
-${renderManagedHeadAdsenseBlock()}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+${renderManagedHeadAdsenseBlock()}
   </head>
   <body data-page="pricing-cluster" data-route-archetype="content_shell" data-design-family="neutral">
     <div class="page pct-cluster-page-shell">
@@ -5677,9 +5695,10 @@ ${adsColumnHtml}      </main>
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+${renderAnalyticsHeadBlock()}
 ${headMetaHtml}
 ${cssLinksHtml} 
-${structuredDataScript}${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+${structuredDataScript}${adsenseHeadScript}
   </head>
   <body${bodyAttribute}${routeArchetypeAttribute}${designFamilyAttribute}${topNavStaticAttribute}>
 ${pageShellHtml}
@@ -5737,6 +5756,7 @@ function buildCalculatorIndex(categories) {
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+${renderAnalyticsHeadBlock()}
 ${headMetaHtml}
     <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />
     <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />
@@ -5745,7 +5765,7 @@ ${headMetaHtml}
     <script type="application/ld+json" data-static-ld="true" data-calculator-ld="true">${stringifyStructuredData(
       staticStructuredData
     )}</script>
-${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+${adsenseHeadScript}
   </head>
   <body>
     <div class="page">
@@ -5893,12 +5913,13 @@ function buildStandaloneHomepage({ title, description, canonical, robots }) {
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+${renderAnalyticsHeadBlock()}
 ${headMetaHtml}
     <link rel="stylesheet" href="/assets/css/homepage-preview.css" />
     <script type="application/ld+json" data-homepage-ld="true" data-calculator-ld="true">${stringifyStructuredData(
       homepageStructuredData
     )}</script>
-${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->
+${adsenseHeadScript}
   </head>
   <body data-page="home" data-route-archetype="content_shell" data-design-family="neutral">
     <header class="header preview-header">
@@ -6156,7 +6177,7 @@ function buildGtepPage({ title, description, canonical, bodyHtml, structuredData
   const homeLinkHtml = showHomeLink
     ? '\n        <a href="/" class="gtep-home-link" aria-label="Go to Home Page">← Home</a>'
     : '';
-  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n${headMetaHtml}${structuredDataHtml}\n    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}    <!-- Cloudflare Web Analytics (manual beacon commented out for duplicate-beacon validation): <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3aa03e0b39c54f8a8c3553a6b682091c"}'></script> -->\n  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">${homeLinkHtml}\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
+  return `<!doctype html>\n<html lang="en">\n  <head>\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n${renderAnalyticsHeadBlock()}${headMetaHtml}${structuredDataHtml}\n    <link rel="stylesheet" href="/assets/css/theme-premium-dark.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/base.css?v=${CSS_VERSION}" />\n    <link rel="stylesheet" href="/assets/css/gtep.css?v=${GTEP_CSS_VERSION}" />\n${adsenseHeadScript}  </head>\n  <body class="gtep-body">\n    <div class="gtep-page">\n      <header class="gtep-header">${homeLinkHtml}\n        <span class="gtep-header-title">Calculate How Much</span>\n      </header>\n      <main class="gtep-main">\n        <div class="gtep-content">\n          ${bodyHtml}\n        </div>\n      </main>\n      ${buildGtepFooter()}\n    </div>\n  </body>\n</html>`;
 }
 
 function buildGtepSitemap(categories) {
