@@ -13,7 +13,10 @@ const KNOWN_GOOGLE_IDS = new Set(['G-NX2DY3KTPV']);
 
 function collectRequiredPublicHtml() {
   const sitemap = fs.readFileSync(path.join(PUBLIC_DIR, 'sitemap.xml'), 'utf8');
-  const files = new Set([path.join(PUBLIC_DIR, 'calculators', 'index.html')]);
+  const files = new Set([
+    path.join(PUBLIC_DIR, 'about-us', 'index.html'),
+    path.join(PUBLIC_DIR, 'calculators', 'index.html'),
+  ]);
   for (const match of sitemap.matchAll(/<loc>(.*?)<\/loc>/gis)) {
     const pathname = new URL(match[1].trim()).pathname;
     if (!pathname.endsWith('/')) continue;
